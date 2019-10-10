@@ -19,3 +19,11 @@
     - Building a framework as a result of the PhD
     - Supervision/Co supervision
     - Particular problem to solve
+
+## 10/10/19
+
+- Get in touch with Antoine Cully
+- Continue with literature review
+    - Focus on breadth of available literature
+    - Consider the verification of swarm intelligence
+- Start building document to summarise findings
