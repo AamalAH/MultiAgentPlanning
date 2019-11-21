@@ -27,3 +27,9 @@
     - Focus on breadth of available literature
     - Consider the verification of swarm intelligence
 - Start building document to summarise findings
+
+## 30/10/19
+
+- Started a formal review of the state-of-the-art which is in the 'Literature Review' folder. Overleaf project can be found and edited using the link below:
+
+https://www.overleaf.com/3269821714cnftkfcsphts
