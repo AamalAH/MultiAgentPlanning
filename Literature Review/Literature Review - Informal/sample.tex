@@ -1,4 +1,4 @@
-\documentclass[preprint,8pt]{report}
+\documentclass[preprint,11pt]{report}
 
 \usepackage{matlab-prettifier}
 \usepackage[english]{babel}
@@ -25,113 +25,251 @@
 
 \begin{document}
 
-\maketitle
-\tableofcontents
+\maketitle tableofcontents
 
 \chapter*{Introduction}
 
 
 
-The areas of interest regarding Multi Agent Systems fall into two distinct categories (which have some slight overlap). The first is denoted as 'Decision Making', though the terms 'Planning' and 'Distributed Control' may sometimes be used as substitutes. It is important to note that, in my case, I do not include Planning Formalisation techniques such as PDDL. Instead, I focus on the particular methods which involve interaction in the world. The second, I will refer to as 'Multi Agent Dynamics', though sometimes I will refer to this as 'Stability Analysis'. 
+The areas of interest regarding Multi Agent Systems fall into two distinct categories (which have
+some slight overlap). The first is denoted as 'Decision Making', though the terms 'Planning' and
+'Distributed Control' may sometimes be used as substitutes. It is important to note that, in my
+case, I do not include Planning Formalisation techniques such as PDDL. Instead, I focus on the
+particular methods which involve interaction in the world. The second, I will refer to as 'Multi
+Agent Dynamics', though sometimes I will refer to this as 'Stability Analysis'. 
 
 \subsection*{Scope}
 
-Both of the aforementioned topics have been applied to all variants of multi agent systems and have sufficient room for further exploration. The typical variants of multi agent systems that I will consider are
+Both of the aforementioned topics have been applied to all variants of multi agent systems and have
+sufficient room for further exploration. The typical variants of multi agent systems that I will
+consider are
 
-\begin{itemize}
-    \item Swarms
-    \item Multi Agent Reinforcement Learning (MARL)
-    \item Decentralised Partially Observed Markov Decision Processes (Dec-POMDP)
-    \item Game Theoretic Approaches
-    \item Hard Coded
-\end{itemize}
+\begin{itemize} \item Swarms \item Multi Agent Reinforcement Learning (MARL) \item Decentralised
+Partially Observed Markov Decision Processes (Dec-POMDP) \item Game Theoretic Approaches \item Hard
+Coded \end{itemize}
 
-In the above, 'Game Theoretic Approaches' cover a wide spectrum, including zero-sum (minimax) games, bayesian games, and many more. The final category, 'Hard Coded', refers to any approach which does not fit neatly into any of these categories. The name is chosen since they often refer to methods which revolve around a series of if-else statements.
+In the above, 'Game Theoretic Approaches' cover a wide spectrum, including zero-sum (minimax) games,
+bayesian games, and many more. The final category, 'Hard Coded', refers to any approach which does
+not fit neatly into any of these categories. The name is chosen since they often refer to methods
+which revolve around a series of if-else statements.
 
-I will first consider Decision Making as this is most closely related to the research proposal, before I consider Multi Agent Dynamics, which has strong implications for Safe and Trusted Multi Agent Systems. 
+I will first consider Decision Making as this is most closely related to the research proposal,
+before I consider Multi Agent Dynamics, which has strong implications for Safe and Trusted Multi
+Agent Systems. 
 
 \subsection*{Objectives}
 
-The aim of the following sections is not to provide an exhaustive list of all work done in the aforementioned areas. To attempt to do this would be an exercise in futility. Instead, it is to identify research directions which lie within the broad scope of Multi-Agent Systems (MAS). With these directions, we may be able to narrow down the remaining literature review and hone in on particular problems and, in fact, we may find that we address multiple of these over the next four years (while we, of course add more). As such, the end of each chapter will provide a list of research directions which I have identified from the preceding review. 
+The aim of the following sections is not to provide an exhaustive list of all work done in the
+aforementioned areas. To attempt to do this would be an exercise in futility. Instead, it is to
+identify research directions which lie within the broad scope of Multi-Agent Systems (MAS). With
+these directions, we may be able to narrow down the remaining literature review and hone in on
+particular problems and, in fact, we may find that we address multiple of these over the next four
+years (while we, of course add more). As such, the end of each chapter will provide a list of
+research directions which I have identified from the preceding review. 
 
 \chapter{Decision Making}
 
-Decision making refers to the generalised problem of considering how a multi-agent system should interact in the world to achieve their goals. This subsumes both the cases where the agents' goals are aligned (cooperative) or in conflict with one another (competitive). 
+Decision making refers to the generalised problem of considering how a multi-agent system should
+interact in the world to achieve their goals. This subsumes both the cases where the agents' goals
+are aligned (cooperative) or in conflict with one another (competitive). 
 
-The following sections will provide an overview of the literature aimed towards coordinating such systems as followed by interesting sub-fields in each approach which present avenues for research related to Safe and Trusted AI (STAI). These, of course, are not exhaustive and more will be added as the review progresses.
+The following sections will provide an overview of the literature aimed towards coordinating such
+systems as followed by interesting sub-fields in each approach which present avenues for research
+related to Safe and Trusted AI (STAI). These, of course, are not exhaustive and more will be added
+as the review progresses.
 
 \section{Swarms}
 
-Swarm based systems comprise of multiple homogeneous agents which are able to organise themselves through a formation using a series of simple local interactions with their neighbours \cite{Couceiro2015}. Whilst the individual agents are generally simplistic, the collective behaviour may exhibit complex phenomena emulating systems observed in biological organisations such as bee or ant colonies \cite{Sethi2017}. Hybrid algorithms such as in \cite{Gao2018} show an accelerated performance in reaching globally optimal solutions in search-based tasks. The advantage of many swarm algorithms is that they are based on local interactions and so are incredibly scalable \cite{Rizk2018}. 
+Swarm based systems comprise of multiple homogeneous agents which are able to organise themselves
+through a formation using a series of simple local interactions with their neighbours
+\cite{Couceiro2015}. Whilst the individual agents are generally simplistic, the collective behaviour
+may exhibit complex phenomena emulating systems observed in biological organisations such as bee or
+ant colonies \cite{Sethi2017}. Hybrid algorithms such as in \cite{Gao2018} show an accelerated
+performance in reaching globally optimal solutions in search-based tasks. The advantage of many
+swarm algorithms is that they are based on local interactions and so are incredibly scalable
+\cite{Rizk2018}. 
 
-The reduction of the complexity in interactions between agents also allows for the robots to perform other calculations on board. In \cite{Pini2011TaskSelection}, Pini et al. leverage this by considering adaptive task partitioning across swarms. This allows a swarm, in a decentralised manner, to deliberate whether to partition a task into its sub-tasks or to perform the task in its whole. As of now (to the best of my knowledge) the problem of partitioning general tasks into its N sub-tasks is unexplored. This, however, highlights another advantage of swarm systems; they are readily divided into sub-groups (as in \cite{Zahadat2016DivisionInhibition}) to perform a divide-et-impera (divide and conquer) approach to solving problems \cite{Pini2011TaskSelection}). 
+The reduction of the complexity in interactions between agents also allows for the robots to perform
+other calculations on board. In \cite{Pini2011TaskSelection}, Pini et al. leverage this by
+considering adaptive task partitioning across swarms. This allows a swarm, in a decentralised
+manner, to deliberate whether to partition a task into its sub-tasks or to perform the task in its
+whole. As of now (to the best of my knowledge) the problem of partitioning general tasks into its N
+sub-tasks is unexplored. This, however, highlights another advantage of swarm systems; they are
+readily divided into sub-groups (as in \cite{Zahadat2016DivisionInhibition}) to perform a
+divide-et-impera (divide and conquer) approach to solving problems \cite{Pini2011TaskSelection}). 
 
-Furthermore, swarm systems may be designed in a leaderless manner and so do not require the use of a central controller \cite{Couceiro2015}. This presents the advantage that the system can rapidly adapt to the loss of agents or separation of groups throughout the task. However, the assumptions made regarding the homogeneity of individual agents and the simplicity of their local interactions result in significant limitations placed on the complexity of the tasks that swarm systems can accomplish. 
+Furthermore, swarm systems may be designed in a leaderless manner and so do not require the use of a
+central controller \cite{Couceiro2015}. This presents the advantage that the system can rapidly
+adapt to the loss of agents or separation of groups throughout the task. However, the assumptions
+made regarding the homogeneity of individual agents and the simplicity of their local interactions
+result in significant limitations placed on the complexity of the tasks that swarm systems can
+accomplish. 
 
 \subsection{Co-evolution and Self-Healing}
 
-Recently, there has been an increased interest in introducing heterogeneity into the swarm systems to improve their real world applicability. An example of this which have been shown strong real world success can be found in \cite{DucatelleSelf-organizedSwarms}. Here, the authors consider two swarm teams, referred to as 'foot bots' and 'eye bots' who work in unison to explore an environment and solve a navigation task. 
+Recently, there has been an increased interest in introducing heterogeneity into the swarm systems
+to improve their real world applicability. An example of this which have been shown strong real
+world success can be found in \cite{DucatelleSelf-organizedSwarms}. Here, the authors consider two
+swarm teams, referred to as 'foot bots' and 'eye bots' who work in unison to explore an environment
+and solve a navigation task. 
 
-This area of research is sparsely populated and warrants further exploration. This is since the use of co-evolutionary teams can improve the robustness of the swarm optimisation. This is since it will be possible for a team to automatically determine when robots in the other team are not exhibiting expected behaviour and ensure that the other team self corrects. This process is referred to as 'Self-Healing' in \cite{LiuTrust-Aware}. Here, the authors allow a user to define the goals of a swarm system. From this, a 'trust' metric can be defined which measures the deviation of each agent from the expected behaviour. The self-healing process occurs by limiting communication of all agents with 'untrusted' agents and encouraging communication with 'trusted' agents. The unison of self-healing with co-evolution may present the opportunity for heterogenous swarms to maintain their evolutionary stability, even in the face of environmental disturbances.
+This area of research is sparsely populated and warrants further exploration. This is since the use
+of co-evolutionary teams can improve the robustness of the swarm optimisation. This is since it will
+be possible for a team to automatically determine when robots in the other team are not exhibiting
+expected behaviour and ensure that the other team self corrects. This process is referred to as
+'Self-Healing' in \cite{LiuTrust-Aware}. Here, the authors allow a user to define the goals of a
+swarm system. From this, a 'trust' metric can be defined which measures the deviation of each agent
+from the expected behaviour. The self-healing process occurs by limiting communication of all agents
+with 'untrusted' agents and encouraging communication with 'trusted' agents. The unison of
+self-healing with co-evolution may present the opportunity for heterogenous swarms to maintain their
+evolutionary stability, even in the face of environmental disturbances.
 
 \subsection{Fault Detection}
 
-The above sections have considered the fact that swarm systems are robust to losses in the group. However, any MAS system must first be able to recognise that an agent has undergone some failure. 
+The above sections have considered the fact that swarm systems are robust to losses in the group.
+However, any MAS system must first be able to recognise that an agent has undergone some failure. 
 
-To this end, Tarapore et al. \cite{Tarapore2019FaultDetection} develop a robust fault detection approach in which the swarm itself, in a decentralised manner, is capable of assessing deviation from 'normal' behaviour, even when the behaviour of the swarm itself is altered (perhaps by a remote operator). The authors achieve this by requiring that the agents themselves sense and characterise their own behaviour. This characterisation is formulated as a binary feature vector which is then communicated to the agent's neighbours. These neighbours will reach a consensus over whether the agent should be treated as faulty based on their collective behaviour. The results presented in \cite{Tarapore2019FaultDetection} show extremely promising results and suggest that their method is, in fact, able to determine faults with high accuracy in the presence of various fault types (including sensor and actuator failures), although poor performance is seen in actuation failures in some instances. It should be noted that this method requires that each robot transmit their feature vector to the nearest neighbours. In environments where communication may be severely limited, this may present further errors. Furthermore, it is unlikely that, when a robot is damaged, only one of its components will be affected. Therefore, it is important to determine the effect on performance in the face of multiple agent failures and in communication losses. This exploration may open the possibility of improving the state of the art in terms of failure detection in swarm systems. (Of course, this conclusion is based off two papers so further review is required).
+To this end, Tarapore et al. \cite{Tarapore2019FaultDetection} develop a robust fault detection
+approach in which the swarm itself, in a decentralised manner, is capable of assessing deviation
+from 'normal' behaviour, even when the behaviour of the swarm itself is altered (perhaps by a remote
+operator). The authors achieve this by requiring that the agents themselves sense and characterise
+their own behaviour. This characterisation is formulated as a binary feature vector which is then
+communicated to the agent's neighbours. These neighbours will reach a consensus over whether the
+agent should be treated as faulty based on their collective behaviour. The results presented in
+\cite{Tarapore2019FaultDetection} show extremely promising results and suggest that their method is,
+in fact, able to determine faults with high accuracy in the presence of various fault types
+(including sensor and actuator failures), although poor performance is seen in actuation failures in
+some instances. It should be noted that this method requires that each robot transmit their feature
+vector to the nearest neighbours. In environments where communication may be severely limited, this
+may present further errors. Furthermore, it is unlikely that, when a robot is damaged, only one of
+its components will be affected. Therefore, it is important to determine the effect on performance
+in the face of multiple agent failures and in communication losses. This exploration may open the
+possibility of improving the state of the art in terms of failure detection in swarm systems. (Of
+course, this conclusion is based off two papers so further review is required).
 
 \subsection{Verification}
 
-Both of Alessio's papers \cite{Kouvaros2019FormalSystems, Lomuscio2019ASystems} fit in here but they require further reading
+Both of Alessio's papers \cite{Kouvaros2019FormalSystems, Lomuscio2019ASystems} fit in here but they
+require further reading
 
 \subsection{Directions}
 
-From the above consideration of swarms, the following research directions have been identified which, in my view, concern themselves with STAI.
+From the above consideration of swarms, the following research directions have been identified
+which, in my view, concern themselves with STAI.
 
-\begin{itemize}
-    \item Healing through co-evolution: The application of heterogenous robot swarms towards ensuring that emergent phenomenon and swarm behaviour are as expected by the user.
-    \item Fault Detection in limited communication: Considering the ability of a swarm to, in a decentralised approach, consider which robots in the team have failed, even in cases of no communication or multiple failures.
-\end{itemize}
+\begin{itemize} \item Healing through co-evolution: The application of heterogenous robot swarms
+towards ensuring that emergent phenomenon and swarm behaviour are as expected by the user. \item
+Fault Detection in limited communication: Considering the ability of a swarm to, in a decentralised
+approach, consider which robots in the team have failed, even in cases of no communication or
+multiple failures. \end{itemize}
 
 \section{Dec-POMDPs}
 
-The use of POMDPs in multi-agent settings is formalised as decentralised POMDP (Dec-POMDP) which aims for a team of agents to maximise a common utility. However, it has been found that determining the exact solution to Dec-POMDP problems is NEXP \cite{Eker2011} and so is intractable for all but toy problems. A number of methods have been presented to attempt to solve Dec-POMDPs. Oliehoek gives a review of these in \cite{OliehoekDecentralizedPOMDPs}. Most solutions (such as brute force) are intractable for all but toy problems. 
+The use of POMDPs in multi-agent settings is formalised as decentralised POMDP (Dec-POMDP) which
+aims for a team of agents to maximise a common utility. However, it has been found that determining
+the exact solution to Dec-POMDP problems is NEXP \cite{Eker2011} and so is intractable for all but
+toy problems. A number of methods have been presented to attempt to solve Dec-POMDPs. Oliehoek gives
+a review of these in \cite{OliehoekDecentralizedPOMDPs}. Most solutions (such as brute force) are
+intractable for all but toy problems. 
 
-Approximate solutions to Dec-POMDP have been proposed, perhaps most notable of which is the proposal of MacDec-POMDP \cite{Amato2015} by Amato et al. Here, macro actions (actions which extend over multiple time steps) are used, as opposed to low-level actions which are re-evaluated at each time step. This allows an exact solution to be found as it does not need to be evaluated at each time step. This method assumes that, once macro-actions are distributed, the policies (sequence of state-action pairs) are known. Since this is not the case, Amato also proposes the use of a Dec-POSMDP \cite{Amato2017Decision-MakingLearning}, where 'SMDP' refers to 'Semi-Markov Decision Process, in which a high level model is defined without the underlying Dec-POMDP's actions and observations.
+Approximate solutions to Dec-POMDP have been proposed, perhaps most notable of which is the proposal
+of MacDec-POMDP \cite{Amato2015} by Amato et al. Here, macro actions (actions which extend over
+multiple time steps) are used, as opposed to low-level actions which are re-evaluated at each time
+step. This allows an exact solution to be found as it does not need to be evaluated at each time
+step. This method assumes that, once macro-actions are distributed, the policies (sequence of
+state-action pairs) are known. Since this is not the case, Amato also proposes the use of a
+Dec-POSMDP \cite{Amato2017Decision-MakingLearning}, where 'SMDP' refers to 'Semi-Markov Decision
+Process, in which a high level model is defined without the underlying Dec-POMDP's actions and
+observations.
 
-However, this is largely applicable in passive settings where common payoffs can be determined by an offline planner. They also require a significant amount of data with which to allow the system to learn the underlying models and payoff structures. This limits the applicability of the system when communication is limited and the system is presented with environments that it has not seen before. Recent work in MDPs \cite{Klima2019RobustDomains} has considered learning in the face of Significant Rare Events (SREs) which the system has not yet observed. Currently, it is required that a model of such SREs is known and so it would be interesting to consider the application of Dec-POMDPs in situations where the SRE model is incomplete or erroneous and assess the robustness of the Dec-POMDP framework against such events. 
+However, this is largely applicable in passive settings where common payoffs can be determined by an
+offline planner. They also require a significant amount of data with which to allow the system to
+learn the underlying models and payoff structures. This limits the applicability of the system when
+communication is limited and the system is presented with environments that it has not seen before.
+Recent work in MDPs \cite{Klima2019RobustDomains} has considered learning in the face of Significant
+Rare Events (SREs) which the system has not yet observed. Currently, it is required that a model of
+such SREs is known and so it would be interesting to consider the application of Dec-POMDPs in
+situations where the SRE model is incomplete or erroneous and assess the robustness of the Dec-POMDP
+framework against such events. 
 
 \subsection{Directions}
 
-The area of Dec-POMDPs still requires more review from me, especially for solutions which are not developed by Amato as he seems to largely dominate the field. Based on this initial review of the area, a potential direction for research is
+The area of Dec-POMDPs still requires more review from me, especially for solutions which are not
+developed by Amato as he seems to largely dominate the field. Based on this initial review of the
+area, a potential direction for research is
 
-\begin{itemize}
-    \item Significant Rare Events: Consider Dec-POMDP capability to remain robust to SREs which have a limited or erroneous model.
-    \item Agent Failures: The Dec-POMDP model uses a centralised planner which acts offline. It therefore assumes that the agents will be able to carry out their assigned tasks. It would be interesting to examine the possibility of, either adaptive planning, or planning with contingencies in the Dec-POMDP framework.
-\end{itemize}
+\begin{itemize} \item Significant Rare Events: Consider Dec-POMDP capability to remain robust to
+SREs which have a limited or erroneous model. \item Agent Failures: The Dec-POMDP model uses a
+centralised planner which acts offline. It therefore assumes that the agents will be able to carry
+out their assigned tasks. It would be interesting to examine the possibility of, either adaptive
+planning, or planning with contingencies in the Dec-POMDP framework. \end{itemize}
 
 \section{Game Theoretic Approaches}
 
-Game theoretic models are generally the go-to method for understanding multi-agent systems. As such they fit into all of the categories in this chapter (except, perhaps, swarms) since Dec-POMDP and MARL methods have both used game theory to support their frameworks. In fact, Dec-POMDP is a subset of Partially Observed Stochastic Games (POSG), in which all agents use the same payoff. Game theory can, therefore, be used in an applied capacity to direct task allocation across heterogenous teams.
+Game theoretic models are generally the go-to method for understanding multi-agent systems. As such
+they fit into all of the categories in this chapter (except, perhaps, swarms) since Dec-POMDP and
+MARL methods have both used game theory to support their frameworks. In fact, Dec-POMDP is a subset
+of Partially Observed Stochastic Games (POSG), in which all agents use the same payoff. Game theory
+can, therefore, be used in an applied capacity to direct task allocation across heterogenous teams.
 
 \subsection{Market Based Methods}
 
-Garapati et al. \cite{Garapati2018AMissions} define a market based method as the setting where agents "follow their own interests and establish the mechanism of a market for distributing the tasks". Auctioning is the most widely used sub-field of market approaches and so I will use them interchangeably. 
+Garapati et al. \cite{Garapati2018AMissions} define a market based method as the setting where
+agents "follow their own interests and establish the mechanism of a market for distributing the
+tasks". Auctioning is the most widely used sub-field of market approaches and so I will use them
+interchangeably. 
 
-Whilst there are different variants to autioning, the general procedure is that an auctioneer who has knowledge of a task (or multiple tasks) will set up an auction for said task. Agents can then make bids on these tasks and, once the auction is complete, the highest bid will win the task. In the specific application to robotics, a robot's bid will often reflect the costs, suitability or utility their undertaking the task \cite{BernardineDias2006Market-basedAnalysis}. This immediately highlights a few points. The first is that the method is not too heavily reliant upon a single processor to determine some joint policy. Tasks are allocated on a case-by-case basis and the utilities are calculated by the agent themselves. The only centralised process is the auctioneer's assessment of the winner which then relays this information back to them. The downside of this is that the system is heavily reliant upon strong communication channels, without which tasks may not be assigned, incorrect utilities may be communicated and, in general, sub-optimal solutions reached. Furthermore, the requirement that the agents themselves determine the cost of their actions assumes that they have the computational capability to do so. Furthermore, the bids placed by each agent need to be a strong representation of their capability to perform a task which may be hard to estimate without expert knowledge. However, market based methods are well suited to explanation through argumentation (similar to \cite{Jung2001DistributedArgumentation}. 
+Whilst there are different variants to autioning, the general procedure is that an auctioneer who
+has knowledge of a task (or multiple tasks) will set up an auction for said task. Agents can then
+make bids on these tasks and, once the auction is complete, the highest bid will win the task. In
+the specific application to robotics, a robot's bid will often reflect the costs, suitability or
+utility their undertaking the task \cite{BernardineDias2006Market-basedAnalysis}. This immediately
+highlights a few points. The first is that the method is not too heavily reliant upon a single
+processor to determine some joint policy. Tasks are allocated on a case-by-case basis and the
+utilities are calculated by the agent themselves. The only centralised process is the auctioneer's
+assessment of the winner which then relays this information back to them. The downside of this is
+that the system is heavily reliant upon strong communication channels, without which tasks may not
+be assigned, incorrect utilities may be communicated and, in general, sub-optimal solutions reached.
+Furthermore, the requirement that the agents themselves determine the cost of their actions assumes
+that they have the computational capability to do so. Furthermore, the bids placed by each agent
+need to be a strong representation of their capability to perform a task which may be hard to
+estimate without expert knowledge. However, market based methods are well suited to explanation
+through argumentation (similar to \cite{Jung2001DistributedArgumentation}. 
 
-With well chosen payoffs, market based approaches work extremely well. For instance, in \cite{Dias2000ASystem}, the authors show that a free market approach (where agents try to maximise their own profits) can lead to a strong collaborative effort across teams. Similarly, in \cite{Thomas2005Multi-robotScenarios}, Thomas et al. apply the auctioning scheme presented in \cite{Gerkey2002Sold:Coordination} towards a robot construction team. However, it is important to note that these are both passive settings; tasks were assigned before the team were in the field and, in the case of \cite{Gerkey2002Sold:Coordination}, the system would repeat the bidding process if a robot failed. While both show strong performance, it cannot be said that either would be applicable in dangerous environments in which dynamic reassignment must happen within strict time constraints. Stancliff et al. \cite{Stancliff2009PlanningAllocation} suggest that a more robust method to planning would be to account for failures a priori, a philosophy which is exemplified in \cite{Chen2010ACollaboration} who consider the robot's reliability and relevance to a task as well as 'history relevance' which considers the relationship between pairs of robots with the aim of producing more effective teams.
+With well chosen payoffs, market based approaches work extremely well. For instance, in
+\cite{Dias2000ASystem}, the authors show that a free market approach (where agents try to maximise
+their own profits) can lead to a strong collaborative effort across teams. Similarly, in
+\cite{Thomas2005Multi-robotScenarios}, Thomas et al. apply the auctioning scheme presented in
+\cite{Gerkey2002Sold:Coordination} towards a robot construction team. However, it is important to
+note that these are both passive settings; tasks were assigned before the team were in the field
+and, in the case of \cite{Gerkey2002Sold:Coordination}, the system would repeat the bidding process
+if a robot failed. While both show strong performance, it cannot be said that either would be
+applicable in dangerous environments in which dynamic reassignment must happen within strict time
+constraints. Stancliff et al. \cite{Stancliff2009PlanningAllocation} suggest that a more robust
+method to planning would be to account for failures a priori, a philosophy which is exemplified in
+\cite{Chen2010ACollaboration} who consider the robot's reliability and relevance to a task as well
+as 'history relevance' which considers the relationship between pairs of robots with the aim of
+producing more effective teams.
 
-There has also been some interesting work in probabilistic verification of market based approaches. Most notable to me is \cite{Pallottino2007ProbabilisticAvoidance} which considers the case of conflict avoidance. Though their method focuses on collision avoidance, it highlights the need for verification of conflict resolution and goal achievement in market based approaches with different payoff structures. Sirigineedi et al. \cite{Sirigineedi2010DecentralisedApproach} make a step in this direction by considering the verification of cooperative surveillance along a route network. From my understanding, this means that they were able to verify that their agents were able to traverse along the network without interference. However, this, as always, requires further analysis to truly understand.
+There has also been some interesting work in probabilistic verification of market based approaches.
+Most notable to me is \cite{Pallottino2007ProbabilisticAvoidance} which considers the case of
+conflict avoidance. Though their method focuses on collision avoidance, it highlights the need for
+verification of conflict resolution and goal achievement in market based approaches with different
+payoff structures. Sirigineedi et al. \cite{Sirigineedi2010DecentralisedApproach} make a step in
+this direction by considering the verification of cooperative surveillance along a route network.
+From my understanding, this means that they were able to verify that their agents were able to
+traverse along the network without interference. However, this, as always, requires further analysis
+to truly understand.
 
 \subsection{Directions}
 
 The particular considerations which have jumped out to me from the above analysis are as follows:
 
-\begin{itemize}
-    \item Verification of goal achievement under different payoffs: can we ensure that self-interested agents will, in fact, show cooperative emergent properties? A similar question arises in terms of valuations (how much cost each agent incurs).
-    \item A priori consideration of reliability: Can we learn and take into account the fact that robots may fail throughout the progress of a mission when we assign tasks?
-\end{itemize}
+\begin{itemize} \item Verification of goal achievement under different payoffs: can we ensure that
+self-interested agents will, in fact, show cooperative emergent properties? A similar question
+arises in terms of valuations (how much cost each agent incurs). \item A priori consideration of
+reliability: Can we learn and take into account the fact that robots may fail throughout the
+progress of a mission when we assign tasks? \end{itemize}
 
 \subsection*{Stochastic Games}
 
@@ -141,86 +279,301 @@ The particular considerations which have jumped out to me from the above analysi
 
 \section{MARL}
 
-Reinforcement learning extends the Markov Decision Process problem by considering the case where the payoff model is not known. This, of course, is the case for most real world environments. As such, MARL algorithms can perhaps be considered to be more applicable than Dec-POMDP models. Fortunately, MARL has picked up a lot of traction in research recently, with a large body dedicated towards solving the many problems it presents.
+Reinforcement learning extends the Markov Decision Process problem by considering the case where the
+payoff model is not known. This, of course, is the case for most real world environments. As such,
+MARL algorithms can perhaps be considered to be more applicable than Dec-POMDP models. Fortunately,
+MARL has picked up a lot of traction in research recently, with a large body dedicated towards
+solving the many problems it presents.
 
-The largest problem in MARL is the non-stationarity of the environment \cite{Hernandez-LealA}. In single-agent settings, it is assumed that the environment is Markovian. However, this must be lifted in the Multi Agent setting since other agents in the environment will be learning concurrently. This learning will be based on their own history of interactions which extend beyond the previous state. As such, we must now consider that the policy for any one agent will depend on the policy of all other agents. As such, a big concern in this area is regarding convergence guarantees and the stability of the learner system. Approaches to this will be discussed in the next chapter. 
+The largest problem in MARL is the non-stationarity of the environment \cite{Hernandez-LealA}. In
+single-agent settings, it is assumed that the environment is Markovian. However, this must be lifted
+in the Multi Agent setting since other agents in the environment will be learning concurrently. This
+learning will be based on their own history of interactions which extend beyond the previous state.
+As such, we must now consider that the policy for any one agent will depend on the policy of all
+other agents. As such, a big concern in this area is regarding convergence guarantees and the
+stability of the learner system. Approaches to this will be discussed in the next chapter. 
 
 \subsection*{Agent Modelling}
 
-Returning to the problem of non-stationarity, solutions have been presented in which the agent models the learning of other agents. A noteworthy example of this is found in \cite{Foerster2018LearningAwareness} in which the agent performs a one-step lookahead of the other agents' learning and optimises with respect to this expected return. They show that this leads to stable learning and can even lead to emergent cooperation from competition. However, the method requires that both agents have exact knowledge of the others' value functions in order to perform the one step lookahead. Furthermore, it has only been considered for the case of a two agent adversarial game and so the scalability of the system to multiple agents is not yet understood. Another method presented by Mao et al. \cite{MaoModellingDDPG} uses a centralised critic to collect the actions and observations of all agents and allows it to model the joint policy of teammates. This is shown to generate cooperative behaviour across four agents and so is more applicable to real world settings. However, its disadvantage over the method presented in \cite{Foerster2018LearningAwareness} is that the critic is centralised. In real world settings, this requires the presence of an agent (perhaps a laptop) which is able to handle the computational load of determining a joint policy across all agents and must then communicate the Q-values of all agents back to them. This is both a taxing both in terms of computation and time. 
+Returning to the problem of non-stationarity, solutions have been presented in which the agent
+models the learning of other agents. A noteworthy example of this is found in
+\cite{Foerster2018LearningAwareness} in which the agent performs a one-step lookahead of the other
+agents' learning and optimises with respect to this expected return. They show that this leads to
+stable learning and can even lead to emergent cooperation from competition. However, the method
+requires that both agents have exact knowledge of the others' value functions in order to perform
+the one step lookahead. Furthermore, it has only been considered for the case of a two agent
+adversarial game and so the scalability of the system to multiple agents is not yet understood.
+Another method presented by Mao et al. \cite{MaoModellingDDPG} uses a centralised critic to collect
+the actions and observations of all agents and allows it to model the joint policy of teammates.
+This is shown to generate cooperative behaviour across four agents and so is more applicable to real
+world settings. However, its disadvantage over the method presented in
+\cite{Foerster2018LearningAwareness} is that the critic is centralised. In real world settings, this
+requires the presence of an agent (perhaps a laptop) which is able to handle the computational load
+of determining a joint policy across all agents and must then communicate the Q-values of all agents
+back to them. This is both a taxing both in terms of computation and time. 
 
-Hong et al \cite{Hong2018ASystems} present a similar system for modelling teammate policies by tasking a CNN with determining the policy features of other agents and then embedding these as features in its own DQN. This shows strong performance in settings where other agents dynamically change their policies. The concerns with this, however, are that, as the number of agents in the field increase, the CNN in each agent must perform another approximation. This places strong requirements on the performance of the CNN since errors in estimation will accumulate as the number of agents increases. Similarly, the complexity of the DQN will increase as more feature vectors are added. 
+Hong et al \cite{Hong2018ASystems} present a similar system for modelling teammate policies by
+tasking a CNN with determining the policy features of other agents and then embedding these as
+features in its own DQN. This shows strong performance in settings where other agents dynamically
+change their policies. The concerns with this, however, are that, as the number of agents in the
+field increase, the CNN in each agent must perform another approximation. This places strong
+requirements on the performance of the CNN since errors in estimation will accumulate as the number
+of agents increases. Similarly, the complexity of the DQN will increase as more feature vectors are
+added. 
 
-Finally, all of the above methods are not robust to evolving numbers of agents. The problem of agent modelling is an important one to ensure stable learning and to understand the evolution of the system. It also presents a strong challenge and is open to exploration. To put it in context the methods described in this section are all from 2018-19, so its all very new.
+Finally, all of the above methods are not robust to evolving numbers of agents. The problem of agent
+modelling is an important one to ensure stable learning and to understand the evolution of the
+system. It also presents a strong challenge and is open to exploration. To put it in context the
+methods described in this section are all from 2018-19, so its all very new.
 
 \subsection{Directions}
 
-I still have a lot of reading to do regarding MARL, which, in turn, will identify new directions. However, on initial assessment I put forward
+I still have a lot of reading to do regarding MARL, which, in turn, will identify new directions.
+However, on initial assessment I put forward
 
-\begin{itemize}
-    \item Modelling evolving teammates: The purpose of this is to more strictly ensure the stability of the learning process. However, the particular problem I suggest is to consider the modelling in a decentralised manner and with the consideration of evolving numbers of agents in teams.
-\end{itemize}
+\begin{itemize} \item Modelling evolving teammates: The purpose of this is to more strictly ensure
+the stability of the learning process. However, the particular problem I suggest is to consider the
+modelling in a decentralised manner and with the consideration of evolving numbers of agents in
+teams. \end{itemize}
 
 
-\section{MARL Approaches}
+\section{MARL Approaches} \label{sec::MARL Approaches}
 
-The task of MARL is to determine an optimal joint policy for all agents across the game. This joint policy may be the concatenation of all the individual policy or it may just be options for each agent to take. In either case, optimality is defined through the standard notions of Nash equilibria and so, in this section, I will try to consider the broad spectrum of methods which attempt to achieve this Nash equilibria. I will start with the more foundational methods which are, thankfully, all reviewed by Schwartz in  \cite{SchwartzMulti-agentApproach}. I will use the chapters of the book to help guide this review. I am not referencing the individual papers immediately, though the references can be found in the book.
+The task of MARL is to determine an optimal joint policy for all agents across the game. This joint
+policy may be the concatenation of all the individual policy or it may just be options for each
+agent to take. In either case, optimality is defined through the standard notions of Nash equilibria
+and so, in this section, I will try to consider the broad spectrum of methods which attempt to
+achieve this Nash equilibria. I will start with the more foundational methods which are, thankfully,
+all reviewed by Schwartz in  \cite{SchwartzMulti-agentApproach}. I will use the chapters of the book
+to help guide this review. I am not referencing the individual papers immediately, though the
+references can be found in the book.
 
 \subsubsection*{Learning in Two Player Matrix Games}
 
-The most fundamental method to learning in Matrix games is the simplex algorithm. This is a popular method of linear programming (in which constraints are linear). This will be important in considering more current methods. A similar consideration is given to the infinitesimal gradient ascent algorithm, in which the step size converges to zero. This method guarantees that, in the infite horizon limit, the payoffs will converge to the Nash equilibrium payoff. Note that this does not necessarily mean that both agents will converge to a single Nash equilibrium. This is a particular problem in games where there are multiple Nash equilibria. However, in practice it is difficult to choose a convergence rate of the step size and, without an appropriate choice the strategy may oscillate as shown in the book. To address this, a modified approach is presented by Bowling and Veloso which incorporates the notion of Win or Learn Fast (WoLF) to produce WoLF-IGA. WoLF is a notion we will come across often in MARL and is shown by the authors to converge to always to a NE. The concern with WoLF methods, however, is that it requires explicit knowledge of the payoff matrix (which is not so much of a problem for model based methods) and the opponent's strategy (which is more of a problem in real-world methods). Finally, the Policy Hill Climbing method (PHC) is shown to converge to an optimal mixed strategy if the other agents are stationary (i.e. are not learning). However, it is shown that, when this is not the case, the algorithm again oscillates. The WoLF-PHC adaptation of this method is shown to converge to a NE strategy for both players with minimal oscillation. 
+The most fundamental method to learning in Matrix games is the simplex algorithm. This is a popular
+method of linear programming (in which constraints are linear). This will be important in
+considering more current methods. A similar consideration is given to the infinitesimal gradient
+ascent algorithm, in which the step size converges to zero. This method guarantees that, in the
+infite horizon limit, the payoffs will converge to the Nash equilibrium payoff. Note that this does
+not necessarily mean that both agents will converge to a single Nash equilibrium. This is a
+particular problem in games where there are multiple Nash equilibria. However, in practice it is
+difficult to choose a convergence rate of the step size and, without an appropriate choice the
+strategy may oscillate as shown in the book. To address this, a modified approach is presented by
+Bowling and Veloso which incorporates the notion of Win or Learn Fast (WoLF) to produce WoLF-IGA.
+WoLF is a notion we will come across often in MARL and is shown by the authors to converge to always
+to a NE. The concern with WoLF methods, however, is that it requires explicit knowledge of the
+payoff matrix (which is not so much of a problem for model based methods) and the opponent's
+strategy (which is more of a problem in real-world methods). Finally, the Policy Hill Climbing
+method (PHC) is shown to converge to an optimal mixed strategy if the other agents are stationary
+(i.e. are not learning). However, it is shown that, when this is not the case, the algorithm again
+oscillates. The WoLF-PHC adaptation of this method is shown to converge to a NE strategy for both
+players with minimal oscillation. 
 
-The above methods are all centralised techniques, in which a controller determines the optimal joint policy for both agents. However, in real scenarios it is often preferable that each agent learns their own strategy, a task which must be completed without information of the other agent's strategy. The methods presented towards this problem are: linear reward-inaction ($L_{R-I}$) which guarantees convergence to NEs in games which contain pure NEs, linear reward-penalty ($L_{R-P}$) which can guarantee convergence to mixed strategies given the appropriate parameters, lagging anchor algorithm which also converges to mixed strategies, and the author's own proposal of the $L_{R-I}$ lagging anchor algorithm which can converge to both pure and mixed NEs.
+The above methods are all centralised techniques, in which a controller determines the optimal joint
+policy for both agents. However, in real scenarios it is often preferable that each agent learns
+their own strategy, a task which must be completed without information of the other agent's
+strategy. The methods presented towards this problem are: linear reward-inaction ($L_{R-I}$) which
+guarantees convergence to NEs in games which contain pure NEs, linear reward-penalty ($L_{R-P}$)
+which can guarantee convergence to mixed strategies given the appropriate parameters, lagging anchor
+algorithm which also converges to mixed strategies, and the author's own proposal of the $L_{R-I}$
+lagging anchor algorithm which can converge to both pure and mixed NEs.
 
 \subsubsection*{Learning in Multiplayer Stochastic Games}
 
-Stochastic Games (or Markov Games) form a basis for MARL settings. However, in this case the agents must learn about the equilibrium strategies by playing the game, which means they do not have a priori knowledge of the reward or transition functions. Schwarz considers two properties which should be used for evaluating MARL algorithm: rationality and convergence. The latter simply states that the method should converge to some equilibrium whereas the former suggests that the method should learn the best response to stationary opponents. A similar set of conditions is considered by Conitzer and Sandholm in \cite{ConitzerAWESOME:}, whose algorithm we will consider shortly. Schwarz then presents a review of MARL methods (as of September 2014) 
+Stochastic Games (or Markov Games) form a basis for MARL settings. However, in this case the agents
+must learn about the equilibrium strategies by playing the game, which means they do not have a
+priori knowledge of the reward or transition functions. Schwarz considers two properties which
+should be used for evaluating MARL algorithm: rationality and convergence. The latter simply states
+that the method should converge to some equilibrium whereas the former suggests that the method
+should learn the best response to stationary opponents. A similar set of conditions is considered by
+Conitzer and Sandholm in \cite{ConitzerAWESOME:}, whose algorithm we will consider shortly. Schwarz
+then presents a review of MARL methods (as of September 2014) 
 
 \subsection*{Dec-POMDP and MARL}
 
-As Dec-POMDPs are the theoretical formulation of MARL problems, it stands to reason that other methods for solving Dec-POMDPs should provide insights into improving MARL. Fortunately Oliehock in \cite{OliehoekDecentralizedPOMDPs} presents a number of existing methods towards solving Dec-POMDPs. The methods which I feel may be applicable are 
-\begin{itemize}
-    \item Alternating Maximisation: This is effectively coordinate ascent for determining a joint policy.
-    \item Approximation as Bayesian Games: Perhaps solving the repeated Bayesian Game through MARL would be more efficient. It does, however, force us to ask how best to sub-divide a Dec-POMDP into a series of Bayesian Games 
-    \item Selecting sub-tree policies: Could DL be used to determine which sub-tree policies are optimal? In order to make this work, we would also need to consider how to select the feature space of sub-trees and how to collect this information.
-\end{itemize}
+As Dec-POMDPs are the theoretical formulation of MARL problems, it stands to reason that other
+methods for solving Dec-POMDPs should provide insights into improving MARL. Fortunately Oliehock in
+\cite{OliehoekDecentralizedPOMDPs} presents a number of existing methods towards solving Dec-POMDPs.
+The methods which I feel may be applicable are  \begin{itemize} \item Alternating Maximisation: This
+is effectively coordinate ascent for determining a joint policy. \item Approximation as Bayesian
+Games: Perhaps solving the repeated Bayesian Game through MARL would be more efficient. It does,
+however, force us to ask how best to sub-divide a Dec-POMDP into a series of Bayesian Games  \item
+Selecting sub-tree policies: Could DL be used to determine which sub-tree policies are optimal? In
+order to make this work, we would also need to consider how to select the feature space of sub-trees
+and how to collect this information. \end{itemize}
 
 \chapter{Multi Agent Control}
 
-Multi Agent Dynamics considers the problem of mathematically modelling learning in Multi Agent Systems (MAS). This model then serves to be able to predict the evolution of a learning system as well as to understand the trajectory of learning. Typically, this looks at considering whether or not the method is likely to converge towards a Nash equilibrium. This is generally a difficult problem to solve \cite{ShohamMultiagentFoundations} for all but toy problems. To extend this applicability into real world settings requires the study of stable equilbrium points; \cite{Letcher2019DifferentiableMechanics} shows that the stable equilbrium and Nash equilibrium (NE) are not necessarily the same and, in fact, argue that stable points are more informative than NEs. Stability provides some guarantees against the stochastic nature of the environment since a stable equilibrium will always be returned to even after perturbations. This extremely important in Safe and Trusted AI as it provides guarantees against undesired behaviour in real world learning environments. 
+Multi Agent Dynamics considers the problem of mathematically modelling learning in Multi Agent
+Systems (MAS). This model then serves to be able to predict the evolution of a learning system as
+well as to understand the trajectory of learning. Typically, this looks at considering whether or
+not the method is likely to converge towards a Nash equilibrium. This is generally a difficult
+problem to solve \cite{ShohamMultiagentFoundations} for all but toy problems. To extend this
+applicability into real world settings requires the study of stable equilbrium points;
+\cite{Letcher2019DifferentiableMechanics} shows that the stable equilbrium and Nash equilibrium (NE)
+are not necessarily the same and, in fact, argue that stable points are more informative than NEs.
+Stability provides some guarantees against the stochastic nature of the environment since a stable
+equilibrium will always be returned to even after perturbations. This extremely important in Safe
+and Trusted AI as it provides guarantees against undesired behaviour in real world learning
+environments. 
 
 \section{Stability of Learning Agents}
 
-Stability may be looked at from the view point of two perspectives. The first is from an optimisation point of view. This considers the dynamics of the learning model, allowing us to better choose our parameters and design our models so that they may converge to a stable result. The second is from the view point of the state-action space of a learnt model. This allows us to determine, before the MAS is deployed, which set of state-action pairs will lead to unstable behaviour. This knowledge allows us to consider which state-action pairs should be avoided. In both cases, stability analysis allows us to build multi agent systems which will learn and act in the way that we expect them to.
+Stability may be looked at from the view point of two perspectives. The first is from an
+optimisation point of view. This considers the dynamics of the learning model, allowing us to better
+choose our parameters and design our models so that they may converge to a stable result. The second
+is from the view point of the state-action space of a learnt model. This allows us to determine,
+before the MAS is deployed, which set of state-action pairs will lead to unstable behaviour. This
+knowledge allows us to consider which state-action pairs should be avoided. In both cases, stability
+analysis allows us to build multi agent systems which will learn and act in the way that we expect
+them to.
 
-In \cite{Letcher2019DifferentiableMechanics}, Letcher et al. model gradient descent learning of generative-adversarial-networks (GANs) as a two-player differentiable game. A differentiable game is one in which the loss function is twice differentiable. Using this formulation, they are able to analyse the system from new perspectives by considering the current state-of-the-art understanding of differentiable game theory. Whilst, at first glance, this may seem like a purely theoretical exercise, they go on to show that the insights gained allow them to develop a new multi-objective optimisation technique for GANs which shows stronger convergence properties, most notably of which is that it guarantees that the method finds a stable equilibrium (and avoids saddles) between the two players' loss functions.
+In \cite{Letcher2019DifferentiableMechanics}, Letcher et al. model gradient descent learning of
+generative-adversarial-networks (GANs) as a two-player differentiable game. A differentiable game is
+one in which the loss function is twice differentiable. Using this formulation, they are able to
+analyse the system from new perspectives by considering the current state-of-the-art understanding
+of differentiable game theory. Whilst, at first glance, this may seem like a purely theoretical
+exercise, they go on to show that the insights gained allow them to develop a new multi-objective
+optimisation technique for GANs which shows stronger convergence properties, most notably of which
+is that it guarantees that the method finds a stable equilibrium (and avoids saddles) between the
+two players' loss functions.
 
-Jin and Lavaei \cite{Jin2018Stability-certifiedPerspective} consider the policy of a reinforcement learning agent as a non-linear, time varying feedback controller. Using this notion, they then consider the bounded-input-bounded-output stability of the system. They do this by analysing the ratio between the total output and total input energy (called the L2 gain). If the L2 gain remains finite then the system may be considered to be stable. They then apply these considerations on real-world applications including multi-agent flight formation and obtain stability certificates (essentially confirming that the system will remain stable under certain conditions) for the learned controller.
+Jin and Lavaei \cite{Jin2018Stability-certifiedPerspective} consider the policy of a reinforcement
+learning agent as a non-linear, time varying feedback controller. Using this notion, they then
+consider the bounded-input-bounded-output stability of the system. They do this by analysing the
+ratio between the total output and total input energy (called the L2 gain). If the L2 gain remains
+finite then the system may be considered to be stable. They then apply these considerations on
+real-world applications including multi-agent flight formation and obtain stability certificates
+(essentially confirming that the system will remain stable under certain conditions) for the learned
+controller.
 
-Berkenkamp et al. \cite{Berkenkamp2017SafeGuarantees} consider a similar problem from a different definition of stability. Specifically, they look at stability from the point of view of Lyapunov functions. A system is said to be stable if the applying the policy will result in stricly lower evaluations of the function. In other words, a system is stable if its corresponding Lyapunov function is decreasing towards a minimum point. The authors use this idea to define a 'region of attraction' in which the system is stable in the sense of Lyapunov. The goal of Safe Lyapunov Learning, a method which they develop from these insights, is to learn a policy without leaving this region of attraction. They do this by taking measurements within the set and using this to learn about the system dynamics, thereby increasing the safe set. With this, we now have a guarantee that policy optimisation will not result in unsafe behaviour, even in the presence of stochasticity and exploration.
+Berkenkamp et al. \cite{Berkenkamp2017SafeGuarantees} consider a similar problem from a different
+definition of stability. Specifically, they look at stability from the point of view of Lyapunov
+functions. A system is said to be stable if the applying the policy will result in stricly lower
+evaluations of the function. In other words, a system is stable if its corresponding Lyapunov
+function is decreasing towards a minimum point. The authors use this idea to define a 'region of
+attraction' in which the system is stable in the sense of Lyapunov. The goal of Safe Lyapunov
+Learning, a method which they develop from these insights, is to learn a policy without leaving this
+region of attraction. They do this by taking measurements within the set and using this to learn
+about the system dynamics, thereby increasing the safe set. With this, we now have a guarantee that
+policy optimisation will not result in unsafe behaviour, even in the presence of stochasticity and
+exploration.
 
-As we can see from the discussion thus far, there are many definitions and perpectives of stability, each lending to a new understanding of learning systems. To add another to the mix, Milchtaich in \cite{Milchtaich2007StaticGames}, presents a notion of static stability. This means that it is based solely on the incentives of the players and does not require a consideration of the dynamics of the system. Milchtaich's definition of a stable system is one in which, when perturbed, it is more beneficial for an agent to move back towards the equilibrium than it is for them to move away. This is perhaps the most fundamental definition of a stable equilibrium and, as such, Milchtaich shows that it is applicable to all strategic games, within certain assumptions (finite set of player and continuous strategy space) and considers probabilistic perturbations from the original state. This is particular applicable to Multi Robot Reinforcement Learning (or any MARL in continuous strategy spaces) since these systems require random exploration of the strategy space and the dynamics are not known a priori. However, the lack of dynamics means that we do not consider the evolution of learning. 
+As we can see from the discussion thus far, there are many definitions and perpectives of stability,
+each lending to a new understanding of learning systems. To add another to the mix, Milchtaich in
+\cite{Milchtaich2007StaticGames}, presents a notion of static stability. This means that it is based
+solely on the incentives of the players and does not require a consideration of the dynamics of the
+system. Milchtaich's definition of a stable system is one in which, when perturbed, it is more
+beneficial for an agent to move back towards the equilibrium than it is for them to move away. This
+is perhaps the most fundamental definition of a stable equilibrium and, as such, Milchtaich shows
+that it is applicable to all strategic games, within certain assumptions (finite set of player and
+continuous strategy space) and considers probabilistic perturbations from the original state. This
+is particular applicable to Multi Robot Reinforcement Learning (or any MARL in continuous strategy
+spaces) since these systems require random exploration of the strategy space and the dynamics are
+not known a priori. However, the lack of dynamics means that we do not consider the evolution of
+learning. 
 
 \section{Learning Stable Agents}
 
-The above discussion has considered how notions of stability and control are important to Multi-Agent Learning. It stands to reason, therefore, that Multi-Agent Learning and, more specifically, game theory, can be used to develop controllers which drive systems to stable states. This idea is explored in \cite{Marden2018AnnualControl}. Here, a zero-sum game is considered in which the players are a controller and an adversarial environment. The design of the controller must be such that it is able to drive the system to zero error. To illustrate, consider the problem of designing a controller for a re-entry vehicle, as in \cite{Breitner1994ReentryGame}, in which vortices seek to destabilise the agent. This will allow us to build stable agents in a much more efficient manner since we can simulate the adversarial environment and hypothetical scenarios the agent may encounter without actually encountering them. The same notion is explored by Bardi et al \cite{Bardi1991DifferentialDisturbances}.
+The above discussion has considered how notions of stability and control are important to
+Multi-Agent Learning. It stands to reason, therefore, that Multi-Agent Learning and, more
+specifically, game theory, can be used to develop controllers which drive systems to stable states.
+This idea is explored in \cite{Marden2018AnnualControl}. Here, a zero-sum game is considered in
+which the players are a controller and an adversarial environment. The design of the controller must
+be such that it is able to drive the system to zero error. To illustrate, consider the problem of
+designing a controller for a re-entry vehicle, as in \cite{Breitner1994ReentryGame}, in which
+vortices seek to destabilise the agent. This will allow us to build stable agents in a much more
+efficient manner since we can simulate the adversarial environment and hypothetical scenarios the
+agent may encounter without actually encountering them. The same notion is explored by Bardi et al
+\cite{Bardi1991DifferentialDisturbances}.
 
- Mylvaganam et al, in \cite{Mylvaganam2017AutonomousApproach}, consider the N-robot collision avoidance problem, similarly from the point of view of differential game theory. They develop a robust feedback system for the robots which they show to be able to drive the system towards predefined targets without interference from other agents. In \cite{MylvaganamASystems}, Mylvaganam also considers a game theoretic control of multi-agent systems 
+ Mylvaganam et al, in \cite{Mylvaganam2017AutonomousApproach}, consider the N-robot collision
+ avoidance problem, similarly from the point of view of differential game theory. They develop a
+ robust feedback system for the robots which they show to be able to drive the system towards
+ predefined targets whilst providing guarantees of interference from other agents (or lack thereof).
+ In \cite{MylvaganamASystems}, Mylvaganam also considers a game theoretic control of multi-agent
+ systems in a distributed manner. Here, agents only consider their own payoff structure and have
+ limited communication with one another. The author shows that the an approximate equilibrium can be
+ found using algebraic methods and illustrate the capabilities of the technique using a collision
+ avoidance example. For the sake of brevity, I will not include all of the numerous strides that
+ Mylvaganam has introduced to the area. However, I must conclude with those presented in
+ \cite{Mylvaganam2014}. Here, the author presents approximate solutions to a number of differential
+ games, including linear-quadratic differential games (in which system dynamics are linear functions
+ whilst payoff functions are quadratic), Stackelberg differential games, where a hierarchy is
+ induced across the players (a notion was suggested in the research proposal) and mean-field games,
+ which is discussed in Section \ref{sec::MARL Approaches}. The importance of the linear-quadratic
+ differential game is the stability of the solution; solutions for the Nash equilibria are
+ admissable iff they are locally exponentially stable (which the author often shows with the aid of
+ Lyapunov functions). Approximate solutions to the NE are developed which are more feasible to
+ calculate online. The author then shows that this is not simply a theoretical exercise by applying
+ the novel methods towards multi-agent collision problems and designs dynamic control laws which
+ guarantee that each agent will reach their desired state whilst avoiding collision with the other
+ agents. Similarly, the Stackelberg game is applied to the problem of optimal monitoring by a multi
+ robot system. 
 
 \subsection{Directions}
 
-The above discussion has illustrated a few points. The first, and perhaps most important, is that stability is extremely applicable to Multi Agent Reinforcement Learning. This is because of the fact that learning agents, especially in real world environments, are subject to uncertainty and perturbations as well as epsilon-random exploration. As such, it is important that the system is able to return to a stable state after such perturbations. This leads to the need to develop learning systems as in \cite{Letcher2019DifferentiableMechanics} which are attracted to stable equilibria. Similarly, it allows us to consider existing algorithms and whether they lead to stable equilibria. For instance, Letcher et al show in \cite{LetcherSTABLEGAMES} that the Learning with Opponent Learning Awareness (LOLA) algorithm \cite{Foerster2018LearningAwareness} does not converge to stable fixed points.
 
-The second point is that the notion of stability has multiple definitions. Each one is appropriate in different conditions and, as such, it is important to explore stability from various viewpoints to consider how to best understand the evolution of a learning system. 
+I will briefly summarise the research directions which I develop in this section, to save ourselves
+some time, and to preserve sanity. \textbf{I'll do this later. Sanity is overrated.}
 
-Another factor to consider is suggested in \cite{Milchtaich2007StaticGames}; multiplayer games do not necessarily contain stable fixed points. The existence of stable equilibria is therefore an open question and is well worth consideration. This would help guide the choice of loss functions and strategy spaces. This is likely to be an extremely difficult problem to generalise but would have a dramatic impact on the safety certification of MARL systems.
+The above discussion has illustrated a few points. The first, and perhaps most important, is that
+stability is extremely applicable to Stochastic Optimal Control. This is because of the fact
+that learning agents, especially in real world environments, are subject to uncertainty and
+perturbations as well as epsilon-random exploration. As such, it is important that the system is
+able to return to a stable state after such perturbations. This leads to the need to develop
+learning systems as in \cite{Letcher2019DifferentiableMechanics} which are attracted to stable
+equilibria. Similarly, it allows us to consider existing algorithms and whether they lead to stable
+equilibria. For instance, Letcher et al show in \cite{LetcherSTABLEGAMES} that the Learning with
+Opponent Learning Awareness (LOLA) algorithm \cite{Foerster2018LearningAwareness} does not converge
+to stable fixed points.
 
-The problem of finding stable solutions through multi agent dynamics also opens the door for a large degree of application domains which are currently quite sparse. I would recommend looking at the contents page of \cite{Hamalainen1991DifferentialFinland} which illustrates a number of applications of dynamic and differential game theory in a number of domains including: pursuit-evasion, systems control and economic modelling. My particular interest, as always, lies within robotic control problems. This appears to be the most direct and relevant application of stable MAS systems; we can, for instance, use MARL to determine control rules which will lead to stable performance of the system. An example of this might be the problem of Cooperative Moving Path Following Control considered by \cite{Reis2019RobustVehicles}. Here, multiple agents must track moving targets according to a pre-defined path without interfering with one another. It is clear then that each player's control is dependent on the other and so can be modelled as a game theoretic problem. Our task, then, is to determine control rules which lead to stable coordination across the team. Similarly, we can model consider modelling a controller and an adversarial environment as a zero-sum game as examined in \cite{Marden2018AnnualControl}. Another application is proposed by Letcher et al in \cite{Letcher2019DifferentiableMechanics} - that of Generative adversarial networks (GANs) which can be considered as a two player minimax game with differentiable loss functions. 
+The second point is that the notion of stability has multiple definitions. Each one is appropriate
+in different conditions and, as such, it is important to explore stability from various viewpoints
+to consider how to best understand the evolution of a learning system. 
 
-The following papers \cite{Bailey2019FiniteDescent-Ascent, Bailey2019Multi-AgentSystem, Boone2019FromTheory, DickensTheLearning, Berkenkamp2017SafeGuarantees, Jin2018Stability-certifiedPerspective, Letcher2019DifferentiableMechanics} are the ones that I found particularly relevant to this study. However, they will require some further analysis before I write about them here.
+Another factor to consider is suggested in \cite{Milchtaich2007StaticGames}; multiplayer games do
+not necessarily contain stable fixed points. The existence of stable equilibria is therefore an open
+question and is well worth consideration. This would help guide the choice of loss functions and
+strategy spaces. This is likely to be an extremely difficult problem to generalise but would have a
+dramatic impact on the safety certification of MARL systems.
+
+The problem of finding stable solutions through multi agent dynamics also opens the door for a large
+degree of application domains which are currently quite sparse. I would recommend looking at the
+contents page of \cite{Hamalainen1991DifferentialFinland} which illustrates a number of applications
+of dynamic and differential game theory in a number of domains including: pursuit-evasion, systems
+control and economic modelling. My particular interest, as always, lies within robotic control
+problems. This appears to be the most direct and relevant application of stable MAS systems. An
+example of this might be the problem of Cooperative Moving Path Following Control considered by
+\cite{Reis2019RobustVehicles}. Here, multiple agents must track moving targets according to a
+pre-defined path without interfering with one another. It is clear then that each player's control
+is dependent on the other and so can be modelled as a game theoretic problem. Our task, then, is to
+determine control rules which lead to stable coordination across the team. Similarly, we can model
+consider modelling a controller and an adversarial environment as a zero-sum game as examined in
+\cite{Marden2018AnnualControl}. 
+
+Another application is proposed by Letcher et al in \cite{Letcher2019DifferentiableMechanics} - that
+of Generative adversarial networks (GANs) which can be considered as a two player minimax game with
+differentiable loss functions. As pointed out by Mylvaganam, it may also be interesting to consider
+the differential game problem from the point of view of different information structures. In
+real-world systems, it is unlikely that all agents will have access to the information of other
+agent' cost functions and current positions. It could, however, be interesting to explore the use of
+localisation methods to determine and track this information through observation (e.g. through
+Kalman or Bayesian methods). Finally, most of the relevant work in stochastic optimal control
+considers the case where system dynamics are linear. A whole new set of problems arise in the more
+realistic case where we must consider the non-linearity of system dynamics. Such a consideration
+would also allow us to extend these technique to the more difficult (and important) problems in
+control.
+
+The following papers \cite{Bailey2019FiniteDescent-Ascent, Bailey2019Multi-AgentSystem,
+Boone2019FromTheory, DickensTheLearning, Berkenkamp2017SafeGuarantees,
+Jin2018Stability-certifiedPerspective, Letcher2019DifferentiableMechanics} are the ones that I found
+particularly relevant to this study. However, they will require some further analysis before I write
+about them here.
 
 
-\bibliographystyle{IEEEtran}
+\bibliographystyle{IEEEtran} 
+
 \bibliography{IEEEfull,references}
 
 \end{document} 

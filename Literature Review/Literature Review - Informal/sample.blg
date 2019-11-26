@@ -41,6 +41,7 @@ Warning--missing institution in Milchtaich2007StaticGames
 Warning--empty journal in Marden2018AnnualControl
 Warning--missing institution in MylvaganamASystems
 Warning--empty year in MylvaganamASystems
+Warning--missing institution in Mylvaganam2014
 Warning--missing institution in LetcherSTABLEGAMES
 Warning--empty year in LetcherSTABLEGAMES
 Warning--empty journal in Bailey2019FiniteDescent-Ascent
@@ -50,45 +51,45 @@ Warning--missing institution in DickensTheLearning
 Warning--empty year in DickensTheLearning
 
 Done.
-You've used 49 entries,
+You've used 50 entries,
             4087 wiz_defined-function locations,
-            1642 strings with 33457 characters,
-and the built_in function-call counts, 31820 in all, are:
-= -- 2423
-> -- 842
+            1647 strings with 33587 characters,
+and the built_in function-call counts, 32178 in all, are:
+= -- 2452
+> -- 846
 < -- 186
-+ -- 436
-- -- 162
-* -- 1564
-:= -- 4866
-add.period$ -- 106
-call.type$ -- 49
-change.case$ -- 47
++ -- 438
+- -- 163
+* -- 1577
+:= -- 4933
+add.period$ -- 108
+call.type$ -- 50
+change.case$ -- 48
 chr.to.int$ -- 456
-cite$ -- 85
-duplicate$ -- 2371
-empty$ -- 2595
-format.name$ -- 204
-if$ -- 7223
+cite$ -- 87
+duplicate$ -- 2404
+empty$ -- 2625
+format.name$ -- 205
+if$ -- 7299
 int.to.chr$ -- 0
-int.to.str$ -- 49
-missing$ -- 508
-newline$ -- 212
-num.names$ -- 49
-pop$ -- 1280
+int.to.str$ -- 50
+missing$ -- 517
+newline$ -- 215
+num.names$ -- 50
+pop$ -- 1300
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 2364
+skip$ -- 2391
 stack$ -- 0
-substring$ -- 1115
-swap$ -- 1829
+substring$ -- 1116
+swap$ -- 1851
 text.length$ -- 34
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 49
-warning$ -- 36
-while$ -- 130
-width$ -- 51
-write$ -- 491
-(There were 36 warnings)
+type$ -- 50
+warning$ -- 37
+while$ -- 131
+width$ -- 52
+write$ -- 499
+(There were 37 warnings)
