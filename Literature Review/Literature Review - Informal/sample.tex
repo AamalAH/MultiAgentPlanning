@@ -30,7 +30,7 @@
 
 \chapter*{Introduction}
 
-\textbf{Note: This review is a work in progress. Please expect an update on the Game Theoretic, Hard Coded and Multi Agent Dynamics sections of this review within the week. Verification in swarms may take a little more time for me to catch up with.} \newline
+
 
 The areas of interest regarding Multi Agent Systems fall into two distinct categories (which have some slight overlap). The first is denoted as 'Decision Making', though the terms 'Planning' and 'Distributed Control' may sometimes be used as substitutes. It is important to note that, in my case, I do not include Planning Formalisation techniques such as PDDL. Instead, I focus on the particular methods which involve interaction in the world. The second, I will refer to as 'Multi Agent Dynamics', though sometimes I will refer to this as 'Stability Analysis'. 
 
@@ -162,7 +162,21 @@ I still have a lot of reading to do regarding MARL, which, in turn, will identif
 \end{itemize}
 
 
-\section{Dec-POMDPs and MARL}
+\section{MARL Approaches}
+
+The task of MARL is to determine an optimal joint policy for all agents across the game. This joint policy may be the concatenation of all the individual policy or it may just be options for each agent to take. In either case, optimality is defined through the standard notions of Nash equilibria and so, in this section, I will try to consider the broad spectrum of methods which attempt to achieve this Nash equilibria. I will start with the more foundational methods which are, thankfully, all reviewed by Schwartz in  \cite{SchwartzMulti-agentApproach}. I will use the chapters of the book to help guide this review. I am not referencing the individual papers immediately, though the references can be found in the book.
+
+\subsubsection*{Learning in Two Player Matrix Games}
+
+The most fundamental method to learning in Matrix games is the simplex algorithm. This is a popular method of linear programming (in which constraints are linear). This will be important in considering more current methods. A similar consideration is given to the infinitesimal gradient ascent algorithm, in which the step size converges to zero. This method guarantees that, in the infite horizon limit, the payoffs will converge to the Nash equilibrium payoff. Note that this does not necessarily mean that both agents will converge to a single Nash equilibrium. This is a particular problem in games where there are multiple Nash equilibria. However, in practice it is difficult to choose a convergence rate of the step size and, without an appropriate choice the strategy may oscillate as shown in the book. To address this, a modified approach is presented by Bowling and Veloso which incorporates the notion of Win or Learn Fast (WoLF) to produce WoLF-IGA. WoLF is a notion we will come across often in MARL and is shown by the authors to converge to always to a NE. The concern with WoLF methods, however, is that it requires explicit knowledge of the payoff matrix (which is not so much of a problem for model based methods) and the opponent's strategy (which is more of a problem in real-world methods). Finally, the Policy Hill Climbing method (PHC) is shown to converge to an optimal mixed strategy if the other agents are stationary (i.e. are not learning). However, it is shown that, when this is not the case, the algorithm again oscillates. The WoLF-PHC adaptation of this method is shown to converge to a NE strategy for both players with minimal oscillation. 
+
+The above methods are all centralised techniques, in which a controller determines the optimal joint policy for both agents. However, in real scenarios it is often preferable that each agent learns their own strategy, a task which must be completed without information of the other agent's strategy. The methods presented towards this problem are: linear reward-inaction ($L_{R-I}$) which guarantees convergence to NEs in games which contain pure NEs, linear reward-penalty ($L_{R-P}$) which can guarantee convergence to mixed strategies given the appropriate parameters, lagging anchor algorithm which also converges to mixed strategies, and the author's own proposal of the $L_{R-I}$ lagging anchor algorithm which can converge to both pure and mixed NEs.
+
+\subsubsection*{Learning in Multiplayer Stochastic Games}
+
+Stochastic Games (or Markov Games) form a basis for MARL settings. However, in this case the agents must learn about the equilibrium strategies by playing the game, which means they do not have a priori knowledge of the reward or transition functions. Schwarz considers two properties which should be used for evaluating MARL algorithm: rationality and convergence. The latter simply states that the method should converge to some equilibrium whereas the former suggests that the method should learn the best response to stationary opponents. A similar set of conditions is considered by Conitzer and Sandholm in \cite{ConitzerAWESOME:}, whose algorithm we will consider shortly. Schwarz then presents a review of MARL methods (as of September 2014) 
+
+\subsection*{Dec-POMDP and MARL}
 
 As Dec-POMDPs are the theoretical formulation of MARL problems, it stands to reason that other methods for solving Dec-POMDPs should provide insights into improving MARL. Fortunately Oliehock in \cite{OliehoekDecentralizedPOMDPs} presents a number of existing methods towards solving Dec-POMDPs. The methods which I feel may be applicable are 
 \begin{itemize}
@@ -187,6 +201,11 @@ Berkenkamp et al. \cite{Berkenkamp2017SafeGuarantees} consider a similar problem
 
 As we can see from the discussion thus far, there are many definitions and perpectives of stability, each lending to a new understanding of learning systems. To add another to the mix, Milchtaich in \cite{Milchtaich2007StaticGames}, presents a notion of static stability. This means that it is based solely on the incentives of the players and does not require a consideration of the dynamics of the system. Milchtaich's definition of a stable system is one in which, when perturbed, it is more beneficial for an agent to move back towards the equilibrium than it is for them to move away. This is perhaps the most fundamental definition of a stable equilibrium and, as such, Milchtaich shows that it is applicable to all strategic games, within certain assumptions (finite set of player and continuous strategy space) and considers probabilistic perturbations from the original state. This is particular applicable to Multi Robot Reinforcement Learning (or any MARL in continuous strategy spaces) since these systems require random exploration of the strategy space and the dynamics are not known a priori. However, the lack of dynamics means that we do not consider the evolution of learning. 
 
+\section{Learning Stable Agents}
+
+The above discussion has considered how notions of stability and control are important to Multi-Agent Learning. It stands to reason, therefore, that Multi-Agent Learning and, more specifically, game theory, can be used to develop controllers which drive systems to stable states. This idea is explored in \cite{Marden2018AnnualControl}. Here, a zero-sum game is considered in which the players are a controller and an adversarial environment. The design of the controller must be such that it is able to drive the system to zero error. To illustrate, consider the problem of designing a controller for a re-entry vehicle, as in \cite{Breitner1994ReentryGame}, in which vortices seek to destabilise the agent. This will allow us to build stable agents in a much more efficient manner since we can simulate the adversarial environment and hypothetical scenarios the agent may encounter without actually encountering them. The same notion is explored by Bardi et al \cite{Bardi1991DifferentialDisturbances}.
+
+ Mylvaganam et al, in \cite{Mylvaganam2017AutonomousApproach}, consider the N-robot collision avoidance problem, similarly from the point of view of differential game theory. They develop a robust feedback system for the robots which they show to be able to drive the system towards predefined targets without interference from other agents. In \cite{MylvaganamASystems}, Mylvaganam also considers a game theoretic control of multi-agent systems 
 
 \subsection{Directions}
 
