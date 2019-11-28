@@ -33,6 +33,7 @@ Warning--missing publisher in SchwartzMulti-agentApproach
 Warning--empty year in SchwartzMulti-agentApproach
 Warning--missing institution in ConitzerAWESOME:
 Warning--empty year in ConitzerAWESOME:
+Warning--missing institution in Yang2018
 Warning--missing institution in ShohamMultiagentFoundations
 Warning--empty year in ShohamMultiagentFoundations
 Warning--missing institution in Letcher2019DifferentiableMechanics
@@ -51,45 +52,45 @@ Warning--missing institution in DickensTheLearning
 Warning--empty year in DickensTheLearning
 
 Done.
-You've used 53 entries,
+You've used 54 entries,
             4087 wiz_defined-function locations,
-            1670 strings with 34210 characters,
-and the built_in function-call counts, 34872 in all, are:
-= -- 2687
-> -- 894
+            1674 strings with 34360 characters,
+and the built_in function-call counts, 35413 in all, are:
+= -- 2723
+> -- 919
 < -- 219
-+ -- 468
-- -- 168
-* -- 1705
-:= -- 5325
-add.period$ -- 114
-call.type$ -- 53
-change.case$ -- 51
++ -- 480
+- -- 174
+* -- 1731
+:= -- 5408
+add.period$ -- 116
+call.type$ -- 54
+change.case$ -- 52
 chr.to.int$ -- 534
-cite$ -- 90
-duplicate$ -- 2585
-empty$ -- 2816
-format.name$ -- 212
-if$ -- 7928
+cite$ -- 92
+duplicate$ -- 2629
+empty$ -- 2856
+format.name$ -- 219
+if$ -- 8046
 int.to.chr$ -- 0
-int.to.str$ -- 53
-missing$ -- 543
-newline$ -- 226
-num.names$ -- 53
-pop$ -- 1347
+int.to.str$ -- 54
+missing$ -- 557
+newline$ -- 229
+num.names$ -- 54
+pop$ -- 1383
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 2601
+skip$ -- 2638
 stack$ -- 0
-substring$ -- 1301
-swap$ -- 2027
+substring$ -- 1302
+swap$ -- 2060
 text.length$ -- 41
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 53
-warning$ -- 37
-while$ -- 146
-width$ -- 55
-write$ -- 532
-(There were 37 warnings)
+type$ -- 54
+warning$ -- 38
+while$ -- 147
+width$ -- 56
+write$ -- 540
+(There were 38 warnings)

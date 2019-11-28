@@ -411,7 +411,9 @@ and how to collect this information. \end{itemize}
 
 \textbf{Francesco: I've moved this to the top for your attention - it seems to be the most
 interesting problem with the scope to improve the theoretical results as well as applications in
-complex domains which are of significant interest these days.}
+complex domains which are of significant interest these days. I will be adding in the
+state-of-the-art review as we go along, but for now the general overview and research directions
+are provided.}
 
 The idea of Stochastic Control is best described in the research statement of the Control and
 Analysis of Stochastic Systems (CASS) group at Penn State:
@@ -427,6 +429,8 @@ avoidance) and remain stable. It is with this in mind that we must design contro
 system which satisfy these requirements, even in the face of uncertainty. Methods in stochastic
 control have found their way into controlling power distribution, chemical processes and (of course)
 robotics. 
+
+\subsection*{Model Predictive Control}
 
 Model Predictive Control is a long standing paradigm in AI which looks specifically at the problem
 of operating real-world agents safely in the face of environmental disturbances. The overarching
@@ -467,7 +471,8 @@ These are best described by Mesbah in \cite{Mesbah2016}
 	\item Establishing stability of the control problem
 \end{itemize}
 
-Since the review was written in 2016, there have been a number of approaches towards solving some of
+Since the review \cite{Mesbah2016} was written in 2016, there have been a number of approaches towards solving
+some of
 these problems, most notably the intractability of the chance contraints. For instance, in 
 \cite{Paulson2019}, Paulson and Mesbah propose the use of joint chance constraints in considering
 time varying stochastic disturbances as well as model uncertainty. This is shown to be strongly
@@ -507,6 +512,28 @@ domains.
 	aid. Similarly, mean-field games should be considered in the general N-agent problem, as well as
 	in the case of multiple disturbances, but I will elaborate on this in the applied problems
 	section.
+\end{itemize}
+
+the following presents a consideration of the applied end of MPC problems. I have tried to focus on
+the domain independent suggestions, since the domain specific ones are virtually limitless.
+
+\begin{itemize}
+	\item Mean-field predictive control. Consider the case of a hybrid system, in which many components
+	interact with each other. In addition, we may consider that there are multiple known disturbances
+	acting on the system. This, at first seems like an impossible problem to solve due to the many
+	interactions between all elements of the system. However, we can consider this as a game
+	theoretic problem in which the components and the disturbances are players. The relatively new
+	class of 'mean-field games' is a method which allows the many body problem to be approximated as
+	a series of two-agent problems \cite{Yang2018}. Whilst the concerns in the 'Distributed
+	predictive control' remain, this may prove to be a valuable area of applied research.
+	\item Swarm control. Swarms often have simpler control rules implemented within each agent,
+	which emerge into more complex results. It would be interesting to consider the application of
+	robust and stochastic MPC with the aim of improving swarm results and satisfying constraints of
+	the emergent phenomenon. This would be of particular interest in the case where the swarm has to
+	track multiple objectives. A prediction of the swarm evolution may prove beneficial to ensure
+	that all agents comply with the expected behaviour as the swarm switches tasks. Similarly, an
+	adaptive stochastic model would be interesting to examine here to remain robust to agent
+	failures in the group.
 \end{itemize}
 
 \section*{Multi Agent Dynamics}

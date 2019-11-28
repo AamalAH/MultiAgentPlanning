@@ -18,5 +18,5 @@
 \contentsline {section}{\numberline {2.1}Stochastic and Robust Model Predictive Control}{9}
 \contentsline {subsection}{\numberline {2.1.1}Directions}{10}
 \contentsline {section}{\numberline {2.2}Stability of Learning Agents}{11}
-\contentsline {section}{\numberline {2.3}Learning Stable Agents}{11}
+\contentsline {section}{\numberline {2.3}Learning Stable Agents}{12}
 \contentsline {subsection}{\numberline {2.3.1}Directions}{12}

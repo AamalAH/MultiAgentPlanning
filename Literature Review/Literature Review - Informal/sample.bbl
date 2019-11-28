@@ -242,6 +242,10 @@ J.~A. Paulson and A.~Mesbah, ``{An efficient method for stochastic optimal
   \url{https://onlinelibrary.wiley.com/doi/abs/10.1002/rnc.3999}
 \BIBentrySTDinterwordspacing
 
+\bibitem{Yang2018}
+Y.~Yang, R.~Luo, M.~Li, M.~Zhou, W.~Zhang, and J.~Wang, ``{Mean Field
+  Multi-Agent Reinforcement Learning},'' Tech. Rep., 2018.
+
 \bibitem{ShohamMultiagentFoundations}
 \BIBentryALTinterwordspacing
 Y.~Shoham and K.~Leyton-Brown, ``{Multiagent Systems: Algorithmic,

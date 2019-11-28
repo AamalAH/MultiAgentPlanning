@@ -1,16 +1,16 @@
 # Fdb version 3
-["bibtex sample"] 1574933780 "sample.aux" "sample.bbl" "sample" 1574934733
+["bibtex sample"] 1574936774 "sample.aux" "sample.bbl" "sample" 1574936774
   "/usr/share/texlive/texmf-dist/bibtex/bib/IEEEtran/IEEEfull.bib" 1480098425 24831 f1431dff539afe61d29301309e1726ce ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/IEEEtran/IEEEtran.bst" 1480098433 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
-  "references.bib" 1574933330 104053 1c6ebc0a37da38b0b58a8da9da3ffa83 ""
-  "sample.aux" 1574933781 6444 9debca4427c2774d827634406cb58faa ""
+  "references.bib" 1574935842 105660 470d96117f8983dec769b6214e446ed5 ""
+  "sample.aux" 1574936774 6509 2af1ac269e54a71c84078834aca58dee ""
   "sample.bcf" 0 -1 0 ""
   (generated)
-  "sample.blg"
   "sample.bbl"
-["pdflatex"] 1574933780 "sample.tex" "/home/aamalh/STAI/Literature Review/Literature Review - Informal/sample.pdf" "sample" 1574934733
+  "sample.blg"
+["pdflatex"] 1574936774 "sample.tex" "/home/aamalh/STAI/Literature Review/Literature Review - Informal/sample.pdf" "sample" 1574936774
   "/etc/texmf/web2c/texmf.cnf" 1574849515 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/aamalh/STAI/Literature Review/Literature Review - Informal/sample.aux" 1574933781 6444 9debca4427c2774d827634406cb58faa ""
+  "/home/aamalh/STAI/Literature Review/Literature Review - Informal/sample.aux" 1574936774 6509 2af1ac269e54a71c84078834aca58dee ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm" 1480098696 1536 02c06700a42be0f5a28664c7273f82e7 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
@@ -176,16 +176,16 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1520210507 32485 c64754543d8ac501bea6e75e209ea521 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1574849540 2700761 ac0584cc9514ab21918550a6948c4ee2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1574849550 4130568 99c96a0e7dda18903419fc1a6b57d73a ""
-  "sample.aux" 1574933781 6444 9debca4427c2774d827634406cb58faa ""
-  "sample.bbl" 1574933780 15660 9193fe38dc235e2814b14d0910e4021b "bibtex sample"
-  "sample.tex" 1574934710 47492 be886ce1dec754b3430efa1327a05bfd ""
-  "sample.toc" 1574933781 1375 c7bad9379df1786ddb5f49bf30b2ee51 ""
+  "sample.aux" 1574936774 6509 2af1ac269e54a71c84078834aca58dee ""
+  "sample.bbl" 1574936774 15809 40a20d2fbc1567da744f57d020973a16 "bibtex sample"
+  "sample.tex" 1574936773 49353 29615e8dc5e666bbd9719a3f0ff7935b ""
+  "sample.toc" 1574936774 1375 98a75006bd44309809cca5089e974bf2 ""
   (generated)
   "/home/aamalh/STAI/Literature Review/Literature Review - Informal/sample.pdf"
-  "sample.log"
   "sample.pdf"
-  "/home/aamalh/Downloads/sample.log"
-  "sample.toc"
   "sample.aux"
-  "/home/aamalh/Downloads/sample.pdf"
   "/home/aamalh/STAI/Literature Review/Literature Review - Informal/sample.log"
+  "sample.log"
+  "sample.toc"
+  "/home/aamalh/Downloads/sample.pdf"
+  "/home/aamalh/Downloads/sample.log"
