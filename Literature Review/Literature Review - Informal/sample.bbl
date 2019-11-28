@@ -224,6 +224,24 @@ V.~Conitzer and T.~Sandholm, ``{AWESOME: A General Multiagent Learning
   Algorithm that Converges in Self-Play and Learns a Best Response Against
   Stationary Opponents *},'' Tech. Rep.
 
+\bibitem{Rosolia2018}
+U.~Rosolia and F.~Borrelli, ``{Learning model predictive control for iterative
+  tasks. A data-driven control framework},'' \emph{IEEE Transactions on
+  Automatic Control}, vol.~63, no.~7, pp. 1883--1896, jul 2018.
+
+\bibitem{Mesbah2016}
+A.~Mesbah, ``{Stochastic model predictive control: An overview and perspectives
+  for future research},'' pp. 30--44, dec 2016.
+
+\bibitem{Paulson2019}
+\BIBentryALTinterwordspacing
+J.~A. Paulson and A.~Mesbah, ``{An efficient method for stochastic optimal
+  control with joint chance constraints for nonlinear systems},''
+  \emph{International Journal of Robust and Nonlinear Control}, vol.~29,
+  no.~15, pp. 5017--5037, oct 2019. [Online]. Available:
+  \url{https://onlinelibrary.wiley.com/doi/abs/10.1002/rnc.3999}
+\BIBentrySTDinterwordspacing
+
 \bibitem{ShohamMultiagentFoundations}
 \BIBentryALTinterwordspacing
 Y.~Shoham and K.~Leyton-Brown, ``{Multiagent Systems: Algorithmic,

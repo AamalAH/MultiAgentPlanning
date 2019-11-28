@@ -51,45 +51,45 @@ Warning--missing institution in DickensTheLearning
 Warning--empty year in DickensTheLearning
 
 Done.
-You've used 50 entries,
+You've used 53 entries,
             4087 wiz_defined-function locations,
-            1647 strings with 33587 characters,
-and the built_in function-call counts, 32178 in all, are:
-= -- 2452
-> -- 846
-< -- 186
-+ -- 438
-- -- 163
-* -- 1577
-:= -- 4933
-add.period$ -- 108
-call.type$ -- 50
-change.case$ -- 48
-chr.to.int$ -- 456
-cite$ -- 87
-duplicate$ -- 2404
-empty$ -- 2625
-format.name$ -- 205
-if$ -- 7299
+            1670 strings with 34210 characters,
+and the built_in function-call counts, 34872 in all, are:
+= -- 2687
+> -- 894
+< -- 219
++ -- 468
+- -- 168
+* -- 1705
+:= -- 5325
+add.period$ -- 114
+call.type$ -- 53
+change.case$ -- 51
+chr.to.int$ -- 534
+cite$ -- 90
+duplicate$ -- 2585
+empty$ -- 2816
+format.name$ -- 212
+if$ -- 7928
 int.to.chr$ -- 0
-int.to.str$ -- 50
-missing$ -- 517
-newline$ -- 215
-num.names$ -- 50
-pop$ -- 1300
+int.to.str$ -- 53
+missing$ -- 543
+newline$ -- 226
+num.names$ -- 53
+pop$ -- 1347
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 2391
+skip$ -- 2601
 stack$ -- 0
-substring$ -- 1116
-swap$ -- 1851
-text.length$ -- 34
+substring$ -- 1301
+swap$ -- 2027
+text.length$ -- 41
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 50
+type$ -- 53
 warning$ -- 37
-while$ -- 131
-width$ -- 52
-write$ -- 499
+while$ -- 146
+width$ -- 55
+write$ -- 532
 (There were 37 warnings)
