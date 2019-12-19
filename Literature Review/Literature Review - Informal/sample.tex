@@ -268,15 +268,16 @@ to truly understand.
 
 The particular considerations which have jumped out to me from the above analysis are as follows:
 
-\begin{itemize} \item Verification of goal achievement under different payoffs: can we ensure that
-self-interested agents will, in fact, show cooperative emergent properties? A similar question
-arises in terms of valuations (how much cost each agent incurs). \item A priori consideration of
-reliability: Can we learn and take into account the fact that robots may fail throughout the
-progress of a mission when we assign tasks? \end{itemize}
+\begin{itemize} 
+	\item Verification of goal achievement under different payoffs: can we ensure that
+	self-interested agents will, in fact, show cooperative emergent properties? A similar question
+	arises in terms of valuations (how much cost each agent incurs). 
+	\item A priori consideration of
+	reliability: Can we learn and take into account the fact that robots may fail throughout the
+	progress of a mission when we assign tasks? 
+\end{itemize}
 
 \subsection*{Stochastic Games}
-
-
 
 \section{Hard Coded}
 
@@ -409,12 +410,6 @@ and how to collect this information. \end{itemize}
 
 \section{Stochastic and Robust Model Predictive Control}
 
-\textbf{Francesco: I've moved this to the top for your attention - it seems to be the most
-interesting problem with the scope to improve the theoretical results as well as applications in
-complex domains which are of significant interest these days. I will be adding in the
-state-of-the-art review as we go along, but for now the general overview and research directions
-are provided.}
-
 The idea of Stochastic Control is best described in the research statement of the Control and
 Analysis of Stochastic Systems (CASS) group at Penn State:
 
@@ -477,6 +472,24 @@ these problems, most notably the intractability of the chance contraints. For in
 \cite{Paulson2019}, Paulson and Mesbah propose the use of joint chance constraints in considering
 time varying stochastic disturbances as well as model uncertainty. This is shown to be strongly
 suited to non-linear systems, which itself is an open problem in the MPC sphere.
+
+
+The research in using Distributed Predictive Control is quite sparse as compared with, for example,
+single agent predictive control. The added complexity of stochastic environments has meant that this
+area of research is still very open for looking into. With this said, the main works that I have
+found useful whilst reviewing the literature are \cite{Conte2014}, \cite{Christofides2013} and 
+\cite{Giulioni2015}. In almost all of the presented methods, a number of assumptions are made.
+Usually these are some combination of the following:
+
+\begin{itemize}
+	\item The agents act in a deterministic environment. This suggests that predicted futures will
+	be close enough to the ground truth.
+	\item The agents are uncoupled from one another. This is a strong assumption to make and
+	essentially allows us to consider the agents as completely independent of one another. 
+	\item The agents can easily communicate with one another. This allows for longer pieces of
+	communication (most often predicted trajectories) to be communicated between agents.
+\end{itemize}
+
 
 \subsection{Directions}
 
@@ -704,8 +717,124 @@ The following papers \cite{Bailey2019FiniteDescent-Ascent, Bailey2019Multi-Agent
 Boone2019FromTheory, DickensTheLearning, Berkenkamp2017SafeGuarantees,
 Jin2018Stability-certifiedPerspective, Letcher2019DifferentiableMechanics} are the ones that I found
 particularly relevant to this study. However, they will require some further analysis before I write
-about them here.
+about them here. (Note: I've written about some of these in the paragraphs above, but I'm not
+entirely sure which ones yet. I think the job over Christmas will mainly be about sorting this
+document out.)
 
+\chapter{Research Directions}
+
+\section{Stochastic Model Predictive Control for Distributed Systems}
+
+The work on distributed stochastic MPC (DSMPC) is still rather sparse but is advancing rapidly. To
+that end, I propose the following techniques towards improving DSMPC.
+
+\begin{itemize}
+	\item Each agent $i$ takes into consideration their observations of the past N measurements of the
+	actions selected by another agent $j$. Using this, a Gaussian Process (GP) regression informs the
+	distribution of the action that will likely be selected by $j$, effectively performing a
+	one-step lookahead of $j$'s actions. By propagating the effects of this predicted input $i$ can
+	then determine a likely trajectory for $j$ and then perform its own update accordingly. Whilst
+	this may seem computationally expensive, its advantage lies in the fact that it requires little
+	communication across the agents. An immediate disadvantage of this is that, as the number of
+	agents increases, $i$ would need to perform all of these calculations for each $j \neq i$. I'm
+	not yet confident on the feasibility or the usefulness of this technique, but looking further
+	into the literature (which seems to add new things every day) may provide insights which could
+	help refine the technique. This method is, in many ways, similar to that presented in 
+	\cite{Conte2014} and \cite{Dai2017}. The advantage of this proposal over that in 
+	\cite{Conte2014} is that it does not assume that the uncertainties from the predictions of other
+	agents are bounded. Likewise, the advantage over \cite{Dai2017} is that our proposal allows for
+	all systems to update at each time step.
+
+	\item The second proposal is motivated by the ideas presented in \cite{Foerster} and 
+	\cite{Heirung2019}. In this methodology, a centralised controller maintains and updates a joint
+	public belief based on the observed actions of all agents. This joint belief will likely provide
+	some representation of the trajectories that each agent will carry out or an understanding of
+	the other agents' future actions. In a similar manner to \cite{Heirung2019}, this joint belief
+	will be chosen from a family of existing models using a recursive Bayesian update. The idea
+	would be for this update to be conditioned on the history of observations as is done in 
+	\cite{Wingate2012}, though this is more flexible. Agents have access to this joint public belief
+	state and use this, in combination with their own system models to determine a feasible
+	trajectory. The challenge here would be proving the stability and controllability of the system
+	and that it requires communication with a central controller. However, it would appear to be a
+	feasible area of exploration.
+\end{itemize}
+
+\section{Stochastic Control of Swarms}
+
+Swarm systems and algorithms are a relatively mature area of research. Yet there is work to be done
+when considering its application in stochastic environments. In particular, the ideas presented
+below concern the transport problem of swarms, i.e. moving a swarm from an initial distribution to a
+desired distribution. 
+
+\begin{itemize}
+	\item Consideration of state constraints or boundary conditions (terms which I will use
+interchangeably) in the diffusion process. In general, stochastic swarm systems are modelled using a
+particular stochastic difference equation (the Ito equation). However, this does not account for any
+boundary conditions on the diffusion. Indeed most swarms use simple 'stop-and-turn' notions of
+obstacle avoidance. However, in environments where there are human operators, or in general areas
+where we do not want swarms to enter, it is important to have a guarantee of constraint
+satisfaction. To accomplish this, I propose extending the Ito equation to incorporate boundary
+conditions. This will, firstly, provide a more suitable model for the evolution of a swarm system in
+confined spaces, allowing for a more intuitive understanding of the future behaviour of the swarm.
+Furthermore, it may present an opportunity for us to consider the decentralised control of the
+agents which can ensure state constraint satisfaction. The resources which are most relevant to this
+study (and from which the ideas are derived) are
+\cite{Inoue2019,Sartoretti2014,Shahrokhi2019,Li2017}. 
+
+\item Consideration of pairwise interactions between agents to ensure collision avoidance. Most of
+the diffusion models, as mentioned above, do not take into consideration the interactions between
+agents, since it adds a large degree of complexity to the model. However, it would be important from
+a safety perspective to take these into account by looking at the attractive and repulsive
+potentials across agents. This would allow us to provide a guarantee of inter-agent collision
+avoidance whilst maintaining the diffusive progress of the swarm. In \cite{Inoue2019}, the authors
+mention that they are already looking into this problem and have proposed a similar manner of
+tackling it as I have. Perhaps we may be able to build upon or improve their results if and when
+they publish?
+
+\item Finally, all of the diffusive methods for swarms consider a time invariant network topology.
+By this, I mean that it is assumed that each agent can communicate with, or observe, a certain
+number of their nearest neighbours. However, this may not always be the case. It will often be that
+in different environmental conditions, the observation or communication capabilities of the robots
+may increase or decrease. To better accomodate for this fact, I propose the extension of the model
+with the addition of Markovian Jump Dynamics (MJD). MJD allows us to take into account discrete
+'jumps' in the structure of the system model which occur randomly. It has shown a large degree of
+success in stochastic control of multi-agent systems but has, as far as I can see, yet to find its
+way into swarm dynamics. It will, however, become particularly important in cases where we can no
+longer take the consistency of agent communication for granted. 
+\cite{FUHRMANFrancescoRUSSO,Ma2017,Li2017} have begun to make progress in these areas, but it does
+not seem like the connection of MJD and swarm dynamics has been made yet.
+\end{itemize}
+
+\section{Multi Agent Reinforcement Learning}
+
+The ideas I have down here are a little more sparsely populated, but further reading may provide
+some insights into potential directions.
+
+\begin{itemize}
+	\item Stable exploration in MARL. This builds on the ideas of \cite{Berkenkamp2017,Jin2018Stability-certifiedPerspective} and
+	an important point mentioned in \cite{Marinescu2014} that 'the dynamics implied by multi-agent
+	systems lead to stochastic behaviour resulting sometimes in undesired effects'. In particular,
+	most RL methods require some trade-off between exploration and exploitation. It is, therefore,
+	required that we determine a safe manner in which MARL agents may explore without leading to
+	unstable behaviour. This would require extending the work of \cite{Berkenkamp2017} and/or 
+	\cite{Jin2018Stability-certifiedPerspective} to the multi-agent case. Note that 
+	\cite{Jin2018Stability-certifiedPerspective} does actually consider a multi-agent case, but with
+	independent learners who do not consider the effect that they have on the other agent(s). The
+	particular extension that I propose is to consider the coupled effect between agents as part of
+	the determination of a safe set for exploration.
+
+	\item Improvement of mean-field MARL. This method has shown the most promise for large scale
+	multi agent systems since it allows us to reduce a many-body problem to a series of two-body
+	problems. Although it makes strong assumptions about the nature of the system, in practice it
+	has shown strong results. Particular examples of this are found in 
+	\cite{Subramanian2019,Yang2018}. I am not yet sure about how to expand upon these methods but
+	perhaps a way to start would be to consider the expansion of mean-field methods to heterogeneous
+	systems by considering sub-groups within the population. Each of these may be updated
+	individually. It would be interesting to examine how this might increase the complexity, and
+	also the generalisability of the mean-field method.
+	\item A Dynamical Systems analysis on Games. The ideas here still require further reading on my
+	part but the potential directions are largely summarised in Section 2.3.1.
+\end{itemize}
 
 \bibliographystyle{IEEEtran} 
 

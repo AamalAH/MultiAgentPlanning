@@ -1,0 +1,101 @@
+This is BibTeX, Version 0.99d (TeX Live 2019)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: sample.aux
+The style file: IEEEtran.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: IEEEfull.bib
+Database file #2: references.bib
+-- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--missing institution in DucatelleSelf-organizedSwarms
+Warning--empty year in DucatelleSelf-organizedSwarms
+Warning--missing institution in LiuTrust-Aware
+Warning--empty year in LiuTrust-Aware
+Warning--missing institution in Kouvaros2019FormalSystems
+Warning--missing institution in Lomuscio2019ASystems
+Warning--missing institution in OliehoekDecentralizedPOMDPs
+Warning--empty year in OliehoekDecentralizedPOMDPs
+Warning--missing institution in Amato2017Decision-MakingLearning
+Warning--missing institution in Klima2019RobustDomains
+Warning--empty journal in Dias2000ASystem
+Warning--missing institution in Hernandez-LealA
+Warning--empty year in Hernandez-LealA
+Warning--missing institution in Foerster2018LearningAwareness
+Warning--missing institution in MaoModellingDDPG
+Warning--empty year in MaoModellingDDPG
+Warning--missing institution in Hong2018ASystems
+Warning--missing publisher in SchwartzMulti-agentApproach
+Warning--empty year in SchwartzMulti-agentApproach
+Warning--missing institution in ConitzerAWESOME:
+Warning--empty year in ConitzerAWESOME:
+Warning--missing school in Conte2014
+Warning--empty journal in Giulioni2015
+Warning--missing institution in Yang2018
+Warning--missing institution in ShohamMultiagentFoundations
+Warning--empty year in ShohamMultiagentFoundations
+Warning--missing institution in Letcher2019DifferentiableMechanics
+Warning--empty journal in Jin2018Stability-certifiedPerspective
+Warning--missing institution in Milchtaich2007StaticGames
+Warning--empty journal in Marden2018AnnualControl
+Warning--missing institution in MylvaganamASystems
+Warning--empty year in MylvaganamASystems
+Warning--missing institution in Mylvaganam2014
+Warning--missing institution in LetcherSTABLEGAMES
+Warning--empty year in LetcherSTABLEGAMES
+Warning--empty journal in Bailey2019FiniteDescent-Ascent
+Warning--missing institution in Bailey2019Multi-AgentSystem
+Warning--empty journal in Boone2019FromTheory
+Warning--missing institution in DickensTheLearning
+Warning--empty year in DickensTheLearning
+Warning--empty journal in Foerster
+Warning--missing school in FUHRMANFrancescoRUSSO
+Warning--empty journal in Marinescu2014
+
+Done.
+You've used 70 entries,
+            4087 wiz_defined-function locations,
+            1770 strings with 37793 characters,
+and the built_in function-call counts, 48218 in all, are:
+= -- 3745
+> -- 1248
+< -- 333
++ -- 662
+- -- 231
+* -- 2360
+:= -- 7294
+add.period$ -- 152
+call.type$ -- 70
+change.case$ -- 68
+chr.to.int$ -- 804
+cite$ -- 113
+duplicate$ -- 3523
+empty$ -- 3852
+format.name$ -- 287
+if$ -- 11022
+int.to.chr$ -- 0
+int.to.str$ -- 70
+missing$ -- 720
+newline$ -- 287
+num.names$ -- 70
+pop$ -- 1761
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 3613
+stack$ -- 0
+substring$ -- 1946
+swap$ -- 2819
+text.length$ -- 65
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 70
+warning$ -- 43
+while$ -- 207
+width$ -- 72
+write$ -- 703
+(There were 43 warnings)
