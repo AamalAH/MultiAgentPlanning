@@ -1,8 +1,43 @@
-@techreport{Stefansson2018,
-    title = {{3D obstacle avoidance for drones using a realistic sensor setup}},
-    year = {2018},
-    booktitle = {DEGREE PROJECT COMPUTER SCIENCE AND ENGINEERING},
-    author = {Stefansson, Thor}
+@article{Marinescu2014,
+abstract = {Multi-Agent Reinforcement Learning (MARL) is a widely used technique for optimization in decentralised control problems. However, most applications of MARL are in static environments, and are not suitable when agent behaviour and environment conditions are dynamic and uncertain. Addressing uncertainty in such environments remains a challenging problem for MARL-based systems. The dynamic nature of the environment causes previous knowledge of how agents interact to become outdated. Advanced knowledge of potential changes through prediction significantly supports agents converging to near-optimal control solutions. In this paper we propose P-MARL, a decentralised MARL algorithm enhanced by a prediction mechanism that provides accurate information regarding up-coming changes in the environment. This prediction is achieved by employing an Artificial Neural Network combined with a Self-Organising Map that detects and matches changes in the environment. The proposed algorithm is validated in a realistic smart-grid scenario, and provides a 92{\%} Pareto efficient solution to an electric vehicle charging problem.},
+archivePrefix = {arXiv},
+arxivId = {1409.4561},
+author = {Marinescu, Andrei and Dusparic, Ivana and Taylor, Adam and Cahill, Vinny and Clarke, Siobh{\'{a}}n},
+eprint = {1409.4561},
+file = {:Users/aamalh/Library/Application Support/Mendeley Desktop/Downloaded/Marinescu et al. - Unknown - Decentralised Multi-Agent Reinforcement Learning for Dynamic and Uncertain Environments.pdf:pdf},
+title = {{Decentralised Multi-Agent Reinforcement Learning for Dynamic and Uncertain Environments}},
+url = {www.aaai.org http://arxiv.org/abs/1409.4561},
+year = {2014}
+}
+
+@article{Subramanian2019,
+abstract = {Multi-agent reinforcement learning has made significant progress in recent years, but it remains a hard problem. Hence, one often resorts to developing learning algorithms for specific classes of multi-agent systems. In this paper we study reinforcement learning in a specific class of multi-agent systems systems called mean-field games. In particular, we consider learning in stationary mean-field games. We identify two different solution concepts—stationary mean-field equilibrium and stationary mean-field social-welfare optimal policy—for such games based on whether the agents are non-cooperative or cooperative, respectively. We then generalize these solution concepts to their local variants using bounded ra- tionality based arguments. For these two local solution concepts, we present two reinforcement learning algorithms. We show that the algorithms converge to the right solution under mild technical conditions and demonstrate this using two numerical examples.},
+author = {Subramanian, Jayakumar},
+file = {:Users/aamalh/Library/Application Support/Mendeley Desktop/Downloaded/Subramanian, Mahajan - 2019 - Reinforcement Learning in Stationary Mean-field Games.pdf:pdf},
+journal = {Proceedings of the 18th International Conference of Autonomous Agents and Multi-Agent Systems, AAMAS'19},
+keywords = {bounded rationality,mean-field games,multi-agent reinforcement learning,stationary},
+number = {Aamas},
+pages = {251--259},
+title = {{Reinforcement learning in stationary mean-field games}},
+url = {www.ifaamas.org},
+volume = {9},
+year = {2019}
+}
+
+
+@inproceedings{Berkenkamp2017,
+abstract = {Reinforcement learning is a powerful paradigm for learning optimal policies from experimental data. However, to find optimal policies, most reinforcement learning algorithms explore all possible actions, which may be harmful for real-world systems. As a consequence, learning algorithms are rarely applied on safety-critical systems in the real world. In this paper, we present a learning algorithm that explicitly considers safety, defined in terms of stability guarantees. Specifically, we extend control-theoretic results on Lyapunov stability verification and show how to use statistical models of the dynamics to obtain high-performance control policies with provable stability certificates. Moreover, under additional regularity assumptions in terms of a Gaussian process prior, we prove that one can effectively and safely collect data in order to learn about the dynamics and thus both improve control performance and expand the safe region of the state space. In our experiments, we show how the resulting algorithm can safely optimize a neural network policy on a simulated inverted pendulum, without the pendulum ever falling down.},
+archivePrefix = {arXiv},
+arxivId = {1705.08551},
+author = {Berkenkamp, Felix and Turchetta, Matteo and Schoellig, Angela P and Krause, Andreas},
+booktitle = {Advances in Neural Information Processing Systems},
+eprint = {1705.08551},
+file = {:Users/aamalh/Library/Application Support/Mendeley Desktop/Downloaded/Berkenkamp et al. - Unknown - Safe Model-based Reinforcement Learning with Stability Guarantees.pdf:pdf},
+issn = {10495258},
+pages = {909--919},
+title = {{Safe model-based reinforcement learning with stability guarantees}},
+volume = {2017-Decem},
+year = {2017}
 }
 
 @techreport{Mylvaganam2014,
@@ -10,6 +45,28 @@ title = {{APPROXIMATE FEEDBACK SOLUTIONS FOR DIFFERENTIAL GAMES THEORY AND APPLI
 author = {Mylvaganam, Thulasi},
 year = {2014}
 }
+
+@article{Giulioni2015,
+author = {Giulioni, Luca},
+file = {:Users/aamalh/Downloads/thesis (1).pdf:pdf},
+pages = {1--208},
+title = {{Stochastic Model Predictive Control with Application to Distributed Control Systems}},
+year = {2015}
+}
+
+@phdthesis{Conte2014,
+abstract = {The main theme of this thesis is the development of cooperative distributed model predictive control (MPC) methods for large-scale networks of constrained dynamic systems. MPC is a modern control methodology, which is particularly suited for constrained systems and has proven successful in practice. For large-scale networks of systems, which are often subject to communication constraints, MPC controllers have to be operated in a distributed way, i.e. each system in the network has to take local control decisions based on local measurements and communication with neighboring systems. Moreover, for networks of systems with a common objective function, it is desirable for the systems to take their control decisions cooperatively, which implies the need for cooperative distributed MPC. Distributed optimization is a well-established methodology which allows the combination of the cooperative and the distributed aspect within the MPC framework. Specifically, one finite-horizon optimal control problem, in the following referred to as MPC problem, can be formulated for the whole network of systems, and it can be solved by a distributed optimization method at each time step. This thesis is concerned with issues arising from the use of distributed optimization in MPC. In the first part of the thesis, distributed optimization based cooperative distributed MPC controllers for networks of linear systems are presented. All controllers guarantee stability and feasibility in closed-loop. The first controller presented is a nominal MPC controller. Closed-loop stability and feasibility are guaranteed by adapting well-established methodologies from the centralized MPC literature. Specifically, the global MPC problem is equipped with a suitably designed terminal cost, which is a Lyapunov function for the unconstrained system, and a terminal set, which is positively invariant (PI). In order to make the MPC problem amenable to distributed optimization algorithms, the terminal cost is designed as a separable function and the terminal set is a Cartesian product of local sets, which are time-varying. Specific synthesis methods for terminal cost and set are presented, where these methods can be executed in a distributed fashion themselves. In the following, two cooperative distributed MPC controller are presented, which extend the nominal one described above. The first is a robust MPC controller for networks of linear systems subject to bounded additive noise, the second is an MPC controller for reference tracking. In both cases, well established methodologies from the centralized MPC literature x Abstract ￼￼are adapted for the use in a cooperative distributed setup, where the MPC problem is solved by distributed optimization. For distributed robust MPC, the main additional ingredients are structured robust positive invariant (RPI) sets, as well as constraint tightening methods, which can be executed in a distributed way. For distributed reference tracking MPC, the main additional ingredient is an invariant set for tracking, again designed as a Cartesian product, and again equipped with a synthesis method that can be carried out in a distributed fashion. In the second part of the thesis, computational aspects of specific distributed optimization methods in MPC are investigated. In particular, the performance of these methods on the MPC problem, i.e. the number of iterations to convergence, is computationally analyzed under various system setups and operational modes. A first study contains computational results for general networks of linear systems, which are controlled by standard nominal cooperative distributed MPC controllers. In the computational scenarios considered, various system properties, such as the strength of the dynamic coupling between the systems or the network topology, are varied. The results show that the performance of distributed optimization is sensitive to changes in these properties. In particular, as a general qualitative observation, the performance decreases in cases where coordination among the systems in the network is crucial, which usually manifests in Lagrange multipliers of large magnitude. These observations could be confirmed in a wind farm application study. In particular, it is shown that the performance of the distributed optimization methods decreases in operational conditions where the power production has to be dynamically reallocated across the wind farm. This is the case for example when there is not enough wind to fulfill the farm-wide power production requirements.},
+author = {Conte, Christian},
+booktitle = {Thesis},
+doi = {10.3929/ETHZ-A-010194426},
+isbn = {9783906031668},
+keywords = {COMPUTER APPLICATIONS IN AUTOMATIC CONTROL (CONTRO,COMPUTERANWENDUNGEN/AUTOMATISCHE REGELUNG (REGELUN,DYNAMIC PROGRAMMING (OPERATIONS RESEARCH),DYNAMISCHE OPTIMIERUNG (OPERATIONS RESEARCH)},
+publisher = {ETH-Z{\"{u}}rich},
+title = {{Stability and Computations in Cooperative Distributed Model Predictive Control}},
+url = {https://control.ee.ethz.ch/index.cgi?page=publications{\&}action=details{\&}id=4809},
+year = {2014}
+}
+
 
 @misc{Mesbah2016,
 abstract = {Model predictive control (MPC) has demonstrated exceptional success for the high-performance control of complex systems [1], [2]. The conceptual simplicity of MPC as well as its ability to effectively cope with the complex dynamics of systems with multiple inputs and outputs, input and state/output constraints, and conflicting control objectives have made it an attractive multivariable constrained control approach [1]. MPC (a.k.a. receding-horizon control) solves an open-loop constrained optimal control problem (OCP) repeatedly in a receding-horizon manner [3]. The OCP is solved over a finite sequence of control actions {\{}u 0 ,u 1 ,⋯,u N-1 {\}} at every sampling time instant that the current state of the system is measured. The first element of the sequence of optimal control actions is applied to the system, and the computations are then repeated at the next sampling time. Thus, MPC replaces a feedback control law $\pi$({\textperiodcentered}), which can have formidable offline computation, with the repeated solution of an open-loop OCP [2]. In fact, repeated solution of the OCP confers an "implicit" feedback action to MPC to cope with system uncertainties and disturbances. Alternatively, explicit MPC approaches circumvent the need to solve an OCP online by deriving relationships for the optimal control actions in terms of an "explicit" function of the state and reference vectors. However, explicit MPC is not typically intended to replace standard MPC but, rather, to extend its area of application [4]-[6].},
@@ -27,6 +84,163 @@ title = {{Stochastic model predictive control: An overview and perspectives for 
 volume = {36},
 year = {2016}
 }
+
+@article{Christofides2013,
+abstract = {In this paper, we provide a tutorial review of recent results in the design of distributed model predictive control systems. Our goal is to not only conceptually review the results in this area but also to provide enough algorithmic details so that the advantages and disadvantages of the various approaches can become quite clear. In this sense, our hope is that this paper would complement a series of recent review papers and catalyze future research in this rapidly evolving area. We conclude discussing our viewpoint on future research directions in this area. {\textcopyright} 2012 Elsevier Ltd.},
+author = {Christofides, Panagiotis D. and Scattolini, Riccardo and {Mu{\~{n}}oz de la Pe{\~{n}}a}, David and Liu, Jinfeng},
+doi = {10.1016/j.compchemeng.2012.05.011},
+file = {::},
+issn = {00981354},
+journal = {Computers and Chemical Engineering},
+month = {apr},
+pages = {21--41},
+title = {{Distributed model predictive control: A tutorial review and future research directions}},
+volume = {51},
+year = {2013}
+}
+
+@article{Dai2017,
+abstract = {This technical note develops a new form of distributed stochastic model predictive control (DSMPC) algorithm for a group of linear stochastic subsystems subject to additive uncertainty and coupled probabilistic constraints. We provide an appropriate way to design the DSMPC algorithm by extending a centralized SMPC (CSMPC) scheme. To achieve the satisfaction of coupled probabilistic constraints in a distributed manner, only one subsystem is permitted to optimize at each time step. In addition, by making explicit use of the probabilistic distribution of the uncertainties, probabilistic constraints are converted into a set of deterministic constraints for the predictions of nominal models. The distributed controller can achieve recursive feasibility and ensure closed-loop stability for any choice of update sequence. Numerical examples illustrate the efficacy of the algorithm.},
+author = {Dai, Li and Xia, Yuanqing and Gao, Yulong and Cannon, Mark},
+doi = {10.1109/TAC.2016.2612822},
+file = {:Users/aamalh/Library/Application Support/Mendeley Desktop/Downloaded/Xx, Xxxx - 2016 - Distributed Stochastic MPC of Linear Systems with Additive Uncertainty and Coupled Probabilistic Constraints.pdf:pdf},
+issn = {00189286},
+journal = {IEEE Transactions on Automatic Control},
+keywords = {Distributed control,model predictive control (MPC),probabilistic constraints,stochastic systems},
+number = {7},
+pages = {3474--3481},
+title = {{Distributed Stochastic MPC of Linear Systems with Additive Uncertainty and Coupled Probabilistic Constraints}},
+url = {http://www.ieee.org/publications{\_}standards/publications/rights/index.html},
+volume = {62},
+year = {2017}
+}
+
+@article{Foerster,
+abstract = {When observing the actions of others, humans make inferences about why they acted as they did, and what this implies about the world; humans also use the fact that their actions will be interpreted in this manner, allowing them to act informatively and thereby communicate efficiently with others. Although learning algorithms have recently achieved superhuman performance in a number of two-player, zero-sum games, scalable multi-agent reinforcement learning algorithms that can discover effective strategies and conventions in complex, partially observable settings have proven elusive. We present the Bayesian action decoder (BAD), a new multi-agent learning method that uses an approximate Bayesian update to obtain a public belief that conditions on the actions taken by all agents in the environment. BAD introduces a new Markov decision process, the public belief MDP, in which the action space consists of all deterministic partial policies, and exploits the fact that an agent acting only on this public belief state can still learn to use its private information if the action space is augmented to be over all partial policies mapping private information into environment actions. The Bayesian update is closely related to the theory of mind reasoning that humans carry out when observing others' actions. We first validate BAD on a proof-of-principle two-step matrix game, where it outperforms policy gradient methods; we then evaluate BAD on the challenging, cooperative partial-information card game Hanabi, where, in the two-player setting, it surpasses all previously published learning and hand-coded approaches, establishing a new state of the art.},
+archivePrefix = {arXiv},
+arxivId = {1811.01458},
+author = {Foerster, Jakob N and Song, Francis and Hughes, Edward and Burch, Neil and Dunning, Iain and Whiteson, Shimon and Botvinick, Matthew and Bowling, Michael},
+eprint = {1811.01458},
+file = {:Users/aamalh/Library/Application Support/Mendeley Desktop/Downloaded/Foerster et al. - Unknown - Bayesian Action Decoder for Deep Multi-Agent Reinforcement Learning.pdf:pdf},
+title = {{Bayesian Action Decoder for Deep Multi-Agent Reinforcement Learning}},
+url = {http://arxiv.org/abs/1811.01458},
+year = {2018}
+}
+
+@inproceedings{Inoue2019,
+abstract = {In swarm robot systems, forming a target shape with autonomously moving robots is an important task. Considering cost and scalability, it is desirable that the observation information required by the robots to form patterns be minimal, whereas the patterns themselves can be as complicated as needed. In this paper, we propose a method of achieving this task under the situation that a scalar value representing a clue to its position is the only information that each robot can observe. We adopted the optimization method proposed by Mesquita et al. [International workshop on hybrid systems: Computation and control, pp. 358 (2008)] as a control method for the swarm robot systems. This method requires neither centralized controllers nor position identification of each robot, and we thus refer to it as “self-organizing control.” Compared with existing control methods, the proposed method reduces memory usage and computational complexity. By means of both numerical simulations and experiments with actual robots, we quantitatively confirmed that self-organization was achieved.},
+author = {Inoue, Daisuke and Murai, Daisuke and Yoshida, Hiroaki},
+booktitle = {Lecture Notes in Computer Science (including subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics)},
+doi = {10.1007/978-3-030-26369-0_38},
+isbn = {9783030263683},
+issn = {16113349},
+keywords = {Multi-agent systems,Self-organization,Swarm robotics},
+pages = {405--416},
+publisher = {Springer Verlag},
+title = {{Stochastic self-organizing control for swarm robot systems}},
+volume = {11655 LNCS},
+year = {2019}
+}
+
+@misc{Ma2017,
+abstract = {In this article, we provide a review of the consensus control problem for stochastic multi-agent systems (MASs). Recent advances are surveyed according to the method of occurrence of the stochasticity of the MASs. First, the consensus problem is discussed for MASs, wherein individual agents are corrupted by random noises, i.e., the dynamics of agents involve stochasticity in process and/or measurement equations. Both additive noises and multiplicative noises are surveyed in detail and special attention is paid to the MASs whose dynamics are governed by It{\^{o}} differential equations. Moreover, particular effort is devoted to presenting the latest progress on the consensus problem for a special type of stochastic MAS with Markovian jump parameters. Subsequently, the relevant research is summarized for MASs with noisy communication environments and stochastic sampling. Further, we provide a systematic review of the consensus problems for MASs whose communication topology varies randomly in the process of data propagation among agents. Finally, conclusions are drawn and several potential future research directions are outlined.},
+author = {Ma, Lifeng and Wang, Zidong and Han, Qing Long and Liu, Yurong},
+booktitle = {Science China Information Sciences},
+doi = {10.1007/s11432-017-9169-4},
+file = {:Users/aamalh/Library/Application Support/Mendeley Desktop/Downloaded/Ma et al. - 2017 - Consensus control of stochastic multi-agent systems a survey.pdf:pdf},
+issn = {18691919},
+keywords = {Markovian jump systems,consensus control,random topology,stochastic multi-agent systems,stochastic noises},
+month = {dec},
+number = {12},
+publisher = {Science in China Press},
+title = {{Consensus control of stochastic multi-agent systems: a survey}},
+volume = {60},
+year = {2017}
+}
+@phdthesis{FUHRMANFrancescoRUSSO,
+author = {Milano, Politecnico},
+file = {:Users/aamalh/Library/Application Support/Mendeley Desktop/Downloaded/FUHRMAN Francesco RUSSO, LUCCHETTI Fr{\'{e}}d{\'{e}}ric PAULIN - Unknown - Politecnico di Milano Probabilistic Representation of HJB Equations for.pdf:pdf},
+title = {{Probabilistic Representation of HJB Equations for Optimal Control of Jump Processes , BSDEs and Related Stochastic Calculus}},
+year = {2016}
+}
+
+
+
+@article{Sartoretti2014,
+abstract = {In this paper, we present a distributed control strategy, enabling agents to converge onto and travel along a consensually selected curve among a class of closed planar curves. Individual agents identify the number of neighbors within a finite circular sensing range and obtain information from their neighbors through local communication. The information is then processed to update the control parameters and force the swarm to converge onto and circulate along the aforementioned planar curve. The proposed mathematical framework is based on stochastic differential equations driven by white Gaussian noise (diffusion processes). Using this framework, there is maximum probability that the swarm dynamics will be driven toward the consensual closed planar curve. In the simplest configuration where a circular consensual curve is obtained, we are able to derive an analytical expression that relates the radius of the circular formation to the agent's interaction range. Such an intimate relation is also illustrated numerically for more general curves. The agent-based control strategy is then translated into a distributed Braitenberg-inspired one. The proposed robotic control strategy is then validated by numerical simulations and by implementation on an actual robotic swarm. It can be used in applications that involve large numbers of locally interacting agents, such as traffic control, deployment of communication networks in hostile environments, or environmental monitoring.},
+author = {Sartoretti, Guillaume and Hongler, Max Olivier and de Oliveira, Marcelo Elias and Mondada, Francesco},
+doi = {10.1007/s11721-014-0101-7},
+file = {:Users/aamalh/Library/Application Support/Mendeley Desktop/Downloaded/Sartoretti et al. - 2014 - Decentralized self-selection of swarm trajectories from dynamical systems theory to robotic implementation.pdf:pdf},
+issn = {19353820},
+journal = {Swarm Intelligence},
+keywords = {Braitenberg control mechanism,Brownian agents,Distributed swarm control,Mean-field approach,Mixed canonical-dissipative dynamics,Robotics experimental validation,Spatio-temporal pattern},
+number = {4},
+pages = {329--351},
+title = {{Decentralized self-selection of swarm trajectories: from dynamical systems theory to robotic implementation}},
+volume = {8},
+year = {2014}
+}
+@inproceedings{Shahrokhi2019,
+abstract = {Consider many particles actuated by a uniform global external field (e.g. gravitational or magnetic fields). This paper presents analytical results using workspace obstacles and global inputs to reshape such a group of particles. Shape control of many particles is necessary for conveying information, construction, and navigation. First we show how the particles' characteristic angle of repose can be used to reshape the particles by controlling angle of attack and the magnitude of the driving force. These can then be used to control the force and torque applied to a rectangular rigid body. Next, we examine the full set of stable, achievable mean and variance configurations for the shape of a particle group in two canonical environments: a square and a circular workspace. Finally, we show how workspaces with linear boundary layers can be used to achieve a more rich set of mean and variance configurations.},
+author = {Shahrokhi, Shiva and Zhao, Haoran and Becker, Aaron T.},
+booktitle = {Proceedings - IEEE International Conference on Robotics and Automation},
+doi = {10.1109/ICRA.2019.8794405},
+isbn = {9781538660263},
+issn = {10504729},
+month = {may},
+pages = {4436--4443},
+publisher = {Institute of Electrical and Electronics Engineers Inc.},
+title = {{Reshaping particle configurations by collisions with rigid objects}},
+volume = {2019-May},
+year = {2019}
+}
+@inproceedings{Li2017,
+abstract = {This paper explores a stochastic approach for controlling swarms of independent robots toward a target distribution in a bounded domain. The robot swarm has no central controller, and individual robots lack both communication and localization capabilities. Robots can only measure a scalar field (e.g. concentration of a chemical) from the environment and from this deduce the desired local swarm density. Based on this value, each robot follows a simple control law that causes the swarm as a whole to diffuse toward the target distribution. Using a new holonomic drive robot, we present the first confirmation of this control law with physical experiment. Despite deviations from assumptions underpinning the theory, the swarm achieves the theorized convergence to the target distribution in both simulation and experiment. In fact, simulated and experimental performance agree with one another and with our hypothesis that the error from the target distribution is inversely proportional to the square root of the number of robots. This is evidence that the algorithm is both practical and easily scalable to large swarms.},
+author = {Li, Hanjun and Feng, Chunhan and Ehrhard, Henry and Shen, Yijun and Cobos, Bernardo and Zhang, Fangbo and Elamvazhuthi, Karthik and Berman, Spring and Haberland, Matt and Bertozzi, Andrea L.},
+booktitle = {IEEE International Conference on Intelligent Robots and Systems},
+doi = {10.1109/IROS.2017.8206299},
+isbn = {9781538626825},
+issn = {21530866},
+month = {dec},
+pages = {4341--4347},
+publisher = {Institute of Electrical and Electronics Engineers Inc.},
+title = {{Decentralized stochastic control of robotic swarm density: Theory, simulation, and experiment}},
+volume = {2017-Septe},
+year = {2017}
+}
+
+
+@incollection{Wingate2012,
+abstract = {The concept of state is central to dynamical systems. In any timeseries problem—such as filtering, planning or forecasting—models and algorithms summarize important information from the past into some sort of state variable. In this chapter, we start with a broad examination of the concept of state, with emphasis on the fact that there are many possible representations of state for a given dynamical system, each with different theoretical and computational properties. We then focus on models with predictively defined representations of state that represent state as a set of statistics about the short-term future, as opposed to the classic approach of treating state as a latent, unobservable quantity. In other words, the past is summarized into predictions about the actions and observations in the short-term future, which can be used to make further predictions about the infinite future.While this representational idea applies to any dynamical system problem, it is particularly useful in a model-based RL context, when an agent must learn a representation of state and a model of system dynamics online: because the representation (and hence all of the model's parameters) are defined using only statistics of observable quantities, their learning algorithms are often straightforward and have attractive theoretical properties. Here, we survey the basic concepts of predictively defined representations of state, important auxiliary constructs (such as the systems dynamics matrix), and theoretical results on their representational power and learnability.},
+author = {Wingate, David},
+booktitle = {Adaptation, Learning, and Optimization},
+doi = {10.1007/978-3-642-27645-3_13},
+issn = {18674542},
+keywords = {Covariance,Entropy,Posit,Tated,Transportation},
+pages = {415--439},
+publisher = {Springer Verlag},
+title = {{Predictively defined representations of state}},
+volume = {12},
+year = {2012}
+}
+
+
+@article{Heirung2019,
+abstract = {Structural model uncertainty is prevalent in control design and arises from incomplete knowledge of the system or the existence of different modes of dynamic behavior, such as those arising from system faults and malfunctions. This paper addresses control of stochastic nonlinear systems using model predictive control, or MPC, under structural model uncertainty. Inspired by dual control, the MPC strategy with active learning presented here can probe the uncertain system to select, among a set of candidates, the model that best describes the observed closed-loop system data. The proposed controller involves online model selection based on estimation of the model-hypothesis probabilities and minimization of a computationally tractable measure of the predicted Bayes risk of selection error. The performance of the proposed approach is compared to that of nominal MPC with no learning, MPC with passive learning, and a robust MPC approach that systematically accounts for structural model uncertainty but has no learning mechanism. Simulation results on a nonlinear bioreactor demonstrate that active learning can have significant advantages in maintaining adequate control performance in the presence of structural uncertainty. Active learning can be particularly beneficial for improving online model discrimination and active fault diagnosis under closed-loop control.},
+author = {Heirung, Tor Aksel N. and Santos, Tito L.M. and Mesbah, Ali},
+doi = {10.1016/j.compchemeng.2019.05.012},
+file = {:Users/aamalh/Library/Application Support/Mendeley Desktop/Downloaded/Heirung, Santos, Mesbah - 2019 - Model predictive control with active learning for stochastic systems with structural model uncertain(2).pdf:pdf},
+issn = {00981354},
+journal = {Computers and Chemical Engineering},
+keywords = {Bayesian decision theory,Closed-loop fault diagnosis,Dual control,Online model discrimination,Predictive control,Stochastic systems,Structural model uncertainty},
+month = {sep},
+pages = {128--140},
+publisher = {Elsevier Ltd},
+title = {{Model predictive control with active learning for stochastic systems with structural model uncertainty: Online model discrimination}},
+volume = {128},
+year = {2019}
+}
+
 
 @article{Liu2019,
 author = {Liu, Wensheng and Liang, Xuelin and Ma, Yunzhu and Liu, Weiyi},

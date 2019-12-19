@@ -242,6 +242,23 @@ J.~A. Paulson and A.~Mesbah, ``{An efficient method for stochastic optimal
   \url{https://onlinelibrary.wiley.com/doi/abs/10.1002/rnc.3999}
 \BIBentrySTDinterwordspacing
 
+\bibitem{Conte2014}
+\BIBentryALTinterwordspacing
+C.~Conte, ``{Stability and Computations in Cooperative Distributed Model
+  Predictive Control},'' Ph.D. dissertation, 2014. [Online]. Available:
+  \url{https://control.ee.ethz.ch/index.cgi?page=publications{\&}action=details{\&}id=4809}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Christofides2013}
+P.~D. Christofides, R.~Scattolini, D.~{Mu{\~{n}}oz de la Pe{\~{n}}a}, and
+  J.~Liu, ``{Distributed model predictive control: A tutorial review and future
+  research directions},'' \emph{Computers and Chemical Engineering}, vol.~51,
+  pp. 21--41, apr 2013.
+
+\bibitem{Giulioni2015}
+L.~Giulioni, ``{Stochastic Model Predictive Control with Application to
+  Distributed Control Systems},'' pp. 1--208, 2015.
+
 \bibitem{Yang2018}
 Y.~Yang, R.~Luo, M.~Li, M.~Zhou, W.~Zhang, and J.~Wang, ``{Mean Field
   Multi-Agent Reinforcement Learning},'' Tech. Rep., 2018.
@@ -352,5 +369,92 @@ V.~Boone and G.~Piliouras, ``{From Darwin to Poincar{\textbackslash}'e and von
 \bibitem{DickensTheLearning}
 L.~Dickens, K.~Broda, and A.~Russo, ``{The Dynamics of Multi-Agent
   Reinforcement Learning},'' Tech. Rep.
+
+\bibitem{Dai2017}
+\BIBentryALTinterwordspacing
+L.~Dai, Y.~Xia, Y.~Gao, and M.~Cannon, ``{Distributed Stochastic MPC of Linear
+  Systems with Additive Uncertainty and Coupled Probabilistic Constraints},''
+  \emph{IEEE Transactions on Automatic Control}, vol.~62, no.~7, pp.
+  3474--3481, 2017. [Online]. Available:
+  \url{http://www.ieee.org/publications{\_}standards/publications/rights/index.html}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Foerster}
+\BIBentryALTinterwordspacing
+J.~N. Foerster, F.~Song, E.~Hughes, N.~Burch, I.~Dunning, S.~Whiteson,
+  M.~Botvinick, and M.~Bowling, ``{Bayesian Action Decoder for Deep Multi-Agent
+  Reinforcement Learning},'' 2018. [Online]. Available:
+  \url{http://arxiv.org/abs/1811.01458}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Heirung2019}
+T.~A.~N. Heirung, T.~L. Santos, and A.~Mesbah, ``{Model predictive control with
+  active learning for stochastic systems with structural model uncertainty:
+  Online model discrimination},'' \emph{Computers and Chemical Engineering},
+  vol. 128, pp. 128--140, sep 2019.
+
+\bibitem{Wingate2012}
+D.~Wingate, ``{Predictively defined representations of state},'' in
+  \emph{Adaptation, Learning, and Optimization}.\hskip 1em plus 0.5em minus
+  0.4em\relax Springer Verlag, 2012, vol.~12, pp. 415--439.
+
+\bibitem{Inoue2019}
+D.~Inoue, D.~Murai, and H.~Yoshida, ``{Stochastic self-organizing control for
+  swarm robot systems},'' in \emph{Lecture Notes in Computer Science (including
+  subseries Lecture Notes in Artificial Intelligence and Lecture Notes in
+  Bioinformatics)}, vol. 11655 LNCS.\hskip 1em plus 0.5em minus 0.4em\relax
+  Springer Verlag, 2019, pp. 405--416.
+
+\bibitem{Sartoretti2014}
+G.~Sartoretti, M.~O. Hongler, M.~E. de~Oliveira, and F.~Mondada,
+  ``{Decentralized self-selection of swarm trajectories: from dynamical systems
+  theory to robotic implementation},'' \emph{Swarm Intelligence}, vol.~8,
+  no.~4, pp. 329--351, 2014.
+
+\bibitem{Shahrokhi2019}
+S.~Shahrokhi, H.~Zhao, and A.~T. Becker, ``{Reshaping particle configurations
+  by collisions with rigid objects},'' in \emph{Proceedings - IEEE
+  International Conference on Robotics and Automation}, vol. 2019-May.\hskip
+  1em plus 0.5em minus 0.4em\relax Institute of Electrical and Electronics
+  Engineers Inc., may 2019, pp. 4436--4443.
+
+\bibitem{Li2017}
+H.~Li, C.~Feng, H.~Ehrhard, Y.~Shen, B.~Cobos, F.~Zhang, K.~Elamvazhuthi,
+  S.~Berman, M.~Haberland, and A.~L. Bertozzi, ``{Decentralized stochastic
+  control of robotic swarm density: Theory, simulation, and experiment},'' in
+  \emph{IEEE International Conference on Intelligent Robots and Systems}, vol.
+  2017-Septe.\hskip 1em plus 0.5em minus 0.4em\relax Institute of Electrical
+  and Electronics Engineers Inc., dec 2017, pp. 4341--4347.
+
+\bibitem{FUHRMANFrancescoRUSSO}
+P.~Milano, ``{Probabilistic Representation of HJB Equations for Optimal Control
+  of Jump Processes , BSDEs and Related Stochastic Calculus},'' Ph.D.
+  dissertation, 2016.
+
+\bibitem{Ma2017}
+L.~Ma, Z.~Wang, Q.~L. Han, and Y.~Liu, ``{Consensus control of stochastic
+  multi-agent systems: a survey},'' dec 2017.
+
+\bibitem{Berkenkamp2017}
+F.~Berkenkamp, M.~Turchetta, A.~P. Schoellig, and A.~Krause, ``{Safe
+  model-based reinforcement learning with stability guarantees},'' in
+  \emph{Advances in Neural Information Processing Systems}, vol. 2017-Decem,
+  2017, pp. 909--919.
+
+\bibitem{Marinescu2014}
+\BIBentryALTinterwordspacing
+A.~Marinescu, I.~Dusparic, A.~Taylor, V.~Cahill, and S.~Clarke,
+  ``{Decentralised Multi-Agent Reinforcement Learning for Dynamic and Uncertain
+  Environments},'' 2014. [Online]. Available: \url{www.aaai.org
+  http://arxiv.org/abs/1409.4561}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Subramanian2019}
+\BIBentryALTinterwordspacing
+J.~Subramanian, ``{Reinforcement learning in stationary mean-field games},''
+  \emph{Proceedings of the 18th International Conference of Autonomous Agents
+  and Multi-Agent Systems, AAMAS'19}, vol.~9, no. Aamas, pp. 251--259, 2019.
+  [Online]. Available: \url{www.ifaamas.org}
+\BIBentrySTDinterwordspacing
 
 \end{thebibliography}
