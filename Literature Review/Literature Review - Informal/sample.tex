@@ -273,60 +273,91 @@ the two approaches in order to get the ``best of both worlds''.}
 
 \section{Game Theoretic Approaches}
 
-Game theoretic models are generally the go-to method for understanding multi-agent systems. As such
-they fit into all of the categories in this chapter (except, perhaps, swarms) since Dec-POMDP and
-MARL methods have both used game theory to support their frameworks. In fact, Dec-POMDP is a subset
-of Partially Observed Stochastic Games (POSG), in which all agents use the same payoff. Game theory
-can, therefore, be used in an applied capacity to direct task allocation across heterogenous teams.
+Game theoretic models are generally the go-to method for understanding
+multi-agent systems. As such they fit into all of the categories in
+this chapter (except, perhaps, swarms) since Dec-POMDP and MARL
+methods have both used game theory to support their frameworks. In
+fact, Dec-POMDP is a subset of Partially Observed Stochastic Games
+(POSG), in which all agents use the same payoff. \fr{That's an
+  interesting remark. It might be worth to check whether we can
+  leverage on this and similar observations.} Game theory can,
+therefore, be used in an applied capacity to direct task allocation
+across heterogenous teams.
 
 \subsection{Market Based Methods}
 
-Garapati et al. \cite{Garapati2018AMissions} define a market based method as the setting where
-agents "follow their own interests and establish the mechanism of a market for distributing the
-tasks". Auctioning is the most widely used sub-field of market approaches and so I will use them
-interchangeably. 
+Garapati et al. \cite{Garapati2018AMissions} define a market based
+method as the setting where agents "follow their own interests and
+establish the mechanism of a market for distributing the
+tasks". Auctioning is the most widely used sub-field of market
+approaches and so I will use them interchangeably.
 
-Whilst there are different variants to autioning, the general procedure is that an auctioneer who
-has knowledge of a task (or multiple tasks) will set up an auction for said task. Agents can then
-make bids on these tasks and, once the auction is complete, the highest bid will win the task. In
-the specific application to robotics, a robot's bid will often reflect the costs, suitability or
-utility their undertaking the task \cite{BernardineDias2006Market-basedAnalysis}. This immediately
-highlights a few points. The first is that the method is not too heavily reliant upon a single
-processor to determine some joint policy. Tasks are allocated on a case-by-case basis and the
-utilities are calculated by the agent themselves. The only centralised process is the auctioneer's
-assessment of the winner which then relays this information back to them. The downside of this is
-that the system is heavily reliant upon strong communication channels, without which tasks may not
-be assigned, incorrect utilities may be communicated and, in general, sub-optimal solutions reached.
-Furthermore, the requirement that the agents themselves determine the cost of their actions assumes
-that they have the computational capability to do so. Furthermore, the bids placed by each agent
-need to be a strong representation of their capability to perform a task which may be hard to
-estimate without expert knowledge. However, market based methods are well suited to explanation
-through argumentation (similar to \cite{Jung2001DistributedArgumentation}. 
+Whilst there are different variants to autioning, the general
+procedure is that an auctioneer who has knowledge of a task (or
+multiple tasks) will set up an auction for said task. Agents can then
+make bids on these tasks and, once the auction is complete, the
+highest bid will win the task. In the specific application to
+robotics, a robot's bid will often reflect the costs, suitability or
+utility their undertaking the task
+\cite{BernardineDias2006Market-basedAnalysis}. This immediately
+highlights a few points. The first is that the method is not too
+heavily reliant upon a single processor to determine some joint
+policy. Tasks are allocated on a case-by-case basis and the utilities
+are calculated by the agent themselves. The only centralised process
+is the auctioneer's assessment of the winner which then relays this
+information back to them. The downside of this is that the system is
+heavily reliant upon strong communication channels, without which
+tasks may not be assigned, incorrect utilities may be communicated
+and, in general, sub-optimal solutions reached.  Furthermore, the
+requirement that the agents themselves determine the cost of their
+actions assumes that they have the computational capability to do
+so. Furthermore, the bids placed by each agent need to be a strong
+representation of their capability to perform a task which may be hard
+to estimate without expert knowledge. However, market based methods
+are well suited to explanation through argumentation (similar to
+\cite{Jung2001DistributedArgumentation}.
 
-With well chosen payoffs, market based approaches work extremely well. For instance, in
-\cite{Dias2000ASystem}, the authors show that a free market approach (where agents try to maximise
-their own profits) can lead to a strong collaborative effort across teams. Similarly, in
-\cite{Thomas2005Multi-robotScenarios}, Thomas et al. apply the auctioning scheme presented in
-\cite{Gerkey2002Sold:Coordination} towards a robot construction team. However, it is important to
-note that these are both passive settings; tasks were assigned before the team were in the field
-and, in the case of \cite{Gerkey2002Sold:Coordination}, the system would repeat the bidding process
-if a robot failed. While both show strong performance, it cannot be said that either would be
-applicable in dangerous environments in which dynamic reassignment must happen within strict time
-constraints. Stancliff et al. \cite{Stancliff2009PlanningAllocation} suggest that a more robust
-method to planning would be to account for failures a priori, a philosophy which is exemplified in
-\cite{Chen2010ACollaboration} who consider the robot's reliability and relevance to a task as well
-as 'history relevance' which considers the relationship between pairs of robots with the aim of
-producing more effective teams.
+\fr{The game-theoretic approaches described above might suffer from the
+  same drawbacks identified above for fault detection, namely reliance
+  on communication and on a single central authority. I'd rather
+  favour distributed approaches. Also, market-based mechanisms and
+  negotiation might lead us to a completely different direction.}
 
-There has also been some interesting work in probabilistic verification of market based approaches.
-Most notable to me is \cite{Pallottino2007ProbabilisticAvoidance} which considers the case of
-conflict avoidance. Though their method focuses on collision avoidance, it highlights the need for
-verification of conflict resolution and goal achievement in market based approaches with different
-payoff structures. Sirigineedi et al. \cite{Sirigineedi2010DecentralisedApproach} make a step in
-this direction by considering the verification of cooperative surveillance along a route network.
-From my understanding, this means that they were able to verify that their agents were able to
-traverse along the network without interference. However, this, as always, requires further analysis
-to truly understand.
+
+With well chosen payoffs, market based approaches work extremely
+well. For instance, in \cite{Dias2000ASystem}, the authors show that a
+free market approach (where agents try to maximise their own profits)
+can lead to a strong collaborative effort across teams. Similarly, in
+\cite{Thomas2005Multi-robotScenarios}, Thomas et al. apply the
+auctioning scheme presented in \cite{Gerkey2002Sold:Coordination}
+towards a robot construction team. However, it is important to note
+that these are both passive settings; tasks were assigned before the
+team were in the field and, in the case of
+\cite{Gerkey2002Sold:Coordination}, the system would repeat the
+bidding process if a robot failed. While both show strong performance,
+it cannot be said that either would be applicable in dangerous
+environments in which dynamic reassignment must happen within strict
+time constraints. Stancliff et
+al. \cite{Stancliff2009PlanningAllocation} suggest that a more robust
+method to planning would be to account for failures a priori, a
+philosophy which is exemplified in \cite{Chen2010ACollaboration} who
+consider the robot's reliability and relevance to a task as well as
+'history relevance' which considers the relationship between pairs of
+robots with the aim of producing more effective teams.
+
+There has also been some interesting work in probabilistic
+verification of market based approaches.  Most notable to me is
+\cite{Pallottino2007ProbabilisticAvoidance} which considers the case
+of conflict avoidance. Though their method focuses on collision
+avoidance, it highlights the need for verification of conflict
+resolution and goal achievement in market based approaches with
+different payoff structures. Sirigineedi et
+al. \cite{Sirigineedi2010DecentralisedApproach} make a step in this
+direction by considering the verification of cooperative surveillance
+along a route network.  From my understanding, this means that they
+were able to verify that their agents were able to traverse along the
+network without interference. However, this, as always, requires
+further analysis to truly understand.
 
 \subsection{Directions}
 
@@ -347,11 +378,16 @@ The particular considerations which have jumped out to me from the above analysi
 
 \section{MARL}
 
-Reinforcement learning extends the Markov Decision Process problem by considering the case where the
-payoff model is not known. This, of course, is the case for most real world environments. As such,
-MARL algorithms can perhaps be considered to be more applicable than Dec-POMDP models. Fortunately,
-MARL has picked up a lot of traction in research recently, with a large body dedicated towards
-solving the many problems it presents.
+Reinforcement learning extends the Markov Decision Process problem by
+considering the case where the payoff model is not known. This, of
+course, is the case for most real world environments. As such, MARL
+algorithms can perhaps be considered to be more applicable than
+Dec-POMDP models.
+\fr{Why would it be so? after all, also MARL assumes a certain pay-off structure.}
+
+Fortunately, MARL has picked up a lot of traction in
+research recently, with a large body dedicated towards solving the
+many problems it presents.
 
 The largest problem in MARL is the non-stationarity of the environment \cite{Hernandez-LealA}. In
 single-agent settings, it is assumed that the environment is Markovian. However, this must be lifted
@@ -404,6 +440,10 @@ the stability of the learning process. However, the particular problem I suggest
 modelling in a decentralised manner and with the consideration of evolving numbers of agents in
 teams. \end{itemize}
 
+\fr{This looks like an interesting, non-trivial problem: how can we
+  represent the other agents within the agent model itself, in order
+  to improve learning in MARL? Shall we have a closer look at this problem?}
+
 
 \section{MARL Approaches} \label{sec::MARL Approaches}
 
@@ -448,14 +488,23 @@ lagging anchor algorithm which can converge to both pure and mixed NEs.
 
 \subsubsection*{Learning in Multiplayer Stochastic Games}
 
-Stochastic Games (or Markov Games) form a basis for MARL settings. However, in this case the agents
-must learn about the equilibrium strategies by playing the game, which means they do not have a
-priori knowledge of the reward or transition functions. Schwarz considers two properties which
-should be used for evaluating MARL algorithm: rationality and convergence. The latter simply states
-that the method should converge to some equilibrium whereas the former suggests that the method
-should learn the best response to stationary opponents. A similar set of conditions is considered by
-Conitzer and Sandholm in \cite{ConitzerAWESOME:}, whose algorithm we will consider shortly. Schwarz
-then presents a review of MARL methods (as of September 2014) 
+Stochastic Games (or Markov Games) form a basis for MARL
+settings. However, in this case the agents must learn about the
+equilibrium strategies by playing the game, which means they do not
+have a priori knowledge of the reward or transition functions. Schwarz
+considers two properties which should be used for evaluating MARL
+algorithm: rationality and convergence. The latter simply states that
+the method should converge to some equilibrium whereas the former
+suggests that the method should learn the best response to stationary
+opponents. A similar set of conditions is considered by Conitzer and
+Sandholm in \cite{ConitzerAWESOME:}, whose algorithm we will consider
+shortly. Schwarz then presents a review of MARL methods (as of
+September 2014)
+
+\fr{All the above looks extremely interesting. I would explore the
+  above for decentralized and partially observable settings. What
+  results are mentioned \cite{SchwartzMulti-agentApproach} under such
+  assumptions?}
 
 \subsection*{Dec-POMDP and MARL}
 
