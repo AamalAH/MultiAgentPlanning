@@ -20,6 +20,8 @@
 \let\endchangemargin=\endlist
 \title{Literature Review - Informal}
 
+\newcommand\fr[1]{\textcolor{red}{FR: #1}}
+
 \author{Aamal Hussain}
 
 \date{\today}
@@ -34,31 +36,40 @@
 
 
 
-The areas of interest regarding Multi Agent Systems fall into two distinct categories (which have
-some slight overlap). The first is denoted as 'Decision Making', though the terms 'Planning' and
-'Distributed Control' may sometimes be used as substitutes. It is important to note that, in my
-case, I do not include Planning Formalisation techniques such as PDDL. Instead, I focus on the
-particular methods which involve interaction in the world. The second, I will refer to as 'Multi
-Agent Dynamics', though sometimes I will refer to this as 'Stability Analysis'. 
+The areas of interest regarding Multi Agent Systems fall into two
+distinct categories (which have some slight overlap). The first is
+denoted as 'Decision Making', though the terms 'Planning' and
+'Distributed Control' may sometimes be used as substitutes. It is
+important to note that, in my case, I do not include Planning
+Formalisation techniques such as PDDL. Instead, I focus on the
+particular methods which involve interaction in the world. The second,
+I will refer to as 'Multi Agent Dynamics', though sometimes I will
+refer to this as 'Stability Analysis'.
 
 \subsection*{Scope}
 
-Both of the aforementioned topics have been applied to all variants of multi agent systems and have
-sufficient room for further exploration. The typical variants of multi agent systems that I will
+Both of the aforementioned topics have been applied to all variants of
+multi agent systems and have sufficient room for further
+exploration. The typical variants of multi agent systems that I will
 consider are
 
 \begin{itemize} \item Swarms \item Multi Agent Reinforcement Learning (MARL) \item Decentralised
 Partially Observed Markov Decision Processes (Dec-POMDP) \item Game Theoretic Approaches \item Hard
 Coded \end{itemize}
 
-In the above, 'Game Theoretic Approaches' cover a wide spectrum, including zero-sum (minimax) games,
-bayesian games, and many more. The final category, 'Hard Coded', refers to any approach which does
-not fit neatly into any of these categories. The name is chosen since they often refer to methods
-which revolve around a series of if-else statements.
+In the above, 'Game Theoretic Approaches' cover a wide spectrum,
+including zero-sum (minimax) games, bayesian games, and many more. The
+final category, 'Hard Coded', refers to any approach which does not
+fit neatly into any of these categories. The name is chosen since they
+often refer to methods which revolve around a series of if-else
+statements.
 
-I will first consider Decision Making as this is most closely related to the research proposal,
-before I consider Multi Agent Dynamics, which has strong implications for Safe and Trusted Multi
-Agent Systems. 
+\fr{Is 'Hard Coded' the terms also used in this literature, or is it your own?}
+
+I will first consider Decision Making as this is most closely related
+to the research proposal, before I consider Multi Agent Dynamics,
+which has strong implications for Safe and Trusted Multi Agent
+Systems.
 
 \subsection*{Objectives}
 
@@ -106,49 +117,69 @@ central controller \cite{Couceiro2015}. This presents the advantage that the sys
 adapt to the loss of agents or separation of groups throughout the task. However, the assumptions
 made regarding the homogeneity of individual agents and the simplicity of their local interactions
 result in significant limitations placed on the complexity of the tasks that swarm systems can
-accomplish. 
+accomplish.
+
+\fr{What are the standard techniques used in swarms? that is, how are swarms and their interactions modelled? how are solutions computed? what kind of algorithms are used in this area? most importantly, does any of these overlap with any of the areas belos, for example (PO)MDPs?}
 
 \subsection{Co-evolution and Self-Healing}
 
-Recently, there has been an increased interest in introducing heterogeneity into the swarm systems
-to improve their real world applicability. An example of this which have been shown strong real
-world success can be found in \cite{DucatelleSelf-organizedSwarms}. Here, the authors consider two
-swarm teams, referred to as 'foot bots' and 'eye bots' who work in unison to explore an environment
-and solve a navigation task. 
+Recently, there has been an increased interest in introducing
+heterogeneity into the swarm systems to improve their real world
+applicability. An example of this which have been shown strong real
+world success can be found in
+\cite{DucatelleSelf-organizedSwarms}. Here, the authors consider two
+swarm teams, referred to as 'foot bots' and 'eye bots' who work in
+unison to explore an environment and solve a navigation task.
 
-This area of research is sparsely populated and warrants further exploration. This is since the use
-of co-evolutionary teams can improve the robustness of the swarm optimisation. This is since it will
-be possible for a team to automatically determine when robots in the other team are not exhibiting
-expected behaviour and ensure that the other team self corrects. This process is referred to as
-'Self-Healing' in \cite{LiuTrust-Aware}. Here, the authors allow a user to define the goals of a
-swarm system. From this, a 'trust' metric can be defined which measures the deviation of each agent
-from the expected behaviour. The self-healing process occurs by limiting communication of all agents
-with 'untrusted' agents and encouraging communication with 'trusted' agents. The unison of
-self-healing with co-evolution may present the opportunity for heterogenous swarms to maintain their
-evolutionary stability, even in the face of environmental disturbances.
+This area of research is sparsely populated and warrants further
+exploration. This is since the use of co-evolutionary teams can
+improve the robustness of the swarm optimisation. This is since it
+will be possible for a team to automatically determine when robots in
+the other team are not exhibiting expected behaviour and ensure that
+the other team self corrects. This process is referred to as
+'Self-Healing' in \cite{LiuTrust-Aware}. Here, the authors allow a
+user to define the goals of a swarm system. From this, a 'trust'
+metric can be defined which measures the deviation of each agent from
+the expected behaviour. The self-healing process occurs by limiting
+communication of all agents with 'untrusted' agents and encouraging
+communication with 'trusted' agents. The unison of self-healing with
+co-evolution may present the opportunity for heterogenous swarms to
+maintain their evolutionary stability, even in the face of
+environmental disturbances.
 
 \subsection{Fault Detection}
 
-The above sections have considered the fact that swarm systems are robust to losses in the group.
-However, any MAS system must first be able to recognise that an agent has undergone some failure. 
+The above sections have considered the fact that swarm systems are
+robust to losses in the group.  However, any MAS system must first be
+able to recognise that an agent has undergone some failure.
 
-To this end, Tarapore et al. \cite{Tarapore2019FaultDetection} develop a robust fault detection
-approach in which the swarm itself, in a decentralised manner, is capable of assessing deviation
-from 'normal' behaviour, even when the behaviour of the swarm itself is altered (perhaps by a remote
-operator). The authors achieve this by requiring that the agents themselves sense and characterise
-their own behaviour. This characterisation is formulated as a binary feature vector which is then
-communicated to the agent's neighbours. These neighbours will reach a consensus over whether the
-agent should be treated as faulty based on their collective behaviour. The results presented in
-\cite{Tarapore2019FaultDetection} show extremely promising results and suggest that their method is,
-in fact, able to determine faults with high accuracy in the presence of various fault types
-(including sensor and actuator failures), although poor performance is seen in actuation failures in
-some instances. It should be noted that this method requires that each robot transmit their feature
-vector to the nearest neighbours. In environments where communication may be severely limited, this
-may present further errors. Furthermore, it is unlikely that, when a robot is damaged, only one of
-its components will be affected. Therefore, it is important to determine the effect on performance
-in the face of multiple agent failures and in communication losses. This exploration may open the
-possibility of improving the state of the art in terms of failure detection in swarm systems. (Of
-course, this conclusion is based off two papers so further review is required).
+To this end, Tarapore et al. \cite{Tarapore2019FaultDetection} develop
+a robust fault detection approach in which the swarm itself, in a
+decentralised manner, is capable of assessing deviation from 'normal'
+behaviour, even when the behaviour of the swarm itself is altered
+(perhaps by a remote operator). The authors achieve this by requiring
+that the agents themselves sense and characterise their own
+behaviour. This characterisation is formulated as a binary feature
+vector which is then communicated to the agent's neighbours. These
+neighbours will reach a consensus over whether the agent should be
+treated as faulty based on their collective behaviour. The results
+presented in \cite{Tarapore2019FaultDetection} show extremely
+promising results and suggest that their method is, in fact, able to
+determine faults with high accuracy in the presence of various fault
+types (including sensor and actuator failures), although poor
+performance is seen in actuation failures in some instances. It should
+be noted that this method requires that each robot transmit their
+feature vector to the nearest neighbours. In environments where
+communication may be severely limited, this may present further
+errors. Furthermore, it is unlikely that, when a robot is damaged,
+only one of its components will be affected. Therefore, it is
+important to determine the effect on performance in the face of
+multiple agent failures and in communication losses. This exploration
+may open the possibility of improving the state of the art in terms of
+failure detection in swarm systems. (Of course, this conclusion is
+based off two papers so further review is required).
+
+\fr{Fault detection and fault recovery (D\&R) is one of the themes that encompasse several different research areas. As such, it would be interesting to check whether the techniques applied to Fault D\&R can be successfully exported from one area to another. However, this depends essentially on the different modelling assumptions.}
 
 \subsection{Verification}
 
@@ -157,43 +188,64 @@ require further reading
 
 \subsection{Directions}
 
-From the above consideration of swarms, the following research directions have been identified
-which, in my view, concern themselves with STAI.
+From the above consideration of swarms, the following research
+directions have been identified which, in my view, concern themselves
+with STAI.
 
 \begin{itemize} \item Healing through co-evolution: The application of heterogenous robot swarms
-towards ensuring that emergent phenomenon and swarm behaviour are as expected by the user. \item
-Fault Detection in limited communication: Considering the ability of a swarm to, in a decentralised
-approach, consider which robots in the team have failed, even in cases of no communication or
-multiple failures. \end{itemize}
+towards ensuring that emergent phenomenon and swarm behaviour are as
+expected by the user.
+
+
+\item Fault Detection in limited communication:
+Considering the ability of a swarm to, in a decentralised approach,
+consider which robots in the team have failed, even in cases of no
+communication or multiple failures.
+
+\fr{The second item looks promising, possibly in combinations with
+  techniques from Game Theory and MARL. Let's keep Fault R\&D in
+  mind.}
+
+
+\end{itemize}
 
 \section{Dec-POMDPs}
 
-The use of POMDPs in multi-agent settings is formalised as decentralised POMDP (Dec-POMDP) which
-aims for a team of agents to maximise a common utility. However, it has been found that determining
-the exact solution to Dec-POMDP problems is NEXP \cite{Eker2011} and so is intractable for all but
-toy problems. A number of methods have been presented to attempt to solve Dec-POMDPs. Oliehoek gives
-a review of these in \cite{OliehoekDecentralizedPOMDPs}. Most solutions (such as brute force) are
-intractable for all but toy problems. 
+The use of POMDPs in multi-agent settings is formalised as
+decentralised POMDP (Dec-POMDP) which aims for a team of agents to
+maximise a common utility. However, it has been found that determining
+the exact solution to Dec-POMDP problems is NEXP \cite{Eker2011} and
+so is intractable for all but toy problems. A number of methods have
+been presented to attempt to solve Dec-POMDPs. Oliehoek gives a review
+of these in \cite{OliehoekDecentralizedPOMDPs}. Most solutions (such
+as brute force) are intractable for all but toy problems.
 
-Approximate solutions to Dec-POMDP have been proposed, perhaps most notable of which is the proposal
-of MacDec-POMDP \cite{Amato2015} by Amato et al. Here, macro actions (actions which extend over
-multiple time steps) are used, as opposed to low-level actions which are re-evaluated at each time
-step. This allows an exact solution to be found as it does not need to be evaluated at each time
-step. This method assumes that, once macro-actions are distributed, the policies (sequence of
-state-action pairs) are known. Since this is not the case, Amato also proposes the use of a
-Dec-POSMDP \cite{Amato2017Decision-MakingLearning}, where 'SMDP' refers to 'Semi-Markov Decision
-Process, in which a high level model is defined without the underlying Dec-POMDP's actions and
-observations.
+Approximate solutions to Dec-POMDP have been proposed, perhaps most
+notable of which is the proposal of MacDec-POMDP \cite{Amato2015} by
+Amato et al. Here, macro actions (actions which extend over multiple
+time steps) are used, as opposed to low-level actions which are
+re-evaluated at each time step. This allows an exact solution to be
+found as it does not need to be evaluated at each time step. This
+method assumes that, once macro-actions are distributed, the policies
+(sequence of state-action pairs) are known. Since this is not the
+case, Amato also proposes the use of a Dec-POSMDP
+\cite{Amato2017Decision-MakingLearning}, where 'SMDP' refers to
+'Semi-Markov Decision Process, in which a high level model is defined
+without the underlying Dec-POMDP's actions and observations.
 
-However, this is largely applicable in passive settings where common payoffs can be determined by an
-offline planner. They also require a significant amount of data with which to allow the system to
-learn the underlying models and payoff structures. This limits the applicability of the system when
-communication is limited and the system is presented with environments that it has not seen before.
-Recent work in MDPs \cite{Klima2019RobustDomains} has considered learning in the face of Significant
-Rare Events (SREs) which the system has not yet observed. Currently, it is required that a model of
-such SREs is known and so it would be interesting to consider the application of Dec-POMDPs in
-situations where the SRE model is incomplete or erroneous and assess the robustness of the Dec-POMDP
-framework against such events. 
+However, this is largely applicable in passive settings where common
+payoffs can be determined by an offline planner. They also require a
+significant amount of data with which to allow the system to learn the
+underlying models and payoff structures. This limits the applicability
+of the system when communication is limited and the system is
+presented with environments that it has not seen before.  Recent work
+in MDPs \cite{Klima2019RobustDomains} has considered learning in the
+face of Significant Rare Events (SREs) which the system has not yet
+observed. Currently, it is required that a model of such SREs is known
+and so it would be interesting to consider the application of
+Dec-POMDPs in situations where the SRE model is incomplete or
+erroneous and assess the robustness of the Dec-POMDP framework against
+such events.
 
 \subsection{Directions}
 
@@ -202,10 +254,22 @@ developed by Amato as he seems to largely dominate the field. Based on this init
 area, a potential direction for research is
 
 \begin{itemize} \item Significant Rare Events: Consider Dec-POMDP capability to remain robust to
-SREs which have a limited or erroneous model. \item Agent Failures: The Dec-POMDP model uses a
+  SREs which have a limited or erroneous model.
+
+
+\item Agent Failures: The Dec-POMDP model uses a
 centralised planner which acts offline. It therefore assumes that the agents will be able to carry
 out their assigned tasks. It would be interesting to examine the possibility of, either adaptive
 planning, or planning with contingencies in the Dec-POMDP framework. \end{itemize}
+
+\fr{It looks like this second point is related to Fault R\&D discussed above. It might be worth to make a comparison and see what are the general results in the two areas.\\
+Also, it might be interesting to understand why swarms scale up better
+than MDPs, and in general why the former have better computational
+properties than the latter: is it a matter of
+``homogeneity''? Then, what about considering ``homogeneous'' MDPs, or
+some other swarm-like restriction? It might be interesting to combine
+the two approaches in order to get the ``best of both worlds''.}
+
 
 \section{Game Theoretic Approaches}
 
