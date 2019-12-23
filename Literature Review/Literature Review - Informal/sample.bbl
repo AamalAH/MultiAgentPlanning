@@ -61,8 +61,7 @@ P.~Zahadat and T.~Schmickl, ``{Division of labor in a swarm of autonomous
 
 \bibitem{DucatelleSelf-organizedSwarms}
 \BIBentryALTinterwordspacing
-F.~Ducatelle, G.~A.~D. Caro, C.~Pinciroli, �.~Luca, M.~Gambardella,
-  F.~Ducatelle, .~Dalle, G.~A.~D. Caro, C.~Pinciroli, and L.~M. Gambardella,
+F.~Ducatelle, G.~A.~D. Caro, C.~Pinciroli, and u.~Gambardella,
   ``{Self-organized Cooperation between Robotic Swarms},'' Tech. Rep. [Online].
   Available: \url{http://www.swarmanoid.org}
 \BIBentrySTDinterwordspacing
@@ -334,7 +333,7 @@ A.~Letcher, J.~Foerster, D.~Balduzzi, T.~Rockt{\"{a}}schel, and S.~Whiteson,
   ``{STABLE OPPONENT SHAPING IN DIFFERENTIABLE GAMES},'' Tech. Rep.
 
 \bibitem{Hamalainen1991DifferentialFinland}
-R.~P. Hämäläinen and H.~K. H.~K. Ehtamo, \emph{{Differential games :
+R.~P. Hamalainen and H.~K. H.~K. Ehtamo, \emph{{Differential games :
   developments in modelling and computation : proceedings of the Fourth
   International Symposium on Differential Games and Applications, August 9-10,
   1990, Helsinki University of Technology, Finland}}.\hskip 1em plus 0.5em

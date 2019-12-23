@@ -53,9 +53,9 @@ multi agent systems and have sufficient room for further
 exploration. The typical variants of multi agent systems that I will
 consider are
 
-\begin{itemize} \item Swarms \item Multi Agent Reinforcement Learning (MARL) \item Decentralised
+\begin{enumerate} \item Swarms \item Multi Agent Reinforcement Learning (MARL) \item Decentralised
 Partially Observed Markov Decision Processes (Dec-POMDP) \item Game Theoretic Approaches \item Hard
-Coded \end{itemize}
+Coded \end{enumerate}
 
 In the above, 'Game Theoretic Approaches' cover a wide spectrum,
 including zero-sum (minimax) games, bayesian games, and many more. The
@@ -119,7 +119,7 @@ made regarding the homogeneity of individual agents and the simplicity of their 
 result in significant limitations placed on the complexity of the tasks that swarm systems can
 accomplish.
 
-\fr{What are the standard techniques used in swarms? that is, how are swarms and their interactions modelled? how are solutions computed? what kind of algorithms are used in this area? most importantly, does any of these overlap with any of the areas belos, for example (PO)MDPs?}
+\fr{What are the standard techniques used in swarms? that is, how are swarms and their interactions modelled? how are solutions computed? what kind of algorithms are used in this area? most importantly, does any of these overlap with any of the areas below, for example (PO)MDPs?}
 
 \subsection{Co-evolution and Self-Healing}
 
@@ -192,7 +192,7 @@ From the above consideration of swarms, the following research
 directions have been identified which, in my view, concern themselves
 with STAI.
 
-\begin{itemize} \item Healing through co-evolution: The application of heterogenous robot swarms
+\begin{enumerate} \item Healing through co-evolution: The application of heterogenous robot swarms
 towards ensuring that emergent phenomenon and swarm behaviour are as
 expected by the user.
 
@@ -207,7 +207,7 @@ communication or multiple failures.
   mind.}
 
 
-\end{itemize}
+\end{enumerate}
 
 \section{Dec-POMDPs}
 
@@ -253,14 +253,14 @@ The area of Dec-POMDPs still requires more review from me, especially for soluti
 developed by Amato as he seems to largely dominate the field. Based on this initial review of the
 area, a potential direction for research is
 
-\begin{itemize} \item Significant Rare Events: Consider Dec-POMDP capability to remain robust to
+\begin{enumerate} \item Significant Rare Events: Consider Dec-POMDP capability to remain robust to
   SREs which have a limited or erroneous model.
 
 
 \item Agent Failures: The Dec-POMDP model uses a
 centralised planner which acts offline. It therefore assumes that the agents will be able to carry
 out their assigned tasks. It would be interesting to examine the possibility of, either adaptive
-planning, or planning with contingencies in the Dec-POMDP framework. \end{itemize}
+planning, or planning with contingencies in the Dec-POMDP framework. \end{enumerate}
 
 \fr{It looks like this second point is related to Fault R\&D discussed above. It might be worth to make a comparison and see what are the general results in the two areas.\\
 Also, it might be interesting to understand why swarms scale up better
@@ -363,14 +363,14 @@ further analysis to truly understand.
 
 The particular considerations which have jumped out to me from the above analysis are as follows:
 
-\begin{itemize} 
+\begin{enumerate} 
 	\item Verification of goal achievement under different payoffs: can we ensure that
 	self-interested agents will, in fact, show cooperative emergent properties? A similar question
 	arises in terms of valuations (how much cost each agent incurs). 
 	\item A priori consideration of
 	reliability: Can we learn and take into account the fact that robots may fail throughout the
 	progress of a mission when we assign tasks? 
-\end{itemize}
+\end{enumerate}
 
 \subsection*{Stochastic Games}
 
@@ -435,10 +435,10 @@ methods described in this section are all from 2018-19, so its all very new.
 I still have a lot of reading to do regarding MARL, which, in turn, will identify new directions.
 However, on initial assessment I put forward
 
-\begin{itemize} \item Modelling evolving teammates: The purpose of this is to more strictly ensure
+\begin{enumerate} \item Modelling evolving teammates: The purpose of this is to more strictly ensure
 the stability of the learning process. However, the particular problem I suggest is to consider the
 modelling in a decentralised manner and with the consideration of evolving numbers of agents in
-teams. \end{itemize}
+teams. \end{enumerate}
 
 \fr{This looks like an interesting, non-trivial problem: how can we
   represent the other agents within the agent model itself, in order
@@ -511,13 +511,13 @@ September 2014)
 As Dec-POMDPs are the theoretical formulation of MARL problems, it stands to reason that other
 methods for solving Dec-POMDPs should provide insights into improving MARL. Fortunately Oliehock in
 \cite{OliehoekDecentralizedPOMDPs} presents a number of existing methods towards solving Dec-POMDPs.
-The methods which I feel may be applicable are  \begin{itemize} \item Alternating Maximisation: This
+The methods which I feel may be applicable are  \begin{enumerate} \item Alternating Maximisation: This
 is effectively coordinate ascent for determining a joint policy. \item Approximation as Bayesian
 Games: Perhaps solving the repeated Bayesian Game through MARL would be more efficient. It does,
 however, force us to ask how best to sub-divide a Dec-POMDP into a series of Bayesian Games  \item
 Selecting sub-tree policies: Could DL be used to determine which sub-tree policies are optimal? In
 order to make this work, we would also need to consider how to select the feature space of sub-trees
-and how to collect this information. \end{itemize}
+and how to collect this information. \end{enumerate}
 
 \chapter{Multi Agent Control}
 
@@ -572,12 +572,12 @@ cost function. This formulation brings about controllers which are more applicab
 deployed. However, the field is in its infancy and presents a number of theoretical challenges.
 These are best described by Mesbah in \cite{Mesbah2016}
 
-\begin{itemize}
+\begin{enumerate}
 	\item The arbitrary form of the feedback control laws
 	\item The non-convexity and intractability of the chance constraints
 	\item The complexity of the uncertainty propagations
 	\item Establishing stability of the control problem
-\end{itemize}
+\end{enumerate}
 
 Since the review \cite{Mesbah2016} was written in 2016, there have been a number of approaches towards solving
 some of
@@ -594,14 +594,14 @@ found useful whilst reviewing the literature are \cite{Conte2014}, \cite{Christo
 \cite{Giulioni2015}. In almost all of the presented methods, a number of assumptions are made.
 Usually these are some combination of the following:
 
-\begin{itemize}
+\begin{enumerate}
 	\item The agents act in a deterministic environment. This suggests that predicted futures will
 	be close enough to the ground truth.
 	\item The agents are uncoupled from one another. This is a strong assumption to make and
 	essentially allows us to consider the agents as completely independent of one another. 
 	\item The agents can easily communicate with one another. This allows for longer pieces of
 	communication (most often predicted trajectories) to be communicated between agents.
-\end{itemize}
+\end{enumerate}
 
 
 \subsection{Directions}
@@ -614,7 +614,7 @@ course, an ever present problem in autonomous systems which operate in the real 
 listing the more theoretical areas for exploration in MPC before then considering their application
 domains.
 
-\begin{itemize}
+\begin{enumerate}
 	\item Significant exploration is required with regards to the optimisation problem. Especially
 	for non-linear (or coupled systems), solving the optimisation problem is a struggle. As such,
 	approximate methods (such as sampling) should be explored and their effect on the system
@@ -638,12 +638,12 @@ domains.
 	aid. Similarly, mean-field games should be considered in the general N-agent problem, as well as
 	in the case of multiple disturbances, but I will elaborate on this in the applied problems
 	section.
-\end{itemize}
+\end{enumerate}
 
 the following presents a consideration of the applied end of MPC problems. I have tried to focus on
 the domain independent suggestions, since the domain specific ones are virtually limitless.
 
-\begin{itemize}
+\begin{enumerate}
 	\item Mean-field predictive control. Consider the case of a hybrid system, in which many components
 	interact with each other. In addition, we may consider that there are multiple known disturbances
 	acting on the system. This, at first seems like an impossible problem to solve due to the many
@@ -661,7 +661,16 @@ the domain independent suggestions, since the domain specific ones are virtually
 	adaptive stochastic model would be interesting to examine here to remain robust to agent
 	failures in the group.
 	\item Modular Robotics?
-\end{itemize}
+\end{enumerate}
+
+\fr{All the above looks interesting. However, we need to understand
+  how much the scalability issue is going to affect the strength of
+  the results we can expect. Is a multi-agent extension of MPC
+  completely hopeless? or can we find ``islands of tractability'',
+  perhaps in combination with some of the other methods that you
+  mention?}
+
+
 
 \section*{Multi Agent Dynamics}
 
@@ -732,7 +741,9 @@ continuous strategy space) and considers probabilistic perturbations from the or
 is particular applicable to Multi Robot Reinforcement Learning (or any MARL in continuous strategy
 spaces) since these systems require random exploration of the strategy space and the dynamics are
 not known a priori. However, the lack of dynamics means that we do not consider the evolution of
-learning. 
+learning.
+
+\fr{The above sounds a bit technical, but the interest for MARL is apparent. It might be worth to understand what are the limits of applicability of these resutls, that is, what assumptions are they based on.}
 
 \section{Learning Stable Agents}
 
@@ -791,7 +802,12 @@ to stable fixed points.
 
 The second point is that the notion of stability has multiple definitions. Each one is appropriate
 in different conditions and, as such, it is important to explore stability from various viewpoints
-to consider how to best understand the evolution of a learning system. 
+to consider how to best understand the evolution of a learning system.
+
+\fr{I agree that we first need to understand what is exactly meant by
+  stabililty across all these different works, and possibly use a
+  notion that is relevant and interesting, especially in a multi-agent
+  contex as you point you hereafter.}
 
 Another factor to consider is suggested in \cite{Milchtaich2007StaticGames}; multiplayer games do
 not necessarily contain stable fixed points. The existence of stable equilibria is therefore an open
@@ -841,22 +857,35 @@ document out.)
 The work on distributed stochastic MPC (DSMPC) is still rather sparse but is advancing rapidly. To
 that end, I propose the following techniques towards improving DSMPC.
 
-\begin{itemize}
-	\item Each agent $i$ takes into consideration their observations of the past N measurements of the
-	actions selected by another agent $j$. Using this, a Gaussian Process (GP) regression informs the
-	distribution of the action that will likely be selected by $j$, effectively performing a
-	one-step lookahead of $j$'s actions. By propagating the effects of this predicted input $i$ can
-	then determine a likely trajectory for $j$ and then perform its own update accordingly. Whilst
-	this may seem computationally expensive, its advantage lies in the fact that it requires little
-	communication across the agents. An immediate disadvantage of this is that, as the number of
-	agents increases, $i$ would need to perform all of these calculations for each $j \neq i$. I'm
-	not yet confident on the feasibility or the usefulness of this technique, but looking further
-	into the literature (which seems to add new things every day) may provide insights which could
-	help refine the technique. This method is, in many ways, similar to that presented in 
-	\cite{Conte2014} and \cite{Dai2017}. The advantage of this proposal over that in 
-	\cite{Conte2014} is that it does not assume that the uncertainties from the predictions of other
-	agents are bounded. Likewise, the advantage over \cite{Dai2017} is that our proposal allows for
-	all systems to update at each time step.
+\begin{enumerate}
+	\item Each agent $i$ takes into consideration their
+          observations of the past N measurements of the actions
+          selected by another agent $j$. Using this, a Gaussian
+          Process (GP) regression informs the distribution of the
+          action that will likely be selected by $j$, effectively
+          performing a one-step lookahead of $j$'s actions. By
+          propagating the effects of this predicted input $i$ can then
+          determine a likely trajectory for $j$ and then perform its
+          own update accordingly. Whilst this may seem computationally
+          expensive, its advantage lies in the fact that it requires
+          little communication across the agents. An immediate
+          disadvantage of this is that, as the number of agents
+          increases, $i$ would need to perform all of these
+          calculations for each $j \neq i$. I'm not yet confident on
+          the feasibility or the usefulness of this technique, but
+          looking further into the literature (which seems to add new
+          things every day) may provide insights which could help
+          refine the technique. This method is, in many ways, similar
+          to that presented in \cite{Conte2014} and
+          \cite{Dai2017}. The advantage of this proposal over that in
+          \cite{Conte2014} is that it does not assume that the
+          uncertainties from the predictions of other agents are
+          bounded. Likewise, the advantage over \cite{Dai2017} is that
+          our proposal allows for all systems to update at each time
+          step.
+
+          \fr{It sounds interesting, might warrant further
+            investigation.}
 
 	\item The second proposal is motivated by the ideas presented in \cite{Foerster} and 
 	\cite{Heirung2019}. In this methodology, a centralised controller maintains and updates a joint
@@ -870,39 +899,52 @@ that end, I propose the following techniques towards improving DSMPC.
 	trajectory. The challenge here would be proving the stability and controllability of the system
 	and that it requires communication with a central controller. However, it would appear to be a
 	feasible area of exploration.
-\end{itemize}
+\end{enumerate}
 
 \section{Stochastic Control of Swarms}
 
 Swarm systems and algorithms are a relatively mature area of research. Yet there is work to be done
 when considering its application in stochastic environments. In particular, the ideas presented
-below concern the transport problem of swarms, i.e. moving a swarm from an initial distribution to a
+below concern the transport problem of swarms, i.e., moving a swarm from an initial distribution to a
 desired distribution. 
 
-\begin{itemize}
-	\item Consideration of state constraints or boundary conditions (terms which I will use
-interchangeably) in the diffusion process. In general, stochastic swarm systems are modelled using a
-particular stochastic difference equation (the Ito equation). However, this does not account for any
-boundary conditions on the diffusion. Indeed most swarms use simple 'stop-and-turn' notions of
-obstacle avoidance. However, in environments where there are human operators, or in general areas
-where we do not want swarms to enter, it is important to have a guarantee of constraint
-satisfaction. To accomplish this, I propose extending the Ito equation to incorporate boundary
-conditions. This will, firstly, provide a more suitable model for the evolution of a swarm system in
-confined spaces, allowing for a more intuitive understanding of the future behaviour of the swarm.
-Furthermore, it may present an opportunity for us to consider the decentralised control of the
-agents which can ensure state constraint satisfaction. The resources which are most relevant to this
-study (and from which the ideas are derived) are
-\cite{Inoue2019,Sartoretti2014,Shahrokhi2019,Li2017}. 
+\begin{enumerate}
+	\item Consideration of state constraints or boundary
+          conditions (terms which I will use interchangeably) in the
+          diffusion process. In general, stochastic swarm systems are
+          modelled using a particular stochastic difference equation
+          (the Ito equation). However, this does not account for any
+          boundary conditions on the diffusion. Indeed most swarms use
+          simple 'stop-and-turn' notions of obstacle
+          avoidance. However, in environments where there are human
+          operators, or in general areas where we do not want swarms
+          to enter, it is important to have a guarantee of constraint
+          satisfaction. To accomplish this, I propose extending the
+          Ito equation to incorporate boundary conditions. This will,
+          firstly, provide a more suitable model for the evolution of
+          a swarm system in confined spaces, allowing for a more
+          intuitive understanding of the future behaviour of the
+          swarm.  Furthermore, it may present an opportunity for us to
+          consider the decentralised control of the agents which can
+          ensure state constraint satisfaction. The resources which
+          are most relevant to this study (and from which the ideas
+          are derived) are
+          \cite{Inoue2019,Sartoretti2014,Shahrokhi2019,Li2017}.
 
-\item Consideration of pairwise interactions between agents to ensure collision avoidance. Most of
-the diffusion models, as mentioned above, do not take into consideration the interactions between
-agents, since it adds a large degree of complexity to the model. However, it would be important from
-a safety perspective to take these into account by looking at the attractive and repulsive
-potentials across agents. This would allow us to provide a guarantee of inter-agent collision
-avoidance whilst maintaining the diffusive progress of the swarm. In \cite{Inoue2019}, the authors
-mention that they are already looking into this problem and have proposed a similar manner of
-tackling it as I have. Perhaps we may be able to build upon or improve their results if and when
-they publish?
+          \fr{I have basic knowledge of Ito equation from unrelated past experience and must say that it is not trivial to work with them.}
+
+\item Consideration of pairwise interactions between agents to ensure
+  collision avoidance. Most of the diffusion models, as mentioned
+  above, do not take into consideration the interactions between
+  agents, since it adds a large degree of complexity to the
+  model. However, it would be important from a safety perspective to
+  take these into account by looking at the attractive and repulsive
+  potentials across agents. This would allow us to provide a guarantee
+  of inter-agent collision avoidance whilst maintaining the diffusive
+  progress of the swarm. In \cite{Inoue2019}, the authors mention that
+  they are already looking into this problem and have proposed a
+  similar manner of tackling it as I have. Perhaps we may be able to
+  build upon or improve their results if and when they publish?
 
 \item Finally, all of the diffusive methods for swarms consider a time invariant network topology.
 By this, I mean that it is assumed that each agent can communicate with, or observe, a certain
@@ -916,25 +958,38 @@ way into swarm dynamics. It will, however, become particularly important in case
 longer take the consistency of agent communication for granted. 
 \cite{FUHRMANFrancescoRUSSO,Ma2017,Li2017} have begun to make progress in these areas, but it does
 not seem like the connection of MJD and swarm dynamics has been made yet.
-\end{itemize}
+\end{enumerate}
+
+\fr{Please refer also to the items in my email.}
 
 \section{Multi Agent Reinforcement Learning}
 
 The ideas I have down here are a little more sparsely populated, but further reading may provide
 some insights into potential directions.
 
-\begin{itemize}
-	\item Stable exploration in MARL. This builds on the ideas of \cite{Berkenkamp2017,Jin2018Stability-certifiedPerspective} and
-	an important point mentioned in \cite{Marinescu2014} that 'the dynamics implied by multi-agent
-	systems lead to stochastic behaviour resulting sometimes in undesired effects'. In particular,
-	most RL methods require some trade-off between exploration and exploitation. It is, therefore,
-	required that we determine a safe manner in which MARL agents may explore without leading to
-	unstable behaviour. This would require extending the work of \cite{Berkenkamp2017} and/or 
-	\cite{Jin2018Stability-certifiedPerspective} to the multi-agent case. Note that 
-	\cite{Jin2018Stability-certifiedPerspective} does actually consider a multi-agent case, but with
-	independent learners who do not consider the effect that they have on the other agent(s). The
-	particular extension that I propose is to consider the coupled effect between agents as part of
-	the determination of a safe set for exploration.
+\begin{enumerate}
+	\item Stable exploration in MARL. This builds on the ideas of
+          \cite{Berkenkamp2017,Jin2018Stability-certifiedPerspective}
+          and an important point mentioned in \cite{Marinescu2014}
+          that 'the dynamics implied by multi-agent systems lead to
+          stochastic behaviour resulting sometimes in undesired
+          effects'. In particular, most RL methods require some
+          trade-off between exploration and exploitation. It is,
+          therefore, required that we determine a safe manner in which
+          MARL agents may explore without leading to unstable
+          behaviour. This would require extending the work of
+          \cite{Berkenkamp2017} and/or
+          \cite{Jin2018Stability-certifiedPerspective} to the
+          multi-agent case. Note that
+          \cite{Jin2018Stability-certifiedPerspective} does actually
+          consider a multi-agent case, but with independent learners
+          who do not consider the effect that they have on the other
+          agent(s). The particular extension that I propose is to
+          consider the coupled effect between agents as part of the
+          determination of a safe set for exploration.
+
+        \fr{That's interesting. Can we leverage on results in Model
+          Predictive Control?}
 
 	\item Improvement of mean-field MARL. This method has shown the most promise for large scale
 	multi agent systems since it allows us to reduce a many-body problem to a series of two-body
@@ -945,9 +1000,14 @@ some insights into potential directions.
 	systems by considering sub-groups within the population. Each of these may be updated
 	individually. It would be interesting to examine how this might increase the complexity, and
 	also the generalisability of the mean-field method.
-	\item A Dynamical Systems analysis on Games. The ideas here still require further reading on my
-	part but the potential directions are largely summarised in Section 2.3.1.
-\end{itemize}
+	\item A Dynamical Systems analysis on Games. The ideas here
+          still require further reading on my part but the potential
+          directions are largely summarised in Section 2.3.1.
+
+          \fr{Interesting direction, but in my opinion the game-theoretic analysis should be grounded in some already well-developed theory (MPC?)}
+\end{enumerate}
+
+
 
 \bibliographystyle{IEEEtran} 
 

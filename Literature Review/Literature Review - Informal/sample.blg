@@ -59,37 +59,37 @@ Warning--empty journal in Marinescu2014
 Done.
 You've used 70 entries,
             4087 wiz_defined-function locations,
-            1770 strings with 37793 characters,
-and the built_in function-call counts, 48218 in all, are:
-= -- 3745
-> -- 1248
+            1770 strings with 37691 characters,
+and the built_in function-call counts, 48014 in all, are:
+= -- 3739
+> -- 1224
 < -- 333
-+ -- 662
-- -- 231
-* -- 2360
-:= -- 7294
++ -- 650
+- -- 225
+* -- 2348
+:= -- 7276
 add.period$ -- 152
 call.type$ -- 70
 change.case$ -- 68
 chr.to.int$ -- 804
 cite$ -- 113
-duplicate$ -- 3523
-empty$ -- 3852
-format.name$ -- 287
-if$ -- 11022
+duplicate$ -- 3511
+empty$ -- 3840
+format.name$ -- 281
+if$ -- 10974
 int.to.chr$ -- 0
 int.to.str$ -- 70
-missing$ -- 720
+missing$ -- 714
 newline$ -- 287
 num.names$ -- 70
-pop$ -- 1761
+pop$ -- 1743
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 3613
+skip$ -- 3601
 stack$ -- 0
 substring$ -- 1946
-swap$ -- 2819
+swap$ -- 2807
 text.length$ -- 65
 text.prefix$ -- 0
 top$ -- 5
