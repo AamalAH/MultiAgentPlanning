@@ -1,0 +1,121 @@
+\documentclass[../sample.tex]{subfiles}
+
+\begin{document}
+
+Game Theory has a rich history when considering an understanding of multi-agent systems. These begin
+in economics but have found a strong application in computation due to the rising need for
+distributed systems. Game Theory, therefore, branches across all of the categories in this section
+(although its synergy with swarms is requires significant development) since Dec-POMDP and MARL
+methods have both used game theory to support their frameworks. In fact, Dec-POMDP is a subset of
+Partially Observed Stochastic Games (POSG), in which all agents use the same payoff.
+
+\section{Market Based Methods}
+
+Garapati et al. \cite{Garapati2018AMissions} define a market based method as the setting where
+agents "follow their own interests and establish the mechanism of a market for distributing the
+tasks". Auctioning is the most widely used sub-field of market approaches and so I will use them
+interchangeably.
+
+Whilst there are different variants to auctioning, the general procedure is that an auctioneer who
+has knowledge of a task (or multiple tasks) will set up an auction for said task. Agents can then
+make bids on these tasks and, once the auction is complete, the highest bid will win the task. In
+the specific application to robotics, a robot's bid will often reflect the costs, suitability or
+utility their undertaking the task \cite{BernardineDias2006Market-basedAnalysis}. This immediately
+highlights a few points. The first is that the method is not too heavily reliant upon a single
+processor to determine some joint policy. Tasks are allocated on a case-by-case basis and the
+utilities are calculated by the agent themselves. The only centralised process is the auctioneer's
+assessment of the winner which then relays this information back to them. The downside of this is
+that the system is heavily reliant upon strong communication channels, without which tasks may not
+be assigned, incorrect utilities may be communicated and, in general, sub-optimal solutions reached.
+ Furthermore, the requirement that the agents themselves determine the cost of their actions assumes
+that they have the computational capability to do so. Furthermore, the bids placed by each agent
+need to be a strong representation of their capability to perform a task which may be hard to
+estimate without expert knowledge. However, market based methods are well suited to explanation
+through argumentation (similar to \cite{Jung2001DistributedArgumentation}.
+
+With well chosen payoffs, market based approaches work extremely well. For instance, in
+\cite{Dias2000ASystem}, the authors show that a free market approach (where agents try to maximise
+their own profits) can lead to a strong collaborative effort across teams. Similarly, in
+\cite{Thomas2005Multi-robotScenarios}, Thomas et al. apply the auctioning scheme presented in
+\cite{Gerkey2002Sold:Coordination} towards a robot construction team. However, it is important to
+note that these are both passive settings; tasks were assigned before the team were in the field
+and, in the case of \cite{Gerkey2002Sold:Coordination}, the system would repeat the bidding process
+if a robot failed. While both show strong performance, it cannot be said that either would be
+applicable in dangerous environments in which dynamic reassignment must happen within strict time
+constraints. Stancliff et al. \cite{Stancliff2009PlanningAllocation} suggest that a more robust
+method to planning would be to account for failures a priori, a philosophy which is exemplified in
+\cite{Chen2010ACollaboration} who consider the robot's reliability and relevance to a task as well
+as 'history relevance' which considers the relationship between pairs of robots with the aim of
+producing more effective teams.
+
+There has also been some interesting work in probabilistic verification of market based approaches. 
+Most notable to me is \cite{Pallottino2007ProbabilisticAvoidance} which considers the case of
+conflict avoidance. Though their method focuses on collision avoidance, it highlights the need for
+verification of conflict resolution and goal achievement in market based approaches with different
+payoff structures. Sirigineedi et al. \cite{Sirigineedi2010DecentralisedApproach} make a step in
+this direction by considering the verification of cooperative surveillance along a route network. 
+From my understanding, this means that they were able to verify that their agents were able to
+traverse along the network without interference. 
+
+\section{Stochastic Games}
+
+\TODO{For the love of God do this already}
+
+\section{Game Dynamics}
+
+Game Dynamics (which I often refer to as Multi Agent Dynamics or Learning Dynamics) considers the
+problem of mathematically modelling Multi Agent Systems who repeatedly interact with one another.
+This model then serves to be able to predict the evolution of the system as well as to understand
+the trajectory of learning. Typically, this looks at considering whether or not the method is likely
+to converge towards a Nash equilibrium. This is generally a difficult problem to solve
+\cite{ShohamMultiagentFoundations} for all but toy problems. To extend this applicability into real
+world settings requires the study of stable equilbrium points;
+\cite{Letcher2019DifferentiableMechanics} shows that the stable equilbrium and Nash equilibrium (NE)
+are not necessarily the same and, in fact, argue that stable points are more informative than NEs.
+Stability provides some guarantees against the stochastic nature of the environment since a stable
+equilibrium will always be returned to even after perturbations. This extremely important in Safe
+and Trusted AI as it provides guarantees against undesired behaviour in real world environments.
+
+\TODO{Add in the papers from Mendeley which are useful to this part of the study}
+
+\section{Game Theoretic Control}
+
+Game theory can often be applied to problems of control theory (particularly where there are
+multiple agents) to develop robust controllers which guarantee properties of stability and
+constraint satisfaction. 
+
+This idea is explored in \cite{Marden2018AnnualControl}. Here, a zero-sum game is considered in
+which the players are a controller and an adversarial environment. The design of the controller must
+be such that it is able to drive the system to zero error. To illustrate, consider the problem of
+designing a controller for a re-entry vehicle, as in \cite{Breitner1994ReentryGame}, in which
+vortices seek to destabilise the agent. This will allow us to build stable agents in a much more
+efficient manner since we can simulate the adversarial environment and hypothetical scenarios the
+agent may encounter without actually encountering them. The same notion is explored by Bardi et al
+\cite{Bardi1991DifferentialDisturbances}.
+
+Mylvaganam et al, in \cite{Mylvaganam2017AutonomousApproach}, consider the N-robot collision
+avoidance problem, similarly from the point of view of differential game theory. They develop a
+robust feedback system for the robots which they show to be able to drive the system towards
+predefined targets whilst providing guarantees of interference from other agents (or lack thereof).
+In \cite{MylvaganamASystems}, Mylvaganam also considers a game theoretic control of multi-agent
+systems in a distributed manner. Here, agents only consider their own payoff structure and have
+limited communication with one another. The author shows that an approximate equilibrium can be
+found using algebraic methods and illustrate the capabilities of the technique using a collision
+avoidance example. For the sake of brevity, I will not include all of the numerous strides that
+Mylvaganam has introduced to the area. However, I must conclude with those presented in
+\cite{Mylvaganam2014}. Here, the author presents approximate solutions to a number of differential
+games, including linear-quadratic differential games (in which system dynamics are linear functions
+whilst payoff functions are quadratic), Stackelberg differential games, where a hierarchy is 
+induced across the players (a notion was suggested in the research proposal) and mean-field games,
+which is discussed in 'MARL'. The importance of the linear-quadratic
+differential game is the stability of the solution; solutions for the Nash equilibria are
+admissable iff they are locally exponentially stable (which the author often shows with the aid of
+Lyapunov functions). Approximate solutions to the NE are developed which are more feasible to
+calculate online. The author then shows that this is not simply a theoretical exercise by applying
+the novel methods towards multi-agent collision problems and designs dynamic control laws which
+guarantee that each agent will reach their desired state whilst avoiding collision with the other
+agents. Similarly, the Stackelberg game is applied to the problem of optimal monitoring by a multi
+robot system. 	
+
+
+\end{document}

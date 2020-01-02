@@ -1,0 +1,45 @@
+\documentclass[../sample.tex]{subfiles}
+
+\begin{document}
+
+This review attempts to present the current state-of-the-art in regard to solving the ‘Multi-Agent
+Problem’, which considers a scenario of multiple agents (such as robots, AI systems etc) must
+interact, whether cooperatively or competitively, to achieve defined goals. To this end, this review
+categorises work based on the approach towards solving this problem. Each approach often places
+assumptions on the type of agents present within the system and so each is appropriate in different
+settings. Briefly, these categories are
+
+\begin{itemize} 
+\item Swarms, in which the agents are often assumed to be homogeneous and with limited sensing and
+communication capabilities. 
+
+\item Decentralised-Partially Observable Markov Decision Processes (Dec-POMDPs), in which agents
+must choose actions with the aim to optimise a known loss function which is applied to the entire
+team. 
+
+\item Game Theory, which allows for each agent to have an individual payoff function which they
+must optimise with respect to the actions of the other agents.  
+
+\item Multi-Agent Reinforcement Learning, in which agents do not immediately have access to the
+payoff function and so must determine it through iterations of exploration. 
+	
+\item Control Theory, which considers the low-level operation of each agent and mathematically
+defines control laws for each agent which satisfy properties such as stability and controllability.
+
+	\item Hard Coded, a term of the author’s devising to categorise systems which do not fit in any of
+the formal methods above. These systems are built on a series of if-then statements, allowing agents
+to reason about their current state and future tasks. 
+
+\end{itemize}
+
+\section{Objective}
+
+The aim of the following sections is not to provide an exhaustive list of all work done in the
+aforementioned areas. To attempt to do this would be an exercise in futility. Instead, it is to
+identify research directions which lie within the broad scope of Multi-Agent Systems (MAS).  Once
+identified, these directions will form the basis for the remainder of this review, allowing for
+particular problems to emerge. It will likely be the case that a medley of these problems will be
+addressed throughout the course of the PhD and, of course, more will likely be added. 
+
+
+\end{document}

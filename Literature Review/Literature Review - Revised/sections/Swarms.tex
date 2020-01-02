@@ -1,0 +1,130 @@
+\documentclass[../sample.tex]{subfiles}
+
+
+\begin{document}
+
+Swarm based systems comprise of multiple homogeneous agents which are able to organise themselves
+through a formation using a series of simple local interactions with their neighbours
+\cite{Couceiro2015}. Whilst the individual agents are generally simplistic, the collective behaviour
+may exhibit complex phenomena emulating systems observed in biological organisations such as bee or
+ant colonies \cite{Sethi2017}. Hybrid algorithms such as in \cite{Gao2018} show an accelerated
+performance in reaching globally optimal solutions in search-based tasks. The advantage of many
+swarm algorithms is that they are based on local interactions and so are incredibly scalable
+\cite{Rizk2018}.
+
+\section{Decision Making in Swarms}
+
+The reduction of the complexity in interactions between agents also allows for the robots to perform
+other calculations on board. In \cite{Pini2011TaskSelection}, Pini et al. leverage this by
+considering adaptive task partitioning across swarms. This allows a swarm, in a decentralised
+manner, to deliberate whether to partition a task into its sub-tasks or to perform the task in its
+whole. As of now (to the best of my knowledge) the problem of partitioning general tasks into its N
+sub-tasks is unexplored. This, however, highlights another advantage of swarm systems; they are
+readily divided into sub-groups (as in \cite{Zahadat2016DivisionInhibition}) to perform a
+divide-et-impera (divide and conquer) approach to solving problems \cite{Pini2011TaskSelection}). 
+
+Furthermore, swarm systems may be designed in a leaderless manner and so do not require the use of a
+central controller \cite{Couceiro2015}. This presents the advantage that the system can rapidly
+adapt to the loss of agents or separation of groups throughout the task. However, the assumptions
+made regarding the homogeneity of individual agents and the simplicity of their local interactions
+result in significant limitations placed on the complexity of the tasks that swarm systems can
+accomplish.
+
+\section{Approaches to Swarm Control}
+
+Swarms systems are often developed by considering their natural analogues, such as those seen in
+fish, birds, bacteria, or (most commonly) ants. 
+
+\TODO{Find typical approaches towards swarm solutions.}
+
+Recent work has seen the advancement of swarms controlled in stochastic environments. This is
+particularly important for swarm intelligence in robots; many systems are developed with the
+motivation of search-and-rescue, in which the robot swarms will have to operate in environments
+where accounting for uncertainty is critical. To this end, swarm systems have seen the advent of
+stochastic control. In this, the swarm is modelled as a diffusive system using a stochastic
+equation, most often the Kolmogorov Forward Equation \cite{Hamann2008}. In \cite{Hamann2008}, the author shows that this equation can be derived by considering local trajectories of
+smaller subsets of the swarm. Elamvazhuthi and Berman \cite{Elamvazhuthi2019} extend this idea to other
+stochastic models for swarms, importantly considering an advection-diffusion-reaction model which
+allows for hybrid agents to switch between different modes of operation. 
+
+The above models come under the term ‘mean-field models’ \cite{Elamvazhuthi2019b}, a series of
+equations
+for stochastic forward processes (such as swarm foraging) in which, as the number of agents tends to
+infinity, the true macroscopic motion of the system tends to these equations. Importantly, however,
+these stochastic equations allow for an analysis of the swarm, as well as the ability to develop
+control laws. In \cite{Li2017}, Li et al show that these models can be used to develop control
+laws for robots in a swarm and drive them towards a target distribution. The method is shown to
+perform accurately both in simulation and on real robots. The advantage is that guarantees can be
+placed on the convergence and stabilisabiilty of the swarm towards the desired distribution.
+However, there appears to be significant scope to expand upon this methodology from a safety
+perspective. To begin with, the method does not consider inter-agent interactions and therefore does
+not formally guard against collisions. In \cite{Inoue2019}, a similar problem is considered,
+although collisions are avoided by having the robot simply move in the opposite direction when
+encountering an obstacle. It is here that the mean-field models are not as strong since they do not
+take these local interactions into account. It must be noted, however, that Inoue et al have
+identified this problem and are currently working towards its incorporation into the model.
+
+It would, therefore, be of particular interest from a safety perspective to consider agent
+interactions. A starting point may be \cite{Bellomo2017} which extends the dynamical model of a
+swarm system to include agent interaction. This presents a first step towards considering the swarm
+as composed of intelligent agents rather than mindless particles and, as the authors suggest,
+presents the possibility of applying game theoretic approaches towards swarms, which also gives the
+ability to consider heterogeneous swarm systems who interact with one another through repeated play.
+Similarly, it would allow for a stronger control perspective on swarm systems such as presented in
+\cite{Borzi2015}, in which a model predictive control (MPC) scheme is presented for a
+leader-follower swarm system to achieve given tasks. 
+
+
+\section{Heterogeneous Swarms and Self-Healing}
+
+Recently, there has been an increased interest in introducing heterogeneity into the swarm systems
+to improve their real world applicability. An example of this which have been shown strong real
+world success can be found in \cite{DucatelleSelf-organizedSwarms}. Here, the authors consider two
+swarm teams, referred to as 'foot bots' and 'eye bots' who work in unison to explore an environment
+and solve a navigation task.
+
+\TODO{Do more research into heterogeneous swarm systems to pad this out. Perhaps we could introduce
+heterogeneity from the point of view of hybrid systems in the stochastic control section.}
+
+This area of research is sparsely populated and warrants further exploration. This is since the use
+of co-evolutionary teams can improve the robustness of the swarm optimisation. This is since it will
+be possible for a team to automatically determine when robots in the other team are not exhibiting
+expected behaviour and ensure that the other team self corrects. This process is referred to as
+'Self-Healing' in \cite{LiuTrust-Aware}. Here, the authors allow a user to define the goals of a
+swarm system. From this, a 'trust' metric can be defined which measures the deviation of each agent
+from the expected behaviour. The self healing process occurs by limiting communication of all agents
+with 'untrusted' agents and encouraging communication with 'trusted' agents. The unison of
+self-healing with co-evolution may present the opportunity for heterogenous swarms to maintain their
+evolutionary stability, even in the face of environmental disturbances. 
+
+\section{Fault Detection and Recovery}
+
+
+The above sections have considered the fact that swarm systems are robust to losses in the group. 
+However, any MAS system must first be able to recognise that an agent has undergone some failure.
+
+To this end, Tarapore et al. \cite{Tarapore2019FaultDetection} develop a robust fault detection
+approach in which the swarm itself, in a decentralised manner, is capable of assessing deviation
+from 'normal' behaviour, even when the behaviour of the swarm itself is altered (perhaps by a remote
+operator). The authors achieve this by requiring that the agents themselves sense and characterise
+their own behaviour. This characterisation is formulated as a binary feature vector which is then
+communicated to the agent's neighbours. These neighbours will reach a consensus over whether the
+agent should be treated as faulty based on their collective behaviour. The results presented in
+\cite{Tarapore2019FaultDetection} show extremely promising results and suggest that their method is,
+in fact, able to determine faults with high accuracy in the presence of various fault types
+(including sensor and actuator failures), although poor performance is seen in actuation failures in
+some instances. It should be noted that this method requires that each robot transmit their feature
+vector to the nearest neighbours. In environments where communication may be severely limited, this
+may present further errors. Furthermore, it is unlikely that, when a robot is damaged, only one of
+its components will be affected. Therefore, it is important to determine the effect on performance
+in the face of multiple agent failures and in communication losses. This exploration may open the
+possibility of improving the state of the art in terms of failure detection in swarm systems. 
+
+It may be interesting to consider failure from the point of view of stochastic control with
+jump dynamics (See 'Hybrid Control'). For instance, we could consider the development of systems
+which are robust to different modes of operation based on failure. Similarly an exploration into
+adaptive control could allow us to develop swarm systems who can recover from discrete jumps based
+on belief models.
+
+
+\end{document}

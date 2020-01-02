@@ -1,0 +1,88 @@
+\documentclass[../sample.tex]{subfiles}
+
+\begin{document}
+
+\section{Considering Intelligence in Swarm Dynamics}
+
+Most of the diffusion models, as mentioned in ‘Swarms’, do not take into consideration the
+interactions between agents, since it adds a large degree of complexity to the model. However, it
+would be important from a safety perspective to take these into account by looking at the attractive
+and repulsive potentials across agents. This would allow us to provide a guarantee of inter-agent
+collision avoidance whilst maintaining the progression of the swarm towards desired tasks. As
+mentioned in ‘Swarms’, advances have been made towards considering the pairwise interactions between
+swarm agents \cite{Bellomo2017}. Importantly, this addition presents the first step towards
+considering the intelligence of the individual within the swarm.
+
+By expanding the control perspective of stochastic swarms, predictive control methodologies can be
+developed, similar to that of \cite{Borzi2015} which allow swarms to produce more complex phenomena
+such as constraint satisfaction. As an example of where this might be important, consider the
+problem of swarm systems in urban search and rescue, where one swarm sub-group is required to carry
+a victim away from the scene, whilst another is required to search the area. This can be viewed as
+from a control perspective where it is required that the latter group’s macroscopic model ensures
+that agents do not enter within a safe region of the former group. 
+
+Stochasticity can then be considered from a hybrid perspective through JMLS (see Hybrid Control),
+allowing the control laws to take into account agent and communication failures.
+\cite{FUHRMANFrancescoRUSSO,Ma2017,Li2017} have begun to make progress in these areas, but it does
+not seem like the connection of MJD and swarm dynamics has been made yet. 
+
+Finally, it may be appropriate to consider stochastic control of heterogenous swarms to allow for a
+‘marriage’ between swarm dynamics and game dynamics. This presents the possibility for swarms
+sub-groups to adapt to each other’s behaviour through repeatedly play and perhaps display elements
+of cooperative (or non-cooperative) behaviour, all while maintaining the required properties of
+stability and controllability.
+
+\section{Stochastic Predictive Control for Decentralised Hybrid Systems}
+
+
+The purpose of this method is to leverage the ideas presented in \cite{Foerster} and
+\cite{Heirung2019}. Here, agents must maintain (and perhaps learn) a model of the other agents
+within the system. This model provides some representation of the trajectories that the other agents
+will carry out or an understanding of their future actions. Using their own system models in tandem
+with these belief models, agents must then determine their trajectory. The challenge here would be
+proving the stability and controllability of the system whilst maintaining minimal communication
+requirements. However, it would appear to be a feasible area of exploration. 
+
+This system can then be expanded by considering the case of stochastic hybrid systems. This draws on
+the ideas presented in ‘Hybrid Control’ where we argue that agents in the system may be subject to
+stochastic failures. It is, therefore, required that we develop control methodologies which are
+robust to these switching dynamics to ensure their safe operation. 
+
+Similarly, it would be important to consider the learning aspect of these systems. The method so far
+assumes that each agent knows all possible modes of operation of other agents and their transition
+probability. However, this is unlikely to be the case. As such, it would be important to consider
+the ability of agents to learn these models through iterative interaction and learning. This may
+improve the robustness and optimality of the system, whilst maintaining its desired properties. 
+
+On a similar topic of learning, it would be vital, from a failure perspective, to consider fault
+detection in a decentralised hybrid system. The above considers learning the system model of other
+agents who have undergone a faiure. However, it is equally interesting to consider learning 
+\textit{that} they have failed in the first place. The results suggested in 'Swarms' may be
+applicable here, in an effort to maintain the decentralisation of the system.
+
+Finally, these methods could be extended towards settings where the resultant behaviour is not best
+described by a Nash Equilibrium. The control theory literature, thus far, has shown a strong
+assumption that the system will always converge to a Nash Equilibrium. However, in games of repeated
+play, the resultant dynamics of the game may be best described through cyclic or recurrent behaviour
+\cite{Boone2019FromTheory}. Taking this into consideration would allow distributed control to be applied in a
+wider array of settings, particularly in those where agent interests are conflicting with one
+another.
+
+
+\section{Stable Exploration in Multi Agent Reinforcement Learning}
+
+
+This builds on the ideas of \cite{Berkenkamp2017,Jin2018Stability-certifiedPerspective} and an
+important point mentioned in \cite{Marinescu2014} that 'the dynamics implied by multi-agent systems
+lead to stochastic behaviour resulting sometimes in undesired effects'. In particular, most RL
+methods require some trade-off between exploration and exploitation. It is, therefore, required that
+we determine a safe manner in which MARL agents may explore without leading to unstable behaviour.
+This would require extending the work of \cite{Berkenkamp2017} and/or
+\cite{Jin2018Stability-certifiedPerspective} to the multi-agent case. Note that
+\cite{Jin2018Stability-certifiedPerspective} does actually consider a multi-agent case, but with
+independent learners who do not consider the effect that they have on the other agent(s). The
+particular extension that I propose is to consider the coupled effect between agents as part of the
+determination of a safe set for exploration.
+
+
+\end{document}

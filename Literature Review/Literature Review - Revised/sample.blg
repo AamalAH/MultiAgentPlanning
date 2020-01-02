@@ -9,93 +9,89 @@ Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: IEEEfull.bib
 Database file #2: references.bib
+Repeated entry---line 1653 of file references.bib
+ : @article{Liu2019
+ :                 ,
+I'm skipping whatever remains of this entry
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--missing school in Hamann2008
+Warning--missing school in Elamvazhuthi2019
 Warning--missing institution in DucatelleSelf-organizedSwarms
 Warning--empty year in DucatelleSelf-organizedSwarms
 Warning--missing institution in LiuTrust-Aware
 Warning--empty year in LiuTrust-Aware
-Warning--missing institution in Kouvaros2019FormalSystems
-Warning--missing institution in Lomuscio2019ASystems
 Warning--missing institution in OliehoekDecentralizedPOMDPs
 Warning--empty year in OliehoekDecentralizedPOMDPs
 Warning--missing institution in Amato2017Decision-MakingLearning
 Warning--missing institution in Klima2019RobustDomains
 Warning--empty journal in Dias2000ASystem
-Warning--missing institution in Hernandez-LealA
-Warning--empty year in Hernandez-LealA
-Warning--missing institution in Foerster2018LearningAwareness
-Warning--missing institution in MaoModellingDDPG
-Warning--empty year in MaoModellingDDPG
-Warning--missing institution in Hong2018ASystems
-Warning--missing publisher in SchwartzMulti-agentApproach
-Warning--empty year in SchwartzMulti-agentApproach
-Warning--missing institution in ConitzerAWESOME:
-Warning--empty year in ConitzerAWESOME:
-Warning--missing school in Conte2014
-Warning--empty journal in Giulioni2015
-Warning--missing institution in Yang2018
 Warning--missing institution in ShohamMultiagentFoundations
 Warning--empty year in ShohamMultiagentFoundations
 Warning--missing institution in Letcher2019DifferentiableMechanics
-Warning--empty journal in Jin2018Stability-certifiedPerspective
-Warning--missing institution in Milchtaich2007StaticGames
 Warning--empty journal in Marden2018AnnualControl
 Warning--missing institution in MylvaganamASystems
 Warning--empty year in MylvaganamASystems
 Warning--missing institution in Mylvaganam2014
-Warning--missing institution in LetcherSTABLEGAMES
-Warning--empty year in LetcherSTABLEGAMES
-Warning--empty journal in Bailey2019FiniteDescent-Ascent
-Warning--missing institution in Bailey2019Multi-AgentSystem
-Warning--empty journal in Boone2019FromTheory
-Warning--missing institution in DickensTheLearning
-Warning--empty year in DickensTheLearning
+Warning--missing institution in Hernandez-LealA
+Warning--empty year in Hernandez-LealA
+Warning--missing publisher in SchwartzMulti-agentApproach
+Warning--empty year in SchwartzMulti-agentApproach
+Warning--missing institution in ConitzerAWESOME:
+Warning--empty year in ConitzerAWESOME:
+Warning--missing institution in Foerster2018LearningAwareness
+Warning--missing institution in MaoModellingDDPG
+Warning--empty year in MaoModellingDDPG
+Warning--missing institution in Hong2018ASystems
+Warning--empty journal in Jin2018Stability-certifiedPerspective
+Warning--missing institution in Milchtaich2007StaticGames
 Warning--empty journal in Foerster
+Warning--missing publisher in Lygeros2004
 Warning--missing school in FUHRMANFrancescoRUSSO
+Warning--empty journal in Boone2019FromTheory
 Warning--empty journal in Marinescu2014
 
 Done.
-You've used 70 entries,
+You've used 68 entries,
             4087 wiz_defined-function locations,
-            1770 strings with 37691 characters,
-and the built_in function-call counts, 48014 in all, are:
-= -- 3739
-> -- 1224
-< -- 333
-+ -- 650
-- -- 225
-* -- 2348
-:= -- 7276
-add.period$ -- 152
-call.type$ -- 70
-change.case$ -- 68
-chr.to.int$ -- 804
-cite$ -- 113
-duplicate$ -- 3511
-empty$ -- 3840
-format.name$ -- 281
-if$ -- 10974
+            1772 strings with 37165 characters,
+and the built_in function-call counts, 47603 in all, are:
+= -- 3744
+> -- 1194
+< -- 342
++ -- 637
+- -- 217
+* -- 2313
+:= -- 7169
+add.period$ -- 146
+call.type$ -- 68
+change.case$ -- 65
+chr.to.int$ -- 813
+cite$ -- 103
+duplicate$ -- 3473
+empty$ -- 3826
+format.name$ -- 272
+if$ -- 10948
 int.to.chr$ -- 0
-int.to.str$ -- 70
-missing$ -- 714
-newline$ -- 287
-num.names$ -- 70
-pop$ -- 1743
+int.to.str$ -- 68
+missing$ -- 681
+newline$ -- 273
+num.names$ -- 68
+pop$ -- 1644
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 3601
+skip$ -- 3611
 stack$ -- 0
-substring$ -- 1946
-swap$ -- 2807
-text.length$ -- 65
+substring$ -- 1985
+swap$ -- 2800
+text.length$ -- 71
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 70
-warning$ -- 43
+type$ -- 68
+warning$ -- 35
 while$ -- 207
-width$ -- 72
-write$ -- 703
-(There were 43 warnings)
+width$ -- 70
+write$ -- 684
+(There was 1 error message)
