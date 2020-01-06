@@ -109,58 +109,15 @@ problem of mathematically modelling Multi Agent Systems who adapt through repeat
 another. This model then serves to be able to predict the evolution of the system as well as to
 understand the trajectory of learning. Typically, this looks at considering whether or not the
 method is likely to converge towards a Nash equilibrium. This is generally a difficult problem to
-solve \cite{ShohamMultiagentFoundations} for all but toy problems.
+solve \cite{ShohamMultiagentFoundations} for all but toy problems. To extend this applicability into
+real world settings requires the study of stable equilbrium points;
 \cite{Letcher2019DifferentiableMechanics} shows that the stable equilbrium and Nash equilibrium (NE)
 are not necessarily the same and, in fact, argue that stable points are more informative than NEs.
 Stability provides some guarantees against the stochastic nature of the environment since a stable
 equilibrium will always be returned to even after perturbations. This extremely important in Safe
 and Trusted AI as it provides guarantees against undesired behaviour in real world environments.
 
-The area of dynamics which has shown most promise in Multi-Agent Reinforcement Learning is that of
-evolutionary dynamics. This draws from the principles of Evolutionary Game Theory (EGT) which
-considers similar assumptions to that of MARL: agents are no longer required to be rational and
-play the game optimise their expected return through repeated play. Importantly, players have no
-knowledge of the others' payoffs \cite{Tuyls2006AnGames}. In \cite{Tuyls2006AnGames}, Tuyls et al.
-determine the relation between the replicator dynamics concept of EGT (a differential equation
-defining the evolution of the proportion of a subgroup in an evolving population) and Q-Learning
-using Boltzmann probabilities as Q-values. The result was a dynamics equation which describes, for
-each action, the evolution of its selection probability which could even account for random
-exploration. There have since been a number of works which apply the same insight into different
-game types and MARL algorithms. In \cite{Bloembergen2015}, these are broken into the following
-categories
-
-\begin{itemize}
-	\item Stateless games with discrete actions. Here, stateless refers to the idea that the game is
-	static and so the environment has no impact on the result. The aforementioned result 
-	\cite{Tuyls2006AnGames} fits into this category.
-	\item Stateless games with continuous actions. These consider more realistic MARL than the
-	previous category by replacing each agent's strategy vector with a probability density function 
-	(pdf) over a continuous action space.
-	\item Stateful games with discrete actions. This mostly considers stochastic games, where there
-	are multiple states with probabilistic (usually Markovian) transitions between them. However,
-	extensive form games, which considers more complex phenomena such as sequential moves and
-	imperfect information, are also briefly mentioned.
-	\item Stateful games with continuous actions. This is one of the more realistic assumptions
-	considered. However, the authors point out that this area is yet to see results, leaving it open
-	for possible research.
-\end{itemize}
-
-Though the above have seen success through experimental validation in games with 2 players and (in
-general) 2 to 3 discrete actions, recent work has begun the consideration of improving the models
-towards more complex scenarios with larger agent populations. A recent example of this is 
-\cite{Hu2019}, in which Hu uses a mean field approximation to model the dynamics of a population of
-Q-Learning agents. As a reminder, mean field (MF) approaches in MARL consider that an agent updates
-its strategy based on the mean effect of the population. The result is a system of three equations
-which describes the evolution of Q-values over a large population in a symmetric bi-matrix game.This
-presents an important first step in modelling the learning dynamics of large agent populations and
-has the scope to be expanded to systems of asymmetric games, heterogeneous populations and stateful
-games.
-
-An advantage of determining the evolutionary dynamics of learning is that it can describe the
-expected behaviour in different game settings. This is particularly important to understand the
-convergence of the methods; certain games will often show cyclic behaviour even with the existence
-of a strict NE. For instance, Imhof et al. show in \cite{Imhof2005} that a repeated prisoner's
-dilemma game results in cyclic behaviour when considering the options of cooperation or defection. 
+\TODO{Add in the papers from Mendeley which are useful to this part of the study}
 
 \section{Stable Learning}
 

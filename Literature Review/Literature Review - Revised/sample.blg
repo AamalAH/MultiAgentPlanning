@@ -1,4 +1,4 @@
-This is BibTeX, Version 0.99d (TeX Live 2019)
+This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: sample.aux
 The style file: IEEEtran.bst
@@ -27,9 +27,6 @@ Warning--empty year in OliehoekDecentralizedPOMDPs
 Warning--missing institution in Amato2017Decision-MakingLearning
 Warning--missing institution in Klima2019RobustDomains
 Warning--empty journal in Dias2000ASystem
-Warning--missing institution in ShohamMultiagentFoundations
-Warning--empty year in ShohamMultiagentFoundations
-Warning--missing institution in Letcher2019DifferentiableMechanics
 Warning--empty journal in Marden2018AnnualControl
 Warning--missing institution in MylvaganamASystems
 Warning--empty year in MylvaganamASystems
@@ -44,6 +41,9 @@ Warning--missing institution in Foerster2018LearningAwareness
 Warning--missing institution in MaoModellingDDPG
 Warning--empty year in MaoModellingDDPG
 Warning--missing institution in Hong2018ASystems
+Warning--missing institution in ShohamMultiagentFoundations
+Warning--empty year in ShohamMultiagentFoundations
+Warning--missing institution in Letcher2019DifferentiableMechanics
 Warning--empty journal in Jin2018Stability-certifiedPerspective
 Warning--missing institution in Milchtaich2007StaticGames
 Warning--empty journal in Foerster

@@ -1,0 +1,57 @@
+\documentclass[11pt]{report}
+
+\usepackage{matlab-prettifier}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{csquotes}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[margin=0.5in,letterpaper]{geometry}
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+\usepackage{listings}
+\def\changemargin#1{\list{}{\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist
+
+\usepackage{subfiles}
+
+\title{Literature Review - Revised}
+
+\newcommand\fr[1]{\textcolor{red}{FR: #1}}
+\newcommand\TODO[1]{\textcolor{purple}{TODO: #1}}
+
+\author{Aamal Hussain}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle 
+
+\tableofcontents
+
+\chapter{Introduction} \subfile{sections/Intro} \label{ch::Intro}
+
+\chapter{Swarms} \subfile{sections/Swarms.tex} \label{ch::Swarms}
+
+\chapter{Dec-POMDPs} \subfile{sections/Dec-POMDPs} \label{ch::Dec-POMDPs}
+
+\chapter{Game Theory} \subfile{sections/GameTheory} \label{ch::GameTheory}
+
+\chapter{Multi Agent Reinforcement Learning} \subfile{sections/MARL} \label{ch::MARL}
+
+\chapter{Control Theory} \subfile{sections/ControlTheory} \label{ch::ControlTheory}
+
+\chapter{Proposed Research} \subfile{sections/Proposals} \label{ch::Proposals}
+
+\bibliographystyle{IEEEtran} 
+
+\bibliography{IEEEfull,references}
+
+\end{document}

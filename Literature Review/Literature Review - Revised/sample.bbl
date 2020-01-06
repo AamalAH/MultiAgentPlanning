@@ -217,21 +217,6 @@ G.~Sirigineedi, A.~Tsourdos, B.~A. White, and P.~Silson, ``{Decentralised
   approach},'' in \emph{2010 IEEE Globecom Workshops, GC'10}, 2010, pp.
   1831--1835.
 
-\bibitem{ShohamMultiagentFoundations}
-\BIBentryALTinterwordspacing
-Y.~Shoham and K.~Leyton-Brown, ``{Multiagent Systems: Algorithmic,
-  Game-Theoretic, and Logical Foundations},'' Tech. Rep. [Online]. Available:
-  \url{http://www.masfoundations.org.}
-\BIBentrySTDinterwordspacing
-
-\bibitem{Letcher2019DifferentiableMechanics}
-\BIBentryALTinterwordspacing
-A.~Letcher, D.~Balduzzi, S.~Racan{\`{i}}, J.~Martens, J.~Foerster, K.~Tuyls,
-  and T.~Graepel, ``{Differentiable Game Mechanics},'' Tech. Rep., 2019.
-  [Online]. Available:
-  \url{https://github.com/deepmind/symplectic-gradient-adjustment.}
-\BIBentrySTDinterwordspacing
-
 \bibitem{Marden2018AnnualControl}
 \BIBentryALTinterwordspacing
 J.~R. Marden and J.~S. Shamma, ``{Annual Review of Control, Robotics, and
@@ -299,6 +284,21 @@ H.~Mao, Z.~Zhang, Z.~Xiao, Z.~Gong, and Z.~. Gong, ``{Modelling the Dynamic
 Z.-W. Hong, S.-Y. Su, T.-Y. Shann, Y.-H. Chang, and C.-Y. Lee, ``{A Deep Policy
   Inference Q-Network for Multi-Agent Systems},'' Tech. Rep., 2018. [Online].
   Available: \url{www.ifaamas.org}
+\BIBentrySTDinterwordspacing
+
+\bibitem{ShohamMultiagentFoundations}
+\BIBentryALTinterwordspacing
+Y.~Shoham and K.~Leyton-Brown, ``{Multiagent Systems: Algorithmic,
+  Game-Theoretic, and Logical Foundations},'' Tech. Rep. [Online]. Available:
+  \url{http://www.masfoundations.org.}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Letcher2019DifferentiableMechanics}
+\BIBentryALTinterwordspacing
+A.~Letcher, D.~Balduzzi, S.~Racan{\`{i}}, J.~Martens, J.~Foerster, K.~Tuyls,
+  and T.~Graepel, ``{Differentiable Game Mechanics},'' Tech. Rep., 2019.
+  [Online]. Available:
+  \url{https://github.com/deepmind/symplectic-gradient-adjustment.}
 \BIBentrySTDinterwordspacing
 
 \bibitem{Jin2018Stability-certifiedPerspective}

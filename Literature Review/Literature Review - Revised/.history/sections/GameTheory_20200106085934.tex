@@ -61,6 +61,23 @@ traverse along the network without interference.
 
 \TODO{For the love of God do this already}
 
+\section{Game Dynamics}
+
+Game Dynamics (which I often refer to as Multi Agent Dynamics or Learning Dynamics) considers the
+problem of mathematically modelling Multi Agent Systems who repeatedly interact with one another.
+This model then serves to be able to predict the evolution of the system as well as to understand
+the trajectory of learning. Typically, this looks at considering whether or not the method is likely
+to converge towards a Nash equilibrium. This is generally a difficult problem to solve
+\cite{ShohamMultiagentFoundations} for all but toy problems. To extend this applicability into real
+world settings requires the study of stable equilbrium points;
+\cite{Letcher2019DifferentiableMechanics} shows that the stable equilbrium and Nash equilibrium (NE)
+are not necessarily the same and, in fact, argue that stable points are more informative than NEs.
+Stability provides some guarantees against the stochastic nature of the environment since a stable
+equilibrium will always be returned to even after perturbations. This extremely important in Safe
+and Trusted AI as it provides guarantees against undesired behaviour in real world environments.
+
+\TODO{Add in the papers from Mendeley which are useful to this part of the study}
+
 \section{Game Theoretic Control}
 
 Game theory can often be applied to problems of control theory (particularly where there are
