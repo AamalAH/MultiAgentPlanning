@@ -301,6 +301,65 @@ A.~Letcher, D.~Balduzzi, S.~Racan{\`{i}}, J.~Martens, J.~Foerster, K.~Tuyls,
   \url{https://github.com/deepmind/symplectic-gradient-adjustment.}
 \BIBentrySTDinterwordspacing
 
+\bibitem{Tuyls2006AnGames}
+K.~Tuyls, P.~Jan~', T.~Hoen, H.~Nl, and B.~Vanschoenwinkel, ``{An Evolutionary
+  Dynamical Analysis of Multi-Agent Learning in Iterated Games},''
+  \emph{Autonomous Agents and Multi-Agent Systems}, vol.~12, pp. 115--153,
+  2006.
+
+\bibitem{Borgers1997}
+T.~B{\"{o}}rgers and R.~Sarin, ``{Learning through reinforcement and replicator
+  dynamics},'' \emph{Journal of Economic Theory}, vol.~77, no.~1, pp. 1--14,
+  nov 1997.
+
+\bibitem{Bloembergen2015}
+D.~Bloembergen, K.~Tuyls, D.~Hennes, and M.~Kaisers, ``{Evolutionary dynamics
+  of multi-agent learning: A survey},'' pp. 659--697, aug 2015.
+
+\bibitem{Hofbauer1996}
+J.~Hofbauer, ``{Evolutionary dynamics for bimatrix games: A Hamiltonian
+  system?}'' \emph{Journal of Mathematical Biology}, vol.~34, no. 5-6, pp.
+  675--688, 1996.
+
+\bibitem{Bailey2019Multi-AgentSystem}
+\BIBentryALTinterwordspacing
+J.~P. Bailey and G.~Piliouras, ``{Multi-Agent Learning in Net-work Zero-Sum
+  Games is a Hamiltonian System},'' Tech. Rep., 2019. [Online]. Available:
+  \url{www.ifaamas.org}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Hu2019}
+S.~Hu, C.-W. Leung, and H.-F. Leung, ``{Modelling the Dynamics of Multiagent
+  Q-Learning in Repeated Symmetric Games: a Mean Field Theoretic Approach},''
+  Tech. Rep.
+
+\bibitem{Imhof2005}
+L.~A. Imhof, D.~Fudenberg, and M.~A. Nowak, ``{Evolutionary cycles of
+  cooperation and defection},'' \emph{Proceedings of the National Academy of
+  Sciences of the United States of America}, vol. 102, no.~31, pp.
+  10\,797--10\,800, aug 2005.
+
+\bibitem{Galla2011}
+T.~Galla, ``{Cycles of cooperation and defection in imperfect learning},''
+  \emph{Journal of Statistical Mechanics: Theory and Experiment}, vol. 2011,
+  no.~8, aug 2011.
+
+\bibitem{Sanders2018}
+J.~B. Sanders, J.~D. Farmer, and T.~Galla, ``{The prevalence of chaotic
+  dynamics in games with many players},'' \emph{Scientific Reports}, vol.~8,
+  no.~1, dec 2018.
+
+\bibitem{Sato2002}
+Y.~Sato, E.~Akiyama, and J.~D. Farmer, ``{Chaos in learning a simple two-person
+  game},'' \emph{Proceedings of the National Academy of Sciences of the United
+  States of America}, vol.~99, no.~7, pp. 4748--4751, apr 2002.
+
+\bibitem{Foster2001}
+D.~P. Foster and H.~{Peyton Young}, ``{On the impossibility of predicting the
+  behavior of rational agents},'' \emph{Proceedings of the National Academy of
+  Sciences of the United States of America}, vol.~98, no.~22, pp.
+  12\,848--12\,853, oct 2001.
+
 \bibitem{Jin2018Stability-certifiedPerspective}
 \BIBentryALTinterwordspacing
 M.~Jin and J.~Lavaei, ``{Stability-certified reinforcement learning: A
@@ -423,12 +482,6 @@ V.~Boone and G.~Piliouras, ``{From Darwin to Poincar{\textbackslash}'e and von
   Theory},'' 2019. [Online]. Available: \url{http://arxiv.org/abs/1910.01334}
 \BIBentrySTDinterwordspacing
 
-\bibitem{Berkenkamp2017}
-F.~Berkenkamp, M.~Turchetta, A.~P. Schoellig, and A.~Krause, ``{Safe
-  model-based reinforcement learning with stability guarantees},'' in
-  \emph{Advances in Neural Information Processing Systems}, vol. 2017-Decem,
-  2017, pp. 909--919.
-
 \bibitem{Marinescu2014}
 \BIBentryALTinterwordspacing
 A.~Marinescu, I.~Dusparic, A.~Taylor, V.~Cahill, and S.~Clarke,
@@ -436,5 +489,11 @@ A.~Marinescu, I.~Dusparic, A.~Taylor, V.~Cahill, and S.~Clarke,
   Environments},'' 2014. [Online]. Available: \url{www.aaai.org
   http://arxiv.org/abs/1409.4561}
 \BIBentrySTDinterwordspacing
+
+\bibitem{Berkenkamp2017}
+F.~Berkenkamp, M.~Turchetta, A.~P. Schoellig, and A.~Krause, ``{Safe
+  model-based reinforcement learning with stability guarantees},'' in
+  \emph{Advances in Neural Information Processing Systems}, vol. 2017-Decem,
+  2017, pp. 909--919.
 
 \end{thebibliography}

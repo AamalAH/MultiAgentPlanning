@@ -9,7 +9,7 @@ Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: IEEEfull.bib
 Database file #2: references.bib
-Repeated entry---line 1653 of file references.bib
+Repeated entry---line 1803 of file references.bib
  : @article{Liu2019
  :                 ,
 I'm skipping whatever remains of this entry
@@ -44,6 +44,9 @@ Warning--missing institution in Hong2018ASystems
 Warning--missing institution in ShohamMultiagentFoundations
 Warning--empty year in ShohamMultiagentFoundations
 Warning--missing institution in Letcher2019DifferentiableMechanics
+Warning--missing institution in Bailey2019Multi-AgentSystem
+Warning--missing institution in Hu2019
+Warning--empty year in Hu2019
 Warning--empty journal in Jin2018Stability-certifiedPerspective
 Warning--missing institution in Milchtaich2007StaticGames
 Warning--empty journal in Foerster
@@ -53,45 +56,45 @@ Warning--empty journal in Boone2019FromTheory
 Warning--empty journal in Marinescu2014
 
 Done.
-You've used 68 entries,
+You've used 79 entries,
             4087 wiz_defined-function locations,
-            1772 strings with 37165 characters,
-and the built_in function-call counts, 47603 in all, are:
-= -- 3744
-> -- 1194
-< -- 342
-+ -- 637
-- -- 217
-* -- 2313
-:= -- 7169
-add.period$ -- 146
-call.type$ -- 68
-change.case$ -- 65
-chr.to.int$ -- 813
-cite$ -- 103
-duplicate$ -- 3473
-empty$ -- 3826
-format.name$ -- 272
-if$ -- 10948
+            1843 strings with 39099 characters,
+and the built_in function-call counts, 56235 in all, are:
+= -- 4473
+> -- 1382
+< -- 427
++ -- 752
+- -- 258
+* -- 2745
+:= -- 8462
+add.period$ -- 168
+call.type$ -- 79
+change.case$ -- 76
+chr.to.int$ -- 1002
+cite$ -- 117
+duplicate$ -- 4086
+empty$ -- 4445
+format.name$ -- 310
+if$ -- 12925
 int.to.chr$ -- 0
-int.to.str$ -- 68
-missing$ -- 681
-newline$ -- 273
-num.names$ -- 68
-pop$ -- 1644
+int.to.str$ -- 79
+missing$ -- 786
+newline$ -- 308
+num.names$ -- 79
+pop$ -- 1851
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 3611
+skip$ -- 4259
 stack$ -- 0
-substring$ -- 1985
-swap$ -- 2800
-text.length$ -- 71
+substring$ -- 2468
+swap$ -- 3358
+text.length$ -- 93
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 68
-warning$ -- 35
-while$ -- 207
-width$ -- 70
-write$ -- 684
+type$ -- 79
+warning$ -- 38
+while$ -- 246
+width$ -- 81
+write$ -- 795
 (There was 1 error message)

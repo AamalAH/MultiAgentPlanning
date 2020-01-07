@@ -69,20 +69,41 @@ wider array of settings, particularly in those where agent interests are conflic
 another.
 
 
-\section{Stable Exploration in Multi Agent Reinforcement Learning}
+\section{Dynamical Study of Multi Agent Learning}
 
 
-This builds on the ideas of \cite{Berkenkamp2017,Jin2018Stability-certifiedPerspective} and an
-important point mentioned in \cite{Marinescu2014} that 'the dynamics implied by multi-agent systems
-lead to stochastic behaviour resulting sometimes in undesired effects'. In particular, most RL
-methods require some trade-off between exploration and exploitation. It is, therefore, required that
-we determine a safe manner in which MARL agents may explore without leading to unstable behaviour.
-This would require extending the work of \cite{Berkenkamp2017} and/or
+This builds on the methods and studies presented in 'Learning Dynamics' and an important point
+mentioned in \cite{Marinescu2014} that 'the dynamics implied by multi-agent systems lead to
+stochastic behaviour resulting sometimes in undesired effects'. It is clear from the discussion that
+this study has important implications for MARL. Specifically, it allows us to consider under which
+conditions convergence to an equilibrium is possible. It also allows for directed parameter tuning
+to ensure that the resultant game yields desired effects. However, this study is still in its
+infancy and there are areas yet unexplored. For instance, it would be important to consider the
+challenge presented by Bloembergen et al. in \cite{Bloembergen2015} - stateful games with a
+continuous action space. This will by no means be trivial and will require strong assumptions
+regarding the learning method used and the structure of the game (two-player, symmetric etc). The
+analysis presented in \cite{Letcher2019DifferentiableMechanics} regarding Differential Game
+Mechanics would prove as a valuable starting point. 
+
+Extending to the large n-player case considers the other end of the spectrum which builds on the
+work of Hu in \cite{Hu2019} by extending the dynamical study of the mean-field MARL approach which
+is gaining popularity. The models may be extended to the consideration of multiple populations,
+asymmetric games and continuous action spaces. Perhaps the results presented in \cite{Bellomo2017}
+may prove useful in the consideration of the inter-agent effect on the larger population. 
+
+Important questions must be considered in this study, such as the ability of agents to predict the
+behaviour of other agents. Chaotic dynamics means that this there are limitations to the degree of
+predictability that agents show whilst playing a game. These limitations should be explored so that
+algorithms which require predictive behaviour may be benchmarked. 
+
+As shown in \cite{Bloembergen2015}, these studies are not only useful as a modality for study but
+can also be reverse-engineered to develop learning methods which exhibit desired behaviours. To this
+end, I propose considering a control theoretic approach towards multi-agent learning. This would
+require extending the work of \cite{Berkenkamp2017} and/or
 \cite{Jin2018Stability-certifiedPerspective} to the multi-agent case. Note that
 \cite{Jin2018Stability-certifiedPerspective} does actually consider a multi-agent case, but with
 independent learners who do not consider the effect that they have on the other agent(s). The
-particular extension that I propose is to consider the coupled effect between agents as part of the
-determination of a safe set for exploration.
-
+particular extension that I propose is to consider the coupled effect between agents using
+replicator dynamics. 
 
 \end{document}
