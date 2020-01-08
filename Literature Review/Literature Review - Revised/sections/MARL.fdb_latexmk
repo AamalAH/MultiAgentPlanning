@@ -1,8 +1,8 @@
 # Fdb version 3
-["pdflatex"] 1578395417 "MARL.tex" "/home/aamalh/STAI/Literature Review/Literature Review - Revised/sections/MARL.pdf" "MARL" 1578395417
+["pdflatex"] 1578499996 "MARL.tex" "/home/aamalh/STAI/Literature Review/Literature Review - Revised/sections/MARL.pdf" "MARL" 1578499997
   "../sample.tex" 1578387306 1449 bd9d6809b045718e8c40d067b60eff14 ""
   "/etc/texmf/web2c/texmf.cnf" 1577964852 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/aamalh/STAI/Literature Review/Literature Review - Revised/sections/MARL.aux" 1578395417 1177 88a7d25bbfc09c8f8cd03013ddc5e588 ""
+  "/home/aamalh/STAI/Literature Review/Literature Review - Revised/sections/MARL.aux" 1578499997 1267 e2c576b8a1b31e8f31f3cdfc4e22a0af ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm" 1480098696 1536 02c06700a42be0f5a28664c7273f82e7 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
@@ -163,11 +163,11 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1520210507 32485 c64754543d8ac501bea6e75e209ea521 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1577964905 2700761 ac0584cc9514ab21918550a6948c4ee2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1577964931 4129153 8c7140e1d1d7bdd768574f9bd7b04d31 ""
-  "MARL.aux" 1578395417 1177 88a7d25bbfc09c8f8cd03013ddc5e588 ""
-  "MARL.tex" 1578395416 17869 753a439f1ba8e027e8b600d58e985f3a ""
+  "MARL.aux" 1578499997 1267 e2c576b8a1b31e8f31f3cdfc4e22a0af ""
+  "MARL.tex" 1578499992 19798 e54d0858c46b6a8379f94631ce38e0f8 ""
   (generated)
+  "MARL.aux"
   "MARL.log"
+  "/home/aamalh/STAI/Literature Review/Literature Review - Revised/sections/MARL.log"
   "MARL.pdf"
   "/home/aamalh/STAI/Literature Review/Literature Review - Revised/sections/MARL.pdf"
-  "/home/aamalh/STAI/Literature Review/Literature Review - Revised/sections/MARL.log"
-  "MARL.aux"
