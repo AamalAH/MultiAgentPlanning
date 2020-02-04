@@ -1,0 +1,31 @@
+\babel@toc {english}{}
+\contentsline {chapter}{\numberline {1}Introduction}{2}% 
+\contentsline {section}{\numberline {1.1}Objective}{2}% 
+\contentsline {chapter}{\numberline {2}Swarms}{3}% 
+\contentsline {section}{\numberline {2.1}Decision Making in Swarms}{3}% 
+\contentsline {section}{\numberline {2.2}Approaches to Swarm Control}{3}% 
+\contentsline {section}{\numberline {2.3}Heterogeneous Swarms and Self-Healing}{4}% 
+\contentsline {section}{\numberline {2.4}Fault Detection and Recovery}{5}% 
+\contentsline {chapter}{\numberline {3}Dec-POMDPs}{6}% 
+\contentsline {chapter}{\numberline {4}Game Theory}{8}% 
+\contentsline {section}{\numberline {4.1}Market Based Methods}{8}% 
+\contentsline {section}{\numberline {4.2}Stochastic Games}{9}% 
+\contentsline {section}{\numberline {4.3}Game Theoretic Control}{9}% 
+\contentsline {chapter}{\numberline {5}Multi Agent Reinforcement Learning}{11}% 
+\contentsline {section}{\numberline {5.1}Learning in Two Player Matrix Games}{11}% 
+\contentsline {section}{\numberline {5.2}Learning in Multiplayer Stochastic Games}{12}% 
+\contentsline {section}{\numberline {5.3}Learning Dynamics}{13}% 
+\contentsline {section}{\numberline {5.4}Stable Learning}{14}% 
+\contentsline {chapter}{\numberline {6}Control Theory}{16}% 
+\contentsline {section}{\numberline {6.1}Model Predictive Control}{16}% 
+\contentsline {subsection}{\numberline {6.1.1}Distributed MPC}{17}% 
+\contentsline {subsection}{\numberline {6.1.2}Hybrid Control}{18}% 
+\contentsline {chapter}{\numberline {7}Proposed Research}{20}% 
+\contentsline {section}{\numberline {7.1}Considering Intelligence in Swarm Dynamics}{20}% 
+\contentsline {section}{\numberline {7.2}Stochastic Predictive Control for Decentralised Hybrid Systems}{20}% 
+\contentsline {section}{\numberline {7.3}Dynamical Study of Multi Agent Learning}{21}% 
+\contentsline {chapter}{\numberline {8}Dynamical Study of Multi Agent Learning}{23}% 
+\contentsline {section}{\numberline {8.1}Large Agent Dynamics}{23}% 
+\contentsline {section}{\numberline {8.2}Continuous Action Spaces}{24}% 
+\contentsline {section}{\numberline {8.3}Stateful environments}{24}% 
+\contentsline {section}{\numberline {8.4}Characterisation of Complex Dynamics}{25}% 
