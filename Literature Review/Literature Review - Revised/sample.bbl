@@ -496,4 +496,9 @@ F.~Berkenkamp, M.~Turchetta, A.~P. Schoellig, and A.~Krause, ``{Safe
   \emph{Advances in Neural Information Processing Systems}, vol. 2017-Decem,
   2017, pp. 909--919.
 
+\bibitem{Galstyan2013}
+A.~Galstyan, ``{Continuous strategy replicator dynamics for multi-agent
+  Q-learning},'' \emph{Autonomous Agents and Multi-Agent Systems}, vol.~26,
+  no.~1, pp. 37--53, 2013.
+
 \end{thebibliography}

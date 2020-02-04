@@ -1,4 +1,4 @@
-This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2019)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: sample.aux
 The style file: IEEEtran.bst
@@ -9,10 +9,17 @@ Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: IEEEfull.bib
 Database file #2: references.bib
-Repeated entry---line 1803 of file references.bib
+Repeated entry---line 1823 of file references.bib
  : @article{Liu2019
  :                 ,
 I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "TuylesWestra"
+Warning--I didn't find a database entry for "Ruijgrok"
+Warning--I didn't find a database entry for "Vrancx2008"
+Warning--I didn't find a database entry for "Hennes2009"
+Warning--I didn't find a database entry for "LRI"
+Warning--I didn't find a database entry for "Hennes2010"
+Warning--I didn't find a database entry for "Panozzo"
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
@@ -56,45 +63,45 @@ Warning--empty journal in Boone2019FromTheory
 Warning--empty journal in Marinescu2014
 
 Done.
-You've used 79 entries,
+You've used 80 entries,
             4087 wiz_defined-function locations,
-            1843 strings with 39099 characters,
-and the built_in function-call counts, 56235 in all, are:
-= -- 4473
-> -- 1382
-< -- 427
-+ -- 752
-- -- 258
-* -- 2745
-:= -- 8462
-add.period$ -- 168
-call.type$ -- 79
-change.case$ -- 76
-chr.to.int$ -- 1002
-cite$ -- 117
-duplicate$ -- 4086
-empty$ -- 4445
-format.name$ -- 310
-if$ -- 12925
+            1864 strings with 39337 characters,
+and the built_in function-call counts, 57004 in all, are:
+= -- 4544
+> -- 1392
+< -- 436
++ -- 758
+- -- 259
+* -- 2781
+:= -- 8587
+add.period$ -- 170
+call.type$ -- 80
+change.case$ -- 77
+chr.to.int$ -- 1020
+cite$ -- 118
+duplicate$ -- 4141
+empty$ -- 4500
+format.name$ -- 311
+if$ -- 13103
 int.to.chr$ -- 0
-int.to.str$ -- 79
-missing$ -- 786
-newline$ -- 308
-num.names$ -- 79
-pop$ -- 1851
+int.to.str$ -- 80
+missing$ -- 794
+newline$ -- 311
+num.names$ -- 80
+pop$ -- 1862
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 4259
+skip$ -- 4321
 stack$ -- 0
-substring$ -- 2468
-swap$ -- 3358
-text.length$ -- 93
+substring$ -- 2511
+swap$ -- 3407
+text.length$ -- 96
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 79
+type$ -- 80
 warning$ -- 38
-while$ -- 246
-width$ -- 81
-write$ -- 795
+while$ -- 251
+width$ -- 82
+write$ -- 806
 (There was 1 error message)
