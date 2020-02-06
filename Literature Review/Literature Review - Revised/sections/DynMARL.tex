@@ -20,21 +20,27 @@
    
    \section{Large Agent Dynamics}
 
-    This suggestion aims to build upon the work presented by Hu et al. \cite{Hu2019} in which the
-    point is made that the vast majority of the work done in this area considers games with a finite
-    (usually two) number of agents. This limits the capability of the analysis to generalise to much
-    larger agent populations, such as swarms. To allieviate this concern, the authors present an
-    anaysis of the learning dynamics for a large agent population (which they approximate as
-    containing infinite agents) where each agent is an independent Q-Learning using Boltzmann
-    exploration. The emergent dynamics is given by a Fokker-Planck equation which is numerical shown
-    to be a strong approximation of the true learning dynamics. However, as the authors point out,
-    this is the first attempt at considering such a problem, and relies on heavy assumptions.
-    Possible extensions therefore require a consideration of:
+    This suggestion aims to build upon the work presented by Hu et
+    al. \cite{Hu2019} in which the point is made that the vast
+    majority of the work done in this area considers games with a
+    finite (usually two) number of agents. This limits the capability
+    of the analysis to generalise to much larger agent populations,
+    such as swarms. To allieviate this concern, the authors present an
+    anaysis of the learning dynamics for a large agent population
+    (which they approximate as containing infinite agents) where each
+    agent is an independent Q-Learning using Boltzmann
+    exploration. The emergent dynamics is given by a Fokker-Planck
+    equation which is numerical shown to be a strong approximation of
+    the true learning dynamics. However, as the authors point out,
+    this is the first attempt at considering such a problem, and
+    relies on heavy assumptions.  Possible extensions therefore
+    require a consideration of:
 
     \begin{itemize}
-        \item Asymmetric games, in which agents have different payoffs, introducing heterogeneity
-        and competition into the system.
-        \item Stateful Games.
+        \item Asymmetric games, in which agents have different
+          payoffs, introducing heterogeneity and competition into the
+          system. \fr{this is not really a problem  in relation with swarms, is it?}
+        \item Stateful Games. \fr{what is the interest of stateful games?}
         \item Heterogeneous populations, in which there are p different populations of agents.
     \end{itemize}
 
@@ -43,21 +49,28 @@
 
     \section{Continuous Action Spaces}
 
-    Here lies the opportunity to extend the work of Tuyls' et al. \cite{Tuyls2006AnGames} towards
-    continuous action spaces. This would be particularly useful for most robotic applications, which
-    operate in continuous spaces. 
+    Here lies the opportunity to extend the work of Tuyls' et
+    al. \cite{Tuyls2006AnGames} towards continuous action spaces. This
+    would be particularly useful for most robotic applications, which
+    operate in continuous spaces. \fr{do we have other examples?}
 
-    Work has commenced in this area, but is still in its infancy. Notable examples are: 
-    \cite{Letcher2019DifferentiableMechanics}, in which Letcher et al. consider the dynamics of
-    Differentiable Games, though their focus is on its application to gradient descent in GANs as
-    opposed to reinforcement learning, and \cite{Galstyan2013}, in which the dynamics of Q-Learning,
-    with a Boltzmann action selection is considered. To achieve the result, the author replaces the
-    strategy vector with a probability density function (pdf) over the strategy space, which leads
-    to an integro-differential equation which describes the evolution of the pdf with time. Due to
-    its complexity, the dynamics cannot be analysed as easily as those in \cite{Tuyls2006AnGames},
-    and so Galstyan restricts the analysis to the steady-state solution (i.e. the fixed point) of
-    the dynamics. Their analysis shows strong agreement with the designed experiments, under varying
-    payoff conditions (note that the payoffs are now a function, rather than a discrete matrix).
+    Work has commenced in this area, but is still in its
+    infancy. Notable examples are:
+    \cite{Letcher2019DifferentiableMechanics}, in which Letcher et
+    al. consider the dynamics of Differentiable Games, though their
+    focus is on its application to gradient descent in GANs as opposed
+    to reinforcement learning, and \cite{Galstyan2013}, in which the
+    dynamics of Q-Learning, with a Boltzmann action selection is
+    considered. To achieve the result, the author replaces the
+    strategy vector with a probability density function (pdf) over the
+    strategy space, which leads to an integro-differential equation
+    which describes the evolution of the pdf with time. Due to its
+    complexity, the dynamics cannot be analysed as easily as those in
+    \cite{Tuyls2006AnGames}, and so Galstyan restricts the analysis to
+    the steady-state solution (i.e.~the fixed point) of the
+    dynamics. Their analysis shows strong agreement with the designed
+    experiments, under varying payoff conditions (note that the
+    payoffs are now a function, rather than a discrete matrix).
 
     Galstyan goes on to present avenues for further work. These are summarised below:
 
@@ -112,6 +125,8 @@
         considered by Panozzo et al. \cite{Panozzo} who consider Q-Learning in a sequence form game.
     \end{itemize}
 
+    \fr{application of the above?}
+
     \section{Characterisation of Complex Dynamics}
 
     The intention of this area of study is to consider the ideas presented in works such as 
@@ -140,5 +155,7 @@
     would also allow for a characterisation of the conditions under which MARL algorithms may
     feasibly be applied, thereby supporting the ability of researchers and engineers to choose their
     payoff matrices and parameters accordingly.
+
+    \fr{this last line might possibly be the most relevant for the CDT.}
     
 \end{document}
