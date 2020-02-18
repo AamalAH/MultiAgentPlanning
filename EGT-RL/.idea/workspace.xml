@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a7137f29-f35c-47a2-ba10-9ad1b834823d" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="EGT-RL" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1WD1rlmJQSf1TeQnCgvSiEq2nti" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunManager" selected="Python.MeanFieldSim">
+    <configuration name="MeanFieldSim" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="EGT-RL" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MeanFieldSim.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Q-LearningAttempt" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="EGT-RL" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Q-LearningAttempt.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Q-LearningTwoPlayer" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="EGT-RL" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Q-LearningTwoPlayer.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Tuyls" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="EGT-RL" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tuyls.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="EGT-RL" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.MeanFieldSim" />
+        <item itemvalue="Python.Q-LearningTwoPlayer" />
+        <item itemvalue="Python.Tuyls" />
+        <item itemvalue="Python.Q-LearningAttempt" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a7137f29-f35c-47a2-ba10-9ad1b834823d" name="Default Changelist" comment="" />
+      <created>1578669553459</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1578669553459</updated>
+      <workItem from="1578669562213" duration="118000" />
+      <workItem from="1578669714606" duration="612000" />
+      <workItem from="1578671002345" duration="4061000" />
+      <workItem from="1579015412391" duration="6846000" />
+      <workItem from="1579086799930" duration="11836000" />
+      <workItem from="1579207851665" duration="3357000" />
+      <workItem from="1579279358147" duration="3207000" />
+      <workItem from="1581672815162" duration="1741000" />
+      <workItem from="1581675758211" duration="3138000" />
+      <workItem from="1581850764510" duration="317000" />
+      <workItem from="1581853479160" duration="587000" />
+      <workItem from="1581946048534" duration="481000" />
+      <workItem from="1581947323373" duration="6430000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="184" y="90" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1578671016274">
+      <screen x="0" y="23" width="1440" height="810" />
+    </state>
+    <state x="184" y="90" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.810@0.23.1440.810" timestamp="1578671016274" />
+    <state x="966" y="321" key="#xdebugger.evaluate" timestamp="1579208660474">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="966" y="321" key="#xdebugger.evaluate/0.0.1440.900@0.0.1440.900" timestamp="1579208660474" />
+    <state width="1398" height="272" key="GridCell.Tab.0.bottom" timestamp="1581954293439">
+      <screen x="0" y="23" width="1440" height="810" />
+    </state>
+    <state width="1398" height="320" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1579437800644" />
+    <state width="1398" height="272" key="GridCell.Tab.0.bottom/0.23.1440.810@0.23.1440.810" timestamp="1581954293439" />
+    <state width="1398" height="272" key="GridCell.Tab.0.center" timestamp="1581954293438">
+      <screen x="0" y="23" width="1440" height="810" />
+    </state>
+    <state width="1398" height="320" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1579437800643" />
+    <state width="1398" height="272" key="GridCell.Tab.0.center/0.23.1440.810@0.23.1440.810" timestamp="1581954293438" />
+    <state width="1398" height="272" key="GridCell.Tab.0.left" timestamp="1581954293438">
+      <screen x="0" y="23" width="1440" height="810" />
+    </state>
+    <state width="1398" height="320" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1579437800641" />
+    <state width="1398" height="272" key="GridCell.Tab.0.left/0.23.1440.810@0.23.1440.810" timestamp="1581954293438" />
+    <state width="1398" height="272" key="GridCell.Tab.0.right" timestamp="1581954293438">
+      <screen x="0" y="23" width="1440" height="810" />
+    </state>
+    <state width="1398" height="320" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1579437800643" />
+    <state width="1398" height="272" key="GridCell.Tab.0.right/0.23.1440.810@0.23.1440.810" timestamp="1581954293438" />
+    <state width="1398" height="272" key="GridCell.Tab.1.bottom" timestamp="1581954293440">
+      <screen x="0" y="23" width="1440" height="810" />
+    </state>
+    <state width="1398" height="320" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1579437800646" />
+    <state width="1398" height="272" key="GridCell.Tab.1.bottom/0.23.1440.810@0.23.1440.810" timestamp="1581954293440" />
+    <state width="1398" height="272" key="GridCell.Tab.1.center" timestamp="1581954293439">
+      <screen x="0" y="23" width="1440" height="810" />
+    </state>
+    <state width="1398" height="320" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1579437800645" />
+    <state width="1398" height="272" key="GridCell.Tab.1.center/0.23.1440.810@0.23.1440.810" timestamp="1581954293439" />
+    <state width="1398" height="272" key="GridCell.Tab.1.left" timestamp="1581954293439">
+      <screen x="0" y="23" width="1440" height="810" />
+    </state>
+    <state width="1398" height="320" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1579437800644" />
+    <state width="1398" height="272" key="GridCell.Tab.1.left/0.23.1440.810@0.23.1440.810" timestamp="1581954293439" />
+    <state width="1398" height="272" key="GridCell.Tab.1.right" timestamp="1581954293440">
+      <screen x="0" y="23" width="1440" height="810" />
+    </state>
+    <state width="1398" height="320" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1579437800645" />
+    <state width="1398" height="272" key="GridCell.Tab.1.right/0.23.1440.810@0.23.1440.810" timestamp="1581954293440" />
+    <state x="221" y="67" key="SettingsEditor" timestamp="1581947343584">
+      <screen x="0" y="23" width="1440" height="810" />
+    </state>
+    <state x="221" y="49" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1579184522810" />
+    <state x="221" y="67" key="SettingsEditor/0.23.1440.810@0.23.1440.810" timestamp="1581947343584" />
+    <state width="720" height="450" key="XDebugger.FullValuePopup" timestamp="1579207733476">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="720" height="450" key="XDebugger.FullValuePopup/0.0.1440.900@0.0.1440.900" timestamp="1579207733476" />
+    <state x="397" y="260" key="com.intellij.ide.util.TipDialog" timestamp="1581947328212">
+      <screen x="0" y="23" width="1440" height="810" />
+    </state>
+    <state x="397" y="260" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1581672888774" />
+    <state x="397" y="260" key="com.intellij.ide.util.TipDialog/0.23.1440.810@0.23.1440.810" timestamp="1581947328212" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/EGT_RL$Q_LearningTwoPlayer.coverage" NAME="Q-LearningTwoPlayer Coverage Results" MODIFIED="1579279448854" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/EGT_RL$Q_LearningAttempt.coverage" NAME="Q-LearningAttempt Coverage Results" MODIFIED="1579199770112" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/EGT_RL$MeanFieldSim.coverage" NAME="MeanFieldSim Coverage Results" MODIFIED="1581954281306" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>
