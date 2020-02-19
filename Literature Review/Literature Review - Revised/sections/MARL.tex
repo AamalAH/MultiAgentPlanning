@@ -102,9 +102,9 @@ algorithm which also converges to mixed strategies, and the author's own proposa
 lagging anchor algorithm which can converge to both pure and mixed NEs.
 
 
-\section{Learning Dynamics}
+\section{Game Dynamics}
 
-Learning Dynamics (which I often refer to as Multi Agent Dynamics or Game Dynamics) considers the
+Game Dynamics (which I often refer to as Multi Agent Dynamics or Learning Dynamics) considers the
 problem of mathematically modelling Multi Agent Systems who adapt through repeated interact with one
 another. This model then serves to be able to predict the evolution of the system as well as to
 understand the trajectory of learning. Typically, this looks at considering whether or not the
@@ -118,18 +118,16 @@ and Trusted AI as it provides guarantees against undesired behaviour in real wor
 
 The area of dynamics which has shown most promise in Multi-Agent Reinforcement Learning is that of
 evolutionary dynamics. This draws from the principles of Evolutionary Game Theory (EGT) which
-considers similar assumptions to that of MARL: agents are no longer required to be rational and play
-the game optimise their expected return through repeated play. Importantly, players have no
-knowledge of the others' payoffs \cite{Tuyls2006AnGames}. The first major breakthrough in this field
-is in \cite{Borgers1997} where Boergers and Sarin determine the relation between the replicator
-dynamics concept of EGT (a differential equation defining the evolution of the proportion of a
-subgroup in an evolving population) and the 'Cross' learning method for multi agent reinforcement
-learning. This idea is advanced in \cite{Tuyls2006AnGames} where Tuyls et al. determine  a similar
-relation for Q-Learning using Boltzmann probabilities as Q-values. The result was a dynamics
-equation which describes, for each action, the evolution of its selection probability which could
-even account for random exploration. There have since been a number of works which apply the same
-insight into different game types and MARL algorithms. In \cite{Bloembergen2015}, these are broken
-into the following categories
+considers similar assumptions to that of MARL: agents are no longer required to be rational and
+play the game optimise their expected return through repeated play. Importantly, players have no
+knowledge of the others' payoffs \cite{Tuyls2006AnGames}. In \cite{Tuyls2006AnGames}, Tuyls et al.
+determine the relation between the replicator dynamics concept of EGT (a differential equation
+defining the evolution of the proportion of a subgroup in an evolving population) and Q-Learning
+using Boltzmann probabilities as Q-values. The result was a dynamics equation which describes, for
+each action, the evolution of its selection probability which could even account for random
+exploration. There have since been a number of works which apply the same insight into different
+game types and MARL algorithms. In \cite{Bloembergen2015}, these are broken into the following
+categories
 
 \begin{itemize}
 	\item Stateless games with discrete actions. Here, stateless refers to the idea that the game is
@@ -147,50 +145,22 @@ into the following categories
 	for possible research.
 \end{itemize}
 
-Though the above have seen success through experimental validation, most work is applied to bimatrix
-games (games of two to three players with finite action spaces). An example of this can be found in
-\cite{Hofbauer1996} in which Hofbauer shows that learning a zero-sum bimatrix game follows
-Hamiltonian dynamics and results in stable equilibria. Recent work has begun the consideration of
-improving the models towards more complex scenarios with larger agent populations. For instance,
-Bailey and Piliouras show in \cite{Bailey2019Multi-AgentSystem} that the results of
-\cite{Hofbauer1996} can be extended to the n-agent case, even with different network structures.
-They show that the result generalises to any zero-sum network game where agents use a
-Follow-The-Regularised-Leader learning approach. Another, more recent example of this is 
+Though the above have seen success through experimental validation in games with 2 players and (in
+general) 2 to 3 discrete actions, recent work has begun the consideration of improving the models
+towards more complex scenarios with larger agent populations. A recent example of this is 
 \cite{Hu2019}, in which Hu uses a mean field approximation to model the dynamics of a population of
 Q-Learning agents. As a reminder, mean field (MF) approaches in MARL consider that an agent updates
 its strategy based on the mean effect of the population. The result is a system of three equations
 which describes the evolution of Q-values over a large population in a symmetric bi-matrix game.This
 presents an important first step in modelling the learning dynamics of large agent populations and
 has the scope to be expanded to systems of asymmetric games, heterogeneous populations and stateful
-n-agent games.
+games.
 
 An advantage of determining the evolutionary dynamics of learning is that it can describe the
-expected behaviour using different learning methodologies for various game settings. This is
-particularly important to understand the convergence of the applied learning method; certain games
-will often show cyclic behaviour even with the existence of a strict NE. For instance, Imhof et al.
-show in \cite{Imhof2005} that a repeated prisoner's dilemma game results in cyclic behaviour when
-considering the options of cooperation or defection. In an interesting twist, Galla shows in
-\cite{Galla2011} that this result is dependent on the memory of the agent. Therefore, by using a
-method of batch learning, in which agents may discount observations from the distant past, the
-agents will move their convergent result from a stict NE (to always defect) to a mixed, stable
-equilibrium which promotes cooperation. In \cite{Sanders2018}, Sanders et al. extend this approach
-to a general n-player game which is learnt through an experience-weighted attraction method. They
-show that the method will display different dynamical behaviour including: convergence to stable
-equilibria, limit cycles and chaos. They determine a parameter which describes the likelihood of
-complex dynamics and show that, as the number of players increase, the likelihood of complex
-dynamics (which will not converge to fixed points) will increase. A similarly interesting result is
-that of chaotic dynamics in certain game types and learning algorithms. Sato et al show in
-\cite{Sato2002} that Cross learning in two person games result in choatic behaviour and use the
-simple rock-paper-scissors game to illustrate this point. In \cite{Foster2001}, Foster and Young
-show that in these games, agents cannot learn the future behaviour of their opponents, regardless of
-the learning technique. This therefore means that the game does not converge to a NE.
-
-The above discussion highlights just some of the growing body of work regarding the dynamics of
-multi-agent learning. It is clear that these studies provide strong insights into the prevalent
-problem of multi agent systems, particularly those using reinforcement learning. It allows for an
-analysis of the conditions under which learning is possible as well as a method to evaluate
-different learning algorithms. However, this field still requires significant work in terms of
-generality. A proposal to expand this research is presented in 'Proposed Research'.
+expected behaviour in different game settings. This is particularly important to understand the
+convergence of the methods; certain games will often show cyclic behaviour even with the existence
+of a strict NE. For instance, Imhof et al. show in \cite{Imhof2005} that a repeated prisoner's
+dilemma game results in cyclic behaviour when considering the options of cooperation or defection. 
 
 \section{Stable Learning}
 
