@@ -1,0 +1,63 @@
+==> 2020-01-10 15:23:31 <==
+# cmd: /Users/aamalh/opt/anaconda3/bin/conda create -p /Users/aamalh/Desktop/EGT-RL/.conda -y python=3.7
+# conda version: 4.7.12
++defaults::ca-certificates-2019.11.27-0
++defaults::certifi-2019.11.28-py37_0
++defaults::libcxx-4.0.1-hcfea43d_1
++defaults::libcxxabi-4.0.1-hcfea43d_1
++defaults::libedit-3.1.20181209-hb402a30_0
++defaults::libffi-3.2.1-h475c297_4
++defaults::ncurses-6.1-h0a44026_1
++defaults::openssl-1.1.1d-h1de35cc_3
++defaults::pip-19.3.1-py37_0
++defaults::python-3.7.6-h359304d_2
++defaults::readline-7.0-h1de35cc_5
++defaults::setuptools-44.0.0-py37_0
++defaults::sqlite-3.30.1-ha441bb4_0
++defaults::tk-8.6.8-ha441bb4_0
++defaults::wheel-0.33.6-py37_0
++defaults::xz-5.2.4-h1de35cc_4
++defaults::zlib-1.2.11-h1de35cc_3
+# update specs: ['python=3.7']
+==> 2020-01-10 15:44:06 <==
+# cmd: /Users/aamalh/opt/anaconda3/bin/conda install -p /Users/aamalh/Desktop/EGT-RL/.conda numpy -y
+# conda version: 4.7.12
++defaults::blas-1.0-mkl
++defaults::intel-openmp-2019.4-233
++defaults::libgfortran-3.0.1-h93005f0_2
++defaults::mkl-2019.4-233
++defaults::mkl-service-2.3.0-py37hfbe908c_0
++defaults::mkl_fft-1.0.15-py37h5e564d8_0
++defaults::mkl_random-1.1.0-py37ha771720_0
++defaults::numpy-1.17.4-py37h890c691_0
++defaults::numpy-base-1.17.4-py37h6575580_0
++defaults::six-1.13.0-py37_0
+# update specs: ['numpy']
+==> 2020-01-10 15:44:17 <==
+# cmd: /Users/aamalh/opt/anaconda3/bin/conda install -p /Users/aamalh/Desktop/EGT-RL/.conda matplotlib -y
+# conda version: 4.7.12
++defaults::cycler-0.10.0-py37_0
++defaults::freetype-2.9.1-hb4e5f40_0
++defaults::kiwisolver-1.1.0-py37h0a44026_0
++defaults::libpng-1.6.37-ha441bb4_0
++defaults::matplotlib-3.1.1-py37h54f8f79_0
++defaults::pyparsing-2.4.6-py_0
++defaults::python-dateutil-2.8.1-py_0
++defaults::pytz-2019.3-py_0
++defaults::tornado-6.0.3-py37h1de35cc_0
+# update specs: ['matplotlib']
+==> 2020-01-10 15:55:04 <==
+# cmd: /Users/aamalh/opt/anaconda3/bin/conda install --prefix /Users/aamalh/Desktop/EGT-RL/.conda pylint
+# conda version: 4.7.12
++defaults::astroid-2.3.3-py37_0
++defaults::isort-4.3.21-py37_0
++defaults::lazy-object-proxy-1.4.3-py37h1de35cc_0
++defaults::mccabe-0.6.1-py37_1
++defaults::pylint-2.4.4-py37_0
++defaults::wrapt-1.11.2-py37h1de35cc_0
+# update specs: ['pylint']
+==> 2020-01-16 14:21:58 <==
+# cmd: /Users/aamalh/opt/anaconda3/bin/conda install -p /Users/aamalh/Desktop/EGT-RL/.conda tqdm -y
+# conda version: 4.7.12
++defaults::tqdm-4.41.1-py_0
+# update specs: ['tqdm']
