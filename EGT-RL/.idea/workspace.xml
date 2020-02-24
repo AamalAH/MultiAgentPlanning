@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a7137f29-f35c-47a2-ba10-9ad1b834823d" name="Default Changelist" comment="" />
+    <list default="true" id="a7137f29-f35c-47a2-ba10-9ad1b834823d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MeanFieldSim.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MeanFieldDyn.m" beforeDir="false" afterPath="$PROJECT_DIR$/../MeanFieldDyn.m" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,7 +22,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1WD1rlmJQSf1TeQnCgvSiEq2nti" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -25,6 +34,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
@@ -34,6 +44,9 @@
       <module name="EGT-RL" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -181,6 +194,7 @@
       <workItem from="1581853479160" duration="587000" />
       <workItem from="1581946048534" duration="481000" />
       <workItem from="1581947323373" duration="6430000" />
+      <workItem from="1582209603991" duration="93000" />
     </task>
     <servers />
   </component>
@@ -192,6 +206,10 @@
       <screen x="0" y="23" width="1440" height="810" />
     </state>
     <state x="184" y="90" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.810@0.23.1440.810" timestamp="1578671016274" />
+    <state x="661" y="381" width="587" height="386" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1582209649564">
+      <screen x="0" y="0" width="1920" height="1152" />
+    </state>
+    <state x="661" y="381" width="587" height="386" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1152@0.0.1920.1152" timestamp="1582209649564" />
     <state x="966" y="321" key="#xdebugger.evaluate" timestamp="1579208660474">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -236,10 +254,11 @@
     </state>
     <state width="1398" height="320" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1579437800645" />
     <state width="1398" height="272" key="GridCell.Tab.1.right/0.23.1440.810@0.23.1440.810" timestamp="1581954293440" />
-    <state x="221" y="67" key="SettingsEditor" timestamp="1581947343584">
-      <screen x="0" y="23" width="1440" height="810" />
+    <state x="295" y="63" key="SettingsEditor" timestamp="1582209693797">
+      <screen x="0" y="0" width="1920" height="1152" />
     </state>
     <state x="221" y="49" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1579184522810" />
+    <state x="295" y="63" key="SettingsEditor/0.0.1920.1152@0.0.1920.1152" timestamp="1582209693797" />
     <state x="221" y="67" key="SettingsEditor/0.23.1440.810@0.23.1440.810" timestamp="1581947343584" />
     <state width="720" height="450" key="XDebugger.FullValuePopup" timestamp="1579207733476">
       <screen x="0" y="0" width="1440" height="900" />
@@ -252,8 +271,8 @@
     <state x="397" y="260" key="com.intellij.ide.util.TipDialog/0.23.1440.810@0.23.1440.810" timestamp="1581947328212" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/EGT_RL$Q_LearningTwoPlayer.coverage" NAME="Q-LearningTwoPlayer Coverage Results" MODIFIED="1579279448854" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/EGT_RL$Q_LearningAttempt.coverage" NAME="Q-LearningAttempt Coverage Results" MODIFIED="1579199770112" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/EGT_RL$Q_LearningTwoPlayer.coverage" NAME="Q-LearningTwoPlayer Coverage Results" MODIFIED="1579279448854" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/EGT_RL$MeanFieldSim.coverage" NAME="MeanFieldSim Coverage Results" MODIFIED="1581954281306" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
