@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/aamalh/STAI/EGT-RL/EGTenv"
+set -gx VIRTUAL_ENV "/Users/aamalh/STAI/EGT-RL/EGTEnv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
@@ -52,8 +52,8 @@ if test -z "$VIRTUAL_ENV_DISABLE_PROMPT"
         set -l old_status $status
 
         # Prompt override?
-        if test -n "(EGTenv) "            
-            printf "%s%s" "(EGTenv) " (set_color normal)
+        if test -n "(EGTEnv) "
+            printf "%s%s" "(EGTEnv) " (set_color normal)
         else
             # ...Otherwise, prepend env
             set -l _checkbase (basename "$VIRTUAL_ENV")

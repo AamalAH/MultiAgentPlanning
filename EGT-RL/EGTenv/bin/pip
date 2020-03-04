@@ -1,4 +1,4 @@
-#!/home/aamalh/STAI/EGT-RL/EGTenv/bin/python
+#!/Users/aamalh/STAI/EGT-RL/EGTEnv/bin/python
 # EASY-INSTALL-ENTRY-SCRIPT: 'pip==19.0.3','console_scripts','pip'
 __requires__ = 'pip==19.0.3'
 import re

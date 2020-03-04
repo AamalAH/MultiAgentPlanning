@@ -1,4 +1,4 @@
-#!/home/aamalh/STAI/EGT-RL/EGTenv/bin/python
+#!/Users/aamalh/STAI/EGT-RL/EGTEnv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

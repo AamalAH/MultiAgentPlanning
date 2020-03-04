@@ -1,11 +1,12 @@
 import numpy as np
 
 class QLearner:
-    def __init__(self, r):
+    def __init__(self, r, nOpponents):
         self.gamma = .9
         self.tau   = 2
-        self.alpha = 0.1 #self.tau * r
+        self.alpha = 0.8 #self.tau * r
 
+        self.nOpponents = nOpponents
 
         self.qValues = np.zeros(2)
         self.qValues[0] = 1
@@ -23,16 +24,18 @@ class QLearner:
 
         self.action = np.random.choice([0, 1], p=self.actionProb)
 
-    def playGame(self, opponent, game):
-        self.payOffs += [game[self.action, opponent.action, 0]]
-        opponent.payOffs += [game[self.action, opponent.action, 1]]
+    def playGame(self, opponents, game):
+        payOffs = np.array(game[self.action, np.array([o.action for o in opponents])]).T
 
-        self.gamesPlayed += 1
-        opponent.gamesPlayed += 1
+        self.payOffs += list(payOffs[0])
+        for o in range(len(opponents)):
+            opponents[o].payOffs += [payOffs[1, o]]
 
     def qUpdate(self):
 
-        self.payoff = np.mean(self.payOffs)
-        self.qValues[self.action] += self.alpha * (self.payoff + self.gamma * max(self.qValues) - self.qValues[self.action])
+        self.payoff = np.mean(self.payOffs[0:self.nOpponents])
+        self.qValues[self.action] = (1 - self.alpha) * self.qValues[self.action] + self.alpha * self.payoff
+
+        # self.qValues[self.action] += self.alpha * (self.payoff + self.gamma * max(self.qValues) - self.qValues[self.action])
 
         self.gamesPlayed = 0
