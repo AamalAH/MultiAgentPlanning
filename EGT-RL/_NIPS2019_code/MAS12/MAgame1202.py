@@ -82,7 +82,7 @@ def runSim(Nsim, parameters, gameName):
     env = Environment02(Nact, reward1s[gameName], reward2s[gameName])
     ga = GameAssignment01()
     
-    allxBar = [];
+    allxBar = []
     
     # This will run multiple simulations so that the results can be averaged over
     
@@ -147,7 +147,7 @@ def runSim(Nsim, parameters, gameName):
         
         # print('sim:', sim, 'countAction:', countAction)
     
-    allxBar.append(xbarT)
+        allxBar.append(xbarT)
 
     return allxBar
 
