@@ -1,0 +1,55 @@
+\documentclass{article}
+\usepackage{xcolor}
+\usepackage[margin=1in,letterpaper]{geometry}
+\newcommand\NOTE[1]{\textcolor{purple}{#1}}
+
+
+\title{Assigning Confidence to Clustering Algorithms}
+\author{Aamal Hussain}
+
+\begin{document}
+    \maketitle
+
+    \begin{itemize}
+        \item Clustering algorithms in general, with a focus on route clustering
+        \item Adding confidence bounds to clustering algorithms
+    \end{itemize}
+
+    \section{Clustering of time series data: A survey}
+
+    In this case, the data features changes over time. These are divided into five categories
+
+    \begin{enumerate}
+        \item Partitioning: Constructs $k \leq n$ partitions of the n data tuples. Each partition represents a cluster containing at least one object. This allows for objects to be in clusters with different degrees \NOTE{Allows for the use of fuzzy methods to calculate routes off fuzzy sets}.
+        \begin{itemize}
+            \item Fuzzy c-means
+            \item Fuzzy c-medioids
+        \end{itemize}
+        \item Hierarchical: Groups data into trees of clusters. 
+        \item Density Based: Grow a cluster as long as the density in the neighbourhood exceeds some threshold
+        \item Grid based: Quantise the space into cells and perform clustering on these cells
+        \item Model Based: Assumes a model for the data \NOTE{Would allow for Bayesian clustering, which would allow for the 'no class' property to be considered.} 
+    \end{enumerate}
+
+    Clustering for time series data the following methods are mentioned
+
+    \begin{enumerate}
+        \item Relocation clustering: Uses a particular criterion function and works by comparing the resulting function with members attached in different clusters. \NOTE{This would also allow for the 'no class' option to be considered.} This method works only when the time series data are of equal length.
+        \item Agglomerative Hierarchical: Places each object into its own cluster and then merges these into larger clusters by trying to minimise the sum of squares variance. This method falters once clusters are chosen since it is unable to adjust
+        \item Fuzzy k-means considers using a fuzzy membership scheme for partitions. By warping it is possible to make these more appropriate for time series data of unequal length, but then the distance metric needs to account for this.
+    \end{enumerate}
+
+    \NOTE{The major problem here concerns the metric used to judge the distance between two paths. This is particularly a problem in route clustering as we have to take into account issues of varying traffic conditions etc.}
+
+    The modalities for distance/similarity measures which are proposed are
+
+    \begin{itemize}
+        \item Euclidean distance (\NOTE{Obviously if time is not taken into account this is shite})
+        \item Cross correlation coefficients (such as Pearson's rank etc.). Can also be a function of time
+        \item Short time series distance (STS): In which each time series is considered as a piecewise linear function
+        \item Dynamic time warping distance. First align the time series and then use Euclidean distance
+        \item KL divergence (\NOTE{I quite like this one if the data sets are somewhat aligned first})
+        \item J divergence/Chernoff divergence
+    \end{itemize}
+
+\end{document}

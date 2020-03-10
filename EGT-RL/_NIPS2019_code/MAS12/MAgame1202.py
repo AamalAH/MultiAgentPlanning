@@ -13,6 +13,7 @@ import sys
 import os
 import numpy as np
 from collections import Counter
+import matplotlib.pyplot as plt
 
 from tqdm import tqdm
 sys.path.append('../MAS_Environments')
@@ -33,7 +34,7 @@ from GameAssignment01 import GameAssignment01
 #gameName = 'SH'
 #gameName = 'HD'
 
-def runSim(Nsim, parameters, gameName):
+def runSim(Nsim, parameters, gamma):
     
     T = 50
     Nagent = 1000
@@ -57,29 +58,22 @@ def runSim(Nsim, parameters, gameName):
     
     reward1s = {}
     reward2s = {}
+
+    cov = np.eye(8)
+    cov[:4, 4:] = np.eye(4) * gamma
+    cov[4:, :4] = np.eye(4) * gamma
+
+    rewards = np.random.multivariate_normal(np.zeros(8), cov=cov)
+
+    reward1s = rewards[0:4].reshape((2, 2))
+    reward2s = rewards[4:].reshape((2, 2)).T
     
-    # PD
-    reward1s['PD'] = np.array([[3, 0], [5, 1]])
-    reward2s['PD'] = np.array([[3, 5], [0, 1]])
-    
-    # CE2
-    reward1s['CE2'] = -1*np.ones((Nact,Nact))+2*np.eye(Nact)
-    reward2s['CE2'] = -1*np.ones((Nact,Nact))+2*np.eye(Nact)
-    
-    # SH
-    reward1s['SH'] = np.array([[1, 2], [0, 3]])
-    reward2s['SH'] = np.array([[1, 0], [2, 3]])
-    
-    # HD
-    reward1s['HD'] = np.array([[1, 0], [2, -1]])
-    reward2s['HD'] = np.array([[1, 2], [0, -1]])
-    
-    rMin = np.amin(reward1s[gameName])  #min and max rewards from the game, will help in defining the initial Q distribution
-    rMax = np.amax(reward1s[gameName])
+    rMin = np.amin(reward1s)  #min and max rewards from the game, will help in defining the initial Q distribution
+    rMax = np.amax(reward1s)
     strInitPara = initPara.split(',')
     intInitPara = [int(e) for e in strInitPara]
     
-    env = Environment02(Nact, reward1s[gameName], reward2s[gameName])
+    env = Environment02(Nact, reward1s, reward2s)
     ga = GameAssignment01()
     
     allxBar = []
@@ -105,12 +99,25 @@ def runSim(Nsim, parameters, gameName):
             agent.Q[1] = x1*(rMax-rMin)+rMin
             
             agents.append(agent)
-        
-        for t in range(T+1):
+
+        maxT = 1e3
+        xbar = np.zeros(Nact, dtype=np.float)
+
+        stopCond = False
+        tol = 1e-6
+        t = 0
+
+        allStep = []
+
+        while t < maxT and not stopCond:
+
             agentsVS = ga.genAgentsVS(Nagent, m) # assigns the opponents to the agents
             
             #draw actions
             actions = []
+
+            oldxBar = np.copy(xbar)
+
             xbar = np.zeros(Nact, dtype=np.float)
             Qbar = np.zeros(Nact, dtype=np.float)
             
@@ -146,43 +153,25 @@ def runSim(Nsim, parameters, gameName):
                 agent.train(0, actions[i], avgReward, 0)
         
         # print('sim:', sim, 'countAction:', countAction)
-    
+            normStep = np.linalg.norm((xbar - oldxBar)/oldxBar)
+
+            allStep.append(normStep)
+
+            stopCond = normStep < tol
+            t += 1
+
         allxBar.append(xbarT)
 
-    return allxBar
-
-    """
-    f01 = open(dirName+'/convergenceT-sim'+str(sim).zfill(3)+'.txt', 'w', encoding='utf-8')
-    for convergence in convergenceT:
-        f01.write(str(convergence)+'\n')
-    f01.close()
-    
-    f01 = open(dirName+'/countActionT-sim'+str(sim).zfill(3)+'.txt', 'w', encoding='utf-8')
-    for countAction in countActionT:
-        s = [str(countAction[a]) for a in range(Nact)]
-        f01.write(','.join(s)+'\n')
-    f01.close()
-    
-    f01 = open(dirName+'/xbarT-sim'+str(sim).zfill(3)+'.txt', 'w', encoding='utf-8')
-    for xbar in xbarT:
-        f01.write(str(xbar)+'\n')
-    f01.close()
-    
-    f01 = open(dirName+'/QbarT-sim'+str(sim).zfill(3)+'.txt', 'w', encoding='utf-8')
-    for Qbar in QbarT:
-        f01.write(str(Qbar)+'\n')
-    f01.close()
-    """
-
+    return allxBar, stopCond
 
 
 if __name__ == "__main__":
     nSim = 1
-    gameName = 'PD'
+    gamma = 1
     
     parameters = {'tau': 2, 'lr': 0.1}
     
-    allxBar = runSim(nSim, parameters, gameName)
+    allxBar = runSim(nSim, parameters, gamma)
     
     meanTraj = np.mean(np.array(allxBar).squeeze(), axis = 0)
     
