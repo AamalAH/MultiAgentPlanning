@@ -1,5 +1,6 @@
-\documentclass{article}
+\documentclass{report}
 \usepackage{xcolor}
+\usepackage{amsmath}
 \usepackage[margin=1in,letterpaper]{geometry}
 \newcommand\NOTE[1]{\textcolor{purple}{#1}}
 
@@ -66,8 +67,133 @@
 
     In this paper they also develop a similarity metric called correlation based dynamic time warping. This is particularly handy for multivariate time series data which presents some correlation between the variables. Then there is the standard 'our algorithm outperforms others'.
 
-    \section{A distance based time series classification framework}
 
-    In this, they develop a toolkit which contains different methods for time series 
+    \section{Hierarchical Clustering Given Confidence Intervals of Metric Distances}
 
+    They consider the case where the exact dissimilarity between two sets of data lie within some interval. The types of clustering algorithms which are currently available are
+
+    \begin{itemize}
+        \item Exclusive clustering: Only belongs in one cluster (e.g. k-means)
+        \item Overlapping clustering: Belongs to multiple clusters with degree of membership (e.g. fuzzy means)
+        \item Hierarchical clustering: Considers a family of partitions which are indexed by a connectivity parameter
+        \item Probabilistic clustering which takes a probabilistic approach (Mixture of Gaussians)
+    \end{itemize}
+
+    Axiomatic hierarchical clustering is a sub-group in which algorithms must satisfy reasonable axioms. E.g.
+
+    \begin{itemize}
+        \item Value: Nodes form a single cluster determine by their distance
+        \item Transformation: A space which is uniformly dominated by another space should have clusters which are uniformly dominated
+    \end{itemize}
+
+    The advantage of this method is that it takes into account the uncertainty in the metric itself and the interval effectively becomes the confidence of the clustering algorithm. 
+
+    They apply this method on moving point data \NOTE{(which shows its applicability to the problem in question)} and show that it is able to successfully determine the underlying clusters, although (as would be expected), the performance deteriorates with increasing distance intervals.
+
+    \section{Scoring clustering solutions by their biological relevance}
+
+    This study differs from the others in that it considers evaluating the performance of a clustering result after the algorithm is run. This essentially gives a method of assigning the confidence in the clustering algorithm once all the clusters are generated. The confidence is assigned based on prior knowledge and so some model is required for this to work. This model is given in the form of an attribute matrix whose rows correspond to data. The clusters $C_{1:n}$ are assigned to the data so that $a_{ij} = (a_{ij}^1 ...a_{ij}^p$ is the attribute vector of data point j in cluster i. Then the clustering of the data points is evaluated against A. \NOTE{It should be pointed out that this requires some prior understanding of the attributes of the data point and how they correspond to the cluster. In other words, a model is required for this to work.} In order to carry out the evaluation, an Analysis of Variance method is used This metric is given by
+
+    \begin{equation}
+        F_H = \frac{SSH/(l-1)}{SSE/(n-l)}
+    \end{equation}
+
+    where 
+
+    \begin{subequations}
+    \begin{equation}
+    SSH = \sum_{i = 1}^{l} s_i (\bar{a_i} - \bar{a})^2 \\
+    \end{equation}
+    
+    \begin{equation}
+    SSL = \sum_{i = 1}^l \sum_{j = 1}^{s_i} (a_{ij} - \bar{a_i})^2
+    \end{equation}
+    \end{subequations}
+
+    Here, l is the number of population distibutions, $s_i = |C_i|$, $\bar{a_i}$ is the mean of the data points in cluster i and $\bar{a}$ is the total mean of all of the n elements. 
+
+    The evaluation is done as follows
+
+    \begin{enumerate}
+        \item Compute a linear combination of the attributes: Each data point is assigned a real-valued number by computing a weighted sum of each of its attributes. \NOTE{There is often not an a priori method for calculating these weights and so these will need to be determined at user preference.}
+
+        \item Determine $-logp$ where p is the probability that all values in the projection have been taken from the same population
+
+        \item Determine the sensitivity of the above metric to small modifications of the clustering solution. For a given solution, generate a group of perturbed clustering solutions by exchangin random pairs of data points across clusters. Determine the standard deviation of the above CQS metric. This will act as the confidence value.
+    \end{enumerate}
+
+
+    \section{clValid, an R package for cluster validation}
+
+    This paper provides an introduction to a module which can be used for assessing the validity of clustering solutions. The method of validation used is user defined but falls into one of three categories:
+
+    \begin{itemize}
+        \item internal validation: takes only the dataset and clustering solution as input.
+        \item Stability validation: considers the consistency of the clustering solution after small perturbations
+        \item Biological validation: considers the ability to produce biologically relevant results. \NOTE{This would need to be replaced with considering information relevant to route clustering. Therefore, I do not focus on this one in the review}
+    \end{itemize}
+
+
+
+    \subsection{Internal Measures}
+
+    The available measuers are:
+    \begin{itemize}
+        \item Connectivity: considers the extent to which observations are placed in the same cluster as their nearest neighbours.
+        \item Silhouette Width: Considers the normalised average distance between the observation and others in the same cluster, as well as the distance between the observation and the nearest cluster. This metric results in a value between -1 and 1, where 1 denotes a perfect cluster. 
+        \item Dunn Index: Considers the ratio of the smallest distance between observations which are not in the same cluster against the largest distance across clusters. 
+    \end{itemize}
+
+    \subsection{Stability measures}
+
+    \begin{itemize}
+        \item Average proportion of non-overlap (APN): First clusters based on the full data and then with a single column removed. The APN value considers the ration of numbers of data points which are still placed in the same cluster.
+        \item Average distance: Measures the distance between observations placed in the same cluster when a single column is removed.
+        \item Average Distance between Means: Distance between cluster centres when a column is removed
+    \end{itemize}
+
+
+    \NOTE{Handl et al. give a good review of internal measures}
+
+
+    \chapter{Formal Write Up}
+
+    \section{Clustering of time series data}
+
+    To be specific, the problem that the data science team face regards clustering routes which is considered to be a form of time series data. As such, it is important that the method of clustering used is suited to this sort of problem. Methods which involve clustering time series data can largely be categorised into the following categories (as defined by \textbf{something et al.}) (GIVE EXAMPLES OF THESE TO SQUEEZE IN REFERENCES):
+
+    \begin{enumerate}
+        \item Partitioning: Divides the n data tuples into $k < n$ partitions, each of which represent a cluster containing at least one tuple. 
+        \item Hierarchical: Groups data into trees of clusters and iteratively decides whether a new branch is required for each data tuple.
+        \item Density Based: Clusters will continue to grow as long as the density of data tuples in the neighbourhood (in metric space) exceeds some threshold.
+        \item Grid Based: Quantise the space into discrete cells and perform clustering on these cells independently.
+        \item Model Based: Assumes a model for the data and assigns data tuples to these clusters based on the resulting agreement with the model.
+    \end{enumerate}
+
+    For the sake of brevity, I focus on the first two of these methods as they appear to be most relevant to the problem at hand.
+
+    A common question which is expected to arise when new data arrives is whether the given tuple should be clustered within an existing cluster or whether it should be considered to be unique. To this end, Agglomerative Hierarchical methods (GIVE A REFERENCE) show particular promise. In this, each object is first placed into its own cluster. These clusters are then iteratively merged such that the sum of squares variance is minimised. Once this minimum is achieved the resulting clusters are chosen as the final solution. Note that it is possible to design hierarchical algorithms in such a manner that a maximum number of clusters can never be exceeded, i.e. the program terminates once a certain number of clusters is reached. This method gives each data tuple the opportunity to be classed as its own cluster and, in fact, if a route is completely unique, it should not be merged with another cluster. Whilst at first glance this seems to solve the aforementioned problem, it should be noted that when clusters are merged through the Agglomerative Hierarchical technique, they remain immutable and cannot be broken. Therefore, if a new data tuple arrives which requires that existing data tuples are merged into its cluster, then it may be necessary to run the algorithm from scratch. However, it is unlikely that this will be required often.
+
+    A similar problem is that, often, routes will partially overlap with one another and therefore, they could be placed in clusters with different degrees rather than placed entirely in one. As mentioned in \textbf{Section 1.4}, Fuzzy clustering allows for this to be accounted for. However, with time series data, it is of particular importance that the metric be chosen to accurately compare routes with potential clusters. This is especially true when time series data is of inhomogeneous length. This will likely be the case with route clustering since the speed of all vehicles will not be the same at all times, due to varying traffic conditions. \textbf{This should probably be placed with Henrik's bit}
+
+    In light of the issues surrounding the choice of distance measures, I provide a short review of potential metrics that can be used for time series data below. These are considered in further depth in \textbf{REF}.
+
+    \begin{enumerate}
+        \item Euclidean distance
+        \item Cross correlation coefficients
+        \item Short time series distance
+        \item Dynamic time warping distance
+        \item KL divergence
+        \item J/Chernoff divergence
+    \end{enumerate}
+
+    \textbf{I'll go into more depth on these in the final write up}
+
+
+    \section{Evaluation of clustering solutions}
+
+    Alongside the clustering solution itself, the confidence in the solution must be considered. This gives the data science team an indication of the extent to which the solution can be trusted. In the literature, this problem has, for the most part, been explored in the context of gene expression clustering. Here, it is important for biological studies, that the clustering solutions provide some useful biological relavance. However, the ideas can be transferred towards route clustering which too contains large amounts of uncertainty and must hold geographical relevance. 
+
+
+    \textbf{More to come}
 \end{document}

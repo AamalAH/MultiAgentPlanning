@@ -25,15 +25,6 @@ from Agent02 import Agent02
 from GameAssignment01 import GameAssignment01
 
 
-
-
-#epsilon = 0.2
-
-#gameName = 'PD'
-#gameName = 'CE2'
-#gameName = 'SH'
-#gameName = 'HD'
-
 def runSim(Nsim, parameters, gamma):
     
     T = 50
@@ -46,9 +37,9 @@ def runSim(Nsim, parameters, gamma):
     tau = parameters['tau']
     lr = parameters['lr']
     
-    initPara = '80,20,90,10' #Beta distribution parameters. Makes it so that action 1 has a higher probability than action 2
+    #initPara = '80,20,90,10' #Beta distribution parameters. Makes it so that action 1 has a higher probability than action 2
     #initPara = '20,80,80,20'
-    #initPara = '50,50,5,5'
+    initPara = '50,50,5,5'
     
     
     # dirName = 'result_Q-boltzmann_%s-%s_lr%.2f_temp%.1f_N%d_m%d'%(gameName, initPara, lr, tau, Nagent, m)
@@ -79,7 +70,7 @@ def runSim(Nsim, parameters, gamma):
     allxBar = []
     
     # This will run multiple simulations so that the results can be averaged over
-    
+    allConverged = []
     for sim in range(Nsim):
         countActionT = []
         convergenceT = []
@@ -102,6 +93,8 @@ def runSim(Nsim, parameters, gamma):
 
         maxT = 1e3
         xbar = np.zeros(Nact, dtype=np.float)
+
+
 
         stopCond = False
         tol = 1e-6
@@ -160,20 +153,22 @@ def runSim(Nsim, parameters, gamma):
             stopCond = normStep < tol
             t += 1
 
+        print('r: {0}, gamma: {1}, Simulation: {2}, Converged: {3}'.format(lr/tau, gamma, sim, stopCond))
+        allConverged.append(stopCond)
         allxBar.append(xbarT)
 
-    return allxBar, stopCond
+    return np.mean(allConverged)
 
 
 if __name__ == "__main__":
-    nSim = 1
-    gamma = 1
+    nSim = 2
+    gamma = -.3
     
-    parameters = {'tau': 2, 'lr': 0.1}
+    parameters = {'tau': 0.01, 'lr': 0.005}
     
-    allxBar = runSim(nSim, parameters, gamma)
+    meanConverged = runSim(nSim, parameters, gamma)
     
-    meanTraj = np.mean(np.array(allxBar).squeeze(), axis = 0)
+    # meanTraj = np.mean(np.array(allxBar).squeeze(), axis = 0)
     
     
     

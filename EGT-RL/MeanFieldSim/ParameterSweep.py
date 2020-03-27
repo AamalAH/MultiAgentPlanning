@@ -15,9 +15,10 @@ from GameAssignment01 import GameAssignment01
 from MAgame1202 import runSim
 
 dirName = 'ParameterSweep Results'
-os.makedirs(dirName)
+if not os.path.exists(dirName):
+    os.makedirs(dirName)
 
-nSimulations = 1
+nSimulations = 5
 gameName = 'PD'
 
 allMeanTraj = []
@@ -26,21 +27,27 @@ allParams = []
 converged = []
 tau = 0.01
 
-for r in tqdm(np.linspace(0, 1, num=100)):
-    for gamma in np.linspace(-1, 0, num=100):
+for r in tqdm(np.linspace(0, 5, num=10)):
+    for gamma in np.linspace(-1, 1, num=10):
 
-         parameters = {'tau': tau, 'lr': r * tau}
-         
-         allParams.append([tau, r])
-         
-         allxBar, converged = runSim(nSimulations, parameters, gamma)
-         allMeanTraj.append(np.array(allxBar))
+        if not os.path.exists(dirName + '/parameterSweep_r_{0}_gamma_{1}.txt'.format(r, gamma)):
+             parameters = {'tau': tau, 'lr': r * tau}
 
-         # allMeanTraj.append(np.array(np.mean(np.array(allxBar).squeeze(), axis = 0)))
+             allParams.append([tau, r])
 
-         with open(dirName + '/parameterSweep_r_{0}_gamma_{1}.txt'.format(r, gamma), 'w') as f:
-            f.write('r: {0}, gamma: {1} \n'.format(r, gamma))
-            f.write('Converged: {0} \n'.format(str(converged)))
-            for probs in allMeanTraj[-1]:
-                f.write(str(probs) + '\n')
-            f.close()
+             meanConvergence = runSim(nSimulations, parameters, gamma)
+             # allMeanTraj.append(np.array(allxBar))
+
+             # allMeanTraj.append(np.array(np.mean(np.array(allxBar).squeeze(), axis = 0)))
+
+             with open(dirName + '/parameterSweep_r_{0}_gamma_{1}.txt'.format(r, gamma), 'w') as f:
+                f.write('r: {0}, gamma: {1} \n'.format(r, gamma))
+                f.write('Converged: {0} \n'.format(str(meanConvergence)))
+                # for probs in allMeanTraj[-1]:
+                #     f.write(str(probs) + '\n')
+                f.close()
+        else:
+            continue
+
+
+print('hi')
