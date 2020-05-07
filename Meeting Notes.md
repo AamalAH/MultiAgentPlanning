@@ -41,6 +41,7 @@
 ## 7/05/20
 
 - Establish equivalent of Eq (70) in Galla Supplementary Material for the coupled dynamics of Tuyls' Q-Learning
+
 - Run tests on Tuyls' dynamics to determine the effect of the coupled term (from Tuyls et al Eq 11)
 
     $$\sum_{ij} x_i A_{ij}y_j.$$
@@ -48,8 +49,13 @@
     If removing this term has little consequence on the overall dynamics, then consider lifting the coupled term in derivation.
 
 - Write up derivation so far with introduction and motivation
+
 - (Added by Aamal) Begin running numerical tests on Q-Learning approach to determine islands of stability in an empirical test (i.e. produce equivalent figures as Figure 6 in Galla's paper)
+
 - Continue working towards equivalent of Eq. 69 for Leung et al's mean field dynamics
+
+- Keep in mind the choice of the second supervisor.
+
 
 **Return to Literature Review - Revised**
 
