@@ -18,7 +18,5 @@ for r in tqdm(np.linspace(0, 5, num=10)):
         j+=1
     i+=1
 
-
-
 plt.imshow(allmeanConvergence.T, cmap='hot', interpolation='nearest')
 plt.show()

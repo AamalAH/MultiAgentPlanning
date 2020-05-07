@@ -38,7 +38,20 @@
         - In terms of applications, let's focus in on those related to autonomous systems (or perhaps even looking at how the techniques can be applied to autonomous systems)
     - Re-evaluate the Swarm application for MPC. Perhaps it is not necessary/optimal.
 
-## Thoughts and Ideas
+## 7/05/20
 
-- One step lookahead of other agents when predicting in MPC
-- Mean field approximation for N agents
+- Establish equivalent of Eq (70) in Galla Supplementary Material for the coupled dynamics of Tuyls' Q-Learning
+- Run tests on Tuyls' dynamics to determine the effect of the coupled term (from Tuyls et al Eq 11)
+
+    $$\sum_{ij} x_i A_{ij}y_j.$$
+
+    If removing this term has little consequence on the overall dynamics, then consider lifting the coupled term in derivation.
+
+- Write up derivation so far with introduction and motivation
+- (Added by Aamal) Begin running numerical tests on Q-Learning approach to determine islands of stability in an empirical test (i.e. produce equivalent figures as Figure 6 in Galla's paper)
+- Continue working towards equivalent of Eq. 69 for Leung et al's mean field dynamics
+
+**Return to Literature Review - Revised**
+
+- Populate some of the empty sections (such as Swarms and Stochastic Games)
+- Add to the ideas in Section 7.1 (Considering Intelligence in Swarm Dynamics) with relevant literature and proposed research directions.
