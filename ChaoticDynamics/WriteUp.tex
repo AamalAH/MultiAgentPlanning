@@ -1,0 +1,58 @@
+\documentclass{article}
+
+\usepackage[margin=2cm]{geometry}
+
+\title{Derivation Write Up}
+\author{Aamal Hussain}
+
+\begin{document}
+
+	\maketitle
+	
+	\section{Introduction} % (fold)
+	\label{sec:introduction}
+
+	\begin{itemize}
+			\item For use in Multi-Agent Reinforcement Learning
+			\item Requirement to get some desired behaviours out of the system (e.g. conforming to
+			predefined values or constraints)
+			\item For this, it is required that we are able to predict the outcome of the learning
+			behaviour
+			\item Work done on determining the dynamics of MARL gives an indication of what
+			solutions an algorithm will produce
+			\item We can use this, alongside stability theory, to understand the nature of the games
+			which result in stable behaviours and which result in chaotic behaviours.
+			\item Largely follows the work presented by Sanders et al. However, whilst they consider
+			EWA, we consider Q-Learning, which is more popular in RL communities.
+	\end{itemize}	
+
+	\subsection{Problem Statement} % (fold)
+	\label{sub:problem_statement}
+	
+	Given a particular learning algorithm and game, is it possible to determine whether the game is
+	likely to reach a unique fixed point or exhibit more complex behaviour? What are the factors
+	which affect this resulting behaviour?
+
+	% subsection problem_statement (end)
+	
+	\subsection{Objectives and Scope} % (fold)
+	\label{sub:objectives_and_scope}
+
+	Analyse the stability of Multiagent Q-Learning on iterated games. Brings the work presented by
+	Sanders et al to the reinforcement learning community.
+
+	Assumptions:
+
+	\begin{itemize}
+		\item Focuses on stateless games
+		\item Homogeneous agents
+		\item Discrete action spaces
+		\item Small, finite number of agents.
+	\end{itemize}
+	
+	% subsection objectives_and_scope (end)
+
+	% section introduction (end)
+
+
+\end{document}
