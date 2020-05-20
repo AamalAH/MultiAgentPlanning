@@ -1,6 +1,8 @@
 \documentclass{article}
 
 \usepackage[margin=2cm]{geometry}
+\usepackage{amsmath}
+
 
 \title{Derivation Write Up}
 \author{Aamal Hussain}
@@ -46,7 +48,7 @@
 	\begin{itemize}
 		\item Focuses on stateless games
 		\item Homogeneous agents
-		\item Discrete action spaces
+		\item Discrete action spaces, with large number of actions.
 		\item Small, finite number of agents.
 	\end{itemize}
 	
@@ -54,5 +56,68 @@
 
 	% section introduction (end)
 
+
+	\section{Derivation} % (fold)
+	\label{sec:derivation}
+	
+	We start with the two-agent Q-Learning dynamics as presented by Tuyls et al.
+
+	\begin{subequations}
+		\begin{equation}
+			\frac{\dot{x}(t)}{x(t)} = \alpha \tau (\sum_{j} a_{ij} y_j - \sum_{i j} x_i a_{ij} y_j)
+			+ \alpha \sum_j x_j ln(\frac{x_j}{x_i}) 
+		\end{equation}
+		\begin{equation}
+			\frac{\dot{y}(t)}{y(t)} = \alpha \tau (\sum_{j} b_{ij} x_j - \sum_{i j} y_i b_{ij} x_j)
+			+ \alpha \sum_j y_j ln(\frac{y_j}{y_i})
+		\end{equation}
+	\end{subequations}
+
+	In order to follow the conventions of spin glass theory for the analysis of disordered systems,
+	we rescale the system so that the payoff matrix elements are of order $N^{-1/2}$. The motivation
+	for doing this is that, along the way, we will take the limit of the number of actions $N$ to
+	infinity. However, doing this will result in numerical underflow of the action probabilities 
+	(i.e. the probability of each action goes to zero). To compensate for this, we adjust the
+	system so that the sum of the probabilities add to $N$. The scaling goes as follows:
+
+	\begin{subequations*}
+		\begin{equation*}
+			a_{ij} = \sqrt{N} \tilde{a_{ij}}
+		\end{equation*}
+		\begin{equation*}
+			b_{ji} = \sqrt{N} \tilde{b_{ji}}
+		\end{equation*}
+	\end{subequations*}
+
+	We compensate for this change with
+	\begin{subequations*}
+		\begin{equation*}
+			x_{i} = \tilde{x_{i}}/N
+		\end{equation*}
+		\begin{equation*}
+			y_{i} = \tilde{y_i}/N
+		\end{equation*}
+	\end{subequations*}
+
+	This gives the original equations as
+
+	\begin{subequations}
+		\begin{equation}
+			\frac{\dot{\tilde{x_i}}(t)}{\tilde{x_i}(t)} = \alpha \tilde{\tau} \sum_{j} \tilde{a_
+			{ij}} 
+			\tilde{y_j} -
+			\tilde{\alpha} \tau \frac{1}{\sqrt{N}} \sum_{i j} \tilde{x_i} \tilde{a_{ij}} \tilde{y_j}
+			+ \tilde{\alpha} \sum_j \tilde{x_j} ln(\frac{\tilde{x_j}}{\tilde{x_i}}) 
+		\end{equation}
+		\begin{equation}
+			\frac{\dot{\tilde{y_i}}(t)}{\tilde{y_i}(t)} = \alpha \tilde{\tau} \sum_{j} \tilde{b_
+			{ij}} 
+			\tilde{x_j} -
+			\tilde{\alpha} \tau \frac{1}{\sqrt{N}} \sum_{i j} \tilde{y_i} \tilde{b_{ij}} \tilde{x_j}
+			+ \tilde{\alpha} \sum_j \tilde{y_j} ln(\frac{\tilde{y_j}}{\tilde{y_i}}) 
+		\end{equation}
+	\end{subequations}
+
+	% section derivation (end)
 
 \end{document}

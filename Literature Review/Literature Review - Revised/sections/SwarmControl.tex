@@ -1,0 +1,223 @@
+\documentclass[../sample.tex]{subfiles}
+
+\begin{document}
+	
+	This chapter elaborates on the research directions presented in Chapter \ref{ch::Proposals}.
+	Elaborating on the previous discussion, we propose to consider the development of control
+	methodologies for complex swarm systems. This is strongly influenced by the work presented by
+	Bellomo et al. \cite{Bellomo2017} who consider swarms as large systems of living agents (termed
+	'active particles'). Crucially, this accounts for agents which exhibit complex social
+	agent-agent interactions. This interaction can range from simple attractive/repulsive
+	interactions to strategy selection. To the best of my knowledge, no control methodologies have
+	been proposed for this model of swarms. In detail, the authors consider the following features:
+
+	\begin{enumerate}
+		\item The swarm consists of a large number of active particles who interact with other
+		particles within a sensitivity domain.
+		\item Interactions are non-local and nonlinearly additive.
+		\item The swarm occupies an initial domain which, through the overall dynamics, evolves in
+		time.
+		\item The swarm may contain different types of subgroups. For example, there may be leaders
+		in the group. In a broad sense, the approach allows for groups which follow different
+		strategies and interaction rules with other groups.
+		\item The rules of interaction dynamics depend on the type of agents present, but is
+		uniformly distributed within each group.
+	\end{enumerate}
+
+	The advantage to this view of swarming agents is that it is extremely general. In fact, to the best
+	of my knowledge, it is the most general swarm description available in the literature. It accounts
+	for heterogeneous groups, inter-agent interactions, which maybe both short and long-range. This is
+	particularly important from a safety perspective; most existing considerations of swarms treat the
+	agents as evolving through independent random motion and, therefore, do not account for collision
+	avoidance behaviour. However, to control swarms of intelligent agents who do interact with one
+	another, it is important that interactions are taken into account. Similarly, this is beneficial
+	from an intelligence perspective. The inter-agent interactions can also incorporate the evolution
+	of agent strategies through repeated interactions (i.e. Multi Agent Reinforcement Learning). This
+	notion is expanded upon in Chapter \ref{ch::DynMARL}.
+
+	With the ultimate goal of producing control strategies for swarms of active particles, the
+	following studies are proposed:
+
+	\begin{itemize}
+		\item Control of a homogeneous swarm through field interaction,
+		\item An experimental study of swarm field interaction,
+		\item Control of a swarm through leadership,
+		\item Generalisations of control strategies,
+		\item Consideration of learning strategies through repeated interactions.
+	\end{itemize}
+
+	The above is ordered in an indicative manner of the general progress of research with
+	complexity gradually being introduced over time. However, the order is not immutable. In
+	particular the consideration of learning is one that may be introduced into each of the above
+	studies. The remainder of this chapter addresses each of these points and elaborates on the
+	suggested work.
+
+	\section{Control through fields} % (fold)
+	\label{sub:control_through_fields}
+	
+	This study extends the work of Zhang \cite{Zhang2018}, Elamvazuthi \cite{Elamvazhuthi2019} and
+	Li et al. \cite{Li2017}. Here, the authors consider the dynamics of swarms through 'drifted
+	brownian motion'. The control input, in this case, is some scalar field which is generated from the
+	environment. Each agent measures this field at their location and uses it to adjust their
+	velocity, which eventually results in the entire swarm achieving some desired distribution. This
+	has been shown, both theoretically and experimentally, to drive swarm systems in a stable
+	manner.
+
+	The hypothesis of this section is that the distribution of active particles may
+	similarly be controlled through the application of scalar field. The dynamics derived by Bellomo
+	et al. \cite{Bellomo2017} includes a 'flocking field' which agents can measure. By controlling
+	the flocking field, we may be able to drive the swarm to specific
+	distributions. Some applications of this study are:
+
+	\begin{itemize}
+		\item Search and Rescue, in which agents will be required to flock to specific areas (e.g.
+		areas with survivors detected).
+		\item Construction, in which agents will be required to take on desired formations based on
+		the structure to be designed.
+		\item Medical Robotics, in which agents are required to target specific areas of the body.
+	\end{itemize}
+
+	The contribution that this study presents over those using brownian motion is the inclusion of an
+	interaction operator. This governs how agents interact with one another. By accounting for this, we
+	are able to control swarms where agents, for instance, avoid collisions with one another. The
+	complexity of this interaction term will need to be gradually increased over time. To begin with,
+	we may entirely neglect this term. It is here that we will compare the model proposed by Zhang with
+	that proposed by Bellomo et al. We may then consider only local interactions, which is typical for
+	most swarming systems in the current literature, before then considering non-local interactions.
+	This provides the scope for swarms to take on interact with a greater number of agents. At this
+	stage, we may expand our study to consider the presence of interaction domains. This places
+	constraints on how agents may interact with one another, allowing for a greater generalisation of
+	inter-agent interactions. Ultimately, we would like to influence the interaction term, though this
+	is discussed in Section \ref{sec:learning_strategies_through_iterated_interaction}. The questions
+	we will consider here are:
+
+	\begin{itemize}
+		\item The controllability of the system: Under what conditions is it possible to drive the
+		swarm from one configuration to another in a stable manner?
+		\item The guarantees of the system: Is it possible to ensure that the agents will not enter
+		certain areas of state space, or exceed certain control constraints (e.g. max velocity)?
+	\end{itemize}
+
+	In conclusion, the results from this study already significantly expand the current capabilities of
+	swarming agents by developing control methodologies which can drive the swarm towards desired
+	distributions in a stable manner. This is accomplished through controlling the 'flocking field'
+	which is indirectly used to adjust the velocity of the agents.
+
+	% section control_through_fields (end)
+	
+	\section{Experimental Study of Fields} % (fold)
+	\label{sec:experimental_study_of_fields}
+	
+	The natural question which arises from the previous discussion pertains to the 'flocking field' and
+	what physical property this may correspond to. In other words, where does this field come from? In
+	the previous section, we assumed, a priori, the existence of this field. However, this will not
+	necessarily be the case in reality. We will therefore turn to experiment to determine how we might
+	generate this field for given scenarios. Examples of how the field may be generated are:
+
+	\begin{itemize}
+		\item Measurements of physical properties, such as the intensity of light or heat 
+		(particularly useful when aiming to avoid fires in urban search and rescue), or
+		concentration of pollutants for enviromental applications.
+		\item Density of the environment through computer vision. This may, for instance, include
+		counting the density of survivors in a search and rescue scenario or the presence of
+		obstacles for avoidance scenarios.
+		\item Shape detection for manipulating objects. For instance, picking up beams and bringing
+		them to desired locations may be solved by appropriately choosing an underlying field.
+	\end{itemize}
+
+	These suggestions give us the capability to verify the results presented in the previous
+	section. They will also allow us to show the applicability of the results in a wide array of
+	disciplines.
+	% section experimental_study_of_fields (end)
+
+	\section{Control through leadership} % (fold)
+	\label{sec:control_through_leadership}
+	
+	It is here that we start to consider heterogeneity within the system. To this end, we consider
+	the case that the majority of the swarm are comprised of 'followers' to whom controls cannot be
+	directly applied. Instead, controls are applied to a select group of 'leaders' within the swarm.
+	Then, by their mutual interaction, the leaders are able to herd the swarm towards particular
+	states. This study will follow a similar structure to that of Borzi and Suttida 
+	\cite{Borzi2015} and Ko and Zuazua \cite{Ko2019}. In both of these works, a
+	drawback is that no requirements are placed on the final velocity of the followers. This
+	means that whilst the swarm may reach a desired state, it will not remain in that
+	position. The questions that we will consider here are similar in nature to those presented in
+	Section \ref{sub:control_through_fields}, namely controllability and guarantees.
+
+	The disadvantage to control through leadership is that we have induced points of failure (i.e.
+	if the leaders fail, we can no longer control the system). However, its advantage as compared
+	with control through fields is the capability to handle dynamic environments. Before, if we were
+	to have dynamic environments, we would have to adjust the flocking field accordingly and
+	communicate this change to the entire swarm. Here, the followers do not require any knowledge of
+	the environment as they only interact with the leaders. This reduced computation allows for a
+	greater capacity for the swarm behaviour to evolve dynamically.
+
+	% section control_through_leadership (end)
+
+	\section{Generalisation of Control Strategies} % (fold)
+	\label{sec:generalisation_of_control_strategies}
+	
+	This section of study will be broken down into two areas of exploration. These are:
+
+	\begin{enumerate}
+		\item Agent Heterogeneity
+		\item State Space Non-linearity
+	\end{enumerate}
+
+	\paragraph{Agent Heterogeneity} % (fold)
+	\label{par:agent_heterogeneity}
+	
+	builds on Bellomo et al's proposal of sub-groups within the swarm. These groups may interact with
+	the flocking field or the leader in different ways. For instance, one may be more strongly repulsed
+	by the leader than another, or one group may experience a completely different flocking field than
+	another. However, they all interact with one another through the interaction operator. In addition,
+	we may consider that, through the course of the swarming process, some agents may fail, and
+	therefore its internal dynamics and ability to interact with other agents will change. We must
+	ensure that the control framework (which may now take on a hybrid control \cite{Lygeros2004}
+	format) can account for this and still ensure the completion of the task and safety of the system.
+	This will be a powerful extension to swarm literature since, to the best of my knowledge, there are
+	no studies which provide a unified framework with which to control agents of different types.
+
+	% paragraph agent_heterogeneity (end)
+
+	\paragraph{State Space Non-Linearity} % (fold)
+	\label{par:state_space_non_linearity}
+	
+	takes into account the mechanical constraints of the agents. This is inspired by the work of
+	Elamvazuthi and Berman \cite{Elamvazuthi2018} who account for the fact that the behaviour of
+	agents is best described by their configuration space, rather than simply their state space.
+	For instance in order for a group of robot manipulators (robot arms) to pick up a heavy object,
+	not only must they be in the correct position (e.g. surrounding the object), but also the arms
+	must be in the correct configuration to perform the action. This will allow for more complex
+	interactions between agents since, rather than simply achieving some desired position, the
+	agents may actually be in the required configurations to perform tasks.
+
+	% paragraph state_space_non_linearity (end)
+
+	The above aim to generalise the control strategies developed in this study. These will be
+	powerful additions to swarm literature since they will allow for systems to act in more complex
+	manners by introducing heterogeneity and configurations within one control framework. 
+
+	% section generalisation_of_control_strategies (end)
+
+	\section{Learning Strategies through Iterated Interaction} % (fold)
+	\label{sec:learning_strategies_through_iterated_interaction}
+	
+	This section of the study is perhaps the strongest extension to swarm control proposed in this
+	chapter, and will likely be the most challenging. Here, we attempt to control the interaction term
+	in Bellomo et al's model and we consider that the behaviour of the entire swarm may be influenced
+	by decision making on an individual level. This will involve agents learning their strategies
+	through repeated interaction. The goal, then, is to design the agent parameters, reward structure
+	and control strategy to achieve desired results. To accomplish this will require a unification of
+	multi agent learning and control theory. Whilst, at first glance, such an endeavour seems
+	incredibly challenging, our work in the predictability of mean field learning (Chapter 
+	\ref{ch::DynMARL}) places us in a unique position to tackle the problem. This framework will
+	first establish the desired strategy to be taken by the agents and choose the game's reward
+	structure so that learning will converge to a stable fixed point. Then by accounting for this
+	strategy within the interaction term, we apply the appropriate controls in the flocking field to
+	drive the swarm in a stable manner. We will again consider the aforementioned controllability
+	and guarantees questions and establish how the incorporation of learning affects these results.
+
+	% section learning_strategies_through_iterated_interaction (end)
+
+\end{document}
