@@ -538,7 +538,7 @@ actions $i$ are independent and identically distributed (i.i.d.), which gives
 		\tilde{\tau}^2 \Gamma G_x(t, t') y(t) \hat{y}(t')])\\
 		\times exp(-\int dt dt'[\tilde{\alpha}^2 \tau^2 \Gamma C_x(t, t') C_y(t, t') \hat{x}(t) 
 		\hat{y}
-		(t')]])
+		(t')])
 	\end{split}
 \end{equation}
 
@@ -549,11 +549,13 @@ we recognise this as the generating functional of the 'effective dynamics' given
 
 \begin{equation}
 	\begin{split}
-		\dot{x}(t) = x(t)(\Gamma \alpha^2 \tilde{\tau}^2 \int dt'[G_y(t, t')x(t')] + \rho_x(t) +
-		\alpha \tilde{\tau} \eta_x(t) + \tilde{\alpha} \tau \frac{\eta_x(t) \eta_y(t)}{2} + 
+		\dot{x}(t) &= x(t)(\Gamma \alpha^2 \tilde{\tau}^2 \int dt'[G_y(t, t')x(t')] + 
+		\tilde{\alpha}
+		\rho_x(t) + \alpha \tilde{\tau} \eta_x(t) + \tilde{\alpha} \tau \eta_x(t) \eta_y(t) +
 		\sqrt{\Gamma} \tilde{\alpha} \tau \mu_x) \\
-		\dot{y}(t) = y(t)(\Gamma \alpha^2 \tilde{\tau}^2 \int dt'[G_x(t, t')y(t')] + \rho_y(t) +
-		\alpha \tilde{\tau} \eta_y(t) + \tilde{\alpha} \tau \frac{\eta_x(t) \eta_y(t)}{2} + 
+		\dot{y}(t) &= y(t)(\Gamma \alpha^2 \tilde{\tau}^2 \int dt'[G_x(t, t')y(t')] + 
+		\tilde{\alpha} \rho_y(t) +
+		\alpha \tilde{\tau} \eta_y(t) + \tilde{\alpha} \tau \eta_x(t) \eta_y(t)+ 
 		\sqrt{\Gamma} \tilde{\alpha} \tau \mu_y) \\
 	\end{split}
 \end{equation}
