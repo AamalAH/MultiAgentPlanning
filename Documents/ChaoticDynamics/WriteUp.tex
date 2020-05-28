@@ -12,7 +12,9 @@
 
 \begin{document}
 
-	\maketitle
+\maketitle
+
+\fb{the bibfile is missing.}
 	
 	\section{Introduction} % (fold)
 	\label{sec:introduction}
@@ -66,6 +68,8 @@
 
 	\section{Derivation} % (fold)
 	\label{sec:derivation}
+
+        \fb{it would be good to have a overall description of the goal of the derivation.}
 	
 	We start with the two-agent Q-Learning dynamics as presented by Tuyls et al.
 
@@ -84,13 +88,18 @@
 	\subsection{Rescaling of Variables} % (fold)
 	\label{sub:rescaling_of_variables}
 	
-		In order to follow the conventions of spin glass theory for the analysis of disordered systems,
-	we rescale the system so that the payoff matrix elements are of order $N^{-1/2}$. The motivation
-	for doing this is that, along the way, we will take the limit of the number of actions $N$ to
-	infinity. However, doing this will result in numerical underflow of the action probabilities 
-	(i.e. the probability of each action goes to zero). To compensate for this, we adjust the
-	system so that the sum of the probabilities add to $N$. The scaling goes as follows:
-
+		In order to follow the conventions of spin glass
+                theory for the analysis of disordered systems, we
+                rescale the system so that the payoff matrix elements
+                are of order $N^{-1/2}$. The motivation for doing this
+                is that, along the way, we will take the limit of the
+                number of actions $N$ to infinity. However, doing this
+                will result in numerical underflow of the action
+                probabilities (i.e. the probability of each action
+                goes to zero). To compensate for this, we adjust the
+                system so that the sum of the probabilities add to
+                $N$. The scaling goes as follows:
+%
 	\begin{subequations}
 		\begin{equation}
 			a_{ij} = \sqrt{N} \tilde{a_{ij}}
@@ -130,12 +139,15 @@
 		\end{equation}
 	\end{subequations}
 
-	The need for the factor of $\frac{1}{\sqrt{N}}$ is to follow the conventions of the saddle point
-	method of integration. This will become clear after taking the expectation of the generating
-	functional. Note that we may drop the notation on time dependence for $x$ and $y$. However, these
-	will always be functions of time. Henceforth, we shall not write the tildes on $x, y, a_{ij},
-	b_{ij}$. We shall also abbreviate the final term as
-
+	The need for the factor of $\frac{1}{\sqrt{N}}$ is to follow
+        the conventions of the saddle point method of
+        integration. This will become clear after taking the
+        expectation of the generating functional. Note that we may
+        drop the notation on time dependence for $x$ and $y$. However,
+        these will always be functions of time. Henceforth, we shall
+        not write the tildes on $x, y, a_{ij}, b_{ij}$. We shall also
+        abbreviate the final term as
+%
 	\begin{equation*}
 		\rho_{x, i}(t) = \sum_j x_j ln(\frac{x_j}{x_i}) 
 	\end{equation*}
@@ -210,7 +222,7 @@
 	\end{split}
 	\end{equation}
 	The only difference between (\ref{eqn::generatingfunctional}) and (\ref{eqn::moveddisorder}) is
-	that we moved the term containing the quenched disorder into a separate exponential. Since our
+	that we moved the term \fb{which one exactly?} containing the quenched disorder into a separate exponential. Since our
 	aim is to take an average over all possible realisations of this disorder, we will only need to
 	focus on the last exponential which we rewrite as
 
@@ -241,7 +253,7 @@
 
 	It should be noted that we have changed some of the subscripts on the terms. Since these terms
 	are all multiplied together and we sum over the subscripts, the letters we choose are of no
-	importance and we can exchange them freely. We will define both exponentials in $Q$ as $Q_1$ and
+	importance and we can exchange them freely \fb{perhaps some more justification might be helpful}. We will define both exponentials in $Q$ as $Q_1$ and
 	$Q_2$ respectively.
 
 	We are now ready to take the expectation of $Q$. To do this, we will exploit the fact that the
@@ -476,32 +488,32 @@ Similarly,
 
 \begin{align*}
 	\frac{\partial f}{\partial \hat{C}_x(t, t')} &\implies C_x(t, t') = \lim_{N \rightarrow \infty}
-N^{-1} \sum_i <x_i(t) x_i(t')>_\Omega = -\lim_{N \rightarrow \infty} \sum_i
+N^{-1} \sum_i \langle x_i(t) x_i(t')\rangle _\Omega = -\lim_{N \rightarrow \infty} \sum_i
 \frac{\partial^2\mathbb{E}[Z(\psi, \phi)]}{\partial \psi_i(t) \partial \psi_i (t')} \bigg|_{\Vec
 {\phi} = \Vec{\psi} = \Vec{h} = 0}\\
 	\frac{\partial f}{\partial \hat{L}_x(t, t')} &\implies L_x(t, t') = \lim_{N \rightarrow \infty}
-N^{-1} \sum_i <\hat{x}_i(t) \hat{x}_i(t')>_\Omega = -\lim_{N \rightarrow \infty} \sum_i
+N^{-1} \sum_i \langle \hat{x}_i(t) \hat{x}_i(t')\rangle _\Omega = -\lim_{N \rightarrow \infty} \sum_i
 \frac{\partial^2\mathbb{E}[Z(\psi, \phi)]}{\partial h_{x,i}(t) \partial h_{x, i} (t')} \bigg|_{\Vec
 {\phi} = \Vec{\psi} = \Vec{h} = 0}\\
 	\frac{\partial f}{\partial \hat{K}_x(t, t')} &\implies K_x(t, t') = \lim_{N \rightarrow \infty}
-N^{-1} \sum_i <x_i(t) \hat{x}_i(t')>_\Omega = -\lim_{N \rightarrow \infty} \sum_i
+N^{-1} \sum_i \langle x_i(t) \hat{x}_i(t')\rangle _\Omega = -\lim_{N \rightarrow \infty} \sum_i
 \frac{\partial^2\mathbb{E}[Z(\psi, \phi)]}{\partial \Vec{\psi}(t) \partial h_{x, i} (t')}
 \bigg|_{\Vec{\phi} = \Vec{\psi} = \Vec{h} = 0}\\
 \frac{\partial f}{\partial \hat{C}_y(t, t')} &\implies C_y(t, t') = \lim_{N \rightarrow \infty}
-N^{-1} \sum_i <y_i(t) y_i(t')>_\Omega = -\lim_{N \rightarrow \infty} \sum_i
+N^{-1} \sum_i \langle y_i(t) y_i(t')\rangle _\Omega = -\lim_{N \rightarrow \infty} \sum_i
 \frac{\partial^2\mathbb{E}[Z(\psi, \phi)]}{\partial \phi_i(t) \partial \phi_i (t')} \bigg|_{\Vec
 {\phi} = \Vec{\psi} = \Vec{h} = 0}\\
 	\frac{\partial f}{\partial \hat{L}_y(t, t')} &\implies L_y(t, t') = \lim_{N \rightarrow \infty}
-N^{-1} \sum_i <\hat{y}_i(t) \hat{y}_i(t')>_\Omega = -\lim_{N \rightarrow \infty} \sum_i
+N^{-1} \sum_i \langle \hat{y}_i(t) \hat{y}_i(t')\rangle _\Omega = -\lim_{N \rightarrow \infty} \sum_i
 \frac{\partial^2\mathbb{E}[Z(\psi, \phi)]}{\partial h_{y,i}(t) \partial h_{y, i} (t')} \bigg|_{\Vec
 {\phi} = \Vec{\psi} = \Vec{h} = 0}\\
 	\frac{\partial f}{\partial \hat{K}_y(t, t')} &\implies K_y(t, t') = \lim_{N \rightarrow \infty}
-N^{-1} \sum_i <y_i(t) \hat{y}_i(t')>_\Omega = -\lim_{N \rightarrow \infty} \sum_i
+N^{-1} \sum_i \langle y_i(t) \hat{y}_i(t')\rangle _\Omega = -\lim_{N \rightarrow \infty} \sum_i
 \frac{\partial^2\mathbb{E}[Z(\psi, \phi)]}{\partial \Vec{\phi}(t) \partial h_{x, i} (t')}
 \bigg|_{\Vec{\phi} = \Vec{\psi} = \Vec{h} = 0}\\
 	\frac{\partial f}{\partial \hat{A}_{xy}(t, t')} &\implies A_{xy}(t, t') = \lim_{N \rightarrow
 	\infty}
-N^{-1} \sum_i <\hat{x}_i(t) \hat{y}_i(t')>_\Omega = -\lim_{N \rightarrow \infty} \sum_i
+N^{-1} \sum_i \langle \hat{x}_i(t) \hat{y}_i(t')\rangle _\Omega = -\lim_{N \rightarrow \infty} \sum_i
 \frac{\partial^2\mathbb{E}[Z(\psi, \phi)]}{\partial \partial h_{x, i} (t) \partial h_{y, i} (t')}
 \bigg|_{\Vec{\phi} = \Vec{\psi} = \Vec{h} = 0}.\\
 \end{align*}
@@ -549,10 +561,10 @@ we recognise this as the generating functional of the 'effective dynamics' given
 with the self-consistency relations
 
 \begin{align}
-	G_x(t, t') &= <\frac{\delta x(t)}{\delta \eta_x(t')}> & G_y(t, t') &= <\frac{\delta y(t)}{\delta
-	\eta_y(t')}> \\
-	<\eta_x(t) \eta_x(t')> &= C_y(t, t') & <\eta_y(t) \eta_y(t')> &= C_x(t, t')\\
-	<\mu_x(t) \mu_y(t')> &= C_x(t, t') C_y(t, t') & <\mu_x(t) \mu_x(t')> &= <\mu_y(t) \mu_y(t')> = 0
+	G_x(t, t') &= \langle \frac{\delta x(t)}{\delta \eta_x(t')}\rangle  & G_y(t, t') &= \langle \frac{\delta y(t)}{\delta
+	\eta_y(t')}\rangle  \\
+	\langle \eta_x(t) \eta_x(t')\rangle  &= C_y(t, t') & \langle \eta_y(t) \eta_y(t')\rangle  &= C_x(t, t')\\
+	\langle \mu_x(t) \mu_y(t')\rangle  &= C_x(t, t') C_y(t, t') & \langle \mu_x(t) \mu_x(t')\rangle  &= \langle \mu_y(t) \mu_y(t')\rangle  = 0
 \end{align}
 
 \section{Stability Analysis} % (fold)
