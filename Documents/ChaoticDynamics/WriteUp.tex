@@ -3,7 +3,9 @@
 \usepackage[margin=2cm]{geometry}
 \usepackage{amsmath,amsfonts}
 \usepackage{mathtools}
-
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
 \usepackage{color}
 \newcommand\fb[1]{\textcolor{blue}{FB: #1}}
 
@@ -655,9 +657,39 @@ where
 	\mathcal{A}(\omega, x^*) = \frac{i \omega}{x^*} - \Gamma \alpha^2 \tilde{\tau}^2 \mathcal{G}_y(\omega)
 \end{equation}
 
-The behaviour of this line for $\omega = 0$ gives the long term behaviour of the system. By considering that, for a stable fixed point to exist, $\left<[|\mathcal{X}(\omega = 0)|^2 \right>$, we arrive at an expression for a stability line (i.e. the phase transition between the existence of stable fixed points and unstable behaviour).
-
+The behaviour of this line for $\omega = 0$ gives the long term behaviour of the system. By
+considering that, for a stable fixed point to exist, $\left<[|\mathcal{X}(\omega = 0)|^2 \right>$,
+we arrive at an expression for a stability line (i.e. the phase transition between the existence of
+stable fixed points and unstable behaviour).
 
 
 % section stability_analysis (end)
+
+\section{Numerical Simulations} % (fold)
+\label{sec:numerical_simulations}
+
+\begin{figure}[h]
+
+	\centering
+	\begin{subfigure}[b]{0.45 \textwidth}
+	\centering
+	\includegraphics[width = 0.7 \textwidth]{Figures/Run1.png}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.45 \textwidth}
+	\centering
+	\includegraphics[width = 0.7 \textwidth]{Figures/Run2.png}
+	\end{subfigure}
+
+	\caption{$\alpha = 0.1$, $\gamma = 0.1$, $\tau \in [0.1, 10]$, $\Gamma \in [-1, 1]$. Each
+	simulation is run for 1e5 iterations and tested for convergence. The game is said to have
+	converged based on a tolerance of 1\% difference between action probabilities. For each
+	combination of $\tau$, $\Gamma$ the game is played 5 times, each with random payoff matrices
+	and initial conditions. The average number of converged games (giving an indication of
+	probability of convergence) is shown in each cell of the heatmap.}
+\end{figure}
+
+
+
+
+% section numerical_simulations (end)
 \end{document}
