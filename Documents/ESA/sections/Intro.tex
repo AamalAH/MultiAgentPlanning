@@ -3,17 +3,88 @@
 \begin{document}
 
     Swarm robotics bases its success upon the collaboration of many agents who contribute towards
-    the overall success of the system \cite{HammanFormalApproach}. The union of populations of
-    agents who share the same goal can give rise to behaviours that are far more complex than
-    individual robots can achieve. The same, of course, is true for humans; whilst an individual may
-    be capable of building a house, it takes many more to build a city.
+    the overall success of the system \cite{HammanFormalApproach}. The collaboration of many agents
+    who share the same goal can give rise to behaviours that are far more complex than individual
+    robots can achieve. The capacity for complexity is becoming increasingly important as robots are
+    we are presented with ever more challenging tasks including: search and rescue, cleaning up
+    space debris, and robotic assembly. Such tasks are beyond the capabilities of individual robots
+    and so we must leverage the capacity for agents in a swarm to collectively achieve our
+    goals. Fortunately, a growing subset of the Control Theory community have turned their attention
+    towards this very problem and address the question: how does the dynamical behaviour of a
+    population of agents change under the influence of control? Note that we use the term 'agent'
+    loosely here, an agent can refer to anything from a simple particle \cite{BorziCollectiveMotion}
+    to a complex robot \cite{ElamvazuthisThesis}. In answering this question, researchers have
+    gained a stronger understanding of how a swarm may be controlled to achieve desired results.
 
-    The ability to exhibit complex 
-    
+    Another technique which has made incredible strides towards improving the capability of
+    autonomous systems to communally achieve results is Multi-Agent Reinforcement Learning (MARL)
+    \cite{Schwarz}. This builds on the ideas of classical Reinforcement Learning which allows an
+    agent to optimise its strategies towards tackling a task through repeated exposure to that task.
+    MARL utilises this same principle with the caveat that agents must adapt their strategies based
+    not only on the outcome of the action, but also on the actions of the other agents. This has
+    shown strong results in practical applications \textbf{APPLICATIONREFERENCES}. Whilst MARL was
+    once considered to be non-identifiable (there is no clear way of identifying the algorithm that
+    a particular agent was trained on) and black box (there is no clear way of ensuring a desired
+    result from a learning algorithm), a steady stream of research is emerging to lift this fog
+    \cite{TuylsSurvey}. This allows for researchers to choose the parameters of their learning
+    algorithms appropriately to ensure that learning agents behave in the desired manner.
+
     \section{Problem Statement} \label{sec::Problem_Statement}
+
+    Based on the successes of the swarm control and MARL communities, a natural question to ask is
+    whether the promises of these disciplines may be unified. Such a combination would radically
+    improve the capabilities of autonomous system. Ultimately such a system must be driven under the
+    influence of control inputs to perform given tasks. Examples of this might be: forming around
+    individual components of space debris and moving them to a desired location (e.g. a bin), or
+    relocating to multiple areas in a disaster zone to provide immediate relief. For such tasks to
+    be achieved in dynamic environments, which is typically the case, the system must be able to
+    constantly adapt its approach and respond accordingly. Given these considerations, the problem
+    may be stated as follows
+
+    \begin{enumerate}
+    	\item A population of robots is given a goal which must be achieved, which can often be
+    	deconstructed into a set of smaller tasks, to be executed simultaneously. 
+    	\item These are to be performed in a dynamic environment with obstacles present and where
+    	the number of tasks, and their priorities may be in constant flux.
+    	\item The agents in the system must, therefore, make decisions collectively which will in
+    	the system achieving the given goals. Due to the dynamic quality of the problem, these
+    	decisions may need to be evaluated online and in a decentralised fashion, as it may not be
+    	possible for a centralised decision maker to communicate with all agents.
+    	\item It is desirable, therefore, to control the dynamical behaviour of
+    	a system composed of agents who learn and adapt through interactions with each other. In
+    	addition, to ensure the safe operation of the system, properties such as state and control
+    	constraints must be satisfied.
+    \end{enumerate}
+
+
+    With the goal of addressing this problem in mind, the aim of this PhD is to address the question
+    posed by the final point: how does the dynamical behaviour of a swarm of intelligent, adaptive
+    agents evolve under the influence of defined control inputs?
 
     \section{Objectives and Scope} \label{sec::Objectives_and_Scope}
 
+    In particular, we will study
+
+    \begin{itemize}
+    	\item How the strategies of a population of agents evolves as the iteratively interact
+    	with one another. We will examine whether the system evolves to a stable equilibrium, or
+    	whether it exhibits complex, even chaotic behaviour.
+    	\item The extent to which the dynamical behaviour of a population of learning agents is
+    	influenced under given control. We seek to understand the conditions under which guarantees
+    	on theoretical results such as controllability, stability, and well-posedness may be
+    	established.
+    \end{itemize}
+
+    The resultant work will provide novel insights into the behaviour of swarm systems and provide
+    new methods for which they may be practically used. Importantly, the study will seek to
+    understand the guarantees that can be placed on the safety of such systems in terms of their
+    stability and constraint satisfaction.
+
+    \textbf{Need to talk about the scope of the project: what assumptions will be made to ensure
+    that the above can be achieved within the given time constraints?}
+
     \section{Methodology} \label{sec::Methodology}
+
+
 
 \end{document}
