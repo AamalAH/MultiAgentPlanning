@@ -1,0 +1,54 @@
+\documentclass[11pt]{report}
+
+\usepackage{graphicx}
+\usepackage{subfiles}
+\usepackage[margin=.8in,letterpaper]{geometry}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\thepage}
+\lhead{\leftmark}
+
+\begin{document}
+
+\clearpage\thispagestyle{empty}
+\begin{titlepage}
+    \begin{tikzpicture}[overlay, remember picture]
+        \node[anchor=north west, %anchor is upper left corner of the graphic
+        xshift=0.5cm, %shifting around
+        yshift=-0.5cm] 
+        at (current page.north west) %left upper corner of the page
+        {\includegraphics[width= 0.5 \textwidth]{Figures/ImperialLogo.jpg}}; 
+    \end{tikzpicture}
+
+	\flushright
+    \hfill
+    \vfill
+	{\Huge Early Stage Report \par} 
+	\rule[5pt]{\textwidth}{.4pt} \par
+	{\Large Aamal Abbas Hussain \\ CID: 01060230}
+	\vfill 
+    {\Large Department of Computing\\Imperial College London\\Supervisor: Francesco Belardinelli\\
+	June 2020 \\}
+\end{titlepage}
+
+\subfile{sections/Abstract.tex}
+
+\tableofcontents
+
+\chapter{Introduction} \subfile{sections/Intro.tex} \label{ch::Intro}
+
+\chapter{Literature Review} \subfile{sections/LitReview.tex} \label{ch::Lit_Review}
+
+\chapter{Proposed Research} \subfile{sections/ProposedResearch.tex} \label{ch::ProposedResearch}
+
+\chapter{Short Term Goals} \subfile{sections/ShortTermGoals.tex} \label{ch::ShortTermGoals}
+
+\chapter{Research Timeline} \subfile{sections/ResearchTimeline.tex} \label{ch::ResearchTimeline}
+
+
+
+\end{document}

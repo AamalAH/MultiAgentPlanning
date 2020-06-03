@@ -43,8 +43,7 @@
 	\subsection{Objectives and Scope} % (fold)
 	\label{sub:objectives_and_scope}
 
-	Analyse the stability of Multiagent Q-Learning on iterated games. Brings the work presented by
-	Sanders et al to the reinforcement learning community.
+	Analyse the stability of Multiagent Q-Learning on iterated games.
 
 	Assumptions:
 
@@ -55,6 +54,11 @@
 		\item Small, finite number of agents.
 	\end{itemize}
 
+
+	The work by Sanders et al. considers agents who have these same assumptions, but learn with a
+	reduced version of the Experience Weighted Attraction algorithm. For the Reinforcement Learning
+	community, it is of interest to consider the question of stability from the point of view of
+	agents who follow the popular Q-Learning algorithm.
 
  \fb{you might discuss in which way any of the points above differs from the relevant reference.}
         
@@ -80,6 +84,8 @@
 			+ \alpha \sum_j y_j ln(\frac{y_j}{y_i}).
 		\end{equation}
 	\end{subequations}
+
+	Here, $\alpha$ and $\tau$ are the parameters of the agent; Sanders et al. refer to these as the memory and intensity of choice parameters respectively. Agent 1 takes action i with probability $x_i$ while Agent 2 takes action j with probability $y_j$. If these actions are taken, the agents receive payoff $a_{ij}$ and $b_{ji}$ respectively. 
 
 	\subsection{Rescaling of Variables} % (fold)
 	\label{sub:rescaling_of_variables}
@@ -154,7 +160,7 @@
 	\end{equation}
 
 	where the equations of motion are the Lagrange equations of motion given in (
-	\ref{eqn::scaledEOM}) and
+	\ref{eqn::scaledEOM}) andSince
 	the fields $\Vec{\psi_i(t)}$ and $\Vec{\phi_i(t)}$ will be set to zero at the end of the
 	calculation. $\delta$ denotes the Dirac delta function. We write this in its Fourier
 	representation, which yields	
@@ -526,7 +532,7 @@ actions $i$ are independent and identically distributed (i.i.d.), which gives
 		\tilde{\tau}^2 \Gamma G_x(t, t') y(t) \hat{y}(t')])\\
 		\times exp(-\int dt dt'[\tilde{\alpha}^2 \tau^2 \Gamma C_x(t, t') C_y(t, t') \hat{x}(t) 
 		\hat{y}
-		(t')])
+		(t')]).
 	\end{split}
 \end{equation}
 
@@ -544,7 +550,7 @@ we recognise this as the generating functional of the 'effective dynamics' given
 		\dot{y}(t) &= y(t)(\Gamma \alpha^2 \tilde{\tau}^2 \int dt'[G_x(t, t')y(t')] + 
 		\tilde{\alpha} \rho_y(t) +
 		\alpha \tilde{\tau} \eta_y(t) + \tilde{\alpha} \tau \eta_x(t) \eta_y(t)+ 
-		\sqrt{\Gamma} \tilde{\alpha} \tau \mu_y) \\
+		\sqrt{\Gamma} \tilde{\alpha} \tau \mu_y), \\
 	\end{split}
 \end{equation}
 
@@ -554,7 +560,7 @@ with the self-consistency relations
 	G_x(t, t') &= <\frac{\delta x(t)}{\delta \eta_x(t')}> & G_y(t, t') &= <\frac{\delta y(t)}{\delta
 	\eta_y(t')}> \\
 	<\eta_x(t) \eta_x(t')> &= C_y(t, t') & <\eta_y(t) \eta_y(t')> &= C_x(t, t')\\
-	<\mu_x(t) \mu_y(t')> &= C_x(t, t') C_y(t, t') & <\mu_x(t) \mu_x(t')> &= <\mu_y(t) \mu_y(t')> = 0
+	<\mu_x(t) \mu_y(t')> &= C_x(t, t') C_y(t, t') & <\mu_x(t) \mu_x(t')> &= <\mu_y(t) \mu_y(t')> = 0.
 \end{align}
 
 \section{Stability Analysis} % (fold)
@@ -574,7 +580,7 @@ Let
 	\eta_x(t) = \eta_x^* + \hat{\nu}_x(t)\\
 	\eta_y(t) = \eta_y^* + \hat{\nu}_y(t)\\
 	\mu_x(t) = \mu_x^* + \hat{\delta}_x(t)\\
-	\mu_y(t) = \mu_y^* + \hat{\delta}_y(t)
+	\mu_y(t) = \mu_y^* + \hat{\delta}_y(t),
 \end{align}
 
 where terms denoted by $\cdot^*$ are the values that are taken at the fixed point and terms denoted
@@ -587,17 +593,57 @@ considerations gives
 \begin{equation}
 	\begin{split}
 		\frac{d}{dt} (x^* + \hat{x}(t)) = (x^* + \hat{x}(t))(\Gamma \alpha^2 \tilde{\tau}^2 \int dt'
-		[G_y(t, t')(x^* + \hat{x}(t'))] + \rho_x(t) + \alpha \tilde{\tau} (\eta_x^* + \hat{\nu}_x
-		(t)) \\ + \tilde{\alpha} \tau \frac{(\eta_x^* + \hat{\nu}_x(t)) (\eta_y^* + \hat{\nu}_y(t))}
-		{2} + \sqrt{\Gamma} \tilde{\alpha} \tau (\mu_x^* + \hat{\delta}_x(t)) + \xi(t)) \\
+		[G_y(t, t')(x^* + \hat{x}(t'))] + \tilde{\alpha} \rho_x(t) + \alpha \tilde{\tau} (\eta_x^* + \hat{\nu}_x
+		(t)) \\ + \tilde{\alpha} \tau (\eta_x^* + \hat{\nu}_x(t)) (\eta_y^* + \hat{\nu}_y(t)) + \sqrt{\Gamma} \tilde{\alpha} \tau (\mu_x^* + \hat{\delta}_x(t)) + \xi(t)) \\
 		\frac{d}{dt} (y^* + \hat{y}(t)) = (y^* + \hat{y}(t))(\Gamma \alpha^2 \tilde{\tau}^2 \int dt'
-		[G_x(t, t')(y^* + \hat{y}(t'))] + \rho_y(t) + \alpha \tilde{\tau} (\eta_y^* + \hat{\nu}_y
-		(t)) \\ + \tilde{\alpha} \tau \frac{(\eta_x^* + \hat{\nu}_x(t)) (\eta_y^* + \hat{\nu}_y(t))}
-		{2} + \sqrt{\Gamma} \tilde{\alpha} \tau (\mu_y^* + \hat{\delta}_y(t)) + \zeta(t))
+		[G_x(t, t')(y^* + \hat{y}(t'))] + \tilde{\alpha} \rho_y(t) + \alpha \tilde{\tau} (\eta_y^* + \hat{\nu}_y
+		(t)) \\ + \tilde{\alpha} \tau (\eta_x^* + \hat{\nu}_x(t)) (\eta_y^* + \hat{\nu}_y(t))
+		 + \sqrt{\Gamma} \tilde{\alpha} \tau (\mu_y^* + \hat{\delta}_y(t)) + \zeta(t)).
 	\end{split}
 \end{equation}
 
 Considering only terms which are linear in the deviations yields
+
+\begin{equation} 
+	\label{eqn::Linearisation}
+	\begin{split}
+	\frac{d}{dt} \hat{x}(t) = (x^* + \hat{x}(t))\left[ \Gamma \alpha^2 \tilde{\tau}^2 x^* \int G_y(t - t') dt' + \tilde{\alpha} \rho_x^* + \alpha \tilde{\tau} \eta_x^* + \tilde{\alpha} \tau \eta_x^* \eta_y^* + \Gamma \tilde{\alpha} \tau \mu_x \right] \\
+	+ x^* \left[ \Gamma \alpha^2 \tilde{\tau}^2 \int G_y(t - t') \hat{x}(t') dt' + \alpha \tilde{\tau} \hat{\nu}_x(t) + \tilde{\alpha} \tau \eta_x^* \hat{\nu}_y(t) + \tilde{\alpha} \tau \eta_y^* \hat{\nu}_x(t) + \sqrt{\Gamma} \tilde{\alpha} \tau \hat{\delta}_x(t) + \xi(t) \right]\\
+	\frac{d}{dt} \hat{y}(t) = (y^* + \hat{y}(t))\left[ \Gamma \alpha^2 \tilde{\tau}^2 x^* \int G_x(t - t') dt' + \tilde{\alpha} \rho_y^* + \alpha \tilde{\tau} \eta_y^* + \tilde{\alpha} \tau \eta_x^* \eta_y^* + \Gamma \tilde{\alpha} \tau \mu_y \right] \\
+	+ y^* \left[ \Gamma \alpha^2 \tilde{\tau}^2 \int G_x(t - t') \hat{y}(t') dt' + \alpha \tilde{\tau} \hat{\nu}_y(t) + \tilde{\alpha} \tau \eta_x^* \hat{\nu}_y(t) + \tilde{\alpha} \tau \eta_y^* \hat{\nu}_x(t) + \sqrt{\Gamma} \tilde{\alpha} \tau \hat{\delta}_y(t) + \zeta(t) \right].\\
+	\end{split}
+\end{equation}
+
+
+If we consider the long term behaviour of the system near a stable fixed point, then $\hat{x}(t)$ goes to zero as $t \rightarrow \infty$. This yields the requirement that a fixed point $x^*$ must satisfy
+
+
+\begin{equation}
+	0 = x^* \left[\Gamma \alpha^2 \tilde{\tau}^2 x^* \int G_y(t - t') dt' + \tilde{\alpha} \rho_x^* + \alpha \tilde{\tau} \eta_x^* + \tilde{\alpha} \tau \eta_x^* \eta_y^* + \sqrt{\Gamma} \tilde{\alpha} \tau \mu_x \right].
+\end{equation}
+
+The implication here is that the resulting value of $x^*$ can take two solutions. However, one of these is $x^* = 0$, which is found to rarely occur, while the second solution contains a term $\sqrt{\Gamma}$, which would yield complex values. If this is true, then it would imply that the learning algorithm will rarely converge for values of $\Gamma < 0$. Numerical experiments will shed more light on the likelihood of convergence. If this ansatz turns out to be incorrect (i.e. we see significant convergence for $\Gamma < 0$), it is unlikely that we will be able to solve for the stability line for this case.  
+
+We continue to follow the method of Opper et al. by taking the Fourier transform of (\ref{eqn::Linearisation}). For both agents, the first term in square brackets is constant with respect to time and so will not affect the long term behaviour of the system. We can, therefore, ignore this and focus on the second term. For the sake of brevity, we will only write the equations for Agent 1 (i.e. for $x$), though the equations for y can be equivalently obtained. Taking the Fourier transform yields
+
+\begin{equation}
+	\left[ \frac{i \omega}{x^*} - \Gamma \alpha^2 \tilde{\tau}^2 \mathcal{G}_y(\omega)\right] \mathcal{X}(w) = \Gamma \alpha \tilde{\tau} \mathcal{V}_x(\omega) + \tilde{\alpha} \tau \eta^*_x \mathcal{V}_y(\omega) + \tilde{\alpha} \tau \eta^*_y \mathcal{V}_x(\omega) + \sqrt{\Gamma} \tilde{\alpha} \tau \Delta(\omega) + \Xi(\omega).
+\end{equation} 
+
+Then,
+
+\begin{equation} \label{eqn::Transformed}
+	\left<[|\mathcal{X}(\omega)|^2 \right> = \left< | \Gamma \alpha \tilde{\tau} \mathcal{V}_x(\omega) + \tilde{\alpha} \tau \eta^*_x \mathcal{V}_y(\omega) + \tilde{\alpha} \tau \eta^*_y \mathcal{V}_x(\omega) + \sqrt{\Gamma} \tilde{\alpha} \tau \Delta(\omega) + \Xi(\omega) |^2 \right> \frac{1}{\left< |\mathcal{A}(\omega, x^*) |^2 \right>}, 
+\end{equation}
+
+
+where
+
+\begin{equation}
+	\mathcal{A}(\omega, x^*) = \frac{i \omega}{x^*} - \Gamma \alpha^2 \tilde{\tau}^2 \mathcal{G}_y(\omega)
+\end{equation}
+
+The behaviour of this line for $\omega = 0$ gives the long term behaviour of the system. By considering that, for a stable fixed point to exist, $\left<[|\mathcal{X}(\omega = 0)|^2 \right>$, we arrive at an expression for a stability line (i.e. the phase transition between the existence of stable fixed points and unstable behaviour).
 
 
 
