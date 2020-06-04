@@ -669,15 +669,27 @@ stable fixed points and unstable behaviour).
 \label{sec:numerical_simulations}
 
 \begin{figure}[h]
-
 	\centering
 	\begin{subfigure}[b]{0.45 \textwidth}
 	\centering
 	\includegraphics[width = 0.7 \textwidth]{Figures/Run1.png}
+	\caption{$\alpha = 0.1$}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.45 \textwidth}
 	\centering
 	\includegraphics[width = 0.7 \textwidth]{Figures/Run2.png}
+	\caption{$\alpha = 0.1$}
+	\end{subfigure}
+	%
+	\begin{subfigure}[b]{0.45 \textwidth}
+	\centering
+	\includegraphics[width = 0.7 \textwidth]{Figures/Alpha_2.png}
+	\caption{$\alpha = 0.2$}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.45 \textwidth}
+	\centering
+	\includegraphics[width = 0.7 \textwidth]{Figures/Alpha_2_Run_2.png}
+	\caption{$\alpha = 0.1$}
 	\end{subfigure}
 
 	\caption{$\alpha = 0.1$, $\gamma = 0.1$, $\tau \in [0.1, 10]$, $\Gamma \in [-1, 1]$. Each
@@ -685,11 +697,32 @@ stable fixed points and unstable behaviour).
 	converged based on a tolerance of 1\% difference between action probabilities. For each
 	combination of $\tau$, $\Gamma$ the game is played 5 times, each with random payoff matrices
 	and initial conditions. The average number of converged games (giving an indication of
-	probability of convergence) is shown in each cell of the heatmap.}
+	probability of convergence) is shown in each cell of the heatmap. \label{fig::Toys}}
 \end{figure}
 
 
+To generate the numerical simulations in Figure \ref{fig::Toys} we used the following procedure.
 
+\begin{enumerate}
+	\item Fix the parameters $\alpha$ and $\gamma$. The latter is held fixed at $0.1$ since
+	it does not affect the long term behaviour of the system (it does not appear in (
+	\ref{eqn::EOM})).
+	\item We initialise values of $\Gamma$ and $\tau$. These will be the variables which we sweep
+	over.
+	\item Generate payoff matrices for both agents by sampling from a multi-variate Gaussian 
+	(variables are the payoff elements) with covariance parameterised by $\Gamma$.
+	\item Iniitialise the agents with random initial conditions (i.e. random action probabilities).
+	\item Allow the agents to learn over a maximum of $1 \times 10^5$ iterations.
+	\item Every 100 iterations, check to see if the action probabilities have changed significantly.
+	If not (i.e. the change over the last 100 iterations is less than 1\%) the learning is
+	considered to have converged.
+	\item This process is repeated 5 times with random payoff matrices generated based on the value
+	of $\Gamma$. The probability of convergence is then recorded as $\frac{\text{number of times
+	converged}}{5}$.
+	\item The values of $\tau$ and $\Gamma$ are then modified and the process is repeated. The
+	heatmap shows the probability of convergence for all values of $\tau$ and $\Gamma$ which are
+	tested.
+\end{enumerate}
 
 % section numerical_simulations (end)
 \end{document}

@@ -1,8 +1,131 @@
 \documentclass[.../main.tex]{subfiles}
 
 \begin{document}
+
+	\textbf{Major restructuring and rephrasing is required here}
+
     \section{Chaotic Dynamics in MARL} \label{sec::Chaos_in_MARL}
+    The intention of this area of study is to consider the ideas presented in works such as 
+    \cite{Sanders2018} and \cite{Galla2011} which consider complex behaviour, including cycles and
+    chaos, in certain games using simple reinforcement learning algorithms. These provide a great
+    deal of insight into whether or not the game will converge and, if so, to what equilibrium.
+    Galla, for instance, shows that adjusting a memory parameter when learning to solve an Iterated
+    Prisoner's Dilemma game can shift the equilibrium from one showing purely defective behaviour to
+    one showing cycles of cooperations and defection. Sanders et al. generalise this result by
+    showing that, for a particular learning algorithm known as Experience Weighted Attraction,
+    learning dynamics varies dependent on the mutual effect of two parameters. 
+
+    This determination of where RL algorithms will show complex dynamics is important, not only for
+    a priori understanding of resultant behaviour, but is particularly important for algorithms in
+    which agents aim to predict the behaviour of other agents. For this to be feasible, the learning
+    dynamics must not exhibit chaos, otherwise it would be impossible for an agent to make any
+    reasonable predictions about the future behaviour of its opponents. 
+
+    To this end, the potential avenue for research in this regard is to extend the ideas of Sanders
+    et al. and Galla et al. towards games learnt using classical reinforcement learning algorithms 
+    (such as Q-Learning with Boltzmann exploration, which seems to be a common choice). The work may
+    then be able to extend beyond this, and towards continuous spaces, stateful games and large
+    agent populations. This would allow for an understanding of the important parameters which
+    define the behaviour of reinforcement learning algorithms and allow for a characterisation of
+    the expected resultant behaviour when applying a particular algorithm to a particular game. It
+    would also allow for a characterisation of the conditions under which MARL algorithms may
+    feasibly be applied, thereby supporting the ability of researchers and engineers to choose their
+    payoff matrices and parameters accordingly.
     \section{Large Agent Dynamics} \label{sec::Large_Agent_Dynamics}
+    This suggestion aims to build upon the work presented by Leung et
+    al. \cite{Hu2019} in which the point is made that the vast
+    majority of the work done in this area considers games with a
+    finite (usually two) number of agents. This limits the capability
+    of the analysis to generalise to much larger agent populations,
+    such as swarms. To allieviate this concern, the authors present an
+    anaysis of the learning dynamics for a large agent population
+    (which they approximate as containing infinite agents) where each
+    agent is an independent Q-Learning using Boltzmann
+    exploration. The emergent dynamics is given by a Fokker-Planck
+    equation which is numerical shown to be a strong approximation of
+    the true learning dynamics. However, as the authors point out,
+    this is the first attempt at considering such a problem, and
+    relies on heavy assumptions.  Possible extensions therefore
+    require a consideration of:
+
+    \begin{itemize}
+        \item Asymmetric games, in which agents have different
+          payoffs, introducing heterogeneity and competition into the
+          system. \fr{this is not really a problem  in relation with swarms, is it?}
+        \item Stateful Games. \fr{what is the interest of stateful games?}
+        \item Heterogeneous populations, in which there are p different populations of agents.
+    \end{itemize}
+
+    To the best of my knowledge, in the particular case of $N >> 1$ agent populations, none of the
+    above have yet been attempted.
+
     \section{Swarm Control through Fields} \label{sec::Swarm_Field_Control}
+    This study extends the work of Zhang \cite{Zhang2018}, Elamvazuthi \cite{Elamvazhuthi2019} and
+	Li et al. \cite{Li2017}. Here, the authors consider the dynamics of swarms through 'drifted
+	brownian motion'. In this case, the control input is some scalar field which is generated from the
+	environment. Each agent measures this field at their location and uses it to adjust their
+	velocity, which eventually results in the entire swarm achieving a desired distribution. This technique
+	has been shown, both theoretically and experimentally, to drive swarm systems in a stable
+	manner.
+
+	The hypothesis of this section is that the distribution of active particles may
+	similarly be controlled through the influence of a scalar field. The dynamics derived by Bellomo
+	et al. \cite{Bellomo2017} includes a 'flocking field' which agents can measure. By controlling
+	the flocking field, we may be able to drive the swarm to specific
+	distributions. 
+
+	The contribution that this study presents over those using brownian motion is the inclusion of an
+	interaction operator. This governs how agents interact with one another. By accounting for this, we
+	are able to control swarms where agents, for instance, avoid collisions with one another. The
+	complexity of this interaction term will need to be gradually increased over time. To begin with,
+	we may entirely neglect this term. It is here that we will compare the model proposed by Zhang with
+	that proposed by Bellomo et al. We may then consider only local interactions, which is typical for
+	most swarming systems in the current literature, before then considering non-local interactions.
+	This provides the scope for swarms to interact with a greater number of agents. At this
+	stage, we may expand our study to consider the presence of interaction domains. This places
+	constraints on how agents may interact with one another, allowing for a greater generalisation of
+	inter-agent interactions. Ultimately, we would like to influence the interaction term, though this
+	is discussed in Section \ref{sec:learning_strategies_through_iterated_interaction}. The questions
+	we will consider here are:
+
+	\begin{itemize}
+		\item The controllability of the system: Under what conditions is it possible to drive the
+		swarm from one configuration to another in a stable manner?
+		\item The guarantees of the system: Is it possible to ensure that the agents will not enter
+		certain areas of state space, or exceed certain control constraints (e.g. max imum velocity)?
+	\end{itemize}
+
+	Some applications of this study are:
+
+	\begin{itemize}
+		\item Search and Rescue, in which agents will be required to flock to specific areas (e.g.
+		areas with survivors detected).
+		\item Construction, in which agents will be required to take on desired formations based on
+		the structure to be designed.
+		\item Medical Robotics, in which agents are required to target specific areas of the body.
+	\end{itemize}
+
+
+	In conclusion, the results from this study already significantly expand the current capabilities of
+	swarming agents by developing control methodologies which can drive the swarm towards desired
+	distributions in a stable manner. This is accomplished through controlling the 'flocking field'
+	which is indirectly used to adjust the velocity of the agents.
+
     \section{Incorporation of Intelligence in Control} \label{sec::Intelligence_in_control}
+
+    This section of the study is perhaps the strongest extension to swarm control proposed in this
+	chapter, and will likely be the most challenging. Here, we attempt to control the interaction term
+	in Bellomo et al's model and we consider that the behaviour of the entire swarm may be influenced
+	by decision making on an individual level. This will involve agents learning their strategies
+	through repeated interaction. The goal, then, is to design the agent parameters, reward structure
+	and control strategy to achieve desired results. To accomplish this will require a unification of
+	multi agent learning and control theory. Whilst, at first glance, such an endeavour seems
+	incredibly challenging, our work in the predictability of mean field learning (Chapter 
+	\ref{ch::DynMARL}) places us in a unique position to tackle the problem. This framework will
+	first establish the desired strategy to be taken by the agents and choose the game's reward
+	structure so that learning will converge to a stable fixed point. Then by accounting for this
+	strategy within the interaction term, we apply the appropriate controls in the flocking field to
+	drive the swarm in a stable manner. We will again consider the aforementioned controllability
+	and guarantees questions and establish how the incorporation of learning affects these results.
+
 \end{document}
