@@ -61,3 +61,12 @@
 
 - Populate some of the empty sections (such as Swarms and Stochastic Games)
 - Add to the ideas in Section 7.1 (Considering Intelligence in Swarm Dynamics) with relevant literature and proposed research directions.
+
+## 05/06/20
+
+- Repeat experiments for Tuyls dynamics by sweeping over alpha and choosing tau = 0.05
+- Repeat experiments for Tuyls dynamics by fixing alpha and choosing tau = 0.05 (to test presence of left-most column)
+- Begin experiments for Leung dynamics
+- Tidy up 'Write up' (i.e. write introduction and problem statement in prose) and check calculations
+- Add everything into ESA document then edit for coherence
+- Simplify (35) in 'Write Up' and plot stability line
