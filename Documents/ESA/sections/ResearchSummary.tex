@@ -1,82 +1,7 @@
-\documentclass{article}
-
-\usepackage[margin=2cm]{geometry}
-\usepackage{amsmath,amsfonts}
-\usepackage{mathtools}
-\usepackage{graphicx}
-\usepackage{caption}
-\usepackage{subcaption}
-\usepackage{color}
-\newcommand\fb[1]{\textcolor{blue}{FB: #1}}
-
-\title{Derivation Write Up}
-\author{Aamal Hussain}
+\documentclass[.../main.tex]{subfiles}
 
 \begin{document}
 
-\maketitle
-
-\fb{the bibfile is missing.}
-	
-	\section{Introduction} % (fold)
-	\label{sec:introduction}
-
-	\begin{itemize}
-			\item For use in Multi-Agent Reinforcement Learning
-			\item Requirement to get some desired behaviours out of the system (e.g. conforming to
-			predefined values or constraints)
-			\item For this, it is required that we are able to predict the outcome of the learning
-			behaviour
-			\item Work done on determining the dynamics of MARL gives an indication of what
-			solutions an algorithm will produce
-			\item We can use this, alongside stability theory, to understand the nature of the games
-			which result in stable behaviours and which result in chaotic behaviours.
-			\item Largely follows the work presented by Sanders et al. However, whilst they consider
-			EWA, we consider Q-Learning, which is more popular in RL communities.
-	\end{itemize}	
-
-	\subsection{Problem Statement} % (fold)
-	\label{sub:problem_statement}
-	
-	Given a particular learning algorithm and game, is it possible to determine whether the game is
-	likely to reach a unique fixed point or exhibit more complex behaviour? What are the factors
-	which affect this resulting behaviour?
-
-	% subsection problem_statement (end)
-	
-	\subsection{Objectives and Scope} % (fold)
-	\label{sub:objectives_and_scope}
-
-	Analyse the stability of Multiagent Q-Learning on iterated games.
-
-	Assumptions:
-
-	\begin{itemize}
-		\item Focuses on stateless games
-		\item Homogeneous agents
-		\item Discrete action spaces, with large number of actions.
-		\item Small, finite number of agents.
-	\end{itemize}
-
-
-	The work by Sanders et al. considers agents who have these same assumptions, but learn with a
-	reduced version of the Experience Weighted Attraction algorithm. For the Reinforcement Learning
-	community, it is of interest to consider the question of stability from the point of view of
-	agents who follow the popular Q-Learning algorithm.
-
- \fb{you might discuss in which way any of the points above differs from the relevant reference.}
-        
-	
-	% subsection objectives_and_scope (end)
-
-	% section introduction (end)
-
-
-	\section{Derivation} % (fold)
-	\label{sec:derivation}
-
-        \fb{it would be good to have a overall description of the goal of the derivation.}
-	
 	We start with the two-agent Q-Learning dynamics as presented by Tuyls et al.
 
 	\begin{subequations}
@@ -230,7 +155,7 @@
 	\end{split}
 	\end{equation}
 	The only difference between (\ref{eqn::generatingfunctional}) and (\ref{eqn::moveddisorder}) is
-	that we moved the term \fb{which one exactly?} containing the quenched disorder into a separate exponential. Since our
+	that we moved the term containing the quenched disorder into a separate exponential. Since our
 	aim is to take an average over all possible realisations of this disorder, we will only need to
 	focus on the last exponential which we rewrite as
 
@@ -261,7 +186,7 @@
 
 	It should be noted that we have changed some of the subscripts on the terms. Since these terms
 	are all multiplied together and we sum over the subscripts, the letters we choose are of no
-	importance and we can exchange them freely \fb{perhaps some more justification might be helpful}. We will define both exponentials in $Q$ as $Q_1$ and
+	importance and we can exchange them freely. We will define both exponentials in $Q$ as $Q_1$ and
 	$Q_2$ respectively.
 
 	We are now ready to take the expectation of $Q$. To do this, we will exploit the fact that the
@@ -694,7 +619,7 @@ stable fixed points and unstable behaviour).
 	%
 	\begin{subfigure}[b]{0.45 \textwidth}
 	\centering
-	\includegraphics[width = 0.7 \textwidth]{Figures/AlphaRun_tau_005.png}
+	\includegraphics[width = 0.7 \textwidth]{Figures/tau_005.png}
 	\caption{$\tau = 0.0$}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.45 \textwidth}
@@ -735,5 +660,4 @@ To generate the numerical simulations in Figure \ref{fig::Toys} we used the foll
 	tested.
 \end{enumerate}
 
-% section numerical_simulations (end)
 \end{document}
