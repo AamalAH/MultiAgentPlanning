@@ -13,15 +13,55 @@ We will keep the problem statement defined in Section \ref{sec::Objectives_and_S
 we define several metrics which a Multi Agent System (MAS) may be assessed against.
 
 \begin{enumerate}
-    \item Scalable
-    \item Distributed
-    \item Generality
-    \item Low Computational Load
-    \item Robustness
+    \item Distributed. It will often be the case that a multi-agent system must spread out across a
+    large area or operate in regions where communication is limited. As such it is beneficial that
+    such a system does not rely too heavily on communication with a central body. The individual
+    agents must, therefore, be able to make their own decisions and act as independent entities.
+    Aside from the advantage of communication, this ensures that the system is not tied to a single
+    point of failure; in a system governed by a centralised decision maker, any faults in the
+    central body propagates throughout the group. Of course, this comes at the price of
+    computational load - if the agents are required to act independently, they must possess the
+    resources to do so. The term distributed should not be confused with decentralised. The latter
+    refers to a regime in which agents all communicate with one another before making a decision.
+    Whilst this is preferable to a centralised decision maker in terms of the requirement for one
+    entity to communicate with all agents, it still places a high cost on the requirement that
+    agents be in constant communication with one another. In fact it may pose the additional risk
+    that if any agent in the team fails, the whole pipeline falls apart. Distributivity, on the
+    other hand, requires that agents make independent decisions so that, though agents may
+    communicate with each other, they are still able to operate when this is not possible.
+    \item Generality. MAS come in many different flavours; sometimes a small group of heterogeneous 
+    (agents with different capabilities) agents may be required to perform a delicate task whilst
+    in others, it may be required that a large population of homogeneous (all of the same type)
+    agents perform multiple tasks simultaneously. Indeed the same MAS may have to adapt its
+    strategy whilst in the middle of a task. It would be a hindrance if the agents were required to
+    be reprogrammed with a completely different control methodology each time the situation changes
+    slightly. It would be preferable if the method could apply to all different types of scenarios,
+    with homogenous or heteregeneous agents, with single tasks or multiple, in any environment with
+    only minor customisation required. Better still if the agents are able to adapt themselves to
+    the specifics of the scenario.
+    \item Low Computational Load. As mentioned in the previous chapter, a MAS will often be used in
+    complex situations, many of which will be too dangerous for human intervention. As such, the
+    system will be required to carry out its tasks online. For this reason, it is vital that the
+    control method be one which produces low computational load - especially where the time frame
+    for adjusting agent behaviour is limited. Monetary concerns also play a part in this metric; it
+    would not do to impose that every member of the team be equipped with high performance computing
+    power as this would likely fall outside of the budget of any practical usage.
+    \item Robustness. Particularly for physical robots, a MAS should be able to operate in
+    situations which present sensor noise, communication noise, latency, and environmental
+    disturbances. This is rather important in unseen environments where full a priori knowledge of
+    the map cannot be assumed.
+    \item Scalable. This is mentioned last since the ability for a MAS to scale comes from its
+    distributivity  and low computational load. Scalability is the capacity for any method of
+    controlling a MAS to successfully operate as the size of the team increases. This, of course, is
+    related to the complexity of the algorithms involved. However, it should be noted that it is not
+    always required that a MAS be formed of dozens (or even hundreds) of agents. Depending on the
+    task at hand (e.g. robotic surgery), it may be beneficial for fewer, more capable agents to
+    perform the task, rather than a large population. 
 \end{enumerate}
 
-We will use these metrics, alongside the problem statement to approach the current literature
-surrounding the theory and practices of Multi-Agent Systems. 
+We begin by presenting a subset of the vast array of literature regarding MAS and focus on those
+which are relevant to the study at hand. We conclude this chapter by providing some remarks about
+how these methods hold against the above metrics.
 
 \section{Game Theory} \label{sec::Game_Theory}
 
@@ -34,11 +74,32 @@ and MARL methods have both base their theory upon the foundations of Game Theory
 
 \subsection{Partially Observed Stochatic Games (POSG)} \label{sec::Stochastic_Games}
 
-POSGs act as a game theoretic corollary to the Dec-POMDP. Here, an optimal solution is found by fixing the strategy (a manner of selecting an action \cite{Rizk2018DecisionSurvey}) of all agents except one. The optimal strategy of the chosen agent is then computed. This is fixed so that the next agent may determine its optimal strategy. This process is iterated over all agents in a process known as Alternating Maximisation \cite{Ray2010AnCooperation}. By choosing strategies which maximise a common payoff, a globally optimal solution can be found.
+POSGs act as a game theoretic corollary to the Dec-POMDP. Here, an optimal solution is found by
+fixing the strategy (a manner of selecting an action \cite{Rizk2018DecisionSurvey}) of all agents
+except one. The optimal strategy of the chosen agent is then computed. This is fixed so that the
+next agent may determine its optimal strategy. This process is iterated over all agents in a process
+known as Alternating Maximisation \cite{Ray2010AnCooperation}. By choosing strategies which maximise
+a common payoff, a globally optimal solution can be found.
 
-Similarly Bayesian Games is a game theoretic approach with incomplete information (thus it is sometimes referred to as an ‘incomplete information game’). This allows for a POSG to be approximated by a sequence of smaller, more tractable games \cite{Emery-MontemerloApproximatePayoffs}. However, iterating through the entire team of agents to find an optimal solution is a lengthy process and does not allow for immediate actions in dynamic situations. To address this, \cite{Ray2010AnCooperation} propose to place distinct payoffs on each agent and to consider team formation based on social hierarchy as well as preferred partners. This allows the complexity of the problem to be broken down into smaller game units and also provides a clear order in which the games are to be played. This minimises the interference across robots and allows for more immediate action to be taken by agents who choose their strategy early on, while leaving more passive tasks for those later in the sequence. 
+Similarly Bayesian Games is a game theoretic approach with incomplete information (thus it is
+sometimes referred to as an ‘incomplete information game’). This allows for a POSG to be
+approximated by a sequence of smaller, more tractable games
+\cite{Emery-MontemerloApproximatePayoffs}. However, iterating through the entire team of agents to
+find an optimal solution is a lengthy process and does not allow for immediate actions in dynamic
+situations. To address this, \cite{Ray2010AnCooperation} propose to place distinct payoffs on each
+agent and to consider team formation based on social hierarchy as well as preferred partners. This
+allows the complexity of the problem to be broken down into smaller game units and also provides a
+clear order in which the games are to be played. This minimises the interference across robots and
+allows for more immediate action to be taken by agents who choose their strategy early on, while
+leaving more passive tasks for those later in the sequence. 
 
-The Bayesian Game formulation therefore provides a strong candidate for rapid task re-allocation and dynamic decision making. However, as found by Dai et. al \cite{Dai2018TaskSystems} this is conditional on an understanding by each robot of the strategy of others, which in turn requires adequate communication between robots. Therefore, the game theoretical formulation will fail where communication is not possible amongst team members. However, the addition of heuristics, such as deep learning, may be able to advance an agent’s ability to recognise the strategies taken by other members of its team without the need for significant explicit communication.
+The Bayesian Game formulation therefore provides a strong candidate for rapid task re-allocation and
+dynamic decision making. However, as found by Dai et. al \cite{Dai2018TaskSystems} this is
+conditional on an understanding by each robot of the strategy of others, which in turn requires
+adequate communication between robots. Therefore, the game theoretical formulation will fail where
+communication is not possible amongst team members. However, the addition of heuristics, such as
+deep learning, may be able to advance an agent’s ability to recognise the strategies taken by other
+members of its team without the need for significant explicit communication.
 
 \textbf{Add in any recent literature in these fields}
 
@@ -134,7 +195,7 @@ should learn the best response to stationary opponents. A similar set of conditi
 Conitzer and Sandholm in \cite{ConitzerAWESOME:}, whose algorithm we will consider shortly. Schwarz
 then presents a review of MARL methods (as of September 2014)
 
-\textbf{Add in more recent literature r.e. learning in stochastic games}
+\textbf{Add in more recent literature r.e. learning in stochastic games and the robustness of MARL}
 
 \subsection{Multi Agent Learning Dynamics} \label{sec::MARL_Dynamics}
 
@@ -254,45 +315,6 @@ chooses amongst a family of system models when choosing its control laws. Simila
 determine (or perhaps learn) models of the other agents may be able to leverage this information,
 minimising the model error when optimising.
 
-\subsection{Approaches to Swarm Control} \label{sec::Swarm Control}
-
-Recent work has seen the advancement of swarms controlled in stochastic environments. This is
-particularly important for swarm intelligence in robots; many systems are developed with the
-motivation of search-and-rescue, in which the robot swarms will have to operate in environments
-where accounting for uncertainty is critical. To this end, swarm systems have seen the advent of
-stochastic control. In this, the swarm is modelled as a diffusive system using a stochastic
-equation, most often the Kolmogorov Forward Equation \cite{Hamann2008}. In \cite{Hamann2008}, the author shows that this equation can be derived by considering local trajectories of
-smaller subsets of the swarm. Elamvazhuthi and Berman \cite{Elamvazhuthi2019} extend this idea to other
-stochastic models for swarms, importantly considering an advection-diffusion-reaction model which
-allows for hybrid agents to switch between different modes of operation. 
-
-The above models come under the term ‘mean-field models’ \cite{Elamvazhuthi2019b}, a series of
-equations
-for stochastic forward processes (such as swarm foraging) in which, as the number of agents tends to
-infinity, the true macroscopic motion of the system tends to these equations. Importantly, however,
-these stochastic equations allow for an analysis of the swarm, as well as the ability to develop
-control laws. In \cite{Li2017}, Li et al show that these models can be used to develop control
-laws for robots in a swarm and drive them towards a target distribution. The method is shown to
-perform accurately both in simulation and on real robots. The advantage is that guarantees can be
-placed on the convergence and stabilisabiilty of the swarm towards the desired distribution.
-However, there appears to be significant scope to expand upon this methodology from a safety
-perspective. To begin with, the method does not consider inter-agent interactions and therefore does
-not formally guard against collisions. In \cite{Inoue2019}, a similar problem is considered,
-although collisions are avoided by having the robot simply move in the opposite direction when
-encountering an obstacle. It is here that the mean-field models are not as strong since they do not
-take these local interactions into account. It must be noted, however, that Inoue et al have
-identified this problem and are currently working towards its incorporation into the model.
-
-It would, therefore, be of particular interest from a safety perspective to consider agent
-interactions. A starting point may be \cite{Bellomo2017} which extends the dynamical model of a
-swarm system to include agent interaction. This presents a first step towards considering the swarm
-as composed of intelligent agents rather than mindless particles and, as the authors suggest,
-presents the possibility of applying game theoretic approaches towards swarms, which also gives the
-ability to consider heterogeneous swarm systems who interact with one another through repeated play.
-Similarly, it would allow for a stronger control perspective on swarm systems such as presented in
-\cite{Borzi2015}, in which a model predictive control (MPC) scheme is presented for a
-leader-follower swarm system to achieve given tasks. 
-
 \textbf{Include recent updates in here}
 
 \section{Swarms} \label{sec::Swarms}
@@ -306,6 +328,47 @@ ant colonies \cite{Sethi2017}. Hybrid algorithms such as in \cite{Gao2018} show 
 performance in reaching globally optimal solutions in search-based tasks. The advantage of many
 swarm algorithms is that they are based on local interactions and so are incredibly scalable
 \cite{Rizk2018}.
+
+\subsection{Approaches to Swarm Control} \label{sec::Swarm Control}
+
+Recent work has seen the advancement of swarms controlled in stochastic environments. This is
+particularly important for swarm intelligence in robots; many systems are developed with the
+motivation of search-and-rescue, in which the robot swarms will have to operate in environments
+where accounting for uncertainty is critical. To this end, swarm systems have seen the advent of
+stochastic control. In this, the swarm is modelled as a diffusive system using a stochastic
+equation, most often the Kolmogorov Forward Equation \cite{Hamann2008}. In \cite{Hamann2008}, the
+author shows that this equation can be derived by considering local trajectories of smaller subsets
+of the swarm. Elamvazhuthi and Berman \cite{Elamvazhuthi2019} extend this idea to other stochastic
+models for swarms, importantly considering an advection-diffusion-reaction model which allows for
+hybrid agents to switch between different modes of operation. 
+
+The above models come under the term ‘mean-field models’ \cite{Elamvazhuthi2019b}, a series of
+equations for stochastic forward processes (such as swarm foraging) in which, as the number of
+agents tends to infinity, the true macroscopic motion of the system tends to these equations.
+Importantly, however, these stochastic equations allow for an analysis of the swarm, as well as the
+ability to develop control laws. In \cite{Li2017}, Li et al show that these models can be used to
+develop control laws for robots in a swarm and drive them towards a target distribution. The method
+is shown to perform accurately both in simulation and on real robots. The advantage is that
+guarantees can be placed on the convergence and stabilisabiilty of the swarm towards the desired
+distribution. However, there appears to be significant scope to expand upon this methodology from a
+safety perspective. To begin with, the method does not consider inter-agent interactions and
+therefore does not formally guard against collisions. In \cite{Inoue2019}, a similar problem is
+considered, although collisions are avoided by having the robot simply move in the opposite
+direction when encountering an obstacle. It is here that the mean-field models are not as strong
+since they do not take these local interactions into account. It must be noted, however, that Inoue
+et al have identified this problem and are currently working towards its incorporation into the
+model.
+
+It would, therefore, be of particular interest from a safety perspective to consider agent
+interactions. A starting point may be \cite{Bellomo2017} which extends the dynamical model of a
+swarm system to include agent interaction. This presents a first step towards considering the swarm
+as composed of intelligent agents rather than mindless particles and, as the authors suggest,
+presents the possibility of applying game theoretic approaches towards swarms, which also gives the
+ability to consider heterogeneous swarm systems who interact with one another through repeated play.
+Similarly, it would allow for a stronger control perspective on swarm systems such as presented in
+\cite{Borzi2015}, in which a model predictive control (MPC) scheme is presented for a
+leader-follower swarm system to achieve given tasks. 
+
 
 \subsection{Decision Making in Swarms} \label{sec::Decisions_in_Swarms}
 
@@ -333,5 +396,48 @@ accomplish.
 \textbf{TODO: Go through each of the sections and explicitly evaluate them against the defined
 metrics}
 
+Each of the above methods present different advantages in their approach towards MAS, as well as a
+particular set of disadvantages. 
+
+Game Theoretic methods have long provided a rigorous approach for
+modelling the behaviour of any MAS. It places no limitation on the heterogeneity of the agents or
+the task demanded. An appropriate choice of payoff matrices will account for both of these
+specifications. Recent advances in POSGs have lifted the strong assumptions on prior knowledge that
+was required to achieve a Nash Equilibrium and Game Theoretic Control allows for such methods to be
+applied in continuous state spaces. Whilst the latter shows particular promise, game theoretic
+methods still fall short in terms of distributivity as they are heavily reliant on communication
+with a centralised decision maker to supply rewards, or within the team to determine each others'
+actions. They also require a priori knowledge of the situation in order to set up payoff matrices
+and so cannot be regarded as robust to environmental uncertainty.
+
+Multi-Agent Reinforcement Learning builds on the latter two shortcomings of game theory by allowing
+the environment to supply rewards to agents who adapt their behaviour accordingly. MARL is proving
+to be a powerful method to control MAS, and is rapidly improving, but cannot yet be regarded as
+robust. Studies repeatedly show that small alterations or noise in the environment can result in
+large deviations in behaviour. Furthermore, few guarantees can be placed on the resulting behaviour
+of a MARL system, though progress is being made in closing this gap.
+
+Control Theory, on the other hand, takes pride in the guarantees placed on the MAS such as:
+controllability, stability, and robustness. However, control techniques are often centralised or
+decentralised. Distributed methods of control is still an evolving field, particularly in terms of
+robustness to uncertainty. In order to establish guarantees, assumptions are also made on the
+specifics of the MAS, and so control theoretic methods have yet to evolve into general,
+heterogeneous systems with any given task.
+
+Swarm systems have their strongest advantage in scalability and, in fact, swarm techniques are built
+to scale due to the distributivity and low computational load placed on each agent. This has often
+come with the assumption that agents in the swarm act as simple, homogeneous, particles who follow
+very simple rules of interaction. Recent work is showing that this is not a necessary assumption
+and, in fact, swarms can leverage heterogeneity and agent capabilities to ensure robustness and
+generalisation.
+
+It is clear that each method presents its own set of advantages and disadvantages. In fact, the
+greater contributions are made from a unification of techniques (e.g. game theoretic control) which
+leverage the strengths of one technique to mitigate the drawbacks of another. To this end, we
+consider the unification of swarm control and multi-agent learning. The aim is to unify the
+strengths of swarm theory, MPC and game theory to study populations of agents who can make
+decisions on an individual basis but perform tasks through large scale collaboration. In the
+subsequent chapters, we propose a line of research which explores the properties of a system as well
+as establishing practical control methodologies along the way.
 
 \end{document}

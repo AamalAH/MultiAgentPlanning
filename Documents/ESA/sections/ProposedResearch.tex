@@ -2,131 +2,271 @@
 
 \begin{document}
 
-	\textbf{Major restructuring and rephrasing is required here}
+	This chapter describes a proposed line of research which aims to study the evolution of swarm
+	systems with independent, learning agents under the influence of predictive controls. We detail
+	the novel lines of research which this work aims to undertake, providing suggestions of the
+	hypotheses posed by these lines. With this in mind the following studies are proposed and
+	developed subsequently:
 
-    \section{Chaotic Dynamics in MARL} \label{sec::Chaos_in_MARL}
-    The intention of this area of study is to consider the ideas presented in works such as 
-    \cite{Sanders2018} and \cite{Galla2011} which consider complex behaviour, including cycles and
-    chaos, in certain games using simple reinforcement learning algorithms. These provide a great
-    deal of insight into whether or not the game will converge and, if so, to what equilibrium.
-    Galla, for instance, shows that adjusting a memory parameter when learning to solve an Iterated
-    Prisoner's Dilemma game can shift the equilibrium from one showing purely defective behaviour to
-    one showing cycles of cooperations and defection. Sanders et al. generalise this result by
-    showing that, for a particular learning algorithm known as Experience Weighted Attraction,
-    learning dynamics varies dependent on the mutual effect of two parameters. 
+	\begin{itemize}
+		\item \textbf{Stability and Chaos in MARL:} in which we seek to understand the dynamics of
+		agent strategies when using Q-Learning to learn a game through iteration. We will establish
+		the stability, as a function of parameters, when learning general p-player N-action games.
+		This study enables the appropriate selection of parameters and payoff matrices to ensure the
+		stability of the strategies of a finite set of agents, such as leaders in a swarm.
+		\item \textbf{Dynamics of Mean-Field Q-Learning Games:} in which we examine the
+		strategy dynamics for large populations of agents learning through iterated games and
+		mean-field Q-Learning. We seek to understand the long term behaviour of such mean-field
+		systems in terms of its strategy selection. This study extends the previous and allows for
+		the stability of the strategies of a population of agents to be established.
+		\item \textbf{Model Predictive Control of Active Particles through Fields:} in which we
+		investigate the interaction of a swarm of active particles with potential fields. We
+		establish the stabilisability of an MPC scheme with defined stage costs, as well as an
+		analysis of the suboptimality of the method.
+		\item \textbf{Incorporation of Intelligence in Control:} in which we adapt the dynamical
+		system from the above point to include an interaction term, accounting for strategy
+		selection by agents who learn through iterated games against one another. Interactions with
+		an MPC scheme is then to be examined in a similar capacity.
 
-    This determination of where RL algorithms will show complex dynamics is important, not only for
-    a priori understanding of resultant behaviour, but is particularly important for algorithms in
-    which agents aim to predict the behaviour of other agents. For this to be feasible, the learning
-    dynamics must not exhibit chaos, otherwise it would be impossible for an agent to make any
-    reasonable predictions about the future behaviour of its opponents. 
+	\end{itemize}
 
-    To this end, the potential avenue for research in this regard is to extend the ideas of Sanders
-    et al. and Galla et al. towards games learnt using classical reinforcement learning algorithms 
-    (such as Q-Learning with Boltzmann exploration, which seems to be a common choice). The work may
-    then be able to extend beyond this, and towards continuous spaces, stateful games and large
-    agent populations. This would allow for an understanding of the important parameters which
-    define the behaviour of reinforcement learning algorithms and allow for a characterisation of
-    the expected resultant behaviour when applying a particular algorithm to a particular game. It
+
+	\textbf{TODO: Ensure all references here are in the Lit Review}
+
+    \section{Stability and Chaos in MARL} \label{sec::Chaos_in_MARL}
+
+    This segment of research is aimed towards a deeper understanding of the strategy evolution
+    of agents following a Q-Learning approach. This allows for guarantees to be placed on the
+    behaviour of such agents, in particular the conditions under which the game will converge to a
+    stable equilibrium.
+
+    It has long been established that, upon lifting the strong assumptions made by traditional
+    game theory (such as the rationality of agents and complete information), that player
+    strategies can result in much more complex behaviour than convergence to a Nash Equilibrium 
+    (NE). In fact, this is even true on what would commonly be regarded as 'simple' games such
+    as tic-tac-toe and prisoner's dilemma \cite{Galla's work and I think Sato's work}. These
+    behaviours include: convergence to a unique equilibrium (though not always to an NE),
+    convergence to one of multiple equilibria, limit cycles and chaos. These behaviours are shown in
+    Figure ... Of these, the most preferable is, of course, convergence to a unique equilibrium,
+    although it is still possible to study systems with multiple equilibria or limit cycles 
+    \cite{One of the textbooks}. However, it would be difficult to control systems whose dynamics
+    are governed by chaos (though research into controlling chaos is ongoing and rife with
+    opportunity \cite{CyberneticalPhysics}) and so MARL techniques should avoid this. It would,
+    therefore, be a useful endeavour to determine the conditions under which these sorts of
+    behaviours arise.
+
+    The behaviour of a system may be studied given a model of its dynamics. It is through this
+    process that a wide array of physical systems, from harmonic pendulums to geophysical fluids,
+    can be understood. A growing body of research aims to understand multi-agent reinforcement
+    learning through the lens of its dynamics. In this light, Tuyls et al. \cite{Tuyls2006AnGames}
+    were able to derive a model of the strategy evolution of agents learning through iterated games.
+    Through this, they were able to arrive at the following model of Multi-Agent Q-Learning
+
+	\begin{subequations}
+	\label{eqn::EOM}
+		\begin{equation}
+			\frac{\dot{x}(t)}{x(t)} = \alpha \tau (\sum_{j} a_{ij} y_j - \sum_{i j} x_i a_{ij} y_j)
+			+ \alpha \sum_j x_j ln(\frac{x_j}{x_i}) 
+		\end{equation}
+		\begin{equation}
+			\frac{\dot{y}(t)}{y(t)} = \alpha \tau (\sum_{j} b_{ij} x_j - \sum_{i j} y_i b_{ij} x_j)
+			+ \alpha \sum_j y_j ln(\frac{y_j}{y_i}).
+		\end{equation}
+	\end{subequations}
+
+	Here, $\alpha$ and $\tau$ are the parameters of the agent; Sanders et al. refer to these as the
+	memory and intensity of choice parameters respectively. Agent 1 takes action i with probability
+	$x_i$ while Agent 2 takes action j with probability $y_j$. If these actions are taken, the agents
+	receive payoff $a_{ij}$ and $b_{ji}$ respectively. With these equations, it is possible to
+	predict the expected behaviour of Q-Learning agents, as shown in Figure ...
+
+	It is clear, both from (\ref{eqn::EOM}) and Figure ... that the long-term strategy selection of
+	these agents is determined by the parameters $\alpha, \tau$ and the payoffs $a_{ij}, b_{ij}$. We
+	then pose the question: how do these elements influence the types of behaviours seen during
+	learning on an iterated game? In other words, under what parameter selections are we likely to
+	see convergence to unique equilibria, multiple equilibria, limit cycles or chaos?
+
+	With this in mind, the intention of this area of study is to consider the analysis presented in
+	works such as \cite{Sanders2018} and \cite{Galla2011}. Here, the authors examine the
+	Experience Weighted Attraction (EWA) algorithm, which is regarded as a strong model for the
+	learning behaviour of human players in a game \cite{whatevertheycite}. The authors are able to
+	determine the regions of parameter space in which complex behaviour,
+	including cycles and chaos, predominantly occur and those in which a given game converges to a
+	stable equilibrium. Figure ... reproduces the graphs shown in \cite{Sanders2018} which
+	illustrates the successful derivation of a 'phase line', across which learning shifts from
+	convergent to chaotic.
+
+    We propose to bridge the analysis presented by Sanders
+    et al. and Galla et al. towards games learnt using MARL, particularly Q-Learning with
+    Boltzmann exploration as considered by Tuyls et al. This would allow for a characterisation of
+    the expected resultant behaviour under given parameters for a particular game. The vision for
+    this is to provide guarantees on the stability of a finite set of agents within a swarm, such as
+    leaders in a flock. Without this, it would be impossible to ensure the stability of a swarm in
+    which intelligent, social interactions must be accounted for. However, this analysis
     would also allow for a characterisation of the conditions under which MARL algorithms may
     feasibly be applied, thereby supporting the ability of researchers and engineers to choose their
     payoff matrices and parameters accordingly.
 
+    This segment of research is currently underway and approaching completion. The analysis can be
+    seen in Section \ref{sec::Chaos_in_Q-Learning}.
+
     \section{Large Agent Dynamics} \label{sec::Large_Agent_Dynamics}
-    This suggestion aims to build upon the work presented by Leung et
-    al. \cite{Hu2019} in which the point is made that the vast
-    majority of the work done in this area considers games with a
-    finite (usually two) number of agents. This limits the capability
-    of the analysis to generalise to much larger agent populations,
-    such as swarms. To allieviate this concern, the authors present an
-    anaysis of the learning dynamics for a large agent population
-    (which they approximate as containing infinite agents) where each
-    agent is an independent Q-Learning using Boltzmann
-    exploration. The emergent dynamics is given by a Fokker-Planck
-    equation which is numerical shown to be a strong approximation of
-    the true learning dynamics. However, as the authors point out,
-    this is the first attempt at considering such a problem, and
-    relies on heavy assumptions.  Possible extensions therefore
-    require a consideration of:
 
-    \begin{itemize}
-        \item Asymmetric games, in which agents have different
-          payoffs, introducing heterogeneity and competition into the
-          system. 
-        \item Stateful Games. 
-        \item Heterogeneous populations, in which there are p different populations of agents.
-    \end{itemize}
+    This segment of research aims to model the game dynamics of large populations of agents
+    learning through iterated games and mean-field Q-Learning. The aim is to provide similar
+    guarantees of stability as in the previous sections with the caveat that all agents in the
+    population can learn, rather than a finite subset.
 
-    To the best of my knowledge, in the particular case of $N >> 1$ agent populations, none of the
-    above have yet been attempted.
+    One of the main results shown by Sanders et al. \cite{Sanders2018} is that as the number of
+    players in a game increases, the learning behaviour is more likely to be chaotic, regardless of
+    the choice of parameters. This is intuitive since a higher number of players would result in a
+    greater strategy space and more agents for any particular player to learn against and is
+    verified by their presented results as in Figure ...
+
+    Yet it can be argued that, for large populations of agents (e.g. a crowd), the aggregate
+    behaviour may be predictable. This intuition is the foundation upon which crowd dynamics and
+    flocking systems are based. In fact, the work presented by Leung et al. \cite{Hu2019} provides a
+    cursory verification of this intuition. Here, the authors present an anaysis of the learning
+    dynamics for a large agent population (which they approximate as containing infinite agents)
+    where each agent is an independent Q-Learning using Boltzmann action selection. The
+    result is a system of equations, governed by a Fokker-Planck model which is numerical shown to be a 
+    strong predictor of the overall strategy selection of the population. Indeed, rather than
+    examining the strategies of every agent in the population (which the authors approximate as
+    infinitely large), they model the evolution of a probability density function which, for each
+    action, defines the density of agents who retain a given Q-value for that action. This is
+    illustrated in Figure ...
+
+   	As the authors point out, this is the first attempt at considering such a problem, and relies on
+	heavy assumptions. The strongest of these is placed on the game itself, which is always
+	assumed to be cooperative (in Sanders' terms, $\Gamma = 1$). We, therefore, propose extending
+	this model to accomodate an arbitrary choice of games. 
+
+	Two proposals for how this might work
+
+	\begin{itemize}
+		\item Estimate the population state using a Random Finite Set (RFS) and apply the models
+		from the previous study. This is a new hypothesis so more research is required.
+		\item Decompose a generic game into a weighted sum of a competitive and a cooperative game.
+		Treat these as two separate agents and invoke the mean field approximation so that any given
+		agent is effectively engaged in a three-player game where the strategy of the opponents is
+		the average strategy of the population.
+	\end{itemize}
+
+	
+	\textbf{TODO: Elaborate on the technical details of the RFS and three body hypotheses}
+
 
     \section{Swarm Control through Fields} \label{sec::Swarm_Field_Control}
-    This study extends the work of Zhang \cite{Zhang2018}, Elamvazuthi \cite{Elamvazhuthi2019} and
-	Li et al. \cite{Li2017}. Here, the authors consider the dynamics of swarms through 'drifted
-	brownian motion'. In this case, the control input is some scalar field which is generated from the
-	environment. Each agent measures this field at their location and uses it to adjust their
-	velocity, which eventually results in the entire swarm achieving a desired distribution. This technique
-	has been shown, both theoretically and experimentally, to drive swarm systems in a stable
-	manner.
 
-	The hypothesis of this section is that the distribution of active particles may
-	similarly be controlled through the influence of a scalar field. The dynamics derived by Bellomo
-	et al. \cite{Bellomo2017} includes a 'flocking field' which agents can measure. By controlling
-	the flocking field, we may be able to drive the swarm to specific
-	distributions. 
+    Here we aim to study the interaction of a swarm of 'active particles' with a potential field. In
+    particular this field is to be generated by 'field particles'. A model predictive control 
+    (MPC) scheme
+    is to be devised to drive this system to desired configurations, with guarantees placed on
+    stability and satisfaction of input constraints. The sub-optimality of the control
+    scheme is to be studied.
+
+    As described in the previous chapter, the control of swarms has been examined through the use of
+    mean field models. These models resolve the fact that it is impossible to view the entire system
+    as simply the sum of all of the agents and rather model the overall state of the system through
+    density functions. Controls are then applied to this function whose evolution is described
+    through, typically, one of two partial differential equations: the Fokker-Planck Equation (also
+    referred to as the Kolmogorov Forward Equation) and the Vlasov Equation. The former has seen
+    some success in recent literature \cite{Zhang2018, Elamvazhuthi2019, Li2017,
+    BorziCollectiveMotion}, though it makes the assumption that the system evolves through 'drifted
+    brownian motion'. This means that the agents are considered to move about independently and
+    randomly, though under the influence of a field which affects their velocity. This technique
+	has been shown, both theoretically and experimentally, to drive swarm systems in a stable
+	manner \cite{Any paper of Fokker Planck control}. The latter is beginning to show promise 
+	though control is typically through leadership rather than fields \cite{VlasovMPC}. 
+
+	The hypothesis of this section is that the distribution of active particles, whose evolution is
+	described through a Vlasov equation, may be controlled through the influence of a scalar field
+	generated by 'field paricles'. This is drawn from the dynamics posed by Bellomo et al. 
+	\cite{Bellomo2017}
+
+	\begin{equation}
+	\label{eqn::Vlasov}
+    \begin{split}    
+        \partial_t f + \Vec{v} \cdot \nabla_{\Vec{x}} f + \kappa \nabla_{\Vec{v}} \cdot (F_a (f) f)
+        = \epsilon Q(f, f) \quad  (\Vec{x}, \Vec{v}) \in \Omega[f] \times D_{\Vec{v}}, \quad t>0, \\
+        F_a[f](t, \Vec{x}, \Vec{v}) = - \int_{\Omega [f] \times D_{\Vec{v}}} \psi (|\Vec{x} - \Vec
+        {x^*}|)(\Vec{v} - \Vec{x^*}) f(t, \Vec{x}^*, \Vec{v}^*) d\Vec{x}^* d\Vec{v}^*, 
+    \end{split}
+    \end{equation}
+
+
+    Here, $f = f(t, \Vec{x}, \Vec{v})$ is the one-particle probability density function at
+    phase-space position ($\Vec{x}, \Vec{v}$), $\Vec{v}$ and time $t$ which represents the state of
+    the system. $\kappa \geq 0$ is a scalar
+    coefficient, $\psi$ denotes the communication strength between particles, and ($\Vec{x}^*, \Vec
+    {v}^*$) gives the position in phase space of a 'field particle'. It can be seen that the these
+    field particles influence the velocity of the swarm agents.
 
 	The contribution that this study presents over those using brownian motion is the inclusion of an
-	interaction operator. This governs how agents interact with one another. By accounting for this, we
-	are able to control swarms where agents, for instance, avoid collisions with one another. The
-	complexity of this interaction term will need to be gradually increased over time. To begin with,
-	we may entirely neglect this term. It is here that we will compare the model proposed by Zhang with
-	that proposed by Bellomo et al. We may then consider only local interactions, which is typical for
-	most swarming systems in the current literature, before then considering non-local interactions.
-	This provides the scope for swarms to interact with a greater number of agents. At this
-	stage, we may expand our study to consider the presence of interaction domains. This places
-	constraints on how agents may interact with one another, allowing for a greater generalisation of
-	inter-agent interactions. Ultimately, we would like to influence the interaction term, though this
-	is discussed in Section \ref{sec:learning_strategies_through_iterated_interaction}. The questions
-	we will consider here are:
+	interaction operator $Q(f, f)$. This governs how agents interact with one another. With this
+	term included, the dynamics account for the tendency of agents to avoid collisions. However,
+	the term is intended to account also for social interactions between agents, which we aim to
+	leverage in the subsequent section.
+
+	The complexity of this interaction term will need to be gradually increased over time. To begin
+	with, we may entirely neglect this term. It is here that we will compare the model proposed by Zhang
+	with that proposed by Bellomo et al. We may then consider only local interactions, which is typical
+	for most swarming systems in the current literature, before then considering non-local interactions.
+	This provides the scope for swarms to interact with a greater number of agents. At this stage, we
+	may expand our study to consider the presence of interaction domains. This places constraints on how
+	agents may interact with one another, allowing for a greater generalisation of inter-agent
+	interactions. Ultimately, we would like to influence the interaction term, though this is discussed
+	in Section \ref{sec::Intelligence_in_control}. The questions we will
+	consider here are:
 
 	\begin{itemize}
-		\item The controllability of the system: Under what conditions is it possible to drive the
+		\item The stablity of the system: Under what conditions is it possible to drive the
 		swarm from one configuration to another in a stable manner?
-		\item The guarantees of the system: Is it possible to ensure that the agents will not enter
-		certain areas of state space, or exceed certain control constraints (e.g. max imum velocity)?
+		\item The guarantees of the system: Is it possible to ensure that controls remain within an
+		admissible set (typically a closed, bounded and convex set \cite{PDEControl}).
 	\end{itemize}
 
-	Some applications of this study are:
-
-	\begin{itemize}
-		\item Search and Rescue, in which agents will be required to flock to specific areas (e.g.
-		areas with survivors detected).
-		\item Construction, in which agents will be required to take on desired formations based on
-		the structure to be designed.
-		\item Medical Robotics, in which agents are required to target specific areas of the body.
-	\end{itemize}
-
-
-	In conclusion, the results from this study already significantly expand the current capabilities of
-	swarming agents by developing control methodologies which can drive the swarm towards desired
-	distributions in a stable manner. This is accomplished through controlling the 'flocking field'
-	which is indirectly used to adjust the velocity of the agents.
+	These results will be established theoretically alongside the sub-optimality of the MPC scheme
+	and verified through numerical simulations in a 2D environment. It
+    will be of interest to perform a similar analysis to Ko and Zuazua \cite{Ko2019} in which the
+    cost functional is altered to favour particular metrics  (e.g. running cost, control time etc.)
+    and also analyse the effect of varying the time horizon.
 
     \section{Incorporation of Intelligence in Control} \label{sec::Intelligence_in_control}
 
-    This section of the study is perhaps the strongest extension to swarm control proposed in this
-	chapter, and will likely be the most challenging. Here, we attempt to control the interaction term
-	in Bellomo et al's model and we consider that the behaviour of the entire swarm may be influenced
-	by decision making on an individual level. This will involve agents learning their strategies
-	through repeated interaction. The goal, then, is to design the agent parameters, reward structure
-	and control strategy to achieve desired results. To accomplish this will require a unification of
-	multi agent learning and control theory. Whilst, at first glance, such an endeavour seems
-	incredibly challenging, our work in the predictability of mean field learning (Chapter 
-	\ref{ch::DynMARL}) places us in a unique position to tackle the problem. This framework will
-	first establish the desired strategy to be taken by the agents and choose the game's reward
-	structure so that learning will converge to a stable fixed point. Then by accounting for this
-	strategy within the interaction term, we apply the appropriate controls in the flocking field to
-	drive the swarm in a stable manner. We will again consider the aforementioned controllability
-	and guarantees questions and establish how the incorporation of learning affects these results.
+    This section of the study is perhaps the strongest extension proposed in this
+	chapter, and will likely be the most challenging. Here, we examine the dynamics (
+	\ref{eqn::Vlasov}) in which the interaction term accounts for the social dynamics of the
+	decision making of individual agents who have learnt through an iterated game. We leverage the
+	strategy evolution dynamics and stability analysis established in 
+	\ref{sec::Chaos_in_MARL} and \ref{sec::Large_Agent_Dynamics}. 
+
+	Two proposals for incorporation of social interaction:
+	\begin{itemize}
+		\item Addition of the agent decisions as a constant in the state $f$. This should be fine if
+		it's fixed but note that the controls have no influence over this.
+		\item Multiplicative term in the turning probability which acts as a weighting term where
+		weights are equal to the agent strategy. This extends to both the swarms in
+		which the leaders are making decisions (only leaders have this term) as well as in
+		swarms where the population makes decisions (everyone has this term). This will need to be
+		done with care though to ensure that normalisation holds.
+	\end{itemize}
+
+	The MPC scheme from the previous section will then be adapted to this dynamical system with the
+	same questions of well-posedness and stability considered. 
+
+	A possible extension of this would be to consider online learning by incorporating the time
+	evolution of the strategy space within the social interaction term, which would now be
+	time-varying. The proper integration of these dynamical systems would depend on the form of the
+	systems derived in Section \ref{sec::Large_Agent_Dynamics} and it is likely that relaxations would
+	be required in terms of controllability results. A likely relaxation would be to examine only the
+	behaviour in the long-enough time frame, which means that we could not impose a final time. Of
+	course, this means that we could only consider optimal control rather than model predictive.
+	However, without establishing the models from Section \ref{sec::Large_Agent_Dynamics}, this
+	extension is speculative and it is likely that such an extension would fall outside the scope of
+	the PhD.
+
+	\textbf{TODO: elaborate on the technical details for proposals of social interaction, mention
+	the conservation laws}
 
 \end{document}

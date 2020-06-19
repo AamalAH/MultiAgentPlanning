@@ -1,10 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-alpha = .8
-A = np.array([[2, 0], [0, 1]])
-B = np.array([[1, 0], [0, 2]])
-tau = 0.1
+alpha = .1
+A = np.array([[1, 5], [0, 3]])
+B = np.array([[1, 0], [5, 3]])
+tau = 0.9
 
 x = np.linspace(0, 1, 50)
 y = np.linspace(0, 1, 50)

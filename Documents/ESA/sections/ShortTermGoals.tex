@@ -1,6 +1,13 @@
 \documentclass[.../main.tex]{subfiles}
 
 \begin{document}
+
+    In this chapter, we summarise and present the research and results which have been obtained thus
+    far. These tackle the problems described in Section \ref{sec::Chaos_in_MARL}. We detail the
+    derivation of a stability phase line as presented in Sanders et al. \cite{Sanders2018} as well
+    as the numerical simulations performed to verify these results. The steps to be completed
+    subseqent to this study are then given.
+
     \section{Convergence and Chaos in Q-Learning Agents} \label{sec::Chaos_in_Q-Learning}
 
     We begin by considering the evolution of learning with agents who follow a Q-Learning approach.
@@ -12,7 +19,7 @@
     likely to converge towards stable equilibriums, as opposed to complex behaviours (such as limit
     cycles or chaotic dynamics). The aim of this study is to format these techniques for the study
     of computational agents who follow the popular Q-Learning approach \cite{SuttonBarto,Schwarz}.
-    
+    {}
     We aim, similarly, to determine the regions of parameter space in which the agents are likely to
     converge to stable equilibria. In this way it will be possible to, a priori, determine whether,
     for a particular game, the behaviour is likely to converge and even how to choose the agent or
@@ -30,8 +37,8 @@
     equivalent to that of two players and so the solutions to the former can (and will) be
     presented. 
 
-    \subsection{Research Summary} %\subfile{./sections/ResearchSummary.tex} \label{sec::Research
-    % Summary}
+     \textbf{Derivation suppressed, uncomment to see}
+     %\subfile{./sections/ResearchSummary.tex} 
     
     \subsection*{Future Work} \label{sec::Future Work}
 
@@ -39,43 +46,10 @@
     of simplifying the notation and reducing the complexity of the experiments. However, the next
     immediate action is to present the equivalent solutions for the case of a general p-player game.
     We then seek to expand this study to a population of agents. For this, we will study the
-    stability of the system presented by Leung et al \cite{Leung} which presents a mean-field model
+    stability of the system presented by Leung et al \cite{Hu2019} which presents a mean-field model
     describing the evolution of learning of a population of Q-Learning agents who play co-operative
     games against one another. This last point is an important limitation - the derived dynamics
     will only consider populations who must co-operate with one another (i.e. the $\Gamma$ value of
     the game is one). 
-
-    \section{Control of Swarms with Independent Agents} \label{sec::Independent_Swarm_Control}
-    
-    This section builds on the work described in \ref{sec::Swarm_Field_Control} and will be the next
-    mode of inquiry upon the completion \ref{sec::Chaos_in_Q-Learning}.
-    Bellomo et al describe the evolution of the distribution of a 'collisionless' swarm
-    through
-
-    \begin{equation*}
-    \begin{split}    
-        \partial_t f + \Vec{v} \cdot \nabla_{\Vec{x}} f + \kappa \nabla_{\Vec{v}} \cdot (F_a (f) f)
-        = 0 \quad  (\Vec{x}, \Vec{v}) \in \Omega[f] \times D_{\Vec{v}}, \quad t>0, \\
-        F_a[f](t, \Vec{x}, \Vec{v}) = - \int_{\Omega [f] \times D_{\Vec{v}}} \psi (|\Vec{x} - \Vec
-        {x^*}|)(\Vec{v} - \Vec{x^*}) f(t, \Vec{x}^*, \Vec{v}^*) d\Vec{x}^* d\Vec{v}^*, 
-    \end{split}
-    \end{equation*}
-
-
-    in which $f = f(t, \Vec{x}, \Vec{v})$ is the one-particle probability density function at
-    phase-space position ($\Vec{x}, \Vec{v}$), $\Vec{v}$ and time $t$. $\kappa \geq 0$ is a scalar
-    coefficient, $\psi$ denotes the communication strength between particles, and ($\Vec{x}^*, \Vec
-    {v}^*$) gives the position in phase space of a 'field particle'.
-
-    In this study we will attempt to formulate an model predictive control problem in which the term
-    $F_a[f] (t, \Vec{x}, \Vec{v})$ takes the role of the control input (we will likely choose a
-    fixed value of $\psi$ to reduce complexity). The process will be inspired from the works of
-    Burger et al. \cite{Berger2019} and Borzi et al. \cite{Borzi2014} However, we will aim to
-    control the behaviour of the system through interactions with 'field particles' (determined by
-    $F_a[f]$) rather than through the leader-follower interactions posed by the aforementioned
-    studies. We will illustrate the effectiveness of the results through 2D numerical simulation. It
-    will be interesting to perform a similar analysis to Ko and Zuazua \cite{Ko2019} in which the
-    cost functional is altered to favour particular metrics  (e.g. running cost, control time etc.)
-    and also analyse the effect of varying the time horizon.
 
 \end{document}
