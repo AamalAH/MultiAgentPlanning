@@ -1,5 +1,5 @@
 \documentclass[11pt]{report}
-
+\usepackage[toc,page]{appendix}
 \usepackage{amsmath,amsfonts}
 \usepackage{mathtools}
 \usepackage{graphicx}
@@ -54,6 +54,12 @@
 
 \chapter{Research Timeline} \subfile{sections/ResearchTimeline.tex} \label{ch::ResearchTimeline}
 
+\bibliographystyle{IEEEtran} 
 
+\bibliography{IEEEfull,references}
+
+\begin{appendices}
+      \chapter{Research Summary} \subfile{sections/ResearchSummary} \label{app::ResearchSummary}
+\end{appendices}  
 
 \end{document}

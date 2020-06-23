@@ -31,7 +31,7 @@
 	\end{itemize}
 
 
-	\textbf{TODO: Ensure all references here are in the Lit Review}
+	% \textbf{TODO: Ensure all references here are in the Lit Review}
 
     \section{Stability and Chaos in MARL} \label{sec::Chaos_in_MARL}
 
@@ -44,16 +44,29 @@
     game theory (such as the rationality of agents and complete information), that player
     strategies can result in much more complex behaviour than convergence to a Nash Equilibrium 
     (NE). In fact, this is even true on what would commonly be regarded as 'simple' games such
-    as tic-tac-toe and prisoner's dilemma \cite{Galla's work and I think Sato's work}. These
+    as tic-tac-toe and prisoner's dilemma \cite{Galla2011, Sato2002}. These
     behaviours include: convergence to a unique equilibrium (though not always to an NE),
     convergence to one of multiple equilibria, limit cycles and chaos. These behaviours are shown in
-    Figure ... Of these, the most preferable is, of course, convergence to a unique equilibrium,
+    Figure \ref{fig::DynamicalBehaviours} Of these, the most preferable is, of course, convergence to a unique equilibrium,
     although it is still possible to study systems with multiple equilibria or limit cycles 
-    \cite{One of the textbooks}. However, it would be difficult to control systems whose dynamics
+    \cite{Strogatz2000}. However, it would be difficult to control systems whose dynamics
     are governed by chaos (though research into controlling chaos is ongoing and rife with
-    opportunity \cite{CyberneticalPhysics}) and so MARL techniques should avoid this. It would,
+    opportunity \cite{Fradkov2009}) and so MARL techniques should avoid this. It would,
     therefore, be a useful endeavour to determine the conditions under which these sorts of
     behaviours arise.
+
+    \begin{figure}[h]
+    	\centering
+    	\includegraphics[width=1.1\textwidth]{Figures/DynamicalBehaviours}
+    	\caption{ \label{fig::DynamicalBehaviours} Different types of dynamial behaviour displayed
+    	by learning agents. a)
+    	Convergence
+    	to a unique fixed point in the upper right corner (1, 1). This fixed point is unique, in
+    	that all trajectories, regardless of initialisation, will converge to this point 
+    	\cite{Tuyls2006AnGames}. b) Limit Cycle, the trajectories converge to cyclic behaviour c,
+    	d) Chaotic behaviour, here small deviatons in the initial conditions can grow
+    	exponentially \cite{Sanders2018}.}
+    \end{figure}
 
     The behaviour of a system may be studied given a model of its dynamics. It is through this
     process that a wide array of physical systems, from harmonic pendulums to geophysical fluids,
@@ -78,9 +91,32 @@
 	memory and intensity of choice parameters respectively. Agent 1 takes action i with probability
 	$x_i$ while Agent 2 takes action j with probability $y_j$. If these actions are taken, the agents
 	receive payoff $a_{ij}$ and $b_{ji}$ respectively. With these equations, it is possible to
-	predict the expected behaviour of Q-Learning agents, as shown in Figure ...
+	predict the expected behaviour of Q-Learning agents, as shown in Figure 
+	\ref{fig::TuylsExperiments}.
 
-	It is clear, both from (\ref{eqn::EOM}) and Figure ... that the long-term strategy selection of
+	\begin{figure}[h]
+		\centering
+		\begin{subfigure}[b]{0.9 \textwidth}
+			\centering
+			\includegraphics[width=0.75 \textwidth]{Figures/Dynamics}
+			\caption{}
+		\end{subfigure}
+		
+		\begin{subfigure}[b]{0.9 \textwidth}
+			\centering
+			\includegraphics[width=0.7 \textwidth]{Figures/Q-Learners}
+			\caption{}
+		\end{subfigure}
+
+		\caption{ \label{fig::TuylsExperiments} Figures taken from \cite{Tuyls2006AnGames} a) Phase
+		plot showing the expected behaviour of Q-Learning agents trained by iterating the
+		Prisoner's Dilemma game as predicted by (\ref{eqn::EOM}). From left to right, the agents
+		have parameter $\tau = 1, 2, 10$. b) Corresponding trajectories of Q-Learning agents with
+		randomised initial conditions displayed through numerical simulation. It is clear that the
+		trajectories in b) follow the predictions in a), after stochasticity is accounted for. }
+	\end{figure}	
+
+	It is clear, both from (\ref{eqn::EOM}) and Figure \ref{fig::TuylsExperiments} that the long-term strategy selection of
 	these agents is determined by the parameters $\alpha, \tau$ and the payoffs $a_{ij}, b_{ij}$. We
 	then pose the question: how do these elements influence the types of behaviours seen during
 	learning on an iterated game? In other words, under what parameter selections are we likely to
@@ -89,12 +125,26 @@
 	With this in mind, the intention of this area of study is to consider the analysis presented in
 	works such as \cite{Sanders2018} and \cite{Galla2011}. Here, the authors examine the
 	Experience Weighted Attraction (EWA) algorithm, which is regarded as a strong model for the
-	learning behaviour of human players in a game \cite{whatevertheycite}. The authors are able to
+	learning behaviour of human players in a game \cite{Camerer2009}. The authors are able to
 	determine the regions of parameter space in which complex behaviour,
 	including cycles and chaos, predominantly occur and those in which a given game converges to a
-	stable equilibrium. Figure ... reproduces the graphs shown in \cite{Sanders2018} which
+	stable equilibrium. Figure \ref{fig::GallaPredictions} reproduces the graphs shown in \cite{Sanders2018} which
 	illustrates the successful derivation of a 'phase line', across which learning shifts from
 	convergent to chaotic.
+
+    \begin{figure}[h]
+    	\centering
+    	\includegraphics[width=0.6\textwidth]{Figures/GallaPredictions}
+    	\caption{ \label{fig::GallaPredictions} Results as produced in the supplementary material
+    	of Sanders et al \cite{Sanders2018}. Here, $p$ is the number of players, $N$ is the number
+    	of actions, $\Gamma$ represents the competitiveness of the game (-1 represents zero-sum, 1
+    	represents shared rewards) and $\alpha$ is the memory parameter of the agent as before.
+    	Here $\tau$ is held constant at 0.05 (though it is referred to as $\beta$ in the paper).
+    	The black region represents where games converged to a fixed point through all simulations,
+    	whilst the hotter regions represent the more complex dynamics - red shows the presence of
+    	limit cycles and white regions signal the onset of chaos. The green line is a theoretical
+    	estimation for the phase line which separates the convergent dynamics from complex.}
+    \end{figure}
 
     We propose to bridge the analysis presented by Sanders
     et al. and Galla et al. towards games learnt using MARL, particularly Q-Learning with
@@ -107,10 +157,10 @@
     feasibly be applied, thereby supporting the ability of researchers and engineers to choose their
     payoff matrices and parameters accordingly.
 
-    This segment of research is currently underway and approaching completion. The analysis can be
-    seen in Section \ref{sec::Chaos_in_Q-Learning}.
+    This segment of research is currently underway and approaching completion. The analysis was
+    described in Section \ref{sec::Chaos_in_Q-Learning}.
 
-    \section{Large Agent Dynamics} \label{sec::Large_Agent_Dynamics}
+    \section{Large Population Dynamics} \label{sec::Large_Agent_Dynamics}
 
     This segment of research aims to model the game dynamics of large populations of agents
     learning through iterated games and mean-field Q-Learning. The aim is to provide similar
@@ -121,7 +171,19 @@
     players in a game increases, the learning behaviour is more likely to be chaotic, regardless of
     the choice of parameters. This is intuitive since a higher number of players would result in a
     greater strategy space and more agents for any particular player to learn against and is
-    verified by their presented results as in Figure ...
+    verified by their presented results as in Figure \ref{fig::GallaPrevalence} - the hotter
+    regions occupy a larger area as 
+
+    \begin{figure}[h]
+    	\centering
+    	\includegraphics[width=0.6\textwidth]{Figures/GallaPrevalence}
+    	\caption{ \label{fig::GallaPrevalence} Results as produced in the supplementary material
+    	of Sanders et al \cite{Sanders2018}. The same items appear here as in Figure 
+    	\ref{fig::GallaPredictions}, except the value of p (number of players) increases moving
+    	from top left to bottom right. It is clear that the hotter region occupies a larger region
+    	of parameter space, indicating that as the bumber of players in the game increase, chaos
+    	becomes more prevalent.}
+    \end{figure}
 
     Yet it can be argued that, for large populations of agents (e.g. a crowd), the aggregate
     behaviour may be predictable. This intuition is the foundation upon which crowd dynamics and
@@ -134,26 +196,48 @@
     examining the strategies of every agent in the population (which the authors approximate as
     infinitely large), they model the evolution of a probability density function which, for each
     action, defines the density of agents who retain a given Q-value for that action. This is
-    illustrated in Figure ...
+    illustrated in Figure \ref{fig::LeungPredictions}.
+
+    \begin{figure}[h]
+    	\centering
+    	\includegraphics[width=0.9\textwidth]{Figures/LeungPredictions}
+    	\caption{ \label{fig::LeungPredictions} Results as produced in Leung et al \cite{Hu2019}.
+    	Here, the solid and dotted lines represent the evolution of thhe expectation of Q-values of
+    	two actions across a population of 50 or 999 agents respectively who are trained on an
+    	iterated Stag Hunt game. The circled and crossed
+    	lines represent the dynamics of these Q-values as predicted by the system of equations
+    	derived in the paper. These are seen to closely match the results of the numerical
+    	experiments.}
+    \end{figure}
 
    	As the authors point out, this is the first attempt at considering such a problem, and relies on
 	heavy assumptions. The strongest of these is placed on the game itself, which is always
 	assumed to be cooperative (in Sanders' terms, $\Gamma = 1$). We, therefore, propose extending
 	this model to accomodate an arbitrary choice of games. 
 
-	Two proposals for how this might work
+	The following are suggestions for approaching the estimation of large population dynamics.
 
 	\begin{itemize}
-		\item Estimate the population state using a Random Finite Set (RFS) and apply the models
-		from the previous study. This is a new hypothesis so more research is required.
-		\item Decompose a generic game into a weighted sum of a competitive and a cooperative game.
-		Treat these as two separate agents and invoke the mean field approximation so that any given
-		agent is effectively engaged in a three-player game where the strategy of the opponents is
-		the average strategy of the population.
+		\item Estimate the population state through Random Finite Sets (RFS) and
+	apply the models from the previous study. The aim here is to determine a state
+	estimation for a swarm of unknown size through a random finite set by solving
+	an optimal estimation problem  (typically iterated through a Kalman Filter
+	\cite{Doerr2019}. As the swarm is treated probailistically, the theory can
+	accomodate an arbitrarily large system. Importantly, this may allow for the
+	results from the previous section to be leveraged towards an arbitrary
+	population. 
+
+	\item Decompose a generic game into a weighted sum of a
+	competitive and a cooperative game. Treat these as two separate agents and
+	invoke the mean field approximation (MFA) so that any given agent is
+	effectively engaged in a three-player game where the strategy of the opponents
+	is the average strategy of the population. This leverages the existing results
+	on the dynamics of three body problems in game theory \cite{Nagarajan2018} in
+	a mixture of co-operative and competitive settings.
 	\end{itemize}
 
 	
-	\textbf{TODO: Elaborate on the technical details of the RFS and three body hypotheses}
+	%\textbf{TODO: Elaborate on the technical details of the RFS and three body hypotheses}
 
 
     \section{Swarm Control through Fields} \label{sec::Swarm_Field_Control}
@@ -171,13 +255,13 @@
     density functions. Controls are then applied to this function whose evolution is described
     through, typically, one of two partial differential equations: the Fokker-Planck Equation (also
     referred to as the Kolmogorov Forward Equation) and the Vlasov Equation. The former has seen
-    some success in recent literature \cite{Zhang2018, Elamvazhuthi2019, Li2017,
-    BorziCollectiveMotion}, though it makes the assumption that the system evolves through 'drifted
+    some success in recent literature \cite{Elamvazhuthi2019, Li2017,
+    Roy2017}, though it makes the assumption that the system evolves through 'drifted
     brownian motion'. This means that the agents are considered to move about independently and
     randomly, though under the influence of a field which affects their velocity. This technique
 	has been shown, both theoretically and experimentally, to drive swarm systems in a stable
-	manner \cite{Any paper of Fokker Planck control}. The latter is beginning to show promise 
-	though control is typically through leadership rather than fields \cite{VlasovMPC}. 
+	manner \cite{Fleig}. The latter is beginning to show promise 
+	though control is typically through leadership rather than fields \cite{Burger2019}. 
 
 	The hypothesis of this section is that the distribution of active particles, whose evolution is
 	described through a Vlasov equation, may be controlled through the influence of a scalar field
@@ -221,9 +305,13 @@
 
 	\begin{itemize}
 		\item The stablity of the system: Under what conditions is it possible to drive the
-		swarm from one configuration to another in a stable manner?
+		swarm from one configuration to another in a stable manner? Fortunately, Bellomo et al
+		present a candidate lyapunov functional upon which dissipation can be evaluated, though it
+		will need to be adapted for the consideration of the consensus models.
 		\item The guarantees of the system: Is it possible to ensure that controls remain within an
-		admissible set (typically a closed, bounded and convex set \cite{PDEControl}).
+		admissible set (typically a closed, bounded and convex set \cite{Fredi2010}).
+		\item Whether the conservation laws of normalisation and total mass, as presented in 
+		\cite{Bellomo2017} can be guaranteed.
 	\end{itemize}
 
 	These results will be established theoretically alongside the sub-optimality of the MPC scheme
@@ -243,13 +331,18 @@
 
 	Two proposals for incorporation of social interaction:
 	\begin{itemize}
-		\item Addition of the agent decisions as a constant in the state $f$. This should be fine if
-		it's fixed but note that the controls have no influence over this.
-		\item Multiplicative term in the turning probability which acts as a weighting term where
-		weights are equal to the agent strategy. This extends to both the swarms in
+		\item Addition of the agent decisions as a constant in the state $f$. This will require that
+		the decisions remain fixed in the state and so it will be required to make sure that the
+		controls have no influence on this element.
+		\item Weighted summation term in the probability of an agent changing its velocity from
+		$v_*$ to
+		$v$ due to a field particle with velocity $v^*$ $A[f](v_* \rightarrow v | v_*, v^*)$.
+		Here, weights are equal to the agent strategy. This extends to both the swarms in
 		which the leaders are making decisions (only leaders have this term) as well as in
 		swarms where the population makes decisions (everyone has this term). This will need to be
-		done with care though to ensure that normalisation holds.
+		done with care though to ensure that normalisation holds. Note that, as this a probabilistic
+		approach, we will need to examine the stochastic behaviour of the system and the extent to
+		which constraint and conservation satisfaction can be guaranteed.
 	\end{itemize}
 
 	The MPC scheme from the previous section will then be adapted to this dynamical system with the
@@ -266,7 +359,7 @@
 	extension is speculative and it is likely that such an extension would fall outside the scope of
 	the PhD.
 
-	\textbf{TODO: elaborate on the technical details for proposals of social interaction, mention
-	the conservation laws}
+	%\textbf{TODO: elaborate on the technical details for proposals of social interaction, mention
+	%the conservation laws}
 
 \end{document}

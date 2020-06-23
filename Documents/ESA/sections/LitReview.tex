@@ -7,8 +7,6 @@ consider the main techniques that have been proposed towards task allocation and
 
 \section{Multi Agent Systems} \label{sec::Multi_Agent_Systems}
 
-\textbf{TODO: Elaborate on each of the metrics}
-
 We will keep the problem statement defined in Section \ref{sec::Objectives_and_Scope} in mind as
 we define several metrics which a Multi Agent System (MAS) may be assessed against.
 
@@ -75,18 +73,18 @@ and MARL methods have both base their theory upon the foundations of Game Theory
 \subsection{Partially Observed Stochatic Games (POSG)} \label{sec::Stochastic_Games}
 
 POSGs act as a game theoretic corollary to the Dec-POMDP. Here, an optimal solution is found by
-fixing the strategy (a manner of selecting an action \cite{Rizk2018DecisionSurvey}) of all agents
+fixing the strategy (a manner of selecting an action \cite{Rizk2018}) of all agents
 except one. The optimal strategy of the chosen agent is then computed. This is fixed so that the
 next agent may determine its optimal strategy. This process is iterated over all agents in a process
-known as Alternating Maximisation \cite{Ray2010AnCooperation}. By choosing strategies which maximise
+known as Alternating Maximisation \cite{Ray2010}. By choosing strategies which maximise
 a common payoff, a globally optimal solution can be found.
 
 Similarly Bayesian Games is a game theoretic approach with incomplete information (thus it is
 sometimes referred to as an ‘incomplete information game’). This allows for a POSG to be
 approximated by a sequence of smaller, more tractable games
-\cite{Emery-MontemerloApproximatePayoffs}. However, iterating through the entire team of agents to
+\cite{Emery-Montemerlo}. However, iterating through the entire team of agents to
 find an optimal solution is a lengthy process and does not allow for immediate actions in dynamic
-situations. To address this, \cite{Ray2010AnCooperation} propose to place distinct payoffs on each
+situations. To address this, \cite{Ray2010} propose to place distinct payoffs on each
 agent and to consider team formation based on social hierarchy as well as preferred partners. This
 allows the complexity of the problem to be broken down into smaller game units and also provides a
 clear order in which the games are to be played. This minimises the interference across robots and
@@ -94,14 +92,14 @@ allows for more immediate action to be taken by agents who choose their strategy
 leaving more passive tasks for those later in the sequence. 
 
 The Bayesian Game formulation therefore provides a strong candidate for rapid task re-allocation and
-dynamic decision making. However, as found by Dai et. al \cite{Dai2018TaskSystems} this is
+dynamic decision making. However, as found by Dai et. al \cite{Dai2018} this is
 conditional on an understanding by each robot of the strategy of others, which in turn requires
 adequate communication between robots. Therefore, the game theoretical formulation will fail where
 communication is not possible amongst team members. However, the addition of heuristics, such as
 deep learning, may be able to advance an agent’s ability to recognise the strategies taken by other
 members of its team without the need for significant explicit communication.
 
-\textbf{Add in any recent literature in these fields}
+% \textbf{Add in any recent literature in these fields}
 
 \subsection{Game Theoretic Control} \label{Game Theoretic Control}
 
@@ -174,7 +172,8 @@ not necessarily mean that both agents will converge to a single Nash equilibrium
 particular problem in games where there are multiple Nash equilibria. However, in practice it is
 difficult to choose a convergence rate of the step size and, without an appropriate choice the
 strategy may oscillate as shown in the book. To address this, a modified approach is presented by
-Bowling and Veloso which incorporates the notion of Win or Learn Fast (WoLF) to produce WoLF-IGA.
+Bowling and Veloso which incorporates the notion of Win or Learn Fast (WoLF) to produce WoLF-IGA
+\cite{Bowling2002}.
 WoLF is a notion we will come across often in MARL and is shown by the authors to converge to always
 to a NE. The concern with WoLF methods, however, is that it requires explicit knowledge of the
 payoff matrix (which is not so much of a problem for model based methods) and the opponent's
@@ -195,7 +194,8 @@ should learn the best response to stationary opponents. A similar set of conditi
 Conitzer and Sandholm in \cite{ConitzerAWESOME:}, whose algorithm we will consider shortly. Schwarz
 then presents a review of MARL methods (as of September 2014)
 
-\textbf{Add in more recent literature r.e. learning in stochastic games and the robustness of MARL}
+% \textbf{Add in more recent literature r.e. learning in stochastic games and the robustness of
+% MARL}
 
 \subsection{Multi Agent Learning Dynamics} \label{sec::MARL_Dynamics}
 
@@ -315,7 +315,7 @@ chooses amongst a family of system models when choosing its control laws. Simila
 determine (or perhaps learn) models of the other agents may be able to leverage this information,
 minimising the model error when optimising.
 
-\textbf{Include recent updates in here}
+% \textbf{Include recent updates in here}
 
 \section{Swarms} \label{sec::Swarms}
 
@@ -372,7 +372,7 @@ leader-follower swarm system to achieve given tasks.
 
 \subsection{Decision Making in Swarms} \label{sec::Decisions_in_Swarms}
 
-\textbf{Include Marco Dorigo and Recent AAMAS literature in here}
+% \textbf{Include Marco Dorigo and Recent AAMAS literature in here}
 
 The reduction of the complexity in interactions between agents also allows for the robots to perform
 other calculations on board. In \cite{Pini2011TaskSelection}, Pini et al. leverage this by
@@ -392,9 +392,6 @@ accomplish.
 
 
 \section{Remarks} \label{sec:remarks}
-
-\textbf{TODO: Go through each of the sections and explicitly evaluate them against the defined
-metrics}
 
 Each of the above methods present different advantages in their approach towards MAS, as well as a
 particular set of disadvantages. 
