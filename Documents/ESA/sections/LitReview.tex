@@ -351,177 +351,234 @@ The control theoretic perspective considers generating a set of control laws for
 are chosen with the aim to satisfy certain properties. The main properties are
 
 \begin{itemize}
-    \item Stability, that a system will return to the desired setpoint (or within a neighbourhood) if
+    \item {\em Stability}: a system will return to the desired setpoint (or within a neighbourhood) if
     perturbed.
 
-    \item Robustness, that a system will perform its function in the presence of uncertainty and
+    \item {\em Robustness}: a system will perform its function in the presence of uncertainty and
     noise
 
-    \item Optimality, that the system will achieve some defined function 
+    \item {\em Optimality}: the system will achieve some defined function 
 
-    \item Feasibility, that the controller will always be able to generate a control law which
+    \item {\em Feasibility}: the controller will always be able to generate a control law which
     satisfies the desired properties.
 \end{itemize}
 
-There are a number of approaches towards control systems. However, the interest of this review lies
-in multi-agent systems which must operate in the face of uncertainty. As such, we focus on
-stochastic and distributed control. The literature of the control communnity is vast and can be
-divided into a number of sub-fields. We consider Distributed MPC (DMPC) and Swarm Optimal Control as
-those which are particularly relevant to this study and review them in this section.
+There are a number of approaches towards control systems. However, the
+interest of this review lies in multi-agent systems which must operate
+in the face of uncertainty. As such, we focus on stochastic and
+distributed control. The relevant literature of the control community
+is vast and can be divided into a number of sub-fields. We consider
+Distributed MPC (DMPC) and Swarm Optimal Control as those which are
+particularly relevant to this study and review them hereafter.
 
-\subsection{Distributed Model Preodictive Control} \label{sec::Distributed_MPC}
+\subsection{Distributed Model Predictive Control} \label{sec::Distributed_MPC}
 
-Rawlings et al \cite{rawlings2017model} divide the problem of distributed control into four distinct
-categories: decentralised control, non-cooperative control, cooperative control, and centralised
-control. The last of these is not considered in the text since it only considers the case in which a
-centralised controller has access and can manipulate multiple agents at once. 
+Rawlings et al.~\cite{rawlings2017model} divide the problem of
+distributed control into four distinct categories: decentralised
+control, non-cooperative control, cooperative control, and centralised
+control. The last of these is not considered in the text since it only
+considers the case in which a centralised controller has access and
+can manipulate multiple agents at once \fr{so then?}.
 
-Decentralised control is the scheme in which agents do not have information about the actions of
-other agents and can only optimise for their own objective. This has the advantage of requiring no
-communication, but can often lead to poor performance when the agents are strongly coupled as each
-agent’s model is incomplete. In the non-cooperative setting, each agent optimises their own loss
-function whilst treating the others’ actions as a known disturbance. In this setting, each agent has
-knowledge of the others’ control laws and their effect. In this case, the agents must communicate
-their intended actions to one another and iterate to achieve a consensus (or Nash equilibrium). This
-is the same for cooperative control, except that the loss function is now shared across the team. 
+Decentralised control is the scheme in which agents do not have
+information about the actions of other agents and can only optimise
+for their own objective. This has the advantage of requiring no
+communication, but can often lead to poor performance when the agents
+are strongly coupled as each agent’s model is incomplete. In the
+non-cooperative setting, each agent optimises their own loss function
+whilst treating the others’ actions as a known disturbance. In this
+setting, each agent has knowledge of the others’ control laws and
+their effect. In this case, the agents must communicate their intended
+actions to one another and iterate to achieve a consensus (or Nash
+equilibrium). This is the same for cooperative control, except that
+the loss function is now shared across the team.
 
-Of all of these systems, cooperative control has found greatest applicability in autonomous systems
-\cite{Negenborn2014}, perhaps due to the favourable stability properties \cite{Venkat2006}. One
-particularly strong application of this system is in vehicle platooning. Here, self-driving cars or
-unmanned aerial vehicles (UAVs) must move in a certain formation without colliding into one another.
-A number of examples can be found such as in \cite{Liu2019, VanParys2017, Zheng2017}. Distributed
-MPC provides the advantage that guarantees can be placed regarding coupled constraint satisfaction
-and feasibility.
+Of all of these systems, cooperative control has found greatest
+applicability in autonomous systems \cite{Negenborn2014}, perhaps due
+to the favourable stability properties \cite{Venkat2006}. One
+particularly strong application of this approach is in vehicle
+platooning. Here, self-driving cars or unmanned aerial vehicles (UAVs)
+must move in a certain formation without colliding into one another.
+A number of examples can be found such as in \cite{Liu2019,
+  VanParys2017, Zheng2017}. Distributed MPC provides the advantage
+that guarantees can be placed regarding coupled constraint
+satisfaction and feasibility.
 
-The advances in stochastic and robust MPC, however, do lend themselves towards revisiting the
-capabilities of decentralised control. Recall that, in this scheme, the agents cannot communicate
-with one another. However, advances in MARL show us that this disadvantage can be made less
-prevalent if each agent has a model of the other \cite{Foerster}. To this end, a methodology such as
-presented in \cite{Heirung2019} may prove beneficial in the decentralised scheme. Here, the system
-chooses amongst a family of system models when choosing its control laws. Similarly, agents who
-determine (or perhaps learn) models of the other agents may be able to leverage this information,
-minimising the model error when optimising.
+The advances in stochastic and robust MPC, however, do lend themselves
+towards revisiting the capabilities of decentralised control. Recall
+that, in this scheme, the agents cannot communicate with one
+another. However, advances in MARL show us that this disadvantage can
+be made less prevalent if each agent has a model of the other
+\cite{Foerster}. To this end, a methodology such as presented in
+\cite{Heirung2019} may prove beneficial in the decentralised
+scheme. Here, the system chooses amongst a family of system models
+when choosing its control laws. Similarly, agents who determine (or
+perhaps learn) models of the other agents may be able to leverage this
+information, minimising the model error when optimising.
 
 % \textbf{Include recent updates in here}
 
 \section{Swarms} \label{sec::Swarms}
 
-Swarm systems comprise of a population of (typically) homogeneous agents who are able to organise
-themselves
-into formations using a series of simple local interactions with their neighbours
-\cite{Couceiro2015}. Whilst the individual agents are generally simplistic, the collective behaviour
-may exhibit complex phenomena emulating systems observed in biological organisations such as bee or
-ant colonies \cite{Sethi2017}. Hybrid algorithms such as in \cite{Gao2018} show an accelerated
-performance in reaching globally optimal solutions in search-based tasks. The advantage of many
-swarm algorithms is that they are based on local interactions and so are incredibly scalable
-\cite{Rizk2018}.
+Swarm systems comprise of a population of (typically) homogeneous
+agents who are able to organise themselves into formations using a
+series of simple local interactions with their neighbours
+\cite{Couceiro2015}. Whilst the individual agents are generally
+simplistic, the collective behaviour may exhibit complex phenomena
+emulating systems observed in biological organisations such as bee or
+ant colonies \cite{Sethi2017}. Hybrid algorithms such as in
+\cite{Gao2018} show an accelerated performance in reaching globally
+optimal solutions in search-based tasks. The advantage of many swarm
+algorithms is that they are based on local interactions and so are
+incredibly scalable \cite{Rizk2018}.
 
 \subsection{Approaches to Swarm Control} \label{sec::Swarm Control}
 
-Recent work has seen the advancement of swarms controlled in stochastic environments. This is
-particularly important for swarm intelligence in robots; many systems are developed with the
-motivation of search-and-rescue, in which the robot swarms will have to operate in environments
-where accounting for uncertainty is critical. To this end, swarm systems have seen the advent of
-stochastic control. In this, the swarm is modelled as a diffusive system using a stochastic
-equation, most often the Kolmogorov Forward Equation \cite{Hamann2008}. In \cite{Hamann2008}, the
-author shows that this equation can be derived by considering local trajectories of smaller subsets
-of the swarm. Elamvazhuthi and Berman \cite{Elamvazhuthi2019} extend this idea to other stochastic
-models for swarms, importantly considering an advection-diffusion-reaction model which allows for
-hybrid agents to switch between different modes of operation. 
+Recent work has seen the advancement of swarms controlled in
+stochastic environments. This is particularly important for swarm
+intelligence in robots; many systems are developed with the motivation
+of search-and-rescue, in which the robot swarms will have to operate
+in environments where accounting for uncertainty is critical. To this
+end, swarm systems have seen the advent of stochastic control. In
+this, the swarm is modelled as a diffusive system using a stochastic
+equation, most often the Kolmogorov Forward Equation
+\cite{Hamann2008}. In \cite{Hamann2008}, the author shows that this
+equation can be derived by considering local trajectories of smaller
+subsets of the swarm. Elamvazhuthi and Berman \cite{Elamvazhuthi2019}
+extend this idea to other stochastic models for swarms, importantly
+considering an advection-diffusion-reaction model which allows for
+hybrid agents to switch between different modes of operation.
 
-The above models come under the term ‘mean-field models’ \cite{Elamvazhuthi2019b}, a series of
-equations for stochastic forward processes (such as swarm foraging) in which, as the number of
-agents tends to infinity, the true macroscopic motion of the system tends to these equations.
-Importantly, however, these stochastic equations allow for an analysis of the swarm, as well as the
-ability to develop control laws. In \cite{Li2017}, Li et al show that these models can be used to
-develop control laws for robots in a swarm and drive them towards a target distribution. The method
-is shown to perform accurately both in simulation and on real robots. The advantage is that
-guarantees can be placed on the convergence and stabilisabiilty of the swarm towards the desired
-distribution. However, there appears to be significant scope to expand upon this methodology from a
-safety perspective. To begin with, the method does not consider inter-agent interactions and
-therefore does not formally guard against collisions. In \cite{Inoue2019}, a similar problem is
-considered, although collisions are avoided by having the robot simply move in the opposite
-direction when encountering an obstacle. It is here that the mean-field models are not as strong
-since they do not take these local interactions into account. It must be noted, however, that Inoue
-et al have identified this problem and are currently working towards its incorporation into the
-model.
+The above models come under the term `mean-field models’
+\cite{Elamvazhuthi2019b}, a series of equations for stochastic forward
+processes (such as swarm foraging) in which, as the number of agents
+tends to infinity, the true macroscopic motion of the system tends to
+these equations.  Importantly, however, these stochastic equations
+allow for an analysis of the swarm, as well as the ability to develop
+control laws. In \cite{Li2017}, Li et al.~show that these models can
+be used to develop control laws for robots in a swarm and drive them
+towards a target distribution. The method is shown to perform
+accurately both in simulation and on real robots. The advantage is
+that guarantees can be placed on the convergence and stabilisabiilty
+of the swarm towards the desired distribution. However, there appears
+to be significant scope to expand upon this methodology from a safety
+perspective. To begin with, the method does not consider inter-agent
+interactions and therefore does not formally guard against
+collisions. In \cite{Inoue2019}, a similar problem is considered,
+although collisions are avoided by having the robot simply move in the
+opposite direction when encountering an obstacle. It is here that the
+mean-field models are not as strong since they do not take these local
+interactions into account. It must be noted, however, that Inoue et
+al.~(\fr{or rather the authors}) have identified this problem and are
+currently working towards its incorporation into the model.
 
-It would, therefore, be of particular interest from a safety perspective to consider agent
-interactions. A starting point may be \cite{Bellomo2017} which extends the dynamical model of a
-swarm system to include agent interaction. This presents a first step towards considering the swarm
-as composed of intelligent agents rather than mindless particles and, as the authors suggest,
-presents the possibility of applying game theoretic approaches towards swarms, which also gives the
-ability to consider heterogeneous swarm systems who interact with one another through repeated play.
-Similarly, it would allow for a stronger control perspective on swarm systems such as presented in
-\cite{Borzi2015}, in which a model predictive control (MPC) scheme is presented for a
-leader-follower swarm system to achieve given tasks. 
+It would, therefore, be of particular interest from a safety
+perspective to consider agent interactions. A starting point may be
+\cite{Bellomo2017}, which extends the dynamical model of a swarm system
+to include agent interaction. This presents a first step towards
+considering the swarm as composed of intelligent agents rather than
+mindless particles and, as the authors suggest, presents the
+possibility of applying game theoretic approaches towards swarms,
+which also gives the ability to consider heterogeneous swarm systems
+who interact with one another through repeated play.  Similarly, it
+would allow for a stronger control perspective on swarm systems such
+as presented in \cite{Borzi2015}, in which a model predictive control
+(MPC) scheme is presented for a leader-follower swarm system to
+achieve given tasks.
 
 
 \subsection{Decision Making in Swarms} \label{sec::Decisions_in_Swarms}
 
 % \textbf{Include Marco Dorigo and Recent AAMAS literature in here}
 
-The reduction of the complexity in interactions between agents also allows for the robots to perform
-other calculations on board. In \cite{Pini2011TaskSelection}, Pini et al. leverage this by
-considering adaptive task partitioning across swarms. This allows a swarm, in a decentralised
-manner, to deliberate whether to partition a task into its sub-tasks or to perform the task in its
-whole. As of now (to the best of my knowledge) the problem of partitioning general tasks into its N
-sub-tasks is unexplored. This, however, highlights another advantage of swarm systems; they are
-readily divided into sub-groups (as in \cite{Zahadat2016DivisionInhibition}) to perform a
-divide-et-impera (divide and conquer) approach to solving problems \cite{Pini2011TaskSelection}). 
 
-Furthermore, swarm systems may be designed in a leaderless manner and so do not require the use of a
-central controller \cite{Couceiro2015}. This presents the advantage that the system can rapidly
-adapt to the loss of agents or separation of groups throughout the task. However, the assumptions
-made regarding the homogeneity of individual agents and the simplicity of their local interactions
-result in significant limitations placed on the complexity of the tasks that swarm systems can
-accomplish.
+The reduction of the complexity in interactions between agents also
+allows for the robots to perform other calculations on board. In
+\cite{Pini2011TaskSelection}, Pini et al.~leverage this by considering
+adaptive task partitioning across swarms. This allows a swarm, in a
+decentralised manner, to deliberate whether to partition a task into
+its sub-tasks or to perform the task in its whole. As of now (to the
+best of my knowledge) the problem of partitioning general tasks into
+its $N$ sub-tasks is unexplored. This, however, highlights another
+advantage of swarm systems; they are readily divided into sub-groups
+(as in \cite{Zahadat2016DivisionInhibition}) to perform a
+{\em divide-et-impera}
+%(divide and conquer)
+approach to solving problems
+\cite{Pini2011TaskSelection}).
+
+Furthermore, swarm systems may be designed in a leaderless manner and
+so do not require the use of a central controller
+\cite{Couceiro2015}. This presents the advantage that the system can
+rapidly adapt to the loss of agents or separation of groups throughout
+the task. However, the assumptions made regarding the homogeneity of
+individual agents and the simplicity of their local interactions
+result in significant limitations placed on the complexity of the
+tasks that swarm systems can accomplish.
 
 
 \section{Discussion} \label{sec:remarks}
 
-Each of the above methods present different advantages in their approach towards MAS, as well as a
-particular set of disadvantages. 
+\fr{I really liked this section.}
+
+Each of the above methods present different advantages in their
+approach towards MAS, as well as a particular set of disadvantages.
 
 Game Theoretic methods have long provided a rigorous approach for
-modelling the behaviour of any MAS. It places no limitation on the heterogeneity of the agents or
-the task demanded. An appropriate choice of payoff matrices will account for both of these
-specifications. Recent advances in POSGs have lifted the strong assumptions on prior knowledge that
-was required to achieve a Nash Equilibrium and Game Theoretic Control allows for such methods to be
-applied in continuous state spaces. Whilst the latter shows particular promise, game theoretic
-methods still fall short in terms of distributivity as they are heavily reliant on communication
-with a centralised decision maker to supply rewards, or within the team to determine each others'
-actions. They also require a priori knowledge of the situation in order to set up payoff matrices
-and so cannot be regarded as robust to environmental uncertainty.
+modelling the behaviour of any MAS. It places no limitation on the
+heterogeneity of the agents or the task demanded. An appropriate
+choice of payoff matrices will account for both of these
+specifications. Recent advances in POSGs have lifted the strong
+assumptions on prior knowledge that was required to achieve a Nash
+Equilibrium and Game Theoretic Control allows for such methods to be
+applied in continuous state spaces. Whilst the latter shows particular
+promise, game theoretic methods still fall short in terms of
+distributivity as they are heavily reliant on communication with a
+centralised decision maker to supply rewards, or within the team to
+determine each others' actions. They also require a priori knowledge
+of the situation in order to set up payoff matrices and so cannot be
+regarded as robust to environmental uncertainty.
 
-Multi-Agent Reinforcement Learning builds on the latter two shortcomings of game theory by allowing
-the environment to supply rewards to agents who adapt their behaviour accordingly. MARL is proving
-to be a powerful method to control MAS, and is rapidly improving, but cannot yet be regarded as
-robust. Studies repeatedly show that small alterations or noise in the environment can result in
-large deviations in behaviour. Furthermore, few guarantees can be placed on the resulting behaviour
-of a MARL system, though progress is being made in closing this gap.
+Multi-Agent Reinforcement Learning builds on the latter two
+shortcomings of game theory by allowing the environment to supply
+rewards to agents who adapt their behaviour accordingly. MARL is
+proving to be a powerful method to control MAS, and is rapidly
+improving, but cannot yet be regarded as robust. Studies repeatedly
+show that small alterations or noise in the environment can result in
+large deviations in behaviour. Furthermore, few guarantees can be
+placed on the resulting behaviour of a MARL system, though progress is
+being made in closing this gap.
 
-Control Theory, on the other hand, takes pride in the guarantees placed on the MAS such as:
-controllability, stability, and robustness. However, control techniques are often centralised or
-decentralised. Distributed methods of control is still an evolving field, particularly in terms of
-robustness to uncertainty. In order to establish guarantees, assumptions are also made on the
-specifics of the MAS, and so control theoretic methods have yet to evolve into general,
-heterogeneous systems with any given task.
+Control Theory, on the other hand, takes pride in the guarantees
+placed on the MAS such as: controllability, stability, and
+robustness. However, control techniques are often centralised or
+decentralised. Distributed methods of control is still an evolving
+field, particularly in terms of robustness to uncertainty. In order to
+establish guarantees, assumptions are also made on the specifics of
+the MAS, and so control theoretic methods have yet to evolve into
+general, heterogeneous systems with any given task.
 
-Swarm systems have their strongest advantage in scalability and, in fact, swarm techniques are built
-to scale due to the distributivity and low computational load placed on each agent. This has often
-come with the assumption that agents in the swarm act as simple, homogeneous, particles who follow
-very simple rules of interaction. Recent work is showing that this is not a necessary assumption
-and, in fact, swarms can leverage heterogeneity and agent capabilities to ensure robustness and
-generalisation.
+Swarm systems have their strongest advantage in scalability and, in
+fact, swarm techniques are built to scale due to the distributivity
+and low computational load placed on each agent. This has often come
+with the assumption that agents in the swarm act as simple,
+homogeneous, particles who follow very simple rules of
+interaction. Recent work is showing that this is not a necessary
+assumption and, in fact, swarms can leverage heterogeneity and agent
+capabilities to ensure robustness and generalisation.
 
-It is clear that each method presents its own set of advantages and disadvantages. In fact, the
-greater contributions are made from a unification of techniques (e.g. game theoretic control) which
-leverage the strengths of one technique to mitigate the drawbacks of another. To this end, we
-consider the unification of swarm control and multi-agent learning. The aim is to unify the
-strengths of swarm theory, MPC and game theory to study populations of agents who can make
-decisions on an individual basis but perform tasks through large scale collaboration. In the
-subsequent chapters, we propose a line of research which explores the properties of a system as well
-as establishing practical control methodologies along the way.
+It is clear that each method presents its own set of advantages and
+disadvantages. In fact, the greater contributions are made from a
+unification of techniques (e.g., game theoretic control) which leverage
+the strengths of one technique to mitigate the drawbacks of
+another. To this end, we consider the unification of swarm control and
+multi-agent learning. The aim is to unify the strengths of swarm
+theory, MPC and game theory to study populations of agents who can
+make decisions on an individual basis but perform tasks through large
+scale collaboration. In the subsequent chapters, we propose a line of
+research which explores the properties of a system as well as
+establishing practical control methodologies along the way.
+
+\fr{what about some use cases/application scenarios.}
 
 \end{document}
