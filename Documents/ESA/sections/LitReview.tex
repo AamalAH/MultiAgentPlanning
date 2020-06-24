@@ -2,59 +2,93 @@
 
 \begin{document}
 
-In this chapter, we explore the current state of the art in Multi-Agent Systems (MAS). We will
-consider the main techniques that have been proposed towards task allocation and control. 
+In this chapter, we explore the current state of the art in
+Multi-Agent Systems (MAS). We will consider the main techniques that
+have been proposed towards task allocation and control.
+
+\fr{you might provide an overview of the introduction with the
+  different sections.}
 
 \section{Multi Agent Systems} \label{sec::Multi_Agent_Systems}
+
+\fr{I wonder whether this section would fit better in Intro.}
 
 We will keep the problem statement defined in Section \ref{sec::Objectives_and_Scope} in mind as
 we define several metrics which a Multi Agent System (MAS) may be assessed against.
 
 \begin{enumerate}
-    \item Distributed. It will often be the case that a multi-agent system must spread out across a
-    large area or operate in regions where communication is limited. As such it is beneficial that
-    such a system does not rely too heavily on communication with a central body. The individual
-    agents must, therefore, be able to make their own decisions and act as independent entities.
-    Aside from the advantage of communication, this ensures that the system is not tied to a single
-    point of failure; in a system governed by a centralised decision maker, any faults in the
-    central body propagates throughout the group. Of course, this comes at the price of
-    computational load - if the agents are required to act independently, they must possess the
-    resources to do so. The term distributed should not be confused with decentralised. The latter
-    refers to a regime in which agents all communicate with one another before making a decision.
-    Whilst this is preferable to a centralised decision maker in terms of the requirement for one
-    entity to communicate with all agents, it still places a high cost on the requirement that
-    agents be in constant communication with one another. In fact it may pose the additional risk
-    that if any agent in the team fails, the whole pipeline falls apart. Distributivity, on the
-    other hand, requires that agents make independent decisions so that, though agents may
-    communicate with each other, they are still able to operate when this is not possible.
-    \item Generality. MAS come in many different flavours; sometimes a small group of heterogeneous 
-    (agents with different capabilities) agents may be required to perform a delicate task whilst
-    in others, it may be required that a large population of homogeneous (all of the same type)
-    agents perform multiple tasks simultaneously. Indeed the same MAS may have to adapt its
-    strategy whilst in the middle of a task. It would be a hindrance if the agents were required to
-    be reprogrammed with a completely different control methodology each time the situation changes
-    slightly. It would be preferable if the method could apply to all different types of scenarios,
-    with homogenous or heteregeneous agents, with single tasks or multiple, in any environment with
-    only minor customisation required. Better still if the agents are able to adapt themselves to
-    the specifics of the scenario.
-    \item Low Computational Load. As mentioned in the previous chapter, a MAS will often be used in
-    complex situations, many of which will be too dangerous for human intervention. As such, the
-    system will be required to carry out its tasks online. For this reason, it is vital that the
-    control method be one which produces low computational load - especially where the time frame
-    for adjusting agent behaviour is limited. Monetary concerns also play a part in this metric; it
-    would not do to impose that every member of the team be equipped with high performance computing
-    power as this would likely fall outside of the budget of any practical usage.
-    \item Robustness. Particularly for physical robots, a MAS should be able to operate in
-    situations which present sensor noise, communication noise, latency, and environmental
-    disturbances. This is rather important in unseen environments where full a priori knowledge of
-    the map cannot be assumed.
-    \item Scalable. This is mentioned last since the ability for a MAS to scale comes from its
-    distributivity  and low computational load. Scalability is the capacity for any method of
-    controlling a MAS to successfully operate as the size of the team increases. This, of course, is
-    related to the complexity of the algorithms involved. However, it should be noted that it is not
-    always required that a MAS be formed of dozens (or even hundreds) of agents. Depending on the
-    task at hand (e.g. robotic surgery), it may be beneficial for fewer, more capable agents to
-    perform the task, rather than a large population. 
+    \item {\em Distributed}. It will often be the case that a
+      multi-agent system must spread out across a large area or
+      operate in regions where communication is limited. As such it is
+      beneficial that such a system does not rely too heavily on
+      communication with a central body. The individual agents must,
+      therefore, be able to make their own decisions and act as
+      independent entities.  Aside from the advantage of
+      communication, this ensures that the system is not tied to a
+      single point of failure; in a system governed by a centralised
+      decision maker, any faults in the central body propagates
+      throughout the group. Of course, this comes at the price of
+      computational load - if the agents are required to act
+      independently, they must possess the resources to do so. The
+      term distributed should not be confused with decentralised. The
+      latter refers to a regime in which agents all communicate with
+      one another before making a decision.  Whilst this is preferable
+      to a centralised decision maker in terms of the requirement for
+      one entity to communicate with all agents, it still places a
+      high cost on the requirement that agents be in constant
+      communication with one another. In fact it may pose the
+      additional risk that if any agent in the team fails, the whole
+      pipeline falls apart. Distributivity, on the other hand,
+      requires that agents make independent decisions so that, though
+      agents may communicate with each other, they are still able to
+      operate when this is not possible.
+
+    \item {\em Generality}. MAS come in many different flavours; sometimes a
+      small group of heterogeneous
+      %(agents with different capabilities)
+      agents may be required to perform a delicate task
+      whilst in others, it may be required that a large population of
+      homogeneous
+      %(all of the same type)
+      agents perform multiple tasks
+      simultaneously. Indeed the same MAS may have to adapt its
+      strategy whilst in the middle of a task. It would be a hindrance
+      if the agents were required to be reprogrammed with a completely
+      different control methodology each time the situation changes
+      slightly. It would be preferable if the method could apply to
+      all different types of scenarios, with homogenous or
+      heteregeneous agents, with single tasks or multiple, in any
+      environment with only minor customisation required. Better still
+      if the agents are able to adapt themselves to the specifics of
+      the scenario.
+
+\item {\em Low Computational Load}. As mentioned in the previous chapter, a
+  MAS will often be used in complex situations, many of which will be
+  too dangerous for human intervention. As such, the system will be
+  required to carry out its tasks online. For this reason, it is vital
+  that the control method be one which produces low computational load
+  - especially where the time frame for adjusting agent behaviour is
+  limited. Monetary concerns also play a part in this metric; it would
+  not do to impose that every member of the team be equipped with high
+  performance computing power as this would likely fall outside of the
+  budget of any practical usage.
+  
+    \item {\em Robustness}. Particularly for physical robots, a MAS
+      should be able to operate in situations which present sensor
+      noise, communication noise, latency, and environmental
+      disturbances. This is rather important in unseen environments
+      where full a priori knowledge of the map cannot be assumed.
+    
+    \item {\em Scalable}. This is mentioned last since the ability for
+      a MAS to scale comes from its distributivity and low
+      computational load. Scalability is the capacity for any method
+      of controlling a MAS to successfully operate as the size of the
+      team increases. This, of course, is related to the complexity of
+      the algorithms involved. However, it should be noted that it is
+      not always required that a MAS be formed of dozens (or even
+      hundreds) of agents. Depending on the task at hand (e.g. robotic
+      surgery), it may be beneficial for fewer, more capable agents to
+      perform the task, rather than a large population.
 \end{enumerate}
 
 We begin by presenting a subset of the vast array of literature regarding MAS and focus on those
@@ -63,167 +97,220 @@ how these methods hold against the above metrics.
 
 \section{Game Theory} \label{sec::Game_Theory}
 
-Game Theory has a rich history when considering an understanding of multi-agent systems and it
-is impossible to examine MAS without an understanding of Game Theory. These
-begin in economics but have found a strong application in computation due to the rising need for
-distributed systems. Game Theory, therefore, branches across all of the categories in this
-chapter although its synergy with swarms requires development) since Dec-POMDP
-and MARL methods have both base their theory upon the foundations of Game Theory.
+Game Theory has a rich history when considering an understanding of
+multi-agent systems and it is impossible to examine MAS without an
+understanding of Game Theory. These begin in economics but have found
+a strong application in computation due to the rising need for
+distributed systems. Game Theory, therefore, branches across all of
+the categories in this chapter although its synergy with swarms
+requires development\fr{)?} since Dec-POMDP \fr{not yet defined} and MARL methods have both base
+their theory upon the foundations of Game Theory.
+
+\fr{we might want to motivate the restriction to partial observability. Dimension to add to the presentation of MAS?}
 
 \subsection{Partially Observed Stochatic Games (POSG)} \label{sec::Stochastic_Games}
 
-POSGs act as a game theoretic corollary to the Dec-POMDP. Here, an optimal solution is found by
-fixing the strategy (a manner of selecting an action \cite{Rizk2018}) of all agents
-except one. The optimal strategy of the chosen agent is then computed. This is fixed so that the
-next agent may determine its optimal strategy. This process is iterated over all agents in a process
-known as Alternating Maximisation \cite{Ray2010}. By choosing strategies which maximise
-a common payoff, a globally optimal solution can be found.
+POSGs act as a game theoretic corollary to the Dec-POMDP. Here, an
+optimal solution \fr{to what?} is found by fixing the strategy (a
+manner of selecting an action \cite{Rizk2018}) of all agents except
+one. The optimal strategy of the chosen agent is then computed. This
+is fixed so that the next agent may determine its optimal
+strategy. This process is iterated over all agents in a process known
+as Alternating Maximisation \cite{Ray2010}. By choosing strategies
+which maximise a common payoff, a globally optimal solution can be
+found.
 
-Similarly Bayesian Games is a game theoretic approach with incomplete information (thus it is
-sometimes referred to as an ‘incomplete information game’). This allows for a POSG to be
-approximated by a sequence of smaller, more tractable games
-\cite{Emery-Montemerlo}. However, iterating through the entire team of agents to
-find an optimal solution is a lengthy process and does not allow for immediate actions in dynamic
-situations. To address this, \cite{Ray2010} propose to place distinct payoffs on each
-agent and to consider team formation based on social hierarchy as well as preferred partners. This
-allows the complexity of the problem to be broken down into smaller game units and also provides a
-clear order in which the games are to be played. This minimises the interference across robots and
-allows for more immediate action to be taken by agents who choose their strategy early on, while
-leaving more passive tasks for those later in the sequence. 
+Similarly Bayesian Games is a game theoretic approach with incomplete
+information (thus it is sometimes referred to as an ‘incomplete
+information game’). This allows for a POSG to be approximated by a
+sequence of smaller, more tractable games
+\cite{Emery-Montemerlo}. However, iterating through the entire team of
+agents to find an optimal solution is a lengthy process and does not
+allow for immediate actions in dynamic situations. To address this,
+\cite{Ray2010} propose to place distinct payoffs on each agent and to
+consider team formation based on social hierarchy as well as preferred
+partners. This allows the complexity of the problem to be broken down
+into smaller game units and also provides a clear order in which the
+games are to be played. This minimises the interference across robots
+and allows for more immediate action to be taken by agents who choose
+their strategy early on, while leaving more passive tasks for those
+later in the sequence.
 
-The Bayesian Game formulation therefore provides a strong candidate for rapid task re-allocation and
-dynamic decision making. However, as found by Dai et. al \cite{Dai2018} this is
-conditional on an understanding by each robot of the strategy of others, which in turn requires
-adequate communication between robots. Therefore, the game theoretical formulation will fail where
-communication is not possible amongst team members. However, the addition of heuristics, such as
-deep learning, may be able to advance an agent’s ability to recognise the strategies taken by other
-members of its team without the need for significant explicit communication.
+The Bayesian Game formulation therefore provides a strong candidate
+for rapid task re-allocation and dynamic decision making. However, as
+found by Dai et. al \cite{Dai2018} this is conditional on an
+understanding by each robot of the strategy of others, which in turn
+requires adequate communication between robots. Therefore, the game
+theoretical formulation will fail where communication is not possible
+amongst team members. However, the addition of heuristics, such as
+deep learning, may be able to advance an agent’s ability to recognise
+the strategies taken by other members of its team without the need for
+significant explicit communication.
 
 % \textbf{Add in any recent literature in these fields}
 
 \subsection{Game Theoretic Control} \label{Game Theoretic Control}
 
-Game theory can often be applied to problems of control theory (particularly where there are
-multiple agents) to develop robust controllers which guarantee properties of stability and
-constraint satisfaction. 
+Game theory can often be applied to problems of control theory
+(particularly where there are multiple agents) to develop robust
+controllers which guarantee properties of stability and constraint
+satisfaction.
 
-This idea is explored in \cite{Marden2018AnnualControl}. Here, a zero-sum game is considered in
-which the players are a controller and an adversarial environment. The design of the controller must
-be such that it is able to drive the system to zero error. To illustrate, consider the problem of
-designing a controller for a re-entry vehicle, as in \cite{Breitner1994ReentryGame}, in which
-vortices seek to destabilise the agent. This will allow us to build stable agents in a much more
-efficient manner since we can simulate the adversarial environment and hypothetical scenarios the
-agent may encounter without actually encountering them. The same notion is explored by Bardi et al
+This idea is explored in \cite{Marden2018AnnualControl}. Here, a
+zero-sum game is considered in which the players are a controller and
+an adversarial environment. The design of the controller must be such
+that it is able to drive the system to zero error. To illustrate,
+consider the problem of designing a controller for a re-entry vehicle,
+as in \cite{Breitner1994ReentryGame}, in which vortices seek to
+destabilise the agent. This will allow us to build stable agents in a
+much more efficient manner since we can simulate the adversarial
+environment and hypothetical scenarios the agent may encounter without
+actually encountering them. The same notion is explored by Bardi et al
 \cite{Bardi1991DifferentialDisturbances}.
 
-Mylvaganam et al, in \cite{Mylvaganam2017AutonomousApproach}, consider the N-robot collision
-avoidance problem, similarly from the point of view of differential game theory. They develop a
-robust feedback system for the robots which they show to be able to drive the system towards
-predefined targets whilst providing guarantees of interference from other agents (or lack thereof).
-In \cite{MylvaganamASystems}, Mylvaganam also considers a game theoretic control of multi-agent
-systems in a distributed manner. Here, agents only consider their own payoff structure and have
-limited communication with one another. The author shows that an approximate equilibrium can be
-found using algebraic methods and illustrate the capabilities of the technique using a collision
-avoidance example. For the sake of brevity the numerous contributions that Mylvaganam has made to
-this field is not presented here. However, we will conclude with those presented in
-\cite{Mylvaganam2014}. Here, the author presents approximate solutions to a number of differential
-games, including linear-quadratic differential games (in which system dynamics are linear functions
-whilst payoff functions are quadratic), Stackelberg differential games, where a hierarchy is 
-induced across the players (a notion was suggested in the research proposal) and mean-field games,
-which is discussed in 'MARL'. The importance of the linear-quadratic
-differential game is the stability of the solution; solutions for the Nash equilibria (NE) are
-admissable iff they are locally exponentially stable (which the author often shows with the aid of
-Lyapunov functions). Approximate solutions to the NE are developed which are more feasible to
-calculate online. The author then shows that this is not simply a theoretical exercise by applying
-the novel methods towards multi-agent collision problems and designs dynamic control laws which
-guarantee that each agent will reach their desired state whilst avoiding collision with the other
-agents. Similarly, the Stackelberg game is applied to the problem of optimal monitoring by a multi
-robot system.   
+Mylvaganam et al, in \cite{Mylvaganam2017AutonomousApproach}, consider
+the $N$-robot collision avoidance problem, similarly from the point of
+view of differential game theory. They develop a robust feedback
+system for the robots which they show to be able to drive the system
+towards predefined targets whilst providing guarantees of interference
+from other agents (or lack thereof).  In \cite{MylvaganamASystems},
+Mylvaganam also considers a game theoretic control of multi-agent
+systems in a distributed manner. Here, agents only consider their own
+payoff structure and have limited communication with one another. The
+author shows that an approximate equilibrium can be found using
+algebraic methods and illustrate the capabilities of the technique
+using a collision avoidance example. For the sake of brevity the
+numerous contributions that Mylvaganam has made to this field is not
+presented here. However, we will conclude with those presented in
+\cite{Mylvaganam2014}. Here, the author presents approximate solutions
+to a number of differential games, including linear-quadratic
+differential games (in which system dynamics are linear functions
+whilst payoff functions are quadratic), Stackelberg differential
+games, where a hierarchy is induced across the players (a notion was
+suggested in the research proposal) and mean-field games, which are
+discussed under `MARL'. The importance of the linear-quadratic
+differential game is the stability of the solution; solutions for the
+Nash equilibria (NE) are admissable iff they are locally exponentially
+stable (which the author often shows with the aid of Lyapunov
+functions). Approximate solutions to the NE are developed which are
+more feasible to calculate online. The author then shows that this is
+not simply a theoretical exercise by applying the novel methods
+towards multi-agent collision problems and designs dynamic control
+laws which guarantee that each agent will reach their desired state
+whilst avoiding collision with the other agents. Similarly, the
+Stackelberg game is applied to the problem of optimal monitoring by a
+multi robot system.
 
 \section{Multi Agent Reinforcement Learning} \label{sec::MARL}
 
-Reinforcement learning extends the Markov Decision Process problem by considering the case where the
-reward model is not initially known to the agent. In a similar manner, Multi Agent Reinforcement
-Learning (MARL) extends the Markov Game setting to one where the payoff structure is not a priori
-knowledge. 
+Reinforcement learning extends the Markov Decision Process problem by
+considering the case where the reward model is not initially known to
+the agent. In a similar manner, Multi Agent Reinforcement Learning
+(MARL) extends the Markov Game setting to one where the payoff
+structure is not a priori knowledge.
 
-The task of MARL is to determine an optimal joint policy for all agents across the game. This joint
-policy may be the concatenation of all the individual policy or it may just be options for each
-agent to take. In either case, optimality is defined through the standard notions of Nash equilibria
-and so, in this section, I will try to consider the broad spectrum of methods which attempt to
-achieve this Nash equilibria. The largest problem in MARL is the non-stationarity of the environment
-\cite{Hernandez-LealA}. In single-agent settings, it is assumed that the environment is Markovian.
-However, this must be lifted in the Multi Agent setting since other agents in the environment will
-be learning concurrently. As such, we must now consider that the policy for any one agent will
-depend on the policy of all other agents. 
+The task of MARL is to determine an optimal joint policy for all
+agents across the game. This joint policy may be the concatenation of
+all the individual policy or it may just be options for each agent to
+take. In either case, optimality is defined through the standard
+notions of Nash equilibria and so, in this section, I will try to
+consider the broad spectrum of methods which attempt to achieve
+Nash equilibria. The largest problem in MARL is the non-stationarity
+of the environment \cite{Hernandez-LealA}. In single-agent settings,
+it is assumed that the environment is Markovian.  However, this must
+be lifted in the Multi Agent setting since other agents in the
+environment will be learning concurrently. As such, we must now
+consider that the policy for any one agent will depend on the policy
+of all other agents.
 
-This chapter begins with a selection of the foundational methods which were developed towards
-solving the MARL problem. The interested reader may find additional methods and implementations of
-these techniques in \cite{SchwartzMulti-agentApproach}.
+This chapter begins with a selection of the foundational methods which
+were developed towards solving the MARL problem. The interested reader
+may find additional methods and implementations of these techniques in
+\cite{SchwartzMulti-agentApproach}.
 
 \subsection{Learning in Two Player Games} \label{sec::Two_Player_Games}
 
-The most fundamental method to learning in Matrix games is the simplex algorithm. This is a popular
-method of linear programming (in which constraints are linear). This will be important in
-considering more current methods. A similar consideration is given to the infinitesimal gradient
-ascent algorithm, in which the step size converges to zero. This method guarantees that, in the
-infite horizon limit, the payoffs will converge to the Nash equilibrium payoff. Note that this does
-not necessarily mean that both agents will converge to a single Nash equilibrium. This is a
-particular problem in games where there are multiple Nash equilibria. However, in practice it is
-difficult to choose a convergence rate of the step size and, without an appropriate choice the
-strategy may oscillate as shown in the book. To address this, a modified approach is presented by
-Bowling and Veloso which incorporates the notion of Win or Learn Fast (WoLF) to produce WoLF-IGA
-\cite{Bowling2002}.
-WoLF is a notion we will come across often in MARL and is shown by the authors to converge to always
-to a NE. The concern with WoLF methods, however, is that it requires explicit knowledge of the
-payoff matrix (which is not so much of a problem for model based methods) and the opponent's
-strategy (which is more of a problem in real-world methods). Finally, the Policy Hill Climbing
-method (PHC) is shown to converge to an optimal mixed strategy if the other agents are stationary
-(i.e. are not learning). However, it is shown that, when this is not the case, the algorithm again
-oscillates. The WoLF-PHC adaptation of this method is shown to converge to a NE strategy for both
-players with minimal oscillation. 
+The most fundamental method to learning in Matrix games is the simplex
+algorithm. This is a popular method of linear programming (in which
+constraints are linear). This will be important in considering more
+current methods. A similar consideration is given to the infinitesimal
+gradient ascent algorithm, in which the step size converges to
+zero. This method guarantees that, in the infite horizon limit, the
+payoffs will converge to the Nash equilibrium payoff. Note that this
+does not necessarily mean that both agents will converge to a single
+Nash equilibrium. This is a particular problem in games where there
+are multiple Nash equilibria. However, in practice it is difficult to
+choose a convergence rate of the step size and, without an appropriate
+choice the strategy may oscillate as shown in the book \fr{please add ref}. To address
+this, a modified approach is presented by Bowling and Veloso which
+incorporates the notion of Win or Learn Fast (WoLF) to produce
+WoLF-IGA \cite{Bowling2002}.  WoLF is a notion we will come across
+often in MARL and is shown by the authors to converge to always to a
+NE. The concern with WoLF methods, however, is that it requires
+explicit knowledge of the payoff matrix (which is not so much of a
+problem for model based methods) and the opponent's strategy (which is
+more of a problem in real-world methods). Finally, the Policy Hill
+Climbing method (PHC) is shown to converge to an optimal mixed
+strategy if the other agents are stationary (i.e.~are not
+learning). However, it is shown that, when this is not the case, the
+algorithm again oscillates. The WoLF-PHC adaptation of this method is
+shown to converge to a NE strategy for both players with minimal
+oscillation.
 
 \subsection{Learning in Stochastic Games} \label{sec::Learning_Stochastic_Games}
 
-Stochastic Games (or Markov Games) form a basis for MARL settings. However, in this case the agents
-must learn about the equilibrium strategies by playing the game, which means they do not have a
-priori knowledge of the reward or transition functions. Schwarz considers two properties which
-should be used for evaluating MARL algorithm: rationality and convergence. The latter simply states
-that the method should converge to some equilibrium whereas the former suggests that the method
-should learn the best response to stationary opponents. A similar set of conditions is considered by
-Conitzer and Sandholm in \cite{ConitzerAWESOME:}, whose algorithm we will consider shortly. Schwarz
-then presents a review of MARL methods (as of September 2014)
+Stochastic Games (or Markov Games) form a basis for MARL
+settings. However, in this case the agents must learn about the
+equilibrium strategies by playing the game, which means they do not
+have a priori knowledge of the reward or transition functions. Schwarz
+considers \fr{where?} two properties which should be used for evaluating MARL
+algorithm: rationality and convergence. The latter simply states that
+the method should converge to some equilibrium whereas the former
+suggests that the method should learn the best response to stationary
+opponents. A similar set of conditions is considered by Conitzer and
+Sandholm in \cite{ConitzerAWESOME:}, whose algorithm we will consider
+shortly. Schwarz then presents a review of MARL methods (as of
+September 2014)
 
 % \textbf{Add in more recent literature r.e. learning in stochastic games and the robustness of
 % MARL}
 
 \subsection{Multi Agent Learning Dynamics} \label{sec::MARL_Dynamics}
 
-Multi Agent Learning Dynamics (often referred to as Game Dynamics or Learning Dynamics)
-considers the
-problem of mathematically modelling Multi Agent Systems who adapt through repeated interact with one
-another. This model then serves to be able to predict the evolution of the system as well as to
-understand the trajectory of learning. Typically, this looks at considering whether or not the
-method is likely to converge towards a Nash equilibrium. This is generally a difficult problem to
-solve \cite{ShohamMultiagentFoundations} for all but toy problems.
-\cite{Letcher2019DifferentiableMechanics} shows that the stable equilbrium and Nash equilibrium (NE)
-are not necessarily the same and, in fact, argue that stable points are more informative than NEs.
-Stability provides some guarantees against the stochastic nature of the environment since a stable
-equilibrium will always be returned to even after perturbations. This extremely important in Safe
-and Trusted AI as it provides guarantees against undesired behaviour in real world environments.
+Multi Agent Learning Dynamics (often referred to as Game Dynamics or
+Learning Dynamics) considers the problem of mathematically modelling
+Multi Agent Systems who adapt through repeated interact with one
+another. This model then serves to be able to predict the evolution of
+the system as well as to understand the trajectory of
+learning. Typically, this looks at considering whether or not the
+method is likely to converge towards a Nash equilibrium. This is
+generally a difficult problem to solve
+\cite{ShohamMultiagentFoundations} for all but toy problems.
+\cite{Letcher2019DifferentiableMechanics} shows that the stable
+equilbrium and Nash equilibrium (NE) are not necessarily the same and,
+in fact, argue that stable points are more informative than NEs.
+Stability provides some guarantees against the stochastic nature of
+the environment since a stable equilibrium will always be returned to
+even after perturbations. This feature is extremely important in Safe
+and Trusted AI as it provides guarantees against undesired behaviour
+in real world environments.
 
-The area of dynamics which has shown most promise in Multi-Agent Reinforcement Learning is that of
-evolutionary dynamics. This draws from the principles of Evolutionary Game Theory (EGT) which
-considers similar assumptions to that of MARL: agents are no longer required to be rational and
-play the game optimise their expected return through repeated play. Importantly, players have no
-knowledge of the others' payoffs \cite{Tuyls2006AnGames}. In \cite{Tuyls2006AnGames}, Tuyls et al.
-determine the relation between the replicator dynamics concept of EGT (a differential equation
-defining the evolution of the proportion of a subgroup in an evolving population) and Q-Learning
-using Boltzmann probabilities as Q-values. The result was a dynamics equation which describes, for
-each action, the evolution of its selection probability which could even account for random
-exploration. There have since been a number of works which apply the same insight into different
-game types and MARL algorithms. In \cite{Bloembergen2015}, these are broken into the following
-categories
+The area of dynamics which has shown most promise in Multi-Agent
+Reinforcement Learning is that of evolutionary dynamics. This draws
+from the principles of Evolutionary Game Theory (EGT) which considers
+similar assumptions to that of MARL: agents are no longer required to
+be rational and play the game optimise their expected return through
+repeated play. Importantly, players have no knowledge of the others'
+payoffs \cite{Tuyls2006AnGames}. In \cite{Tuyls2006AnGames}, Tuyls et
+al.  determine the relation between the replicator dynamics concept of
+EGT (a differential equation defining the evolution of the proportion
+of a subgroup in an evolving population) and Q-Learning using
+Boltzmann probabilities as Q-values. The result was a dynamics
+equation which describes, for each action, the evolution of its
+selection probability which could even account for random
+exploration. There have since been a number of works which apply the
+same insight into different game types and MARL algorithms. In
+\cite{Bloembergen2015}, these are broken into the following categories
 
 \begin{itemize}
     \item Stateless games with discrete actions. Here, stateless refers to the idea that the game is
@@ -391,7 +478,7 @@ result in significant limitations placed on the complexity of the tasks that swa
 accomplish.
 
 
-\section{Remarks} \label{sec:remarks}
+\section{Discussion} \label{sec:remarks}
 
 Each of the above methods present different advantages in their approach towards MAS, as well as a
 particular set of disadvantages. 
