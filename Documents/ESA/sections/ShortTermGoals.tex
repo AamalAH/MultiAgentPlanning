@@ -87,20 +87,25 @@
     \end{equation}
 
     Here, $G, \rho, \eta, \mu$ are correlation functions, generated due to the averaging process 
-    (see Appendix \ref{app::ResearchSummary}). We now analyse the stability of this dynamical system
-    by linearising about
-    a
-    fixed point. This yields the requirement that a fixed point $x^*$ satisfy
+    and the notation $\tilde{\cdot}$ denotes a term which has been scaled with respect to $N$ (see
+    Appendix \ref{app::ResearchSummary} for method and notation). We now analyse the stability of
+    this dynamical system by linearising about a fixed point. This yields the requirement that a
+    fixed point $x^*$ satisfy
 
     \begin{equation}
     0 = x^* \left[\Gamma \alpha^2 \tilde{\tau}^2 x^* \int G_y(t - t') dt' + \tilde{\alpha} \rho_x^* + \alpha \tilde{\tau} \eta_x^* + \tilde{\alpha} \tau \eta_x^* \eta_y^* + \sqrt{\Gamma} \tilde{\alpha} \tau \mu_x \right].
     \end{equation}
 
-    The implication here is that the resulting value of $x^*$ can take two solutions. However, one of these is $x^* = 0$, which is found to rarely occur, while the second solution contains a term $\sqrt{\Gamma}$, which would yield complex values. If this is true, then it would imply that the learning algorithm will rarely converge for values of $\Gamma < 0$. Numerical experiments will shed more light on the likelihood of convergence. If this ansatz turns out to be incorrect (i.e. we see significant convergence for $\Gamma < 0$), it is unlikely that we will be able to solve for the stability line for this case.  
+    The implication here is that the resulting value of $x^*$ can take two solutions. However, one
+    of these is $x^* = 0$, which is found to rarely occur \cite{Coolen2005}, while the second solution
+    contains a term $\sqrt{\Gamma}$, which would yield complex values. Such a result, of course, is
+    not possible for a quantity denoting probabilities and so it appears that the theory cannot hold
+    for $\Gamma < 0$. However, numerical experiments will shed light on the likelihood of
+    convergence and the islands of stability in parameter space for this region.
 
-    We take the Fourier transform of this system to determine the long term behaviour of thhe system
-    after a disturbance. To neglect all transient behaviour, we consider the equation at $\omega =
-    0$ 
+    We take the Fourier transform of this system to determine the long term behaviour of the system
+    after a disturbance. To neglect all transient behaviour (high frequency disturbances), we
+    consider the equation at $\omega = 0$
 
     \begin{equation} \label{eqn::Transformed}
     \left<[|\mathcal{X}(\omega)|^2 \right> = \left< | \Gamma \alpha \tilde{\tau} \mathcal{V}_x(\omega) + \tilde{\alpha} \tau \eta^*_x \mathcal{V}_y(\omega) + \tilde{\alpha} \tau \eta^*_y \mathcal{V}_x(\omega) + \sqrt{\Gamma} \tilde{\alpha} \tau \Delta(\omega) + \Xi(\omega) |^2 \right> \frac{1}{\left< |\mathcal{A}(\omega, x^*) |^2 \right>}, 
@@ -114,7 +119,7 @@
     \end{equation}
 
     By
-    considering that $\left<[|\mathcal{X}(\omega =
+    considering that $\left<|\mathcal{X}(\omega =
     0)|^2
     \right> \geq 0$  we arrive at an expression for a stability line (i.e. the phase transition
     between the
@@ -169,7 +174,7 @@
     over.
     \item Generate payoff matrices for both agents by sampling from a multi-variate Gaussian 
     (variables are the payoff elements) with covariance parameterised by $\Gamma$.
-    \item Iniitialise the agents with random initial conditions (i.e. random action probabilities).
+    \item Initialise the agents with random initial conditions (i.e. random action probabilities).
     \item Allow the agents to learn over a maximum of $1 \times 10^5$ iterations.
     \item Every 100 iterations, check to see if the action probabilities have changed significantly.
     If not (i.e. the change over the last 100 iterations is less than 1\%) the learning is
@@ -192,7 +197,8 @@
 
     As mentioned, the above system considers only a two player game. This was done with the intention
     of simplifying the notation and reducing the complexity of the experiments. However, the next
-    immediate action is to present the equivalent solutions for the case of a general p-player game.
+    immediate action is to present the equivalent solutions for the case of a general $p$-player
+    game.
     
     We then seek to expand this study to a population of agents. For this, we will study the
     stability of the system presented by Leung et al \cite{Hu2019} which presents a mean-field model

@@ -3,7 +3,7 @@
 \begin{document}
 
 	This chapter describes a proposed line of research which aims to study the evolution of swarm
-	systems with independent, learning agents under the influence of predictive controls. We detail
+	systems with learning agents under the influence of predictive controls. We detail
 	the novel lines of research which this work aims to undertake, providing suggestions of the
 	hypotheses posed by these lines. With this in mind the following studies are proposed and
 	developed subsequently:
@@ -58,14 +58,14 @@
     \begin{figure}[h]
     	\centering
     	\includegraphics[width=1.1\textwidth]{Figures/DynamicalBehaviours}
-    	\caption{ \label{fig::DynamicalBehaviours} Different types of dynamial behaviour displayed
-    	by learning agents. a)
+    	\caption{ \label{fig::DynamicalBehaviours} Different types of dynamial behaviour
+       displayed
+    	by learning agents. a) Figure drawn from \cite{Tuyls2006AnGames}.
     	Convergence
     	to a unique fixed point in the upper right corner (1, 1). This fixed point is unique, in
-    	that all trajectories, regardless of initialisation, will converge to this point 
-    	\cite{Tuyls2006AnGames}. b) Limit Cycle, the trajectories converge to cyclic behaviour c,
+    	that all trajectories, regardless of initialisation, will converge to this point. b) Limit Cycle, the trajectories converge to cyclic behaviour c,
     	d) Chaotic behaviour, here small deviatons in the initial conditions can grow
-    	exponentially \cite{Sanders2018}.}
+    	exponentially. b-d drawn from \cite{Sanders2018}}
     \end{figure}
 
     The behaviour of a system may be studied given a model of its dynamics. It is through this
@@ -88,8 +88,8 @@
 	\end{subequations}
 
 	Here, $\alpha$ and $\tau$ are the parameters of the agent; Sanders et al. refer to these as the
-	memory and intensity of choice parameters respectively. Agent 1 takes action i with probability
-	$x_i$ while Agent 2 takes action j with probability $y_j$. If these actions are taken, the agents
+	memory and intensity of choice parameters respectively. Agent 1 takes action $i$ with probability
+	$x_i$ while Agent 2 takes action $j$ with probability $y_j$. If these actions are taken, the agents
 	receive payoff $a_{ij}$ and $b_{ji}$ respectively. With these equations, it is possible to
 	predict the expected behaviour of Q-Learning agents, as shown in Figure 
 	\ref{fig::TuylsExperiments}.
@@ -129,7 +129,7 @@
 	determine the regions of parameter space in which complex behaviour,
 	including cycles and chaos, predominantly occur and those in which a given game converges to a
 	stable equilibrium. Figure \ref{fig::GallaPredictions} reproduces the graphs shown in \cite{Sanders2018} which
-	illustrates the successful derivation of a 'phase line', across which learning shifts from
+	illustrates the successful derivation of a `phase line', across which learning shifts from
 	convergent to chaotic.
 
     \begin{figure}[h]
@@ -190,7 +190,7 @@
     flocking systems are based. In fact, the work presented by Leung et al. \cite{Hu2019} provides a
     cursory verification of this intuition. Here, the authors present an anaysis of the learning
     dynamics for a large agent population (which they approximate as containing infinite agents)
-    where each agent is an independent Q-Learning using Boltzmann action selection. The
+    where each agent is an independent Q-Learner using Boltzmann action selection. The
     result is a system of equations, governed by a Fokker-Planck model which is numerical shown to be a 
     strong predictor of the overall strategy selection of the population. Indeed, rather than
     examining the strategies of every agent in the population (which the authors approximate as
@@ -201,8 +201,8 @@
     \begin{figure}[h]
     	\centering
     	\includegraphics[width=0.9\textwidth]{Figures/LeungPredictions}
-    	\caption{ \label{fig::LeungPredictions} Results as produced in Leung et al \cite{Hu2019}.
-    	Here, the solid and dotted lines represent the evolution of thhe expectation of Q-values of
+    	\caption{ \label{fig::LeungPredictions} Results as produced in Leung et al. \cite{Hu2019}.
+    	Here, the solid and dotted lines represent the evolution of the expectation of Q-values of
     	two actions across a population of 50 or 999 agents respectively who are trained on an
     	iterated Stag Hunt game. The circled and crossed
     	lines represent the dynamics of these Q-values as predicted by the system of equations
@@ -249,7 +249,8 @@
     stability and satisfaction of input constraints. The sub-optimality of the control
     scheme is to be studied.
 
-    As described in the previous chapter, the control of swarms has been examined through the use of
+    As described in Chapter \ref{ch::Lit_Review}, the control of swarms has been examined through the
+    use of
     mean field models. These models resolve the fact that it is impossible to view the entire system
     as simply the sum of all of the agents and rather model the overall state of the system through
     density functions. Controls are then applied to this function whose evolution is described
@@ -305,7 +306,7 @@
 
 	\begin{itemize}
 		\item The stablity of the system: Under what conditions is it possible to drive the
-		swarm from one configuration to another in a stable manner? Fortunately, Bellomo et al
+		swarm from one configuration to another in a stable manner? Fortunately, Bellomo et al.
 		present a candidate lyapunov functional upon which dissipation can be evaluated, though it
 		will need to be adapted for the consideration of the consensus models.
 		\item The guarantees of the system: Is it possible to ensure that controls remain within an
@@ -352,7 +353,7 @@
 	evolution of the strategy space within the social interaction term, which would now be
 	time-varying. The proper integration of these dynamical systems would depend on the form of the
 	systems derived in Section \ref{sec::Large_Agent_Dynamics} and it is likely that relaxations would
-	be required in terms of controllability results. A likely relaxation would be to examine only the
+	be required in terms of controllability results. An example would be to examine only the
 	behaviour in the long-enough time frame, which means that we could not impose a final time. Of
 	course, this means that we could only consider optimal control rather than model predictive.
 	However, without establishing the models from Section \ref{sec::Large_Agent_Dynamics}, this

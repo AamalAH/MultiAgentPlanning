@@ -1,0 +1,98 @@
+This is BibTeX, Version 0.99d (TeX Live 2019)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: main.aux
+The style file: IEEEtran.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: IEEEfull.bib
+Database file #2: references.bib
+I was expecting a `,' or a `}'---line 12 of file references.bib
+ : 
+ : @book{2009ConvergenceSystems,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 2014 of file references.bib
+ : @article{Liu2019
+ :                 ,
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "SpinGlassTheory"
+Warning--I didn't find a database entry for "QFTbook"
+Warning--I didn't find a database entry for "saddlepoint"
+Warning--I didn't find a database entry for "Opper"
+-- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--missing school in Elamvazhuthi2019
+Warning--missing publisher in SchwartzMulti-agentApproach
+Warning--empty year in SchwartzMulti-agentApproach
+Warning--missing institution in Yang2004
+Warning--missing institution in Ray2010
+Warning--missing institution in Emery-Montemerlo
+Warning--empty year in Emery-Montemerlo
+Warning--empty journal in Marden2018AnnualControl
+Warning--missing institution in MylvaganamASystems
+Warning--empty year in MylvaganamASystems
+Warning--missing institution in Mylvaganam2014
+Warning--missing institution in Hernandez-LealA
+Warning--empty year in Hernandez-LealA
+Warning--missing institution in ConitzerAWESOME:
+Warning--empty year in ConitzerAWESOME:
+Warning--missing institution in ShohamMultiagentFoundations
+Warning--empty year in ShohamMultiagentFoundations
+Warning--missing institution in Letcher2019DifferentiableMechanics
+Warning--missing institution in Hu2019
+Warning--empty year in Hu2019
+Warning--empty journal in Foerster
+Warning--missing school in Hamann2008
+Warning--empty journal in Fleig
+Warning--empty year in Fleig
+Warning--empty journal in Burger2019
+Warning--missing publisher in Fredi2010
+Warning--missing institution in Ko2019
+
+Done.
+You've used 58 entries,
+            4087 wiz_defined-function locations,
+            1728 strings with 34578 characters,
+and the built_in function-call counts, 38542 in all, are:
+= -- 3042
+> -- 916
+< -- 274
++ -- 491
+- -- 171
+* -- 1860
+:= -- 5889
+add.period$ -- 123
+call.type$ -- 58
+change.case$ -- 50
+chr.to.int$ -- 636
+cite$ -- 85
+duplicate$ -- 2833
+empty$ -- 3157
+format.name$ -- 209
+if$ -- 8854
+int.to.chr$ -- 0
+int.to.str$ -- 58
+missing$ -- 542
+newline$ -- 231
+num.names$ -- 58
+pop$ -- 1302
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 2933
+stack$ -- 0
+substring$ -- 1551
+swap$ -- 2263
+text.length$ -- 62
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 58
+warning$ -- 27
+while$ -- 165
+width$ -- 60
+write$ -- 576
+(There were 2 error messages)

@@ -11,50 +11,50 @@ We will keep the problem statement defined in Section \ref{sec::Objectives_and_S
 we define several metrics which a Multi Agent System (MAS) may be assessed against.
 
 \begin{enumerate}
-    \item Distributed. It will often be the case that a multi-agent system must spread out across a
-    large area or operate in regions where communication is limited. As such it is beneficial that
-    such a system does not rely too heavily on communication with a central body. The individual
-    agents must, therefore, be able to make their own decisions and act as independent entities.
-    Aside from the advantage of communication, this ensures that the system is not tied to a single
-    point of failure; in a system governed by a centralised decision maker, any faults in the
-    central body propagates throughout the group. Of course, this comes at the price of
-    computational load - if the agents are required to act independently, they must possess the
-    resources to do so. The term distributed should not be confused with decentralised. The latter
-    refers to a regime in which agents all communicate with one another before making a decision.
-    Whilst this is preferable to a centralised decision maker in terms of the requirement for one
-    entity to communicate with all agents, it still places a high cost on the requirement that
-    agents be in constant communication with one another. In fact it may pose the additional risk
-    that if any agent in the team fails, the whole pipeline falls apart. Distributivity, on the
-    other hand, requires that agents make independent decisions so that, though agents may
-    communicate with each other, they are still able to operate when this is not possible.
-    \item Generality. MAS come in many different flavours; sometimes a small group of heterogeneous 
-    (agents with different capabilities) agents may be required to perform a delicate task whilst
-    in others, it may be required that a large population of homogeneous (all of the same type)
-    agents perform multiple tasks simultaneously. Indeed the same MAS may have to adapt its
-    strategy whilst in the middle of a task. It would be a hindrance if the agents were required to
-    be reprogrammed with a completely different control methodology each time the situation changes
-    slightly. It would be preferable if the method could apply to all different types of scenarios,
-    with homogenous or heteregeneous agents, with single tasks or multiple, in any environment with
-    only minor customisation required. Better still if the agents are able to adapt themselves to
-    the specifics of the scenario.
-    \item Low Computational Load. As mentioned in the previous chapter, a MAS will often be used in
-    complex situations, many of which will be too dangerous for human intervention. As such, the
-    system will be required to carry out its tasks online. For this reason, it is vital that the
-    control method be one which produces low computational load - especially where the time frame
-    for adjusting agent behaviour is limited. Monetary concerns also play a part in this metric; it
-    would not do to impose that every member of the team be equipped with high performance computing
-    power as this would likely fall outside of the budget of any practical usage.
-    \item Robustness. Particularly for physical robots, a MAS should be able to operate in
-    situations which present sensor noise, communication noise, latency, and environmental
-    disturbances. This is rather important in unseen environments where full a priori knowledge of
-    the map cannot be assumed.
-    \item Scalable. This is mentioned last since the ability for a MAS to scale comes from its
-    distributivity  and low computational load. Scalability is the capacity for any method of
-    controlling a MAS to successfully operate as the size of the team increases. This, of course, is
-    related to the complexity of the algorithms involved. However, it should be noted that it is not
-    always required that a MAS be formed of dozens (or even hundreds) of agents. Depending on the
-    task at hand (e.g. robotic surgery), it may be beneficial for fewer, more capable agents to
-    perform the task, rather than a large population. 
+    \item \textbf{Distributed}. It will often be the case that a multi-agent system must spread out
+across a large area or operate in regions where communication is limited. As such it is beneficial
+that such a system does not rely too heavily on communication with a central body. The individual
+agents must, therefore, be able to make their own decisions and act as independent entities. Aside
+from the low communication load, this ensures that the system is not tied to a single point of
+failure; in a system governed by a centralised decision maker, any faults in the central body
+propagates throughout the group. Of course, this comes at the price of computational load - if the
+agents are required to act independently, they must possess the resources to do so. The term
+distributed should not be confused with decentralised. The latter refers to a regime in which agents
+all communicate with one another before making a decision. Whilst this is preferable to a
+centralised decision maker in terms of the requirement for one entity to communicate with all
+agents, it still places a high cost on the requirement that agents be in constant communication with
+one another. In fact it may pose the additional risk that if any agent in the team fails, the whole
+pipeline falls apart. Distributivity, on the other hand, requires that agents make independent
+decisions so that, though agents may communicate with each other, they are still able to operate
+when this is not possible.
+    \item \textbf{Generality}. MAS come in many different flavours; sometimes a small group of
+heterogeneous  (agents with different capabilities) agents may be required to perform a delicate
+task whilst in others, it may be required that a large population of homogeneous (all of the same
+type) agents perform multiple tasks simultaneously. Indeed the same MAS may have to adapt its
+strategy whilst in the middle of a task. It would be a hindrance if the agents were required to be
+reprogrammed with a completely different control methodology each time the situation changes
+slightly. It would be preferable if the method could apply to all different types of scenarios, with
+homogenous or heteregeneous agents, with single tasks or multiple, in any environment with only
+minor customisation required. Better still if the agents are able to adapt themselves to the
+specifics of the scenario.
+    \item \textbf{Low Computational Load}. As mentioned in the previous chapter, a MAS will often be
+used in complex situations, many of which will be too dangerous for human intervention. As such, the
+system will be required to carry out its tasks online. For this reason, it is vital that the control
+method be one which produces low computational load - especially where the time frame for adjusting
+agent behaviour is limited. Monetary concerns also play a part in this metric; it would not do to
+impose that every member of the team be equipped with high performance computing power as this would
+likely fall outside of the budget of any practical usage.
+    \item \textbf{Robustness}. Particularly for physical robots, a MAS should be able to operate in
+situations which present sensor noise, communication noise, latency, and environmental disturbances.
+This is rather important in unseen environments where full a priori knowledge of the map cannot be
+assumed.
+    \item \textbf{Scalable}. This is mentioned last since the ability for a MAS to scale comes from
+its distributivity  and low computational load. Scalability is the capacity for any method of
+controlling a MAS to successfully operate as the size of the team increases. This, of course, is
+related to the complexity of the algorithms involved. However, it should be noted that it is not
+always required that a MAS be formed of dozens (or even hundreds) of agents. Depending on the task
+at hand (e.g. robotic surgery), it may be beneficial for fewer, more capable agents to perform the
+task, rather than a large population. 
 \end{enumerate}
 
 We begin by presenting a subset of the vast array of literature regarding MAS and focus on those
@@ -63,12 +63,12 @@ how these methods hold against the above metrics.
 
 \section{Game Theory} \label{sec::Game_Theory}
 
-Game Theory has a rich history when considering an understanding of multi-agent systems and it
-is impossible to examine MAS without an understanding of Game Theory. These
-begin in economics but have found a strong application in computation due to the rising need for
-distributed systems. Game Theory, therefore, branches across all of the categories in this
-chapter although its synergy with swarms requires development) since Dec-POMDP
-and MARL methods have both base their theory upon the foundations of Game Theory.
+Game Theory has a rich history when considering an understanding of multi-agent systems and it is
+impossible to examine MAS without an understanding of Game Theory. These begin in economics but have
+found a strong application in computation due to the rising need for distributed systems. Game
+Theory, therefore, branches across all of the categories in this chapter although its synergy with
+swarms requires development) since Dec-POMDP (Decentralised Partial Observable Markov Decision
+Processes) and MARL methods have both base their theory upon the foundations of Game Theory.
 
 \subsection{Partially Observed Stochatic Games (POSG)} \label{sec::Stochastic_Games}
 
@@ -80,7 +80,7 @@ known as Alternating Maximisation \cite{Ray2010}. By choosing strategies which m
 a common payoff, a globally optimal solution can be found.
 
 Similarly Bayesian Games is a game theoretic approach with incomplete information (thus it is
-sometimes referred to as an ‘incomplete information game’). This allows for a POSG to be
+sometimes referred to as an `incomplete information game’). This allows for a POSG to be
 approximated by a sequence of smaller, more tractable games
 \cite{Emery-Montemerlo}. However, iterating through the entire team of agents to
 find an optimal solution is a lengthy process and does not allow for immediate actions in dynamic
@@ -92,7 +92,7 @@ allows for more immediate action to be taken by agents who choose their strategy
 leaving more passive tasks for those later in the sequence. 
 
 The Bayesian Game formulation therefore provides a strong candidate for rapid task re-allocation and
-dynamic decision making. However, as found by Dai et. al \cite{Dai2018} this is
+dynamic decision making. However, as found by Dai et al. \cite{Dai2018} this is
 conditional on an understanding by each robot of the strategy of others, which in turn requires
 adequate communication between robots. Therefore, the game theoretical formulation will fail where
 communication is not possible amongst team members. However, the addition of heuristics, such as
@@ -113,7 +113,7 @@ be such that it is able to drive the system to zero error. To illustrate, consid
 designing a controller for a re-entry vehicle, as in \cite{Breitner1994ReentryGame}, in which
 vortices seek to destabilise the agent. This will allow us to build stable agents in a much more
 efficient manner since we can simulate the adversarial environment and hypothetical scenarios the
-agent may encounter without actually encountering them. The same notion is explored by Bardi et al
+agent may encounter without actually encountering them. The same notion is explored by Bardi et al.
 \cite{Bardi1991DifferentialDisturbances}.
 
 Mylvaganam et al, in \cite{Mylvaganam2017AutonomousApproach}, consider the N-robot collision
@@ -130,7 +130,7 @@ this field is not presented here. However, we will conclude with those presented
 games, including linear-quadratic differential games (in which system dynamics are linear functions
 whilst payoff functions are quadratic), Stackelberg differential games, where a hierarchy is 
 induced across the players (a notion was suggested in the research proposal) and mean-field games,
-which is discussed in 'MARL'. The importance of the linear-quadratic
+which is discussed in `MARL'. The importance of the linear-quadratic
 differential game is the stability of the solution; solutions for the Nash equilibria (NE) are
 admissable iff they are locally exponentially stable (which the author often shows with the aid of
 Lyapunov functions). Approximate solutions to the NE are developed which are more feasible to
@@ -278,13 +278,13 @@ are chosen with the aim to satisfy certain properties. The main properties are
 
 There are a number of approaches towards control systems. However, the interest of this review lies
 in multi-agent systems which must operate in the face of uncertainty. As such, we focus on
-stochastic and distributed control. The literature of the control communnity is vast and can be
+stochastic and distributed control. The literature of the control community is vast and can be
 divided into a number of sub-fields. We consider Distributed MPC (DMPC) and Swarm Optimal Control as
 those which are particularly relevant to this study and review them in this section.
 
-\subsection{Distributed Model Preodictive Control} \label{sec::Distributed_MPC}
+\subsection{Distributed Model Predictive Control} \label{sec::Distributed_MPC}
 
-Rawlings et al \cite{rawlings2017model} divide the problem of distributed control into four distinct
+Rawlings et al. \cite{rawlings2017model} divide the problem of distributed control into four distinct
 categories: decentralised control, non-cooperative control, cooperative control, and centralised
 control. The last of these is not considered in the text since it only considers the case in which a
 centralised controller has access and can manipulate multiple agents at once. 
@@ -346,7 +346,7 @@ The above models come under the term ‘mean-field models’ \cite{Elamvazhuthi2
 equations for stochastic forward processes (such as swarm foraging) in which, as the number of
 agents tends to infinity, the true macroscopic motion of the system tends to these equations.
 Importantly, however, these stochastic equations allow for an analysis of the swarm, as well as the
-ability to develop control laws. In \cite{Li2017}, Li et al show that these models can be used to
+ability to develop control laws. In \cite{Li2017}, Li et al. show that these models can be used to
 develop control laws for robots in a swarm and drive them towards a target distribution. The method
 is shown to perform accurately both in simulation and on real robots. The advantage is that
 guarantees can be placed on the convergence and stabilisabiilty of the swarm towards the desired
@@ -356,7 +356,7 @@ therefore does not formally guard against collisions. In \cite{Inoue2019}, a sim
 considered, although collisions are avoided by having the robot simply move in the opposite
 direction when encountering an obstacle. It is here that the mean-field models are not as strong
 since they do not take these local interactions into account. It must be noted, however, that Inoue
-et al have identified this problem and are currently working towards its incorporation into the
+et al. have identified this problem and are currently working towards its incorporation into the
 model.
 
 It would, therefore, be of particular interest from a safety perspective to consider agent
