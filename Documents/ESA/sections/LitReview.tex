@@ -2,16 +2,33 @@
 
 \begin{document}
 
+\textbf{TODO: Mention the parts of literature which we are not considering and explain why: Recent
+MARL techniques (including MDRL), Marco Dorigo's work on Swarms. Add in the Learning in Stochastic
+Games literature from Schwartz et al. Explain the concepts in Control Theory and how MPC works. Add
+in suggestions for applications and papers supporting said applications.}
+
 In this chapter, we explore the current state of the art in
 Multi-Agent Systems (MAS). We will consider the main techniques that
-have been proposed towards task allocation and control.
+have been proposed towards task allocation and control. In this review we cover
 
-\fr{you might provide an overview of the introduction with the
-  different sections.}
+\begin{enumerate}
+    \item Game Theory: The most well studied model for solving multi-agent decision making problems.
+    \item Multi-Agent Reinforcement Learning (MARL): A contemporary technique which requires that
+    agents learn and adopt their own strategies.
+    \item Control Theory: Methods focusing on low-level manipulation of a system (e.g. the position
+    and velocity of an agent) which aims to provide guarantees on its behaviour.
+    \item Swarms: Systems whose success are founded on the emergent phenomena exhibited by large
+    populations of interacting entities.
+\end{enumerate}
+
+There are, of course, a number of techniques which we do not discuss here, as they are not relevant
+to the proposals in this report. Most notable is that of Decentralised Partially Observable Markov
+Decision Processes (Dec-POMDPs) which is a multi-agent extension of the MDP framework in which
+agents aim to maximise a common reward (or utility) function. This method does not scale to large
+populations and so is not considered relevant to our study. The interested reader should consult
+\cite{OliehoekDecentralizedPOMDPs} for an excellent introduction to Dec-POMDPs.
 
 \section{Multi Agent Systems} \label{sec::Multi_Agent_Systems}
-
-\fr{I wonder whether this section would fit better in Intro.}
 
 We will keep the problem statement defined in Section \ref{sec::Objectives_and_Scope} in mind as
 we define several metrics which a Multi Agent System (MAS) may be assessed against.
@@ -172,9 +189,11 @@ The task of MARL is to determine an optimal joint policy for all
 agents across the game. This joint policy may be the concatenation of
 all the individual policy or it may just be options for each agent to
 take. In either case, optimality is defined through the standard
-notions of Nash equilibria and so, in this section, I will try to
+notions of Nash equilibria and so, in this section we
 consider the broad spectrum of methods which attempt to achieve
-Nash equilibria. The largest problem in MARL is the non-stationarity
+Nash equilibria. 
+
+The largest problem in MARL is the non-stationarity
 of the environment \cite{Hernandez-LealA}. In single-agent settings,
 it is assumed that the environment is Markovian.  However, this must
 be lifted in the Multi Agent setting since other agents in the
@@ -182,7 +201,7 @@ environment will be learning concurrently. As such, we must now
 consider that the policy for any one agent will depend on the policy
 of all other agents.
 
-This chapter begins with a selection of the foundational methods which
+This section begins with a selection of the foundational methods which
 were developed towards solving the MARL problem. The interested reader
 may find additional methods and implementations of these techniques in
 \cite{SchwartzMulti-agentApproach}.
@@ -200,7 +219,8 @@ does not necessarily mean that both agents will converge to a single
 Nash equilibrium. This is a particular problem in games where there
 are multiple Nash equilibria. However, in practice it is difficult to
 choose a convergence rate of the step size and, without an appropriate
-choice the strategy may oscillate as shown in the book \fr{please add ref}. To address
+choice the strategy may oscillate as shown in the book \cite{SchwartzMulti-agentApproach}. To
+address
 this, a modified approach is presented by Bowling and Veloso which
 incorporates the notion of Win or Learn Fast (WoLF) to produce
 WoLF-IGA \cite{Bowling2002}.  WoLF is a notion we will come across
@@ -221,15 +241,14 @@ oscillation.
 Stochastic Games (or Markov Games) form a basis for MARL
 settings. However, in this case the agents must learn about the
 equilibrium strategies by playing the game, which means they do not
-have a priori knowledge of the reward or transition functions. Schwarz
-considers \fr{where?} two properties which should be used for evaluating MARL
+have a priori knowledge of the reward or transition functions. Schwarz \cite{SchwartzMulti-agentApproach}
+considers two properties which should be used for evaluating MARL
 algorithm: rationality and convergence. The latter simply states that
 the method should converge to some equilibrium whereas the former
 suggests that the method should learn the best response to stationary
 opponents. A similar set of conditions is considered by Conitzer and
-Sandholm in \cite{ConitzerAWESOME:}, whose algorithm we will consider
-shortly. Schwarz then presents a review of MARL methods (as of
-September 2014)
+Sandholm in \cite{ConitzerAWESOME:}. Schwarz then presents a review of MARL methods (as of
+September 2014). 
 
 % \textbf{Add in more recent literature r.e. learning in stochastic games and the robustness of
 % MARL}
@@ -404,8 +423,9 @@ safety perspective. To begin with, the method does not consider inter-agent inte
 therefore does not formally guard against collisions. In \cite{Inoue2019}, a similar problem is
 considered, although collisions are avoided by having the robot simply move in the opposite
 direction when encountering an obstacle. It is here that the mean-field models are not as strong
-since they do not take these local interactions into account. It must be noted, however, that the authors have identified this problem and are currently working towards its incorporation into the
-model.
+since they do not take these local interactions into account. It must be noted, however, that the
+authors of \cite{Inoue2019} have identified this problem and are currently working towards its
+incorporation into the model.
 
 It would, therefore, be of particular interest from a safety perspective to consider agent
 interactions. A starting point may be \cite{Bellomo2017} which extends the dynamical model of a
@@ -449,8 +469,6 @@ tasks that swarm systems can accomplish.
 
 
 \section{Discussion} \label{sec:remarks}
-
-\fr{I really liked this section.}
 
 Each of the above methods present different advantages in their
 approach towards MAS, as well as a particular set of disadvantages.
@@ -509,7 +527,5 @@ make decisions on an individual basis but perform tasks through large
 scale collaboration. In the subsequent chapters, we propose a line of
 research which explores the properties of a system as well as
 establishing practical control methodologies along the way.
-
-\fr{\textbf{what about some use cases/application scenarios.}}
 
 \end{document}
