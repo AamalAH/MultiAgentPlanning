@@ -2,16 +2,22 @@
 
 \begin{document}
 
-In this chapter, we explore the current state of the art in Multi-Agent Systems (MAS). We will
-consider the main techniques that have been proposed towards task allocation and control. 
+In this chapter, we explore the current state of the art in
+Multi-Agent Systems (MAS). We will consider the main techniques that
+have been proposed towards task allocation and control.
+
+\fr{you might provide an overview of the introduction with the
+  different sections.}
 
 \section{Multi Agent Systems} \label{sec::Multi_Agent_Systems}
+
+\fr{I wonder whether this section would fit better in Intro.}
 
 We will keep the problem statement defined in Section \ref{sec::Objectives_and_Scope} in mind as
 we define several metrics which a Multi Agent System (MAS) may be assessed against.
 
 \begin{enumerate}
-    \item \textbf{Distributed}. It will often be the case that a multi-agent system must spread out
+    \item {\em Distributed}. It will often be the case that a multi-agent system must spread out
 across a large area or operate in regions where communication is limited. As such it is beneficial
 that such a system does not rely too heavily on communication with a central body. The individual
 agents must, therefore, be able to make their own decisions and act as independent entities. Aside
@@ -27,7 +33,7 @@ one another. In fact it may pose the additional risk that if any agent in the te
 pipeline falls apart. Distributivity, on the other hand, requires that agents make independent
 decisions so that, though agents may communicate with each other, they are still able to operate
 when this is not possible.
-    \item \textbf{Generality}. MAS come in many different flavours; sometimes a small group of
+    \item {\em Generality}. MAS come in many different flavours; sometimes a small group of
 heterogeneous  (agents with different capabilities) agents may be required to perform a delicate
 task whilst in others, it may be required that a large population of homogeneous (all of the same
 type) agents perform multiple tasks simultaneously. Indeed the same MAS may have to adapt its
@@ -37,18 +43,18 @@ slightly. It would be preferable if the method could apply to all different type
 homogenous or heteregeneous agents, with single tasks or multiple, in any environment with only
 minor customisation required. Better still if the agents are able to adapt themselves to the
 specifics of the scenario.
-    \item \textbf{Low Computational Load}. As mentioned in the previous chapter, a MAS will often be
+    \item {\em Low Computational Load}. As mentioned in the previous chapter, a MAS will often be
 used in complex situations, many of which will be too dangerous for human intervention. As such, the
 system will be required to carry out its tasks online. For this reason, it is vital that the control
 method be one which produces low computational load - especially where the time frame for adjusting
 agent behaviour is limited. Monetary concerns also play a part in this metric; it would not do to
 impose that every member of the team be equipped with high performance computing power as this would
 likely fall outside of the budget of any practical usage.
-    \item \textbf{Robustness}. Particularly for physical robots, a MAS should be able to operate in
+    \item {\em Robustness}. Particularly for physical robots, a MAS should be able to operate in
 situations which present sensor noise, communication noise, latency, and environmental disturbances.
 This is rather important in unseen environments where full a priori knowledge of the map cannot be
 assumed.
-    \item \textbf{Scalable}. This is mentioned last since the ability for a MAS to scale comes from
+    \item {\em Scalable}. This is mentioned last since the ability for a MAS to scale comes from
 its distributivity  and low computational load. Scalability is the capacity for any method of
 controlling a MAS to successfully operate as the size of the team increases. This, of course, is
 related to the complexity of the algorithms involved. However, it should be noted that it is not
@@ -72,7 +78,8 @@ Processes) and MARL methods have both base their theory upon the foundations of 
 
 \subsection{Partially Observed Stochatic Games (POSG)} \label{sec::Stochastic_Games}
 
-POSGs act as a game theoretic corollary to the Dec-POMDP. Here, an optimal solution is found by
+POSGs act as a game theoretic corollary to the Dec-POMDP. Here, an optimal solution to a multi-agent
+decision making problem is found by
 fixing the strategy (a manner of selecting an action \cite{Rizk2018}) of all agents
 except one. The optimal strategy of the chosen agent is then computed. This is fixed so that the
 next agent may determine its optimal strategy. This process is iterated over all agents in a process
@@ -103,127 +110,166 @@ members of its team without the need for significant explicit communication.
 
 \subsection{Game Theoretic Control} \label{Game Theoretic Control}
 
-Game theory can often be applied to problems of control theory (particularly where there are
-multiple agents) to develop robust controllers which guarantee properties of stability and
-constraint satisfaction. 
+Game theory can often be applied to problems of control theory
+(particularly where there are multiple agents) to develop robust
+controllers which guarantee properties of stability and constraint
+satisfaction.
 
-This idea is explored in \cite{Marden2018AnnualControl}. Here, a zero-sum game is considered in
-which the players are a controller and an adversarial environment. The design of the controller must
-be such that it is able to drive the system to zero error. To illustrate, consider the problem of
-designing a controller for a re-entry vehicle, as in \cite{Breitner1994ReentryGame}, in which
-vortices seek to destabilise the agent. This will allow us to build stable agents in a much more
-efficient manner since we can simulate the adversarial environment and hypothetical scenarios the
-agent may encounter without actually encountering them. The same notion is explored by Bardi et al.
+This idea is explored in \cite{Marden2018AnnualControl}. Here, a
+zero-sum game is considered in which the players are a controller and
+an adversarial environment. The design of the controller must be such
+that it is able to drive the system to zero error. To illustrate,
+consider the problem of designing a controller for a re-entry vehicle,
+as in \cite{Breitner1994ReentryGame}, in which vortices seek to
+destabilise the agent. This will allow us to build stable agents in a
+much more efficient manner since we can simulate the adversarial
+environment and hypothetical scenarios the agent may encounter without
+actually encountering them. The same notion is explored by Bardi et al
 \cite{Bardi1991DifferentialDisturbances}.
 
-Mylvaganam et al, in \cite{Mylvaganam2017AutonomousApproach}, consider the N-robot collision
-avoidance problem, similarly from the point of view of differential game theory. They develop a
-robust feedback system for the robots which they show to be able to drive the system towards
-predefined targets whilst providing guarantees of interference from other agents (or lack thereof).
-In \cite{MylvaganamASystems}, Mylvaganam also considers a game theoretic control of multi-agent
-systems in a distributed manner. Here, agents only consider their own payoff structure and have
-limited communication with one another. The author shows that an approximate equilibrium can be
-found using algebraic methods and illustrate the capabilities of the technique using a collision
-avoidance example. For the sake of brevity the numerous contributions that Mylvaganam has made to
-this field is not presented here. However, we will conclude with those presented in
-\cite{Mylvaganam2014}. Here, the author presents approximate solutions to a number of differential
-games, including linear-quadratic differential games (in which system dynamics are linear functions
-whilst payoff functions are quadratic), Stackelberg differential games, where a hierarchy is 
-induced across the players (a notion was suggested in the research proposal) and mean-field games,
-which is discussed in `MARL'. The importance of the linear-quadratic
-differential game is the stability of the solution; solutions for the Nash equilibria (NE) are
-admissable iff they are locally exponentially stable (which the author often shows with the aid of
-Lyapunov functions). Approximate solutions to the NE are developed which are more feasible to
-calculate online. The author then shows that this is not simply a theoretical exercise by applying
-the novel methods towards multi-agent collision problems and designs dynamic control laws which
-guarantee that each agent will reach their desired state whilst avoiding collision with the other
-agents. Similarly, the Stackelberg game is applied to the problem of optimal monitoring by a multi
-robot system.   
+Mylvaganam et al, in \cite{Mylvaganam2017AutonomousApproach}, consider
+the $N$-robot collision avoidance problem, similarly from the point of
+view of differential game theory. They develop a robust feedback
+system for the robots which they show to be able to drive the system
+towards predefined targets whilst providing guarantees of interference
+from other agents (or lack thereof).  In \cite{MylvaganamASystems},
+Mylvaganam also considers a game theoretic control of multi-agent
+systems in a distributed manner. Here, agents only consider their own
+payoff structure and have limited communication with one another. The
+author shows that an approximate equilibrium can be found using
+algebraic methods and illustrate the capabilities of the technique
+using a collision avoidance example. For the sake of brevity the
+numerous contributions that Mylvaganam has made to this field is not
+presented here. However, we will conclude with those presented in
+\cite{Mylvaganam2014}. Here, the author presents approximate solutions
+to a number of differential games, including linear-quadratic
+differential games (in which system dynamics are linear functions
+whilst payoff functions are quadratic), Stackelberg differential
+games, where a hierarchy is induced across the players (a notion was
+suggested in the research proposal) and mean-field games, which are
+discussed under `MARL'. The importance of the linear-quadratic
+differential game is the stability of the solution; solutions for the
+Nash equilibria (NE) are admissable iff they are locally exponentially
+stable (which the author often shows with the aid of Lyapunov
+functions). Approximate solutions to the NE are developed which are
+more feasible to calculate online. The author then shows that this is
+not simply a theoretical exercise by applying the novel methods
+towards multi-agent collision problems and designs dynamic control
+laws which guarantee that each agent will reach their desired state
+whilst avoiding collision with the other agents. Similarly, the
+Stackelberg game is applied to the problem of optimal monitoring by a
+multi robot system.
 
 \section{Multi Agent Reinforcement Learning} \label{sec::MARL}
 
-Reinforcement learning extends the Markov Decision Process problem by considering the case where the
-reward model is not initially known to the agent. In a similar manner, Multi Agent Reinforcement
-Learning (MARL) extends the Markov Game setting to one where the payoff structure is not a priori
-knowledge. 
+Reinforcement learning extends the Markov Decision Process problem by
+considering the case where the reward model is not initially known to
+the agent. In a similar manner, Multi Agent Reinforcement Learning
+(MARL) extends the Markov Game setting to one where the payoff
+structure is not a priori knowledge.
 
-The task of MARL is to determine an optimal joint policy for all agents across the game. This joint
-policy may be the concatenation of all the individual policy or it may just be options for each
-agent to take. In either case, optimality is defined through the standard notions of Nash equilibria
-and so, in this section, I will try to consider the broad spectrum of methods which attempt to
-achieve this Nash equilibria. The largest problem in MARL is the non-stationarity of the environment
-\cite{Hernandez-LealA}. In single-agent settings, it is assumed that the environment is Markovian.
-However, this must be lifted in the Multi Agent setting since other agents in the environment will
-be learning concurrently. As such, we must now consider that the policy for any one agent will
-depend on the policy of all other agents. 
+The task of MARL is to determine an optimal joint policy for all
+agents across the game. This joint policy may be the concatenation of
+all the individual policy or it may just be options for each agent to
+take. In either case, optimality is defined through the standard
+notions of Nash equilibria and so, in this section, I will try to
+consider the broad spectrum of methods which attempt to achieve
+Nash equilibria. The largest problem in MARL is the non-stationarity
+of the environment \cite{Hernandez-LealA}. In single-agent settings,
+it is assumed that the environment is Markovian.  However, this must
+be lifted in the Multi Agent setting since other agents in the
+environment will be learning concurrently. As such, we must now
+consider that the policy for any one agent will depend on the policy
+of all other agents.
 
-This chapter begins with a selection of the foundational methods which were developed towards
-solving the MARL problem. The interested reader may find additional methods and implementations of
-these techniques in \cite{SchwartzMulti-agentApproach}.
+This chapter begins with a selection of the foundational methods which
+were developed towards solving the MARL problem. The interested reader
+may find additional methods and implementations of these techniques in
+\cite{SchwartzMulti-agentApproach}.
 
 \subsection{Learning in Two Player Games} \label{sec::Two_Player_Games}
 
-The most fundamental method to learning in Matrix games is the simplex algorithm. This is a popular
-method of linear programming (in which constraints are linear). This will be important in
-considering more current methods. A similar consideration is given to the infinitesimal gradient
-ascent algorithm, in which the step size converges to zero. This method guarantees that, in the
-infite horizon limit, the payoffs will converge to the Nash equilibrium payoff. Note that this does
-not necessarily mean that both agents will converge to a single Nash equilibrium. This is a
-particular problem in games where there are multiple Nash equilibria. However, in practice it is
-difficult to choose a convergence rate of the step size and, without an appropriate choice the
-strategy may oscillate as shown in the book. To address this, a modified approach is presented by
-Bowling and Veloso which incorporates the notion of Win or Learn Fast (WoLF) to produce WoLF-IGA
-\cite{Bowling2002}.
-WoLF is a notion we will come across often in MARL and is shown by the authors to converge to always
-to a NE. The concern with WoLF methods, however, is that it requires explicit knowledge of the
-payoff matrix (which is not so much of a problem for model based methods) and the opponent's
-strategy (which is more of a problem in real-world methods). Finally, the Policy Hill Climbing
-method (PHC) is shown to converge to an optimal mixed strategy if the other agents are stationary
-(i.e. are not learning). However, it is shown that, when this is not the case, the algorithm again
-oscillates. The WoLF-PHC adaptation of this method is shown to converge to a NE strategy for both
-players with minimal oscillation. 
+The most fundamental method to learning in Matrix games is the simplex
+algorithm. This is a popular method of linear programming (in which
+constraints are linear). This will be important in considering more
+current methods. A similar consideration is given to the infinitesimal
+gradient ascent algorithm, in which the step size converges to
+zero. This method guarantees that, in the infite horizon limit, the
+payoffs will converge to the Nash equilibrium payoff. Note that this
+does not necessarily mean that both agents will converge to a single
+Nash equilibrium. This is a particular problem in games where there
+are multiple Nash equilibria. However, in practice it is difficult to
+choose a convergence rate of the step size and, without an appropriate
+choice the strategy may oscillate as shown in the book \fr{please add ref}. To address
+this, a modified approach is presented by Bowling and Veloso which
+incorporates the notion of Win or Learn Fast (WoLF) to produce
+WoLF-IGA \cite{Bowling2002}.  WoLF is a notion we will come across
+often in MARL and is shown by the authors to converge to always to a
+NE. The concern with WoLF methods, however, is that it requires
+explicit knowledge of the payoff matrix (which is not so much of a
+problem for model based methods) and the opponent's strategy (which is
+more of a problem in real-world methods). Finally, the Policy Hill
+Climbing method (PHC) is shown to converge to an optimal mixed
+strategy if the other agents are stationary (i.e.~are not
+learning). However, it is shown that, when this is not the case, the
+algorithm again oscillates. The WoLF-PHC adaptation of this method is
+shown to converge to a NE strategy for both players with minimal
+oscillation.
 
 \subsection{Learning in Stochastic Games} \label{sec::Learning_Stochastic_Games}
 
-Stochastic Games (or Markov Games) form a basis for MARL settings. However, in this case the agents
-must learn about the equilibrium strategies by playing the game, which means they do not have a
-priori knowledge of the reward or transition functions. Schwarz considers two properties which
-should be used for evaluating MARL algorithm: rationality and convergence. The latter simply states
-that the method should converge to some equilibrium whereas the former suggests that the method
-should learn the best response to stationary opponents. A similar set of conditions is considered by
-Conitzer and Sandholm in \cite{ConitzerAWESOME:}, whose algorithm we will consider shortly. Schwarz
-then presents a review of MARL methods (as of September 2014)
+Stochastic Games (or Markov Games) form a basis for MARL
+settings. However, in this case the agents must learn about the
+equilibrium strategies by playing the game, which means they do not
+have a priori knowledge of the reward or transition functions. Schwarz
+considers \fr{where?} two properties which should be used for evaluating MARL
+algorithm: rationality and convergence. The latter simply states that
+the method should converge to some equilibrium whereas the former
+suggests that the method should learn the best response to stationary
+opponents. A similar set of conditions is considered by Conitzer and
+Sandholm in \cite{ConitzerAWESOME:}, whose algorithm we will consider
+shortly. Schwarz then presents a review of MARL methods (as of
+September 2014)
 
 % \textbf{Add in more recent literature r.e. learning in stochastic games and the robustness of
 % MARL}
 
 \subsection{Multi Agent Learning Dynamics} \label{sec::MARL_Dynamics}
 
-Multi Agent Learning Dynamics (often referred to as Game Dynamics or Learning Dynamics)
-considers the
-problem of mathematically modelling Multi Agent Systems who adapt through repeated interact with one
-another. This model then serves to be able to predict the evolution of the system as well as to
-understand the trajectory of learning. Typically, this looks at considering whether or not the
-method is likely to converge towards a Nash equilibrium. This is generally a difficult problem to
-solve \cite{ShohamMultiagentFoundations} for all but toy problems.
-\cite{Letcher2019DifferentiableMechanics} shows that the stable equilbrium and Nash equilibrium (NE)
-are not necessarily the same and, in fact, argue that stable points are more informative than NEs.
-Stability provides some guarantees against the stochastic nature of the environment since a stable
-equilibrium will always be returned to even after perturbations. This extremely important in Safe
-and Trusted AI as it provides guarantees against undesired behaviour in real world environments.
+Multi Agent Learning Dynamics (often referred to as Game Dynamics or
+Learning Dynamics) considers the problem of mathematically modelling
+Multi Agent Systems who adapt through repeated interact with one
+another. This model then serves to be able to predict the evolution of
+the system as well as to understand the trajectory of
+learning. Typically, this looks at considering whether or not the
+method is likely to converge towards a Nash equilibrium. This is
+generally a difficult problem to solve
+\cite{ShohamMultiagentFoundations} for all but toy problems.
+\cite{Letcher2019DifferentiableMechanics} shows that the stable
+equilbrium and Nash equilibrium (NE) are not necessarily the same and,
+in fact, argue that stable points are more informative than NEs.
+Stability provides some guarantees against the stochastic nature of
+the environment since a stable equilibrium will always be returned to
+even after perturbations. This feature is extremely important in Safe
+and Trusted AI as it provides guarantees against undesired behaviour
+in real world environments.
 
-The area of dynamics which has shown most promise in Multi-Agent Reinforcement Learning is that of
-evolutionary dynamics. This draws from the principles of Evolutionary Game Theory (EGT) which
-considers similar assumptions to that of MARL: agents are no longer required to be rational and
-play the game optimise their expected return through repeated play. Importantly, players have no
-knowledge of the others' payoffs \cite{Tuyls2006AnGames}. In \cite{Tuyls2006AnGames}, Tuyls et al.
-determine the relation between the replicator dynamics concept of EGT (a differential equation
-defining the evolution of the proportion of a subgroup in an evolving population) and Q-Learning
-using Boltzmann probabilities as Q-values. The result was a dynamics equation which describes, for
-each action, the evolution of its selection probability which could even account for random
-exploration. There have since been a number of works which apply the same insight into different
-game types and MARL algorithms. In \cite{Bloembergen2015}, these are broken into the following
-categories
+The area of dynamics which has shown most promise in Multi-Agent
+Reinforcement Learning is that of evolutionary dynamics. This draws
+from the principles of Evolutionary Game Theory (EGT) which considers
+similar assumptions to that of MARL: agents are no longer required to
+be rational and play the game optimise their expected return through
+repeated play. Importantly, players have no knowledge of the others'
+payoffs \cite{Tuyls2006AnGames}. In \cite{Tuyls2006AnGames}, Tuyls et
+al.  determine the relation between the replicator dynamics concept of
+EGT (a differential equation defining the evolution of the proportion
+of a subgroup in an evolving population) and Q-Learning using
+Boltzmann probabilities as Q-values. The result was a dynamics
+equation which describes, for each action, the evolution of its
+selection probability which could even account for random
+exploration. There have since been a number of works which apply the
+same insight into different game types and MARL algorithms. In
+\cite{Bloembergen2015}, these are broken into the following categories
 
 \begin{itemize}
     \item Stateless games with discrete actions. Here, stateless refers to the idea that the game is
@@ -264,15 +310,15 @@ The control theoretic perspective considers generating a set of control laws for
 are chosen with the aim to satisfy certain properties. The main properties are
 
 \begin{itemize}
-    \item Stability, that a system will return to the desired setpoint (or within a neighbourhood) if
+    \item {\em Stability}: a system will return to the desired setpoint (or within a neighbourhood) if
     perturbed.
 
-    \item Robustness, that a system will perform its function in the presence of uncertainty and
+    \item {\em Robustness}: a system will perform its function in the presence of uncertainty and
     noise
 
-    \item Optimality, that the system will achieve some defined function 
+    \item {\em Optimality}: the system will achieve some defined function 
 
-    \item Feasibility, that the controller will always be able to generate a control law which
+    \item {\em Feasibility}: the controller will always be able to generate a control law which
     satisfies the desired properties.
 \end{itemize}
 
@@ -287,7 +333,8 @@ those which are particularly relevant to this study and review them in this sect
 Rawlings et al. \cite{rawlings2017model} divide the problem of distributed control into four distinct
 categories: decentralised control, non-cooperative control, cooperative control, and centralised
 control. The last of these is not considered in the text since it only considers the case in which a
-centralised controller has access and can manipulate multiple agents at once. 
+centralised controller has access and can manipulate multiple agents at once. This immediately
+violates the desired property of distributivity.
 
 Decentralised control is the scheme in which agents do not have information about the actions of
 other agents and can only optimise for their own objective. This has the advantage of requiring no
@@ -319,15 +366,17 @@ minimising the model error when optimising.
 
 \section{Swarms} \label{sec::Swarms}
 
-Swarm systems comprise of a population of (typically) homogeneous agents who are able to organise
-themselves
-into formations using a series of simple local interactions with their neighbours
-\cite{Couceiro2015}. Whilst the individual agents are generally simplistic, the collective behaviour
-may exhibit complex phenomena emulating systems observed in biological organisations such as bee or
-ant colonies \cite{Sethi2017}. Hybrid algorithms such as in \cite{Gao2018} show an accelerated
-performance in reaching globally optimal solutions in search-based tasks. The advantage of many
-swarm algorithms is that they are based on local interactions and so are incredibly scalable
-\cite{Rizk2018}.
+Swarm systems comprise of a population of (typically) homogeneous
+agents who are able to organise themselves into formations using a
+series of simple local interactions with their neighbours
+\cite{Couceiro2015}. Whilst the individual agents are generally
+simplistic, the collective behaviour may exhibit complex phenomena
+emulating systems observed in biological organisations such as bee or
+ant colonies \cite{Sethi2017}. Hybrid algorithms such as in
+\cite{Gao2018} show an accelerated performance in reaching globally
+optimal solutions in search-based tasks. The advantage of many swarm
+algorithms is that they are based on local interactions and so are
+incredibly scalable \cite{Rizk2018}.
 
 \subsection{Approaches to Swarm Control} \label{sec::Swarm Control}
 
@@ -355,8 +404,7 @@ safety perspective. To begin with, the method does not consider inter-agent inte
 therefore does not formally guard against collisions. In \cite{Inoue2019}, a similar problem is
 considered, although collisions are avoided by having the robot simply move in the opposite
 direction when encountering an obstacle. It is here that the mean-field models are not as strong
-since they do not take these local interactions into account. It must be noted, however, that Inoue
-et al. have identified this problem and are currently working towards its incorporation into the
+since they do not take these local interactions into account. It must be noted, however, that the authors have identified this problem and are currently working towards its incorporation into the
 model.
 
 It would, therefore, be of particular interest from a safety perspective to consider agent
@@ -374,67 +422,94 @@ leader-follower swarm system to achieve given tasks.
 
 % \textbf{Include Marco Dorigo and Recent AAMAS literature in here}
 
-The reduction of the complexity in interactions between agents also allows for the robots to perform
-other calculations on board. In \cite{Pini2011TaskSelection}, Pini et al. leverage this by
-considering adaptive task partitioning across swarms. This allows a swarm, in a decentralised
-manner, to deliberate whether to partition a task into its sub-tasks or to perform the task in its
-whole. As of now (to the best of my knowledge) the problem of partitioning general tasks into its N
-sub-tasks is unexplored. This, however, highlights another advantage of swarm systems; they are
-readily divided into sub-groups (as in \cite{Zahadat2016DivisionInhibition}) to perform a
-divide-et-impera (divide and conquer) approach to solving problems \cite{Pini2011TaskSelection}). 
 
-Furthermore, swarm systems may be designed in a leaderless manner and so do not require the use of a
-central controller \cite{Couceiro2015}. This presents the advantage that the system can rapidly
-adapt to the loss of agents or separation of groups throughout the task. However, the assumptions
-made regarding the homogeneity of individual agents and the simplicity of their local interactions
-result in significant limitations placed on the complexity of the tasks that swarm systems can
-accomplish.
+The reduction of the complexity in interactions between agents also
+allows for the robots to perform other calculations on board. In
+\cite{Pini2011TaskSelection}, Pini et al.~leverage this by considering
+adaptive task partitioning across swarms. This allows a swarm, in a
+decentralised manner, to deliberate whether to partition a task into
+its sub-tasks or to perform the task in its whole. As of now (to the
+best of my knowledge) the problem of partitioning general tasks into
+its $N$ sub-tasks is unexplored. This, however, highlights another
+advantage of swarm systems; they are readily divided into sub-groups
+(as in \cite{Zahadat2016DivisionInhibition}) to perform a
+{\em divide-et-impera}
+%(divide and conquer)
+approach to solving problems
+\cite{Pini2011TaskSelection}).
+
+Furthermore, swarm systems may be designed in a leaderless manner and
+so do not require the use of a central controller
+\cite{Couceiro2015}. This presents the advantage that the system can
+rapidly adapt to the loss of agents or separation of groups throughout
+the task. However, the assumptions made regarding the homogeneity of
+individual agents and the simplicity of their local interactions
+result in significant limitations placed on the complexity of the
+tasks that swarm systems can accomplish.
 
 
-\section{Remarks} \label{sec:remarks}
+\section{Discussion} \label{sec:remarks}
 
-Each of the above methods present different advantages in their approach towards MAS, as well as a
-particular set of disadvantages. 
+\fr{I really liked this section.}
+
+Each of the above methods present different advantages in their
+approach towards MAS, as well as a particular set of disadvantages.
 
 Game Theoretic methods have long provided a rigorous approach for
-modelling the behaviour of any MAS. It places no limitation on the heterogeneity of the agents or
-the task demanded. An appropriate choice of payoff matrices will account for both of these
-specifications. Recent advances in POSGs have lifted the strong assumptions on prior knowledge that
-was required to achieve a Nash Equilibrium and Game Theoretic Control allows for such methods to be
-applied in continuous state spaces. Whilst the latter shows particular promise, game theoretic
-methods still fall short in terms of distributivity as they are heavily reliant on communication
-with a centralised decision maker to supply rewards, or within the team to determine each others'
-actions. They also require a priori knowledge of the situation in order to set up payoff matrices
-and so cannot be regarded as robust to environmental uncertainty.
+modelling the behaviour of any MAS. It places no limitation on the
+heterogeneity of the agents or the task demanded. An appropriate
+choice of payoff matrices will account for both of these
+specifications. Recent advances in POSGs have lifted the strong
+assumptions on prior knowledge that was required to achieve a Nash
+Equilibrium and Game Theoretic Control allows for such methods to be
+applied in continuous state spaces. Whilst the latter shows particular
+promise, game theoretic methods still fall short in terms of
+distributivity as they are heavily reliant on communication with a
+centralised decision maker to supply rewards, or within the team to
+determine each others' actions. They also require a priori knowledge
+of the situation in order to set up payoff matrices and so cannot be
+regarded as robust to environmental uncertainty.
 
-Multi-Agent Reinforcement Learning builds on the latter two shortcomings of game theory by allowing
-the environment to supply rewards to agents who adapt their behaviour accordingly. MARL is proving
-to be a powerful method to control MAS, and is rapidly improving, but cannot yet be regarded as
-robust. Studies repeatedly show that small alterations or noise in the environment can result in
-large deviations in behaviour. Furthermore, few guarantees can be placed on the resulting behaviour
-of a MARL system, though progress is being made in closing this gap.
+Multi-Agent Reinforcement Learning builds on the latter two
+shortcomings of game theory by allowing the environment to supply
+rewards to agents who adapt their behaviour accordingly. MARL is
+proving to be a powerful method to control MAS, and is rapidly
+improving, but cannot yet be regarded as robust. Studies repeatedly
+show that small alterations or noise in the environment can result in
+large deviations in behaviour. Furthermore, few guarantees can be
+placed on the resulting behaviour of a MARL system, though progress is
+being made in closing this gap.
 
-Control Theory, on the other hand, takes pride in the guarantees placed on the MAS such as:
-controllability, stability, and robustness. However, control techniques are often centralised or
-decentralised. Distributed methods of control is still an evolving field, particularly in terms of
-robustness to uncertainty. In order to establish guarantees, assumptions are also made on the
-specifics of the MAS, and so control theoretic methods have yet to evolve into general,
-heterogeneous systems with any given task.
+Control Theory, on the other hand, takes pride in the guarantees
+placed on the MAS such as: controllability, stability, and
+robustness. However, control techniques are often centralised or
+decentralised. Distributed methods of control is still an evolving
+field, particularly in terms of robustness to uncertainty. In order to
+establish guarantees, assumptions are also made on the specifics of
+the MAS, and so control theoretic methods have yet to evolve into
+general, heterogeneous systems with any given task.
 
-Swarm systems have their strongest advantage in scalability and, in fact, swarm techniques are built
-to scale due to the distributivity and low computational load placed on each agent. This has often
-come with the assumption that agents in the swarm act as simple, homogeneous, particles who follow
-very simple rules of interaction. Recent work is showing that this is not a necessary assumption
-and, in fact, swarms can leverage heterogeneity and agent capabilities to ensure robustness and
-generalisation.
+Swarm systems have their strongest advantage in scalability and, in
+fact, swarm techniques are built to scale due to the distributivity
+and low computational load placed on each agent. This has often come
+with the assumption that agents in the swarm act as simple,
+homogeneous, particles who follow very simple rules of
+interaction. Recent work is showing that this is not a necessary
+assumption and, in fact, swarms can leverage heterogeneity and agent
+capabilities to ensure robustness and generalisation.
 
-It is clear that each method presents its own set of advantages and disadvantages. In fact, the
-greater contributions are made from a unification of techniques (e.g. game theoretic control) which
-leverage the strengths of one technique to mitigate the drawbacks of another. To this end, we
-consider the unification of swarm control and multi-agent learning. The aim is to unify the
-strengths of swarm theory, MPC and game theory to study populations of agents who can make
-decisions on an individual basis but perform tasks through large scale collaboration. In the
-subsequent chapters, we propose a line of research which explores the properties of a system as well
-as establishing practical control methodologies along the way.
+It is clear that each method presents its own set of advantages and
+disadvantages. In fact, the greater contributions are made from a
+unification of techniques (e.g., game theoretic control) which leverage
+the strengths of one technique to mitigate the drawbacks of
+another. To this end, we consider the unification of swarm control and
+multi-agent learning. The aim is to unify the strengths of swarm
+theory, MPC and game theory to study populations of agents who can
+make decisions on an individual basis but perform tasks through large
+scale collaboration. In the subsequent chapters, we propose a line of
+research which explores the properties of a system as well as
+establishing practical control methodologies along the way.
+
+\fr{\textbf{what about some use cases/application scenarios.}}
 
 \end{document}

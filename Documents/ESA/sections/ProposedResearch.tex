@@ -2,19 +2,30 @@
 
 \begin{document}
 
-	This chapter describes a proposed line of research which aims to study the evolution of swarm
-	systems with learning agents under the influence of predictive controls. We detail
-	the novel lines of research which this work aims to undertake, providing suggestions of the
-	hypotheses posed by these lines. With this in mind the following studies are proposed and
-	developed subsequently:
+	This chapter describes a proposed line of research which aims
+        to study the evolution of swarm systems with independent,
+        learning agents under the influence of predictive controls. We
+        detail the novel lines of research which this work aims to
+        undertake, providing suggestions of the hypotheses posed by
+        these lines. With this in mind the following studies are
+        proposed and developed subsequently:
 
 	\begin{itemize}
-		\item \textbf{Stability and Chaos in MARL:} in which we seek to understand the dynamics of
-		agent strategies when using Q-Learning to learn a game through iteration. We will establish
-		the stability, as a function of parameters, when learning general p-player N-action games.
-		This study enables the appropriate selection of parameters and payoff matrices to ensure the
-		stability of the strategies of a finite set of agents, such as leaders in a swarm.
-		\item \textbf{Dynamics of Mean-Field Q-Learning Games:} in which we examine the
+		\item \textbf{Stability and Chaos in MARL:} in which
+                  we seek to understand the dynamics of agent
+                  strategies when using Q-Learning to learn a game
+                  through iteration. We will establish the stability,
+                  as a function of parameters, when learning general
+                  p-player N-action games.  This study enables the
+                  appropriate selection of parameters and payoff
+                  matrices to ensure the stability of the strategies
+                  of a finite set of agents, such as leaders in a
+                  swarm.
+
+                  \fr{this is already attempted in the current
+                    research section, isn't it?}
+
+              \item \textbf{Dynamics of Mean-Field Q-Learning Games:} in which we examine the
 		strategy dynamics for large populations of agents learning through iterated games and
 		mean-field Q-Learning. We seek to understand the long term behaviour of such mean-field
 		systems in terms of its strategy selection. This study extends the previous and allows for
@@ -30,35 +41,45 @@
 
 	\end{itemize}
 
+	The remainder of this chapter analyses each of these topics in turn, providing suggestions for
+	the course of research.
+        \fr{we analyze each topic in a section \ldots}
 
 	% \textbf{TODO: Ensure all references here are in the Lit Review}
 
     \section{Stability and Chaos in MARL} \label{sec::Chaos_in_MARL}
 
-    This segment of research is aimed towards a deeper understanding of the strategy evolution
-    of agents following a Q-Learning approach. This allows for guarantees to be placed on the
-    behaviour of such agents, in particular the conditions under which the game will converge to a
-    stable equilibrium.
+    This segment of research is aimed towards a deeper understanding
+    of the strategy evolution of agents following a Q-Learning
+    approach. This allows for guarantees to be placed on the behaviour
+    of such agents, in particular the conditions under which the game
+    will converge to a stable equilibrium.
 
-    It has long been established that, upon lifting the strong assumptions made by traditional
-    game theory (such as the rationality of agents and complete information), that player
-    strategies can result in much more complex behaviour than convergence to a Nash Equilibrium 
-    (NE). In fact, this is even true on what would commonly be regarded as 'simple' games such
-    as tic-tac-toe and prisoner's dilemma \cite{Galla2011, Sato2002}. These
-    behaviours include: convergence to a unique equilibrium (though not always to an NE),
-    convergence to one of multiple equilibria, limit cycles and chaos. These behaviours are shown in
-    Figure \ref{fig::DynamicalBehaviours} Of these, the most preferable is, of course, convergence to a unique equilibrium,
-    although it is still possible to study systems with multiple equilibria or limit cycles 
-    \cite{Strogatz2000}. However, it would be difficult to control systems whose dynamics
-    are governed by chaos (though research into controlling chaos is ongoing and rife with
-    opportunity \cite{Fradkov2009}) and so MARL techniques should avoid this. It would,
-    therefore, be a useful endeavour to determine the conditions under which these sorts of
-    behaviours arise.
+    It has long been established that, upon lifting the strong
+    assumptions made by traditional game theory (such as the
+    rationality of agents and complete information), that player
+    strategies can result in much more complex behaviour than
+    convergence to a Nash Equilibrium (NE). In fact, this is even true
+    on what would commonly be regarded as 'simple' games such as
+    tic-tac-toe and prisoner's dilemma \cite{Galla2011,
+      Sato2002}. These behaviours include: convergence to a unique
+    equilibrium (though not always to an NE), convergence to one of
+    multiple equilibria, limit cycles and chaos. These behaviours are
+    shown in Figure \ref{fig::DynamicalBehaviours} Of these, the most
+    preferable is, of course, convergence to a unique equilibrium,
+    although it is still possible to study systems with multiple
+    equilibria or limit cycles \cite{Strogatz2000}. However, it would
+    be difficult to control systems whose dynamics are governed by
+    chaos (though research into controlling chaos is ongoing and rife
+    with opportunity \cite{Fradkov2009}) and so MARL techniques should
+    avoid this. It would, therefore, be a useful endeavour to
+    determine the conditions under which these sorts of behaviours
+    arise.
 
     \begin{figure}[h]
     	\centering
     	\includegraphics[width=1.1\textwidth]{Figures/DynamicalBehaviours}
-    	\caption{ \label{fig::DynamicalBehaviours} Different types of dynamial behaviour
+    	\caption{ \label{fig::DynamicalBehaviours} Different types of dynamical behaviour
        displayed
     	by learning agents. a) Figure drawn from \cite{Tuyls2006AnGames}.
     	Convergence
@@ -68,12 +89,15 @@
     	exponentially. b-d drawn from \cite{Sanders2018}}
     \end{figure}
 
-    The behaviour of a system may be studied given a model of its dynamics. It is through this
-    process that a wide array of physical systems, from harmonic pendulums to geophysical fluids,
-    can be understood. A growing body of research aims to understand multi-agent reinforcement
-    learning through the lens of its dynamics. In this light, Tuyls et al. \cite{Tuyls2006AnGames}
-    were able to derive a model of the strategy evolution of agents learning through iterated games.
-    Through this, they were able to arrive at the following model of Multi-Agent Q-Learning
+    The behaviour of a system may be studied given a model of its
+    dynamics. It is through this process that a wide array of physical
+    systems, from harmonic pendulums to geophysical fluids, can be
+    understood. A growing body of research aims to understand
+    multi-agent reinforcement learning through the lens of its
+    dynamics. In this light, Tuyls et al. \cite{Tuyls2006AnGames} were
+    able to derive a model of the strategy evolution of agents
+    learning through iterated games.  Through this, they were able to
+    arrive at the following model of Multi-Agent Q-Learning
 
 	\begin{subequations}
 	\label{eqn::EOM}
@@ -86,6 +110,8 @@
 			+ \alpha \sum_j y_j ln(\frac{y_j}{y_i}).
 		\end{equation}
 	\end{subequations}
+
+\fr{I understand the equations are the same as in the previous section. I suggest we move the explanation there and remove it from here.}
 
 	Here, $\alpha$ and $\tau$ are the parameters of the agent; Sanders et al. refer to these as the
 	memory and intensity of choice parameters respectively. Agent 1 takes action $i$ with probability
@@ -160,43 +186,55 @@
     This segment of research is currently underway and approaching completion. The analysis was
     described in Section \ref{sec::Chaos_in_Q-Learning}.
 
+    \fr{I would move all of the above to the previous section.}
+
     \section{Large Population Dynamics} \label{sec::Large_Agent_Dynamics}
 
-    This segment of research aims to model the game dynamics of large populations of agents
-    learning through iterated games and mean-field Q-Learning. The aim is to provide similar
-    guarantees of stability as in the previous sections with the caveat that all agents in the
-    population can learn, rather than a finite subset.
+    This segment of research aims to model the game dynamics of large
+    populations of agents learning through iterated games and
+    mean-field Q-Learning. The aim is to provide similar guarantees of
+    stability as in the previous sections with the caveat that all
+    agents in the population can learn, rather than a finite subset.
 
-    One of the main results shown by Sanders et al. \cite{Sanders2018} is that as the number of
-    players in a game increases, the learning behaviour is more likely to be chaotic, regardless of
-    the choice of parameters. This is intuitive since a higher number of players would result in a
-    greater strategy space and more agents for any particular player to learn against and is
-    verified by their presented results as in Figure \ref{fig::GallaPrevalence} - the hotter
-    regions occupy a larger area as 
+    One of the main results shown by Sanders et al. \cite{Sanders2018}
+    is that as the number of players in a game increases, the learning
+    behaviour is more likely to be chaotic, regardless of the choice
+    of parameters. This is intuitive since a higher number of players
+    would result in a greater strategy space and more agents for any
+    particular player to learn against and is verified by their
+    presented results as in Figure \ref{fig::GallaPrevalence} - the
+    hotter regions occupy a larger area as \fr{?}
 
     \begin{figure}[h]
     	\centering
     	\includegraphics[width=0.6\textwidth]{Figures/GallaPrevalence}
-    	\caption{ \label{fig::GallaPrevalence} Results as produced in the supplementary material
-    	of Sanders et al \cite{Sanders2018}. The same items appear here as in Figure 
-    	\ref{fig::GallaPredictions}, except the value of p (number of players) increases moving
-    	from top left to bottom right. It is clear that the hotter region occupies a larger region
-    	of parameter space, indicating that as the bumber of players in the game increase, chaos
-    	becomes more prevalent.}
+    	\caption{ \label{fig::GallaPrevalence} Results as produced in
+          the supplementary material of Sanders et al
+          \cite{Sanders2018}. The same items appear here as in Figure
+          \ref{fig::GallaPredictions}, except the value of p (number
+          of players) increases moving from top left to bottom
+          right. It is clear that the hotter region occupies a larger
+          region of parameter space, indicating that as the bumber of
+          players in the game increase, chaos becomes more prevalent.}
     \end{figure}
 
-    Yet it can be argued that, for large populations of agents (e.g. a crowd), the aggregate
-    behaviour may be predictable. This intuition is the foundation upon which crowd dynamics and
-    flocking systems are based. In fact, the work presented by Leung et al. \cite{Hu2019} provides a
-    cursory verification of this intuition. Here, the authors present an anaysis of the learning
-    dynamics for a large agent population (which they approximate as containing infinite agents)
-    where each agent is an independent Q-Learner using Boltzmann action selection. The
-    result is a system of equations, governed by a Fokker-Planck model which is numerical shown to be a 
-    strong predictor of the overall strategy selection of the population. Indeed, rather than
-    examining the strategies of every agent in the population (which the authors approximate as
-    infinitely large), they model the evolution of a probability density function which, for each
-    action, defines the density of agents who retain a given Q-value for that action. This is
-    illustrated in Figure \ref{fig::LeungPredictions}.
+    Yet it can be argued that, for large populations of agents (e.g.,
+    a crowd), the aggregate behaviour may be predictable \fr{provide some justification to this claim?}. This
+    intuition is the foundation upon which crowd dynamics and flocking
+    systems are based. In fact, the work presented by Leung et
+    al.~\cite{Hu2019} provides a cursory verification of this
+    intuition. Here, the authors present an analysis of the learning
+    dynamics for a large agent population (which they approximate as
+    containing infinite agents) where each agent is an independent
+    Q-Learning using Boltzmann action selection. The result is a
+    system of equations, governed by a Fokker-Planck model which is
+    numerical shown to be a strong predictor of the overall strategy
+    selection of the population. Indeed, rather than examining the
+    strategies of every agent in the population (which the authors
+    approximate as infinitely large), they model the evolution of a
+    probability density function which, for each action, defines the
+    density of agents who retain a given Q-value for that action. This
+    is illustrated in Figure \ref{fig::LeungPredictions}.
 
     \begin{figure}[h]
     	\centering
@@ -323,12 +361,14 @@
 
     \section{Incorporation of Intelligence in Control} \label{sec::Intelligence_in_control}
 
-    This section of the study is perhaps the strongest extension proposed in this
-	chapter, and will likely be the most challenging. Here, we examine the dynamics (
-	\ref{eqn::Vlasov}) in which the interaction term accounts for the social dynamics of the
-	decision making of individual agents who have learnt through an iterated game. We leverage the
-	strategy evolution dynamics and stability analysis established in 
-	\ref{sec::Chaos_in_MARL} and \ref{sec::Large_Agent_Dynamics}. 
+    This section of the study is perhaps the strongest extension
+    proposed in this chapter, and will likely be the most
+    challenging. Here, we examine the dynamics (\ref{eqn::Vlasov}) in
+    which the interaction term accounts for the social dynamics of the
+    decision making of individual agents who have learnt through an
+    iterated game. We leverage the strategy evolution dynamics and
+    stability analysis established in \ref{sec::Chaos_in_MARL} and
+    \ref{sec::Large_Agent_Dynamics}.
 
 	Two proposals for incorporation of social interaction:
 	\begin{itemize}

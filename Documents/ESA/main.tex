@@ -11,6 +11,10 @@
 \usepackage{fancyhdr}
 \usepackage{tikz}
 \usetikzlibrary{calc}
+
+\newcommand\fr[1]{\textcolor{red}{FR: #1}}
+
+
     
 \pagestyle{fancy}
 \fancyhf{}
@@ -48,7 +52,12 @@
 
 \chapter{Literature Review} \subfile{sections/LitReview.tex} \label{ch::Lit_Review}
 
-\chapter{Research Summary} \subfile{sections/ShortTermGoals.tex} \label{ch::ShortTermGoals}
+\chapter{Current Research: \ldots}
+
+\fr{maybe we can find a better title for this section and the following.}
+
+\subfile{sections/ShortTermGoals.tex} \label{ch::ShortTermGoals}
+
 
 \chapter{Proposed Research} \subfile{sections/ProposedResearch.tex} \label{ch::ProposedResearch}
 

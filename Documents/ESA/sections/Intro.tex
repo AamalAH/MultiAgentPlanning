@@ -2,47 +2,64 @@
 
 \begin{document}
 
-    Swarm robotics bases its success upon the collaboration of many agents who contribute towards
-    the overall success of the system \cite{Hamann2018}. The collaboration of many agents who share
-    the same goal can give rise to behaviours that are far more complex than individual robots can
-    achieve. The capacity for complexity is becoming increasingly important as robots are we are
-    presented with ever more challenging tasks including: search and rescue, cleaning up space
-    debris, and robotic assembly. Such tasks are beyond the capabilities of individual robots and so
-    we must leverage the capacity for agents in a swarm to collectively achieve our goals.
-    Fortunately, a growing subset of the Control Theory community have turned their attention
-    towards this very problem and address the question: how does the dynamical behaviour of a
-    population of agents change under the influence of control? Note that we use the term `agent'
-    loosely here, an agent can refer to any entity to which controls may be applied, from a simple
-    particle \cite{Roy2017} to a complex robot \cite{Elamvazhuthi2019}. In answering this question,
-    researchers have gained a stronger understanding of how a swarm may be controlled to achieve
-    desired results.
+\fr{from the paragraph below it looks like we only deal with collaborative multi-agent systems. Is this really the case?}
 
-    Another technique which has made incredible strides towards improving the capability of
-    autonomous systems to communally achieve results is Multi-Agent Reinforcement Learning (MARL)
-    \cite{SchwartzMulti-agentApproach}. This builds on the ideas of classical Reinforcement Learning
-    which allows an agent to optimise its strategies towards tackling a task through repeated
-    exposure to that task. MARL utilises this same principle with the caveat that agents must adapt
-    their strategies based not only on the outcome of the action, but also on the actions of the
-    other agents. This has shown strong results in practical applications \cite{Woolridge2009,
-    SchwartzMulti-agentApproach, Yang2004}. Whilst MARL was once considered to be non-identifiable
-    (there is no clear way for a third party to identify the algorithm that a particular agent was
-    trained on) and black box (there is no clear way of ensuring a desired result from a learning
-    algorithm from its behaviour during and after learning), a steady stream of research is emerging
-    to lift this fog \cite{Bloembergen2015}. This allows for researchers to choose the parameters of
-    their learning algorithms appropriately to ensure that learning agents behave in the desired
+    Swarm robotics bases its success upon the collaboration of many
+    agents who contribute towards the overall goal of the system
+    \cite{Hamann2018}. The collaboration of many agents who share the
+    same goal give rise to behaviours that are far more complex
+    than individual robots can achieve. The capacity for complexity is
+    becoming increasingly important as robots are presented
+    with ever more challenging tasks including: search and rescue,
+    cleaning up space debris, and robotic assembly. Such tasks are
+    beyond the capabilities of individual robots and so we must
+    leverage the capacity for agents in a swarm to collectively
+    achieve our goals. Fortunately, a growing subset of the Control
+    Theory community has turned their attention towards this very
+    problem and address the question: how does the dynamical behaviour
+    of a population of agents change under the influence of control?
+    Note that we use the term `agent' loosely here, an agent can refer
+    to anything from a simple particle \cite{Roy2017} to a complex
+    robot \cite{Elamvazhuthi2019}. In answering this question,
+    researchers have gained a stronger understanding of how a swarm
+    may be controlled to achieve desired results.
+
+    Another technique which has made incredible strides towards
+    improving the capability of autonomous systems to communally
+    achieve results is Multi-Agent Reinforcement Learning (MARL)
+    \cite{SchwartzMulti-agentApproach}. This builds on the ideas of
+    classical Reinforcement Learning which allows an agent to optimise
+    its strategies towards tackling a task through repeated exposure
+    to that task.  MARL utilises this same principle with the caveat
+    that agents must adapt their strategies based not only on the
+    outcome of the action, but also on the actions of the other
+    agents. This has shown strong results in practical applications
+    \cite{Woolridge2009, SchwartzMulti-agentApproach,
+      Yang2004}. Whilst MARL was once considered to be
+    non-identifiable (there is no clear way of identifying the
+    algorithm that a particular agent was trained on) and black box
+    (there is no clear way of ensuring a desired result from a
+    learning algorithm), a steady stream of research is emerging to
+    lift this fog \cite{Bloembergen2015}. This allows for researchers
+    to choose the parameters of their learning algorithms
+    appropriately to ensure that learning agents behave in the desired
     manner.
 
     \section{Problem Statement} \label{sec::Problem_Statement}
 
-    Based on the successes of the swarm control and MARL communities, a natural question to ask is
-    whether the promises of these disciplines may be unified. Such a combination would radically
-    improve the capabilities of autonomous system. Ultimately such a system must be driven under the
-    influence of control inputs to perform given tasks. Examples of this might be: forming around
-    individual components of space debris and moving them to a desired location (e.g. a bin), or
-    relocating to multiple areas in a disaster zone to provide immediate relief. For such tasks to
-    be achieved in dynamic environments, which is typically the case, the system must be able to
-    constantly adapt its approach and respond accordingly. Given these considerations, the problem
-    may be stated as follows
+    Based on the successes of the swarm control and MARL communities,
+    a natural question to ask is whether the promises of these
+    disciplines may be unified. Such a combination would radically
+    improve the capabilities of autonomous system. Ultimately such a
+    system must be driven under the influence of control inputs to
+    perform given tasks. Examples of this might be: forming around
+    individual components of space debris and moving them to a desired
+    location (e.g. a bin), or relocating to multiple areas in a
+    disaster zone to provide immediate relief. For such tasks to be
+    achieved in dynamic environments, which is typically the case, the
+    system must be able to constantly adapt its approach and respond
+    accordingly. Given these considerations, the problem may be stated
+    as follows
 
     \begin{enumerate}
     	\item A population of robots is given a goal which must be achieved, which can often be
@@ -85,6 +102,6 @@
 
     % \section{Methodology} \label{sec::Methodology}
 
-
+\fr{I would add here the paragraph describing the relevance to the CDT.}
 
 \end{document}
