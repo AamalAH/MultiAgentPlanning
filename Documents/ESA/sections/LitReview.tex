@@ -2,11 +2,6 @@
 
 \begin{document}
 
-\textbf{TODO: Mention the parts of literature which we are not considering and explain why: Recent
-MARL techniques (including MDRL), Marco Dorigo's work on Swarms. Add in the Learning in Stochastic
-Games literature from Schwartz et al. Explain the concepts in Control Theory and how MPC works. Add
-in suggestions for applications and papers supporting said applications.}
-
 In this chapter, we explore the current state of the art in
 Multi-Agent Systems (MAS). We will consider the main techniques that
 have been proposed towards task allocation and control. In this review we cover
@@ -130,7 +125,8 @@ members of its team without the need for significant explicit communication.
 Game theory can often be applied to problems of control theory
 (particularly where there are multiple agents) to develop robust
 controllers which guarantee properties of stability and constraint
-satisfaction.
+satisfaction. We define these in our review on Control Theory (see Section 
+\ref{sec::Control_Theory}).
 
 This idea is explored in \cite{Marden2018AnnualControl}. Here, a
 zero-sum game is considered in which the players are a controller and
@@ -247,8 +243,20 @@ algorithm: rationality and convergence. The latter simply states that
 the method should converge to some equilibrium whereas the former
 suggests that the method should learn the best response to stationary
 opponents. A similar set of conditions is considered by Conitzer and
-Sandholm in \cite{ConitzerAWESOME:}. Schwarz then presents a review of MARL methods (as of
-September 2014). 
+Sandholm in \cite{ConitzerAWESOME:}. 
+
+A plethora of MARL techniques emerged towards tackling this problem. Most notable of these are the
+minimax Q-Learning algorithms proposed by Littman \cite{Littman} which focuses on zero-sum games and
+Nash Q-Learning algorithm put forward by Hu and Wellman \cite{Hu} which extends the framework
+towards general sum games. The details of such stochastic algorithms are beyond the scope of this
+review as they consider multi-stage games (i.e. games in which the payoff matrix changes according
+to state). Establishing the robustness of such systems is an ongoing area of research. However, as
+of this review, it is not yet possible to place guarantees on the behaviour of MARL algorithms which
+tackle multi-stage games. This is also true of more contemporary MARL algorithms, including that of
+Multi-Agent Deep Reinforcement Learning (MDRL or MADRL), which are found to be incredibly sensitive
+to changes in input \cite{Gleave}. Therefore, due to importance we place on the stability and
+robustness guarantees of our MAS, we focus on those whose dynamics have been studies, as discussed
+in the following section.
 
 % \textbf{Add in more recent literature r.e. learning in stochastic games and the robustness of
 % MARL}
@@ -333,12 +341,15 @@ are chosen with the aim to satisfy certain properties. The main properties are
     perturbed.
 
     \item {\em Robustness}: a system will perform its function in the presence of uncertainty and
-    noise
+    noise.
 
-    \item {\em Optimality}: the system will achieve some defined function 
+    \item {\em Optimality}: the system will achieve its goal in the best way possible. This is
+    determined using a loss function which the control laws must minimise.
 
     \item {\em Feasibility}: the controller will always be able to generate a control law which
-    satisfies the desired properties.
+    satisfies the desired properties. Many texts will refer to the well-posedness of the control
+    problem which strictly requires that the control law: a) exist, b) be unique, c) vary
+    continuously with initial conditions.
 \end{itemize}
 
 There are a number of approaches towards control systems. However, the interest of this review lies
@@ -346,6 +357,70 @@ in multi-agent systems which must operate in the face of uncertainty. As such, w
 stochastic and distributed control. The literature of the control community is vast and can be
 divided into a number of sub-fields. We consider Distributed MPC (DMPC) and Swarm Optimal Control as
 those which are particularly relevant to this study and review them in this section.
+
+
+\subsection{A Brief Introduction to Model Predictive Control} % (fold)
+\label{sub:a_brief_introduction_to_model_predictive_control}
+
+We begin by providing a brief introduction to the theory underlying model predictive control (MPC).
+This begins with the theory of Optimal Control which, simply put, is the theoretical study of
+controls which minimise a given cost function subject to system dynamics. More formally, an optimal
+control problem is presented as
+
+\begin{equation}
+    \begin{split}
+        \text{minimise } J(x, u) \\
+        \text{s.t. }
+        x(k + 1) = f(x(x_0; k, u(k)), u(k))\\
+        u \in U_{ad},
+    \end{split}
+\end{equation}
+
+where $J(x, u)$ is a given cost function, which is dependent on the state $x = x(x_0; k, u(k)) \in
+X$ and control
+$u(k)$, both of which are functions of the time step $k$. The first condition gives the dynamics of
+system (i.e. how the state evolves in time given the controls). Here, we show the dynamical
+system as an iterated map, though this may also be described through ordinary differential equations
+(ODEs) or partial differential equations (PDEs). The second condition places constraints on the
+controls $u$, which must lie within an admissible set. An example of this is bounded controls, in
+which case the admissible set is given by
+
+\begin{equation}
+    U_{ad} := \{u \; | \; u_a(x) \leq u(x) \leq u_b(x) \; a.e. \; x \in X\}
+\end{equation}
+
+Our goal is to find the optimal control $\bar{u}$ which satisfies the condition
+
+\begin{equation}
+    J(\bar{x}, \bar{u}) \leq J(x, u) \; \forall u \in U_{ad}.
+\end{equation}
+
+The trouble with optimal controls is that they are open-loop, in that the controls are determined
+for the model $x(k + 1) = f(x(k; x_0), u(k))$ a priori and simply applied to the system. Of course,
+in the presence of noise, disturbances, or even errors in parameter estimation in the model itself,
+such a control scheme is not practical. 
+
+The idea of MPC is to reduce the open-loop optimal control problem to a series of finite horizon
+optimal control problems and solve these. For this reason, it is also referred to as `Receding
+Horizon Control'. The control problem is, therefore, transformed to
+
+\begin{equation}
+    \begin{split}
+        \text{minimise } J_N(x, u) := \sum_{k = 0}^{N-1} l(x(k), u(k)) \\
+        \text{s.t. }
+        x(k + 1) = f(x(k), u(k))\\
+        u \in U_{ad},
+    \end{split}
+\end{equation}
+
+where $l(x, u)$ are 'stage costs', defining the cost function at each time step of the horizon,
+which is of length $N$. At each time step, the system updates its measurement of its state $x$ 
+(which we have assumed here to be exact but may only be obtained through a measurement map). Solving
+this yields the optimal control sequence for this horizon $\bar{u}(0), ... , \bar{u}(N-1)$ and the
+first of these (i.e. $\bar{u}(0)$) is applied. Then, the system repeats this process at each time
+step.
+
+% subsection a_brief_introduction_to_model_predictive_control (end)
 
 \subsection{Distributed Model Predictive Control} \label{sec::Distributed_MPC}
 
@@ -395,7 +470,26 @@ ant colonies \cite{Sethi2017}. Hybrid algorithms such as in
 \cite{Gao2018} show an accelerated performance in reaching globally
 optimal solutions in search-based tasks. The advantage of many swarm
 algorithms is that they are based on local interactions and so are
-incredibly scalable \cite{Rizk2018}.
+incredibly scalable \cite{Rizk2018}. 
+
+Swarms are generally considered to be a special case of multi-agent systems and so, to this end,
+Sahin \cite{Sahin2005} puts forward five qualities which must be satisfied for a system to be
+considered a swarm. Note that Sahin's work considers swarm robotics, though these qualities apply to
+any agent type (computational or biological).
+
+\begin{enumerate}
+    \item Autonomous agents: the agents can, independently, interact with the environment
+    \item Large Number of Agents
+    \item Few Homogenous groups of agents: Agents are considered homogenous if they follow similar
+    rules and perform the same function.
+    \item Relative incapability of the agent: The agents should not be able to carry out the task on
+    their own, but rather efficient and robust handling of the task should emerge from the
+    collaboration of the agents.
+    \item Local sensing and communication: The agents should only have local sensing and
+    communication capabilities.
+\end{enumerate}
+
+
 
 \subsection{Approaches to Swarm Control} \label{sec::Swarm Control}
 
