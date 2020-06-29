@@ -179,7 +179,9 @@ Reinforcement learning extends the Markov Decision Process problem by
 considering the case where the reward model is not initially known to
 the agent. In a similar manner, Multi Agent Reinforcement Learning
 (MARL) extends the Markov Game setting to one where the payoff
-structure is not a priori knowledge.
+structure is not a priori knowledge. MARL has found success in a number of applications,
+particularly in robotics \cite{Yang2004} and but also in sensor/communication networks and finance
+\cite{Zhang2019}.
 
 The task of MARL is to determine an optimal joint policy for all
 agents across the game. This joint policy may be the concatenation of
@@ -355,8 +357,8 @@ are chosen with the aim to satisfy certain properties. The main properties are
 There are a number of approaches towards control systems. However, the interest of this review lies
 in multi-agent systems which must operate in the face of uncertainty. As such, we focus on
 stochastic and distributed control. The literature of the control community is vast and can be
-divided into a number of sub-fields. We consider Distributed MPC (DMPC) and Swarm Optimal Control as
-those which are particularly relevant to this study and review them in this section.
+divided into a number of sub-fields. We consider Distributed MPC (DMPC) as
+a topic which is particularly relevant to this study and provide a review in this section. 
 
 
 \subsection{A Brief Introduction to Model Predictive Control} % (fold)
@@ -474,8 +476,8 @@ incredibly scalable \cite{Rizk2018}.
 
 Swarms are generally considered to be a special case of multi-agent systems and so, to this end,
 Sahin \cite{Sahin2005} puts forward five qualities which must be satisfied for a system to be
-considered a swarm. Note that Sahin's work considers swarm robotics, though these qualities apply to
-any agent type (computational or biological).
+considered a swarm. Note that Sahin's work considers swarm robotics and its applicationns, though
+these qualities apply to any agent type (computational or biological).
 
 \begin{enumerate}
     \item Autonomous agents: the agents can, independently, interact with the environment
@@ -489,7 +491,24 @@ any agent type (computational or biological).
     communication capabilities.
 \end{enumerate}
 
+Sahin goes on to describe the typical domains of application for swarm systems, which broadly fall
+into four categories:
 
+\begin{itemize}
+    \item Tasks that cover a region: Environmental Monitoring and Mapping, as well as Search and
+    Rescue fall into these categories. These leverage the fact that there are many agents, in a
+    distributed setting, to ensure complete coverage of an area.
+    \item Tasks that are dangerous: An example would be scoping out an environment with potential
+    hazards before human operators are involved.
+    \item Tasks that scale-up or down: This leverages the fact that the agents are independent and
+    the control methodology scales. These qualities allow the number of agents to be fluid and so
+    it is possible to add more or less agents to a task as its requirements vary. An example might
+    be providing emergency services to individuals in a disaster relief zone, in which initial
+    population estimates may be revised as the situation progresses.
+    \item Tasks that require redundancy: The fact that the system is not tied to any single point of
+    failure means that a task in which an agent is vulnerable to attack (cyber or physical) may be
+    tackled by a swarm.
+\end{itemize}
 
 \subsection{Approaches to Swarm Control} \label{sec::Swarm Control}
 
