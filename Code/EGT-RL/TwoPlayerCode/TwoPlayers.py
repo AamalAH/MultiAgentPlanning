@@ -1,11 +1,19 @@
-from tqdm import tqdm
-import os
 import numpy as np
 import matplotlib.pyplot as plt
-import shutil
+from time import time
+from tqdm import tqdm
+
+alpha = .1
+gamma = .75
+Gamma = 0.1
+tau = 2
+
+delta_0 = 1e-3
+nSim = 10
+nIter = int(1e4)
 
 
-def generateGame(gamma, nAct):
+def generateGames(gamma, nSim, nAct):
     """
     Draw a random payoff matrix from a multivariate Gaussian, currently the unscaled version.
 
@@ -21,133 +29,72 @@ def generateGame(gamma, nAct):
     cov[:nElements, nElements:] = np.eye(nElements) * gamma  # <a_ij b_ji> = Gamma
     cov[nElements:, :nElements] = np.eye(nElements) * gamma
 
-    rewards = np.random.multivariate_normal(np.zeros(2 * nElements), cov=cov)
+    rewardAs, rewardBs = np.eye(2), np.eye(2)
 
-    reward1s = rewards[0:nElements].reshape((nAct, nAct))
-    reward2s = rewards[nElements:].reshape((nAct, nAct)).T
+    for i in range(nSim):
 
-    return [reward1s, reward2s]
+        rewards = np.random.multivariate_normal(np.zeros(2 * nElements), cov=cov)
 
-def checkConvergence(actionProb, oldxBar, tol):
-    """
-      Evaluates the distance between action probabilities and checks if the change is
-      below some tolerance.
+        # rewardAs = np.dstack((rewardAs, rewards[0:nElements].reshape((nAct, nAct))))
+        rewardAs = np.dstack((rewardAs, np.array([[1, 0], [0, 2]])))
+        # rewardBs = np.dstack((rewardBs, rewards[nElements:].reshape((nAct, nAct)).T))
+        rewardBs = np.dstack((rewardBs, np.array([[2, 0], [0, 1]])))
+    return [rewardAs[:, :, 1:], rewardBs[:, :, 1:]]
 
-      params
-      actionProb: Agent action probabilities at current time step
-      oldxBar: Previous action probabilities
-      tol: tolerance level
+def getActionProbs(qValues, nSim):
+    partitionFunction = np.sum(np.exp(tau * qValues), axis = 1)
+    actionProbs = np.array([np.array([np.exp(tau * qValues[p, :, s])/partitionFunction[p, s] for p in range(2)]) for s in range(nSim)])
 
-      returns
+    return actionProbs
 
-      (normStep1 < tol) and (normStep2 < tol): Whether change in both agents' action
-      probabilities is below a tolerance.
-    """
-    normStep1 = np.linalg.norm(actionProb[0, :] - oldxBar[0, :])
-    normStep2 = np.linalg.norm(actionProb[1, :] - oldxBar[1, :])
-    return (normStep1 < tol) and (normStep2 < tol)
+def qUpdate(qValues, payoffs):
+    actionProbs = getActionProbs(qValues, nSim)
 
-def runSim(params, nSim, tol):
-    alpha = params[0]
-    tau = params[1]
-    gamma = params[2]
-    Gamma = params[3]
+    boltzmannChoices = np.array([[np.random.choice([0, 1], p=actionProbs[s, p, :]) for p in range(2)] for s in range(nSim)])
 
-    xsAll = []
-    converged = []
+    rewardAs = payoffs[0][boltzmannChoices[:, 0], boltzmannChoices[:, 1], (range(nSim))]
+    rewardBs = payoffs[1][boltzmannChoices[:, 0], boltzmannChoices[:, 1], (range(nSim))]
 
-    for cSim in range(nSim):
+    qValues[[0]*nSim, boltzmannChoices[:, 0], (range(nSim))] += alpha * (
+                rewardAs - qValues[[0]*nSim, boltzmannChoices[:, 0], (range(nSim))] + gamma * np.max(qValues[[0]*nSim, :, (range(nSim))], axis=1))
 
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
-        ax.set_xlim([0, 1])
-        ax.set_ylim([0, 1])
+    qValues[[1]*nSim, boltzmannChoices[:, 1], list(range(nSim))] += alpha * (
+                rewardBs - qValues[[1]*nSim, boltzmannChoices[:, 1], (range(nSim))] + gamma * np.max(qValues[[1]*nSim, :, (range(nSim))], axis=1))
 
-        stopCond = False
+    return qValues
 
-        [payoffA, payoffB] = generateGame(Gamma, 2)
+def getDelta(qValues0, qValues1, nSim):
 
-        payoffA, payoffB = np.array([[1, 5], [0, 3]]), np.array([[1, 0], [5, 3]])
+    actionProbs0, actionProbs1 = getActionProbs(qValues0, nSim), getActionProbs(qValues1, nSim)
+    return np.mean(abs(actionProbs1 - actionProbs0), axis=0)
 
-        qValues = np.random.rand(2, 2)
-        xs = []
-        oldxBar = np.ones((2, 2))
-        for cIter in range(int(1e5)):
+allExpo = np.zeros((10, 10))
 
-            partitionFunction = [np.sum([np.exp(tau * i) for i in qValues[p, :]]) for p in range(2)]
-            actionProbs = np.array([[np.exp(tau * i) / partitionFunction[p] for i in qValues[p, :]] for p in range(2)])
+i = 0
+for alpha in tqdm(np.linspace(0.1, 1, num=10)):
+    j = 1
+    for Gamma in np.linspace(-1, 1, num=10):
 
-            xs += [actionProbs[:, 0]]
+        all_actionProbs = np.eye(2)
 
-            # if cIter % (int(1e4)) == 0 and cIter != 0:
-            #     stopCond = checkConvergence(actionProbs, oldxBar, tol)
-            #     if stopCond:
-            #         break
-            #     oldxBar = actionProbs
+        payoffs = generateGames(Gamma, nSim, 2)
 
-            boltzmannChoices = [np.random.choice([0, 1], p=actionProbs[p, :]) for p in range(2)]
+        qValues0 = np.random.rand(2, 2, nSim)
+        qValues1 = np.random.rand(2, 2, nSim)
+        # qValues1 = qValues0 + np.array([np.random.choice([-delta_0, delta_0]) for i in range(nSim * 4)]).reshape((2, 2, nSim))
 
-            rewards = [payoffA[boltzmannChoices[0], boltzmannChoices[1]],
-                       payoffB[boltzmannChoices[0], boltzmannChoices[1]]]
+        for cIter in range(nIter):
+            for i in range(nSim):
+                all_actionProbs = np.dstack((all_actionProbs, (getActionProbs(qValues0, nSim)[i, :, :])))
+            if cIter % 300 == 0 and cIter != 0:
+                delta_1 = getDelta(qValues0, qValues1, nSim)
+            qValues0, qValues1 = qUpdate(qValues0, payoffs), qUpdate(qValues1, payoffs)
 
-            qValues[0, boltzmannChoices[0]] += alpha * (
-                        rewards[0] - qValues[0, boltzmannChoices[0]] + gamma * max(qValues[0, :]))
-            qValues[1, boltzmannChoices[1]] += alpha * (
-                        rewards[1] - qValues[1, boltzmannChoices[1]] + gamma * max(qValues[1, :]))
+        delta_n = getDelta(qValues0, qValues1, nSim)
 
-        xs = np.array(xs)
+        liapExp = np.max((1 / nIter) * np.log(delta_n / delta_1))
 
-        xsAll += [xs]
-        converged += [stopCond]
+        allExpo[10 - j, i] = liapExp
 
-    for X in xsAll:
-        ax.plot(X[:, 0], X[:, 1], 'k--', zorder=1)
-        ax.scatter(X[0, 0], X[0, 1], color= 'y', marker='.')
-
-    for X in xsAll:
-        ax.scatter(X[-1, 0], X[-1, 1], color='r', marker='+', zorder=2)
-
-    plt.show()
-    print('hi')
-
-    return xsAll, np.mean(converged)
-
-if __name__ == "__main__":
-
-    dirName = 'ParameterSweep Results'
-    if os.path.exists(dirName):
-        shutil.rmtree(dirName)
-
-    if not os.path.exists(dirName):
-        os.makedirs(dirName)
-
-    alpha = .1
-    gamma = .1
-    Gamma = 0
-    tau = 0.5
-
-    numTests = 10
-
-    allmeanConvergence = np.zeros((numTests, numTests))
-
-    i = 0
-    for alpha in tqdm(np.linspace(0, 1, num=numTests)):
-        j = 1
-        for Gamma in np.linspace(-1, 1, num=numTests):
-
-            if not os.path.exists(dirName + '/parameterSweep_alpha_{0}_gamma_{1}.txt'.format(alpha, Gamma)):
-
-                xsAll, convergenceRate = runSim([0.8, tau, gamma, -0.33], 10, 1e-2)
-
-                with open(dirName + '/parameterSweep_alpha_{0}_gamma_{1}.txt'.format(alpha, Gamma), 'w') as f:
-                    f.write('tau: {0}, gamma: {1} \n'.format(alpha, Gamma))
-                    f.write('Converged: {0} \n'.format(str(convergenceRate)))
-
-                    f.close()
-
-                # fig.savefig(dirName + '/parameterSweep_tau_{0}_gamma_{1}.png'.format(tau, Gamma))
-                # plt.close(fig)
-                allmeanConvergence[numTests - j, i] = convergenceRate
-
-            j += 1
-        i += 1
+        j += 1
+    i += 1
