@@ -92,9 +92,12 @@ CDT}\\ % All authors must be in the same font size and format. Use \Large and \t
 \textsuperscript{\rm 1}Imperial College London\\ %If you have multiple authors and multiple
 % affiliations
 % use superscripts in text and roman font to identify them. For example, Sunil Issar,\textsuperscript{\rm 2} J. Scott Penberthy\textsuperscript{\rm 3} George Ferguson,\textsuperscript{\rm 4} Hans Guesgen\textsuperscript{\rm 5}. Note that the comma should be placed BEFORE the superscript for optimum readability
-Do we give the address?\\
+Do we give the address? \fb{normally the submission is blind.}\\
 publications20@aaai.org % email address must be in roman text type, not monospace or sans serif
 }
+
+\input{macros}
+
  \begin{document}
 
 \maketitle
@@ -107,9 +110,22 @@ Working Abstract
 
 \subsection{Contribution}
 
+\fb{possibly add research question below.}
+
+\subsection{Related Work}
+
+\fb{feel free to add the Related Work}
+
 \section{Preliminaries}
 
-In this section we will establish some of the preliminaries which are required to follow the subsequent sections. The first is 'Dynamical Behaviours' which considers the evolution of agent strategies as they learn on an iterated game. This study aims to classify, based on the agent parameters and the payoff matrices, which of these behaviours will be seen. The second is 'Dynamics of Q-Learning'. These are a set of equations which model the aforementioned strategy evolution. It is on these dynamics that we will perform our analysis.
+In this section we will establish some of the preliminaries which are
+required to follow the subsequent sections. The first is 'Dynamical
+Behaviours' \fb{maybe italics?} which considers the evolution of agent strategies as they
+learn on an iterated game. This study aims to classify, based on the
+agent parameters and the payoff matrices, which of these behaviours
+will be seen. The second is 'Dynamics of Q-Learning'. These are a set
+of equations which model the aforementioned strategy evolution. It is
+on these dynamics that we will perform our analysis.
 
 \subsection{Dynamical Behaviours}
 
@@ -119,7 +135,7 @@ In this section we will establish some of the preliminaries which are required t
     of such agents, in particular the conditions under which the game
     will converge to a stable equilibrium.
 
-    It has long been established that, upon lifting the strong
+    It has long been established \fb{add refs?} that, upon lifting the strong
     assumptions made by traditional game theory (such as the
     rationality of agents and complete information), player
     strategies can result in much more complex behaviour than
@@ -151,6 +167,7 @@ In this section we will establish some of the preliminaries which are required t
         that all trajectories, regardless of initialisation, will converge to this point. b) Limit Cycle, the trajectories converge to cyclic behaviour c,
         d) Chaotic behaviour, here small deviatons in the initial conditions can grow
         exponentially. b-d drawn from \cite{Sanders2018}}
+\fb{one figure from a reference is fine, but two maybe are not necessary.}
     \end{figure}
 
 \subsection{Dynamics of Q-Learning}
@@ -178,11 +195,11 @@ as they iteratively play a game.  Through this, they were able to
     \end{subequations}
 
     Here, $\alpha$ and $\tau$ are the parameters of the agent; Sanders et al. refer to these as the
-    memory and intensity of choice parameters respectively. Agent 1 takes action $i$ with probability
+    memory and intensity of choice parameters respectively \fb{what are $\alpha$ and $\tau$ exactly?}. Agent 1 takes action $i$ with probability
     $x_i$ while Agent 2 takes action $j$ with probability $y_j$. If these actions are taken, the agents
     receive payoff $a_{ij}$ and $b_{ji}$ respectively. With these equations, it is possible to
     predict the expected behaviour of Q-Learning agents, as shown in Figure 
-    \ref{fig::TuylsExperiments}.
+    \ref{fig::TuylsExperiments} \fb{discuss limitations as well}.
 
     \begin{figure}
     \centering
@@ -208,15 +225,17 @@ as they iteratively play a game.  Through this, they were able to
     these agents is determined by the parameters $\alpha, \tau$ and the payoffs $a_{ij}, b_{ij}$. We
     then pose the question: how do these elements influence the types of behaviours seen during
     learning on an iterated game? In other words, under what parameter selections are we likely to
-    see convergence to unique equilibria, multiple equilibria, limit cycles or chaos?
+    see convergence to unique equilibria, multiple equilibria, limit cycles or chaos? \fb{state this explicitly as a research question, possibly in the contribution.}
 
 \section{Stability and Chaos in Multi-Agent Reinforcement Learning}
+
+\fb{what will be the content of this section? is it the derivations?}
 
 \section{Experimental Evaluation}
 
 To verify our theoretical results, and to examine the underlying structure of stability and chaos in
 Multi-Agent Q Learning, we perform a series of numerical experiments by varying the parameters $\Gamma$ and
-$\alpha$ whilst keeping $\tau$ fixed. The purpose of this experiment was to determine a heuristic estimate for the Liapunov exponent, which determines whether initial conditions which start close to one another will converge or diverge from each other. The former indicates a stable system (in the sense of Liapunov) whilst the latter signals instability.
+$\alpha$ whilst keeping $\tau$ fixed. The purpose of this experiment was to determine a heuristic estimate for the Lyapunov exponent, which determines whether initial conditions which start close to one another will converge or diverge from each other. The former indicates a stable system (in the sense of Lyapunov) whilst the latter signals instability \fb{add refs to all of this?}.
 
 This yields the result shown in
 Figure \ref{fig::NumericalExperiments}. We see from this that the stability of the system is highly dependent on
@@ -239,9 +258,9 @@ the probability of convergence significantly.
     \end{subfigure}
 
     \caption{$\tau = 0.05$, $\gamma = 0.75$, $\alpha \in [0, 1]$, $\Gamma \in [-1, 1]$. Each
-    simulation is run for 1 $\times 10^4$ iterations and the Liapunov exponent is determined. For each
+    simulation is run for 1 $\times 10^4$ iterations and the Lyapunov exponent is determined. For each
     combination of $\alpha$, $\Gamma$ the game is played 100 times, each with random payoff matrices
-    and initial conditions. The average liapunov exponent is determined and shown in the heatmap.
+    and initial conditions. The average Lyapunov exponent is determined and shown in the heatmap.
     \label{fig::NumericalExperiments}}
 \end{figure}
 
@@ -264,6 +283,8 @@ the probability of convergence significantly.
     \end{equation}
 
    \end{enumerate}
+
+\fb{Liapunov $\to$ Lyapunov}
 
 \section{Conclusion}
 
