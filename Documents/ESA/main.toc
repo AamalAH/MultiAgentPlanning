@@ -1,0 +1,40 @@
+\contentsline {chapter}{\numberline {1}Introduction}{3}% 
+\contentsline {section}{\numberline {1.1}Problem Statement}{3}% 
+\contentsline {section}{\numberline {1.2}Objectives and Scope}{4}% 
+\contentsline {paragraph}{Relevance to Safe and Trusted AI}{4}% 
+\contentsline {chapter}{\numberline {2}Literature Review}{5}% 
+\contentsline {section}{\numberline {2.1}Multi Agent Systems}{5}% 
+\contentsline {section}{\numberline {2.2}Game Theory}{6}% 
+\contentsline {subsection}{\numberline {2.2.1}Partially Observed Stochatic Games (POSG)}{6}% 
+\contentsline {subsection}{\numberline {2.2.2}Game Theoretic Control}{7}% 
+\contentsline {section}{\numberline {2.3}Multi Agent Reinforcement Learning}{8}% 
+\contentsline {subsection}{\numberline {2.3.1}Learning in Two Player Games}{8}% 
+\contentsline {subsection}{\numberline {2.3.2}Learning in Stochastic Games}{8}% 
+\contentsline {subsection}{\numberline {2.3.3}Multi Agent Learning Dynamics}{9}% 
+\contentsline {section}{\numberline {2.4}Control Theory}{10}% 
+\contentsline {subsection}{\numberline {2.4.1}A Brief Introduction to Model Predictive Control}{10}% 
+\contentsline {subsection}{\numberline {2.4.2}Distributed Model Predictive Control}{11}% 
+\contentsline {section}{\numberline {2.5}Swarms}{12}% 
+\contentsline {subsection}{\numberline {2.5.1}Approaches to Swarm Control}{13}% 
+\contentsline {subsection}{\numberline {2.5.2}Decision Making in Swarms}{13}% 
+\contentsline {section}{\numberline {2.6}Discussion}{14}% 
+\contentsline {chapter}{\numberline {3}Introduction to Proposals}{16}% 
+\contentsline {chapter}{\numberline {4}Stability and Chaos in MARL}{17}% 
+\contentsline {section}{\numberline {4.1}Summary of Research}{19}% 
+\contentsline {section}{\numberline {4.2}Convergence and Chaos in Q-Learning Agents}{20}% 
+\contentsline {subsection}{\numberline {4.2.1}Dynamics of Q-Learning}{20}% 
+\contentsline {subsection}{\numberline {4.2.2}Derivation of stability line}{21}% 
+\contentsline {subsection}{\numberline {4.2.3}Numerical Experiments}{22}% 
+\contentsline {chapter}{\numberline {5}Proposals for Future Research}{24}% 
+\contentsline {section}{\numberline {5.1}Large Population Dynamics}{24}% 
+\contentsline {section}{\numberline {5.2}Swarm Control through Fields}{25}% 
+\contentsline {section}{\numberline {5.3}Incorporation of Intelligence in Control}{27}% 
+\contentsline {chapter}{\numberline {6}Research Timeline}{28}% 
+\contentsline {chapter}{Appendices}{35}% 
+\contentsline {chapter}{\numberline {A}Research Summary}{36}% 
+\contentsline {section}{\numberline {A.1}Rescaling of Variables}{36}% 
+\contentsline {section}{\numberline {A.2}Generating Functional}{37}% 
+\contentsline {subsection}{\numberline {A.2.1}Expectation of $Q_1$}{38}% 
+\contentsline {subsection}{\numberline {A.2.2}Expectation of $Q_2$}{39}% 
+\contentsline {section}{\numberline {A.3}Stability Analysis}{42}% 
+\contentsline {section}{\numberline {A.4}Numerical Simulations}{44}% 
