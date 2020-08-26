@@ -112,6 +112,42 @@ Working Abstract
 
 \fb{possibly add research question below.}
 
+In this study, we will be considering the question: under what parameter selections are is a
+multi-agent system, which is trained on an iterated game using Q-Learning, likely to converge to an
+equilibrium as opposed to complex behaviours? In investigating this question, we will make the
+following assumptions:
+
+\begin{enumerate}
+    \item There are a finite set of agent, though the length $p$ of the set is arbitrary. 
+    \item The agents have a large, but discrete, strategy space: during the theoretical study, we
+    will make the assumption that the number of actions $N \rightarrow \infty$.
+    \item The agents are homogeneous. This requires that all agents have the same parameters and are
+    trained using the same algorithm. Since this is typically the case in reinforcement learning
+    studies, it is not an unreasonable assumption, but does present an interesting avenue for future
+    work.
+    \item The agents are trained on stateless, normal form games (i.e. the environment is static).
+\end{enumerate}
+
+The parameters that we will consider are:
+
+\begin{enumerate}
+    \item $\alpha \in [0, 1]$: the \em{step length}. Low values of $\alpha$ denote smaller
+    updates. Heuristically we can consider this to be the memory of the agent: lower $\alpha$
+    denotes longer memory.
+    \item $\tau in [0, \infty)$: the \em{intensity of choice}, as termed by Sanders et al. 
+    \cite{Sanders2018}. This is sometimes written as $\beta$ in the literature \cite{Sutton2018}.
+    $\tau = 0$ results in all actions being selected with equal probability, regardless of their
+    Q-value, whilst $\tau \rightarrow \infty$ results in the action with the highest Q-value chosen
+    at every step. This may be considered the \em{exploration-exploitation parameter}. For greater
+    details into these parameters, the interested reader should consult \cite{Sutton2018}.
+    \item $\Gamma \in [-1, p-1]$: the \em{payoff correlation}. This term controls the choice of
+    covariance matrix from which random payoff matrices are drawn. $\Gamma = -1$ indicates a zero
+    sum game, in which the sum of payoffs for a given action across all agents is 0, resulting in a
+    purely competitive game. $\Gamma = p-1$ gives a purely co=operative game in which all agents
+    share the same payoffs. The manner in which a game is generated from the choice of $\Gamma$ is
+    described in Section \ref{sec::Theory} and follows the same procedure as outlined in \cite{Sanders2018}.
+\end{enumerate}
+
 \subsection{Related Work}
 
 \fb{feel free to add the Related Work}
@@ -119,11 +155,11 @@ Working Abstract
 \section{Preliminaries}
 
 In this section we will establish some of the preliminaries which are
-required to follow the subsequent sections. The first is 'Dynamical
-Behaviours' \fb{maybe italics?} which considers the evolution of agent strategies as they
+required to follow the subsequent sections. The first is \em{Dynamical Behaviours} \fb{maybe italics?} 
+which considers the evolution of agent strategies as they
 learn on an iterated game. This study aims to classify, based on the
 agent parameters and the payoff matrices, which of these behaviours
-will be seen. The second is 'Dynamics of Q-Learning'. These are a set
+will be seen. The second is \em{Dynamics of Q-Learning}. These are a set
 of equations which model the aforementioned strategy evolution. It is
 on these dynamics that we will perform our analysis.
 
@@ -135,7 +171,7 @@ on these dynamics that we will perform our analysis.
     of such agents, in particular the conditions under which the game
     will converge to a stable equilibrium.
 
-    It has long been established \fb{add refs?} that, upon lifting the strong
+    It has long been established that, upon lifting the strong
     assumptions made by traditional game theory (such as the
     rationality of agents and complete information), player
     strategies can result in much more complex behaviour than
@@ -199,7 +235,14 @@ as they iteratively play a game.  Through this, they were able to
     $x_i$ while Agent 2 takes action $j$ with probability $y_j$. If these actions are taken, the agents
     receive payoff $a_{ij}$ and $b_{ji}$ respectively. With these equations, it is possible to
     predict the expected behaviour of Q-Learning agents, as shown in Figure 
-    \ref{fig::TuylsExperiments} \fb{discuss limitations as well}.
+    \ref{fig::TuylsExperiments}. Upon examination of the derivation in \cite{Tuyls2006AnGames}, it
+    is clear that the dynamics generated give the expected behaviour and, therefore , cannot account
+    for transients. It is also interesting to note that the dynamics (\ref{eqn::EOM}) do not include
+    the parameter $\gamma$, which moderates the Q-update. The implication is that this has no effect
+    on the expected behaviour of the system. \textbf{Shall I include some tests to confirm this?
+    It does turn out to be mostly true, the value of $\gamma$ doesn't affect the overall behaviour,
+    but rather results in smaller or larger steps. What do you think?}.
+    as well}.
 
     \begin{figure}
     \centering
@@ -227,7 +270,7 @@ as they iteratively play a game.  Through this, they were able to
     learning on an iterated game? In other words, under what parameter selections are we likely to
     see convergence to unique equilibria, multiple equilibria, limit cycles or chaos? \fb{state this explicitly as a research question, possibly in the contribution.}
 
-\section{Stability and Chaos in Multi-Agent Reinforcement Learning}
+\section{Determination of Phase Transition Line} \label{sec::Theory}
 
 \fb{what will be the content of this section? is it the derivations?}
 
@@ -235,7 +278,7 @@ as they iteratively play a game.  Through this, they were able to
 
 To verify our theoretical results, and to examine the underlying structure of stability and chaos in
 Multi-Agent Q Learning, we perform a series of numerical experiments by varying the parameters $\Gamma$ and
-$\alpha$ whilst keeping $\tau$ fixed. The purpose of this experiment was to determine a heuristic estimate for the Lyapunov exponent, which determines whether initial conditions which start close to one another will converge or diverge from each other. The former indicates a stable system (in the sense of Lyapunov) whilst the latter signals instability \fb{add refs to all of this?}.
+$\alpha$ whilst keeping $\tau$ fixed. The purpose of this experiment was to determine a heuristic estimate for the Lyapunov exponent, which determines whether initial conditions which start close to one another will converge or diverge from each other. The former indicates a stable system (in the sense of Lyapunov) whilst the latter signals instability \cite{Strogatz2000}.
 
 This yields the result shown in
 Figure \ref{fig::NumericalExperiments}. We see from this that the stability of the system is highly dependent on
