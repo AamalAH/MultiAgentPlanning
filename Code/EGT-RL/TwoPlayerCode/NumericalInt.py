@@ -13,18 +13,26 @@ from tqdm import tqdm
 
 # determine q and X off that
 
+nPlayers = 5
+nActions = 2
+
+dz = 1e-2
+Zs = np.arange(-20, 20, dz)
+Dz = (dz/np.sqrt(2 *  np.pi)) * np.exp(-(Zs**2)/2)
+
+
 def getOrderParams(Xs, dz, Zs):
-    q = np.sum((Xs ** 2) * dz)
+    q = np.sum((Xs ** 2) * Dz)
     dx = np.array([Xs[i + 1] - Xs[i] for i in range(len(Zs[:-1]))])
-    X = (1 / q) * np.sum((dx/dz) * dz)
+    X = (1 / (q ** (nPlayers - 1)/2)) * np.sum((dx/dz) * Dz[:-1])
 
     return q, X
 
 def normaliseX(Xs):
-    return abs(abs(Xs)/np.sum(abs(Xs)))
+    Xs /= np.sum(abs(Xs))
+    return abs(abs(Xs)/np.sum(abs(Xs) * Dz))
+    # return abs(abs(Xs)/np.sum(abs(Xs)))
 
-nPlayers = 3
-nActions = 2
 
 allOrders = np.zeros((10, 10, 2))
 
@@ -39,9 +47,6 @@ for alpha in np.linspace(0, 1, num=10):
         talpha = alpha/nActions
         ttau = tau/np.sqrt(nActions ** (nPlayers - 1))
 
-        dz = 1e-1
-
-        Zs = np.arange(-20, 20, dz)
 
         p = lambda xi, dz, Xs: np.sum((Xs * np.log(Xs/Xs[xi])) * dz)
         F = lambda xi, z, Xs, q, n, chi: (alpha**2) * (ttau ** 2) * Gamma * Xs[xi] * (q**(n-1)) * chi + alpha * ttau * (q**(n/2)) * z + talpha * tau * (q**((n+1)/2)) * z + talpha * p(xi, dz, Xs)
@@ -77,4 +82,6 @@ for alpha in np.linspace(0, 1, num=10):
         allOrders[10 - idx2, idx1, 1] = q
         idx2 += 1
     idx1 += 1
+
+
 
