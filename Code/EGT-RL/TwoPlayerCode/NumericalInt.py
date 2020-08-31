@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from tqdm import tqdm
+
 # q = int Dz x^2
 # 1 = int Dz x
 # X = 1/q int dx/dz
@@ -20,7 +21,6 @@ dz = 1e-1
 Zs = np.arange(-20, 20, dz)
 Dz = (dz/np.sqrt(2 *  np.pi)) * np.exp(-(Zs**2)/2)
 
-
 def getOrderParams(Xs, dz, Zs):
     q = np.sum((Xs ** 2) * dz)
     dx = np.array([Xs[i + 1] - Xs[i] for i in range(len(Zs[:-1]))])
@@ -33,7 +33,6 @@ def normaliseX(Xs):
     #return abs(Xs)
     return abs(abs(Xs)/np.sum(abs(Xs) * Dz))
     #return abs(abs(Xs)/np.sum(abs(Xs)))
-
 
 allOrders = np.zeros((10, 10, 2))
 
