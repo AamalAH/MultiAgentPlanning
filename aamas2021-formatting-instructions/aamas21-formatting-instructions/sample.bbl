@@ -1,0 +1,413 @@
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
+
+\begin{thebibliography}{24}
+
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{}, \showDOI{}, and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showDOI}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showDOI #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
+
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showDOI      \undefined \def \showDOI       #1{#1}\fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       {\relax}        \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[\protect\citeauthoryear{Barber}{Barber}{2012}]%
+        {Barber2012}
+\bibfield{author}{\bibinfo{person}{D Barber}.} \bibinfo{year}{2012}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{{Bayesian Reasoning and Machine
+  Learning}}}.
+\newblock \bibinfo{publisher}{Cambridge University Press}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Bloembergen, Tuyls, Hennes, and
+  Kaisers}{Bloembergen et~al\mbox{.}}{2015}]%
+        {Bloembergen2015}
+\bibfield{author}{\bibinfo{person}{Daan Bloembergen}, \bibinfo{person}{Karl
+  Tuyls}, \bibinfo{person}{Daniel Hennes}, {and} \bibinfo{person}{Michael
+  Kaisers}.} \bibinfo{year}{2015}\natexlab{}.
+\newblock \bibinfo{title}{{Evolutionary dynamics of multi-agent learning: A
+  survey}}.
+\newblock , \bibinfo{numpages}{659--697}~pages.
+\newblock
+\showISSN{10769757}
+\urldef\tempurl%
+\url{https://doi.org/10.1613/jair.4818}
+\showDOI{\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{B{\"{o}}rgers and Sarin}{B{\"{o}}rgers and
+  Sarin}{1997}]%
+        {Borgers1997}
+\bibfield{author}{\bibinfo{person}{Tilman B{\"{o}}rgers} {and}
+  \bibinfo{person}{Rajiv Sarin}.} \bibinfo{year}{1997}\natexlab{}.
+\newblock \showarticletitle{{Learning through reinforcement and replicator
+  dynamics}}.
+\newblock \bibinfo{journal}{\emph{Journal of Economic Theory}}
+  \bibinfo{volume}{77}, \bibinfo{number}{1} (\bibinfo{date}{nov}
+  \bibinfo{year}{1997}), \bibinfo{pages}{1--14}.
+\newblock
+\showISSN{00220531}
+\urldef\tempurl%
+\url{https://doi.org/10.1006/jeth.1997.2319}
+\showDOI{\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Camerer}{Camerer}{2003}]%
+        {Camerer2009}
+\bibfield{author}{\bibinfo{person}{{Colin F.} Camerer}.}
+  \bibinfo{year}{2003}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{Behavioral game theory}}.
+\newblock \bibinfo{publisher}{Princeton Univ. Press [u.a.]},
+  \bibinfo{address}{Princeton, NJ [u.a.]}.
+\newblock
+\showISBNx{978-0-691-09039-9}
+
+
+\bibitem[\protect\citeauthoryear{Coolen}{Coolen}{2005}]%
+        {Coolen2005}
+\bibfield{author}{\bibinfo{person}{A.C.C. Coolen}.}
+  \bibinfo{year}{2005}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{The Mathematical Theory of Minority Games:
+  Statistical Mechanics of Interacting Agents (Oxford Finance Series)}}.
+\newblock \bibinfo{publisher}{Oxford University Press, Inc.},
+  \bibinfo{address}{USA}.
+\newblock
+\showISBNx{0198520808}
+
+
+\bibitem[\protect\citeauthoryear{Fradkov}{Fradkov}{2007}]%
+        {Fradkov2009}
+\bibfield{author}{\bibinfo{person}{A.~L. Fradkov}.}
+  \bibinfo{year}{2007}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{{Cybernetical Physics: From Control of
+  Chaos to Quantum Control}}}.
+\newblock \bibinfo{publisher}{Springer}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Galla}{Galla}{2011}]%
+        {Galla2011}
+\bibfield{author}{\bibinfo{person}{Tobias Galla}.}
+  \bibinfo{year}{2011}\natexlab{}.
+\newblock \showarticletitle{{Cycles of cooperation and defection in imperfect
+  learning}}.
+\newblock \bibinfo{journal}{\emph{Journal of Statistical Mechanics: Theory and
+  Experiment}} \bibinfo{volume}{2011}, \bibinfo{number}{8} (\bibinfo{date}{aug}
+  \bibinfo{year}{2011}).
+\newblock
+\showISSN{17425468}
+\urldef\tempurl%
+\url{https://doi.org/10.1088/1742-5468/2011/08/P08007}
+\showDOI{\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Galla and Farmer}{Galla and Farmer}{2013}]%
+        {Galla2013}
+\bibfield{author}{\bibinfo{person}{Tobias Galla} {and}
+  \bibinfo{person}{J.~Doyne Farmer}.} \bibinfo{year}{2013}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{{Complex dynamics in learning complicated
+  games}}}.
+\newblock \bibinfo{type}{{T}echnical {R}eport}~4. \bibinfo{pages}{1232--1236}
+  pages.
+\newblock
+\showISSN{00278424}
+\urldef\tempurl%
+\url{https://doi.org/10.1073/pnas.1109672110}
+\showDOI{\tempurl}
+\showeprint[arxiv]{1109.4250}
+
+
+\bibitem[\protect\citeauthoryear{Galstyan}{Galstyan}{2013}]%
+        {Galstyan2013}
+\bibfield{author}{\bibinfo{person}{Aram Galstyan}.}
+  \bibinfo{year}{2013}\natexlab{}.
+\newblock \showarticletitle{{Continuous strategy replicator dynamics for
+  multi-agent Q-learning}}.
+\newblock \bibinfo{journal}{\emph{Autonomous Agents and Multi-Agent Systems}}
+  \bibinfo{volume}{26}, \bibinfo{number}{1} (\bibinfo{year}{2013}),
+  \bibinfo{pages}{37--53}.
+\newblock
+\showISSN{13872532}
+\urldef\tempurl%
+\url{https://doi.org/10.1007/s10458-011-9181-6}
+\showDOI{\tempurl}
+\showeprint[arxiv]{0904.4717}
+
+
+\bibitem[\protect\citeauthoryear{Hennes, Tuyls, and Rauterberg}{Hennes
+  et~al\mbox{.}}{2008}]%
+        {Hennes2008}
+\bibfield{author}{\bibinfo{person}{Daniel Hennes}, \bibinfo{person}{Karl
+  Tuyls}, {and} \bibinfo{person}{Matthias Rauterberg}.}
+  \bibinfo{year}{2008}\natexlab{}.
+\newblock \showarticletitle{{Formalizing multi-state learning dynamics}}. In
+  \bibinfo{booktitle}{\emph{Proceedings - 2008 IEEE/WIC/ACM International
+  Conference on Intelligent Agent Technology, IAT 2008}}.
+  \bibinfo{pages}{266--272}.
+\newblock
+\showISBNx{9780769534961}
+\urldef\tempurl%
+\url{https://doi.org/10.1109/WIIAT.2008.33}
+\showDOI{\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Hu, Leung, and Leung}{Hu
+  et~al\mbox{.}}{2019}]%
+        {Hu2019}
+\bibfield{author}{\bibinfo{person}{Shuyue Hu}, \bibinfo{person}{Chin-Wing
+  Leung}, {and} \bibinfo{person}{Ho-Fung Leung}.}
+  \bibinfo{year}{2019}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{{Modelling the Dynamics of Multiagent
+  Q-Learning in Repeated Symmetric Games: a Mean Field Theoretic Approach}}}.
+\newblock \bibinfo{type}{{T}echnical {R}eport}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Imhof, Fudenberg, and Nowak}{Imhof
+  et~al\mbox{.}}{2005}]%
+        {Imhof2005}
+\bibfield{author}{\bibinfo{person}{Lorens~A. Imhof}, \bibinfo{person}{Drew
+  Fudenberg}, {and} \bibinfo{person}{Martin~A. Nowak}.}
+  \bibinfo{year}{2005}\natexlab{}.
+\newblock \showarticletitle{{Evolutionary cycles of cooperation and
+  defection}}.
+\newblock \bibinfo{journal}{\emph{Proceedings of the National Academy of
+  Sciences of the United States of America}} \bibinfo{volume}{102},
+  \bibinfo{number}{31} (\bibinfo{date}{aug} \bibinfo{year}{2005}),
+  \bibinfo{pages}{10797--10800}.
+\newblock
+\showISSN{00278424}
+\urldef\tempurl%
+\url{https://doi.org/10.1073/pnas.0502589102}
+\showDOI{\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Mezard}{Mezard}{1987}]%
+        {Mezard1986}
+\bibfield{author}{\bibinfo{person}{N. Mezard}.}
+  \bibinfo{year}{1987}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{Spin Glass Theory and Beyond}}.
+\newblock \bibinfo{publisher}{World Scientific}, \bibinfo{address}{Teaneck,
+  NJ}.
+\newblock
+\showISBNx{9971501155 9789971501150 9971501163 9789971501167}
+
+
+\bibitem[\protect\citeauthoryear{Morgenstern and Neumann}{Morgenstern and
+  Neumann}{1944}]%
+        {Morgenstern44}
+\bibfield{author}{\bibinfo{person}{Oskar Morgenstern} {and}
+  \bibinfo{person}{John~Von Neumann}.} \bibinfo{year}{1944}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{{Theory of Games and Economic Behavior}}}.
+\newblock \bibinfo{publisher}{Princeton University Press}.
+\newblock
+\showISBNx{0691003629}
+\urldef\tempurl%
+\url{http://www.amazon.com/exec/obidos/redirect?tag=citeulike07-20\&path=ASIN/0691003629}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Opper and Diederich}{Opper and
+  Diederich}{1992}]%
+        {Opper1992}
+\bibfield{author}{\bibinfo{person}{Manfred Opper} {and} \bibinfo{person}{Sigurd
+  Diederich}.} \bibinfo{year}{1992}\natexlab{}.
+\newblock \showarticletitle{{Phase transition and 1/f noise in a game dynamical
+  model}}.
+\newblock \bibinfo{journal}{\emph{Physical Review Letters}}
+  \bibinfo{volume}{69}, \bibinfo{number}{10} (\bibinfo{year}{1992}),
+  \bibinfo{pages}{1616--1619}.
+\newblock
+\showISSN{00319007}
+\urldef\tempurl%
+\url{https://doi.org/10.1103/PhysRevLett.69.1616}
+\showDOI{\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Pangallo, Heinrich, and Farmer}{Pangallo
+  et~al\mbox{.}}{2019}]%
+        {Pangallo2019}
+\bibfield{author}{\bibinfo{person}{Marco Pangallo}, \bibinfo{person}{Torsten
+  Heinrich}, {and} \bibinfo{person}{J.~Doyne Farmer}.}
+  \bibinfo{year}{2019}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{{Best reply structure and equilibrium
+  convergence in generic games}}}.
+\newblock \bibinfo{type}{{T}echnical {R}eport}~2.
+\newblock
+\showISSN{23752548}
+\urldef\tempurl%
+\url{https://doi.org/10.1126/sciadv.aat1328}
+\showDOI{\tempurl}
+\showeprint[arxiv]{1704.05276}
+
+
+\bibitem[\protect\citeauthoryear{Sanders, Farmer, and Galla}{Sanders
+  et~al\mbox{.}}{2018}]%
+        {Sanders2018}
+\bibfield{author}{\bibinfo{person}{James~B.T. Sanders},
+  \bibinfo{person}{J.~Doyne Farmer}, {and} \bibinfo{person}{Tobias Galla}.}
+  \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{{The prevalence of chaotic dynamics in games with
+  many players}}.
+\newblock \bibinfo{journal}{\emph{Scientific Reports}} \bibinfo{volume}{8},
+  \bibinfo{number}{1} (\bibinfo{date}{dec} \bibinfo{year}{2018}).
+\newblock
+\showISSN{20452322}
+\urldef\tempurl%
+\url{https://doi.org/10.1038/s41598-018-22013-5}
+\showDOI{\tempurl}
+\showeprint[arxiv]{1612.08111}
+
+
+\bibitem[\protect\citeauthoryear{Sato, Akiyama, and Farmer}{Sato
+  et~al\mbox{.}}{2002}]%
+        {Sato2002}
+\bibfield{author}{\bibinfo{person}{Yuzuru Sato}, \bibinfo{person}{Eizo
+  Akiyama}, {and} \bibinfo{person}{J.~Doyne Farmer}.}
+  \bibinfo{year}{2002}\natexlab{}.
+\newblock \showarticletitle{{Chaos in learning a simple two-person game}}.
+\newblock \bibinfo{journal}{\emph{Proceedings of the National Academy of
+  Sciences of the United States of America}} \bibinfo{volume}{99},
+  \bibinfo{number}{7} (\bibinfo{date}{apr} \bibinfo{year}{2002}),
+  \bibinfo{pages}{4748--4751}.
+\newblock
+\showISSN{00278424}
+\urldef\tempurl%
+\url{https://doi.org/10.1073/pnas.032086299}
+\showDOI{\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Schwartz}{Schwartz}{2014}]%
+        {SchwartzMulti-agentApproach}
+\bibfield{author}{\bibinfo{person}{Howard~M. Schwartz}.}
+  \bibinfo{year}{2014}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{{Multi-agent machine learning : a
+  reinforcement approach}}}.
+\newblock
+\showISBNx{9781118362082}
+
+
+\bibitem[\protect\citeauthoryear{Shoham and Leyton-Brown}{Shoham and
+  Leyton-Brown}{2007}]%
+        {ShohamMultiagentFoundations}
+\bibfield{author}{\bibinfo{person}{Yoav Shoham} {and} \bibinfo{person}{Kevin
+  Leyton-Brown}.} \bibinfo{year}{2007}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{MULTIAGENT SYSTEMS Algorithmic,
+  Game-Theoretic, and Logical Foundations}}.
+\newblock
+\urldef\tempurl%
+\url{http://www.masfoundations.org/mas.pdf}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Strogatz}{Strogatz}{2000}]%
+        {Strogatz2000}
+\bibfield{author}{\bibinfo{person}{Steven~H. Strogatz}.}
+  \bibinfo{year}{2000}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{Nonlinear Dynamics and Chaos: With
+  Applications to Physics, Biology, Chemistry and Engineering}}.
+\newblock \bibinfo{publisher}{Westview Press}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Sutton and Barto}{Sutton and Barto}{2018}]%
+        {Sutton2018}
+\bibfield{author}{\bibinfo{person}{R Sutton} {and} \bibinfo{person}{A Barto}.}
+  \bibinfo{year}{2018}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{{Reinforcement Learning: An
+  Introduction}}}.
+\newblock \bibinfo{publisher}{MIT Press}.
+\newblock
+\urldef\tempurl%
+\url{http://incompleteideas.net/book/the-book-2nd.html}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Tuyls, Jan~', Hoen, Nl, and
+  Vanschoenwinkel}{Tuyls et~al\mbox{.}}{2006}]%
+        {Tuyls2006AnGames}
+\bibfield{author}{\bibinfo{person}{Karl Tuyls}, \bibinfo{person}{Pieter Jan~'},
+  \bibinfo{person}{T Hoen}, \bibinfo{person}{Hoen@cwi Nl}, {and}
+  \bibinfo{person}{Bram Vanschoenwinkel}.} \bibinfo{year}{2006}\natexlab{}.
+\newblock \showarticletitle{{An Evolutionary Dynamical Analysis of Multi-Agent
+  Learning in Iterated Games}}.
+\newblock \bibinfo{journal}{\emph{Autonomous Agents and Multi-Agent Systems}}
+  \bibinfo{volume}{12} (\bibinfo{year}{2006}), \bibinfo{pages}{115--153}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1007/s10458-005-3783-9}
+\showDOI{\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Vinyals, Babuschkin, Czarnecki, Mathieu,
+  Dudzik, Chung, Choi, Powell, Ewalds, Georgiev, Oh, Horgan, Kroiss, Danihelka,
+  Huang, Sifre, Cai, Agapiou, Jaderberg, Vezhnevets, Leblond, Pohlen, Dalibard,
+  Budden, Sulsky, Molloy, Paine, Gulcehre, Wang, Pfaff, Wu, Ring, Yogatama,
+  Wünsch, McKinney, Smith, Schaul, Lillicrap, Kavukcuoglu, Hassabis, Apps, and
+  Silver}{Vinyals et~al\mbox{.}}{2019}]%
+        {Vinyals2019}
+\bibfield{author}{\bibinfo{person}{Oriol Vinyals}, \bibinfo{person}{Igor
+  Babuschkin}, \bibinfo{person}{Wojciech~M. Czarnecki},
+  \bibinfo{person}{Michaël Mathieu}, \bibinfo{person}{Andrew Dudzik},
+  \bibinfo{person}{Junyoung Chung}, \bibinfo{person}{David~H. Choi},
+  \bibinfo{person}{Richard Powell}, \bibinfo{person}{Timo Ewalds},
+  \bibinfo{person}{Petko Georgiev}, \bibinfo{person}{Junhyuk Oh},
+  \bibinfo{person}{Dan Horgan}, \bibinfo{person}{Manuel Kroiss},
+  \bibinfo{person}{Ivo Danihelka}, \bibinfo{person}{Aja Huang},
+  \bibinfo{person}{Laurent Sifre}, \bibinfo{person}{Trevor Cai},
+  \bibinfo{person}{John~P. Agapiou}, \bibinfo{person}{Max Jaderberg},
+  \bibinfo{person}{Alexander~S. Vezhnevets}, \bibinfo{person}{Rémi Leblond},
+  \bibinfo{person}{Tobias Pohlen}, \bibinfo{person}{Valentin Dalibard},
+  \bibinfo{person}{David Budden}, \bibinfo{person}{Yury Sulsky},
+  \bibinfo{person}{James Molloy}, \bibinfo{person}{Tom~L. Paine},
+  \bibinfo{person}{Caglar Gulcehre}, \bibinfo{person}{Ziyu Wang},
+  \bibinfo{person}{Tobias Pfaff}, \bibinfo{person}{Yuhuai Wu},
+  \bibinfo{person}{Roman Ring}, \bibinfo{person}{Dani Yogatama},
+  \bibinfo{person}{Dario Wünsch}, \bibinfo{person}{Katrina McKinney},
+  \bibinfo{person}{Oliver Smith}, \bibinfo{person}{Tom Schaul},
+  \bibinfo{person}{Timothy Lillicrap}, \bibinfo{person}{Koray Kavukcuoglu},
+  \bibinfo{person}{Demis Hassabis}, \bibinfo{person}{Chris Apps}, {and}
+  \bibinfo{person}{David Silver}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{Grandmaster level in StarCraft II using multi-agent
+  reinforcement learning}.
+\newblock \bibinfo{journal}{\emph{Nature}}  \bibinfo{volume}{575}
+  (\bibinfo{date}{11} \bibinfo{year}{2019}), \bibinfo{pages}{350--354}.
+\newblock
+Issue 7782.
+\showISSN{14764687}
+\urldef\tempurl%
+\url{https://doi.org/10.1038/s41586-019-1724-z}
+\showDOI{\tempurl}
+
+
+\end{thebibliography}
