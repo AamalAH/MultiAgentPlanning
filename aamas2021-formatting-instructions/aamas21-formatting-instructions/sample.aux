@@ -69,67 +69,44 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces   Different types of dynamical behaviour displayed by learning agents. Here the $x$-axis (resp.\nonbreakingspace $y$-axis) is the probability with which agent 1 (resp.\nonbreakingspace agent 2) chooses a given action. a) Figure drawn from \citep  {Tuyls2006AnGames}. Convergence to a unique fixed point in the upper right corner (1, 1). This fixed point is unique, in that all trajectories, regardless of initialisation, will converge to this point. b) Limit Cycle, the trajectories converge to cyclic behaviour c, d) Chaotic behaviour, here small deviations in the initial conditions can grow exponentially. b-d drawn from \citep  {Sanders2018}\relax }}{3}{figure.caption.7}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig::DynamicalBehaviours}{{1}{3}{Different types of dynamical behaviour displayed by learning agents. Here the $x$-axis (resp.~$y$-axis) is the probability with which agent 1 (resp.~agent 2) chooses a given action. a) Figure drawn from \cite {Tuyls2006AnGames}. Convergence to a unique fixed point in the upper right corner (1, 1). This fixed point is unique, in that all trajectories, regardless of initialisation, will converge to this point. b) Limit Cycle, the trajectories converge to cyclic behaviour c, d) Chaotic behaviour, here small deviations in the initial conditions can grow exponentially. b-d drawn from \cite {Sanders2018}\relax }{figure.caption.7}{}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {b}}}{3}{figure.caption.7}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {b}}}{3}{figure.caption.7}}
 \newlabel{eqn::Qupdate}{{2}{3}{Dynamics of Q-Learning}{equation.2.2}{}}
 \newlabel{eqn::EOM}{{3}{3}{Dynamics of Q-Learning}{equation.2.3}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Stability Analysis of Q-Learning}{3}{section.3}}
 \newlabel{sec::Theory}{{3}{3}{Stability Analysis of Q-Learning}{section.3}{}}
 \citation{Sanders2018}
 \citation{Mezard1986}
-\citation{Opper1992}
+\citation{SpinGlassTheory}
 \newlabel{eqn::pEOM}{{4}{4}{Stability Analysis of Q-Learning}{equation.3.4}{}}
-\newlabel{eqn::Payoffs}{{5}{4}{Stability Analysis of Q-Learning}{equation.3.5}{}}
-\newlabel{eqn::EffectiveDynamics}{{6}{4}{Stability Analysis of Q-Learning}{equation.3.6}{}}
-\newlabel{eqn::Linearised}{{7}{4}{Stability Analysis of Q-Learning}{equation.3.7}{}}
-\newlabel{eqn::fixed_point}{{8}{4}{Stability Analysis of Q-Learning}{equation.3.8}{}}
+\newlabel{eqn::scaledEOM}{{5}{4}{Stability Analysis of Q-Learning}{equation.3.5}{}}
+\newlabel{eqn::Payoffs}{{6}{4}{Stability Analysis of Q-Learning}{equation.3.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Generating Functional Analysis}{4}{subsection.3.1}}
+\newlabel{eqn::EffectiveDynamics}{{9}{4}{Generating Functional Analysis}{equation.3.9}{}}
+\citation{Opper1992}
 \citation{Sanders2018}
 \citation{Coolen2005}
-\citation{Strogatz2000}
-\citation{}
-\newlabel{eqn::Final}{{10}{5}{Stability Analysis of Q-Learning}{equation.3.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Linear Stability Analysis}{5}{subsection.3.2}}
+\newlabel{eqn::Linearised}{{10}{5}{Linear Stability Analysis}{equation.3.10}{}}
+\newlabel{eqn::fixed_point}{{11}{5}{Linear Stability Analysis}{equation.3.11}{}}
+\newlabel{eqn::Final}{{13}{5}{Linear Stability Analysis}{equation.3.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Results of numerical experiments. The heatmaps show the value of the Liapunov Exponent determined by the procedure outlined in Section\nonbreakingspace \ref  {sec:exev} scaled by $1 \times 10^5$ for convenience. Lighter values show a higher exponent whilst darker values indicate lower values. Each experiment is run with $\tau = 0.05$. (Top Left) $p = 2, N = 2$, (Top Right) $p = 2, N = 4$, (Mid-Left) $p = 2, N = 10$, (Mid-Right) $p = 2, N = 20$, (Bottom) $p = 3, N = 5$.\relax }}{5}{figure.caption.9}}
+\newlabel{fig:theory}{{2}{5}{Results of numerical experiments. The heatmaps show the value of the Liapunov Exponent determined by the procedure outlined in Section~\ref {sec:exev} scaled by $1 \times 10^5$ for convenience. Lighter values show a higher exponent whilst darker values indicate lower values. Each experiment is run with $\tau = 0.05$. (Top Left) $p = 2, N = 2$, (Top Right) $p = 2, N = 4$, (Mid-Left) $p = 2, N = 10$, (Mid-Right) $p = 2, N = 20$, (Bottom) $p = 3, N = 5$.\relax }{figure.caption.9}{}}
 \@writefile{toc}{\contentsline {paragraph}{Discussion}{5}{section*.8}}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Evaluation}{5}{section.4}}
 \newlabel{sec:exev}{{4}{5}{Experimental Evaluation}{section.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Results of numerical experiments. The heatmaps show the value of the Liapunov Exponent determined by the procedure outlined in Section\nonbreakingspace \ref  {sec:exev} scaled by $1 \times 10^5$ for convenience. Lighter values show a higher exponent whilst darker values indicate lower values. Each experiment is run with $\tau = 0.05$. (Top Left) $p = 2, N = 2$, (Top Right) $p = 2, N = 4$, (Mid-Left) $p = 2, N = 10$, (Mid-Right) $p = 2, N = 20$, (Bottom) $p = 3, N = 5$.\relax }}{5}{figure.caption.9}}
-\newlabel{fig:theory}{{2}{5}{Results of numerical experiments. The heatmaps show the value of the Liapunov Exponent determined by the procedure outlined in Section~\ref {sec:exev} scaled by $1 \times 10^5$ for convenience. Lighter values show a higher exponent whilst darker values indicate lower values. Each experiment is run with $\tau = 0.05$. (Top Left) $p = 2, N = 2$, (Top Right) $p = 2, N = 4$, (Mid-Left) $p = 2, N = 10$, (Mid-Right) $p = 2, N = 20$, (Bottom) $p = 3, N = 5$.\relax }{figure.caption.9}{}}
+\citation{Strogatz2000}
+\citation{}
 \citation{Sanders2018}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Construction of Numerical Experiments}{6}{subsection.4.1}}
-\newlabel{eq::LiapExpo}{{11}{6}{Construction of Numerical Experiments}{}{}}
+\newlabel{eq::LiapExpo}{{14}{6}{Construction of Numerical Experiments}{}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Discussion}{6}{subsection.4.2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Results of numerical experiments. The heat-maps show the value of the Lyapunov Exponent determined by the procedure outlined in this section scaled by $1 \times 10^5$ for convenience. Lighter values show a higher exponent whilst darker values indicate lower values. Each experiment is run with $\tau = 0.05$. (Top Left) $p = 2, N = 2$, (Top Right) $p = 2, N = 4$, (Mid-Left) $p = 2, N = 10$, (Mid-Right) $p = 2, N = 20$, (Bottom) $p = 3, N = 5$.\relax }}{6}{figure.caption.10}}
-\newlabel{fig:NumericalExperiments}{{3}{6}{Results of numerical experiments. The heat-maps show the value of the Lyapunov Exponent determined by the procedure outlined in this section scaled by $1 \times 10^5$ for convenience. Lighter values show a higher exponent whilst darker values indicate lower values. Each experiment is run with $\tau = 0.05$. (Top Left) $p = 2, N = 2$, (Top Right) $p = 2, N = 4$, (Mid-Left) $p = 2, N = 10$, (Mid-Right) $p = 2, N = 20$, (Bottom) $p = 3, N = 5$.\relax }{figure.caption.10}{}}
 \bibstyle{ACM-Reference-Format}
 \bibdata{references}
-\bibcite{Barber2012}{{1}{2012}{{Barber}}{{Barber}}}
-\bibcite{Bloembergen2015}{{2}{2015}{{Bloembergen et~al\unhbox \voidb@x \hbox {.}}}{{Bloembergen, Tuyls, Hennes, and Kaisers}}}
-\bibcite{Borgers1997}{{3}{1997}{{B{\"{o}}rgers and Sarin}}{{B{\"{o}}rgers and Sarin}}}
-\bibcite{Camerer2009}{{4}{2003}{{Camerer}}{{Camerer}}}
-\bibcite{Coolen2005}{{5}{2005}{{Coolen}}{{Coolen}}}
-\bibcite{Fradkov2009}{{6}{2007}{{Fradkov}}{{Fradkov}}}
-\bibcite{Galla2011}{{7}{2011}{{Galla}}{{Galla}}}
-\bibcite{Galla2013}{{8}{2013}{{Galla and Farmer}}{{Galla and Farmer}}}
-\bibcite{Galstyan2013}{{9}{2013}{{Galstyan}}{{Galstyan}}}
-\bibcite{Hennes2008}{{10}{2008}{{Hennes et~al\unhbox \voidb@x \hbox {.}}}{{Hennes, Tuyls, and Rauterberg}}}
-\bibcite{Hu2019}{{11}{2019}{{Hu et~al\unhbox \voidb@x \hbox {.}}}{{Hu, Leung, and Leung}}}
-\bibcite{Imhof2005}{{12}{2005}{{Imhof et~al\unhbox \voidb@x \hbox {.}}}{{Imhof, Fudenberg, and Nowak}}}
-\bibcite{Mezard1986}{{13}{1987}{{Mezard}}{{Mezard}}}
-\bibcite{Morgenstern44}{{14}{1944}{{Morgenstern and Neumann}}{{Morgenstern and Neumann}}}
-\bibcite{Opper1992}{{15}{1992}{{Opper and Diederich}}{{Opper and Diederich}}}
-\bibcite{Pangallo2019}{{16}{2019}{{Pangallo et~al\unhbox \voidb@x \hbox {.}}}{{Pangallo, Heinrich, and Farmer}}}
-\bibcite{Sanders2018}{{17}{2018}{{Sanders et~al\unhbox \voidb@x \hbox {.}}}{{Sanders, Farmer, and Galla}}}
-\bibcite{Sato2002}{{18}{2002}{{Sato et~al\unhbox \voidb@x \hbox {.}}}{{Sato, Akiyama, and Farmer}}}
-\bibcite{SchwartzMulti-agentApproach}{{19}{2014}{{Schwartz}}{{Schwartz}}}
-\bibcite{ShohamMultiagentFoundations}{{20}{2007}{{Shoham and Leyton-Brown}}{{Shoham and Leyton-Brown}}}
-\bibcite{Strogatz2000}{{21}{2000}{{Strogatz}}{{Strogatz}}}
-\bibcite{Sutton2018}{{22}{2018}{{Sutton and Barto}}{{Sutton and Barto}}}
-\bibcite{Tuyls2006AnGames}{{23}{2006}{{Tuyls et~al\unhbox \voidb@x \hbox {.}}}{{Tuyls, Jan~', Hoen, Nl, and Vanschoenwinkel}}}
-\bibcite{Vinyals2019}{{24}{2019}{{Vinyals et~al\unhbox \voidb@x \hbox {.}}}{{Vinyals, Babuschkin, Czarnecki, Mathieu, Dudzik, Chung, Choi, Powell, Ewalds, Georgiev, Oh, Horgan, Kroiss, Danihelka, Huang, Sifre, Cai, Agapiou, Jaderberg, Vezhnevets, Leblond, Pohlen, Dalibard, Budden, Sulsky, Molloy, Paine, Gulcehre, Wang, Pfaff, Wu, Ring, Yogatama, Wünsch, McKinney, Smith, Schaul, Lillicrap, Kavukcuoglu, Hassabis, Apps, and Silver}}}
 \newlabel{tocindent-1}{0pt}
 \newlabel{tocindent0}{0pt}
 \newlabel{tocindent1}{4.185pt}
 \newlabel{tocindent2}{10.34999pt}
 \newlabel{tocindent3}{0pt}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Results of numerical experiments. The heat-maps show the value of the Lyapunov Exponent determined by the procedure outlined in this section scaled by $1 \times 10^5$ for convenience. Lighter values show a higher exponent whilst darker values indicate lower values. Each experiment is run with $\tau = 0.05$. (Top Left) $p = 2, N = 2$, (Top Right) $p = 2, N = 4$, (Mid-Left) $p = 2, N = 10$, (Mid-Right) $p = 2, N = 20$, (Bottom) $p = 3, N = 5$.\relax }}{7}{figure.caption.10}}
+\newlabel{fig:NumericalExperiments}{{3}{7}{Results of numerical experiments. The heat-maps show the value of the Lyapunov Exponent determined by the procedure outlined in this section scaled by $1 \times 10^5$ for convenience. Lighter values show a higher exponent whilst darker values indicate lower values. Each experiment is run with $\tau = 0.05$. (Top Left) $p = 2, N = 2$, (Top Right) $p = 2, N = 4$, (Mid-Left) $p = 2, N = 10$, (Mid-Right) $p = 2, N = 20$, (Bottom) $p = 3, N = 5$.\relax }{figure.caption.10}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{7}{section.5}}
-\@writefile{toc}{\contentsline {section}{References}{7}{section*.12}}
 \newlabel{TotPages}{{7}{7}{}{page.7}{}}

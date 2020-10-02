@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.12)  2 OCT 2020 15:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.12)  2 OCT 2020 16:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -719,126 +719,111 @@ Package: soul 2003/11/17 v2.4 letterspacing/underlining (mf)
 \SOUL@uldp=\dimen157
 \SOUL@ulht=\dimen158
 )
-(/usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.sty
-Package: subfigure 2002/03/15 v2.1.5 subfigure package
-\subfigtopskip=\skip70
-\subfigcapskip=\skip71
-\subfigcaptopadj=\dimen159
-\subfigbottomskip=\skip72
-\subfigcapmargin=\dimen160
-\subfiglabelskip=\skip73
+(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2016/02/20 v1.1-142 Sub-captions (AR)
 \c@subfigure=\count134
-\c@lofdepth=\count135
-\c@subtable=\count136
-\c@lotdepth=\count137
-
-****************************************
-* Local config file subfigure.cfg used *
-****************************************
-(/usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.cfg)
-\subfig@top=\skip74
-\subfig@bottom=\skip75
+\c@subtable=\count135
 )
-Package hyperref Info: Option `pdfdisplaydoctitle' set `true' on input line 113
+Package hyperref Info: Option `pdfdisplaydoctitle' set `true' on input line 141
 .
-\c@theorem=\count138
+\c@theorem=\count136
 
 (/usr/share/texlive/texmf-dist/tex/latex/preprint/balance.sty
 Package: balance 1999/02/23 4.3 (PWD)
-\oldvsize=\dimen161
+\oldvsize=\dimen159
 )
 Excluding comment 'screenonly' Include comment 'printonly'
 Excluding comment 'anonsuppress' Excluding comment 'acks' (./sample.aux)
 \openout1 = `sample.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/nxlmi/m/it on input line 113.
-LaTeX Font Info:    Try loading font information for OML+nxlmi on input line 11
-3.
+LaTeX Font Info:    Checking defaults for OML/nxlmi/m/it on input line 141.
+LaTeX Font Info:    Try loading font information for OML+nxlmi on input line 14
+1.
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/omlnxlmi.fd
 File: omlnxlmi.fd 2013/11/19 Fontinst v1.933 font definitions for OML/nxlmi.
 )
-LaTeX Font Info:    ... okay on input line 113.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 113.
-LaTeX Font Info:    ... okay on input line 113.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 113.
-LaTeX Font Info:    ... okay on input line 113.
-LaTeX Font Info:    Checking defaults for OMS/ntxsy/m/n on input line 113.
-LaTeX Font Info:    Try loading font information for OMS+ntxsy on input line 11
-3.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for OMS/ntxsy/m/n on input line 141.
+LaTeX Font Info:    Try loading font information for OMS+ntxsy on input line 14
+1.
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/omsntxsy.fd
 File: omsntxsy.fd 2012/11/14 Fontinst v1.933 font definitions for OMS/ntxsy.
 )
-LaTeX Font Info:    ... okay on input line 113.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 113.
-LaTeX Font Info:    ... okay on input line 113.
-LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 113.
-LaTeX Font Info:    Try loading font information for U+ntxexa on input line 113
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 141.
+LaTeX Font Info:    Try loading font information for U+ntxexa on input line 141
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxexa.fd
 File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
 )
-LaTeX Font Info:    ... okay on input line 113.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 113.
-LaTeX Font Info:    ... okay on input line 113.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 113.
-LaTeX Font Info:    ... okay on input line 113.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 113.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 113.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 141.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 141.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 113.
-LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 113.
-LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 7.0pt on input line 113.
+(Font)              scaled to size 7.0pt on input line 141.
 LaTeX Font Info:    Try loading font information for OT1+LinuxLibertineT-TLF on
- input line 113.
+ input line 141.
 
 (/usr/share/texlive/texmf-dist/tex/latex/libertine/OT1LinuxLibertineT-TLF.fd
 File: OT1LinuxLibertineT-TLF.fd 2012/11/26 (autoinst) Font definitions for OT1/
 LinuxLibertineT-TLF.
 )
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 7.3pt on input line 113.
+(Font)              scaled to size 7.3pt on input line 141.
 <<ot1.cmap>>
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 5.5pt on input line 113.
+(Font)              scaled to size 5.5pt on input line 141.
 <<oml.cmap>><<oms.cmap>>
-LaTeX Font Info:    Try loading font information for U+msa on input line 113.
+LaTeX Font Info:    Try loading font information for U+msa on input line 141.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 113.
+LaTeX Font Info:    Try loading font information for U+msb on input line 141.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+ntxmia on input line 113
+LaTeX Font Info:    Try loading font information for U+ntxmia on input line 141
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxmia.fd
 File: untxmia.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxmia.
 )
-LaTeX Font Info:    Try loading font information for U+ntxsym on input line 113
+LaTeX Font Info:    Try loading font information for U+ntxsym on input line 141
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxsym.fd
 File: untxsym.fd 2015/03/20 Fontinst v1.933 font definitions for U/ntxsym.
 )
-LaTeX Font Info:    Try loading font information for U+ntxsyc on input line 113
+LaTeX Font Info:    Try loading font information for U+ntxsyc on input line 141
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxsyc.fd
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 )
-LaTeX Info: Redefining \microtypecontext on input line 113.
+LaTeX Info: Redefining \microtypecontext on input line 141.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -855,7 +840,7 @@ Package microtype Info: Loading generic settings for font family
 
 ABD: EveryShipout initializing macros
 \AtBeginShipoutBox=\box34
-Package hyperref Info: Link coloring OFF on input line 113.
+Package hyperref Info: Link coloring OFF on input line 141.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -863,11 +848,11 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count139
+\c@section@level=\count137
 )
-LaTeX Info: Redefining \ref on input line 113.
-LaTeX Info: Redefining \pageref on input line 113.
-LaTeX Info: Redefining \nameref on input line 113.
+LaTeX Info: Redefining \ref on input line 141.
+LaTeX Info: Redefining \pageref on input line 141.
+LaTeX Info: Redefining \nameref on input line 141.
 
 (./sample.out) (./sample.out)
 \@outlinefile=\write5
@@ -876,16 +861,16 @@ LaTeX Info: Redefining \nameref on input line 113.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count140
-\scratchdimen=\dimen162
+\scratchcounter=\count138
+\scratchdimen=\dimen160
 \scratchbox=\box35
-\nofMPsegments=\count141
-\nofMParguments=\count142
+\nofMPsegments=\count139
+\nofMParguments=\count140
 \everyMPshowfont=\toks37
-\MPscratchCnt=\count143
-\MPscratchDim=\dimen163
-\MPnumerator=\count144
-\makeMPintoPDFobject=\count145
+\MPscratchCnt=\count141
+\MPscratchDim=\dimen161
+\MPnumerator=\count142
+\makeMPintoPDFobject=\count143
 \everyMPtoPDFconversion=\toks38
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
@@ -936,27 +921,26 @@ e
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@mv@tabular=\count146
-\c@mv@boldtabular=\count147
+\c@mv@tabular=\count144
+\c@mv@boldtabular=\count145
 (/usr/share/texlive/texmf-dist/tex/latex/upquote/upquote.sty
 Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
 tim
 )
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
-Package caption Info: subfigure package is loaded.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 17.28pt on input line 123.
+(Font)              scaled to size 17.28pt on input line 151.
 LaTeX Font Info:    Try loading font information for T1+LinuxBiolinumT-TLF on i
-nput line 123.
+nput line 151.
 
 (/usr/share/texlive/texmf-dist/tex/latex/libertine/T1LinuxBiolinumT-TLF.fd
 File: T1LinuxBiolinumT-TLF.fd 2012/11/26 (autoinst) Font definitions for T1/Lin
 uxBiolinumT-TLF.
 )
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 17.28pt on input line 123.
+(Font)              scaled to size 17.28pt on input line 151.
 Package microtype Info: Loading generic settings for font family
 (microtype)             `LinuxBiolinumT-TLF' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
@@ -964,36 +948,36 @@ Package microtype Info: Loading generic settings for font family
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/bx/n' in size <17.28> not
  available
 (Font)              Font shape `T1/LinuxBiolinumT-TLF/b/n' tried instead on inp
-ut line 123.
+ut line 151.
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/b/n' will be
-(Font)              scaled to size 17.28pt on input line 123.
+(Font)              scaled to size 17.28pt on input line 151.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 12.0pt on input line 123.
+(Font)              scaled to size 12.0pt on input line 151.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 10.0pt on input line 123.
+(Font)              scaled to size 10.0pt on input line 151.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
-(Font)              scaled to size 7.0pt on input line 123.
+(Font)              scaled to size 7.0pt on input line 151.
 LaTeX Font Info:    Try loading font information for TS1+LinuxLibertineT-TLF on
- input line 123.
+ input line 151.
 
 (/usr/share/texlive/texmf-dist/tex/latex/libertine/TS1LinuxLibertineT-TLF.fd
 File: TS1LinuxLibertineT-TLF.fd 2012/11/26 (autoinst) Font definitions for TS1/
 LinuxLibertineT-TLF.
 )
 LaTeX Font Info:    Font shape `TS1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 7.0pt on input line 123.
+(Font)              scaled to size 7.0pt on input line 151.
 Package microtype Info: Loading generic settings for font family
 (microtype)             `LinuxLibertineT-TLF' (encoding: TS1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
-(Font)              scaled to size 9.0pt on input line 123.
+(Font)              scaled to size 9.0pt on input line 151.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
-(Font)              scaled to size 10.95pt on input line 123.
+(Font)              scaled to size 10.95pt on input line 151.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
-(Font)              scaled to size 9.0pt on input line 123.
+(Font)              scaled to size 9.0pt on input line 151.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 9.0pt on input line 123.
+(Font)              scaled to size 9.0pt on input line 151.
 Package microtype Info: Loading generic settings for font family
 (microtype)             `LinuxLibertineT-TLF' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
@@ -1006,140 +990,298 @@ File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 8.0pt on input line 123.
+(Font)              scaled to size 8.0pt on input line 151.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
-(Font)              scaled to size 8.0pt on input line 123.
+(Font)              scaled to size 8.0pt on input line 151.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
-(Font)              scaled to size 8.0pt on input line 123.
- [1.1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+(Font)              scaled to size 8.0pt on input line 151.
+
+
+Package natbib Warning: Citation `Vinyals2019' on page 1 undefined on input lin
+e 158.
+
+
+Package natbib Warning: Citation `SchwartzMulti-agentApproach' on page 1 undefi
+ned on input line 158.
+
+
+Package natbib Warning: Citation `ShohamMultiagentFoundations' on page 1 undefi
+ned on input line 160.
+
+
+Package natbib Warning: Citation `Tuyls2006AnGames' on page 1 undefined on inpu
+t line 161.
+
+
+Package natbib Warning: Citation `Sutton2018' on page 1 undefined on input line
+ 161.
+
+
+Package natbib Warning: Citation `Sanders2018' on page 1 undefined on input lin
+e 163.
+
+
+Package natbib Warning: Citation `Morgenstern44' on page 1 undefined on input l
+ine 187.
+
+
+Package natbib Warning: Citation `ShohamMultiagentFoundations' on page 1 undefi
+ned on input line 187.
+
+[1.1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 ]
+
+Package natbib Warning: Citation `Galla2011' on page 2 undefined on input line 
+189.
+
+
+Package natbib Warning: Citation `Imhof2005' on page 2 undefined on input line 
+189.
+
+
+Package natbib Warning: Citation `Galla2011' on page 2 undefined on input line 
+189.
+
+
+Package natbib Warning: Citation `Sato2002' on page 2 undefined on input line 1
+91.
+
+
+Package natbib Warning: Citation `Strogatz2000' on page 2 undefined on input li
+ne 191.
+
+
+Package natbib Warning: Citation `Galla2013' on page 2 undefined on input line 
+191.
+
+
+Package natbib Warning: Citation `Camerer2009' on page 2 undefined on input lin
+e 191.
+
+
+Package natbib Warning: Citation `Opper1992' on page 2 undefined on input line 
+191.
+
+
+Package natbib Warning: Citation `Sanders2018' on page 2 undefined on input lin
+e 191.
+
+
+Package natbib Warning: Citation `Pangallo2019' on page 2 undefined on input li
+ne 191.
+
+
+Package natbib Warning: Citation `Borgers1997' on page 2 undefined on input lin
+e 195.
+
+
+Package natbib Warning: Citation `Tuyls2006AnGames' on page 2 undefined on inpu
+t line 195.
+
+
+Package natbib Warning: Citation `Barber2012' on page 2 undefined on input line
+ 195.
+
+
+Package natbib Warning: Citation `Bloembergen2015' on page 2 undefined on input
+ line 195.
+
+
+Package natbib Warning: Citation `Hennes2008' on page 2 undefined on input line
+ 195.
+
+
+Package natbib Warning: Citation `Galstyan2013' on page 2 undefined on input li
+ne 195.
+
+
+Package natbib Warning: Citation `Tuyls2006AnGames' on page 2 undefined on inpu
+t line 195.
+
+
+Package natbib Warning: Citation `Hu2019' on page 2 undefined on input line 195
+.
+
+
 Underfull \vbox (badness 2073) has occurred while \output is active []
 
 
-! Missing number, treated as zero.
-<to be read again> 
-                   }
-l.205         \begin{subfigure}[b]{0.9 \textwidth}
-                                                  
-? 
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   }
-l.205         \begin{subfigure}[b]{0.9 \textwidth}
-                                                  
-? 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
-[]\T1/LinuxLibertineT-TLF/m/n/7 (+20) (a)
- []
+Package natbib Warning: Citation `Sanders2018' on page 2 undefined on input lin
+e 198.
 
-<Figures/DynamicalBehavioursTop.png, id=115, 428.09938pt x 225.34187pt>
+
+Package natbib Warning: Citation `Strogatz2000' on page 2 undefined on input li
+ne 223.
+
+
+Package natbib Warning: Citation `Fradkov2009' on page 2 undefined on input lin
+e 226.
+
+<Figures/DynamicalBehavioursTop.png, id=83, 428.09938pt x 225.34187pt>
 File: Figures/DynamicalBehavioursTop.png Graphic file (type png)
 
 <use Figures/DynamicalBehavioursTop.png>
 Package pdftex.def Info: Figures/DynamicalBehavioursTop.png used on input line 
-206.
-(pdftex.def)             Requested size: 253.14749pt x 133.24968pt.
+234.
+(pdftex.def)             Requested size: 227.83119pt x 119.92575pt.
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 205--208
- [] 
+Overfull \hbox (214.51491pt too wide) in paragraph at lines 233--236
+ [][] 
  []
 
-! Missing number, treated as zero.
-<to be read again> 
-                   }
-l.209         \begin{subfigure}[b]{0.9 \textwidth}
-                                                  
-? 
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   }
-l.209         \begin{subfigure}[b]{0.9 \textwidth}
-                                                  
-? 
-
-Underfull \hbox (badness 10000) in paragraph at lines 209--209
-[]\T1/LinuxLibertineT-TLF/m/n/7 (+20) (b)
- []
-
-<Figures/DynamicalBehaviourschaos.png, id=117, 435.12563pt x 224.33812pt>
+<Figures/DynamicalBehaviourschaos.png, id=85, 435.12563pt x 224.33812pt>
 File: Figures/DynamicalBehaviourschaos.png Graphic file (type png)
 
 <use Figures/DynamicalBehaviourschaos.png>
 Package pdftex.def Info: Figures/DynamicalBehaviourschaos.png used on input lin
-e 210.
-(pdftex.def)             Requested size: 253.14749pt x 130.5167pt.
+e 238.
+(pdftex.def)             Requested size: 227.83119pt x 117.46434pt.
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 209--212
- [] 
+Overfull \hbox (214.51491pt too wide) in paragraph at lines 237--240
+ [][] 
  []
 
 
-Class aamas Warning: A possible image without description on input line 222.
+Package natbib Warning: Citation `Tuyls2006AnGames' on page 2 undefined on inpu
+t line 248.
+
+
+Package natbib Warning: Citation `Sanders2018' on page 2 undefined on input lin
+e 248.
+
+
+Package natbib Warning: Citation `Tuyls2006AnGames' on page 2 undefined on inpu
+t line 248.
+
+
+Package natbib Warning: Citation `Sanders2018' on page 2 undefined on input lin
+e 248.
+
+
+Class aamas Warning: A possible image without description on input line 250.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Underfull \vbox (badness 1895) has occurred while \output is active []
+Package natbib Warning: Citation `Tuyls2006AnGames' on page 2 undefined on inpu
+t line 259.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [2.2]
-[3.3 <./Figures/DynamicalBehavioursTop.png> <./Figures/DynamicalBehaviourschaos
-.png>]
+
+Package natbib Warning: Citation `Sanders2018' on page 3 undefined on input lin
+e 306.
+
+
+Package natbib Warning: Citation `Sutton2018' on page 3 undefined on input line
+ 306.
+
+
+Package natbib Warning: Citation `Sutton2018' on page 3 undefined on input line
+ 310.
+
+
+Package natbib Warning: Citation `Sanders2018' on page 3 undefined on input lin
+e 316.
+
+
+Package natbib Warning: Citation `Coolen2005' on page 3 undefined on input line
+ 323.
+
+
+Package natbib Warning: Citation `Galla2013' on page 3 undefined on input line 
+323.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [3.3 <./Figures/DynamicalBehavioursTop.png> <./Figures/DynamicalBehaviourschao
+s.png>]
+
+Package natbib Warning: Citation `Sanders2018' on page 4 undefined on input lin
+e 334.
+
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 7.3pt on input line 330.
+(Font)              scaled to size 7.3pt on input line 366.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 5.5pt on input line 330.
- [4.4] <Figures/Theory.png, id=209, 769.87625pt x 777.90625pt>
+(Font)              scaled to size 5.5pt on input line 366.
+
+Package natbib Warning: Citation `Mezard1986' on page 4 undefined on input line
+ 373.
+
+
+Package natbib Warning: Citation `SpinGlassTheory' on page 4 undefined on input
+ line 373.
+
+
+Overfull \hbox (12.56859pt too wide) in paragraph at lines 392--392
+[] 
+ []
+
+[4.4]
+
+Package natbib Warning: Citation `Opper1992' on page 5 undefined on input line 
+422.
+
+<Figures/Theory.png, id=147, 769.87625pt x 777.90625pt>
 File: Figures/Theory.png Graphic file (type png)
 
 <use Figures/Theory.png>
-Package pdftex.def Info: Figures/Theory.png used on input line 408.
+Package pdftex.def Info: Figures/Theory.png used on input line 475.
 (pdftex.def)             Requested size: 265.2637pt x 268.0337pt.
 
-Overfull \hbox (24.11621pt too wide) in paragraph at lines 408--409
+Overfull \hbox (24.11621pt too wide) in paragraph at lines 475--476
  [][] 
  []
 
 
-Class aamas Warning: A possible image without description on input line 411.
+Class aamas Warning: A possible image without description on input line 478.
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 429.
+Package natbib Warning: Citation `Sanders2018' on page 5 undefined on input lin
+e 481.
+
+
+Package natbib Warning: Citation `Coolen2005' on page 5 undefined on input line
+ 481.
+
+[5.5 <./Figures/Theory.png>]
+
+Package natbib Warning: Citation `Strogatz2000' on page 6 undefined on input li
+ne 496.
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 496.
 
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [5.5 <./Figures/Theory.png>] <Figures/Experiments.png, id=239, 198.9834pt x 21
-1.992pt>
+
+<Figures/Experiments.png, id=178, 198.9834pt x 211.992pt>
 File: Figures/Experiments.png Graphic file (type png)
 
 <use Figures/Experiments.png>
-Package pdftex.def Info: Figures/Experiments.png used on input line 456.
+Package pdftex.def Info: Figures/Experiments.png used on input line 523.
 (pdftex.def)             Requested size: 217.03127pt x 231.2349pt.
 
 
-Class aamas Warning: A possible image without description on input line 459.
+Class aamas Warning: A possible image without description on input line 526.
 
-[6.6 <./Figures/Experiments.png>] Excluding 'acks' comment. (./sample.bbl
-LaTeX Info: Redefining \tempurl on input line 78.
-LaTeX Info: Redefining \tempurl on input line 127.
-LaTeX Info: Redefining \tempurl on input line 142.
-LaTeX Info: Redefining \tempurl on input line 159.
-LaTeX Info: Redefining \tempurl on input line 177.
-LaTeX Info: Redefining \tempurl on input line 208.
-LaTeX Info: Redefining \tempurl on input line 233.
-LaTeX Info: Redefining \tempurl on input line 251.
-LaTeX Info: Redefining \tempurl on input line 267.
-LaTeX Info: Redefining \tempurl on input line 285.
-LaTeX Info: Redefining \tempurl on input line 304.
-LaTeX Info: Redefining \tempurl on input line 327.
-LaTeX Info: Redefining \tempurl on input line 351.
-LaTeX Info: Redefining \tempurl on input line 368.
-LaTeX Info: Redefining \tempurl on input line 409.
-)
+
+Package natbib Warning: Citation `Sanders2018' on page 6 undefined on input lin
+e 532.
+
+[6.6] Excluding 'acks' comment.
+No file sample.bbl.
+
+Package natbib Warning: There were undefined citations.
+
 
 Class aamas Warning: Some images may lack descriptions.
 
@@ -1150,24 +1292,28 @@ Class aamas Warning: CCS concepts are mandatory for papers over two pages.
 Package balance Warning: You have called \balance in second column
 (balance)                Columns might not be balanced.
 
-[7.7]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 508.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 508.
+[7.7 <./Figures/Experiments.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 575.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 575.
  (./sample.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 508.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 508.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 575.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 575.
 Package rerunfilecheck Info: File `sample.out' has not changed.
-(rerunfilecheck)             Checksum: A2DD2BC53BC518DD8081EE68D4F461C4;1850.
+(rerunfilecheck)             Checksum: AC1A3CB66CF850124C20267C65CF61C8;2203.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  )
 (\end occurred when \iffalse on line 1253 was incomplete) 
 Here is how much of TeX's memory you used:
- 18325 strings out of 493029
- 275815 string characters out of 6136233
- 405015 words of memory out of 5000000
- 20902 multiletter control sequences out of 15000+600000
- 149633 words of font info for 341 fonts, out of 8000000 for 9000
+ 18059 strings out of 493029
+ 270843 string characters out of 6136233
+ 402721 words of memory out of 5000000
+ 20752 multiletter control sequences out of 15000+600000
+ 150209 words of font info for 283 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 60i,23n,94p,1591b,441s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,23n,94p,1591b,506s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/te
 xmf-dist/fonts/enc/dvips/newtx/libertinealt.enc}{/usr/share/texlive/texmf-dist/
 fonts/enc/dvips/base/8r.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/libe
@@ -1192,10 +1338,10 @@ texmf-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/public/txfonts/txsyc.pfb></usr/share/texlive/texmf-dist/fonts/type1
 /public/newtx/zxlr.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/
 zxlri.pfb>
-Output written on sample.pdf (7 pages, 947601 bytes).
+Output written on sample.pdf (7 pages, 938854 bytes).
 PDF statistics:
- 408 PDF objects out of 1000 (max. 8388607)
- 340 compressed objects within 4 object streams
- 86 named destinations out of 1000 (max. 500000)
- 36997 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 308 PDF objects out of 1000 (max. 8388607)
+ 243 compressed objects within 3 object streams
+ 63 named destinations out of 1000 (max. 500000)
+ 38029 words of extra memory for PDF output out of 42996 (max. 10000000)
 
