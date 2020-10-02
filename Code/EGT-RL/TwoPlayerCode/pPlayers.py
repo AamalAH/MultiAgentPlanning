@@ -4,14 +4,15 @@ import scipy.sparse as sps
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 
+t0 = 500
 gamma = .1
-tau = 10
+tau = 5e-2
 
-nSim = 10
-nIter = int(1e4)
+initnSim = 10
+nIter = int(5e4)
 nTests = 10
 
-nPlayers = 3
+nPlayers = 2
 nActions = 2
 
 def generateGames(gamma, nSim, nAct, nPlayers):
@@ -33,14 +34,14 @@ def generateGames(gamma, nSim, nAct, nPlayers):
 
     cov = cov.toarray()
 
-    allPayoffs = np.zeros(shape=(nPlayers, nElements))
+    allPayoffs = np.array(([1, 5, 0, 3], [1, 5, 0, 3]))
 
     for i in range(nSim):
         rewards = np.random.multivariate_normal(np.zeros(nPlayers * nElements), cov=cov)
         each = np.array_split(rewards, nPlayers)
         allPayoffs = np.dstack((allPayoffs, np.array(each)))
 
-    return allPayoffs
+    return allPayoffs[:, :, 1:]
 
 def getActionProbs(qValues):
     partitionFunction = np.expand_dims(np.sum(np.exp(tau * qValues), axis=1), axis = 1)
@@ -49,7 +50,7 @@ def getActionProbs(qValues):
     return actionProbs
 
 
-def qUpdate(qValues, payoffs):
+def qUpdate(qValues, payoffs, nSim):
     idX = list(itertools.product(list(range(0, nActions)), repeat=nPlayers))
     actionProbs = getActionProbs(qValues)
     bChoice = np.array([[np.random.choice(list(range(nActions)), p=actionProbs[p, :, s]) for s in range(nSim)] for p in range(nPlayers)])
@@ -60,46 +61,41 @@ def qUpdate(qValues, payoffs):
 
     return qValues
 
-def checkConvergence(x, xOld, tol):
-  """
-    Evaluates the distance between action probabilities and checks if the change is
-    below some tolerance.
-
-    params
-    actionProb: Agent action probabilities at current time step
-    oldxBar: Previous action probabilities
-    tol: tolerance level
-
-    returns
-
-    (normStep1 < tol) and (normStep2 < tol): Whether change in both agents' action 
-    probabilities is below a tolerance.
-  """
-
-  normSteps = np.array([[np.linalg.norm((x - xOld)[p, :, i]) for i in range(nSim)] for p in range(nPlayers)])
-  return normSteps < tol
+def checkminMax(allActions, nSim, tol):
+    a = np.reshape(allActions, (t0, nSim, nActions * 2))
+    relDiff = ((np.max(a, axis=0) - np.min(a, axis=0))/np.min(a, axis=0))
+    return np.all(relDiff < tol, axis=1)
 
 plotConv = []
 
-x = np.zeros((nPlayers, nActions, nSim))
-for alpha in tqdm(np.linspace(0, 1, num=5)):
-    for Gamma in tqdm(np.linspace(-1, 1, num=5)):
+for alpha in tqdm(np.linspace(1e-2, 5e-2, num=10)):
+    for Gamma in np.linspace(-1, 0, num=10):
+
+        allActions = []
+        nSim = initnSim
+        converged = 0
 
         payoffs = generateGames(Gamma, nSim, nActions, nPlayers)
-
         qValues0 = np.random.rand(nPlayers, nActions, nSim)
 
-        stopCond = False
         for cIter in range(nIter):
-            qValues0 = qUpdate(qValues0, payoffs)
-            
-            xOld = np.copy(x)
-            x = getActionProbs(qValues0)
-            stopCond = checkConvergence(x, xOld, 1e-3)
-            if np.all(stopCond):
+
+            if cIter == t0:
+                allActions = []
+
+            if cIter%t0 == 0 and cIter != 0 and cIter != t0:
+
+                vars = checkminMax(np.array(allActions), nSim, 1e-2)
+                idx = np.where(vars)
+                qValues0 = np.delete(qValues0, idx, axis=2)
+                nSim -= len(idx[0])
+                converged += len(idx[0])
+                allActions = []
+
+            if nSim <= 0:
                 break
 
-        plotConv += [np.array([alpha, Gamma, np.mean(np.all(stopCond, axis = 0))])]
+            allActions += [getActionProbs(qValues0)]
+            qValues0 = qUpdate(qValues0, payoffs, nSim)
 
-       
-        
+        plotConv += [np.array([alpha, Gamma, converged / initnSim])]

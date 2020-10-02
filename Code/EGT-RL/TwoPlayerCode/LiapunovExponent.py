@@ -71,8 +71,6 @@ def getDelta(qValues0, qValues1):
     actionProbs0, actionProbs1 = getActionProbs(qValues0), getActionProbs(qValues1)
     return np.mean(abs(actionProbs1 - actionProbs0), axis=2)
 
-
-# allExpo = np.zeros((10, 10, 10))
 plotExpo = []
 i = 0
 for alpha in tqdm(np.linspace(0, 1, num=nTests)):

@@ -1,16 +1,21 @@
 import numpy as np
+import seaborn as sns
 import matplotlib.pyplot as plt
 from time import time
 from tqdm import tqdm
 
-alpha = .1
-gamma = .75
+# alpha = .1
+gamma = .1
 Gamma = 0.1
-tau = 2
+tau = 5e-2
+
+nActions = 2
+t0 = 500
+
+initnSim = 15
 
 delta_0 = 1e-3
-nSim = 10
-nIter = int(1e4)
+nIter = int(5e4)
 
 
 def generateGames(gamma, nSim, nAct):
@@ -29,72 +34,105 @@ def generateGames(gamma, nSim, nAct):
     cov[:nElements, nElements:] = np.eye(nElements) * gamma  # <a_ij b_ji> = Gamma
     cov[nElements:, :nElements] = np.eye(nElements) * gamma
 
-    rewardAs, rewardBs = np.eye(2), np.eye(2)
+    rewardAs, rewardBs = np.eye(nAct), np.eye(nAct)
 
     for i in range(nSim):
-
         rewards = np.random.multivariate_normal(np.zeros(2 * nElements), cov=cov)
 
-        # rewardAs = np.dstack((rewardAs, rewards[0:nElements].reshape((nAct, nAct))))
-        rewardAs = np.dstack((rewardAs, np.array([[1, 0], [0, 2]])))
-        # rewardBs = np.dstack((rewardBs, rewards[nElements:].reshape((nAct, nAct)).T))
-        rewardBs = np.dstack((rewardBs, np.array([[2, 0], [0, 1]])))
+        rewardAs = np.dstack((rewardAs, rewards[0:nElements].reshape((nAct, nAct))))
+        rewardBs = np.dstack((rewardBs, rewards[nElements:].reshape((nAct, nAct)).T))
+
     return [rewardAs[:, :, 1:], rewardBs[:, :, 1:]]
 
+
 def getActionProbs(qValues, nSim):
-    partitionFunction = np.sum(np.exp(tau * qValues), axis = 1)
-    actionProbs = np.array([np.array([np.exp(tau * qValues[p, :, s])/partitionFunction[p, s] for p in range(2)]) for s in range(nSim)])
+    partitionFunction = np.sum(np.exp(tau * qValues), axis=1)
+    actionProbs = np.array(
+        [np.array([np.exp(tau * qValues[p, :, s]) / partitionFunction[p, s] for p in range(2)]) for s in range(nSim)])
 
     return actionProbs
 
-def qUpdate(qValues, payoffs):
+
+def qUpdate(qValues, payoffs, nSim):
     actionProbs = getActionProbs(qValues, nSim)
 
-    boltzmannChoices = np.array([[np.random.choice([0, 1], p=actionProbs[s, p, :]) for p in range(2)] for s in range(nSim)])
+    boltzmannChoices = np.array(
+        [[np.random.choice(list(range(nActions)), p=actionProbs[s, p, :]) for p in range(2)] for s in range(nSim)])
 
     rewardAs = payoffs[0][boltzmannChoices[:, 0], boltzmannChoices[:, 1], (range(nSim))]
     rewardBs = payoffs[1][boltzmannChoices[:, 0], boltzmannChoices[:, 1], (range(nSim))]
 
-    qValues[[0]*nSim, boltzmannChoices[:, 0], (range(nSim))] += alpha * (
-                rewardAs - qValues[[0]*nSim, boltzmannChoices[:, 0], (range(nSim))] + gamma * np.max(qValues[[0]*nSim, :, (range(nSim))], axis=1))
+    qValues[[0] * nSim, boltzmannChoices[:, 0], (range(nSim))] += alpha * (
+            rewardAs - qValues[[0] * nSim, boltzmannChoices[:, 0], (range(nSim))] + gamma * np.max(
+        qValues[[0] * nSim, :, (range(nSim))], axis=1))
 
-    qValues[[1]*nSim, boltzmannChoices[:, 1], list(range(nSim))] += alpha * (
-                rewardBs - qValues[[1]*nSim, boltzmannChoices[:, 1], (range(nSim))] + gamma * np.max(qValues[[1]*nSim, :, (range(nSim))], axis=1))
+    qValues[[1] * nSim, boltzmannChoices[:, 1], list(range(nSim))] += alpha * (
+            rewardBs - qValues[[1] * nSim, boltzmannChoices[:, 1], (range(nSim))] + gamma * np.max(
+        qValues[[1] * nSim, :, (range(nSim))], axis=1))
 
     return qValues
 
-def getDelta(qValues0, qValues1, nSim):
 
+def getDelta(qValues0, qValues1, nSim):
     actionProbs0, actionProbs1 = getActionProbs(qValues0, nSim), getActionProbs(qValues1, nSim)
     return np.mean(abs(actionProbs1 - actionProbs0), axis=0)
 
-allExpo = np.zeros((10, 10))
 
-i = 0
-for alpha in tqdm(np.linspace(0.1, 1, num=10)):
-    j = 1
-    for Gamma in np.linspace(-1, 1, num=10):
+def checkminMax(allActions, nSim, tol):
+    a = np.reshape(allActions, (t0, nSim, nActions * 2))
+    relDiff = ((np.max(a, axis=0) - np.min(a, axis=0))/np.min(a, axis=0))
+    return np.all(relDiff < tol, axis=1)
 
-        all_actionProbs = np.eye(2)
+def checkVariance(allActions, cIter, tol):
+    h = (1 / nActions) * np.sum((1 / t0) * np.sum(allActions ** 2, axis=0) - ((1 / t0) * np.sum(allActions, axis=0)) ** 2,
+                              axis=2)
+    v = np.mean(np.var(allActions, axis = 0), axis = 2)
+    return np.all(v < tol, axis=1)
 
-        payoffs = generateGames(Gamma, nSim, 2)
 
-        qValues0 = np.random.rand(2, 2, nSim)
-        qValues1 = np.random.rand(2, 2, nSim)
-        # qValues1 = qValues0 + np.array([np.random.choice([-delta_0, delta_0]) for i in range(nSim * 4)]).reshape((2, 2, nSim))
+plotExpo = []
 
-        for cIter in range(nIter):
-            for i in range(nSim):
-                all_actionProbs = np.dstack((all_actionProbs, (getActionProbs(qValues0, nSim)[i, :, :])))
-            if cIter % 300 == 0 and cIter != 0:
-                delta_1 = getDelta(qValues0, qValues1, nSim)
-            qValues0, qValues1 = qUpdate(qValues0, payoffs), qUpdate(qValues1, payoffs)
+for alpha in np.linspace(2e-2, 5e-2, num=1):
+    for Gamma in np.linspace(-0.5, 0, num=1):
 
-        delta_n = getDelta(qValues0, qValues1, nSim)
+        nSim = initnSim
 
-        liapExp = np.max((1 / nIter) * np.log(delta_n / delta_1))
+        payoffs = generateGames(Gamma, nSim, nActions)
 
-        allExpo[10 - j, i] = liapExp
+        allActions = []
+        allVariance = []
+        converged = 0
 
-        j += 1
-    i += 1
+        qValues0 = np.random.rand(2, nActions, nSim)
+        qValues1 = np.random.rand(2, nActions, nSim)
+
+        delta_1 = getDelta(qValues0, qValues1, nSim)
+
+        for cIter in tqdm(range(nIter)):
+
+            if cIter == t0:
+                allActions = []
+
+            if cIter % t0 == 0 and cIter != 0 and cIter != t0:
+
+                vars = checkminMax(np.array(allActions), nSim, 1e-2)
+                idx = np.where(vars)
+                qValues0 = np.delete(qValues0, idx, axis=2)
+                payoffs = [np.delete(payoffs[0], idx, axis=2), np.delete(payoffs[1], idx, axis=2)]
+                nSim -= len(idx[0])
+                converged += len(idx[0])
+                allActions = []
+
+            if nSim <= 0:
+                break
+
+            qValues0 = qUpdate(qValues0, payoffs, nSim)
+            allActions += [getActionProbs(qValues0, nSim)]
+
+        plotExpo += [np.array([alpha, Gamma, converged / initnSim])]
+
+plotExpo = np.array(plotExpo)
+
+a = np.flip(plotExpo[:, 2].reshape(10, 10).T, axis=0)
+sns.heatmap(a, vmin=0, vmax=1, xticklabels=np.linspace(1e-2, 5e-2, num=10),
+            yticklabels=np.linspace(-1, 0, num=10)[-1::-1])
