@@ -332,7 +332,7 @@ we will consider are:
 In this section we aim to determine how the choice of parameters
 $\alpha$ and $\tau$, alongside the choice of payoff matrix, affect the
 stability of the dynamics of Q-learning. However, as the values in the
-payoff matrix can take any real number, there are an infinite number
+payoff matrix can take any real number, there is an infinite number
 of possible realisations of games. Of course, it would not be possible
 to analyse every possible game, we instead follow the procedure
 outlined in \cite{Coolen2005} and \cite{Galla2013} to average over
@@ -342,25 +342,34 @@ matrices. Then, we perform a linear stability analysis around
 equilibrium points to determine the conditions under which a fixed
 point is stable.
 
+\fb{do we mention anywhere the format of these games?}
+
 Our first point of call is to extend the dynamics of Tuyls et al.~in
 (\ref{eqn::EOM}a) and (\ref{eqn::EOM}b) to a general $p$-player
 game. This yields the dynamics (\ref{eqn::pEOM}). Here, player $\mu$
 chooses action $i_{\mu}$ from its action space $\mathcal{A}$ at time
 $t$ with probability $\xmu{i}{\mu}$ and receives a reward
 $\payoff{i}{\mu}$ from its payoff matrix $P^\mu$ depending on its own
-action and the actions of all other agents $i_{-\mu}$. Formally, the
-notation $i_{-\mu}$ denotes the set $\{ i_\kappa : \kappa \in \{1, 2,
-\ldots , p\} \backslash \{\mu\} \}$ and $-i_{\mu}$ denotes the set
-$\mathcal{A} \backslash {i_\mu}$.
+action and the actions of all other agents $i_{-\mu}$, where $i_{-\mu}$ denotes the set $\{ i_\kappa : \kappa \in \{1, 2,
+\ldots , p\} \setminus \{\mu\} \}$ and $-i_{\mu}$ denotes the set
+$\mathcal{A} \setminus {i_\mu}$.
+%
+\begin{eqnarray}
+%\begin{split}
+    \frac{\dot{\xmu{i}{\mu}}}{\xmu{i}{\mu}} \! \! \! \! \! \! & = \! \! \! \! \! \! & \alpha \tau \left( \sum_{i_{-\mu}} \payoff{i}{\mu} \prod_{\kappa \neq \mu} \xmu{i}{\kappa} -  \sum_{i_\mu i_{-\mu}} \xmu{i}{\mu} \payoff{i}{\mu} \prod_{\kappa \neq \mu} \xmu{i}{\kappa} \right) \nonumber \\
+    & & + \alpha \sum_{j_\mu \in -i_\mu} \xmu{j}{\mu} ln \frac{\xmu{j}{\mu}}{\xmu{i}{\mu}}     \label{eqn::pEOM}
+%\end{split}
+\end{eqnarray}
 
-\begin{equation}
-\begin{split}
-    \label{eqn::pEOM}
-    \frac{\dot{\xmu{i}{\mu}}}{\xmu{i}{\mu}} = \alpha \tau ( \sum_{i_{-\mu}} \payoff{i}{\mu} \prod_{\kappa \neq \mu} \xmu{i}{\kappa} - \\ \sum_{i_\mu i_{-\mu}} \xmu{i}{\mu} \payoff{i}{\mu} \prod_{\kappa \neq \mu} \xmu{i}{\kappa} ) + \alpha \sum_{j_\mu \in -i_\mu} \xmu{j}{\mu} ln \frac{\xmu{j}{\mu}}{\xmu{i}{\mu}}
-\end{split}
-\end{equation}
-
-We now need to scale the system so that $\sum_{i_\mu} \xmu{i}{\mu} = 1$. The reason for this scaling is that, as the number of agents $p$ and number of actions $N$ increases, the expected payoffs that agent $\xmu{i}{\mu}$ receives becomes less distinguishable across its action space. Therefore, the system must be scaled to ensure appreciable differences across actions, so that the agent can choose its actions appropriately (see the discussion in \cite{Sanders2018} or the Supplementary Material for further details). Accordingly we choose scaled variables (denoted with a tilde) as
+We now scale the system so that $\sum_{i_\mu} \xmu{i}{\mu} = 1$. The
+reason for this scaling is that, as the number of agents $p$ and
+number of actions $N$ increases, the expected payoffs that agent
+$\xmu{i}{\mu}$ receives becomes less distinguishable \fb{? all converge to the same value?} across its action
+space. Therefore, the system must be scaled to ensure appreciable
+differences across actions, so that the agent can choose its actions
+appropriately (see the discussion in \cite{Sanders2018} or the
+Supplementary Material for further details \fb{we might need to provide the actual section in the supplementary material}). Accordingly we choose
+scaled variables (denoted with a tilde) as
 %
 \begin{eqnarray*}
 %    \begin{split}
@@ -372,45 +381,67 @@ We now need to scale the system so that $\sum_{i_\mu} \xmu{i}{\mu} = 1$. The rea
 %    \end{split}
 \end{eqnarray*}
 
-This yields the scaled equation
+The substitution in (\ref{eqn::pEOM}) yields the scaled equation
+%
+\begin{eqnarray}
+%\begin{split}
+    \frac{\dtxmu{i}{\mu}}{\txmu{i}{\mu}} & = & \alpha \ttau \left ( \sum_{i_{-\mu}} \tpayoff{i}{\mu} \prod_{\kappa \neq \mu} \txmu{i}{\kappa} \right ) \nonumber \\ & &  - \alpha \htau \left ( \frac{1}{\sqrt{N}} \sum_{i_\mu i_{-\mu}} \txmu{i}{\mu} \tpayoff{i}{\mu} \prod_{\kappa \neq \mu} \txmu{i}{\kappa} \right ) \nonumber  \\  & & + \talpha \sum_{j_\mu \in -i_\mu} \txmu{j}{\mu} ln \frac{\txmu{j}{\mu}}{\txmu{i}{\mu}}    \label{eqn::scaledEOM}
+%\end{split}
+\end{eqnarray}
 
-\begin{equation}
-\begin{split}
-    \label{eqn::scaledEOM}
-    \frac{\dtxmu{i}{\mu}}{\txmu{i}{\mu}} = \alpha \ttau \left ( \sum_{i_{-\mu}} \tpayoff{i}{\mu} \prod_{\kappa \neq \mu} \txmu{i}{\kappa} \right ) \\ - \alpha \htau \left ( \frac{1}{\sqrt{N}} \sum_{i_\mu i_{-\mu}} \txmu{i}{\mu} \tpayoff{i}{\mu} \prod_{\kappa \neq \mu} \txmu{i}{\kappa} \right ) \\ + \talpha \sum_{j_\mu \in -i_\mu} \txmu{j}{\mu} ln \frac{\txmu{j}{\mu}}{\txmu{i}{\mu}}
-\end{split}
-\end{equation}
+Note that the scaled probabilities now satisfy the constraint
+$\sum_{i_\mu} \txmu{i}{\mu} = N$ \fb{but what about the constraint $\sum_{i_\mu} \xmu{i}{\mu} = 1$ mentioned above?}. For the remainder of this derivation
+we concern ourselves only with the scaled system so we drop the tilde
+notation on $P$ and $x$ \fb{on $\alpha$ and $\tau$ as well?}.
 
-Note that the scaled probabilities now satisfy the constraint $\sum_{i_\mu} \txmu{i}{\mu} = N$. For the remainder of this derivation we concern ourselves only with the scaled system so we drop the tilde notation on $P$ and $x$. 
-
-As mentioned, we now wish to generalise the dynamics to account for all the possible realisations of the payoff matrix. To do this, we assert that the payoff elements (after scaling) are generated by a multivariate Gaussian distribution with mean zero and covariance given as
+As mentioned, we now
+%wish to
+generalise these dynamics to account for all the possible realisations
+of the payoff matrix. To do this, we assert that the payoff elements
+(after scaling) are generated by a multivariate Gaussian distribution
+with mean zero and covariance given as
 %
 \begin{equation}
 \label{eqn::Payoffs}
-    \begin{split}
+%    \begin{split}
         \mathbb{E}\left [ \payoff{i}{\mu} \payoff{i}{\nu} \right] = \begin{cases}
-        \frac{1}{N^{p-1}}  \text{ if } \nu = \mu \\
-        \frac{\Gamma}{(p-1) N^{p-1}} \text{ otherwise. }
+        \frac{1}{N^{p-1}} &  \text{ if } \nu = \mu \\
+        \frac{\Gamma}{(p-1) N^{p-1}} & \text{ otherwise. }
         \end{cases}
-    \end{split}
+%    \end{split}
 \end{equation}
 
-The motivation for choosing that the payoffs should be generated by a Gaussian is that it allows for the use of Gaussian identities when determining the average.
+The motivation for choosing that the payoffs is generated by a
+Gaussian is that it allows for the use of Gaussian identities when
+determining the average.
+
+\fb{can we give the equation already with the Gaussian?}
 
 \subsection{Generating Functional Analysis}
 
-We then use a generating functional approach as outlined in \cite{Mezard1986} to average the dynamics over this multivariate Gaussian. The generating functional is a method derived from statistical mechanics which allows for expectations to be taken over equations of motion and, more specifically, allows for the analysis of systems with `quenched disorder'. These are variables which are random but held fixed in time as the system evolves (in our case these variables are the payoff elements). The generating functional is given as \cite{SpinGlassTheory}
-
+We then use a generating functional approach as outlined in
+\cite{Mezard1986} to average the dynamics over this multivariate
+Gaussian. The generating functional is a method derived from
+statistical mechanics which allows for expectations to be taken over
+equations of motion and, more specifically, allows for the analysis of
+systems with `quenched disorder': these are
+variables which are random but held fixed in time as the system
+evolves (in our case these variables are the payoff elements). The
+generating functional is given as \cite{SpinGlassTheory}
+%
+\fb{check for missing references, i.e., '?'}
 \begin{equation}
 	Z = \int D[\Vec{x}] \prod_i \delta(\textit{equation of motion}_i) exp(i
 	\int dt[x_i(t) \psi_i(t)]), 
 \end{equation}
 
-where the equations of motion are the Lagrange equations of motion given in (
-\ref{eqn::scaledEOM}) and
-the fields $\Vec{\psi_i(t)}$ and $\Vec{\phi_i(t)}$ will be set to zero at the end of the
-calculation. $\delta$ denotes the Dirac delta function. Implementing our equation of motion yields
-
+where the equations of motion are the Lagrange equations of motion
+given in ( \ref{eqn::scaledEOM}) and the fields $\Vec{\psi_i(t)}$ and
+$\Vec{\phi_i(t)}$ will be set to zero at the end of the
+calculation. $\delta$ denotes the Dirac delta function. Substituting
+for our equation of motion yields
+%
+{\small
 \begin{equation}
 \label{eqn::separatePayoffs}
 	\begin{split}
@@ -420,9 +451,10 @@ calculation. $\delta$ denotes the Dirac delta function. Implementing our equatio
 	\int dt[\xmu{i} \psi^\mu_i(t)]),
 \end{split}
 \end{equation}
-
+}
 The last two exponentials contain the payoffs of the game. These are randomly generated using a multivariate gaussian and then held fixed for the rest of the game. As such these comprise the aforementioned 'quenched disorder'. We will average over this quenched disorder (and therefore average over all possible realisations of payoff matrices). We define $Q$ to be the product of the second and third exponentials in (\ref{eqn::separatePayoffs}) 
-
+%
+\fb{why $<Q>$?}
 \begin{equation}
 \begin{split}
         <Q> = exp(- \frac{\alpha^2 \ttau ^2}{2} N \sum_{\mu} \Big [ \int dt dt' L^\mu(t, t') \prod_{\kappa \neq \mu} C^\kappa (t, t') + \\ \Gamma \sum_{\nu \neq \mu} K^\mu (t, t') K^\nu (t, t') \prod_{\kappa \not\in \{\mu, \nu\}} C^\kappa (t, t') \Big ] ) \times \\
@@ -431,18 +463,19 @@ The last two exponentials contain the payoffs of the game. These are randomly ge
 \end{equation}
 
 In which
-
-\begin{align}
+%
+\begin{eqnarray*}
 \label{eqn::correlations}
-    \begin{split}
-        C^\mu (t, t') & :=  N^{-1} \sum_i \xmu{i}{\mu} \xmudash{i}{\mu} \\
-        L^\mu (t, t') & :=  N^{-1} \sum_i \hxmu{i} \hxmudash{i} \\
-        K^\mu (t, t') & :=  N^{-1} \sum_i \xmu{i}{\mu} \hxmudash{i} \\
-        A^{\mu, \nu} (t, t') & :=  N^{-1} \sum_i \hxmu{i} \hxnudash{i}.
-    \end{split}
-\end{align}
+%    \begin{split}
+        C^\mu (t, t') &  := & N^{-1} \sum_i \xmu{i}{\mu} \xmudash{i}{\mu} \\
+        L^\mu (t, t') & :=  & N^{-1} \sum_i \hxmu{i} \hxmudash{i} \\
+        K^\mu (t, t') & :=  & N^{-1} \sum_i \xmu{i}{\mu} \hxmudash{i} \\
+        A^{\mu, \nu} (t, t') & := &  N^{-1} \sum_i \hxmu{i} \hxnudash{i}.
+%    \end{split}
+\end{eqnarray*}
+\fb{why using symbol $:=$ here?}
 
-By taking this average, described in further detail in the Supplementary Material, we obtain the \textit{effective dynamics}
+By taking this average, described in further detail in the Supplementary Material \fb{just say this at the beginning only}, we obtain the \textit{effective dynamics}
 
 \begin{equation}
     \label{eqn::EffectiveDynamics}
@@ -452,8 +485,8 @@ By taking this average, described in further detail in the Supplementary Materia
 \end{equation}
 
 in which we have assumed that all players' actions are independent and drawn from the same initial distribution (i.i.d)
-and therefore dropped the distinction between players and strategy components. The terms $G, C, \eta_1, \eta_0$ are correlation functions, generated during when averaging the Gaussian. These are given by 
-
+and therefore dropped the distinction between players and strategy components. The terms $G, C, \eta_1, \eta_0$ are correlation functions, generated when averaging the Gaussian. These are given as 
+%
 \begin{eqnarray*}
 %    \begin{split}
         C(t, t') & = & \mathbb{E}[x(t) x(t')] \\
@@ -463,35 +496,71 @@ and therefore dropped the distinction between players and strategy components. T
 %    \end{split}
 \end{eqnarray*}
 
-It is important to note the effect of the former assumption (that all actions of all agents are i.i.d) is substantial. With this assumption, we identify the coupled term $A^{\mu, \nu} (t, t')$ in (\ref{eqn::correlations}) with the uncoupled term $L^\mu (t, t')$ (since there is no distinction between the actions of agents $\mu$ and $\nu$). This is a strong assumption which removes the interdependency between agents in the analysis. However, as shown by the experimental evaluation, it does not produce a strong discrepancy in describing the qualitative effect on stability caused by the parameters $\alpha, \Gamma, \tau$.
+It is important to note the effect of the former assumption (that all
+actions of all agents are i.i.d) is substantial. With this assumption,
+we identify the coupled term $A^{\mu, \nu} (t, t')$ in
+(\ref{eqn::correlations}) with the uncoupled term $L^\mu (t, t')$
+(since there is no distinction between the actions of agents $\mu$ and
+$\nu$). This is a strong assumption which removes the interdependency
+between agents in the analysis. However, as shown by the experimental
+evaluation, it does not produce a strong discrepancy in describing the
+qualitative effect on stability caused by the parameters $\alpha$,
+$\Gamma$, and $\tau$.
+
+\fb{you can also mention the simplification in calculation.}
 
 
 \subsection{Linear Stability Analysis}
 
-We now analyse the stability of this system in a neighbourhood around the fixed point. This follows a similar procedure as in \cite{Opper1992}, in which the fixed point dynamics are proposed to be perturbed by a disturbance $\xi(t)$ which is drawn from a Gaussian of zero mean and unit variance. The disturbance causes the values of $x(t)$ and $\eta_0(t), \eta_1(t)$ to deviate from their fixed point position $\xfixed, \ezerof, \eonef$ by an amount $\xpert, \ezeropert, \eonepert$.
-If we consider only the terms which are linear in these perturbations, we arrive at the dynamics
+We now analyse the stability of this system in a neighbourhood around
+the fixed point \fb{how do we know there is a fixed point in first
+  place?}. This follows a similar procedure as in \cite{Opper1992}, in
+which the fixed point dynamics are proposed to be perturbed by a
+disturbance $\xi(t)$ which is drawn from a Gaussian of zero mean and
+unit variance. The disturbance causes the values of $x(t)$ and
+$\eta_0(t), \eta_1(t)$ to deviate from their fixed point position
+$\xfixed, \ezerof, \eonef$ by an amount $\xpert, \ezeropert,
+\eonepert$.  If we consider only the terms which are linear in these
+perturbations \fb{why only those?}, we arrive at the dynamics
 
-\begin{equation}
+\begin{eqnarray}
+%    \begin{split}
+\frac{d}{dt} \xpert & = & (\xfixed + \xpert) [ \alpha^2 \ttau^2 \Gamma \xfixed \int dt' [ G(t, t')C^{p - 2}(t, t') ] \nonumber \\
+  & & + \sqrt{2} \alpha \ttau \eonef + \sqrt{2} \alpha \htau \ezerof + \talpha \rho] \nonumber \\
+& &  + \xfixed [\alpha^2 \ttau^2 \Gamma \int dt' [ G(t, t')C^{p - 2}(t, t') \xpertdash ] \nonumber \\
+  & & + \sqrt{2} \alpha \ttau \eonepert + \sqrt{2} \alpha \htau \ezeropert + \xi(t)].
 \label{eqn::Linearised}
-    \begin{split}
-        \frac{d}{dt} \xpert = (\xfixed + \xpert) [ \alpha^2 \ttau^2 \Gamma \xfixed \int dt' [ G(t, t')C^{p - 2}(t, t') ]\\ + \sqrt{2} \alpha \ttau \eonef + \sqrt{2} \alpha \htau \ezerof + \talpha \rho] \\
-        + \xfixed [\alpha^2 \ttau^2 \Gamma \int dt' [ G(t, t')C^{p - 2}(t, t') \xpertdash ] \\ + \sqrt{2} \alpha \ttau \eonepert + \sqrt{2} \alpha \htau \ezeropert + \xi(t)].
-    \end{split}
-\end{equation}
+%    \end{split}
+\end{eqnarray}
 
 At a fixed point, then, the perturbations $\xpert$ will be zero, leaving
-
-\begin{equation}
-    \begin{split}
+%
+\begin{eqnarray}
+%    \begin{split}
+    0 & = & \xfixed [ \alpha^2 \ttau^2 \Gamma \xfixed q^{n-1} \chi + \nonumber \\
+      &  & + \sqrt{2} \alpha \ttau q^{n/2}z + \sqrt{2} \alpha \htau q^{(n+1)/2} z^{(n+1)/n}]
     \label{eqn::fixed_point}
-        0 = \xfixed [ \alpha^2 \ttau^2 \Gamma \xfixed q^{n-1} \chi + \\ + \sqrt{2} \alpha \ttau q^{n/2}z + \sqrt{2} \alpha \htau q^{(n+1)/2} z^{(n+1)/n}],
-    \end{split}
-\end{equation}
+%    \end{split}
+\end{eqnarray}
+%
+where $\chi = \int dt' G(t - t')$, $\eta_0(t) = q^{n/2}z$, $z$ is
+drawn from a Gaussian of zero mean and unit variance, and $n = p -
+1$. By using (\ref{eqn::fixed_point}) we can
+%his gives us an expression for
+calculate $\xfixed$. We disregard the choice $\xfixed = 0$, since we
+assume that no action will be chosen with exactly zero probability, an
+intuitive assumption which is also considered in \cite{Sanders2018}
+and \cite{Coolen2005}. The expression inside the squared bracket
+admits a positive solution only in the region $\Gamma \in [-1, 0]$,
+whilst for positive $\Gamma \leq p -1$, the nature of solutions may
+not be guaranteed. Therefore, we restrict our analysis to the region
+$[-1, 0]$.
 
-where $\chi = \int dt' G(t - t')$, $\eta_0(t) = q^{n/2}z$ and $z$ is drawn from a Gaussian of zero mean and unit variance and $n = p - 1$. This gives us an expression for calculating $\xfixed$. We disregard the choice $\xfixed  = 0$, since we assume that no action will be chosen with exactly zero probability, an intuitive assumption which is also considered in \cite{Sanders2018} and \cite{Coolen2005}. The expression inside the squared bracket admits a positive solution only in the region $\Gamma \in [-1, 0]$, whilst for positive $\Gamma$, the nature of solutions may not be guaranteed. Therefore, we restrict our analysis to this region. 
 
-
-Having arrived at a condition for the fixed point, we then examine the long-term behaviour of the perturbation $\xpert$. To do this, we take the Fourier transform of (\ref{eqn::Linearised}) and analyse its behaviour at $\omega = 0$. After some manipulation, which are given in the Supplementary Material, this gives
+Having arrived at a condition for the fixed point, we then examine the
+long-term behaviour of the perturbation $\xpert$. To do this, we take
+the Fourier transform of (\ref{eqn::Linearised}) and analyse its
+behaviour at $\omega = 0$. After some manipulation (see the supplementary material), this gives
 
 \begin{equation}
 \begin{split}
@@ -506,7 +575,7 @@ As the left hand side of this equation must be greater than zero, we arrive at t
     0 \leq \left [(\alpha^2 \ttau^2 \Gamma q^{n-1} \chi)^{2} - 2 (\alpha \ttau + \alpha \htau)^2 (p-1)q^{p-2} \right ]
 \end{equation}
 
-It should be noted that, to arrive at this result, we have had to take the assumption that $2 >> 1/n$. 
+It should be noted that, to arrive at this result, we have had to take the assumption that $2 >> 1/n$ \fb{is it justified?}. 
 
 
 \paragraph{Discussion}
@@ -518,6 +587,8 @@ The fixed point condition (\ref{eqn::Final}) yields a number of testable implica
     \item The likelihood of convergence decreases with increasing $\alpha$ and $\tau$, regardless of the choice of $N, p$. We can see this since the right hand side of (\ref{eqn::Final}) tends further away from zero (i.e. further from the region of stability).
     \item The choice of $\Gamma$ does not affect the stability of the game in the negatively-correlated regime. Therefore, the only dependent factors are $\alpha, \tau, N, p$. This is more easily interpreted from the heatmaps in Figure \ref{fig:theory}.
     \item The likelihood of convergence decreases as $p$ increases. We see this by noticing the weighting that the $(p-1)$ in the second term of (\ref{eqn::Final}) places. As $p$ increases, this term drives the system further from the stability boundary.
+
+      \fb{how are these remarks corroborated by the experimental results?}
 
 \end{enumerate}
 
