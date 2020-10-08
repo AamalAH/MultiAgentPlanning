@@ -635,7 +635,7 @@ range $[0.01, 0.05]$. For those in which $\alpha$ is held fixed,
 \textbf{denote them} we choose $\alpha = 0.05$ and vary $\tau$ in the
 range $[0.01, 0.05]$. \fb{I assume heatmaps are to be added.}
 
-\paragraph{Implication 2:} By looking at the values of the heatmap, we see that, for all choices
+\paragraph{Implication (2):} By looking at the values of the heatmap, we see that, for all choices
 of the parameters, other than $\alpha = 0, \tau = 0$,
 (\ref{eqn::Final}) evaluates to a negative value, which signals
 instability. As such, the analysis over-estimates the region of
@@ -649,7 +649,7 @@ assumption generates, it is still clear (and is verified
 experimentally) that (\ref{eqn::Final}) predicts convergence in Q-Learning to be rare. Indeed as the
 value of $N$ increases, the stability boundary determined by
 experiment (Figure \ref{fig:NumericalExperiments}) tends towards
-$\alpha = 0, \tau = 0$.
+$\alpha = 0$, $\tau = 0$.
 
 Similarly, as the value of $N$ increases, the values in the heatmap
 (seen on the right of the map) reduce. This is due to the assumption
@@ -661,15 +661,24 @@ effect of the number of actions $N$ cannot be accurately inferred from
  (\ref{eqn::Final}). However, it should still be noted that, even
 with the increase of $N$, the values in parameter space remain negative
 and still, accurately, predict instability. We go on to verify that
-the effect of $p, \alpha, \Gamma$ and $\tau$ are accurately captured
+the effect of $p$, $\alpha$, $\Gamma$, and $\tau$ are accurately captured
 by (\ref{eqn::Final}).
 
-We interpret (\ref{eqn::Final}), for given parameters, by determining how close the right hand side is to the stability boundary (i.e., how close the value is to zero). A choice of parameters which evaluates close to the stability boundary has a higher chance (by the analytic error) of being convergent than one which lies further from the boundary. Therefore, the heat-maps in Figure \ref{fig:theory} should be considered to show the probability of convergence for a choice of $(\alpha, \Gamma)$. Lighter regions denote a higher probability of convergence whereas darker regions are those whose values are further from zero and therefore show a lower probability of convergence.
+We interpret (\ref{eqn::Final}), for given parameters, by determining
+how close the right hand side is to the stability boundary (i.e., how
+close the value is to zero). A choice of parameters which evaluates
+close to the stability boundary has a higher chance (by the analytic
+error) of being convergent than one which lies further from the
+boundary. Therefore, the heat-maps in Figure \ref{fig:theory} should
+be considered to show the probability of convergence for a choice of
+$(\alpha, \Gamma)$. Lighter regions denote a higher probability of
+convergence whereas darker regions are those whose values are further
+from zero and therefore show a lower probability of convergence.
 
-\paragraph{Implication 3} can be visualised by noticing that the likelihood of convergence decreases (the heatmap becomes darker) as $\alpha$ increases, and similarly for $\tau$. This occurs independent of the choice of $N$ or $p$. 
+\paragraph{Implication (3)} can be visualised by noticing that the likelihood of convergence decreases (the heatmap becomes darker) as $\alpha$ increases, and similarly for $\tau$. This occurs independent of the choice of $N$ or $p$. 
 
-\paragraph{Implication 4} can similarly be inferred by the trend of convergence, which occurs only in varying $\alpha$ and $\tau$. The choice of $\Gamma$
-makes almost no difference in the evaluation of (\ref{eqn::Final}). We anticipate that this is due to the restriction of $\Gamma$ to be in the range $[-1, 0]$. In this range, the scaling effect of $\Gamma^2$ is dominated by the $\alpha^4$ and $\tau^4$ terms which appear in (\ref{eqn::Final}).
+\paragraph{Implication (4)} can similarly be inferred by the trend of convergence, which occurs only in varying $\alpha$ and $\tau$. The choice of $\Gamma$
+makes almost no difference in the evaluation of (\ref{eqn::Final}). We anticipate that this is due to the restriction of $\Gamma$ to be in the range $[-1, 0]$. In this range, the scaling effect of $\Gamma^2$ is dominated by the $\alpha^4$ and $\tau^4$ terms appearing in (\ref{eqn::Final}).
 
 \begin{figure}[t]
     \centering
@@ -678,7 +687,7 @@ makes almost no difference in the evaluation of (\ref{eqn::Final}). We anticipat
     \label{fig:pvariation}
 \end{figure}
 
-\paragraph{Implication 5}, finally, is considered in Figure \ref{fig:pvariation}. In this we keep all parameters, except for $p$, fixed and evaluate the right hand side of (\ref{eqn::Final}) for varying $p$, taking the absolute value for convenience. We see that the trend is to tend away from the stability boundary, indicating that as the number of players in the system increases, so too does the region of instability.
+\paragraph{Implication (5)}, finally, is considered in Figure \ref{fig:pvariation}, where we keep all parameters, except for $p$, fixed and evaluate the right hand side of (\ref{eqn::Final}) for varying $p$, taking the absolute value for convenience. We see that the trend is to tend away from the stability boundary, indicating that, as the number of players in the system increases, so too does the region of instability.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
