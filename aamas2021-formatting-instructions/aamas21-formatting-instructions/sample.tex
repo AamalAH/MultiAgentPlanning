@@ -658,11 +658,18 @@ makes almost no difference in the evaluation of (\ref{eqn::Final}). We anticipat
 % \end{figure}
 % %\fb{Can we arrange Fig.~\ref{fig:theory} in a 2x2 square?}
 
+\fb{it would be good to have some introduction to the section here.}
+
 \subsection{Construction of Numerical Experiments}
 
-To verify experimentally the theoretical results, and to examine the underlying structure of stability and chaos in
-Multi-Agent Q-Learning, we perform a series of numerical experiments by varying the parameters $\Gamma$ and
-$\alpha$ whilst keeping $\tau$ fixed. The aim is to determine the regions in which games learnt using Q-Learning converge to an equilibrium. The results of these experiments are shown in Figure \ref{fig:NumericalExperiments}, with parameters chosen to match those in the analytic assessment (Figure \ref{fig:theory}).
+To verify experimentally the theoretical results and to examine the
+underlying structure of stability and chaos in multi-agent Q-Learning,
+we perform a series of numerical experiments by varying the parameters
+$\Gamma$ and $\alpha$ whilst keeping $\tau$ fixed. The aim is to
+determine the regions in which games learnt using Q-Learning converge
+to an equilibrium. The results of these experiments are shown in
+Figure \ref{fig:NumericalExperiments}, with parameters chosen to match
+those in the analytic assessment (Figure \ref{fig:theory}).
 % By examination it is found that, in many cases the system oscillates about some equilibrium point in a low dimensional chaotic manner (i.e. the manner in which the action probabilities change is indistinguishable from random motion) \textbf{get some graphs for this}
 
 
@@ -673,15 +680,38 @@ $\alpha$ whilst keeping $\tau$ fixed. The aim is to determine the regions in whi
 To generate the numerical simulations in Figure~\ref{fig:NumericalExperiments} we used the
 following procedure. Note in the following that for any heatmap in which $\tau$ is swept over, the roles of $\alpha$ and $\tau$ are swapped.
 \begin{enumerate}
-   \item Fix the parameters $\tau, \gamma$. The former is held at 0.05 and the latter at 0.1. For the heatmaps in which $\tau$ is swept over $\alpha$ is held fixed at 0.05.
-   \item Initialise values of $\Gamma, \alpha$ (or $\tau$ appropriately). These will be swept over in the experiment.
-\item Generate 15 payoff matrices for both agents by sampling from a multi-variate Gaussian 
-(variables are the payoff elements) with mean zero and covariance parameterised by $\Gamma$.
-\item For each of these payoff matrices, initialise a set of agents with random initial conditions (i.e., random action probabilities).
-\item Allow both sets of agents to learn over a maximum of $1.5 \times 10^4$ iterations.
-\item Keep track of the action probabilities over a window of 500 iterations. At the end of each window, determine the percentage difference between the maximum and minimum values of each strategy component
-\item If the difference is less than 1 \% consider the game converged. Otherwise continue to the next window.
-\item If the game reaches $1.5 \times 10^4$ iterations without satisfying the relative distance criterion, consider it to be non-convergent. Determine the fraction of these 15 games which have converged.
+   \item Fix the parameters $\tau, \gamma$. The former is held at 0.05
+     and the latter at 0.1. For the heatmaps in which $\tau$ is swept
+     over, $\alpha$ is held fixed at 0.05.
+
+   \item Initialise values of $\Gamma, \alpha$ (or $\tau$
+     appropriately). These will be swept over in the experiment.
+
+   \item Generate 15 payoff matrices for both agents by sampling from
+     a multi-variate Gaussian (variables are the payoff elements) with
+     mean zero and covariance parameterised by $\Gamma$.
+
+   \item For each of these payoff matrices, initialise a set of agents
+     with random initial conditions (i.e., random action
+     probabilities).
+
+   \item Allow both sets of agents to learn over a maximum of $1.5
+     \times 10^4$ iterations.
+
+   \item Keep track of the action probabilities over a window of 500
+     iterations. At the end of each window, determine the percentage
+     difference between the maximum and minimum values of each
+     strategy component
+
+   \item If the difference is less than 1 \% consider the game
+     converged. Otherwise continue to the next window.
+
+   \item If the game reaches $1.5 \times 10^4$ iterations without
+     satisfying the relative distance criterion, consider it to be
+     non-convergent.
+
+     \item Determine the fraction of these 15 games which
+     have converged.
 
 
 % \item After 500 iterations measure the distance $\Vec{\delta_1} = |A_2 - A_1|$
@@ -694,8 +724,7 @@ following procedure. Note in the following that for any heatmap in which $\tau$ 
 % for each action $i$ and average this value over all five realisations of the payoff matrix. 
 \end{enumerate}
    
-We see in Figure \ref{fig:NumericalExperiments} that the stability of the system is highly dependent on
-the value of $\alpha$ and $\tau$ but not on $\Gamma$.
+We see in Figure \ref{fig:NumericalExperiments} that the stability of the system is highly dependent on the values of $\alpha$ and $\tau$, but not on $\Gamma$.
    
 \begin{figure}[t]
     \includegraphics[width = 1.1 \linewidth, center]{Figures/Experiments.png}
@@ -705,11 +734,23 @@ the value of $\alpha$ and $\tau$ but not on $\Gamma$.
 
 \begin{figure}[t]
     \includegraphics[width = 1.1 \linewidth, center]{Figures/a5e2var.png}
-    \caption{Figures showing the trajectory of action probabilities for 2 players with 5 actions trained on a game of $\Gamma = -0.5$ and $\tau = 0.05$. (Left) $\alpha = 0.01$, (Right) $\alpha = 0.05$.}
+    \caption{Figures showing the trajectory of action probabilities for 2 players with 5 actions trained on a game with $\Gamma = -0.5$ and $\tau = 0.05$. (Left) $\alpha = 0.01$, (Right) $\alpha = 0.05$.}
     \label{fig:AlphaVariation}
 \end{figure}
 
-In Figure \ref{fig:AlphaVariation}, we explicitly plot the trajectories taken by the action probabilities as two agents are trained on a game of $\Gamma = -0.5$. In the left figure, we choose $\alpha = 0.01$ whilst in the right we choose $\alpha = 0.05$. This gives a qualitative assessment of the behaviour at both extremes parameters considered. We note that the typical behaviour of the system is that the system first moves towards a fixed point and then vary in a pseudo-random manner within a vicinity of the fixed point. Critically though, the amount of variation in the case $\alpha = 0.05$ is greater than that of $\alpha = 0.01$, and so it does not settle to a fixed point (i.e. is considered unstable). 
+In Figure \ref{fig:AlphaVariation}, we explicitly plot the
+trajectories taken by the action probabilities as two agents are
+trained on a game with $\Gamma = -0.5$. In the left figure, we choose
+$\alpha = 0.01$, whilst on the right we choose $\alpha = 0.05$. This
+gives a qualitative assessment of the behaviour at both extremes
+considered. We note that the typical behaviour of the
+system is to first move towards a fixed point and then
+vary in a pseudo-random manner within a vicinity of the fixed
+point. Critically though, the amount of variation in the case for $\alpha
+= 0.05$ is greater than that of $\alpha = 0.01$, and so it does not
+settle to a fixed point (i.e., is considered unstable).
+
+\fb{how can we say that in one case it converges to a fixed point and in the other it doesn't?}
 
 \begin{figure}[t]
     \includegraphics[width = 0.75 \linewidth, center]{Figures/pVarianceExpt.png}
@@ -718,14 +759,19 @@ In Figure \ref{fig:AlphaVariation}, we explicitly plot the trajectories taken by
 \end{figure}
 
 Finally, Figure \ref{fig:pVarianceExpt} plot the degree variation about the fixed point displayed as the number of players $p$ increases. The variation is determined by first allowing the game to iterate for 5000 steps, so that it can be assumed to have reached the vicinity of the fixed point. Then, the action probabilities are recorded for a further 5000 iterations. At the end of this second period, the variance of the actions are calculated as
-
-\begin{equation*}
-    V(t) = \frac{1}{N} \sum_i \frac{1}{5000} \sum_t x_i(t)^2 - \left[\frac{1}{5000} \sum_t x_i(t) \right]^2 .
-\end{equation*}
+%
+\begin{eqnarray*}
+    V(t) & = & \frac{1}{N} \sum_i \frac{1}{5000} \sum_t x_i(t)^2 - \left[\frac{1}{5000} \sum_t x_i(t) \right]^2 
+\end{eqnarray*}
 
 This gives a measure of the degree of variability about the fixed point and, therefore, gives some notion of the `degree of instability'. For example, the right hand plot of Figure \ref{fig:AlphaVariation} has a higher $V(t)$ than the left and so is considered to show a higher degree of instability. 
 
-Due to computational restraints, which we discuss further in the discussion, we are only able to increase $p$ to a maximum value of 6 and must restrict also to $N = 2$. We maintain $\alpha = 0.02$ and $\tau = 0.05$ to match with the parameters used for Figure \ref{fig:pvariation}. Finally, in Figure \ref{fig:pVarianceExpt}, we are averaging over 10 choices of $\Gamma$ in the range $[-1, 0]$. 
+Due to computational restraints, which we discuss further in the
+following section, we are only able to increase $p$ to a maximum value
+of 6 and must also restrict to $N = 2$. We maintain $\alpha = 0.02$
+and $\tau = 0.05$ to match with the parameters used in Figure
+\ref{fig:pvariation}. Finally, in Figure \ref{fig:pVarianceExpt}, we
+are averaging over 10 choices of $\Gamma$ in the range $[-1, 0]$.
 
 \subsection{Discussion}
     
