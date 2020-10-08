@@ -775,16 +775,88 @@ are averaging over 10 choices of $\Gamma$ in the range $[-1, 0]$.
 
 \subsection{Discussion}
     
-We note that the numerical experiments confirm the predictions suggested by the analytic results shown in Figure \ref{sec::Theory}. We notice that convergence occurs almost only for low values of $\alpha$. This observation remains as we increase the value of $N$. As noted, the analytic result over-estimates the region of instability due to the assumptions of $N \rightarrow \infty$ and $\frac{1}{p-1} << 2$ made during the derivation. Remaining discrepancies are partially due to the aforementioned approximation in the calculation of $q$, $\chi$ and the fact that the analytic result considers a continuous time approximation of the expected behaviour of Q-Learning. We expect that testing over a greater number of payoff realisations and initial conditions will yield a more representative assessment of the average behaviour of Q-Learning. However, running these experiments is a computationally expensive procedure: for $p$ players and $N$ actions we require operations on $p$ matrices with $N^{p}$ elements. As such, due to a reduced availability of computational facilities, a large scale averaging was not possible.
+We note that the numerical experiments confirm the predictions
+suggested by the analytic results shown in Figure \ref{sec::Theory}
+\fb{but Figure \ref{sec::Theory} concerns the numerical
+  experiments}. We notice that convergence occurs almost only for low
+values of $\alpha$. This observation remains as we increase the value
+of $N$. As noted, the analytic result over-estimates the region of
+instability due to the assumptions of $N \rightarrow \infty$ and
+$\frac{1}{p-1} << 2$ made during the derivation. Remaining
+discrepancies are partially due to the aforementioned approximation in
+the calculation of $q$, $\chi$, and the fact that the analytic result
+considers a continuous-time approximation of the expected behaviour of
+Q-Learning. We expect that testing over a greater number of payoff
+realisations and initial conditions will yield a more representative
+assessment of the average behaviour of Q-Learning. However, running
+these experiments is a computationally expensive procedure: for $p$
+players and $N$ actions it requires operations on $p$ matrices with
+$N^{p}$ elements. As such, due to a reduced availability of
+computational facilities, a large scale averaging was not possible.
 
-However, due to the abundance of non-convergent behaviour, shown by the dark regions in Figure \ref{fig:NumericalExperiments} other than at low values of $\alpha, \tau$, we can conclude that the implications 1, 2 are verified. Indeed implications 3 and 4 are also verified as the proportion of games converged decrease monotonically with $\alpha, \tau$, but there does not appear to be any discernible dependence on $\Gamma$. Finally, we can conclude that implication 5 is verified by comparing Figures \ref{fig:pvariation} and \ref{fig:pVarianceExpt}. It is clear that the instability of the system increases monotonically with $p$. A point to note is that Figure \ref{fig:pVarianceExpt} shows a logarithmic dependence of the instability on $p$, whilst Figure \ref{fig:pvariation} suggests that the dependence should be exponential. Due to the limited range of $p$ that was used to generate Figure \ref{fig:pVarianceExpt}, it cannot yet be concluded that the dependence on $p$ is logarithmic. However, the important result is that the unstable behaviour increases, regardless of parameter choice as $p$ increases, which is corroborated by both theory and experiment. This phenomenon was referred to by Sanders et. al as `the prevalence of chaotic dynamics in games with many players' \cite{Sanders2018}. 
+However, due to the abundance of non-convergent behaviour, shown by
+the dark regions in Figure \ref{fig:NumericalExperiments} other than
+at low values of $\alpha, \tau$, we can conclude that the implications
+(1), (2) in Sec.~\ref{} are verified. Indeed implications (3) and (4) are also verified as
+the proportion of converging games
+%converged
+decreases monotonically with $\alpha,
+\tau$, but there does not appear to be any discernible dependence on
+$\Gamma$. Finally, we can conclude that implication (5) is verified by
+comparing Figures \ref{fig:pvariation} and \ref{fig:pVarianceExpt}: it
+is clear that the instability of the system increases monotonically
+with $p$. A point to note is that Figure \ref{fig:pVarianceExpt} shows
+a logarithmic dependence of the instability on $p$, whilst Figure
+\ref{fig:pvariation} suggests that the dependence should be
+exponential. Due to the limited range of $p$ that was used to generate
+Figure \ref{fig:pVarianceExpt}, it cannot yet be concluded that the
+dependence on $p$ is logarithmic. However, the important result is
+that the unstable behaviour increases, regardless of parameter choice
+as $p$ increases, which is corroborated by both theory and
+experiment. This phenomenon was referred to by Sanders et. al as `the
+prevalence of chaotic dynamics in games with many players'
+\cite{Sanders2018}.
 
-A point which we wish to discuss here is the difference in the result found w.r.t.~\cite{Sanders2018}, which considered the stability of \textit{Experience Weighted Attraction} (EWA). Namely, Sanders et al.~found that convergence is seen for higher values of $\alpha$, whereas lower values give rise to chaos, the opposite of what is found here. The reason for this can be seen in the update equation of Q-Learning (\ref{eqn::Qupdate}), whereby
-smaller values of $\alpha$ result in the agent placing a lower weight on the reward received at each step. As such, lower values of $\alpha$ result in the agent taking more conservative steps and yields a higher probability of convergence. In contrast, the update for EWA does not discount the reward received at all and, instead, only discounts the previous knowledge of the Q-value based on higher choices of $\alpha$. In essence, the difference is the fact that Q-Learning discounts new information by a factor of $\alpha$, whilst EWA does not. Yet, the difference in stability caused by this change is significant. This highlights the importance of performing analyses such as the present work; it allows for a method to analytically compare the difference between learning algorithms and, for practitioners, ensure that the appropriate algorithm is chosen for the parameters of their specific task.
+A point which we wish to discuss here is the difference in the result
+found w.r.t.~\cite{Sanders2018}, which considered the stability of
+\textit{Experience Weighted Attraction} (EWA). Namely, Sanders et
+al.~found that convergence is seen for higher values of $\alpha$,
+whereas lower values give rise to chaos, the opposite of what is found
+here. The reason for this can be seen in the update equation of
+Q-Learning (\ref{eqn::Qupdate}), whereby smaller values of $\alpha$
+result in the agent placing a lower weight on the reward received at
+each step. As such, lower values of $\alpha$ result in the agent
+taking more conservative steps and yields a higher probability of
+convergence. In contrast, the update for EWA does not discount the
+reward received at all and, instead, only discounts the previous
+knowledge of the Q-value based on higher choices of $\alpha$. In
+essence, the difference is the fact that Q-Learning discounts new
+information by a factor of $\alpha$, whilst EWA does not. Yet, the
+difference in stability caused by this change is significant. This
+highlights the importance of performing analyses such as the present
+work; it allows for a method to analytically compare the difference
+between learning algorithms and, for practitioners, ensure that the
+appropriate algorithm is chosen for the parameters of their specific
+task.
 
-To summarise, we have shown that the analytic result (\ref{eqn::Final}) provides a strong assessment for the effect that $\alpha$, $\tau$, $\Gamma$ and $p$ have on the likelihood of convergence of Q-Learning. We show that, at least for negatively correlated payoffs, the strength of correlation plays no role in determining the stability of the system. Furthermore, though (\ref{eqn::Final}) overestimates the region of instability, it accurately conveys that convergence of Q-Learning is unlikely for games with many players and actions. In fact, our experimental results also verify that stability may only be guaranteed for the limiting case of two-player, two-action games.
-
-Finally, we show that the behaviour of the stability line differs from that of EWA and suggest that this shows that a stability analysis is an important mode of analysis for reinforcement learning equations to ensure that parameters are being chosen appropriately to guarantee the safe convergence of learning. 
+To summarise, we have shown that the analytic result
+(\ref{eqn::Final}) provides a strong assessment for the effect that
+$\alpha$, $\tau$, $\Gamma$ and $p$ have on the likelihood of
+convergence of Q-Learning. We showed that, at least for negatively
+correlated payoffs, the strength of correlation plays no role in
+determining the stability of the system. Furthermore, though
+(\ref{eqn::Final}) overestimates the region of instability, it
+accurately conveys that convergence of Q-Learning is unlikely for
+games with many players and actions. In fact, our experimental results
+also verify that stability may only be guaranteed for the limiting
+case of two-player, two-action games \fb{actually we consider 3
+  players as well}.
+%
+Finally, we showed that the behaviour of the stability line differs
+from that of EWA and suggest that this shows that a stability analysis
+is an important mode of analysis for reinforcement learning algorithms
+to ensure that parameters are being chosen appropriately to guarantee
+the safe convergence of learning.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
