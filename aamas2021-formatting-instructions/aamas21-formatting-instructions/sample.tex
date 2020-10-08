@@ -572,33 +572,67 @@ It should be noted that, to arrive at this result, we have had to take the assum
 The fixed point condition (\ref{eqn::Final}) yields a number of testable implications, of which we test the validity through in the subsequent section. These implications are as follows.
 
 \begin{enumerate}
-    \item A trivial result is that the game is everywhere convergent (i.e. regardless of the choice of $\Gamma, N, p$) for the cases of $\alpha$ = 0 and/or $\tau$ = 0.  We see that choosing these values would result in the right hand side of (\ref{eqn::Final}) yielding a value of zero which falls within the stable region.
-    \item Convergence is rare. This is seen by the fact that the analytic result overestimates the region of instability. In fact, for all allowed choices of $\Gamma, \alpha, \tau$, the right hand side of (\ref{eqn::Final}) is negative, which violates the stability criterion. This implies that games, in general, will not converge.
-    \item The likelihood of convergence decreases with increasing $\alpha$ and $\tau$, regardless of the choice of $N, p$. We can see this since the right hand side of (\ref{eqn::Final}) tends further away from zero (i.e. further from the region of stability).
-    \item The choice of $\Gamma$ does not affect the stability of the game in the negatively-correlated regime. Therefore, the only dependent factors are $\alpha, \tau, N, p$. This is more easily interpreted from the heatmaps in Figure \ref{fig:theory}.
-    \item The likelihood of convergence decreases as $p$ increases. We see this by noticing the weighting that the $(p-1)$ in the second term of (\ref{eqn::Final}) places. As $p$ increases, this term drives the system further from the stability boundary.
+    \item A trivial result is that the game is everywhere convergent
+      (i.e., regardless of the choice of $\Gamma$, $N$, $p$) for the cases
+      of $\alpha = 0$ and/or $\tau = 0$.  We see that choosing these
+      values would result in the right hand side of (\ref{eqn::Final})
+      yielding a value of zero which falls within the stable region.
+
+    \item Convergence is rare. This is seen by the fact that the
+      analytic result overestimates the region of instability. In
+      fact, for all allowed choices of $\Gamma$, $\alpha$, $\tau$, the
+      right hand side of (\ref{eqn::Final}) is negative, which
+      violates the stability criterion. This implies that games, in
+      general, will not converge.
+
+    \item The likelihood of convergence decreases with increasing
+      $\alpha$ and $\tau$, regardless of the choice of $N$, $p$. We can
+      see this since the right hand side of (\ref{eqn::Final}) tends
+      further away from zero (i.e., further from the region of
+      stability).
+
+    \item The choice of $\Gamma$ does not affect the stability of the
+      game in the negatively-correlated regime. Therefore, the only
+      dependent factors are $\alpha$, $\tau$, $N$, $p$. This is more easily
+      interpreted from the heatmaps in Figure~\ref{fig:theory} \fb{broken link}.
+
+    \item The likelihood of convergence decreases as $p$ increases. We
+      see this by noticing the weighting placed by $(p-1)$ in the
+      second term of (\ref{eqn::Final}). As $p$ increases, this
+      term drives the system further from the stability boundary.
 
 \end{enumerate}
 
-We illustrate these implications in Figure \ref{fig:theory} which plots the value obtained by the right hand side of (\ref{eqn::Final}). In order to determine these values, we first had to solve (\ref{eqn::fixed_point}) for $q$ and $\chi$. We determine the $\xfixed$ which solves the expression inside the square brackets of (\ref{eqn::fixed_point}) using a Newton-Raphson root-finding approach and use the following expressions for $q, \chi$ to determine their value. 
+We illustrate these implications in Figure \ref{fig:theory} \fb{broken link} which
+plots the value obtained by the right hand side of
+(\ref{eqn::Final}). In order to determine these values, we first had
+to solve (\ref{eqn::fixed_point}) for $q$ and $\chi$. We determine the
+$\xfixed$ which solves the expression inside the square brackets of
+(\ref{eqn::fixed_point}) using a Newton-Raphson root-finding approach
+and use the following expressions for $q$, $\chi$ to determine their
+value.
+%
+\begin{eqnarray*}
+%    \begin{split}
+        1 & = & \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} \xfixed(z) exp(-\frac{z^2}{2}) dz \\ 
+        q & = & \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} \xfixed(z)^2 exp(-\frac{z^2}{2}) dz \\ 
+        \chi & = & \frac{1}{q^{n/2}}\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} \frac{\partial \xfixed (z)}{\partial z} exp(-\frac{z^2}{2}) dz
+%    \end{split}
+\end{eqnarray*}
 
-\begin{equation*}
-    \begin{split}
-        1 = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} \xfixed(z) exp(-\frac{z^2}{2}) dz \\ 
-        q = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} \xfixed(z)^2 exp(-\frac{z^2}{2}) dz \\ 
-        \chi = \frac{1}{q^{n/2}}\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} \frac{\partial \xfixed (z)}{\partial z} exp(-\frac{z^2}{2}) dz
-    \end{split}
-\end{equation*}
+It should note that this method of finding $\xfixed$ yields only an
+approximate value and so the $q$, $\chi$ which are found are estimates
+of their true value.
 
-It should note that this method of finding $\xfixed$ yields only an approximate value and so the $q, \chi$ which are found are estimates of their true value. 
-
-We consider each of the implications (2)-(5) from the previous section
-in turn, choosing to forego illustrating (1) as it can be seen immediately
-from the expression. In those heatmaps where $\tau$ is held fixed
-\textbf{denote them}, we choose $\tau = 0.05 $ and vary $\Gamma$ in
-the range $[-1, 0]$ and $\alpha$ in the range $[0.01, 0.05]$. For
-those in which $\alpha$ is held fixed, \textbf{denote them} we choose
-$\alpha = 0.05$ and vary $\tau$ in the range $[0.01, 0.05]$.
+We consider each of the implications (2)-(5)
+%from the previous section
+in turn, choosing to forego illustrating (1) as it can be seen
+immediately from the expression \fb{add number}. In those heatmaps
+where $\tau$ is held fixed \textbf{denote them}, we choose $\tau =
+0.05 $ and vary $\Gamma$ in the range $[-1, 0]$ and $\alpha$ in the
+range $[0.01, 0.05]$. For those in which $\alpha$ is held fixed,
+\textbf{denote them} we choose $\alpha = 0.05$ and vary $\tau$ in the
+range $[0.01, 0.05]$. \fb{I assume heatmaps are to be added.}
 
 \paragraph{Implication 2:} By looking at the values of the heatmap, we see that, for all choices
 of the parameters, other than $\alpha = 0, \tau = 0$,
