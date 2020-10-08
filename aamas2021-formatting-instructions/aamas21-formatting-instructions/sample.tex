@@ -9,7 +9,7 @@
 %%% Use the first variant below for the final paper.
 %%% Use the second variant below for submission.
 
-%\documentclass[sigconf]{aamas} 
+% \documentclass[sigconf]{aamas} 
 \documentclass[sigconf,anonymous]{aamas} 
 
 
@@ -219,25 +219,17 @@ perform our analysis.
     arise.
 
     \begin{figure}[t]
-        \centering
-        
-        \begin{subfigure}[b]{0.9 \textwidth}
-        \includegraphics[width=0.5\textwidth]{Figures/DynamicalBehavioursTop.png}
-        \end{subfigure}
-        
-        \begin{subfigure}[b]{0.9 \textwidth}
-        \includegraphics[width=0.5\textwidth]{Figures/DynamicalBehaviourschaos.png}
-        \end{subfigure}
-        
-        \caption{ \label{fig::DynamicalBehaviours} Different types of dynamical behaviour
+    \centering
+    \includegraphics[width = 0.8 \linewidth]{Figures/DynamicalBehaviours.png}
+    \caption{Evaluation of (\label{fig::DynamicalBehaviours} Different types of dynamical behaviour
        displayed
-        by learning agents. Here the $x$-axis (resp.~$y$-axis) is the probability with which agent 1 (resp.~agent 2) chooses a given action. a) Figure drawn from \cite{Tuyls2006AnGames}.
+        by learning agents. Here the $x$-axis (resp.~$y$-axis) is the probability with which agent 1 (resp.~agent 2) chooses a given action. (Top Left) Figure drawn from \cite{Tuyls2006AnGames}.
         Convergence
         to a unique fixed point in the upper right corner (1, 1). This fixed point is unique, in
-        that all trajectories, regardless of initialisation, will converge to this point. b) Limit Cycle, the trajectories converge to cyclic behaviour c,
-        d) Chaotic behaviour, here small deviations in the initial conditions can grow
-        exponentially. b-d drawn from \cite{Sanders2018}.}
-    \end{figure}
+        that all trajectories, regardless of initialisation, will converge to this point. (Top Right) Limit Cycle, the trajectories converge to cyclic behaviour (Bottom)
+        Chaotic behaviour, here small deviations in the initial conditions can grow
+        exponentially. (Top Right) and (Bottom) drawn from \cite{Sanders2018}.}
+\end{figure}
 
 \subsection{Dynamics of Q-Learning}
 
@@ -508,13 +500,14 @@ qualitative effect on stability caused by the parameters $\alpha$, $\Gamma$, and
 
 We first find a fixed point $\xfixed$ of (\ref{eqn::EffectiveDynamics}) by letting $\dot{x}(t)= 0$. This yields the expression 
 
+\small{
 \begin{eqnarray}
 %    \begin{split}
-    0 & = & \xfixed [ \alpha^2 \ttau^2 \Gamma \xfixed q^{p-2} \chi + \nonumber \\
-      &  & + \sqrt{2} \alpha \ttau q^{(p-1)/2}z + \sqrt{2} \alpha \htau q^{p/2} z^{p/p-1} + \talpha \rho]
+    0  = \xfixed [ \alpha^2 \ttau^2 \Gamma \xfixed q^{p-2} \chi + \sqrt{2} \alpha \ttau q^{(p-1)/2}z + \sqrt{2} \alpha \htau q^{p/2} z^{p/p-1} + \talpha \rho]
     \label{eqn::fixed_point}
 %    \end{split}
 \end{eqnarray}
+}
 %
 where $\chi = \int dt' G(t - t')$, $\eta_0(t) = q^{(p-1)/2}z$, $z$ is
 drawn from a Gaussian of zero mean and unit variance. By using (\ref{eqn::fixed_point}) we can
@@ -549,8 +542,8 @@ perturbations, we arrive at the dynamics
 \end{eqnarray}
 
 We then examine the
-long-term behaviour of the perturbation $\xpert$. To do this, we take
-the Fourier transform of (\ref{eqn::Linearised}) and analyse its
+long-term behaviour of the perturbation $\xpert$. by taking
+the Fourier transform of (\ref{eqn::Linearised}) and analysing its
 behaviour at $\omega = 0$. After some manipulation (Section S4), this gives
 
 \begin{equation}
@@ -569,6 +562,14 @@ As the left hand side of this equation must be greater than zero, we arrive at t
 It should be noted that, to arrive at this result, we have had to take the assumption that p is large enough so that $p/p-1 \approx 1$ so that the fractional power on $z$ in (\ref{eqn::fixed_point}) is reduced to $1$. As $z$ can take any value, including negative values, this again ensures that the expression for $\xfixed$ remains real valued.
 
 \subsection{Discussion}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width = 1.1 \linewidth]{Figures/Theory.png}
+    \caption{Evaluation of (\ref{eqn::Final}) over a range of $\alpha$ and $\Gamma$ values. Ligher regions indicate where (\ref{eqn::Final}) is close to zero (i.e. close to the stability boundary) whilst darker regions are further away. We vary $\alpha$ in the range $[0.01, 0.05]$ and $\Gamma$ in the range $[-1, 0]$. $\tau = 0.05$. (Top Left) $p = 2, N = 2$, (Top Right) $p = 2, N = 5$, (Bottom Left) $p = 2, N = 20$, (Bottom Right) $p=3, N = 2$.}
+    \label{fig:theory}
+\end{figure}
+
 The fixed point condition (\ref{eqn::Final}) yields a number of testable implications, of which we test the validity through in the subsequent section. These implications are as follows.
 
 \begin{enumerate}
@@ -638,7 +639,7 @@ makes almost no difference in the evaluation of (\ref{eqn::Final}). We anticipat
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width = 0.8 \linewidth]{Figures/pVariance.png}
+    \includegraphics[width = 0.7 \linewidth]{Figures/pVariance.png}
     \caption{Evaluation of (\ref{eqn::Final}) for varying numbers of players $p$. Here, $\alpha$ is fixed at $0.02$, $\tau = 0.05$, $N = 2$ and $\Gamma = -1$. $p$ is varied from 2 to 12. We see that the value obtained by (\ref{eqn::Final}) tends away from zero monotonically.}
     \label{fig:pvariation}
 \end{figure}
@@ -650,81 +651,31 @@ makes almost no difference in the evaluation of (\ref{eqn::Final}). We anticipat
 
 \section{Experimental Evaluation} \label{sec:exev}
 
-% \begin{figure}
-%     \centering
-%     \includegraphics[width = 1.1 \linewidth]{Figures/Theory.png}
-%     \caption{Results of numerical experiments. The heatmaps show the value of the Liapunov Exponent determined by the procedure outlined in Section~\ref{sec:exev} scaled by $1 \times 10^5$ for convenience. Lighter values show a higher exponent whilst darker values indicate lower values. Each experiment is run with $\tau = 0.05$. (Top Left) $p = 2, N = 2$, (Top Right) $p = 2, N = 4$, (Mid-Left) $p = 2, N = 10$, (Mid-Right) $p = 2, N = 20$, (Bottom) $p = 3, N = 5$.}
-%     \label{fig:theory}
-% \end{figure}
-% %\fb{Can we arrange Fig.~\ref{fig:theory} in a 2x2 square?}
-
-\fb{it would be good to have some introduction to the section here.}
+In this section, we describe and discuss the numerical experiments we use to verify the implications described in the discussion of Section \ref{sec::Theory}. We first describe how these experiments were conducted and then, having presented the results in Figures \ref{fig:NumericalExperiments} and \ref{fig:pVarianceExpt}, we discuss the correlation with the theory.
 
 \subsection{Construction of Numerical Experiments}
 
-To verify experimentally the theoretical results and to examine the
-underlying structure of stability and chaos in multi-agent Q-Learning,
-we perform a series of numerical experiments by varying the parameters
-$\Gamma$ and $\alpha$ whilst keeping $\tau$ fixed. The aim is to
-determine the regions in which games learnt using Q-Learning converge
-to an equilibrium. The results of these experiments are shown in
-Figure \ref{fig:NumericalExperiments}, with parameters chosen to match
-those in the analytic assessment (Figure \ref{fig:theory}).
-% By examination it is found that, in many cases the system oscillates about some equilibrium point in a low dimensional chaotic manner (i.e. the manner in which the action probabilities change is indistinguishable from random motion) \textbf{get some graphs for this}
-
-
-
-% The purpose 
-% \st{of this experiment} is to determine a heuristic estimate for the Lyapunov exponent, which measures the degree to which initial conditions which start close to one another converge or diverge as the dynamics evolve \cite{Strogatz2000}. The former indicates a stable system (in the sense of Lyapunov \cite{}) whilst the latter signals instability. The procedure for calculating the Lyapunov exponent is given in (\ref{eq::LiapExpo}).
+To verify experimentally the theoretical results, and to examine the underlying structure of stability and chaos in
+Multi-Agent Q-Learning, we perform a series of numerical experiments by varying the parameters $\Gamma$ and
+$\alpha$ whilst keeping $\tau$ fixed. The aim is to determine the regions in which games learnt using Q-Learning converge to an equilibrium. The results of these experiments are shown in Figure \ref{fig:NumericalExperiments}, with parameters chosen to match those in the analytic assessment (Figure \ref{fig:theory}).
 
 To generate the numerical simulations in Figure~\ref{fig:NumericalExperiments} we used the
 following procedure. Note in the following that for any heatmap in which $\tau$ is swept over, the roles of $\alpha$ and $\tau$ are swapped.
 \begin{enumerate}
-   \item Fix the parameters $\tau, \gamma$. The former is held at 0.05
-     and the latter at 0.1. For the heatmaps in which $\tau$ is swept
-     over, $\alpha$ is held fixed at 0.05.
+   \item Fix the parameters $\tau, \gamma$. The former is held at 0.05 and the latter at 0.1. For the heatmaps in which $\tau$ is swept over $\alpha$ is held fixed at 0.05.
+   \item Initialise values of $\Gamma, \alpha$ (or $\tau$ appropriately). These will be swept over in the experiment.
+\item Generate 15 payoff matrices by sampling from a multi-variate Gaussian 
+(variables are the payoff elements) with mean zero and covariance parameterised by $\Gamma$.
+\item For each of these payoff matrices, initialise a set of agents with random initial conditions (i.e., random action probabilities).
+\item Allow both sets of agents to learn over a maximum of $1.5 \times 10^4$ iterations.
+\item Keep track of the action probabilities over a window of 500 iterations. At the end of each window, determine the percentage difference between the maximum and minimum values of each strategy component
+\item If the difference is less than 1 \% consider the game converged. Otherwise continue to the next window.
+\item If the game reaches $1.5 \times 10^4$ iterations without satisfying the relative distance criterion, consider it to be non-convergent. Determine the fraction of these 15 games which have converged.
 
-   \item Initialise values of $\Gamma, \alpha$ (or $\tau$
-     appropriately). These will be swept over in the experiment.
-
-   \item Generate 15 payoff matrices for both agents by sampling from
-     a multi-variate Gaussian (variables are the payoff elements) with
-     mean zero and covariance parameterised by $\Gamma$.
-
-   \item For each of these payoff matrices, initialise a set of agents
-     with random initial conditions (i.e., random action
-     probabilities).
-
-   \item Allow both sets of agents to learn over a maximum of $1.5
-     \times 10^4$ iterations.
-
-   \item Keep track of the action probabilities over a window of 500
-     iterations. At the end of each window, determine the percentage
-     difference between the maximum and minimum values of each
-     strategy component
-
-   \item If the difference is less than 1 \% consider the game
-     converged. Otherwise continue to the next window.
-
-   \item If the game reaches $1.5 \times 10^4$ iterations without
-     satisfying the relative distance criterion, consider it to be
-     non-convergent.
-
-     \item Determine the fraction of these 15 games which
-     have converged.
-
-
-% \item After 500 iterations measure the distance $\Vec{\delta_1} = |A_2 - A_1|$
-% \item After 10000 iterations measure the distance $\Vec{\delta_n} = |A_2 - A_1|$
-% \item Determine \fb{the Lyapunov exponent} 
-% \begin{eqnarray*}
-% \label{eq::LiapExpo}
-%     \lambda_n & = & \max_{i} 10^{-4} ln(\delta_{n, i}/\delta_{1, i})
-% \end{eqnarray*}
-% for each action $i$ and average this value over all five realisations of the payoff matrix. 
 \end{enumerate}
    
-We see in Figure \ref{fig:NumericalExperiments} that the stability of the system is highly dependent on the values of $\alpha$ and $\tau$, but not on $\Gamma$.
+We see in Figure \ref{fig:NumericalExperiments} that the stability of the system is highly dependent on
+the value of $\alpha$ and $\tau$ but not on $\Gamma$.
    
 \begin{figure}[t]
     \includegraphics[width = 1.1 \linewidth, center]{Figures/Experiments.png}
@@ -733,111 +684,38 @@ We see in Figure \ref{fig:NumericalExperiments} that the stability of the system
 \end{figure}
 
 \begin{figure}[t]
-    \includegraphics[width = 1.1 \linewidth, center]{Figures/a5e2var.png}
-    \caption{Figures showing the trajectory of action probabilities for 2 players with 5 actions trained on a game with $\Gamma = -0.5$ and $\tau = 0.05$. (Left) $\alpha = 0.01$, (Right) $\alpha = 0.05$.}
+    \includegraphics[width = 1 \linewidth, center]{Figures/a5e2var.png}
+    \caption{Figures showing the trajectory of action probabilities for 2 players with 5 actions trained on a game of $\Gamma = -0.5$ and $\tau = 0.05$. (Left) $\alpha = 0.01$, (Right) $\alpha = 0.05$.}
     \label{fig:AlphaVariation}
 \end{figure}
 
-In Figure \ref{fig:AlphaVariation}, we explicitly plot the
-trajectories taken by the action probabilities as two agents are
-trained on a game with $\Gamma = -0.5$. In the left figure, we choose
-$\alpha = 0.01$, whilst on the right we choose $\alpha = 0.05$. This
-gives a qualitative assessment of the behaviour at both extremes
-considered. We note that the typical behaviour of the
-system is to first move towards a fixed point and then
-vary in a pseudo-random manner within a vicinity of the fixed
-point. Critically though, the amount of variation in the case for $\alpha
-= 0.05$ is greater than that of $\alpha = 0.01$, and so it does not
-settle to a fixed point (i.e., is considered unstable).
-
-\fb{how can we say that in one case it converges to a fixed point and in the other it doesn't?}
+In Figure \ref{fig:AlphaVariation}, we explicitly plot the trajectories taken by the action probabilities as two agents are trained on a game of $\Gamma = -0.5$. In the left figure, we choose $\alpha = 0.01$ whilst in the right we choose $\alpha = 0.05$. This gives a qualitative assessment of the behaviour at both extremes parameters considered. We note that the typical behaviour of the system is that the system first moves towards a fixed point and then varies in a pseudo-random manner within a vicinity of the fixed point. Critically though, the amount of variation in the case $\alpha = 0.05$ is greater than that of $\alpha = 0.01$. 
 
 \begin{figure}[t]
-    \includegraphics[width = 0.75 \linewidth, center]{Figures/pVarianceExpt.png}
+    \includegraphics[width = 0.7 \linewidth, center]{Figures/pVarianceExpt.png}
     \caption{Figure showing the variation $V(t)$ about a fixed point as $p$ is varied from 2 - 6. $N = 2$, $\alpha = 0.02$, $\tau = 0.05$, $\Gamma = [-1, 0]$. The experiment is conducted for 10 choices of $\Gamma$ and the mean (line) is plotted alongside the standard deviation (shaded region).}
     \label{fig:pVarianceExpt}
 \end{figure}
 
 Finally, Figure \ref{fig:pVarianceExpt} plot the degree variation about the fixed point displayed as the number of players $p$ increases. The variation is determined by first allowing the game to iterate for 5000 steps, so that it can be assumed to have reached the vicinity of the fixed point. Then, the action probabilities are recorded for a further 5000 iterations. At the end of this second period, the variance of the actions are calculated as
-%
-\begin{eqnarray*}
-    V(t) & = & \frac{1}{N} \sum_i \frac{1}{5000} \sum_t x_i(t)^2 - \left[\frac{1}{5000} \sum_t x_i(t) \right]^2 
-\end{eqnarray*}
+
+\begin{equation*}
+    V(t) = \frac{1}{N} \sum_i \frac{1}{5000} \sum_t x_i(t)^2 - \left[\frac{1}{5000} \sum_t x_i(t) \right]^2 .
+\end{equation*}
 
 This gives a measure of the degree of variability about the fixed point and, therefore, gives some notion of the `degree of instability'. For example, the right hand plot of Figure \ref{fig:AlphaVariation} has a higher $V(t)$ than the left and so is considered to show a higher degree of instability. 
 
-Due to computational restraints, which we discuss further in the
-following section, we are only able to increase $p$ to a maximum value
-of 6 and must also restrict to $N = 2$. We maintain $\alpha = 0.02$
-and $\tau = 0.05$ to match with the parameters used in Figure
-\ref{fig:pvariation}. Finally, in Figure \ref{fig:pVarianceExpt}, we
-are averaging over 10 choices of $\Gamma$ in the range $[-1, 0]$.
+Due to computational restraints, which we discuss further in the discussion, we are only able to increase $p$ to a maximum value of 6 and must restrict also to $N = 2$. We maintain $\alpha = 0.02$ and $\tau = 0.05$ to match with the parameters used for Figure \ref{fig:pvariation}. Finally, in Figure \ref{fig:pVarianceExpt}, we are averaging over 10 choices of $\Gamma$ in the range $[-1, 0]$. 
 
 \subsection{Discussion}
     
-We note that the numerical experiments confirm the predictions
-suggested by the analytic results shown in Figure \ref{sec::Theory}
-\fb{but Figure \ref{sec::Theory} concerns the numerical
-  experiments}. We notice that convergence occurs almost only for low
-values of $\alpha$. This observation remains as we increase the value
-of $N$. As noted, the analytic result over-estimates the region of
-instability due to the assumptions of $N \rightarrow \infty$ and
-$\frac{1}{p-1} << 2$ made during the derivation. Remaining
-discrepancies are partially due to the aforementioned approximation in
-the calculation of $q$, $\chi$, and the fact that the analytic result
-considers a continuous-time approximation of the expected behaviour of
-Q-Learning. We expect that testing over a greater number of payoff
-realisations and initial conditions will yield a more representative
-assessment of the average behaviour of Q-Learning. However, running
-these experiments is a computationally expensive procedure: for $p$
-players and $N$ actions it requires operations on $p$ matrices with
-$N^{p}$ elements. As such, due to a reduced availability of
-computational facilities, a large scale averaging was not possible.
+We note that the numerical experiments confirm the predictions suggested by the analytic results shown in Figure \ref{sec::Theory}. We notice that convergence occurs almost only for low values of $\alpha$. This observation remains as we increase the value of $N$. As noted, the analytic result over-estimates the region of instability due to the assumptions of $N \rightarrow \infty$ and $\frac{1}{p-1} << 2$ made during the derivation. Remaining discrepancies are partially due to the aforementioned approximation in the calculation of $q$, $\chi$ and the fact that the analytic result considers a continuous time approximation of the expected behaviour of Q-Learning. We expect that testing over a greater number of payoff realisations and initial conditions will yield a more representative assessment of the average behaviour of Q-Learning. However, running these experiments is a computationally expensive procedure: for $p$ players and $N$ actions we require operations on $p$ matrices with $N^{p}$ elements. As such, due to a reduced availability of computational facilities, a large scale averaging was not possible.
 
-However, due to the abundance of non-convergent behaviour, shown by
-the dark regions in Figure \ref{fig:NumericalExperiments} other than
-at low values of $\alpha, \tau$, we can conclude that the implications
-(1), (2) in Sec.~\ref{} are verified. Indeed implications (3) and (4) are also verified as
-the proportion of converging games
-%converged
-decreases monotonically with $\alpha,
-\tau$, but there does not appear to be any discernible dependence on
-$\Gamma$. Finally, we can conclude that implication (5) is verified by
-comparing Figures \ref{fig:pvariation} and \ref{fig:pVarianceExpt}: it
-is clear that the instability of the system increases monotonically
-with $p$. A point to note is that Figure \ref{fig:pVarianceExpt} shows
-a logarithmic dependence of the instability on $p$, whilst Figure
-\ref{fig:pvariation} suggests that the dependence should be
-exponential. Due to the limited range of $p$ that was used to generate
-Figure \ref{fig:pVarianceExpt}, it cannot yet be concluded that the
-dependence on $p$ is logarithmic. However, the important result is
-that the unstable behaviour increases, regardless of parameter choice
-as $p$ increases, which is corroborated by both theory and
-experiment. This phenomenon was referred to by Sanders et. al as `the
-prevalence of chaotic dynamics in games with many players'
-\cite{Sanders2018}.
+However, due to the abundance of non-convergent behaviour, shown by the dark regions in Figure \ref{fig:NumericalExperiments} other than at low values of $\alpha, \tau$, we can conclude that the implications 1, 2 are verified. Indeed implications 3 and 4 are also verified as the proportion of games converged decrease monotonically with $\alpha, \tau$, but there does not appear to be any discernible dependence on $\Gamma$. Finally, we can conclude that implication 5 is verified by comparing Figures \ref{fig:pvariation} and \ref{fig:pVarianceExpt}. It is clear that the instability of the system increases monotonically with $p$. A point to note is that Figure \ref{fig:pVarianceExpt} shows a logarithmic dependence of the instability on $p$, whilst Figure \ref{fig:pvariation} suggests that the dependence should be exponential. Due to the limited range of $p$ that was used to generate Figure \ref{fig:pVarianceExpt}, it cannot yet be concluded that the dependence on $p$ is logarithmic. However, the important result is that the unstable behaviour increases, regardless of parameter choice as $p$ increases, which is corroborated by both theory and experiment. This phenomenon was referred to by Sanders et. al as `the prevalence of chaotic dynamics in games with many players' \cite{Sanders2018}. 
 
-A point which we wish to discuss here is the difference in the result
-found w.r.t.~\cite{Sanders2018}, which considered the stability of
-\textit{Experience Weighted Attraction} (EWA). Namely, Sanders et
-al.~found that convergence is seen for higher values of $\alpha$,
-whereas lower values give rise to chaos, the opposite of what is found
-here. The reason for this can be seen in the update equation of
-Q-Learning (\ref{eqn::Qupdate}), whereby smaller values of $\alpha$
-result in the agent placing a lower weight on the reward received at
-each step. As such, lower values of $\alpha$ result in the agent
-taking more conservative steps and yields a higher probability of
-convergence. In contrast, the update for EWA does not discount the
-reward received at all and, instead, only discounts the previous
-knowledge of the Q-value based on higher choices of $\alpha$. In
-essence, the difference is the fact that Q-Learning discounts new
-information by a factor of $\alpha$, whilst EWA does not. Yet, the
-difference in stability caused by this change is significant. This
-highlights the importance of performing analyses such as the present
-work; it allows for a method to analytically compare the difference
-between learning algorithms and, for practitioners, ensure that the
-appropriate algorithm is chosen for the parameters of their specific
-task.
+A point which we wish to discuss here is the difference in the result found w.r.t.~\cite{Sanders2018}, which considered the stability of \textit{Experience Weighted Attraction} (EWA). Namely, Sanders et al.~found that convergence is seen for higher values of $\alpha$, whereas lower values give rise to chaos, the opposite of what is found here. The reason for this can be seen in the update equation of Q-Learning (\ref{eqn::Qupdate}), whereby
+smaller values of $\alpha$ result in the agent placing a lower weight on the reward received at each step. As such, lower values of $\alpha$ result in the agent taking more conservative steps and yields a higher probability of convergence. In contrast, the update for EWA does not discount the reward received at all and, instead, only discounts the previous knowledge of the Q-value based on higher choices of $\alpha$. In essence, the difference is the fact that Q-Learning discounts new information by a factor of $\alpha$, whilst EWA does not. Yet, the difference in stability caused by this change is significant. This highlights the importance of performing analyses such as the present work; it allows for a method to analytically compare the difference between learning algorithms and, for practitioners, ensure that the appropriate algorithm is chosen for the parameters of their specific task.
+
 
 To summarise, we have shown that the analytic result
 (\ref{eqn::Final}) provides a strong assessment for the effect that
@@ -849,14 +727,14 @@ determining the stability of the system. Furthermore, though
 accurately conveys that convergence of Q-Learning is unlikely for
 games with many players and actions. In fact, our experimental results
 also verify that stability may only be guaranteed for the limiting
-case of two-player, two-action games \fb{actually we consider 3
-  players as well}.
+case of two-player, two-action games. Once either of these parameters increase, the region of instability increases rapidly.
 %
 Finally, we showed that the behaviour of the stability line differs
 from that of EWA and suggest that this shows that a stability analysis
 is an important mode of analysis for reinforcement learning algorithms
 to ensure that parameters are being chosen appropriately to guarantee
 the safe convergence of learning.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
