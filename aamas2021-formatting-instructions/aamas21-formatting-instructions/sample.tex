@@ -179,7 +179,7 @@ Sec.~\ref{sec::DynamicalBehaviours}). The present work further
 describes that the emergence of such behaviours depends on the
 parameters of the games and the learning algorithm. For the analysis
 of multi-agent systems whose behaviour is inter-dependent, it is
-desirable that the system be such that the game convergence to a
+desirable that the system be such that the game converges to a
 stable equilibrium. Without this, it is inherently impossible to
 predict the outcome of learning.
 
@@ -190,7 +190,7 @@ to displaying complex, or unstable behaviours? In investigating this
 question, we will make the following assumptions:
 
 \begin{enumerate}
-    \item There is a finite set of agent, though its size $p$ can be
+    \item There is a finite set of agents, though its size $p$ can be
       arbitrarily large.
       
     \item The agents have a large, but discrete, strategy space:
@@ -317,8 +317,6 @@ In doing so, we extend the dynamics considered by Tuyls et al.~to
 a general $p$-player setting, rather than two players only, thereby
 allowing an analysis of how the number of players in a game affects
 its stability.
-%To the best of our knowledge, this is the first work exists in
-%this context.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -357,13 +355,12 @@ perform our analysis.
 %
     \begin{figure}[t]
     \centering
-    \includegraphics[width = .85\linewidth]{Figures/DynamicalBehaviours.png}
-    \caption{Evaluation of (\label{fig::DynamicalBehaviours} Different types of dynamical behaviour
+    \includegraphics[width = \linewidth]{Figures/DynamicalBehaviours.png}
+    \caption{Different types of dynamical behaviour
        displayed
         by learning agents. Here the $x$-axis (resp.~$y$-axis) is the probability with which agent 1 (resp.~agent 2) chooses a given action. (Top Left) Figure drawn from \cite{Tuyls2006AnGames}.
         Convergence
-        to a unique fixed point in the upper right corner (1, 1). This fixed point is unique, in
-        that all trajectories, regardless of initialisation, will converge to this point. (Top Right) Limit Cycle, the trajectories converge to cyclic behaviour (Bottom)
+        to a unique fixed point at the point (1, 1). (Top Right) Limit Cycle, the trajectories converge to cyclic behaviour (Bottom)
         Chaotic behaviour, here small deviations in the initial conditions can grow
         exponentially. (Top Right) and (Bottom) drawn from \cite{Sanders2018}.}
 \end{figure}
@@ -503,15 +500,15 @@ space. Therefore, the system must be scaled to ensure appreciable
 differences across actions, so that the agent can choose its actions
 appropriately (see the discussion in \cite{Sanders2018} or
 Sec. S2.2 for further details). Accordingly we choose
-scaled variables (denoted with a tilde) as
+scaled variables (denoted with a tilde or hat) as
 %
 \begin{eqnarray*}
 %    \begin{split}
         \payoff{i}{\mu} & = & \tpayoff{i}{\mu} \sqrt{N^{p-1}}\\
         \xmu{i}{\mu} & = & \frac{\txmu{i}{\mu}}{N} \\
-        \talpha & = & \frac{\alpha}{N} \\
-        \ttau & = & N^{-(p-1)/2} \tau \\
-        \htau & = & N^{-p/2} \tau.
+        \talpha & = & \frac{\alpha}{N}, \: 
+        \ttau  =  N^{-(p-1)/2} \tau, \:
+        \htau  =  N^{-p/2} \tau.
 %    \end{split}
 \end{eqnarray*}
 
@@ -559,19 +556,8 @@ equations of motion and, in particular, allows for the analysis of
 systems with `quenched disorder': these are
 variables which are random but held fixed in time as the system
 evolves (in our case these variables are the payoff elements). The
-generating functional is given as \cite{Mezard1986}
-%
-\begin{eqnarray}
-	Z  =  \int D[\Vec{x}] \prod_i \delta(\textit{equation of
-          motion}_i) exp(i \int dt[x_i(t) \psi_i(t)])
-\end{eqnarray}
-%
-where the equations of motion are the Lagrange equations of motion
-given in ( \ref{eqn::scaledEOM}) and the fields $\Vec{\psi_i(t)}$ and
-$\Vec{\phi_i(t)}$ will be set to zero at the end of the
-calculation. $\delta$ denotes the Dirac delta function. Substituting
-for our equation of motion yields
-%
+generating functional for the equation of motion (\ref{eqn::scaledEOM}) is given as \cite{Mezard1986}
+
 {\small
 \begin{equation}
 \label{eqn::separatePayoffs}
@@ -579,11 +565,15 @@ for our equation of motion yields
 	Z(\Vec{\psi}) = \int D[\Vec{x}, \Vec{\hat{x}}] exp( i \sum_{i, \mu} \int dt [ \hxmu{i} (\frac{\dxmu{i}}{\xmu{i}{\mu}} - \talpha \rho_i^\mu (t) - h_i^\mu (t))]) \times \\ exp(-i \alpha \ttau \sum_{\mu} \sum_{i_\mu, i_{-\mu}} \int dt [\hxmu{i} \payoff{i}{\mu} \prod_{\kappa \neq \mu} \xmu{i}{\kappa} )])) 
     \times \\ exp(-i \alpha \ttau \sum_{\mu} \sum_{j_\mu, i_\mu, i_{-\mu}} \int dt [\hxmu{j}  \xmu{i}{\mu} \payoff{i}{\mu} \prod_{\kappa \neq \mu} \xmu{i}{\kappa}])) 
 	\times \\ exp(i \sum_{i, \mu}
-	\int dt[\xmu{i} \psi^\mu_i(t)])
+	\int dt[\xmu{i} \psi^\mu_i(t)]),
 \end{split}
 \end{equation}
 }
-The last two exponentials contain the payoffs of the game. These are randomly generated using a multi-variate gaussian and then held fixed for the rest of the game. As such these comprise the aforementioned 'quenched disorder'. We will average over this quenched disorder (and therefore average over all possible realisations of payoff matrices) using the mean and covariance expressions given in (\ref{eqn::Payoffs}). We define $Q$ to be the product of the second and third exponentials in (\ref{eqn::separatePayoffs}) 
+where the `generating fields' \cite{Coolen2005} $\Vec{\psi_i(t)}$ and
+$\Vec{\phi_i(t)}$ will be set to zero at the end of the
+calculation.
+
+The last two exponentials contain the payoffs of the game. These are randomly generated using a multi-variate gaussian and then held fixed for the rest of the game. As such these comprise the aforementioned `quenched disorder'. We will average over this quenched disorder (and therefore average over all possible realisations of payoff matrices) using the mean and covariance expressions given in (\ref{eqn::Payoffs}). We define $Q$ to be the product of the second and third exponentials in (\ref{eqn::separatePayoffs}) 
 %
 \begin{equation}
 \begin{split}
@@ -668,7 +658,7 @@ unit variance. The disturbance causes the values of $x(t)$ and
 $\eta_0(t), \eta_1(t)$ to deviate from their fixed point position
 $\xfixed, \ezerof, \eonef$ by an amount $\xpert, \ezeropert,
 \eonepert$.  If we consider only the terms which are linear in these
-perturbations, we arrive at the dynamics
+perturbations, we arrive at 
 %
 \begin{eqnarray}
 %    \begin{split}
@@ -702,11 +692,7 @@ It should be noted that, to arrive at this result, we have had to take the assum
 
 \subsection{Discussion}
 
-\begin{figure}[t]
-    \includegraphics[width = 1.2 \linewidth, center]{Figures/Theory.png}
-    \caption{Evaluation of (\ref{eqn::Final}) over a range of $\alpha$ and $\Gamma$ values. Ligher regions indicate where (\ref{eqn::Final}) is close to zero (i.e. close to the stability boundary) whilst darker regions are further away. We vary $\alpha$ in the range $[0.01, 0.05]$ and $\Gamma$ in the range $[-1, 0]$. $\tau = 0.05$. (Top Left) $p = 2, N = 2$, (Top Right) $p = 2, N = 5$, (Bottom Left) $p = 2, N = 20$, (Bottom Right) $p=3, N = 2$.}
-    \label{fig:theory}
-\end{figure}
+
 
 The fixed point condition (\ref{eqn::Final}) yields a number of testable implications, of which we subsequently test the validity. These implications are as follows.
 
@@ -787,6 +773,12 @@ is dominated by the $\alpha^4$ and $\tau^4$ terms which appear in
 (\ref{eqn::Final}).
 
 \begin{figure}[t]
+    \includegraphics[width = 1.2 \linewidth, center]{Figures/Theory.png}
+    \caption{Evaluation of (\ref{eqn::Final}) over a range of $\alpha$ and $\Gamma$ values. Ligher regions indicate where (\ref{eqn::Final}) is close to zero (i.e. close to the stability boundary) whilst darker regions are further away. We vary $\alpha$ in the range $[0.01, 0.05]$ and $\Gamma$ in the range $[-1, 0]$. $\tau = 0.05$. (Top Left) $p = 2, N = 2$, (Top Right) $p = 2, N = 5$, (Bottom Left) $p = 2, N = 20$, (Bottom Right) $p=3, N = 2$.}
+    \label{fig:theory}
+\end{figure}
+
+\begin{figure}[t]
     \centering
     \includegraphics[width = .75\linewidth]{Figures/pVariance.png}
     \caption{Evaluation of (\ref{eqn::Final}) for varying numbers of players $p$. Here, $\alpha$ is fixed at $0.02$, $\tau = 0.05$, $N = 2$ and $\Gamma = -1$. $p$ is varied from 2 to 12. We see that the value obtained by (\ref{eqn::Final}) tends away from zero monotonically.}
@@ -833,12 +825,12 @@ the value of $\alpha$ and $\tau$ but not on $\Gamma$.
 \end{figure}
 
 \begin{figure}[t]
-    \includegraphics[width = 0.75 \linewidth, center]{Figures/alphavar5e2.png}
+    \includegraphics[width =  \linewidth, center]{Figures/alphavar5e2.png}
     \caption{The trajectories of action probabilities for 2 players with 5 actions trained on a game of $\Gamma = -0.5$ and $\tau = 0.05$. (Left) $\alpha = 0.01$, (Right) $\alpha = 0.05$.}
     \label{fig:AlphaVariation}
 \end{figure}
 
-In Figure \ref{fig:AlphaVariation}, we explicitly plot the trajectories taken by the action probabilities as two agents are trained on a game of $\Gamma = -0.5$. In the left figure, we choose $\alpha = 0.01$ whilst in the right we choose $\alpha = 0.05$. This gives a qualitative assessment of the behaviour at both extremes parameters considered. We note that the typical behaviour of the system is that the system first moves towards a fixed point and then varies in a pseudo-random manner within a vicinity of the fixed point. Critically though, the amount of variation in the case $\alpha = 0.05$ is greater than that of $\alpha = 0.01$. 
+In Figure \ref{fig:AlphaVariation}, we explicitly plot the trajectories taken by the action probabilities as two agents are trained on a game of $\Gamma = -0.5$. In the left figure, we choose $\alpha = 0.01$ whilst in the right we choose $\alpha = 0.05$. We note that the typical behaviour of the system is that the system first moves towards a fixed point and then varies in a pseudo-random manner within a vicinity of the fixed point. Critically though, the amount of variation in the case $\alpha = 0.05$ is greater than that of $\alpha = 0.01$. 
 
 \begin{figure}[t]
     \includegraphics[width = .75\linewidth, center]{Figures/pVarianceExpt.png}
@@ -884,9 +876,6 @@ is an important mode of analysis for reinforcement learning algorithms
 to ensure that parameters are being chosen appropriately to guarantee
 the safe convergence of learning.
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \section{Conclusion}
 
 In this study, we made a first contribution towards the
@@ -911,16 +900,17 @@ and by averaging over a greater number of payoff realisations. This
 will give a greater insight into the boundary between convergent and
 non-convergent behaviour and allow for practitioners to choose their
 parameters in such a way that convergence to a (possibly unique) fixed
-point is expected. In addition we noted that one of the conclusions of
+point can be expected. In addition we noted that one of the conclusions of
 our study is that convergence to a unique fixed point is rare in
 Q-Learning. In fact, complex behaviours (such as the existence of
 multiple fixed points, limit cycles, and chaos) are more likely. We,
 therefore, aim to characterise these complex behaviours in parameter
 space both theoretically and numerically.
 
-The present work represents a first step towards considering the stability
-of multi-agent reinforcement learning and focuses on the limiting case
-of stateless normal-form games played by homogeneous agents. As
+% The present work represents a first step towards considering the stability
+% of multi-agent reinforcement learning and focuses on the limiting case
+% of stateless normal-form games played by homogeneous agents.
+As
 research into the dynamics of RL algorithms
 progresses, it would be prudent to apply this analysis to various
 other algorithm. Algorithms whose dynamics are established, and are
