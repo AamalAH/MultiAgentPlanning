@@ -207,7 +207,17 @@ question, we will make the following assumptions:
     (i.e., the environment is static).
 \end{enumerate}
 
-Through our analysis and experiments we find that likelihood of displaying unstable dynamics increases as the \textit{step length} $\alpha$ and \textit{intensity of choice} $\tau$ parameters in the Q-Learning algorithm \cite{Barber2012} increase. However, the correlation between payoffs $\Gamma$, which measures how cooperative or competitive a game is, does not affect the stability of the system. In addition, we find that regardless of the choice of these parameters, the likelihood of unstable behaviours increases as the number of players $p$ in the game increase. 
+Through our analysis and experiments we find that likelihood of
+displaying unstable dynamics increases as the \textit{step length}
+$\alpha$ and \textit{intensity of choice} $\tau$ parameters in the
+Q-Learning algorithm
+%\cite{Barber2012}
+increase. However, the
+correlation $\Gamma$ between payoffs, which measures how cooperative
+or competitive a game is, does not affect the stability of the
+system. In addition, we find that regardless of the choice of these
+parameters, the likelihood of unstable behaviours increases as the
+number  $p$ of players in the game increases.
 
 \subsection{Related Work}
 
@@ -448,6 +458,9 @@ matrices. Then, we perform a linear stability analysis around
 equilibrium points to determine the conditions under which a fixed
 point is stable. As this process is rather involved, we focus on the main steps in this paper, and refer to the Supplementary Material for the technical details. Sections from the Supplementary Material are denoted with the prefix S.
 
+\subsection{Rescaling of Variables}
+
+
 Our first point of call is to extend the dynamics of Tuyls et al.~in
 (\ref{eqn::EOM}a) and (\ref{eqn::EOM}b) to a general $p$-player
 game. This yields the dynamics (\ref{eqn::pEOM}). Here, player $\mu$
@@ -530,12 +543,12 @@ systems with `quenched disorder': these are
 variables which are random but held fixed in time as the system
 evolves (in our case these variables are the payoff elements). The
 generating functional is given as \cite{Mezard1986}
-
-\begin{equation}
-	Z = \int D[\Vec{x}] \prod_i \delta(\textit{equation of motion}_i) exp(i
-	\int dt[x_i(t) \psi_i(t)]), 
-\end{equation}
-
+%
+\begin{eqnarray}
+	Z  =  \int D[\Vec{x}] \prod_i \delta(\textit{equation of
+          motion}_i) exp(i \int dt[x_i(t) \psi_i(t)])
+\end{eqnarray}
+%
 where the equations of motion are the Lagrange equations of motion
 given in ( \ref{eqn::scaledEOM}) and the fields $\Vec{\psi_i(t)}$ and
 $\Vec{\phi_i(t)}$ will be set to zero at the end of the
@@ -549,21 +562,20 @@ for our equation of motion yields
 	Z(\Vec{\psi}) = \int D[\Vec{x}, \Vec{\hat{x}}] exp( i \sum_{i, \mu} \int dt [ \hxmu{i} (\frac{\dxmu{i}}{\xmu{i}{\mu}} - \talpha \rho_i^\mu (t) - h_i^\mu (t))]) \times \\ exp(-i \alpha \ttau \sum_{\mu} \sum_{i_\mu, i_{-\mu}} \int dt [\hxmu{i} \payoff{i}{\mu} \prod_{\kappa \neq \mu} \xmu{i}{\kappa} )])) 
     \times \\ exp(-i \alpha \ttau \sum_{\mu} \sum_{j_\mu, i_\mu, i_{-\mu}} \int dt [\hxmu{j}  \xmu{i}{\mu} \payoff{i}{\mu} \prod_{\kappa \neq \mu} \xmu{i}{\kappa}])) 
 	\times \\ exp(i \sum_{i, \mu}
-	\int dt[\xmu{i} \psi^\mu_i(t)]),
+	\int dt[\xmu{i} \psi^\mu_i(t)])
 \end{split}
 \end{equation}
 }
 The last two exponentials contain the payoffs of the game. These are randomly generated using a multi-variate gaussian and then held fixed for the rest of the game. As such these comprise the aforementioned 'quenched disorder'. We will average over this quenched disorder (and therefore average over all possible realisations of payoff matrices) using the mean and covariance expressions given in (\ref{eqn::Payoffs}). We define $Q$ to be the product of the second and third exponentials in (\ref{eqn::separatePayoffs}) 
 %
-
 \begin{equation}
 \begin{split}
         \mathbb{E}[Q] = exp(- \frac{\alpha^2 \ttau ^2}{2} N \sum_{\mu} \Big [ \int dt dt' L^\mu(t, t') \prod_{\kappa \neq \mu} C^\kappa (t, t') + \\ \Gamma \sum_{\nu \neq \mu} K^\mu (t, t') K^\nu (t, t') \prod_{\kappa \not\in \{\mu, \nu\}} C^\kappa (t, t') \Big ] ) \times \\
         exp(- \frac{\alpha^2 \htau ^2}{2} N \sum_{\mu} \Big [ \int dt dt' L^\mu(t, t') C^\mu (t, t') \prod_{\kappa \neq \mu} C^\kappa (t, t') + \\ \Gamma \sum_{\nu \neq \mu} A^{\mu \nu} (t, t') C^\nu (t, t') C^\mu (t, t') \prod_{\kappa \not\in \{\mu, \nu\}} C^\kappa (t, t') \Big ] )
 \end{split}
 \end{equation}
-
-In which
+%
+in which
 %
 \begin{eqnarray*}
 \label{eqn::correlations}
@@ -576,14 +588,14 @@ In which
 \end{eqnarray*}
 
 By taking this average (Sec. S2.3), we obtain the \textit{effective dynamics}
-
-\begin{equation}
+%
+\begin{eqnarray}
     \label{eqn::EffectiveDynamics}
-    \begin{split}
-            \frac{1}{x} \frac{d}{dt} x(t) = \alpha^2 \ttau^2 \Gamma \int dt' \left [G(t, t')C^{p - 2}(t, t') x(t') \right ]\\ + \sqrt{2} \alpha \ttau \eta_1(t) + \sqrt{2} \alpha \htau \eta_0(t) + \talpha \rho(t), 
-    \end{split}
-\end{equation}
-
+%    \begin{split}
+            \frac{1}{x} \frac{d}{dt} x(t) & = & \alpha^2 \ttau^2 \Gamma \int dt' \left [G(t, t')C^{p - 2}(t, t') x(t') \right ] \nonumber \\ && + \sqrt{2} \alpha \ttau \eta_1(t) + \sqrt{2} \alpha \htau \eta_0(t) + \talpha \rho(t), 
+%    \end{split}
+\end{eqnarray}
+%
 in which we have assumed that all players' actions are independent and drawn from the same initial distribution (i.i.d)
 and therefore dropped the distinction between players and strategy components. The terms $G, C, \eta_1, \eta_0$ are correlation functions, generated when averaging the Gaussian. These are given as 
 %
@@ -609,15 +621,15 @@ qualitative effect on stability caused by the parameters $\alpha$, $\Gamma$, and
 \subsection{Linear Stability Analysis}
 
 We first find a fixed point $\xfixed$ of (\ref{eqn::EffectiveDynamics}) by letting $\dot{x}(t)= 0$. This yields the expression 
-
-\small{
-\begin{eqnarray}
+%
+%\small{
+\begin{equation}
 %    \begin{split}
     0  = \xfixed [ \alpha^2 \ttau^2 \Gamma \xfixed q^{p-2} \chi + \sqrt{2} \alpha \ttau q^{(p-1)/2}z + \sqrt{2} \alpha \htau q^{p/2} z^{p/p-1} + \talpha \rho]
     \label{eqn::fixed_point}
 %    \end{split}
-\end{eqnarray}
-}
+\end{equation}
+%}
 %
 where $\chi = \int dt' G(t - t')$, $\eta_0(t) = q^{(p-1)/2}z$, $z$ is
 drawn from a Gaussian of zero mean and unit variance. By using (\ref{eqn::fixed_point}) we can
@@ -640,7 +652,7 @@ $\eta_0(t), \eta_1(t)$ to deviate from their fixed point position
 $\xfixed, \ezerof, \eonef$ by an amount $\xpert, \ezeropert,
 \eonepert$.  If we consider only the terms which are linear in these
 perturbations, we arrive at the dynamics
-
+%
 \begin{eqnarray}
 %    \begin{split}
 \frac{d}{dt} \xpert & = & (\xfixed + \xpert) [ \alpha^2 \ttau^2 \Gamma \xfixed \int dt' [ G(t, t')C^{p - 2}(t, t') ] \nonumber \\
@@ -655,15 +667,15 @@ We then examine the
 long-term behaviour of the perturbation $\xpert$. by taking
 the Fourier transform of (\ref{eqn::Linearised}) and analysing its
 behaviour at $\omega = 0$. After some manipulation (Sec. S4), this gives
-
+%
 \begin{equation}
-\begin{split}
-        \mathbb{E}[|\mathcal{X}(\omega = 0)|^2] = \frac{1}{\left[ (-\alpha^2 \ttau^2 \Gamma q^{p-2} \chi)^2 - 2 (\alpha \ttau + \alpha \htau)^2 (p-1)q^{p-2}\right]} \\
-\end{split}
+%\begin{split}
+        \mathbb{E}[|\mathcal{X}(\omega = 0)|^2] = \frac{1}{\left[ (-\alpha^2 \ttau^2 \Gamma q^{p-2} \chi)^2 - 2 (\alpha \ttau + \alpha \htau)^2 (p-1)q^{p-2}\right]} 
+%\end{split}
 \end{equation}
 
 As the left hand side of this equation must be greater than zero, we arrive at the condition that, at a fixed point, the long term perturbations must satisfy
-
+%
 \begin{equation}
     \label{eqn::Final}
     0 \leq \left [(\alpha^2 \ttau^2 \Gamma q^{p-2} \chi)^{2} - 2 (\alpha \ttau + \alpha \htau)^2 (p-1)q^{p-2} \right ]
@@ -691,14 +703,14 @@ The fixed point condition (\ref{eqn::Final}) yields a number of testable implica
 \end{enumerate}
 
 We illustrate these implications in Figure \ref{fig:theory} which plots the value obtained by the right hand side of (\ref{eqn::Final}). In order to determine these values, we first had to solve (\ref{eqn::fixed_point}) for $q$ and $\chi$. We determine the $\xfixed$ which solves the expression inside the square brackets of (\ref{eqn::fixed_point}) using a Newton-Raphson root-finding approach and use the following expressions for $q, \chi$ to determine their value. 
-
-\begin{equation*}
-    \begin{split}
-        1 = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} \xfixed(z) exp(-\frac{z^2}{2}) dz \\ 
-        q = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} \xfixed(z)^2 exp(-\frac{z^2}{2}) dz \\ 
-        \chi = \frac{1}{q^{n/2}}\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} \frac{\partial \xfixed (z)}{\partial z} exp(-\frac{z^2}{2}) dz
-    \end{split}
-\end{equation*}
+%
+\begin{eqnarray*}
+%    \begin{split}
+        1 & = & \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} \xfixed(z) exp(-\frac{z^2}{2}) dz \\ 
+        q & = & \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} \xfixed(z)^2 exp(-\frac{z^2}{2}) dz \\ 
+        \chi & = & \frac{1}{q^{n/2}}\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} \frac{\partial \xfixed (z)}{\partial z} exp(-\frac{z^2}{2}) dz
+%    \end{split}
+\end{eqnarray*}
 
 It should note that this method of finding $\xfixed$ yields only an approximate value and so the $q, \chi$ which are found are estimates of their true value. 
 
@@ -737,16 +749,29 @@ and still, accurately, predict instability. We go on to verify that
 the effect of $p, \alpha, \Gamma$ and $\tau$ are accurately captured
 by (\ref{eqn::Final}).
 
-We interpret (\ref{eqn::Final}), for given parameters, by determining how close the right hand side is to the stability boundary (i.e., how close the value is to zero). A choice of parameters which evaluates close to the stability boundary has a higher chance (by the analytic error) of being convergent than one which lies further from the boundary. Therefore, the heat-maps in Figure \ref{fig:theory} should be considered to show the probability of convergence for a choice of $(\alpha, \Gamma)$. Lighter regions denote a higher probability of convergence whereas darker regions are those whose values are further from zero and therefore show a lower probability of convergence.
+We interpret (\ref{eqn::Final}), for given parameters, by determining
+how close the right hand side is to the stability boundary (i.e., how
+close the value is to zero). A choice of parameters which evaluates
+close to the stability boundary has a higher chance (by the analytic
+error) of being convergent than one which lies further from the
+boundary. Therefore, the heat-maps in Figure \ref{fig:theory} should
+be considered to show the probability of convergence for a choice of
+$(\alpha, \Gamma)$. Lighter regions denote a higher probability of
+convergence whereas darker regions are those whose values are further
+from zero and therefore show a lower probability of convergence.
 
 \paragraph{Implication 3} can be visualised by noticing that the likelihood of convergence decreases (the heatmap becomes darker) as $\alpha$ increases, and similarly for $\tau$. This occurs independent of the choice of $N$ or $p$. 
 
 \paragraph{Implication 4} can similarly be inferred by the trend of convergence, which occurs only in varying $\alpha$. The choice of $\Gamma$
-makes almost no difference in the evaluation of (\ref{eqn::Final}). We anticipate that this is due to the restriction of $\Gamma$ to be in the range $[-1, 0]$. In this range, the scaling effect of $\Gamma^2$ is dominated by the $\alpha^4$ and $\tau^4$ terms which appear in (\ref{eqn::Final}).
+makes almost no difference in the evaluation of (\ref{eqn::Final}). We
+anticipate that this is due to the restriction of $\Gamma$ to be in
+the range $[-1, 0]$. In this range, the scaling effect of $\Gamma^2$
+is dominated by the $\alpha^4$ and $\tau^4$ terms which appear in
+(\ref{eqn::Final}).
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width = \linewidth]{Figures/pVariance.png}
+    \includegraphics[width = .75\linewidth]{Figures/pVariance.png}
     \caption{Evaluation of (\ref{eqn::Final}) for varying numbers of players $p$. Here, $\alpha$ is fixed at $0.02$, $\tau = 0.05$, $N = 2$ and $\Gamma = -1$. $p$ is varied from 2 to 12. We see that the value obtained by (\ref{eqn::Final}) tends away from zero monotonically.}
     \label{fig:pvariation}
 \end{figure}
@@ -799,13 +824,13 @@ the value of $\alpha$ and $\tau$ but not on $\Gamma$.
 In Figure \ref{fig:AlphaVariation}, we explicitly plot the trajectories taken by the action probabilities as two agents are trained on a game of $\Gamma = -0.5$. In the left figure, we choose $\alpha = 0.01$ whilst in the right we choose $\alpha = 0.05$. This gives a qualitative assessment of the behaviour at both extremes parameters considered. We note that the typical behaviour of the system is that the system first moves towards a fixed point and then varies in a pseudo-random manner within a vicinity of the fixed point. Critically though, the amount of variation in the case $\alpha = 0.05$ is greater than that of $\alpha = 0.01$. 
 
 \begin{figure}[t]
-    \includegraphics[width = \linewidth, center]{Figures/pVarianceExpt.png}
+    \includegraphics[width = .75\linewidth, center]{Figures/pVarianceExpt.png}
     \caption{Variation $V(t)$ about a fixed point as $p$ ranges from 2 - 6. $N = 2$, $\alpha = 0.02$, $\tau = 0.05$, $\Gamma = [-1, 0]$. The experiment is conducted for 10 choices of $\Gamma$ and the mean (line) is plotted alongside the standard deviation (shaded region).}
     \label{fig:pVarianceExpt}
 \end{figure}
 
 Finally, Figure \ref{fig:pVarianceExpt} plot the degree variation about the fixed point displayed as the number of players $p$ increases. The variation is determined by first allowing the game to iterate for 5000 steps, so that it can be assumed to have reached the vicinity of the fixed point. Then, the action probabilities are recorded for a further 5000 iterations. At the end of this second period, the variance of the actions are calculated as
-
+%
 \begin{equation*}
     V(t) = \frac{1}{N} \sum_i \frac{1}{5000} \sum_t x_i(t)^2 - \left[\frac{1}{5000} \sum_t x_i(t) \right]^2 .
 \end{equation*}
@@ -905,6 +930,8 @@ if you compile your document with the `\texttt{anonymous}' option.
 
 %%% The next two lines define, first, the bibliography style to be 
 %%% applied, and, second, the bibliography file to be used.
+
+\newpage
 
 \bibliographystyle{ACM-Reference-Format} 
 \bibliography{references}
