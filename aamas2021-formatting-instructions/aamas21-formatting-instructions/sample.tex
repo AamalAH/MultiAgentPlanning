@@ -175,7 +175,7 @@ perspective is that, when games are learnt and the assumptions of
 rationality and perfect information are lifted, games may not converge
 to an equilibrium. Instead, as shown in \cite{Sanders2018}, the
 dynamics may be more complex, and even chaotic (see
-Section~\ref{sec::DynamicalBehaviours}). The present work further
+Sec.~\ref{sec::DynamicalBehaviours}) \fb{Section $\to$ Sec.}. The present work further
 describes that the emergence of such behaviours depends on the
 parameters of the games and the learning algorithm. For the analysis
 of multi-agent systems whose behaviour is inter-dependent, it is
@@ -184,38 +184,115 @@ stable equilibrium. Without this, it is inherently impossible to
 predict the outcome of learning.
 
 \paragraph{Contribution}
-In this study, we will be considering the question: under what choice of parameters is a
-multi-agent system, which is trained on an iterated game using Q-Learning, likely to converge to an
-equilibrium as opposed to displaying complex, or unstable behaviours? In investigating this question, we will make the
-following assumptions:
+In this study, we will be considering the question: under what choice
+of parameters is a multi-agent system, which is trained on an iterated \fb{normal-form}
+game using Q-Learning, likely to converge to an equilibrium as opposed
+to displaying complex, or unstable behaviours? In investigating this
+question, we will make the following assumptions:
 
 \begin{enumerate}
-    \item There are a finite set of agent, though the size $p$ of the set is arbitrary. 
-    \item The agents have a large, but discrete, strategy space: during the theoretical study, we
-    will make the assumption that the number of actions $N$ goes to infinity.
-    \item The agents are homogeneous. This requires that all agents have the same parameters and are
-    trained using the same algorithm. Since this is typically the case in reinforcement learning
-    studies, it is not an unreasonable assumption, but does present an interesting avenue for future
-    work.
-    \item The agents are trained on stateless, normal form games (i.e. the environment is static).
+    \item There is a finite set of agent, though its size $p$ can be
+      arbitrarily large.
+      
+    \item The agents have a large, but discrete, strategy space:
+      during the theoretical study, we will make the assumption that
+      the number $N$ of actions goes to infinity.
+
+  \item The agents are homogeneous. This requires that all agents have
+    the same parameters and are trained using the same
+    algorithm. Since this is typically the case in reinforcement
+    learning studies, it is not an unreasonable assumption, but does
+    present an interesting avenue for future work.
+
+  \item The agents are trained on stateless, normal form games
+    (i.e., the environment is static).
 \end{enumerate}
+
+\fb{I would summarize here the main findings of the paper in 10-15 lines.}
 
 
 \subsection{Related Work}
 
-In this section we present an overview of the vast literature which considers the study of Reinforcement Learning (RL) from an evolutionary game dynamics perspective, as well as touching upon some important results and research within the field of game dynamics.
+In this section we present an overview of the vast literature which
+considers the study of reinforcement learning from an evolutionary
+game dynamics perspective, as well as touching upon some important
+results and research within the field of game dynamics.
 
-\paragraph{Evolutionary Game Dynamics} The theory of evolutionary game dynamics \cite{Morgenstern44} considers the case in which agents must repeatedly interact with one another. The outcome of this interaction depends on a payoff matrix; 'strong' strategies which maximise the reward are promoted whilst 'weaker' strategies diminish. The \textit{replicator dynamic} models this behaviour, and allows one to determine whether, after a number of iterations, the game is likely to converge to some fixed equilibrium and, if so, the probabilities with which strategies are played in this equilibrium. \cite{ShohamMultiagentFoundations} provides an excellent introduction to the replicator dynamic for the interested reader.
+\paragraph{Evolutionary Game Dynamics}
+The theory of evolutionary game dynamics \cite{Morgenstern44}
+considers the case in which agents must repeatedly interact with one
+another. The outcome of this interaction depends on a payoff matrix;
+'strong' strategies which maximise the reward are promoted whilst
+'weaker' strategies diminish. The \textit{replicator dynamic} models
+this behaviour, and allows one to determine whether, after a number of
+iterations, the game is likely to converge to some fixed equilibrium
+and, if so, the probabilities with which strategies are played in this
+equilibrium. \cite{ShohamMultiagentFoundations} provides an excellent
+introduction to the replicator dynamic for the interested reader.
 
-Analyses have been performed from the point of view of the replicator dynamic towards the various types of behaviours that can emerge from iterated games. Such games are considered imperfect, in that agents make decisions by attempting to anticipate their opponents' behaviour based on experience \cite{Galla2011}. \cite{Imhof2005} presents the observation that, in the game of Prisoner's Dilemma, cyclic behaviour emerges in which the optimal strategy cycles across defection, cooperation and tit-for-tat despite defection being the NE. \cite{Galla2011} builds on this notion by showing that, in fact, such behaviour is highly dependent on the presence of memory loss in the system. In the absence of memory loss, the learning converges to the NE as expected. However, as this parameter is increased, the stability of the NE is removed and other stable points are created. 
+Analyses have been performed from the point of view of the replicator
+dynamic towards the various types of behaviours that can emerge from
+iterated games. Such games are considered imperfect, in that agents
+make decisions by attempting to anticipate their opponents' behaviour
+based on experience \cite{Galla2011}. \cite{Imhof2005} presents the
+observation that, in the game of Prisoner's Dilemma, cyclic behaviour
+emerges in which the optimal strategy cycles across defection,
+cooperation and tit-for-tat despite defection being the
+NE. \cite{Galla2011} builds on this notion by showing that, in fact,
+such behaviour is highly dependent on the presence of memory loss in
+the system. In the absence of memory loss, the learning converges to
+the NE as expected. However, as this parameter is increased, the
+stability of the NE is removed and other stable points are created.
 
-Taking this notion even further,  \cite{Galla2013} describes an investigation of two-person iterated games in which the players learn using \textit{Experience Weighted Attraction} (EWA), a form of reinforcement learning whose analysis typically falls under the purview of experimental economics \cite{Camerer2009}. Through numerical simulations, the authors were able to show that, once again, the emergence of chaos and cycles (see \cite{Strogatz2000} for details on chaotic and periodic motion), is dependent on the choice of parameters. A rigorous theoretical analysis, which applies the techniques presented in \cite{Opper1992}, of the replicator dynamic corresponding to EWA presented a method for characterising the regions in parameter space in which a game is likely to converge, exhibit chaos or limit cycles. More recently, the authors presented an extended study in \cite{Sanders2018}, in which this analysis was extended towards a generic $p$-player game, which showed that chaotic dynamics are more likely to be observed as the number of players \textit{p} increases.
+Taking this notion even further, \cite{Galla2013} describes an
+investigation of two-person iterated games in which the players learn
+using \textit{Experience Weighted Attraction} (EWA), a form of
+reinforcement learning whose analysis typically falls under the
+purview of experimental economics \cite{Camerer2009}. Through
+numerical simulations, the authors were able to show that, once again,
+the emergence of chaos and cycles (see \cite{Strogatz2000} for details
+on chaotic and periodic motion), is dependent on the choice of
+parameters. A rigorous theoretical analysis, which applies the
+techniques presented in \cite{Opper1992}, of the replicator dynamic
+corresponding to EWA presented a method for characterising the regions
+in parameter space in which a game is likely to converge, exhibit
+chaos or limit cycles. More recently, the authors presented an
+extended study in \cite{Sanders2018}, in which this analysis was
+extended towards a generic $p$-player game, which showed that chaotic
+dynamics are more likely to be observed as the number of players
+\textit{p} increases.
 
-It is evident, therefore, that in the case of learning on iterated games, convergence to stable equilibria cannot be taken for granted and, in fact, is rare. It would therefore be fruitful to bring these analyses from EGT to better understand Reinforcement Learning from an AI perspective.
+It is evident, therefore, that in the case of learning on iterated
+games, convergence to stable equilibria cannot be taken for granted
+and, in fact, is rare. It would therefore be fruitful to bring these
+analyses from EGT to better understand Reinforcement Learning from an
+AI perspective.
 
-\paragraph{Dynamics of RL} In \cite{Tuyls2006AnGames}, the authors are able to derive a relation between Q-Learning (see \cite{Barber2012}) and the replicator dynamic. In doing so, the authors present an evolutionary model which accurately predicts the dynamics of Q-Learning. This sprung forward a vast array of literature which perform similar derivations for various reinforcement learning algorithms. \cite{Bloembergen2015} presents an excellent review of these. In particular it should be noted that many of these studies focus on normal form games, in which the payoff matrix does not change (i.e. the environment is static). Recent work, such as \cite{Hennes2008}, extends this work towards multi-state games, though this is restricted to 2 state games. Similarly, \cite{Galstyan2013}, extends the work in \cite{Tuyls2006AnGames} towards games with continuous action spaces. Most recently, \cite{Hu2019} considers Q-learning in the mean-field limit, in which the strategies of populations of agents are considered. 
+\paragraph{Dynamics of RL}
+In \cite{Tuyls2006AnGames}, the authors are able to derive a relation
+between Q-Learning (see \cite{Barber2012}) and the replicator
+dynamic. In doing so, the authors present an evolutionary model which
+accurately predicts the dynamics of Q-Learning. This sprung forward a
+vast array of literature which perform similar derivations for various
+reinforcement learning algorithms. \cite{Bloembergen2015} presents an
+excellent review of these. In particular it should be noted that many
+of these studies focus on normal form games, in which the payoff
+matrix does not change (i.e. the environment is static). Recent work,
+such as \cite{Hennes2008}, extends this work towards multi-state
+games, though this is restricted to 2 state games. Similarly,
+\cite{Galstyan2013}, extends the work in \cite{Tuyls2006AnGames}
+towards games with continuous action spaces. Most recently,
+\cite{Hu2019} considers Q-learning in the mean-field limit, in which
+the strategies of populations of agents are considered.
 
-The relation between RL and the replicator dynamic allows for the assumption of convergence in reinforcement learning to be lifted and instead for the emergence of more complex behaviour to be examined. In particular, this study aims to perform a similar analysis to that in \cite{Sanders2018} and establish the regions in parameter space in which Q-Learning converges to stable fixed points and where the learning is unstable. To the best of our knowledge, no such work exists in this context. 
+The relation between RL and the replicator dynamic allows for the
+assumption of convergence in reinforcement learning to be lifted and
+instead for the emergence of more complex behaviour to be examined. In
+particular, this study aims to perform a similar analysis to that in
+\cite{Sanders2018} and establish the regions in parameter space in
+which Q-Learning converges to stable fixed points and where the
+learning is unstable. To the best of our knowledge, no such work
+exists in this context.
 
 \newpage
 
