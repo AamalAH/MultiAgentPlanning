@@ -219,7 +219,7 @@ system. In addition, we find that regardless of the choice of these
 parameters, the likelihood of unstable behaviours increases as the
 number  $p$ of players in the game increases.
 
-\subsection{Related Work}
+\subsection*{Related Work}
 
 In this section we present an overview of the vast literature which
 considers the study of reinforcement learning from an evolutionary
@@ -235,73 +235,90 @@ whilst 'weaker' strategies diminish. The \textit{replicator dynamic}
 models this behaviour, and allows one to determine whether, after a
 number of iterations, the game is likely to converge to some fixed
 equilibrium and, if so, the probabilities with which strategies are
-played in this equilibrium (see \cite{ShohamMultiagentFoundations}
-for an excellent introduction to the replicator dynamics).
+played in this equilibrium \cite{ShohamMultiagentFoundations}.
+%for an excellent introduction to the replicator dynamics).
 
-Analyses have been performed from the point of view of the replicator
-dynamic towards the various types of behaviours that can emerge from
+Analyses have been performed from the perspective of the replicator
+dynamic w.r.t.~the various types of behaviours that can emerge from
 iterated games. Such games are considered imperfect, in that agents
 make decisions by attempting to anticipate their opponents' behaviour
 based on experience \cite{Galla2011}. \cite{Imhof2005} presents the
-observation that, in the game of Prisoner's Dilemma, cyclic behaviour
+observation that, in the Prisoner's Dilemma, cyclic behaviour
 emerges in which the optimal strategy cycles across defection,
 cooperation and tit-for-tat despite defection being the
 NE. In \cite{Galla2011}, Galla builds on this observation by showing that, in fact,
 such behaviour is highly dependent on the presence of memory loss in
 the system. In the absence of memory loss, the learning converges to
-the NE as expected.However, as this parameter is increased, the
-stability of the NE is removed and other stable points are created.
+the NE as expected.
+%However, as this parameter is increased, the stability of the NE is
+%removed and other stable points are created.
 
-Taking the notion of parameter dependence even further, \cite{Galla2013}
-describes an analysis of two-person iterated games in which the
+Taking the notion of parameter dependence further, \cite{Galla2013}
+describes an analysis of two-player iterated games in which the
 players learn using \textit{experience weighted attraction} (EWA), a
 form of reinforcement learning typically applied in experimental
 economics \cite{Camerer2009}. Through numerical simulations, the
-authors were able to show that the emergence of chaos and cycles is
-dependent on the choice of parameters (see \cite{Strogatz2000} for
-details on chaotic and periodic motion). A rigorous theoretical
-analysis of the replicator dynamic corresponding to EWA, which applies
-the techniques in \cite{Opper1992}, presented a method for
-characterising the regions in parameter space in which a game is
-likely to converge, exhibit chaos or limit cycles. More recently, the
-same authors presented an extended study in \cite{Sanders2018}, in which
-this analysis was extended towards a generic $p$-player game, which
-showed that chaotic dynamics are more likely to be observed as the
-number of players \textit{p} increases. By contrast to the present work, \cite{Barber2012} focuses on the analysis of the EWA algorithm, while we consider the Q-Learning \cite{Barber2012} algorithm.
+authors are able to show that the emergence of chaos and cycles is
+dependent on the choice of parameters.
+%(see \cite{Strogatz2000} for
+%details on chaotic and periodic motion).
+A rigorous theoretical analysis of the replicator dynamic
+corresponding to EWA, which applies the techniques in
+\cite{Opper1992}, results in a method for characterising the regions
+in parameter space in which a game is likely to converge, exhibit
+chaos or limit cycles. More recently, the same authors presented an
+extended study in \cite{Sanders2018}, in which the same analysis is
+applied to generic $p$-player games, which showed that chaotic
+dynamics are more likely to be observed as the number $p$ of players
+increases. Differently from this line, we here consider 
+%By contrast to the present work, \cite{Barber2012} focuses
+%on the analysis of the EWA algorithm, while we consider
+ Q-Learning \cite{Barber2012}, which is one of the most popular
+ algorithms in RL.
 
 It is evident, therefore, that in the case of learning on iterated
 games, convergence to stable equilibria cannot be taken for granted
 and, in fact, is rare. It would therefore be fruitful to bring these
-analyses from EGT to better understand Reinforcement Learning from an
+analyses from EGT to better understand reinforcement learning from an
 AI perspective.
 
 \paragraph{Dynamics of RL}
 In \cite{Tuyls2006AnGames}, the authors are able to derive a relation
-between Q-Learning (see \cite{Barber2012}) and the replicator
+between Q-Learning
+%(see \cite{Barber2012})
+and the replicator
 dynamic. In doing so, the authors present an evolutionary model which
 accurately predicts the dynamics of Q-Learning. This sprung forward a
-vast array of literature which perform similar derivations for various
-reinforcement learning algorithms (see \cite{Bloembergen2015} for an
-excellent literature review). In particular it should be noted that
+vast array of literature which performs similar derivations for various
+RL algorithms \cite{Bloembergen2015}.
+%for an
+%excellent literature review).
+In particular,
+%it should be noted that
 many of these studies focus on normal form games, in which the payoff
 matrix does not change (i.e., the environment is static). Recent work,
 such as \cite{Hennes2008}, extends this framework towards multi-state
 games.
 %though this is restricted to 2 state games.
-Similarly, \cite{Galstyan2013}, extends the work in
+Similarly, \cite{Galstyan2013} extends the work in
 \cite{Tuyls2006AnGames} towards games with continuous action
-spaces. Most recently, \cite{Hu2019} considers Q-learning in the
+spaces. More recently, \cite{Hu2019} considers Q-learning in the
 mean-field limit, in which the strategies of populations of agents are
 considered, rather than individuals.
 
-The relation between RL and the replicator dynamic allows for the
-assumption of convergence in reinforcement learning to be lifted and
-instead for the emergence of more complex behaviour to be examined. In
-particular, this study aims to perform a similar analysis to that in
-\cite{Sanders2018} and establish the regions in parameter space in
-which Q-Learning converges to stable fixed points and where the
-learning is unstable. In doing so, we extend the dynamics considered by Tuyls et al. towards a general $p$-player scenario, rather than only two players, thereby allowing an analysis of how the number of players in a game affects its stability. To the best of our knowledge, no such work
-exists in this context.
+The relation between reinforcement learning and the replicator dynamic
+allows for the assumption of convergence in RL to be lifted and
+instead for the emergence of more complex behaviours to be
+examined. In particular, this study aims to perform an analysis
+similarly to \cite{Sanders2018} and establish the regions in parameter
+space in which Q-Learning converges to stable fixed points.
+%and where the learning is unstable.
+In doing so, we extend the dynamics considered by Tuyls et al.~to
+a general $p$-player setting, rather than two players only, thereby
+allowing an analysis of how the number of players in a game affects
+its stability.
+%To the best of our knowledge, this is the first work exists in
+%this context.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
