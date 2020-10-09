@@ -72,7 +72,7 @@
 
 %%% Use this command to specify the title of your paper.
 
-\title[InstabilityinMARL]{Stability and Chaos in Multi-Agent Reinforcement Learning}
+\title[InstabilityinMARL]{Stability and Chaos in Multi-agent Reinforcement Learning}
 
 %%% Provide names, affiliations, and email addresses for all authors.
 
@@ -147,18 +147,41 @@ framework for allowing agents to learn optimal strategies when trained
 on an iterated task
 %For a particularly strong example of this see
 \cite{Vinyals2019}. However, for the realisation of complex tasks,
-such as air traffic control, market negotiations and multi-robot
+such as air traffic control, market negotiations, and multi-robot
 coordination, it is required that the system be modelled as a
-multi-agent system (MAS). Such systems are not as well understood
-since a given agent is tasked with optimising a reward function which
-depends not only on a non-stationary environment, but also on the
-actions of other, possibly loosely coupled, agents
-\cite{SchwartzMulti-agentApproach}.
+multi-agent system (MAS). Such systems are not as well-understood as
+single-agent systems in RL, since a given agent is tasked with
+optimising a reward function which depends not only on a
+non-stationary environment, but also on the actions of other, possibly
+loosely coupled, agents \cite{SchwartzMulti-agentApproach}.
 
-It is, therefore, of paramount importance to develop a strong theoretical understanding of multi-agent reinforcement learning (MARL) to allow an {\em a-priori} understanding of the behaviour of a given learning algorithm. Fortunately, the study of MAS is not unique to the field of AI and has been extensively studied from the point of view of economics and game theory as well \cite{ShohamMultiagentFoundations}. In particular, the study of evolutionary game theory (EGT) considers the problem of a MAS which is repeatedly exposed to an iterated game. 
-his idea shares a strong resemblance with MARL and, in fact, in \cite{Tuyls2006AnGames}, it was shown that, techniques from EGT may be fruitfully used to analyse Q-Learning \cite{Sutton2018}.
+It is, therefore, of paramount importance to develop a strong
+theoretical understanding of multi-agent reinforcement learning (MARL)
+to allow an {\em a priori} understanding of the behaviour of a given
+learning algorithm. Fortunately, the study of MAS is not unique to the
+field of AI and has been extensively investigated from the point of view of
+economics and game theory as well
+\cite{ShohamMultiagentFoundations}. In particular,
+%the study of
+evolutionary game theory (EGT) considers the problem of a MAS which is
+repeatedly exposed to an iterated game. This idea shares a strong
+resemblance with MARL and, in fact, in \cite{Tuyls2006AnGames} it was
+shown that techniques from EGT may be fruitfully applied to the analysis of
+Q-Learning \cite{Sutton2018}.
 
-An important result in modelling such multi agent systems from the EGT perspective is that, when games are learnt and the assumptions of rationality and perfect information are lifted, games may not converge to an equilibrium. Instead, as shown in \cite{Sanders2018}, the dynamics may be more complex, and even chaotic (see Section~\ref{sec::DynamicalBehaviours}). The present work further describes that the emergence of such behaviours depends on the parameters of the games and the learning algorithm. For the analysis of multi-agent systems whose behaviour is inter-dependent, it is desirable that the system be such that the game convergence to a stable equilibrium. Without this, it is inherently impossible to predict the outcome of learning.  
+An important result in modelling such multi-agent systems \fb{check
+  consistency of multi agent $\to$ multi-agent.} from the EGT
+perspective is that, when games are learnt and the assumptions of
+rationality and perfect information are lifted, games may not converge
+to an equilibrium. Instead, as shown in \cite{Sanders2018}, the
+dynamics may be more complex, and even chaotic (see
+Section~\ref{sec::DynamicalBehaviours}). The present work further
+describes that the emergence of such behaviours depends on the
+parameters of the games and the learning algorithm. For the analysis
+of multi-agent systems whose behaviour is inter-dependent, it is
+desirable that the system be such that the game convergence to a
+stable equilibrium. Without this, it is inherently impossible to
+predict the outcome of learning.
 
 \paragraph{Contribution}
 In this study, we will be considering the question: under what choice of parameters is a
