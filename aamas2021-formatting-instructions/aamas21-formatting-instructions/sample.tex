@@ -141,6 +141,7 @@ by the learning dynamics.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Introduction}
+\label{sec::Intro}
 
 Single agent reinforcement learning (RL) is a well-established
 framework for allowing agents to learn optimal strategies when trained
@@ -169,13 +170,12 @@ resemblance with MARL and, in fact, in \cite{Tuyls2006AnGames} it was
 shown that techniques from EGT may be fruitfully applied to the analysis of
 Q-Learning \cite{Sutton2018}.
 
-An important result in modelling such multi-agent systems \fb{check
-  consistency of multi agent $\to$ multi-agent.} from the EGT
+An important result in modelling such multi-agent systems from the EGT
 perspective is that, when games are learnt and the assumptions of
 rationality and perfect information are lifted, games may not converge
 to an equilibrium. Instead, as shown in \cite{Sanders2018}, the
 dynamics may be more complex, and even chaotic (see
-Sec.~\ref{sec::DynamicalBehaviours}) \fb{Section $\to$ Sec.}. The present work further
+Sec.~\ref{sec::DynamicalBehaviours}). The present work further
 describes that the emergence of such behaviours depends on the
 parameters of the games and the learning algorithm. For the analysis
 of multi-agent systems whose behaviour is inter-dependent, it is
@@ -185,8 +185,7 @@ predict the outcome of learning.
 
 \paragraph{Contribution}
 In this study, we will be considering the question: under what choice
-of parameters is a multi-agent system, which is trained on an iterated \fb{normal-form}
-game using Q-Learning, likely to converge to an equilibrium as opposed
+of parameters is a multi-agent system, which is trained on an iterated normal-form game using Q-Learning, likely to converge to an equilibrium as opposed
 to displaying complex, or unstable behaviours? In investigating this
 question, we will make the following assumptions:
 
@@ -208,8 +207,7 @@ question, we will make the following assumptions:
     (i.e., the environment is static).
 \end{enumerate}
 
-\fb{I would summarize here the main findings of the paper in 10-15 lines.}
-
+Through our analysis and experiments we find that likelihood of displaying unstable dynamics increases as the \textit{step length} $\alpha$ and \textit{intensity of choice} $\tau$ parameters in the Q-Learning algorithm \cite{Barber2012} increase. However, the correlation between payoffs $\Gamma$, which measures how cooperative or competitive a game is, does not affect the stability of the system. In addition, we find that regardless of the choice of these parameters, the likelihood of unstable behaviours increases as the number of players $p$ in the game increase. 
 
 \subsection{Related Work}
 
@@ -238,13 +236,13 @@ based on experience \cite{Galla2011}. \cite{Imhof2005} presents the
 observation that, in the game of Prisoner's Dilemma, cyclic behaviour
 emerges in which the optimal strategy cycles across defection,
 cooperation and tit-for-tat despite defection being the
-NE. \cite{Galla2011} builds on this observation by showing that, in fact,
+NE. In \cite{Galla2011}, Galla builds on this observation by showing that, in fact,
 such behaviour is highly dependent on the presence of memory loss in
 the system. In the absence of memory loss, the learning converges to
-the NE as expected. \fb{I think we can remove this last couple of lines if need be: However, as this parameter is increased, the
-stability of the NE is removed and other stable points are created.}
+the NE as expected.However, as this parameter is increased, the
+stability of the NE is removed and other stable points are created.
 
-Taking this notion \fb{which one?} even further, \cite{Galla2013}
+Taking the notion of parameter dependence even further, \cite{Galla2013}
 describes an analysis of two-person iterated games in which the
 players learn using \textit{experience weighted attraction} (EWA), a
 form of reinforcement learning typically applied in experimental
@@ -259,7 +257,7 @@ likely to converge, exhibit chaos or limit cycles. More recently, the
 same authors presented an extended study in \cite{Sanders2018}, in which
 this analysis was extended towards a generic $p$-player game, which
 showed that chaotic dynamics are more likely to be observed as the
-number of players \textit{p} increases.
+number of players \textit{p} increases. By contrast to the present work, \cite{Barber2012} focuses on the analysis of the EWA algorithm, while we consider the Q-Learning \cite{Barber2012} algorithm.
 
 It is evident, therefore, that in the case of learning on iterated
 games, convergence to stable equilibria cannot be taken for granted
@@ -292,10 +290,8 @@ instead for the emergence of more complex behaviour to be examined. In
 particular, this study aims to perform a similar analysis to that in
 \cite{Sanders2018} and establish the regions in parameter space in
 which Q-Learning converges to stable fixed points and where the
-learning is unstable. To the best of our knowledge, no such work
+learning is unstable. In doing so, we extend the dynamics considered by Tuyls et al. towards a general $p$-player scenario, rather than only two players, thereby allowing an analysis of how the number of players in a game affects its stability. To the best of our knowledge, no such work
 exists in this context.
-
-\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -315,7 +311,7 @@ perform our analysis.
 \subsection{Dynamical Behaviours}
 \label{sec::DynamicalBehaviours}
 
-    As discussed in the previous section, when learning on iterated
+    As discussed in the Sec. \ref{sec::Intro}, when learning on iterated
     games, player strategies may exhibit much more complex behaviours
     than convergence to a Nash Equilibrium (NE), including convergence
     to a unique equilibrium (though not always to an NE), convergence
@@ -476,7 +472,7 @@ $\xmu{i}{\mu}$ receives all converge to the same value across its action
 space. Therefore, the system must be scaled to ensure appreciable
 differences across actions, so that the agent can choose its actions
 appropriately (see the discussion in \cite{Sanders2018} or
-Section S2.2 for further details). Accordingly we choose
+Sec. S2.2 for further details). Accordingly we choose
 scaled variables (denoted with a tilde) as
 %
 \begin{eqnarray*}
@@ -506,7 +502,7 @@ As mentioned, we now
 %wish to
 generalise these dynamics to account for all the possible realisations
 of the payoff matrix. To do this, we assert that the payoff elements
-(after scaling) are generated by a multivariate Gaussian distribution
+(after scaling) are generated by a multi-variate Gaussian distribution
 with mean zero and covariance given as
 %
 \begin{equation}
@@ -526,7 +522,7 @@ determining the average.
 \subsection{The Effective Dynamics}
 
 We then use a generating functional approach as outlined in
-\cite{Mezard1986} to average the dynamics over this multivariate
+\cite{Mezard1986} to average the dynamics over this multi-variate
 Gaussian. The generating functional is a method derived from
 statistical mechanics which allows for expectations to be taken over
 equations of motion and, in particular, allows for the analysis of
@@ -557,7 +553,7 @@ for our equation of motion yields
 \end{split}
 \end{equation}
 }
-The last two exponentials contain the payoffs of the game. These are randomly generated using a multivariate gaussian and then held fixed for the rest of the game. As such these comprise the aforementioned 'quenched disorder'. We will average over this quenched disorder (and therefore average over all possible realisations of payoff matrices) using the mean and covariance expressions given in (\ref{eqn::Payoffs}). We define $Q$ to be the product of the second and third exponentials in (\ref{eqn::separatePayoffs}) 
+The last two exponentials contain the payoffs of the game. These are randomly generated using a multi-variate gaussian and then held fixed for the rest of the game. As such these comprise the aforementioned 'quenched disorder'. We will average over this quenched disorder (and therefore average over all possible realisations of payoff matrices) using the mean and covariance expressions given in (\ref{eqn::Payoffs}). We define $Q$ to be the product of the second and third exponentials in (\ref{eqn::separatePayoffs}) 
 %
 
 \begin{equation}
@@ -579,7 +575,7 @@ In which
 %    \end{split}
 \end{eqnarray*}
 
-By taking this average (Section S2.3), we obtain the \textit{effective dynamics}
+By taking this average (Sec. S2.3), we obtain the \textit{effective dynamics}
 
 \begin{equation}
     \label{eqn::EffectiveDynamics}
@@ -658,7 +654,7 @@ perturbations, we arrive at the dynamics
 We then examine the
 long-term behaviour of the perturbation $\xpert$. by taking
 the Fourier transform of (\ref{eqn::Linearised}) and analysing its
-behaviour at $\omega = 0$. After some manipulation (Section S4), this gives
+behaviour at $\omega = 0$. After some manipulation (Sec. S4), this gives
 
 \begin{equation}
 \begin{split}
@@ -683,7 +679,7 @@ It should be noted that, to arrive at this result, we have had to take the assum
     \label{fig:theory}
 \end{figure}
 
-The fixed point condition (\ref{eqn::Final}) yields a number of testable implications, of which we test the validity through in the subsequent section. These implications are as follows.
+The fixed point condition (\ref{eqn::Final}) yields a number of testable implications, of which we subsequently test the validity. These implications are as follows.
 
 \begin{enumerate}
     \item A trivial result is that the game is everywhere convergent (i.e. regardless of the choice of $\Gamma, N, p$) for the cases of $\alpha$ = 0 and/or $\tau$ = 0.  We see that choosing these values would result in the right hand side of (\ref{eqn::Final}) yielding a value of zero which falls within the stable region.
@@ -706,7 +702,7 @@ We illustrate these implications in Figure \ref{fig:theory} which plots the valu
 
 It should note that this method of finding $\xfixed$ yields only an approximate value and so the $q, \chi$ which are found are estimates of their true value. 
 
-We consider each of the implications (2)-(5) from the previous section
+We consider each of the implications (2)-(5) from the Sec. \ref{sec::Theory}
 in turn, choosing to forego illustrating (1) as it can be seen immediately
 from (\ref{eqn::Final}). $\tau$ is held fixed
 at $0.05$ and vary $\Gamma$ in
@@ -762,7 +758,7 @@ makes almost no difference in the evaluation of (\ref{eqn::Final}). We anticipat
 
 \section{Experimental Evaluation} \label{sec:exev}
 
-In this section, we describe and discuss the numerical experiments we use to verify the implications described in the discussion of Section \ref{sec::Theory}. We first describe how these experiments were conducted and then, having presented the results in Figures \ref{fig:NumericalExperiments} and \ref{fig:pVarianceExpt}, we discuss the correlation with the theory.
+In this section, we describe and discuss the numerical experiments we use to verify the implications described in the discussion of Sec. \ref{sec::Theory}. We first describe how these experiments were conducted and then, having presented the results in Figures \ref{fig:NumericalExperiments} and \ref{fig:pVarianceExpt}, we discuss the correlation with the theory.
 
 \subsection{Construction of Numerical Experiments}
 
@@ -795,7 +791,7 @@ the value of $\alpha$ and $\tau$ but not on $\Gamma$.
 \end{figure}
 
 \begin{figure}[t]
-    \includegraphics[width = 1.1 \linewidth, center]{Figures/a5e2var.png}
+    \includegraphics[width = 0.75 \linewidth, center]{Figures/alphavar5e2.png}
     \caption{The trajectories of action probabilities for 2 players with 5 actions trained on a game of $\Gamma = -0.5$ and $\tau = 0.05$. (Left) $\alpha = 0.01$, (Right) $\alpha = 0.05$.}
     \label{fig:AlphaVariation}
 \end{figure}

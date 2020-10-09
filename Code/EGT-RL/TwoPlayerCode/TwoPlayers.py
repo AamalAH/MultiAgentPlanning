@@ -7,9 +7,9 @@ from tqdm import tqdm
 # alpha = .1
 gamma = .1
 Gamma = 0.1
-tau = 1
+tau = 0.05
 
-nActions = 2
+nActions = 5
 
 delta_0 = 1e-3
 nSim = 15
@@ -37,10 +37,10 @@ def generateGames(gamma, nSim, nAct):
     for i in range(nSim):
         rewards = np.random.multivariate_normal(np.zeros(2 * nElements), cov=cov)
 
-        # rewardAs = np.dstack((rewardAs, rewards[0:nElements].reshape((nAct, nAct))))
-        rewardAs = np.dstack((rewardAs, np.array([[1, 5], [0, 3]])))
-        # rewardBs = np.dstack((rewardBs, rewards[nElements:].reshape((nAct, nAct)).T))
-        rewardBs = np.dstack((rewardBs, np.array([[1, 0], [5, 3]])))
+        rewardAs = np.dstack((rewardAs, rewards[0:nElements].reshape((nAct, nAct))))
+        # rewardAs = np.dstack((rewardAs, np.array([[1, 5], [0, 3]])))
+        rewardBs = np.dstack((rewardBs, rewards[nElements:].reshape((nAct, nAct)).T))
+        # rewardBs = np.dstack((rewardBs, np.array([[1, 0], [5, 3]])))
     return [rewardAs[:, :, 1:], rewardBs[:, :, 1:]]
 
 
@@ -80,7 +80,7 @@ def getDelta(qValues0, qValues1, nSim):
 plotExpo = []
 
 for alpha in np.linspace(1e-2, 5e-2, num=1):
-    for Gamma in np.linspace(-1, 0, num=1):
+    for Gamma in np.linspace(-0.5, 0, num=1):
 
         payoffs = generateGames(Gamma, nSim, nActions)
         allActions = []
@@ -96,9 +96,8 @@ allActions = np.array(allActions)
 fig = plt.figure()
 ax1 = fig.add_subplot(111)
 
-for i in range(nSim):
-    plt.plot(allActions[:, i, 0, 0], allActions[:, i, 1, 0])
-
+plt.plot(allActions[:, 0, 0, 0], allActions[:, 0, 1, 0])
+plt.rc('axes', labelsize=12)
 plt.xlabel('Player 1 Action 1')
 plt.ylabel('Player 2 Action 1')
-plt.xlim([0, 1]), plt.ylim([0, 1]), plt.show()
+plt.xlim([0.19, 0.21]), plt.ylim([0.19, 0.21]), plt.show()
