@@ -851,13 +851,45 @@ the safe convergence of learning.
 
 \section{Conclusion}
 
-In this study, we characterise the behaviours of Q-Learning in $p$-player, $N$-action games. To do this, we analyse the replicator model of Q-Learning derived by Tuyls et al. Specifically, we search for the regions in parameter space where the dynamics are expected to converge to a stable equilibrium and those where learning is unstable. This yields a number of important results. We find that convergence to a unique fixed point is found for low values of $\alpha$, the \textit{step length} of the algorithm and for negatively correlated payoff matrices, though the strength of correlation $\Gamma$ does not influence stability. As $\alpha$ increases, the likelihood of convergence decreases. The same is true for the \textit{intensity of choice} parameter $\tau$. Our analysis also shows that the likelihood of convergence decreases, regardless of parameter choice as the number of players $p$ in the system increases.
+In this study, we made a first contribution towards the
+characterisation of the behaviours of agents learning how to play
+$p$-player, $N$-action games through Q-Learning. To this end, we
+analysed the replicator model of Q-Learning derived in \cite{Tuyls2006AnGames}. Specifically, we searched for the regions in parameter space
+where the dynamics are expected to converge to a stable equilibrium
+and those where learning is unstable. This yielded a number of
+important results. We showed that convergence to a unique fixed point is
+found for low values of $\alpha$, the \textit{step length} of the
+algorithm, and for negatively correlated payoff matrices, though the
+strength of correlation $\Gamma$ does not influence stability. As
+$\alpha$ increases, the likelihood of convergence decreases. The same
+is true for the \textit{intensity of choice} parameter $\tau$. Our
+analysis also shows that the likelihood of convergence decreases,
+regardless of parameter choice as the number of players $p$ in the
+system increases.
 
-\subsection*{Future Work}
+\paragraph{Future Work}
+Our first aim is to verify the analytic results at a finer resolution
+and by averaging over a greater number of payoff realisations. This
+will give a greater insight into the boundary between convergent and
+non-convergent behaviour and allow for practitioners to choose their
+parameters in such a way that convergence to a (possibly unique) fixed
+point is expected. In addition we noted that one of the conclusions of
+our study is that convergence to a unique fixed point is rare in
+Q-Learning. In fact, complex behaviours (such as the existence of
+multiple fixed points, limit cycles, and chaos) are more likely. We,
+therefore, aim to characterise these complex behaviours in parameter
+space both theoretically and numerically.
 
-Our first aim is to verify the analytic result at a finer resolution and by averaging over a greater number of payoff realisations. This will give a greater insight into the boundary between convergent and non-convergent behaviour and allow for practitioners to choose their parameters in such a way that convergence to a unique fixed point is expected. In addition we noted that one of the conclusions to our study is that convergence to a unique fixed point is rare in Q-Learning. In fact, complex behaviour (such as the existence of multiple fixed points, limit cycles and chaos) is more likely. We, therefore, aim to characterise these complex behaviours in parameter space both theoretically and numerically.
-
-The present work gives a first step towards considering the stability of Multi-Agent Reinforcement Learning and focuses on the limiting case of stateless normal-form games played by homogeneous agents. As research into the dynamics of Reinforcement Learning algorithms progresses, it would be prudent to apply this analysis to various other algorithm. Algorithms whose dynamics are established, and are therefore open to a stability analysis, include piecewise Q-Learning and Cross Learning. This would provide a strong method by which to compare and provide safety guarantees to different algorithms for a particular use case. 
+The present work represents a first step towards considering the stability
+of multi-agent reinforcement learning and focuses on the limiting case
+of stateless normal-form games played by homogeneous agents. As
+research into the dynamics of RL algorithms
+progresses, it would be prudent to apply this analysis to various
+other algorithm. Algorithms whose dynamics are established, and are
+therefore open to a stability analysis, include piecewise Q-Learning
+and Cross Learning. This would provide a strong method by which to
+compare and provide safety guarantees to different algorithms for a
+particular use case.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
