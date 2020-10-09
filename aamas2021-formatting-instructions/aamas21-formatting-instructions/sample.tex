@@ -116,7 +116,7 @@ by the learning dynamics.
 %%% Use this command to specify a few keywords describing your work.
 %%% Keywords should be separated by commas.
 
-\keywords{Game Theory, Reinforcement Learning, Dynamical Systems}
+\keywords{Reinforcement Learning, Dynamical Systems, Game Theory.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -142,8 +142,18 @@ by the learning dynamics.
 
 \section{Introduction}
 
-Single agent reinforcement learning (RL) is a well established framework for allowing agents to learn optimal strategies when trained on an iterated task 
-For a particularly strong example of this see \cite{Vinyals2019}. However, for the realisation of complex tasks, such as air traffic control, market negotiations and multi-robot coordination, it is required that the system be modelled as a multi-agent system (MAS). Such systems are not as well understood since a given agent is tasked with optimising a reward function which depends not only on a non-stationary environment, but also on the actions of other, possibly loosely coupled, agents \cite{SchwartzMulti-agentApproach}. 
+Single agent reinforcement learning (RL) is a well-established
+framework for allowing agents to learn optimal strategies when trained
+on an iterated task
+%For a particularly strong example of this see
+\cite{Vinyals2019}. However, for the realisation of complex tasks,
+such as air traffic control, market negotiations and multi-robot
+coordination, it is required that the system be modelled as a
+multi-agent system (MAS). Such systems are not as well understood
+since a given agent is tasked with optimising a reward function which
+depends not only on a non-stationary environment, but also on the
+actions of other, possibly loosely coupled, agents
+\cite{SchwartzMulti-agentApproach}.
 
 It is, therefore, of paramount importance to develop a strong theoretical understanding of multi-agent reinforcement learning (MARL) to allow an {\em a-priori} understanding of the behaviour of a given learning algorithm. Fortunately, the study of MAS is not unique to the field of AI and has been extensively studied from the point of view of economics and game theory as well \cite{ShohamMultiagentFoundations}. In particular, the study of evolutionary game theory (EGT) considers the problem of a MAS which is repeatedly exposed to an iterated game. 
 his idea shares a strong resemblance with MARL and, in fact, in \cite{Tuyls2006AnGames}, it was shown that, techniques from EGT may be fruitfully used to analyse Q-Learning \cite{Sutton2018}.
@@ -184,6 +194,7 @@ It is evident, therefore, that in the case of learning on iterated games, conver
 
 The relation between RL and the replicator dynamic allows for the assumption of convergence in reinforcement learning to be lifted and instead for the emergence of more complex behaviour to be examined. In particular, this study aims to perform a similar analysis to that in \cite{Sanders2018} and establish the regions in parameter space in which Q-Learning converges to stable fixed points and where the learning is unstable. To the best of our knowledge, no such work exists in this context. 
 
+\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -222,7 +233,7 @@ perform our analysis.
 
     \begin{figure}[t]
     \centering
-    \includegraphics[width = 0.8 \linewidth]{Figures/DynamicalBehaviours.png}
+    \includegraphics[width = \linewidth]{Figures/DynamicalBehaviours.png}
     \caption{Evaluation of (\label{fig::DynamicalBehaviours} Different types of dynamical behaviour
        displayed
         by learning agents. Here the $x$-axis (resp.~$y$-axis) is the probability with which agent 1 (resp.~agent 2) chooses a given action. (Top Left) Figure drawn from \cite{Tuyls2006AnGames}.
@@ -638,7 +649,7 @@ makes almost no difference in the evaluation of (\ref{eqn::Final}). We anticipat
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width = 0.95 \linewidth]{Figures/pVariance.png}
+    \includegraphics[width = \linewidth]{Figures/pVariance.png}
     \caption{Evaluation of (\ref{eqn::Final}) for varying numbers of players $p$. Here, $\alpha$ is fixed at $0.02$, $\tau = 0.05$, $N = 2$ and $\Gamma = -1$. $p$ is varied from 2 to 12. We see that the value obtained by (\ref{eqn::Final}) tends away from zero monotonically.}
     \label{fig:pvariation}
 \end{figure}
@@ -684,15 +695,15 @@ the value of $\alpha$ and $\tau$ but not on $\Gamma$.
 
 \begin{figure}[t]
     \includegraphics[width = 1.1 \linewidth, center]{Figures/a5e2var.png}
-    \caption{Figures showing the trajectory of action probabilities for 2 players with 5 actions trained on a game of $\Gamma = -0.5$ and $\tau = 0.05$. (Left) $\alpha = 0.01$, (Right) $\alpha = 0.05$.}
+    \caption{The trajectories of action probabilities for 2 players with 5 actions trained on a game of $\Gamma = -0.5$ and $\tau = 0.05$. (Left) $\alpha = 0.01$, (Right) $\alpha = 0.05$.}
     \label{fig:AlphaVariation}
 \end{figure}
 
 In Figure \ref{fig:AlphaVariation}, we explicitly plot the trajectories taken by the action probabilities as two agents are trained on a game of $\Gamma = -0.5$. In the left figure, we choose $\alpha = 0.01$ whilst in the right we choose $\alpha = 0.05$. This gives a qualitative assessment of the behaviour at both extremes parameters considered. We note that the typical behaviour of the system is that the system first moves towards a fixed point and then varies in a pseudo-random manner within a vicinity of the fixed point. Critically though, the amount of variation in the case $\alpha = 0.05$ is greater than that of $\alpha = 0.01$. 
 
 \begin{figure}[t]
-    \includegraphics[width = 0.95 \linewidth, center]{Figures/pVarianceExpt.png}
-    \caption{Figure showing the variation $V(t)$ about a fixed point as $p$ is varied from 2 - 6. $N = 2$, $\alpha = 0.02$, $\tau = 0.05$, $\Gamma = [-1, 0]$. The experiment is conducted for 10 choices of $\Gamma$ and the mean (line) is plotted alongside the standard deviation (shaded region).}
+    \includegraphics[width = \linewidth, center]{Figures/pVarianceExpt.png}
+    \caption{Variation $V(t)$ about a fixed point as $p$ ranges from 2 - 6. $N = 2$, $\alpha = 0.02$, $\tau = 0.05$, $\Gamma = [-1, 0]$. The experiment is conducted for 10 choices of $\Gamma$ and the mean (line) is plotted alongside the standard deviation (shaded region).}
     \label{fig:pVarianceExpt}
 \end{figure}
 
