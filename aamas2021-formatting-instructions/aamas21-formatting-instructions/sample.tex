@@ -894,22 +894,22 @@ players'.
 A point which we wish to discuss here is the difference in the result
 found w.r.t.~\cite{Sanders2018}, which considered the stability of
 \textit{experience weighted attraction} (EWA). Namely, Sanders et
-al.~found that convergence is seen for higher values of $\alpha$,
+al.~observe that convergence is seen for higher values of $\alpha$,
 whereas lower values give rise to chaos, the opposite of what is found
-here. The reason for this can be seen in the update equation of
-Q-Learning (\ref{eqn::Qupdate}), whereby smaller values of $\alpha$
-result in the agent placing a lower weight on the reward received at
-each step. As such, lower values of $\alpha$ result in the agent
-taking more conservative steps and yields a higher probability of
-convergence. In contrast, the update for EWA does not discount the
-reward received at all and, instead, only discounts the previous
+here. The reason for this can be seen in the update equation
+(\ref{eqn::Qupdate}) for Q-Learning, whereby smaller values of
+$\alpha$ result in the agent placing a lower weight on the reward
+received at each step. As such, lower values of $\alpha$ result in the
+agent taking more conservative steps and yields a higher probability
+of convergence. In contrast, the update for EWA does not discount the
+reward received and, instead, only discounts the previous
 knowledge of the Q-value based on higher choices of $\alpha$. In
 essence, the difference is the fact that Q-Learning discounts new
 information by a factor of $\alpha$, whilst EWA does not. Yet, the
 difference in stability caused by this change is significant. This
 highlights the importance of performing analyses such as the present
 work; it allows for a method to analytically compare the difference
-between learning algorithms and, for practitioners, ensure that the
+between learning algorithms and, for practitioners, to ensure that the
 appropriate algorithm is chosen for the parameters of their specific
 task.
 
