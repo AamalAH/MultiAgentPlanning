@@ -9,7 +9,7 @@ gamma = .1
 Gamma = 0.1
 tau = 5e-2
 
-nActions = 5
+nActions = 2
 t0 = 500
 
 initnSim = 15
