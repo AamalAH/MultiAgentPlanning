@@ -2,17 +2,19 @@ import numpy as np
 import itertools
 import scipy.sparse as sps
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 from tqdm import tqdm
 
 t0 = 500
 gamma = .1
-tau = 5e-2
+tau = 1
+alpha = 0.01
 
 initnSim = 10
-nIter = int(5e4)
+nIter = int(1.5e4)
 nTests = 10
 
-nPlayers = 2
+nPlayers = 3
 nActions = 2
 
 def generateGames(gamma, nSim, nAct, nPlayers):
@@ -34,10 +36,11 @@ def generateGames(gamma, nSim, nAct, nPlayers):
 
     cov = cov.toarray()
 
-    allPayoffs = np.array(([1, 5, 0, 3], [1, 5, 0, 3]))
+    allPayoffs = np.zeros((nPlayers, nElements))
+
+    rewards = np.random.multivariate_normal(np.zeros(nPlayers * nElements), cov=cov)
 
     for i in range(nSim):
-        rewards = np.random.multivariate_normal(np.zeros(nPlayers * nElements), cov=cov)
         each = np.array_split(rewards, nPlayers)
         allPayoffs = np.dstack((allPayoffs, np.array(each)))
 
@@ -68,8 +71,14 @@ def checkminMax(allActions, nSim, tol):
 
 plotConv = []
 
-for alpha in tqdm(np.linspace(1e-2, 5e-2, num=10)):
-    for Gamma in np.linspace(-1, 0, num=10):
+def getVariance(allActions):
+    h = (1 / nActions) * np.sum((1 / t0) * np.sum(allActions ** 2, axis=0) - ((1 / t0) * np.sum(allActions, axis=0)) ** 2,
+                              axis=2)
+    v = np.mean(np.var(allActions, axis = 0), axis = 2)
+    return v
+
+for alpha in np.linspace(1e-2, 5e-2, num=1):
+    for Gamma in np.linspace(-1, 0, num=1):
 
         allActions = []
         nSim = initnSim
@@ -78,24 +87,21 @@ for alpha in tqdm(np.linspace(1e-2, 5e-2, num=10)):
         payoffs = generateGames(Gamma, nSim, nActions, nPlayers)
         qValues0 = np.random.rand(nPlayers, nActions, nSim)
 
-        for cIter in range(nIter):
-
-            if cIter == t0:
-                allActions = []
-
-            if cIter%t0 == 0 and cIter != 0 and cIter != t0:
-
-                vars = checkminMax(np.array(allActions), nSim, 1e-2)
-                idx = np.where(vars)
-                qValues0 = np.delete(qValues0, idx, axis=2)
-                nSim -= len(idx[0])
-                converged += len(idx[0])
-                allActions = []
-
-            if nSim <= 0:
-                break
+        for cIter in tqdm(range(10001)):
 
             allActions += [getActionProbs(qValues0)]
             qValues0 = qUpdate(qValues0, payoffs, nSim)
 
-        plotConv += [np.array([alpha, Gamma, converged / initnSim])]
+allActions = np.array(allActions)
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+for i in range(nSim):
+    plt.plot(allActions[:, 0, 0, i], allActions[:, 1, 0, i], allActions[:, 2, 0, i])
+
+plt.xlabel('Player 1 Action 1')
+plt.ylabel('Player 2 Action 1')
+ax.set_zlabel('Player 3 Action 1')
+
+plt.xlim([0, 1]), plt.ylim([0, 1]), ax.set_zlim([0, 1]), plt.show()
