@@ -1,0 +1,151 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{margin=2cm}
+\usepackage{xcolor}
+
+\newcommand{\ah}[1]{\textcolor{blue}{#1}}
+
+\title{Controlled Swarms through Learning on Network Games: Research Compilation}
+\author{Aamal Hussain}
+\date{}
+
+\begin{document}
+    \maketitle
+
+The goal of this revision is to re-evaluate the assumptions and guarantees placed on the
+following problem: to what extent is it possible to control the behaviour of a large group of agents
+subject to partial information. In particular, we seek to provide theoretical guarantees concerning
+the behaviour of these agents from the point of view of safety. It is, therefore, required that we
+ensure that the tools we are using are suited to such an analysis. In this spirit, this document
+outlines an overview of the research into the game-theoretic and learning approaches towards
+learning for large systems of agents. 
+
+
+\subsection*{Network-aggregative games are a stronger model for swarm systems than mean-field}
+
+In particular, I focus this research on the problem of network-aggregative games \cite{Parise}. In this
+class of game, we consider an aggregative (large population) system which has an underlying
+communication network, i.e. agents adapt their behaviour dependent on the behaviours of their
+neighbours in the network, but their knowledge of the other agents is limited (or even
+non-existent), This form of game appears to be better suited to the problem of swarms than the
+mean-field model, in which an agent would be required to have knowledge of the average behaviour of
+the entire population \cite{Paccagnan2019}. This assumption is infeasible for a fully distributed
+system, unless the agent is somehow able to communicate with the entire population and perform the
+necessary calculations to find the average behaviour of the population.
+
+
+In addition, the research on learning on network games (sometimes referred to as graphical games
+\cite{Li2017}) is a topic which is increasingly being turned to from the
+learning and game-theoretic communities alike. The major classes of learning algorithms which have
+been explored in this context are: Fictitious Play \cite{Ewerhart2019}, Q-Learning 
+\cite{Vamvoudakis2017} and No-Regret \cite{Nagarajan2018}. All
+of these continue to undergo rigorous theoretical analysis from the game theoretic and computational
+learning communities. 
+
+In this spirit, important facts about learning on networks have been established for each of the
+learning algorithms. This includes, most importantly, convergence to Nash Equilibria. For each of
+these classes of games, the conditions required for this behaviour are established in: 
+\cite{Ewerhart2019} for Fictitious Play, \cite{Nagarajan2018} for no-regret, and
+\cite{Li2017} for Reinforcement Learning. For the last of these, however, it is important to note that,
+whilst the paper presents an algorithm for finding the NE, the focus of the study concerns forming
+control policies based on the NE. This is not a disadvantage of the paper but rather an advantage:
+namely that the learning community tends to be more invested in the application of the algorithms
+towards real-world problems than the game-theoretic community.
+
+The existence of these results means that there is a basis towards forming safe learning systems on
+network games, since we can study the convergence towards an equilibrium. In addition, this class of
+game can, particularly for Fictitious Play and Q-Learning, be extended towards network-aggregative
+games, thereby allowing its study for larger populations. Such a study can be found in \cite{Parise},
+in which the authors produce two NE seeking algorithms which, although they do not call it so,
+is remarkably similar to Fictitious Play. This provides a useful (and perhaps only) study on
+network-aggregative games which can be used to compare future work against.
+
+\subsection*{The work on learning on network games is quite recent.} 
+
+To qualify the above statements, it is important to note that the work in learning on network-games
+and, in particular, network-aggregative games is quite new. Indeed the publications listed in this
+review, which represent some of the major breakthroughs in network games, all fall within the span
+of 2015-2020. Whilst these, of course, build on previous work, it is important to note that the
+specific problem of learning and control on network-aggregative games is an open problem. This is
+because network games can be considered to be one of the more generalised forms of game since it
+imposes an underlying communication network across the system. Indeed, a game in which an agent acts
+according to all of the other agents in the group can simply be considered a fully-connected
+network. There are, however, still further generalisations that could be made. For instance,
+learning on  weighted networks has received some attention \cite{Bayer2019} but still
+requires maturity. Furthermore, directed, or asymmetric networks and time-varying networks are
+topics left, as of yet, unexplored. This exposition is not to suggest directions for our own
+research, but merely to present the fact that the problem of learning on network games is a valuable
+one to consider due to its generality.
+
+
+\subsection*{Then comes the question of which learning algorithm to study.} % (fold)
+
+Hopefully, I have made a strong argument for why network-aggregative games are a good class of games
+to focus the study on for the problem of learning swarm behaviour. It then becomes incumbent on us
+to choose a class of algorithm to consider. Whilst each algorithm presents its own set of pros and
+cons, I argue that choosing the algorithm is merely a matter of considering the assumptions that
+would be realistic to place on our system. As you mentioned in our discussion, if it is the case
+that the problem we consider satisfies the assumptions for one of these classes, it becomes
+necessary that we choose this class to study.
+
+I would argue that the major conditions that we need to place on our system is that the agents have
+no knowledge of the behaviour of the other agents and must, instead, infer that behaviour. Swarm
+systems are built on the assumption that an agent is able to interact with, and observe, only a few
+agents in the population. This would typically include its nearest neighbours and, if the situation
+demands, a leader or set of leaders. 
+
+The other typical assumption placed on learning systems is that the agent does not have access to
+the utlity function, from which it derives its behaviours. Such a problem would occur in games which
+need to be repeated over time (e.g. traffic routing problem) or for the design of a system which is
+aimed to be generalisable. However, it is unlikely that, for the problem of controlling a swarm,
+this assumption would be required in general. For the most part, a control problem is designed for a
+specific task in mind (e.g. coverage or foraging) and so the objective functional is fixed.
+Furthermore, as long as complex gradients or Hessian inverses do not need to be calculated, it can
+be assumed that the agent is capable of carrying out the necessary calculations in order to perform
+its task. Otherwise, it would be required that a centralised controller, who has access to the cost
+function and can carry out the optimisation, would need to communicate with each agent to identify
+its behaviour and deliver its next action. Whilst there is nothing inherently wrong with this
+method, such a system can no longer be called `distributed'.
+
+With these in mind, then, I suggest that the Fictitious Play (FP) and (perhaps less so)
+Reinforcement Learning (RL) algorithms would be appropriate classes of games to study. This is
+because no-regret learning considers that the agent is aware of the actions of his/her neighbours
+and therefore, does not fulful our requirements. I argue that FP is a stronger class for this
+problem description since it is assumed that the agent knows her objective function and explicitly
+tries to learn the behaviour of her neighbours. On the other hand, RL does not require knowledge of
+neighbours or of the objective function but implicitly attempts to learn both of these by evaluating
+the actions. Whilst Q-Learning is more general, then, it lacks the explicit modelling aspect that FP
+offers and, as such, its analytical basis is not as strong. I propose, therefore, that a study of FP
+on network-aggregative games provides the strongest model of swarm systems. I am not, however,
+ruling out the option of looking at both of these algorithms and comparing their performance and
+guarantees.
+
+
+\subsection*{Conclusions} 
+
+In summary, I propose that, for the problem that we are considering, namely the problem of
+controlling swarms of intelligent active particles, the strongest model to study would be that of
+Fictitious Play (and/or RL) on network-aggregative games. This suggestion is due partly on the
+similarity between the assumptions placed on this class of games and that of swarm systems as well
+as the growing attention that this class of games has received from an analytic perspective. I
+believe that the best way to proceed would be to extend the work of \cite{Ewerhart2019} with the
+assumptions made in \cite{Parise}. A point which I would like to discuss with you is whether it would
+be to attempt a similar extension of the work in \cite{Li2017} or \cite{Vamvoudakis2017}
+(i.e. that of RL) and provide a comparison of the results. Regardless, both of these would lend
+themselves well to considering the problem of distributed control as shown in 
+\cite{Vamvoudakis2017} and \cite{Bianchi, DePersis2020}. Both of these allow for us to
+consider the physical side of the problem by imposing that the learning algorithm must respect the
+physical dynamics of the agents involved. 
+
+I believe this to be a stronger suggestion towards the problem of Active Particle Control than that
+which was suggested in the ESA as it allows for us to directly build on our current work with only a
+minor modification directing our assumptions closer to the ones required by our problem. It also
+allows us to bypass the section of controlling a swarm through PDEs and instead narrows our focus on
+game-theoretic learning methods. 
+
+\bibliographystyle{IEEEtran} 
+
+\bibliography{IEEEfull,references}
+
+\end{document}
