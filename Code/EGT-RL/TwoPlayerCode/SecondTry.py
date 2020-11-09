@@ -20,16 +20,17 @@ step = 1e-3
 
 allOrders = []
 
-for a in np.linspace(0, 1, num=10):
+for a in np.linspace(0.222, 1, num=1):
     for G in np.linspace(-1, 0, num=10):
 
         t = 10
         
         ta = a/nActions
         tt = t/np.sqrt(nActions ** (nPlayers - 1))
+        th = t/np.sqrt(nActions**nPlayers)
         
         p = lambda xi, Xs: np.sum((Xs * np.log(Xs/Xs[xi])) * Dz)
-        F = lambda xi, z, Xs, q, n, chi: a**2 * tt**2 * G * chi * q**(n-1) * Xs[xi] + q**(n/2) * z * (a * tt + ta * t) + ta * p(xi, Xs)
+        F = lambda xi, z, Xs, q, n, chi: a**2 * tt**2 * G * chi * q**(n-1) * Xs[xi] + q**(n/2) * z * (a * tt + a * th)**2 + ta * p(xi, Xs)
         # F = lambda xi, z, Xs, q, n, chi: (a**2) * (tt**2) * G * chi * (q**(n-1)) * Xs[xi] + a * tt * q**(n/2) * z + ta * t * q**((n + 1)/2) * z + ta * p(xi, Xs)
         
         
