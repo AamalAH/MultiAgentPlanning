@@ -8,6 +8,7 @@ Created on Sun Sep  6 20:49:19 2020
 
 import numpy as np
 import itertools
+from time import time
 
 nAct = 2
 nPlayers = 2
@@ -50,7 +51,12 @@ def getActionProbs(qValues):
 rewards = generateGames(Gamma, nSim, nAct)
 qValues0 = np.random.rand(nPlayers * nAct, nSim)
 
+iterTimes = []
+allActions = []
+
 for cIter in range(1000):
+
+    start = time()
 
     actionProbs = getActionProbs(qValues0)
     bChoices = [np.random.choice([0, 1], p = actionProbs[p]) for p in range(nPlayers)]
@@ -74,3 +80,11 @@ for cIter in range(1000):
     Mat3[rows, maxs] = 1
     
     qValues0 += alpha * (np.expand_dims(Mat @ rewards, 1) - (Mat2 @ qValues0) + gamma * (Mat2 @ qValues0))
+
+    allActions += [getActionProbs(qValues0)]
+
+    iterTimes.append(time() - start)
+
+
+
+print(np.mean(iterTimes)) 
