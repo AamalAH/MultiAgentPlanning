@@ -2,7 +2,7 @@
 \usepackage[margin = 2cm]{geometry}
 
 
-\title{Hello World}
+\title{Characterisation of Dynamics}
 \author{Aamal Hussain}
 \date{}
 
@@ -10,6 +10,35 @@
 \begin{document}
     \maketitle
 
+    The first techniques explored are from the paper: "Characterization of nonlinear dynamic systems
+    for engineering purposes – a partial review". 
+
+    \paragraph*{Approach based on 1D time series}
+
+    The fractal dimension tells us how the detail in a pattern changes with the scale at which that
+    pattern is measured. It also gives us a reasonable measure for what the 'space-filling' capacity
+    of a pattern is. The proposed dimension that this paper offers is 
+
+    \begin{equation}
+        D = \frac{log_{10} n}{log_{10} (L/l) + log_{10}n},
+    \end{equation}
+
+    where $n = L/u$. Here, L is the total length of the curve and l is the distance between the
+    first point of the curve and the furthest from the first, u is the average distance between two
+    successive points. This seems like it'll give a reasonable estimate for how crazy the curve is.
+    If it goes straight to an equilibrium, it should be close to 1. However, if it is crazy, the
+    dimension will be higher than 1.
     
+    Other viable options include spectral analysis (which I actually should consider), recurrence
+    plots (which the authors don't talk about but is useful for detecting periodicity) and average
+    time spent in a small region around the attractor.
+
+    
+
+    I think this actually covers all of the problems that I would need to consider. The main ones
+    which I will want to have a look at implementing tomorrow are: the fractal dimension outlined
+    above, the recurrence plot and time spent in a region of phase space. In addition, I'd like to
+    find something which gives an indication r.e. the spectral analysis problem and then I can put
+    everything into code and hopefully get it running with some results.
 
 \end{document}
