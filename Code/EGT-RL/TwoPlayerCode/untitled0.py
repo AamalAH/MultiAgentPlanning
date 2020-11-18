@@ -9,13 +9,14 @@ Created on Sun Sep  6 20:49:19 2020
 import numpy as np
 import itertools
 from time import time
+import matplotlib.pyplot as plt
 
 nAct = 2
 nPlayers = 2
 nSim = 1
 
-alpha = 0.5
-gamma = 0.5
+alpha = 0.01
+gamma = 0.1
 tau = 1
 Gamma = -1
 
@@ -40,7 +41,7 @@ def generateGames(gamma, nSim, nAct):
 
         rewards = np.random.multivariate_normal(np.zeros(2 * nElements), cov=cov)
 
-    return np.array([1, 5, 0, 3, 1, 5, 0, 3])
+    return np.array([1, 5, 0, 3, 1, 0, 5, 3])
 
 def getActionProbs(qValues):
     partitionFunction = np.sum(np.exp(tau * qValues0.reshape((2, 2))), axis = 1)
@@ -54,7 +55,7 @@ qValues0 = np.random.rand(nPlayers * nAct, nSim)
 iterTimes = []
 allActions = []
 
-for cIter in range(1000):
+for cIter in range(10000):
 
     start = time()
 
@@ -85,6 +86,4 @@ for cIter in range(1000):
 
     iterTimes.append(time() - start)
 
-
-
-print(np.mean(iterTimes)) 
+print(np.mean(iterTimes))

@@ -6,9 +6,10 @@ from tqdm import tqdm
 from os import mkdir
 
 # alpha = .1
-gamma = .1
+gamma = 0.1
 Gamma = 0.1
-tau = 10
+tau = 1
+alpha = 0.1
 
 nActions = 5
 t0 = 500
@@ -16,8 +17,8 @@ t0 = 500
 initnSim = 1
 
 delta_0 = 1e-3
-nSim = 5
-nIter = int(1.5e4)
+nSim = 10
+nIter = int(1.5e3)
 
 
 def generateGames(gamma, nSim, nAct):
@@ -76,48 +77,73 @@ def qUpdate(qValues, payoffs):
     return qValues
 
 
-def getDelta(qValues0, qValues1, nSim):
-    actionProbs0, actionProbs1 = getActionProbs(qValues0, nSim), getActionProbs(qValues1, nSim)
-    return np.mean(abs(actionProbs1 - actionProbs0), axis=0)
+def fractalDimension(allActions):
+    """
+    Returns the frac]tal dimension through length calculation of a given trajectory. This is given as
 
-plotExpo = []
+    \frac{log_{10} n}{log_{10} (L/l) + log_{10} n}
+    where n = L/u, L is the total length of the curve, l is the maximum distance of any point in the trajectory from the
+    start point and u is the average distance between successive points in the trajectory.
 
-for alpha in np.linspace(1e-2, 5e-2, num=1):
-    for Gamma in np.linspace(-0.25, 0.25, num=10):
+    :arg
+    allActions: list of actions in the trajectory. Each action is a 3-d array of shape (nSim, nPlayer, nAction)
 
+    :return
+    fractalDim: the fractal dimension as given above as a tuple of length nSim
+    """
 
+    allActions = np.array(allActions)
+
+    #     Calculate the length of the curve. The curve is through the entire joint strategy space of all agents.
+    #     Therefore, norms are taken over all actions and players
+
+    findDistance = lambda point1, point2: np.linalg.norm(point1 - point2, axis=(1, 2))
+
+    avgCoordVector = (np.mean(allActions, axis = 0) - allActions[0]).reshape((nSim, 2 * nActions))
+    scalarProjection = lambda point: np.einsum('ij,ij ->i', (point - allActions[0]).reshape((nSim, 2 * nActions)), avgCoordVector)
+    
+
+    allProjections = np.array([scalarProjection(allActions[i]) for i in range(nIter)])
+
+    # allDistances = [findDistance(allActions[i], allActions[i - 1]) for i in range(1, nIter)]
+    allDistances = [abs(allProjections[i] - allProjections[i-1]) for i in range(1, nIter)]
+    
+    curveLength = np.sum(np.array(allDistances), axis=0)
+
+    #     Calculate the maximum distance from the start point from all points in the curve
+    # maxDist = np.max(np.array([findDistance(allActions[i], allActions[0]) for i in range(1,
+    # nIter)]), axis = 0)
+    
+    maxDist = np.max([abs(allProjections[i] - allProjections[0]) for i in range(1, nIter)], axis = 0)
+
+    #     Calculate the average distance between successive points
+    averageDist = np.mean(allDistances)
+
+    #     Determine the fractal dimension
+    fractalDim = (np.log10(curveLength / averageDist)) / (
+                np.log10(curveLength / maxDist) + np.log10(curveLength / averageDist))
+
+    return fractalDim
+
+plotFractalDim = []
+
+for alpha in tqdm(np.linspace(1e-2, 5e-2, num=10)):
+    for Gamma in np.linspace(-1, 1, num=10):
         payoffs = generateGames(Gamma, nSim, nActions)
         allActions = []
-        allActions1 = []
 
         qValues0 = np.random.rand(2, nActions, nSim)
-        qValues1 = qValues0 + np.array([np.random.normal() for i in range(2 * nActions * nSim)]).reshape((2, nActions, nSim))
 
-        for cIter in tqdm(range(nIter)):
+        for cIter in range(nIter):
             qValues0 = qUpdate(qValues0, payoffs)
-            qValues1 = qUpdate(qValues1, payoffs)
             allActions += [getActionProbs(qValues0, nSim)]
-            allActions1 += [getActionProbs(qValues1, nSim)]
 
-        path = "./alpha_{0}_gamma_{1}_tau_{2}".format(alpha, Gamma, tau)
-        mkdir(path)
+        plotFractalDim.append(np.array([alpha, Gamma, np.mean(fractalDimension(allActions))]))
+        
 
-        allActions = np.array(allActions)
-        allActions1 = np.array(allActions1)
+plotFractalDim = np.array(plotFractalDim)
 
-        for i in range(nSim):
-            fig = plt.figure()
-            ax1 = fig.add_subplot(111)
-
-            ax1.plot(allActions[:, i, 0, 0], allActions[:, i, 1, 0])
-            ax1.plot(allActions1[:, i, 0, 0], allActions1[:, i, 1, 0])
-
-            # ax1.scatter(allActions[0, 0, 0, 0], allActions[0, 0, 1, 0], color='k', marker='o')
-            # ax1.scatter(allActions[-1, 0, 0, 0], allActions[-1, 0, 1, 0], color='k', marker='+')
-
-            plt.rc('axes', labelsize=12)
-            plt.xlabel('Player 1 Action 1')
-            plt.ylabel('Player 2 Action 1')
-            # plt.xlim([0, 0.5]), plt.ylim([0, 0.5])
-            plt.savefig(path + '/{0}.png'.format(i), dpi=300)
-# plt.xlim([0.19, 0.21]), plt.ylim([0.19, 0.21]), plt.show()
+plotFractalDim = np.flip(plotFractalDim[:, 2].reshape(10, 10).T, axis=0)
+sns.heatmap(plotFractalDim, vmin=0, vmax=1, xticklabels=np.linspace(1e-2, 5e-2, num=10),
+            yticklabels=np.linspace(-1, 0, num=10)[-1::-1])
+plt.show()
