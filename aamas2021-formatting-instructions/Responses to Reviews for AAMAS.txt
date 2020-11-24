@@ -1,16 +1,13 @@
 
 Review 1: 
 
-We thank the reviewer for their comments. 
-
-FB: it is not entirely clear to me what are you referring to in the following paragraph. I would suggest to focus on the question for rebuttal and leave this for later. 
-Regarding your point on the links to evolutionary dynamics, actually the paper by Tuyls' et al (2006) show that, by deriving the continuous time dynamics of Q-Learning, we arrive at a dynamical system which is similar to the replicator dynamic from Evolutionary Game Theory. Our goal in this paper is solely focused on understanding the stability of these dynamics. 
-
-As regards specifically the questions for rebuttal:
+We thank the reviewer for their comments. As regards specifically the questions for rebuttal:
 
 1. We aim to focus our study on all normal form games. As you have pointed out, whilst the strategy space of the agents includes a finite set of actions, they are able to play mixed strategies as well as pure ones. The goal of the paper is to identify the evolution of the strategy as the agents learn. Thank you for pointing this out, we will be sure to clarify it in revision.
 
 2 and 3. These are excellent points and we are, in fact, using the results of this study to address the problem of how to allow the agents to 'steer' the learning towards stable equilibria. However, as you have mentioned, there are cases in which there are multiple equilibria. In such cases, we have not yet determined a closed form method for steering the system towards a given one. This is an incredibly important question, however, and an important avenue for future work.
+
+Finally, regarding your point on the links with evolutionary dynamics (weaknesses), we notice that [20] shows that, by deriving the continuous time dynamics of Q-Learning, we arrive at a dynamical system which is similar to the replicator dynamic from Evolutionary Game Theory. Our goal in this paper is solely focused on understanding the stability of these dynamics. 
 
 
 Review 2:
@@ -26,7 +23,8 @@ Review 3:
 
 We thank the reviewer for the several points they raise, they will certainly be useful to improve the paper. They also allow us to provide some clarification, even though the reviewer does not ask any question explicitly.
 
-The reviewer mentions that there is a disconnect between the theoretical analysis and the experimental evaluation. Nonetheless, we find that the theoretical result (13) makes a number of predictions including: the decrease of stability for increasing alpha or tau, the (rather surprising) lack of dependence on Gamma (the correlation between payoff elements), as well as the fact that the majority of the phase space is unstable. These predictions hold for the limiting case of an infinite action set and a large number of players. However, there are practical restrictions when conducting an experiment with an incredibly large action/player set. Namely, this requires storage and calculations on matrices with N^p elements. This results in severe limitations for the scale of the experiments that can be run. We do however, present a number of results in our empirical evaluation which show that the overall trend, i.e., as p and N increase. Consider, Figure 6, which considers the case of 6 players. We show that the trend is towards the theoretical predictions. It is in this sense that we mention that the size of the unstable region is overestimated by the theory, a point which was also found in [15]. The message of the paper is to highlight the sensitivity of the stability to p and N, and argue that it is required for algorithms to be analysed with stability in mind, as well as to design algorithms which focus on maintaining the stability of the system.
+The reviewer mentions that there is a disconnect between the theoretical analysis and the experimental evaluation. Nonetheless, we find that the theoretical result (13) makes a number of predictions including: the decrease of stability for increasing alpha or tau, the (rather surprising) lack of dependence on Gamma (the correlation between payoff elements), as well as the fact that the majority of the phase space is unstable. These predictions hold for the limiting case of an infinite action set and a large number of players. However, there are practical restrictions when conducting an experiment with a large action/player set. Namely, this requires storage and calculations on matrices with N^p elements.
+As the reviewer remarks, this results in severe limitations for the scale of the experiments that can be run. We do however, present a number of results in our empirical evaluation which show that the overall trend, i.e., as p and N increase. Consider, Figure 6, which considers the case of 6 players. We show that the trend is towards the theoretical predictions. It is in this sense that we mention that the size of the unstable region is overestimated by the theory, a point which was also found in [15]. The message of the paper is to highlight the sensitivity of the stability to p and N, and argue that it is required for algorithms to be analysed with stability in mind, as well as to design algorithms which focus on maintaining the stability of the system.
 
 One of your queries regards the sentence "... in the Prisoner's Dilemma, cyclic behaviour emerges". The paper mentioned in this context is actually different from that of Figure 1. In the paper you are referencing, the authors make use of an established dynamics of the 'Experience Weighted Attraction' Learning algorithm, which shows cyclic behaviour. However, Figure 1 depicts the convergence of Q-Learning in the same PD problem. We will ensure that we clarify this distinction since it shows that different algorithms may give different results on the same problem, hence the need for such a convergence study.
 
