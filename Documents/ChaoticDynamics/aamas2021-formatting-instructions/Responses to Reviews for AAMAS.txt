@@ -1,29 +1,31 @@
 Review 1: 
 
-We thank the reviewer for their comments. For the questions:
+We thank the reviewer for their comments. As for the questions:
 
 We aim to focus our study on all normal form games. As you point out, whilst the strategy space of the agents includes a finite set of actions, they are able to play mixed strategies as well as pure ones. The goal of the paper is to identify the evolution of the strategy as agents learn. Thank you for pointing this out, we will clarify it in revision.
 
 These are excellent points and we are, in fact, using the results of this study to consider how to 'steer' learning towards stable equilibria. As you mention, there are cases in which multiple stable equilibria exist. In such cases, we have not yet determined a closed form method for steering the system towards a given one. This is an important avenue for future work.
 
-Finally, on the links to evolutionary dynamics (weaknesses), we notice that by deriving the continuous time dynamics of Q-Learning, [20] arrives at a system similar to the replicator dynamic. Our goal in this paper is solely focused on understanding the stability of these dynamics.  
+Finally, on the links with evolutionary dynamics (weaknesses), we notice that by deriving the continuous time dynamics of Q-Learning, [20] arrives at a system similar to the replicator dynamic. Our goal in this paper is primarily focused on understanding the stability of these dynamics.  
+
 
 Review 2:
 
-Thanks for the insightful remarks. Indeed, many of the techniques we apply are inspired by statistical physics. We believe that these methods can be fruitfully applied to learning on games (as discussed in Sec. 1.), as the latter makes use of many random variables: strategies of agents, payoffs, etc. We aimed to focus the paper on the main, theoretical contributions, while providing details in the supplementary material. We thank you for taking the time to look at this material with such rigour.
+Thanks for the insightful remarks. Indeed, many of the techniques we apply are inspired by statistical physics. We believe that these methods can be fruitfully applied to learning on games (as discussed in Sec. 1), as the latter makes use of many random variables: strategies of agents, payoffs, etc. We aimed to focus the paper on the main, theoretical contributions, while providing details in the supplementary material. We thank you for taking the time to look at this material with such rigour.
 
 As you mention, the main contribution of the paper is equation (13), which establishes the region of stability. To validate this equation, we tested each of its predictions, including the remarkable ones that independent Q-Learning rarely converges, and payoff correlations make no difference to stability.
 
 As regards the style of presentation, we are aware that normally, papers at AAMAS present results in a theorem-proof format. However, we felt that this format would not be appropriate for the results proved here, as the statement of each result would just amount to the last equation in the derivation.
+
 
 Review 3:
 
 We thank the reviewer for the several points they raise, they will be useful to improve the paper, as well as to provide some clarification.
 
 The reviewer suggests there is a disconnect between the theory and experiments. 
-Actually, the theoretical result (13) makes a number of predictions including: the decrease of stability for increasing alpha or tau, the (rather surprising) lack of dependence on Gamma (the correlation between payoffs), and, for the limiting case of an infinite action set and a large number of players, the majority of the phase space is unstable. There are, however, practical restrictions when conducting experiments with a large action/player set. We do, however, present a number of empirical results that show the overall trend. Consider, e.g., Fig. 6 for 2-6 players, which shows the trend toward the predictions through increased instability. Therefore, (13) will hold in the limit, until then it overestimates the size of the unstable region, as in [15]. The message of the paper is to highlight the dependence of stability on parameters, and that algorithms must be analysed with stability in mind.
+Actually, the theoretical result (13) makes a number of predictions including: the decrease of stability for increasing alpha or tau, the (rather surprising) lack of dependence on Gamma (the correlation between payoffs), and that, for the limiting case of an infinite action set and a large number of players, the majority of the phase space is unstable. There are, however, practical restrictions when conducting experiments with a large action/player set. We do, however, present a number of empirical results that show the overall trend. Consider, e.g., Fig. 6 for 2-6 players, which shows the trend toward the predictions through increased instability. Therefore, (13) will hold in the limit, until then it overestimates the size of the unstable region, as in [15]. The message of the paper is to highlight the dependence of stability on parameters, and that algorithms must be analysed with stability in mind.
 
-As regards cyclic behaviour in Prisoner's Dilemma, the study we reference is actually different to that of Figure 1 and discusses a different learning algorithm (EWA) to the figure (Q-Learning). We will clarify this distinction.
+As regards cyclic behaviour in Prisoner's Dilemma, the study we refer to is actually different to that of Figure 1 and discusses a different learning algorithm (EWA) to the figure (Q-Learning). We will clarify this distinction.
 
 Method: 
 
@@ -31,7 +33,7 @@ As discussed at the beginning of Sec. 3.1, i_mu (resp. i_kappa) refers to the ac
 
 The point regarding scaling the system was given briefly on p. 4 to conserve space. A detailed discussion can be found in Section S2.2 of the supplementary material.
 
-You are correct in saying that payoffs were already in a general form. To analyse the system we parameterise these payoffs by 'Gamma' which measures their correlation and study the behaviour of the average system which would result from a given Gamma (the effective dynamics (9)). This means that we can focus on how, on average, the payoff correlations affect stability rather than look at all of the (infinite) possible variations of payoff matrices.
+You are correct in saying that payoffs are already in a general form. To analyse the system we parameterise these payoffs by 'Gamma' which measures their correlation and study the behaviour of the average system which would result from a given Gamma (the effective dynamics (9)). This means that we can focus on how, on average, the payoff correlations affect stability rather than look at all the (infinite) possible variations of payoff matrices.
 
 Experiments:
 
