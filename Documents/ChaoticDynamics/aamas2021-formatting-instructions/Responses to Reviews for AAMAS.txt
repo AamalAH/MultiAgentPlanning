@@ -2,42 +2,45 @@ Review 1:
 
 We thank the reviewer for their comments. For the questions:
 
-1. We aim to focus our study on all normal form games. As you have pointed out, whilst the strategy space of the agents includes a finite set of actions, they are able to play mixed strategies as well as pure ones. The goal of the paper is to identify the evolution of the strategy as the agents learn. Thank you for pointing this out, we will be sure to clarify it in revision.
+1. We aim to focus our study on all normal form games. As you point out, whilst the strategy space of the agents includes a finite set of actions, they are able to play mixed strategies as well as pure ones. The goal of the paper is to identify the evolution of the strategy as the agents learn. Thank you for pointing this out, we will clarify it in revision.
 
-2 and 3. These are excellent points and we are, in fact, using the results of this study to consider how to 'steer' the learning towards stable equilibria. As you have mentioned, there are cases in which there are multiple stable equilibria. In such cases, we have not yet determined a closed form method for steering the system towards a given one. This is an incredibly important question, however, and an important avenue for future work.
+2 and 3. These are excellent points and we are, in fact, using the results of this study to consider how to 'steer' the learning towards stable equilibria. As you mention, there are cases in which there are multiple stable equilibria. In such cases, we have not yet determined a closed form method for steering the system towards a given one. This is an important avenue for future work.
 
-Finally, on the links to evolutionary dynamics, (weaknesses), we notice that [20] shows that, by deriving the continuous time dynamics of Q-Learning, we arrive at a system which similar to the replicator dynamic . Our goal in this paper is solely focused on understanding the stability of these dynamics.  
+Finally, on the links to evolutionary dynamics (weaknesses), we notice that by deriving the continuous time dynamics of Q-Learning, [20] arrives at a system similar to the replicator dynamic. Our goal in this paper is solely focused on understanding the stability of these dynamics.  
+
 
 Review 2:
 
-Thanks for the insightful remarks. Indeed, many of the techniques applied in this study are inspired by statistical physics. We believe that such methods can be fruitfully applied to learning on games (as already shown by a wealth of works in the literature), as these contains many random variable elements: the strategies of the agents change during play, but also the payoff elements themselves can vary from game to game. We aimed, as much as possible, to focus the paper on the main, theoretical points of our contribution, while providing all details about the derivation in the supplementary material. We thank you for taking the time to look at the supplementary material with such rigour.
+Thanks for the insightful remarks. Indeed, many of the techniques we apply are inspired by statistical physics. We believe that these methods can be fruitfully applied to learning on games (as discussed in the Related Work), as the latter makes use of many random variable: the strategies of the agents, the payoffs, etc. We aimed, as much as possible, to focus the paper on the main, theoretical contributions, while providing details about the derivation in the supplementary material. We thank you for taking the time to look at the supplementary material with such rigour.
 
-As you mentioned, the main contribution of this paper is equation (13) which establishes the region of stability. To validate this equation, we were sure to test each of its predictions, including the rather remarkable ones that independent Q-Learning rarely converges, and that the payoff correlations make no difference to stability.
+As you mention, one of the main contributions of the paper is equation (13), which establishes the region of stability. To validate this equation, we tested each of its predictions, including the rather remarkable ones that independent Q-Learning rarely converges, and payoff correlations make no difference to stability.
 
-As regards the style of presentation, we are aware that normally, papers at AAMAS present results in a theorem-proof format. However, we felt that this format would not be appropriate for the results described herein, as the statement of each result would just amount to the last equation in the derivation.
+As regards the style of presentation, we are aware that normally, papers at AAMAS present results in a theorem-proof format. However, we felt that this format would not be appropriate for the results proved here, as the statement of each result would just amount to the last equation in the derivation.
+
 
 Review 3:
 
-We thank the reviewer for the several points they raise, they will certainly be useful to improve the paper, and also to provide some clarification.
+We thank the reviewer for the several points they raise, they will certainly be useful to improve the paper, as well as to provide some clarification.
 
-The reviewer mentions that there is a disconnect between the theoretical analysis and the experimental evaluation. Nonetheless, we find that the theoretical result (13) makes a number of predictions including: the decrease of stability for increasing alpha or tau, the (rather surprising) lack of dependence on Gamma (the correlation between payoff elements), and, for the limiting case of an infinite action set and a large number of players, that the majority of the phase space is unstable. There are, however, practical restrictions when conducting an experiment with an incredibly large action/player set; this requires storage and calculations on matrices with N^p elements, resulting in severe limitations for the scale of the experiments that can be run. We do however, present a number of results in our empirical evaluation which show the overall trend, i.e., as p and N increase. Consider, Figure 6, which considers 2-6 players, and shows the trend is towards the theoretical predictions. It is in this sense that the size of the unstable region is overestimated by the theory, a point which was also found in [15]. The message of the paper is to highlight the dependence of stability to these parameters, and argue that it is required for algorithms to be analysed with stability in mind, and to design algorithms which focus on maintaining stability.
+The reviewer mentions that there is a disconnect between the theory and the empirical  evaluation. 
+Actually, the theoretical result (13) makes a number of predictions including: the decrease of stability for increasing alpha or tau, the (rather surprising) lack of dependence on Gamma (the correlation between payoffs), and, for the limiting case of an infinite action set and a large number of players, that the majority of the phase space is unstable. There are, however, practical restrictions when conducting experiments with a large action/player set. We do however, present a number of empirical results that show the overall trend. Consider, e.g., Fig. 6 for 2-6 players, which shows the trend is towards the theoretical predictions. It is in this sense (FB: in what sense?) that the size of the unstable region is overestimated by the theory, a point which was also found in [15]. The message of the paper is to highlight the dependence of stability to these parameters, and argue that it is required for algorithms to be analysed with stability in mind.
 
-One of your queries regards the sentence "... in the Prisoner's Dilemma, cyclic behaviour emerges". The study this references is actually different to that which Figure 1 depicts and, in fact, discusses a different learning algorithm (EWA) to that of the figure (Q-Learning). We will ensure that we clarify this distinction.
+As regards cyclic behaviour in the Prisoner's Dilemma, the study we reference is actually different to that which Figure 1 depicts and, in fact, discusses a different learning algorithm (EWA) to that of the figure (Q-Learning). We will clarify this distinction.
 
 Method: 
 
-As discussed in the preceding paragraph to (4), i_mu refers to the action taken by player mu whilst i_kappa refers to that taken by kappa. This allows us to forego using different letters (i,j,k...) for different players, when we do not assume how many players there are.
+As discussed at the beginning of Sec. 3.1, i_mu (resp. i_kappa) refers to the action taken by player mu (resp. kappa). This allows us to forego using different letters for different players.
 
-The point regarding scaling the system was given in brief on page 4 to conserve space. A detailed discussion can be found in Section S2.2 of the supplementary material.
+The point regarding scaling the system was given briefly on p. 4 to conserve space. A detailed discussion can be found in Section S2.2 of the supplementary material.
 
-You are correct in saying that the payoff elements were already in a general form. To then analyse the system we parameterised these payoffs by 'Gamma' which measures the correlation between elements. To study the expected behaviour of a system which would result from a given Gamma, we average over all the possible realisations that this choice could take. This means that we can focus on how, on average, the payoff correlations affect stability rather than look at all of the (infinite) possible variations of payoff matrices.
+You are correct in saying that payoffs were already in a general form. To then analyse the system we parameterise these payoffs by 'Gamma' which measures their correlation. To study the expected behaviour of a system which would result from a given Gamma, we average over all the possible realisations that this choice could take. This means that we can focus on how, on average, the payoff correlations affect stability rather than look at all of the (infinite) possible variations of payoff matrices.
 
-Experiment:
+Experiments:
 
-The value of tau was chosen for two reasons 
-1) to remain consistent with the results provided in [15], thereby justifying the comparison made in the discussion. 
-2) as our results show, the degree of instability rises with tau. It is immediate to see that, for higher values of tau, the game is trivially unstable everywhere.
+The value of tau was chosen for two reasons: 
+1) To remain consistent with the results in [15], thereby justifying the comparison made in the discussion. 
+2) As our results show, instability increases with tau. Hence, for higher values of tau, the game is trivially unstable everywhere.
 
-Your reading of the 'variance of actions' is correct, it denotes how much the actions vary about the fixed point. We will be sure to explicitly state how x_i(t) should be read
+Your reading of 'variance of *actions*' is correct, it denotes how much the actions vary about the fixed point. We will state explicitly how x_i(t) should be read.
 
 TODO: Make the points in the first paragraph, PD and Game assumptions as brief as possible. Respond to comments on notation, scaling the system and variance of the actions
