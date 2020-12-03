@@ -4,24 +4,7 @@ import matplotlib.pyplot as plt
 from time import time
 from tqdm import tqdm
 from os import mkdir
-
 from pydmd import DMD
-
-# alpha = .1
-gamma = 0.1
-Gamma = 0.1
-tau = 2
-alpha = 0.1
-
-nActions = 5
-t0 = 500
-
-initnSim = 1
-
-delta_0 = 1e-3
-nSim = 10
-nIter = int(1.5e4)
-
 
 def generateGames(gamma, nSim, nAct):
     """
@@ -51,7 +34,6 @@ def generateGames(gamma, nSim, nAct):
         # rewardBs = np.dstack((rewardBs, np.array([[1, 0], [5, 3]])))
     return [rewardAs[:, :, 1:], rewardBs[:, :, 1:]]
 
-
 def getActionProbs(qValues, nSim):
     """
 
@@ -71,7 +53,6 @@ def getActionProbs(qValues, nSim):
         [np.array([np.exp(tau * qValues[p, :, s]) / partitionFunction[p, s] for p in range(2)]) for s in range(nSim)])
 
     return actionProbs
-
 
 def qUpdate(qValues, payoffs):
     """
@@ -107,14 +88,28 @@ def qUpdate(qValues, payoffs):
 
     return qValues
 
-
 def stringActions(actionProbs):
     return actionProbs[0].T.reshape((nActions * 2))
     # return actionProbs.reshape((nSim, 2 * nActions))
 
-
 if __name__ == "__main__":
 
+    # alpha = .1
+    gamma = 0.1
+    Gamma = 0.1
+    tau = 2
+    alpha = 0.1
+
+    nActions = 5
+    t0 = 500
+
+    initnSim = 1
+
+    delta_0 = 1e-3
+    nSim = 10
+    nIter = int(1.5e4)
+
+    
     plotFractalDim = []
 
     for alpha in tqdm(np.linspace(1e-2, 5e-2, num=1)):
@@ -131,30 +126,44 @@ if __name__ == "__main__":
 
                     allActions += [stringActions(getActionProbs(qValues0, nSim))]
 
-                    if cIter == 1000:
-                        dmd = DMD(svd_rank=-1)
-
-                        dmd.fit(np.array(allActions).T)ed 
-                        dmd.plot_eigs()
-                        plt.show()
-
-                    if cIter % 12000 == 0 and cIter != 0:
-
+                    if cIter == 30:
                         dmd = DMD(svd_rank=-1)
 
                         dmd.fit(np.array(allActions).T)
+                        dmd.plot_eigs()
+                        plt.show()
 
-                        fig = plt.figure()
-                        ax1 = fig.add_subplot(121)
-                        ax2 = fig.add_subplot(122)
-                        allActions = np.array(allActions)
-                        ax1.plot(allActions[:, 2], allActions[:, 3], 'r--')
-                        ax1.set_xlim([0, 1]), ax1.set_ylim([0, 1])
+                    if cIter == 100:
+                        dmd = DMD(svd_rank=-1)
 
-                        A = dmd.reconstructed_data.real
+                        dmd.fit(np.array(allActions).T)
+                        dmd.plot_eigs()
+                        plt.show()
 
-                        ax2.plot(A[2], A[3], 'b--')
-                        ax2.set_xlim([0, 1]), ax2.set_ylim([0, 1])
+                    if cIter == 1000:
+                        dmd = DMD(svd_rank=-1)
+
+                        dmd.fit(np.array(allActions).T)
+                        dmd.plot_eigs()
+                        plt.show()
+
+                    # if cIter % 12000 == 0 and cIter != 0:
+                    #
+                    #     dmd = DMD(svd_rank=-1)
+                    #
+                    #     dmd.fit(np.array(allActions).T)
+                    #
+                    #     fig = plt.figure()
+                    #     ax1 = fig.add_subplot(121)
+                    #     ax2 = fig.add_subplot(122)
+                    #     allActions = np.array(allActions)
+                    #     ax1.plot(allActions[:, 2], allActions[:, 3], 'r--')
+                    #     ax1.set_xlim([0, 1]), ax1.set_ylim([0, 1])
+                    #
+                    #     A = dmd.reconstructed_data.real
+                    #
+                    #     ax2.plot(A[2], A[3], 'b--')
+                    #     ax2.set_xlim([0, 1]), ax2.set_ylim([0, 1])
 
                         # fig2 = plt.figure()
                         # ax12 = fig2.add_subplot(121)
@@ -168,6 +177,6 @@ if __name__ == "__main__":
                         # ax22.plot(A[2], A[3], 'b--')
                         # ax22.set_xlim([0, 1]), ax22.set_ylim([0, 1])
 
-                        plt.show()
+                        # plt.show()
 
                         # allActions = []
