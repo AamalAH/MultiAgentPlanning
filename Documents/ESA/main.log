@@ -1,0 +1,1381 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.1.2)  10 NOV 2020 14:10
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**/home/aamalh/STAI/Documents/ESA/main.tex
+(/home/aamalh/STAI/Documents/ESA/main.tex
+LaTeX2e <2017-04-15>
+Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
+Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo
+File: size11.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@chapter=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+) (/usr/share/texlive/texmf-dist/tex/latex/appendix/appendix.sty
+Package: appendix 2009/09/02 v1.2b extra appendix facilities
+\c@@pps=\count88
+\c@@ppsavesec=\count89
+\c@@ppsaveapp=\count90
+) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2017/09/02 v2.17a AMS math features
+\@mathmargin=\skip43
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+ (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks14
+\ex@=\dimen103
+)) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen104
+) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count91
+LaTeX Info: Redefining \frac on input line 213.
+\uproot@=\count92
+\leftroot@=\count93
+LaTeX Info: Redefining \overline on input line 375.
+\classnum@=\count94
+\DOTSCASE@=\count95
+LaTeX Info: Redefining \ldots on input line 472.
+LaTeX Info: Redefining \dots on input line 475.
+LaTeX Info: Redefining \cdots on input line 596.
+\Mathstrutbox@=\box26
+\strutbox@=\box27
+\big@size=\dimen105
+LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
+\macc@depth=\count96
+\c@MaxMatrixCols=\count97
+\dotsspace@=\muskip10
+\c@parentequation=\count98
+\dspbrk@lvl=\count99
+\tag@help=\toks15
+\row@=\count100
+\column@=\count101
+\maxfields@=\count102
+\andhelp@=\toks16
+\eqnshift@=\dimen106
+\alignsep@=\dimen107
+\tagshift@=\dimen108
+\tagwidth@=\dimen109
+\totwidth@=\dimen110
+\lineht@=\dimen111
+\@envbody=\toks17
+\multlinegap=\skip44
+\multlinetaggap=\skip45
+\mathdisplay@stack=\toks18
+LaTeX Info: Redefining \[ on input line 2817.
+LaTeX Info: Redefining \] on input line 2818.
+) (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+) (/usr/share/texlive/texmf-dist/tex/latex/mathtools/mathtools.sty
+Package: mathtools 2018/01/08 v1.21 mathematical typesetting tools
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks19
+) (/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count103
+\calc@Bcount=\count104
+\calc@Adimen=\dimen112
+\calc@Bdimen=\dimen113
+\calc@Askip=\skip46
+\calc@Bskip=\skip47
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count105
+\calc@Cskip=\skip48
+) (/usr/share/texlive/texmf-dist/tex/latex/mathtools/mhsetup.sty
+Package: mhsetup 2017/03/31 v1.3 programming setup (MH)
+)
+LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
+\g_MT_multlinerow_int=\count106
+\l_MT_multwidth_dim=\dimen114
+\origjot=\skip49
+\l_MT_shortvdotswithinadjustabove_dim=\dimen115
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen116
+\l_MT_above_intertext_sep=\dimen117
+\l_MT_below_intertext_sep=\dimen118
+\l_MT_above_shortintertext_sep=\dimen119
+\l_MT_below_shortintertext_sep=\dimen120
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 99.
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen121
+\Gin@req@width=\dimen122
+) (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
+ (/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 67.
+\captionmargin=\dimen123
+\captionmargin@=\dimen124
+\captionwidth=\dimen125
+\caption@tempdima=\dimen126
+\caption@indent=\dimen127
+\caption@parindent=\dimen128
+\caption@hangindent=\dimen129
+)
+\c@ContinuedFloat=\count107
+) (/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2016/05/22 v1.1-161 Sub-captions (AR)
+\c@subfigure=\count108
+\c@subtable=\count109
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: pdftex.def on input line 147.
+) (/usr/share/texlive/texmf-dist/tex/latex/subfiles/subfiles.sty
+Package: subfiles 2012/05/23 Federico Garcia
+ (/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks20
+\verbatim@line=\toks21
+\verbatim@in@stream=\read1
+)) (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+ (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
+) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+) (/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count110
+\Gm@cntv=\count111
+\c@Gm@tempcnt=\count112
+\Gm@bindingoffset=\dimen130
+\Gm@wd@mp=\dimen131
+\Gm@odd@mp=\dimen132
+\Gm@even@mp=\dimen133
+\Gm@layoutwidth=\dimen134
+\Gm@layoutheight=\dimen135
+\Gm@layouthoffset=\dimen136
+\Gm@layoutvoffset=\dimen137
+\Gm@dimlist=\toks22
+) (/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+Package: fancyhdr 2017/06/30 v3.9a Extensive control of page headers and footers
+\f@nch@headwidth=\skip50
+\f@nch@O@elh=\skip51
+\f@nch@O@erh=\skip52
+\f@nch@O@olh=\skip53
+\f@nch@O@orh=\skip54
+\f@nch@O@elf=\skip55
+\f@nch@O@erf=\skip56
+\f@nch@O@olf=\skip57
+\f@nch@O@orf=\skip58
+) (/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks23
+\pgfutil@tempdima=\dimen138
+\pgfutil@tempdimb=\dimen139
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.tex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box28
+ (/usr/share/texlive/texmf-dist/tex/latex/ms/everyshi.sty
+Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+Package: pgfrcs 2015/08/07 v3.0.1a (rcs-revision 1.31)
+))
+Package: pgf 2015/08/07 v3.0.1a (rcs-revision 1.15)
+ (/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty (/usr/share/texlive/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2014/07/09 v3.0.1a (rcs-revision 1.48)
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks24
+\pgfkeys@temptoks=\toks25
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.tex
+\pgfkeys@tmptoks=\toks26
+))
+\pgf@x=\dimen140
+\pgf@y=\dimen141
+\pgf@xa=\dimen142
+\pgf@ya=\dimen143
+\pgf@xb=\dimen144
+\pgf@yb=\dimen145
+\pgf@xc=\dimen146
+\pgf@yc=\dimen147
+\w@pgf@writea=\write3
+\r@pgf@reada=\read2
+\c@pgf@counta=\count113
+\c@pgf@countb=\count114
+\c@pgf@countc=\count115
+\c@pgf@countd=\count116
+\t@pgf@toka=\toks27
+\t@pgf@tokb=\toks28
+\t@pgf@tokc=\toks29
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
+)
+Driver file for pgf: pgfsys-pdftex.def
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+File: pgfsys-pdftex.def 2014/10/11  (rcs-revision 1.35)
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
+File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
+))) (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
+\pgfsyssoftpath@smallbuffer@items=\count117
+\pgfsyssoftpath@bigbuffer@items=\count118
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
+)) (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+LaTeX Info: Redefining \color on input line 709.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen148
+\pgfmath@count=\count119
+\pgfmath@box=\box29
+\pgfmath@toks=\toks30
+\pgfmath@stack@operand=\toks31
+\pgfmath@stack@operation=\toks32
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex))) (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count120
+)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
+File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
+\pgf@picminx=\dimen149
+\pgf@picmaxx=\dimen150
+\pgf@picminy=\dimen151
+\pgf@picmaxy=\dimen152
+\pgf@pathminx=\dimen153
+\pgf@pathmaxx=\dimen154
+\pgf@pathminy=\dimen155
+\pgf@pathmaxy=\dimen156
+\pgf@xx=\dimen157
+\pgf@xy=\dimen158
+\pgf@yx=\dimen159
+\pgf@yy=\dimen160
+\pgf@zx=\dimen161
+\pgf@zy=\dimen162
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
+File: pgfcorepathconstruct.code.tex 2013/10/07  (rcs-revision 1.29)
+\pgf@path@lastx=\dimen163
+\pgf@path@lasty=\dimen164
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex
+File: pgfcorepathusage.code.tex 2014/11/02  (rcs-revision 1.24)
+\pgf@shorten@end@additional=\dimen165
+\pgf@shorten@start@additional=\dimen166
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
+File: pgfcorescopes.code.tex 2015/05/08  (rcs-revision 1.46)
+\pgfpic=\box30
+\pgf@hbox=\box31
+\pgf@layerbox@main=\box32
+\pgf@picture@serial@count=\count121
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
+File: pgfcoregraphicstate.code.tex 2014/11/02  (rcs-revision 1.12)
+\pgflinewidth=\dimen167
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex
+File: pgfcoretransformations.code.tex 2015/08/07  (rcs-revision 1.20)
+\pgf@pt@x=\dimen168
+\pgf@pt@y=\dimen169
+\pgf@pt@temp=\dimen170
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
+File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.tex
+File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
+File: pgfcorearrows.code.tex 2015/05/14  (rcs-revision 1.43)
+\pgfarrowsep=\dimen171
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
+\pgf@max=\dimen172
+\pgf@sys@shading@range@num=\count122
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
+File: pgfcoreexternal.code.tex 2014/07/09  (rcs-revision 1.21)
+\pgfexternal@startupbox=\box33
+)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
+File: pgfcorelayers.code.tex 2013/07/18  (rcs-revision 1.7)
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
+File: pgfcoretransparency.code.tex 2013/09/30  (rcs-revision 1.5)
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
+File: pgfcorepatterns.code.tex 2013/11/07  (rcs-revision 1.5)
+))) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2014/03/21  (rcs-revision 1.35)
+\pgfnodeparttextbox=\box34
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2015/08/03  (rcs-revision 1.13)
+) (/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
+Package: pgfcomp-version-0-65 2007/07/03 v3.0.1a (rcs-revision 1.7)
+\pgf@nodesepstart=\dimen173
+\pgf@nodesepend=\dimen174
+) (/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
+Package: pgfcomp-version-1-18 2007/07/23 v3.0.1a (rcs-revision 1.1)
+)) (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)) (/usr/share/texlive/texmf-dist/tex/latex/pgf/math/pgfmath.sty (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2013/12/13 v3.0.1a (rcs-revision 1.25)
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
+\pgffor@iter=\dimen175
+\pgffor@skip=\dimen176
+\pgffor@stack=\toks33
+\pgffor@toks=\toks34
+)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
+File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
+\pgf@plot@mark@count=\count123
+\pgfplotmarksize=\dimen177
+)
+\tikz@lastx=\dimen178
+\tikz@lasty=\dimen179
+\tikz@lastxsaved=\dimen180
+\tikz@lastysaved=\dimen181
+\tikzleveldistance=\dimen182
+\tikzsiblingdistance=\dimen183
+\tikz@figbox=\box35
+\tikz@figbox@bg=\box36
+\tikz@tempbox=\box37
+\tikz@tempbox@bg=\box38
+\tikztreelevel=\count124
+\tikznumberofchildren=\count125
+\tikznumberofcurrentchild=\count126
+\tikz@fig@count=\count127
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
+\pgfmatrixcurrentrow=\count128
+\pgfmatrixcurrentcolumn=\count129
+\pgf@matrix@numberofcolumns=\count130
+)
+\tikz@expandcount=\count131
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
+))) (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalc.code.tex
+File: tikzlibrarycalc.code.tex 2013/07/15 v3.0.1a (rcs-revision 1.9)
+) (/home/aamalh/STAI/Documents/ESA/main.aux)
+\openout1 = `main.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+ (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count132
+\scratchdimen=\dimen184
+\scratchbox=\box39
+\nofMPsegments=\count133
+\nofMParguments=\count134
+\everyMPshowfont=\toks35
+\MPscratchCnt=\count135
+\MPscratchDim=\dimen185
+\MPnumerator=\count136
+\makeMPintoPDFobject=\count137
+\everyMPtoPDFconversion=\toks36
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+ (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+ (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+ (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+))) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+ (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+ (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+ (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+))) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2018/01/21 v0.26 Utility functions of pdfTeX for LuaTeX (HO)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 438.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+ (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+))
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: letterpaper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(57.81621pt, 498.66258pt, 57.81621pt)
+* v-part:(T,H,B)=(57.81621pt, 679.33757pt, 57.81621pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=498.66258pt
+* \textheight=679.33757pt
+* \oddsidemargin=-14.45378pt
+* \evensidemargin=-14.45378pt
+* \topmargin=-51.45378pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=11.0pt
+* \footskip=30.0pt
+* \marginparwidth=59.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+ABD: EveryShipout initializing macros
+<Figures/ImperialLogo.jpg, id=4, 448.67625pt x 293.095pt>
+File: Figures/ImperialLogo.jpg Graphic file (type jpg)
+<use Figures/ImperialLogo.jpg>
+Package pdftex.def Info: Figures/ImperialLogo.jpg  used on input line 32.
+(pdftex.def)             Requested size: 249.33128pt x 162.8709pt.
+ [1
+
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} </home/aamalh/STAI/Documents/ESA/Figures/ImperialLogo.jpg>] (/home/aamalh/STAI/Documents/ESA/sections/Abstract.tex [1])
+No file main.toc.
+\tf@toc=\write4
+\openout4 = `main.toc'.
+
+[1
+
+]
+Chapter 1.
+(/home/aamalh/STAI/Documents/ESA/sections/Intro.tex
+
+LaTeX Warning: Citation `Hamann2018' on page 2 undefined on input line 7.
+
+
+LaTeX Warning: Citation `Roy2017' on page 2 undefined on input line 21.
+
+
+LaTeX Warning: Citation `Elamvazhuthi2019' on page 2 undefined on input line 22.
+
+
+LaTeX Warning: Citation `Sahin2005' on page 2 undefined on input line 25.
+
+
+LaTeX Warning: Citation `SchwartzMulti-agentApproach' on page 2 undefined on input line 30.
+
+
+LaTeX Warning: Citation `Woolridge2009' on page 2 undefined on input line 38.
+
+
+LaTeX Warning: Citation `SchwartzMulti-agentApproach' on page 2 undefined on input line 38.
+
+
+LaTeX Warning: Citation `Yang2004' on page 2 undefined on input line 38.
+
+
+LaTeX Warning: Citation `Bloembergen2015' on page 2 undefined on input line 43.
+
+[2
+
+]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 89.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 89.
+)
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[3]
+Chapter 2.
+(/home/aamalh/STAI/Documents/ESA/sections/LitReview.tex
+
+LaTeX Warning: Citation `OliehoekDecentralizedPOMDPs' on page 4 undefined on input line 24.
+
+
+LaTeX Warning: Reference `sec::Objectives_and_Scope' on page 4 undefined on input line 28.
+
+[4
+
+]
+
+LaTeX Warning: Citation `Rizk2018' on page 5 undefined on input line 95.
+
+
+LaTeX Warning: Citation `Ray2010' on page 5 undefined on input line 98.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[5]
+Missing character: There is no â in font cmr10!
+Missing character: There is no € in font cmr10!
+Missing character: There is no ™ in font cmr10!
+
+
+LaTeX Warning: Citation `Emery-Montemerlo' on page 6 undefined on input line 104.
+
+
+LaTeX Warning: Citation `Ray2010' on page 6 undefined on input line 106.
+
+
+LaTeX Warning: Citation `Dai2018' on page 6 undefined on input line 114.
+
+Missing character: There is no â in font cmr10!
+Missing character: There is no € in font cmr10!
+Missing character: There is no ™ in font cmr10!
+
+LaTeX Warning: Reference `sec::Control_Theory' on page 6 undefined on input line 129.
+
+
+LaTeX Warning: Citation `Marden2018AnnualControl' on page 6 undefined on input line 131.
+
+
+LaTeX Warning: Citation `Breitner1994ReentryGame' on page 6 undefined on input line 136.
+
+
+LaTeX Warning: Citation `Bardi1991DifferentialDisturbances' on page 6 undefined on input line 141.
+
+
+LaTeX Warning: Citation `Mylvaganam2017AutonomousApproach' on page 6 undefined on input line 143.
+
+LaTeX Font Info:    Try loading font information for U+msa on input line 144.
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 144.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+
+LaTeX Warning: Citation `MylvaganamASystems' on page 6 undefined on input line 148.
+
+
+LaTeX Warning: Citation `Mylvaganam2014' on page 6 undefined on input line 157.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[6]
+
+LaTeX Warning: Citation `Yang2004' on page 7 undefined on input line 183.
+
+
+LaTeX Warning: Citation `Zhang2019' on page 7 undefined on input line 184.
+
+
+LaTeX Warning: Citation `Hernandez-LealA' on page 7 undefined on input line 195.
+
+
+LaTeX Warning: Citation `SchwartzMulti-agentApproach' on page 7 undefined on input line 205.
+
+
+LaTeX Warning: Citation `SchwartzMulti-agentApproach' on page 7 undefined on input line 220.
+
+
+LaTeX Warning: Citation `Bowling2002' on page 7 undefined on input line 224.
+
+
+LaTeX Warning: Citation `SchwartzMulti-agentApproach' on page 7 undefined on input line 242.
+
+
+LaTeX Warning: Citation `ConitzerAWESOME:' on page 7 undefined on input line 248.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[7]
+
+LaTeX Warning: Citation `Littman' on page 8 undefined on input line 251.
+
+
+LaTeX Warning: Citation `Hu' on page 8 undefined on input line 252.
+
+
+LaTeX Warning: Citation `Gleave' on page 8 undefined on input line 259.
+
+
+LaTeX Warning: Citation `ShohamMultiagentFoundations' on page 8 undefined on input line 276.
+
+
+LaTeX Warning: Citation `Letcher2019DifferentiableMechanics' on page 8 undefined on input line 277.
+
+
+LaTeX Warning: Citation `Tuyls2006AnGames' on page 8 undefined on input line 292.
+
+
+LaTeX Warning: Citation `Tuyls2006AnGames' on page 8 undefined on input line 292.
+
+
+LaTeX Warning: Citation `Bloembergen2015' on page 8 undefined on input line 301.
+
+
+LaTeX Warning: Citation `Tuyls2006AnGames' on page 8 undefined on input line 306.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[8]
+
+LaTeX Warning: Citation `Hu2019' on page 9 undefined on input line 322.
+
+
+LaTeX Warning: Citation `Imhof2005' on page 9 undefined on input line 333.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[9]
+
+LaTeX Warning: Citation `rawlings2017model' on page 10 undefined on input line 429.
+
+Missing character: There is no â in font cmr10!
+Missing character: There is no € in font cmr10!
+Missing character: There is no ™ in font cmr10!
+Missing character: There is no â in font cmr10!
+Missing character: There is no € in font cmr10!
+Missing character: There is no ™ in font cmr10!
+Missing character: There is no â in font cmr10!
+Missing character: There is no € in font cmr10!
+Missing character: There is no ™ in font cmr10!
+
+LaTeX Warning: Citation `Negenborn2014' on page 10 undefined on input line 445.
+
+
+LaTeX Warning: Citation `Venkat2006' on page 10 undefined on input line 445.
+
+
+LaTeX Warning: Citation `Liu2019' on page 10 undefined on input line 448.
+
+
+LaTeX Warning: Citation `VanParys2017' on page 10 undefined on input line 448.
+
+
+LaTeX Warning: Citation `Zheng2017' on page 10 undefined on input line 448.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[10]
+
+LaTeX Warning: Citation `Foerster' on page 11 undefined on input line 455.
+
+
+LaTeX Warning: Citation `Heirung2019' on page 11 undefined on input line 456.
+
+
+LaTeX Warning: Citation `Couceiro2015' on page 11 undefined on input line 468.
+
+
+LaTeX Warning: Citation `Sethi2017' on page 11 undefined on input line 471.
+
+
+LaTeX Warning: Citation `Gao2018' on page 11 undefined on input line 472.
+
+
+LaTeX Warning: Citation `Rizk2018' on page 11 undefined on input line 475.
+
+
+LaTeX Warning: Citation `Sahin2005' on page 11 undefined on input line 478.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[11]
+
+LaTeX Warning: Citation `Hamann2008' on page 12 undefined on input line 520.
+
+
+LaTeX Warning: Citation `Hamann2008' on page 12 undefined on input line 520.
+
+
+LaTeX Warning: Citation `Elamvazhuthi2019' on page 12 undefined on input line 522.
+
+Missing character: There is no â in font cmr10!
+Missing character: There is no € in font cmr10!
+Missing character: There is no ˜ in font cmr10!
+Missing character: There is no â in font cmr10!
+Missing character: There is no € in font cmr10!
+Missing character: There is no ™ in font cmr10!
+
+LaTeX Warning: Citation `Elamvazhuthi2019b' on page 12 undefined on input line 526.
+
+
+LaTeX Warning: Citation `Li2017' on page 12 undefined on input line 530.
+
+
+LaTeX Warning: Citation `Inoue2019' on page 12 undefined on input line 536.
+
+
+LaTeX Warning: Citation `Inoue2019' on page 12 undefined on input line 540.
+
+
+LaTeX Warning: Citation `Bellomo2017' on page 12 undefined on input line 544.
+
+
+LaTeX Warning: Citation `Borzi2015' on page 12 undefined on input line 550.
+
+
+LaTeX Warning: Citation `Pini2011TaskSelection' on page 12 undefined on input line 561.
+
+
+LaTeX Warning: Citation `Zahadat2016DivisionInhibition' on page 12 undefined on input line 568.
+
+
+LaTeX Warning: Citation `Pini2011TaskSelection' on page 12 undefined on input line 572.
+
+
+LaTeX Warning: Citation `Couceiro2015' on page 12 undefined on input line 576.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[12])
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[13] [14
+
+]
+Chapter 3.
+(/home/aamalh/STAI/Documents/ESA/sections/IntrotoProposals.tex
+
+LaTeX Warning: Reference `ch::ShortTermGoals' on page 15 undefined on input line 37.
+
+) [15
+
+]
+Chapter 4.
+(/home/aamalh/STAI/Documents/ESA/sections/ShortTermGoals.tex
+
+LaTeX Warning: Citation `Galla2011' on page 16 undefined on input line 18.
+
+
+LaTeX Warning: Citation `Sato2002' on page 16 undefined on input line 18.
+
+
+LaTeX Warning: Reference `fig::DynamicalBehaviours' on page 16 undefined on input line 21.
+
+
+LaTeX Warning: Citation `Strogatz2000' on page 16 undefined on input line 24.
+
+
+LaTeX Warning: Citation `Fradkov2009' on page 16 undefined on input line 27.
+
+<Figures/DynamicalBehaviours.png, id=72, 880.28876pt x 225.84375pt>
+File: Figures/DynamicalBehaviours.png Graphic file (type png)
+<use Figures/DynamicalBehaviours.png>
+Package pdftex.def Info: Figures/DynamicalBehaviours.png  used on input line 34.
+(pdftex.def)             Requested size: 548.53188pt x 140.735pt.
+
+Overfull \hbox (49.8693pt too wide) in paragraph at lines 34--42
+ [][] 
+ []
+
+
+LaTeX Warning: Citation `Tuyls2006AnGames' on page 16 undefined on input line 42.
+
+
+LaTeX Warning: Citation `Sanders2018' on page 16 undefined on input line 42.
+
+
+LaTeX Warning: Citation `Tuyls2006AnGames' on page 16 undefined on input line 42.
+
+
+LaTeX Warning: Citation `Sanders2018' on page 16 undefined on input line 42.
+
+
+LaTeX Warning: Citation `Tuyls2006AnGames' on page 16 undefined on input line 50.
+
+[16
+
+ </home/aamalh/STAI/Documents/ESA/Figures/DynamicalBehaviours.png>]
+
+LaTeX Warning: Reference `fig::TuylsExperiments' on page 17 undefined on input line 72.
+
+<Figures/Dynamics.png, id=78, 865.2325pt x 289.08pt>
+File: Figures/Dynamics.png Graphic file (type png)
+<use Figures/Dynamics.png>
+Package pdftex.def Info: Figures/Dynamics.png  used on input line 78.
+(pdftex.def)             Requested size: 336.59496pt x 112.45844pt.
+<Figures/Q-Learners.png, id=79, 832.10875pt x 285.065pt>
+File: Figures/Q-Learners.png Graphic file (type png)
+<use Figures/Q-Learners.png>
+Package pdftex.def Info: Figures/Q-Learners.png  used on input line 84.
+(pdftex.def)             Requested size: 314.15392pt x 107.62115pt.
+
+LaTeX Warning: Citation `Tuyls2006AnGames' on page 17 undefined on input line 93.
+
+
+LaTeX Warning: Reference `eqn::EOM' on page 17 undefined on input line 93.
+
+
+LaTeX Warning: Citation `Tuyls2006AnGames' on page 17 undefined on input line 93.
+
+
+LaTeX Warning: Reference `eqn::EOM' on page 17 undefined on input line 93.
+
+
+LaTeX Warning: Reference `eqn::EOM' on page 17 undefined on input line 96.
+
+
+LaTeX Warning: Reference `fig::TuylsExperiments' on page 17 undefined on input line 96.
+
+
+LaTeX Warning: Citation `Sanders2018' on page 17 undefined on input line 103.
+
+
+LaTeX Warning: Citation `Galla2011' on page 17 undefined on input line 103.
+
+
+LaTeX Warning: Citation `Camerer2009' on page 17 undefined on input line 105.
+
+
+LaTeX Warning: Reference `fig::GallaPredictions' on page 17 undefined on input line 108.
+
+
+LaTeX Warning: Citation `Sanders2018' on page 17 undefined on input line 108.
+
+<Figures/GallaPredictions.png, id=80, 337.26pt x 329.23pt>
+File: Figures/GallaPredictions.png Graphic file (type png)
+<use Figures/GallaPredictions.png>
+Package pdftex.def Info: Figures/GallaPredictions.png  used on input line 114.
+(pdftex.def)             Requested size: 299.20059pt x 292.0844pt.
+
+LaTeX Warning: Citation `Sanders2018' on page 17 undefined on input line 123.
+
+
+LaTeX Warning: Citation `Sanders2018' on page 17 undefined on input line 123.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[17 </home/aamalh/STAI/Documents/ESA/Figures/Dynamics.png> </home/aamalh/STAI/Documents/ESA/Figures/Q-Learners.png>]
+
+LaTeX Warning: Citation `Sanders2018' on page 18 undefined on input line 143.
+
+
+LaTeX Warning: Reference `app::ResearchSummary' on page 18 undefined on input line 145.
+
+
+LaTeX Warning: Citation `Sanders2018' on page 18 undefined on input line 154.
+
+
+LaTeX Warning: Citation `Camerer1999' on page 18 undefined on input line 158.
+
+
+LaTeX Warning: Citation `Camerer2003' on page 18 undefined on input line 158.
+
+
+LaTeX Warning: Citation `Sutton2018' on page 18 undefined on input line 164.
+
+
+LaTeX Warning: Citation `SchwartzMulti-agentApproach' on page 18 undefined on input line 164.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[18 </home/aamalh/STAI/Documents/ESA/Figures/GallaPredictions.png>]
+
+LaTeX Warning: Citation `Tuyls2006AnGames' on page 19 undefined on input line 173.
+
+
+LaTeX Warning: Citation `Tuyls2006AnGames' on page 19 undefined on input line 177.
+
+
+LaTeX Warning: Reference `fig::TuylsExperiments' on page 19 undefined on input line 180.
+
+
+LaTeX Warning: Reference `eqn::EOM' on page 19 undefined on input line 183.
+
+
+LaTeX Warning: Citation `Sanders2018' on page 19 undefined on input line 220.
+
+
+LaTeX Warning: Citation `Tuyls2006AnGames' on page 19 undefined on input line 224.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[19]
+
+LaTeX Warning: Reference `eqn::EOM' on page 20 undefined on input line 230.
+
+
+LaTeX Warning: Reference `app::ResearchSummary' on page 20 undefined on input line 270.
+
+
+LaTeX Warning: Reference `app::ResearchSummary' on page 20 undefined on input line 287.
+
+
+LaTeX Warning: Citation `Coolen2005' on page 20 undefined on input line 302.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[20]
+
+LaTeX Warning: Reference `eqn::Transformed' on page 21 undefined on input line 330.
+
+
+LaTeX Warning: Reference `fig::NumericalExperiments' on page 21 undefined on input line 341.
+
+
+LaTeX Warning: Reference `app::ResearchSummary' on page 21 undefined on input line 342.
+
+<Figures/AlphaRun_tau_005.png, id=99, 366.36874pt x 252.945pt>
+File: Figures/AlphaRun_tau_005.png Graphic file (type png)
+<use Figures/AlphaRun_tau_005.png>
+Package pdftex.def Info: Figures/AlphaRun_tau_005.png  used on input line 352.
+(pdftex.def)             Requested size: 157.07695pt x 108.44774pt.
+<Figures/tau_015.png, id=100, 366.36874pt x 252.945pt>
+File: Figures/tau_015.png Graphic file (type png)
+<use Figures/tau_015.png>
+Package pdftex.def Info: Figures/tau_015.png  used on input line 357.
+(pdftex.def)             Requested size: 157.07695pt x 108.44774pt.
+
+LaTeX Warning: Reference `fig::NumericalExperiments' on page 21 undefined on input line 371.
+
+
+LaTeX Warning: Reference `eqn::EOM' on page 21 undefined on input line 377.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[21 </home/aamalh/STAI/Documents/ESA/Figures/AlphaRun_tau_005.png> </home/aamalh/STAI/Documents/ESA/Figures/tau_015.png>]
+
+LaTeX Warning: Reference `eqn::Transformed' on page 22 undefined on input line 404.
+
+
+LaTeX Warning: Citation `Hu2019' on page 22 undefined on input line 413.
+
+)
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[22]
+Chapter 5.
+(/home/aamalh/STAI/Documents/ESA/sections/ProposedResearch.tex
+
+LaTeX Warning: Reference `ch::IntrotoProposals' on page 23 undefined on input line 6.
+
+
+LaTeX Warning: Reference `ch::ShortTermGoals' on page 23 undefined on input line 7.
+
+
+LaTeX Warning: Citation `Sanders2018' on page 23 undefined on input line 19.
+
+
+LaTeX Warning: Reference `fig::GallaPrevalence' on page 23 undefined on input line 25.
+
+<Figures/GallaPrevalence.png, id=109, 330.23375pt x 331.2375pt>
+File: Figures/GallaPrevalence.png Graphic file (type png)
+<use Figures/GallaPrevalence.png>
+Package pdftex.def Info: Figures/GallaPrevalence.png  used on input line 30.
+(pdftex.def)             Requested size: 299.20059pt x 300.12259pt.
+
+LaTeX Warning: Citation `Sanders2018' on page 23 undefined on input line 38.
+
+
+LaTeX Warning: Reference `fig::GallaPredictions' on page 23 undefined on input line 38.
+
+
+LaTeX Warning: Citation `Sanders2018' on page 23 undefined on input line 38.
+
+
+LaTeX Warning: Reference `fig::GallaPredictions' on page 23 undefined on input line 38.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: Citation `Elamvazhuthi2019b' on page 23 undefined on input line 43.
+
+
+LaTeX Warning: Citation `Hu2019' on page 23 undefined on input line 46.
+
+
+LaTeX Warning: Reference `fig::LeungPredictions' on page 23 undefined on input line 58.
+
+<Figures/LeungPredictions.png, id=110, 578.16pt x 185.69376pt>
+File: Figures/LeungPredictions.png Graphic file (type png)
+<use Figures/LeungPredictions.png>
+Package pdftex.def Info: Figures/LeungPredictions.png  used on input line 62.
+(pdftex.def)             Requested size: 448.79327pt x 144.14351pt.
+
+LaTeX Warning: Citation `Hu2019' on page 23 undefined on input line 69.
+
+
+LaTeX Warning: Citation `Hu2019' on page 23 undefined on input line 69.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: Citation `Doerr2019' on page 23 undefined on input line 84.
+
+
+LaTeX Warning: Citation `Nagarajan2018' on page 23 undefined on input line 94.
+
+[23
+
+]
+
+LaTeX Warning: Reference `ch::Lit_Review' on page 24 undefined on input line 112.
+
+
+LaTeX Warning: Citation `Elamvazhuthi2019' on page 24 undefined on input line 120.
+
+
+LaTeX Warning: Citation `Li2017' on page 24 undefined on input line 120.
+
+
+LaTeX Warning: Citation `Roy2017' on page 24 undefined on input line 120.
+
+
+LaTeX Warning: Citation `Fleig' on page 24 undefined on input line 124.
+
+
+LaTeX Warning: Citation `Burger2019' on page 24 undefined on input line 125.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[24 </home/aamalh/STAI/Documents/ESA/Figures/GallaPrevalence.png>]
+
+LaTeX Warning: Citation `Bellomo2017' on page 25 undefined on input line 130.
+
+
+LaTeX Warning: Reference `sec::Intelligence_in_control' on page 25 undefined on input line 164.
+
+
+LaTeX Warning: Citation `Fredi2010' on page 25 undefined on input line 173.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[25 </home/aamalh/STAI/Documents/ESA/Figures/LeungPredictions.png>]
+
+LaTeX Warning: Citation `Bellomo2017' on page 26 undefined on input line 175.
+
+
+LaTeX Warning: Citation `Ko2019' on page 26 undefined on input line 180.
+
+
+LaTeX Warning: Reference `eqn::Vlasov' on page 26 undefined on input line 188.
+
+
+LaTeX Warning: Reference `ch::ShortTermGoals' on page 26 undefined on input line 192.
+
+
+LaTeX Warning: Reference `sec::Large_Agent_Dynamics' on page 26 undefined on input line 193.
+
+
+LaTeX Warning: Reference `sec::Large_Agent_Dynamics' on page 26 undefined on input line 217.
+
+
+LaTeX Warning: Reference `sec::Large_Agent_Dynamics' on page 26 undefined on input line 221.
+
+)
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[26]
+Chapter 6.
+(/home/aamalh/STAI/Documents/ESA/sections/ResearchTimeline.tex [27
+
+])
+No file main.bbl.
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[28] [29
+
+
+]
+Appendix A.
+(/home/aamalh/STAI/Documents/ESA/sections/ResearchSummary.tex [30
+
+]
+
+LaTeX Warning: Citation `Mezard1986' on page 31 undefined on input line 94.
+
+
+LaTeX Warning: Reference `eqn::appscaledEOM' on page 31 undefined on input line 102.
+
+
+LaTeX Warning: Reference `eqn::appgeneratingfunctional' on page 31 undefined on input line 157.
+
+
+LaTeX Warning: Reference `eqn::appmoveddisorder' on page 31 undefined on input line 157.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[31]
+
+LaTeX Warning: Citation `ZinnJustin2009' on page 32 undefined on input line 193.
+
+
+LaTeX Warning: Reference `eqn::appexpectationIdentity' on page 32 undefined on input line 241.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[32]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[33]
+Overfull \hbox (12.17688pt too wide) detected at line 417
+[]
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[34]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[35]
+
+LaTeX Warning: Reference `sub:appgenerating_functional' on page 36 undefined on input line 479.
+
+
+LaTeX Warning: Citation `Opper1992' on page 36 undefined on input line 510.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[36]
+
+LaTeX Warning: Reference `eqn::appLinearisation' on page 37 undefined on input line 565.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[37]
+<Figures/Run1.png, id=163, 366.36874pt x 252.945pt>
+File: Figures/Run1.png Graphic file (type png)
+<use Figures/Run1.png>
+Package pdftex.def Info: Figures/Run1.png  used on input line 599.
+(pdftex.def)             Requested size: 157.07695pt x 108.44774pt.
+<Figures/Run2.png, id=164, 366.36874pt x 252.945pt>
+File: Figures/Run2.png Graphic file (type png)
+<use Figures/Run2.png>
+Package pdftex.def Info: Figures/Run2.png  used on input line 604.
+(pdftex.def)             Requested size: 157.07695pt x 108.44774pt.
+<Figures/Alpha_2.png, id=165, 366.36874pt x 252.945pt>
+File: Figures/Alpha_2.png Graphic file (type png)
+<use Figures/Alpha_2.png>
+Package pdftex.def Info: Figures/Alpha_2.png  used on input line 610.
+(pdftex.def)             Requested size: 157.07695pt x 108.44774pt.
+<Figures/Alpha_2_Run_2.png, id=166, 366.36874pt x 252.945pt>
+File: Figures/Alpha_2_Run_2.png Graphic file (type png)
+<use Figures/Alpha_2_Run_2.png>
+Package pdftex.def Info: Figures/Alpha_2_Run_2.png  used on input line 615.
+(pdftex.def)             Requested size: 157.07695pt x 108.44774pt.
+File: Figures/AlphaRun_tau_005.png Graphic file (type png)
+<use Figures/AlphaRun_tau_005.png>
+Package pdftex.def Info: Figures/AlphaRun_tau_005.png  used on input line 621.
+(pdftex.def)             Requested size: 157.07695pt x 108.44774pt.
+File: Figures/tau_015.png Graphic file (type png)
+<use Figures/tau_015.png>
+Package pdftex.def Info: Figures/tau_015.png  used on input line 626.
+(pdftex.def)             Requested size: 157.07695pt x 108.44774pt.
+
+
+LaTeX Warning: Reference `fig::appToys' on page 38 undefined on input line 639.
+
+
+LaTeX Warning: Reference `eqn::appEOM' on page 38 undefined on input line 644.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[38 </home/aamalh/STAI/Documents/ESA/Figures/Run1.png> </home/aamalh/STAI/Documents/ESA/Figures/Run2.png> </home/aamalh/STAI/Documents/ESA/Figures/Alpha_2.png> </home/aamalh/STAI/Documents/ESA/Figures/Alpha_2_Run_2.png>])
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[39] (/home/aamalh/STAI/Documents/ESA/main.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 14767 strings out of 492982
+ 288455 string characters out of 6134897
+ 340349 words of memory out of 5000000
+ 18000 multiletter control sequences out of 15000+600000
+ 15011 words of font info for 57 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 55i,19n,54p,923b,578s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on /home/aamalh/STAI/Documents/ESA/main.pdf (41 pages, 1743058 bytes).
+PDF statistics:
+ 231 PDF objects out of 1000 (max. 8388607)
+ 145 compressed objects within 2 object streams
+ 0 named destinations out of 1000 (max. 500000)
+ 78 words of extra memory for PDF output out of 10000 (max. 10000000)
+
