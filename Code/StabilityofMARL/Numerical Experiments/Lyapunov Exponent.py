@@ -29,7 +29,7 @@ def KantzLCE(data):
 
 
 for alpha in tqdm(np.linspace(1e-2, 5e-2, num=10)):
-    for Gamma in np.linspace(-1, 1, num=10):
+    for Gamma in np.linspace(-1, 1, num=1):
         payoffs = generateGames(Gamma, nSim, nActions)
         allActions = []
 
@@ -45,7 +45,7 @@ for alpha in tqdm(np.linspace(1e-2, 5e-2, num=10)):
 
         dS = KantzLCE(allActions)
 
-        plt.plot(np.log(dS)), plt.savefig("Figures/tau_{0}_alpha_{1}_Gamma_{2}.png".format(tau, alpha, Gamma)), plt.close()
+        plt.plot(np.log(dS)), plt.savefig("Figures/tau_{0}_alpha_{1}_Gamma_{2}.png".format(tau, alpha, Gamma))
         with open("Data/tau_{0}_alpha_{1}_Gamma_{2}.txt".format(tau, alpha, Gamma), 'w') as f:
             f.write(str(dS))
             f.close()
