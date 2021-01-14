@@ -64,8 +64,6 @@ def checkminMax(allActions, nSim, tol):
     relDiff = ((np.max(a, axis=0) - np.min(a, axis=0))/np.min(a, axis=0))
     return np.all(relDiff < tol, axis=1)
 
-plotConv = []
-
 def getVariance(allActions):
     h = (1 / nActions) * np.sum((1 / t0) * np.sum(allActions ** 2, axis=0) - ((1 / t0) * np.sum(allActions, axis=0)) ** 2,
                               axis=2)
