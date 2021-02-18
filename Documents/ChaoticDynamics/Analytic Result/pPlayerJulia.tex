@@ -1,0 +1,366 @@
+\documentclass[main.tex]{subfiles}
+
+
+    
+
+\begin{document}
+    
+    \maketitle
+    
+    
+
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{using} \PY{n}{LinearAlgebra}
+\PY{k}{using} \PY{n}{SparseArrays}
+\PY{k}{using} \PY{n}{PyCall}
+\PY{k}{using} \PY{n}{Plots}
+\PY{k}{using} \PY{n}{IterTools}
+\PY{k}{using} \PY{n}{Distributions}
+\PY{k}{using} \PY{n}{ProgressMeter}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{py}\PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+\PY{l+s}{d}\PY{l+s}{e}\PY{l+s}{f}\PY{l+s}{ }\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{A}\PY{l+s}{c}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{s}\PY{l+s}{(}\PY{l+s}{n}\PY{l+s}{A}\PY{l+s}{c}\PY{l+s}{t}\PY{l+s}{,}\PY{l+s}{ }\PY{l+s}{n}\PY{l+s}{P}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{y}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{s}\PY{l+s}{)}\PY{l+s}{:}
+\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{i}\PY{l+s}{m}\PY{l+s}{p}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{t}\PY{l+s}{ }\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{s}
+\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{i}\PY{l+s}{d}\PY{l+s}{X}\PY{l+s}{ }\PY{l+s}{=}\PY{l+s}{ }\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{(}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{s}\PY{l+s}{.}\PY{l+s}{p}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{d}\PY{l+s}{u}\PY{l+s}{c}\PY{l+s}{t}\PY{l+s}{(}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{(}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{e}\PY{l+s}{(}\PY{l+s}{1}\PY{l+s}{,}\PY{l+s}{ }\PY{l+s}{n}\PY{l+s}{A}\PY{l+s}{c}\PY{l+s}{t}\PY{l+s}{ }\PY{l+s}{+}\PY{l+s}{ }\PY{l+s}{1}\PY{l+s}{)}\PY{l+s}{)}\PY{l+s}{,}\PY{l+s}{ }\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{p}\PY{l+s}{e}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{=}\PY{l+s}{n}\PY{l+s}{P}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{y}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{s}\PY{l+s}{)}\PY{l+s}{)}\PY{l+s}{ }\PY{l+s}{*}\PY{l+s}{ }\PY{l+s}{n}\PY{l+s}{P}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{y}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{s}
+\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{u}\PY{l+s}{r}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{i}\PY{l+s}{d}\PY{l+s}{X}
+\PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+\PY{n}{allActions}\PY{p}{(}\PY{n}{nAct}\PY{p}{,} \PY{n}{nPlayers}\PY{p}{)} \PY{o}{=} \PY{n}{py}\PY{l+s}{\PYZdq{}}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{A}\PY{l+s}{c}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{(}\PY{n}{nAct}\PY{p}{,} \PY{n}{nPlayers}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{function} \PY{n}{generateCorrespondences}\PY{p}{(}\PY{n}{nActions}\PY{p}{,} \PY{n}{nPlayers}\PY{p}{)}
+    \PY{n}{nElements} \PY{o}{=} \PY{n}{nActions}\PY{o}{\PYZca{}}\PY{n}{nPlayers}
+    \PY{n}{Actions} \PY{o}{=} \PY{n}{allActions}\PY{p}{(}\PY{n}{nActions}\PY{p}{,} \PY{n}{nPlayers}\PY{p}{)}
+    \PY{n}{allCombos} \PY{o}{=} \PY{p}{[}\PY{p}{[}\PY{n}{findall}\PY{p}{(}\PY{n}{x} \PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}} \PY{n}{x}\PY{o}{==}\PY{n}{tuple}\PY{p}{(}\PY{n}{circshift}\PY{p}{(}\PY{p}{[}\PY{n}{j} \PY{k}{for} \PY{n}{j} \PY{k+kp}{in} \PY{n}{Actions}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{o}{*}\PY{p}{(}\PY{n}{p}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{o}{.}\PY{o}{.}\PY{p}{)}\PY{p}{,} \PY{n}{Actions}\PY{p}{)}\PY{p}{[}\PY{n}{p}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]} \PY{k}{for} \PY{n}{p}\PY{o}{=}\PY{l+m+mi}{0}\PY{o}{:}\PY{n}{nPlayers}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{:}\PY{n}{nElements}\PY{p}{]}
+    
+    \PY{k}{return} \PY{n}{Actions}\PY{p}{,} \PY{n}{allCombos}
+\PY{k}{end}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{function} \PY{n}{generateGames}\PY{p}{(}\PY{n}{Gamma}\PY{p}{,} \PY{n}{nSim}\PY{p}{,} \PY{n}{allCombos}\PY{p}{,} \PY{n}{nActions}\PY{p}{,} \PY{n}{nPlayers}\PY{p}{)}
+    \PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{C}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{C}\PY{l+s}{o}\PY{l+s}{v}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{M}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{x}\PY{l+s}{ }\PY{l+s}{f}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{m}\PY{l+s}{ }\PY{l+s}{G}\PY{l+s}{a}\PY{l+s}{m}\PY{l+s}{m}\PY{l+s}{a}
+\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }
+\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{R}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{u}\PY{l+s}{r}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{R}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{o}\PY{l+s}{m}\PY{l+s}{ }\PY{l+s}{P}\PY{l+s}{a}\PY{l+s}{y}\PY{l+s}{o}\PY{l+s}{f}\PY{l+s}{f}\PY{l+s}{ }\PY{l+s}{M}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{:}\PY{l+s}{ }\PY{l+s}{n}\PY{l+s}{P}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{y}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{s}\PY{l+s}{*}\PY{l+s}{n}\PY{l+s}{E}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{s}\PY{l+s}{ }\PY{l+s}{x}\PY{l+s}{ }\PY{l+s}{n}\PY{l+s}{S}\PY{l+s}{i}\PY{l+s}{m}
+\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }
+\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+    \PY{n}{nElements} \PY{o}{=} \PY{n}{nActions}\PY{o}{\PYZca{}}\PY{n}{nPlayers}
+    \PY{n}{cov} \PY{o}{=} \PY{k+kt}{Matrix}\PY{p}{(}\PY{l+m+mf}{1.0}\PY{n+nb}{I}\PY{p}{,} \PY{n}{nPlayers} \PY{o}{*} \PY{n}{nElements}\PY{p}{,} \PY{n}{nPlayers} \PY{o}{*} \PY{n}{nElements}\PY{p}{)}
+    
+    \PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}\PY{l+s}{ }\PY{l+s}{C}\PY{l+s}{y}\PY{l+s}{c}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{u}\PY{l+s}{g}\PY{l+s}{h}\PY{l+s}{ }\PY{l+s}{e}\PY{l+s}{a}\PY{l+s}{c}\PY{l+s}{h}\PY{l+s}{ }\PY{l+s}{o}\PY{l+s}{f}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{m}\PY{l+s}{b}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{s}\PY{l+s}{ }\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{ }\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{s}\PY{l+s}{i}\PY{l+s}{g}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{e}\PY{l+s}{m}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{a}\PY{l+s}{p}\PY{l+s}{p}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{p}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{G}\PY{l+s}{a}\PY{l+s}{m}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{ }\PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+    \PY{k}{for} \PY{n}{c} \PY{k+kp}{in} \PY{n}{allCombos}
+        \PY{n}{cov}\PY{p}{[}\PY{n}{c}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{c}\PY{p}{[}\PY{l+m+mi}{2}\PY{o}{:}\PY{k}{end}\PY{p}{]}\PY{p}{]} \PY{o}{.=} \PY{n}{Gamma}\PY{o}{/}\PY{p}{(}\PY{n}{nPlayers}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n}{cov}\PY{p}{[}\PY{n}{c}\PY{p}{[}\PY{l+m+mi}{2}\PY{o}{:}\PY{k}{end}\PY{p}{]}\PY{p}{,} \PY{n}{c}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]} \PY{o}{.=} \PY{n}{Gamma}\PY{o}{/}\PY{p}{(}\PY{n}{nPlayers}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+    \PY{k}{end}
+        
+    \PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}\PY{l+s}{ }\PY{l+s}{d}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{w}\PY{l+s}{ }\PY{l+s}{f}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{m}\PY{l+s}{ }\PY{l+s}{a}\PY{l+s}{ }\PY{l+s}{G}\PY{l+s}{a}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{s}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{ }\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{v}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{x}\PY{l+s}{ }\PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+
+    \PY{k}{return} \PY{n}{rand}\PY{p}{(}\PY{n}{MvNormal}\PY{p}{(}\PY{n}{zeros}\PY{p}{(}\PY{n}{nPlayers} \PY{o}{*} \PY{n}{nElements}\PY{p}{)}\PY{p}{,} \PY{n}{cov}\PY{p}{)}\PY{p}{,} \PY{n}{nSim}\PY{p}{)}
+
+\PY{k}{end}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{function} \PY{n}{getActionProbs}\PY{p}{(}\PY{n}{qValues}\PY{p}{,} \PY{n}{agentParams}\PY{p}{)}
+    \PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{q}\PY{l+s}{V}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{u}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{:}\PY{l+s}{ }\PY{l+s}{n}\PY{l+s}{P}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{y}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{ }\PY{l+s}{x}\PY{l+s}{ }\PY{l+s}{n}\PY{l+s}{A}\PY{l+s}{c}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{s}\PY{l+s}{ }\PY{l+s}{x}\PY{l+s}{ }\PY{l+s}{n}\PY{l+s}{S}\PY{l+s}{i}\PY{l+s}{m}
+\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{u}\PY{l+s}{r}\PY{l+s}{n}\PY{l+s}{:}\PY{l+s}{ }\PY{l+s}{n}\PY{l+s}{P}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{y}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{ }\PY{l+s}{x}\PY{l+s}{ }\PY{l+s}{n}\PY{l+s}{A}\PY{l+s}{c}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{s}\PY{l+s}{ }\PY{l+s}{x}\PY{l+s}{ }\PY{l+s}{n}\PY{l+s}{S}\PY{l+s}{i}\PY{l+s}{m}
+\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+    \PY{n}{alpha}\PY{p}{,} \PY{n}{tau}\PY{p}{,} \PY{n}{gamma} \PY{o}{=} \PY{n}{agentParams}
+    
+    \PY{k}{return} \PY{n}{exp}\PY{o}{.}\PY{p}{(}\PY{n}{tau} \PY{o}{*} \PY{n}{qValues}\PY{p}{)}\PY{o}{./}\PY{n}{sum}\PY{p}{(}\PY{n}{exp}\PY{o}{.}\PY{p}{(}\PY{n}{tau} \PY{o}{*} \PY{n}{qValues}\PY{p}{)}\PY{p}{,} \PY{n}{dims}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+\PY{k}{end}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{function} \PY{n}{chooseActions}\PY{p}{(}\PY{n}{actionProbs}\PY{p}{,} \PY{n}{gameParams}\PY{p}{)}
+    \PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{g}\PY{l+s}{:}\PY{l+s}{ }\PY{l+s}{a}\PY{l+s}{c}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{P}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{b}\PY{l+s}{s}\PY{l+s}{:}\PY{l+s}{ }\PY{l+s}{n}\PY{l+s}{P}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{y}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{ }\PY{l+s}{x}\PY{l+s}{ }\PY{l+s}{n}\PY{l+s}{A}\PY{l+s}{c}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{s}\PY{l+s}{ }\PY{l+s}{x}\PY{l+s}{ }\PY{l+s}{n}\PY{l+s}{S}\PY{l+s}{i}\PY{l+s}{m}
+\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{u}\PY{l+s}{r}\PY{l+s}{n}\PY{l+s}{:}\PY{l+s}{ }\PY{l+s}{n}\PY{l+s}{P}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{y}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{ }\PY{l+s}{x}\PY{l+s}{ }\PY{l+s}{n}\PY{l+s}{S}\PY{l+s}{i}\PY{l+s}{m}
+\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+    
+    \PY{n}{nSim}\PY{p}{,} \PY{n}{nPlayers}\PY{p}{,} \PY{n}{nActions} \PY{o}{=} \PY{n}{gameParams}
+
+    \PY{k}{return} \PY{p}{[}\PY{p}{[}\PY{n}{rand}\PY{p}{(}\PY{n}{Bernoulli}\PY{p}{(}\PY{n}{actionProbs}\PY{p}{[}\PY{n}{p}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{s}\PY{p}{]}\PY{p}{)}\PY{p}{)} \PY{o}{+} \PY{l+m+mi}{1} \PY{k}{for} \PY{n}{p}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{:}\PY{n}{nPlayers}\PY{p}{]} \PY{k}{for} \PY{n}{s}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{:}\PY{n}{nSim}\PY{p}{]}
+\PY{k}{end}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{function} \PY{n}{findPayoffs}\PY{p}{(}\PY{n}{choices}\PY{p}{,} \PY{n}{gameParams}\PY{p}{,} \PY{n}{corr}\PY{p}{,} \PY{n}{actions}\PY{p}{,} \PY{n}{payoffs}\PY{p}{)}
+    \PY{n}{nSim}\PY{p}{,} \PY{n}{nPlayers}\PY{p}{,} \PY{n}{nActions} \PY{o}{=} \PY{n}{gameParams}
+    
+    \PY{n}{choiceIdx} \PY{o}{=} \PY{p}{[}\PY{n}{corr}\PY{p}{[}\PY{n}{findall}\PY{p}{(}\PY{n}{x} \PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}} \PY{n}{x}\PY{o}{==}\PY{n}{tuple}\PY{p}{(}\PY{n}{choices}\PY{p}{[}\PY{n}{s}\PY{p}{]}\PY{o}{.}\PY{o}{.}\PY{o}{.}\PY{p}{)}\PY{p}{,} \PY{n}{actions}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]} \PY{k}{for} \PY{n}{s}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{:}\PY{n}{nSim}\PY{p}{]}
+    \PY{k}{return} \PY{p}{[}\PY{n}{payoffs}\PY{p}{[}\PY{n}{choiceIdx}\PY{p}{[}\PY{n}{s}\PY{p}{]}\PY{p}{,} \PY{n}{s}\PY{p}{]} \PY{k}{for} \PY{n}{s}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{:}\PY{n}{nSim}\PY{p}{]}
+\PY{k}{end}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{function} \PY{n}{qUpdate!}\PY{p}{(}\PY{n}{qValues}\PY{p}{,} \PY{n}{payoffs}\PY{p}{,} \PY{n}{gameParams}\PY{p}{,} \PY{n}{agentParams}\PY{p}{,} \PY{n}{correlations}\PY{p}{,} \PY{n}{actions}\PY{p}{)}
+
+    \PY{n}{nSim}\PY{p}{,} \PY{n}{nPlayers}\PY{p}{,} \PY{n}{nActions} \PY{o}{=} \PY{n}{gameParams}
+    \PY{n}{alpha}\PY{p}{,} \PY{n}{tau}\PY{p}{,} \PY{n}{gamma} \PY{o}{=} \PY{n}{agentParams}
+    
+    \PY{n}{actionProbs} \PY{o}{=} \PY{n}{getActionProbs}\PY{p}{(}\PY{n}{qValues}\PY{p}{,} \PY{n}{agentParams}\PY{p}{)}
+    \PY{n}{bChoice} \PY{o}{=} \PY{n}{chooseActions}\PY{p}{(}\PY{n}{actionProbs}\PY{p}{,} \PY{n}{gameParams}\PY{p}{)}
+    \PY{n}{rewards} \PY{o}{=} \PY{n}{findPayoffs}\PY{p}{(}\PY{n}{bChoice}\PY{p}{,} \PY{n}{gameParams}\PY{p}{,} \PY{n}{correlations}\PY{p}{,} \PY{n}{actions}\PY{p}{,} \PY{n}{payoffs}\PY{p}{)}
+
+    \PY{n}{update} \PY{o}{=} \PY{p}{[}\PY{n}{rewards}\PY{p}{[}\PY{n}{s}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{diag}\PY{p}{(}\PY{n}{qValues}\PY{p}{[}\PY{o}{:}\PY{p}{,} \PY{n}{bChoice}\PY{p}{[}\PY{n}{s}\PY{p}{]}\PY{p}{,} \PY{n}{s}\PY{p}{]}\PY{p}{)} \PY{o}{+} \PY{n}{gamma} \PY{o}{*} \PY{n}{findmax}\PY{p}{(}\PY{n}{qValues}\PY{p}{[}\PY{o}{:}\PY{p}{,} \PY{o}{:}\PY{p}{,} \PY{n}{s}\PY{p}{]}\PY{p}{,} \PY{n}{dims}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{k}{for} \PY{n}{s}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{:}\PY{n}{nSim}\PY{p}{]}
+    
+    \PY{k}{for} \PY{n}{s} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{nSim}
+        \PY{k}{for} \PY{n}{p} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{nPlayers}
+            \PY{n}{qValues}\PY{p}{[}\PY{n}{p}\PY{p}{,} \PY{n}{bChoice}\PY{p}{[}\PY{n}{s}\PY{p}{]}\PY{p}{[}\PY{n}{p}\PY{p}{]}\PY{p}{,} \PY{n}{s}\PY{p}{]} \PY{o}{+=} \PY{n}{alpha} \PY{o}{*} \PY{n}{update}\PY{p}{[}\PY{n}{s}\PY{p}{]}\PY{p}{[}\PY{n}{p}\PY{p}{]}
+        \PY{k}{end}
+    \PY{k}{end}
+\PY{k}{end}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{function} \PY{n}{checkminMix}\PY{p}{(}\PY{n}{actionTracker}\PY{p}{,} \PY{n}{nSim}\PY{p}{,} \PY{n}{tol}\PY{p}{)}
+    \PY{n}{T} \PY{o}{=} \PY{n}{hcat}\PY{p}{(}\PY{p}{[}\PY{n}{reshape}\PY{p}{(}\PY{n}{actionTracker}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{nPlayers} \PY{o}{*} \PY{n}{nSim} \PY{o}{*} \PY{n}{nActions}\PY{p}{)} \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{:}\PY{n}{length}\PY{p}{(}\PY{n}{actionTracker}\PY{p}{)}\PY{p}{]}\PY{o}{.}\PY{o}{.}\PY{o}{.}\PY{p}{)}
+    \PY{n}{relDiff} \PY{o}{=} \PY{p}{(}\PY{n}{findmax}\PY{p}{(}\PY{n}{T}\PY{p}{,} \PY{n}{dims}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{findmin}\PY{p}{(}\PY{n}{T}\PY{p}{,} \PY{n}{dims}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{o}{./}\PY{n}{findmin}\PY{p}{(}\PY{n}{T}\PY{p}{,} \PY{n}{dims}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+
+    \PY{n}{part} \PY{o}{=} \PY{p}{[}\PY{n}{relDiff}\PY{p}{[}\PY{n}{i}\PY{o}{*}\PY{p}{(}\PY{n}{nActions}\PY{o}{*}\PY{n}{nPlayers}\PY{p}{)}\PY{o}{+}\PY{l+m+mi}{1}\PY{o}{:}\PY{p}{(}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{nActions}\PY{o}{*}\PY{n}{nPlayers}\PY{p}{)}\PY{p}{]} \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{0}\PY{o}{:}\PY{n}{nSim}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+    \PY{n}{bRemove} \PY{o}{=} \PY{p}{[}\PY{n}{length}\PY{p}{(}\PY{n}{findall}\PY{p}{(}\PY{n}{x}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{x}\PY{o}{\PYZlt{}}\PY{l+m+mf}{0.01}\PY{p}{,} \PY{n}{p}\PY{p}{)}\PY{p}{)}\PY{o}{\PYZgt{}=}\PY{n}{length}\PY{p}{(}\PY{n}{p}\PY{p}{)} \PY{k}{for} \PY{n}{p} \PY{k+kp}{in} \PY{n}{part}\PY{p}{]}
+    
+    \PY{k}{return} \PY{n}{bRemove}
+\PY{k}{end}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{alpha} \PY{o}{=} \PY{l+m+mf}{0.01}
+\PY{n}{tau} \PY{o}{=} \PY{l+m+mf}{0.05}
+\PY{n}{gamma} \PY{o}{=} \PY{l+m+mf}{0.1}
+
+\PY{n}{initnSim} \PY{o}{=} \PY{l+m+mi}{15}
+\PY{n}{nPlayers} \PY{o}{=} \PY{l+m+mi}{3}
+\PY{n}{nActions} \PY{o}{=} \PY{l+m+mi}{5}
+
+\PY{n}{Gamma} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.5}
+
+\PY{c}{\PYZsh{} gameParams = (nSim, nPlayers, nActions)}
+\PY{c}{\PYZsh{} agentParams = (alpha, tau, gamma)}
+
+\PY{n}{t0} \PY{o}{=} \PY{l+m+mi}{5000}
+\PY{n}{actions}\PY{p}{,} \PY{n}{corr} \PY{o}{=} \PY{n}{generateCorrespondences}\PY{p}{(}\PY{n}{nActions}\PY{p}{,} \PY{n}{nPlayers}\PY{p}{)}
+
+\PY{n}{nIter} \PY{o}{=} \PY{n}{trunc}\PY{p}{(}\PY{k+kt}{Int}\PY{p}{,} \PY{l+m+mf}{5e4}\PY{p}{)}
+
+\PY{n}{allconv} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n+nd}{@showprogress} \PY{k}{for} \PY{n}{a} \PY{k+kp}{in} \PY{n}{LinRange}\PY{p}{(}\PY{l+m+mf}{1e\PYZhy{}2}\PY{p}{,} \PY{l+m+mf}{5e\PYZhy{}2}\PY{p}{,} \PY{l+m+mi}{20}\PY{p}{)}
+    \PY{k+kd}{global} \PY{n}{alpha} \PY{o}{=} \PY{n}{a}
+    \PY{k}{for} \PY{n}{Gamma} \PY{k+kp}{in} \PY{n}{LinRange}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{20}\PY{p}{)}
+        \PY{k+kd}{global} \PY{n}{nSim} \PY{o}{=} \PY{n}{initnSim}
+    
+        \PY{n}{qValues} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{n}{nPlayers}\PY{p}{,} \PY{n}{nActions}\PY{p}{,} \PY{n}{nSim}\PY{p}{)}
+        \PY{n}{payoffs} \PY{o}{=} \PY{n}{generateGames}\PY{p}{(}\PY{n}{Gamma}\PY{p}{,} \PY{n}{nSim}\PY{p}{,} \PY{n}{corr}\PY{p}{,} \PY{n}{nActions}\PY{p}{,} \PY{n}{nPlayers}\PY{p}{)}
+        \PY{n}{actionTracker} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+
+        \PY{n}{converged} \PY{o}{=} \PY{l+m+mi}{0}
+
+        \PY{k}{for} \PY{n}{cIter} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{nIter}
+
+            \PY{k}{if} \PY{n}{cIter}\PY{o}{==}\PY{n}{t0}
+                \PY{n}{actionTracker} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+            \PY{k}{end}    
+
+            \PY{k}{if} \PY{n}{cIter}\PY{o}{\PYZpc{}}\PY{n}{t0}\PY{o}{==}\PY{l+m+mi}{0} \PY{o}{\PYZam{}\PYZam{}} \PY{n}{cIter!}\PY{o}{=}\PY{l+m+mi}{0} \PY{o}{\PYZam{}\PYZam{}} \PY{n}{cIter!}\PY{o}{=}\PY{n}{t0}
+                \PY{n}{bRemove} \PY{o}{=} \PY{n}{checkminMix}\PY{p}{(}\PY{n}{actionTracker}\PY{p}{,} \PY{n}{nSim}\PY{p}{,} \PY{l+m+mf}{1e\PYZhy{}2}\PY{p}{)}
+                \PY{n}{removeIdx} \PY{o}{=} \PY{n}{findall}\PY{p}{(}\PY{n}{bRemove}\PY{p}{)}
+                \PY{n}{qValues} \PY{o}{=} \PY{n}{qValues}\PY{p}{[}\PY{o}{:}\PY{p}{,} \PY{o}{:}\PY{p}{,} \PY{n}{setdiff}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{:}\PY{k}{end}\PY{p}{,} \PY{n}{removeIdx}\PY{p}{)}\PY{p}{]}
+                \PY{n}{payoffs} \PY{o}{=} \PY{n}{payoffs}\PY{p}{[}\PY{o}{:}\PY{p}{,} \PY{n}{setdiff}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{:}\PY{k}{end}\PY{p}{,} \PY{n}{removeIdx}\PY{p}{)}\PY{p}{]}
+                \PY{n}{nSim} \PY{o}{\PYZhy{}=} \PY{n}{length}\PY{p}{(}\PY{n}{removeIdx}\PY{p}{)}
+                \PY{n}{converged} \PY{o}{+=} \PY{n}{length}\PY{p}{(}\PY{n}{removeIdx}\PY{p}{)}
+
+                \PY{n}{actionTracker} \PY{o}{=} \PY{p}{[}\PY{p}{]} 
+            \PY{k}{end}
+
+            \PY{k}{if} \PY{n}{nSim} \PY{o}{\PYZlt{}=} \PY{l+m+mi}{0}
+                \PY{k}{break}
+            \PY{k}{end}
+
+            \PY{n}{gameParams} \PY{o}{=} \PY{p}{(}\PY{n}{nSim}\PY{p}{,} \PY{n}{nPlayers}\PY{p}{,} \PY{n}{nActions}\PY{p}{)}
+            \PY{n}{agentParams} \PY{o}{=} \PY{p}{(}\PY{n}{alpha}\PY{p}{,} \PY{n}{tau}\PY{p}{,} \PY{n}{gamma}\PY{p}{)}
+
+            \PY{n}{qUpdate!}\PY{p}{(}\PY{n}{qValues}\PY{p}{,} \PY{n}{payoffs}\PY{p}{,} \PY{n}{gameParams}\PY{p}{,} \PY{n}{agentParams}\PY{p}{,} \PY{n}{corr}\PY{p}{,} \PY{n}{actions}\PY{p}{)}
+            \PY{n}{append!}\PY{p}{(}\PY{n}{actionTracker}\PY{p}{,} \PY{p}{[}\PY{n}{getActionProbs}\PY{p}{(}\PY{n}{qValues}\PY{p}{,} \PY{n}{agentParams}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+
+        \PY{k}{end}
+        \PY{n}{append!}\PY{p}{(}\PY{n}{allconv}\PY{p}{,} \PY{p}{[}\PY{n}{alpha}\PY{p}{,} \PY{n}{Gamma}\PY{p}{,} \PY{n}{converged}\PY{o}{/}\PY{n}{initnSim}\PY{p}{]}\PY{p}{)}
+    \PY{k}{end}
+\PY{k}{end}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{a} \PY{o}{=} \PY{n}{reshape}\PY{p}{(}\PY{n}{allconv}\PY{p}{[}\PY{l+m+mi}{3}\PY{o}{:}\PY{l+m+mi}{3}\PY{o}{:}\PY{k}{end}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{20}\PY{p}{,} \PY{l+m+mi}{20}\PY{p}{)}\PY{p}{[}\PY{k}{end}\PY{o}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{:}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{py}\PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+\PY{l+s}{d}\PY{l+s}{e}\PY{l+s}{f}\PY{l+s}{ }\PY{l+s}{p}\PY{l+s}{l}\PY{l+s}{o}\PY{l+s}{t}\PY{l+s}{H}\PY{l+s}{e}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{p}\PY{l+s}{(}\PY{l+s}{a}\PY{l+s}{)}\PY{l+s}{:}
+\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{i}\PY{l+s}{m}\PY{l+s}{p}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{t}\PY{l+s}{ }\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{p}\PY{l+s}{l}\PY{l+s}{o}\PY{l+s}{t}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{b}\PY{l+s}{.}\PY{l+s}{p}\PY{l+s}{y}\PY{l+s}{p}\PY{l+s}{l}\PY{l+s}{o}\PY{l+s}{t}\PY{l+s}{ }\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{ }\PY{l+s}{p}\PY{l+s}{l}\PY{l+s}{t}
+\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{i}\PY{l+s}{m}\PY{l+s}{p}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{t}\PY{l+s}{ }\PY{l+s}{s}\PY{l+s}{e}\PY{l+s}{a}\PY{l+s}{b}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{ }\PY{l+s}{s}\PY{l+s}{n}\PY{l+s}{s}
+\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{i}\PY{l+s}{m}\PY{l+s}{p}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{t}\PY{l+s}{ }\PY{l+s}{n}\PY{l+s}{u}\PY{l+s}{m}\PY{l+s}{p}\PY{l+s}{y}\PY{l+s}{ }\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{ }\PY{l+s}{n}\PY{l+s}{p}
+\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{a}\PY{l+s}{x}\PY{l+s}{ }\PY{l+s}{=}\PY{l+s}{ }\PY{l+s}{s}\PY{l+s}{n}\PY{l+s}{s}\PY{l+s}{.}\PY{l+s}{h}\PY{l+s}{e}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{p}\PY{l+s}{(}\PY{l+s}{a}\PY{l+s}{,}\PY{l+s}{ }\PY{l+s}{v}\PY{l+s}{m}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{=}\PY{l+s}{0}\PY{l+s}{,}\PY{l+s}{ }\PY{l+s}{v}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{x}\PY{l+s}{=}\PY{l+s}{1}\PY{l+s}{,}\PY{l+s}{ }\PY{l+s}{x}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{k}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{b}\PY{l+s}{e}\PY{l+s}{l}\PY{l+s}{s}\PY{l+s}{=}\PY{l+s}{n}\PY{l+s}{p}\PY{l+s}{.}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{s}\PY{l+s}{p}\PY{l+s}{a}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{(}\PY{l+s}{1}\PY{l+s}{,}\PY{l+s}{ }\PY{l+s}{5}\PY{l+s}{,}\PY{l+s}{ }\PY{l+s}{n}\PY{l+s}{u}\PY{l+s}{m}\PY{l+s}{=}\PY{l+s}{2}\PY{l+s}{0}\PY{l+s}{)}\PY{l+s}{.}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{u}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{(}\PY{l+s}{2}\PY{l+s}{)}\PY{l+s}{,}\PY{l+s}{ }\PY{l+s}{y}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{k}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{b}\PY{l+s}{e}\PY{l+s}{l}\PY{l+s}{s}\PY{l+s}{=}\PY{l+s}{n}\PY{l+s}{p}\PY{l+s}{.}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{s}\PY{l+s}{p}\PY{l+s}{a}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{(}\PY{l+s}{\PYZhy{}}\PY{l+s}{1}\PY{l+s}{,}\PY{l+s}{ }\PY{l+s}{0}\PY{l+s}{,}\PY{l+s}{ }\PY{l+s}{n}\PY{l+s}{u}\PY{l+s}{m}\PY{l+s}{=}\PY{l+s}{2}\PY{l+s}{0}\PY{l+s}{)}\PY{l+s}{[}\PY{l+s}{\PYZhy{}}\PY{l+s}{1}\PY{l+s}{:}\PY{l+s}{:}\PY{l+s}{\PYZhy{}}\PY{l+s}{1}\PY{l+s}{]}\PY{l+s}{.}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{u}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{(}\PY{l+s}{2}\PY{l+s}{)}\PY{l+s}{)}
+\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{a}\PY{l+s}{x}\PY{l+s}{.}\PY{l+s}{s}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{(}\PY{l+s}{x}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{b}\PY{l+s}{e}\PY{l+s}{l}\PY{l+s}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{α}\PY{l+s}{ }\PY{l+s}{(}\PY{l+s}{x}\PY{l+s}{ }\PY{l+s}{1}\PY{l+s}{e}\PY{l+s}{\PYZhy{}}\PY{l+s}{2}\PY{l+s}{)}\PY{l+s}{\PYZdq{}}\PY{l+s}{,}\PY{l+s}{ }\PY{l+s}{y}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{b}\PY{l+s}{e}\PY{l+s}{l}\PY{l+s}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{Γ}\PY{l+s}{\PYZdq{}}\PY{l+s}{)}
+\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{p}\PY{l+s}{l}\PY{l+s}{t}\PY{l+s}{.}\PY{l+s}{s}\PY{l+s}{h}\PY{l+s}{o}\PY{l+s}{w}\PY{l+s}{(}\PY{l+s}{)}
+\PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+
+\PY{n}{plotHeatmap}\PY{p}{(}\PY{n}{a}\PY{p}{)} \PY{o}{=} \PY{n}{py}\PY{l+s}{\PYZdq{}}\PY{l+s}{p}\PY{l+s}{l}\PY{l+s}{o}\PY{l+s}{t}\PY{l+s}{H}\PY{l+s}{e}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{p}\PY{l+s}{\PYZdq{}}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{using} \PY{n}{PyPlot}
+\PY{n}{plotHeatmap}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{qValues} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{n}{nPlayers}\PY{p}{,} \PY{n}{nActions}\PY{p}{,} \PY{n}{nSim}\PY{p}{)}
+\PY{n}{payoffs} \PY{o}{=} \PY{n}{generateGames}\PY{p}{(}\PY{n}{Gamma}\PY{p}{,} \PY{n}{nSim}\PY{p}{,} \PY{n}{corr}\PY{p}{,} \PY{n}{nActions}\PY{p}{,} \PY{n}{nPlayers}\PY{p}{)}
+
+\PY{n}{probs} \PY{o}{=} \PY{n}{getActionProbs}\PY{p}{(}\PY{n}{qValues}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.05}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+\PY{n}{bChoice} \PY{o}{=} \PY{p}{[}\PY{p}{[}\PY{n}{rand}\PY{p}{(}\PY{n}{Bernoulli}\PY{p}{(}\PY{n}{probs}\PY{p}{[}\PY{n}{p}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{s}\PY{p}{]}\PY{p}{)}\PY{p}{)} \PY{o}{+} \PY{l+m+mi}{1} \PY{k}{for} \PY{n}{p}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{:}\PY{n}{nPlayers}\PY{p}{]} \PY{k}{for} \PY{n}{s}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{:}\PY{n}{nSim}\PY{p}{]}
+
+\PY{n}{choiceIdx} \PY{o}{=} \PY{p}{[}\PY{n}{corr}\PY{p}{[}\PY{n}{findall}\PY{p}{(}\PY{n}{x} \PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}} \PY{n}{x}\PY{o}{==}\PY{n}{tuple}\PY{p}{(}\PY{n}{bChoice}\PY{p}{[}\PY{n}{s}\PY{p}{]}\PY{o}{.}\PY{o}{.}\PY{o}{.}\PY{p}{)}\PY{p}{,} \PY{n}{actions}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]} \PY{k}{for} \PY{n}{s}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{:}\PY{n}{nSim}\PY{p}{]}
+
+\PY{n}{rewards} \PY{o}{=} \PY{p}{[}\PY{n}{payoffs}\PY{p}{[}\PY{n}{choiceIdx}\PY{p}{[}\PY{n}{s}\PY{p}{]}\PY{p}{,} \PY{n}{s}\PY{p}{]} \PY{k}{for} \PY{n}{s}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{:}\PY{n}{nSim}\PY{p}{]}
+
+\PY{n}{update} \PY{o}{=} \PY{p}{[}\PY{n}{rewards}\PY{p}{[}\PY{n}{s}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{diag}\PY{p}{(}\PY{n}{qValues}\PY{p}{[}\PY{o}{:}\PY{p}{,} \PY{n}{bChoice}\PY{p}{[}\PY{n}{s}\PY{p}{]}\PY{p}{,} \PY{n}{s}\PY{p}{]}\PY{p}{)} \PY{o}{+} \PY{n}{gamma} \PY{o}{*} \PY{n}{findmax}\PY{p}{(}\PY{n}{qValues}\PY{p}{[}\PY{o}{:}\PY{p}{,} \PY{o}{:}\PY{p}{,} \PY{n}{s}\PY{p}{]}\PY{p}{,} \PY{n}{dims}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{k}{for} \PY{n}{s}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{:}\PY{n}{nSim}\PY{p}{]}
+\PY{c}{\PYZsh{} [i for i in bChoice[1]]}
+\PY{k}{for} \PY{n}{s} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{nSim}
+    \PY{k}{for} \PY{n}{p} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{nPlayers}
+        \PY{n}{qValues}\PY{p}{[}\PY{n}{p}\PY{p}{,} \PY{n}{bChoice}\PY{p}{[}\PY{n}{s}\PY{p}{]}\PY{p}{[}\PY{n}{p}\PY{p}{]}\PY{p}{,} \PY{n}{s}\PY{p}{]} \PY{o}{+=} \PY{n}{alpha} \PY{o}{*} \PY{n}{update}\PY{p}{[}\PY{n}{s}\PY{p}{]}\PY{p}{[}\PY{n}{p}\PY{p}{]}
+    \PY{k}{end}
+\PY{k}{end}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{tau} \PY{o}{=} \PY{l+m+mf}{0.05}
+\PY{n}{alpha} \PY{o}{=} \PY{l+m+mf}{0.02}
+\PY{n}{gamma} \PY{o}{=} \PY{l+m+mf}{0.1}
+
+\PY{n}{initnSim} \PY{o}{=} \PY{l+m+mi}{20}
+\PY{n}{nActions} \PY{o}{=} \PY{l+m+mi}{2}
+
+\PY{n}{t0} \PY{o}{=} \PY{l+m+mi}{25000}
+
+\PY{n}{nIter} \PY{o}{=} \PY{n}{trunc}\PY{p}{(}\PY{k+kt}{Int}\PY{p}{,} \PY{l+m+mf}{5e4}\PY{p}{)}
+
+\PY{n}{allVars} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{function} \PY{n}{getVariance}\PY{p}{(}\PY{n}{actionTracker}\PY{p}{)}
+    
+
+    \PY{n}{T} \PY{o}{=} \PY{n}{hcat}\PY{p}{(}\PY{p}{[}\PY{n}{reshape}\PY{p}{(}\PY{n}{actionTracker}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{nPlayers} \PY{o}{*} \PY{n}{nSim} \PY{o}{*} \PY{n}{nActions}\PY{p}{)} \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{:}\PY{n}{length}\PY{p}{(}\PY{n}{actionTracker}\PY{p}{)}\PY{p}{]}\PY{o}{.}\PY{o}{.}\PY{o}{.}\PY{p}{)}
+    \PY{n}{var} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{/}\PY{n}{length}\PY{p}{(}\PY{n}{actionTracker}\PY{p}{)}\PY{p}{)} \PY{o}{*} \PY{n}{sum}\PY{p}{(}\PY{n}{T}\PY{o}{.\PYZca{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{dims}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{p}{(}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{/}\PY{n}{length}\PY{p}{(}\PY{n}{actionTracker}\PY{p}{)}\PY{p}{)} \PY{o}{*} \PY{n}{sum}\PY{p}{(}\PY{n}{T}\PY{p}{,} \PY{n}{dims}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{o}{.\PYZca{}}\PY{l+m+mi}{2}
+    \PY{n}{part} \PY{o}{=} \PY{p}{[}\PY{n}{var}\PY{p}{[}\PY{n}{i}\PY{o}{*}\PY{p}{(}\PY{n}{nActions}\PY{o}{*}\PY{n}{nPlayers}\PY{p}{)}\PY{o}{+}\PY{l+m+mi}{1}\PY{o}{:}\PY{p}{(}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{nActions}\PY{o}{*}\PY{n}{nPlayers}\PY{p}{)}\PY{p}{]} \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{0}\PY{o}{:}\PY{n}{nSim}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+
+    \PY{k}{return} \PY{n}{mean}\PY{p}{(}\PY{p}{[}\PY{n}{mean}\PY{p}{(}\PY{n}{p}\PY{p}{)} \PY{k}{for} \PY{n}{p} \PY{k+kp}{in} \PY{n}{part}\PY{p}{]}\PY{p}{)}
+
+    
+\PY{k}{end}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n+nd}{@showprogress} \PY{k}{for} \PY{n}{p} \PY{o}{=} \PY{l+m+mi}{3}\PY{o}{:}\PY{l+m+mi}{12}
+    \PY{k+kd}{global} \PY{n}{nPlayers} \PY{o}{=} \PY{n}{p}
+    \PY{n}{actions}\PY{p}{,} \PY{n}{corr} \PY{o}{=} \PY{n}{generateCorrespondences}\PY{p}{(}\PY{n}{nActions}\PY{p}{,} \PY{n}{nPlayers}\PY{p}{)}
+    
+    \PY{n}{varGamma} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+        \PY{n+nd}{@show} \PY{n}{nPlayers}
+    \PY{k}{for} \PY{n}{Gamma} \PY{k+kp}{in} \PY{n}{LinRange}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}
+        
+        \PY{k+kd}{global} \PY{n}{nSim} \PY{o}{=} \PY{n}{initnSim}
+
+        \PY{n}{qValues} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{n}{nPlayers}\PY{p}{,} \PY{n}{nActions}\PY{p}{,} \PY{n}{nSim}\PY{p}{)}
+        \PY{n}{payoffs} \PY{o}{=} \PY{n}{generateGames}\PY{p}{(}\PY{n}{Gamma}\PY{p}{,} \PY{n}{nSim}\PY{p}{,} \PY{n}{corr}\PY{p}{,} \PY{n}{nActions}\PY{p}{,} \PY{n}{nPlayers}\PY{p}{)}
+
+        \PY{n}{actionTracker} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+
+        \PY{k}{for} \PY{n}{cIter} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{nIter}
+                
+            \PY{n}{gameParams} \PY{o}{=} \PY{p}{(}\PY{n}{nSim}\PY{p}{,} \PY{n}{nPlayers}\PY{p}{,} \PY{n}{nActions}\PY{p}{)}
+            \PY{n}{agentParams} \PY{o}{=} \PY{p}{(}\PY{n}{alpha}\PY{p}{,} \PY{n}{tau}\PY{p}{,} \PY{n}{gamma}\PY{p}{)}
+
+            \PY{n}{qUpdate!}\PY{p}{(}\PY{n}{qValues}\PY{p}{,} \PY{n}{payoffs}\PY{p}{,} \PY{n}{gameParams}\PY{p}{,} \PY{n}{agentParams}\PY{p}{,} \PY{n}{corr}\PY{p}{,} \PY{n}{actions}\PY{p}{)}
+            
+            \PY{k}{if} \PY{n}{cIter} \PY{o}{\PYZgt{}} \PY{n}{t0}
+                \PY{n}{append!}\PY{p}{(}\PY{n}{actionTracker}\PY{p}{,} \PY{p}{[}\PY{n}{getActionProbs}\PY{p}{(}\PY{n}{qValues}\PY{p}{,} \PY{n}{agentParams}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+            \PY{k}{end}
+
+        \PY{k}{end}
+        \PY{n}{append!}\PY{p}{(}\PY{n}{varGamma}\PY{p}{,} \PY{n}{getVariance}\PY{p}{(}\PY{n}{actionTracker}\PY{p}{)}\PY{p}{)}
+    \PY{k}{end}
+    
+    \PY{n}{append!}\PY{p}{(}\PY{n}{allVars}\PY{p}{,} \PY{p}{[}\PY{n}{mean}\PY{p}{(}\PY{n}{varGamma}\PY{p}{)}\PY{p}{,} \PY{n}{std}\PY{p}{(}\PY{n}{varGamma}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+\PY{k}{end}
+\end{Verbatim}
+\end{tcolorbox}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+\end{document}

@@ -1,0 +1,52 @@
+This is BibTeX, Version 0.99d (TeX Live 2020)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: ijcai.aux
+The style file: named.bst
+Database file #1: references.bib
+Warning--there's a number but no volume in hocamerer:ewa
+Warning--there's a number but no volume in galla:complex
+Warning--empty journal in piliouras:catastrophe
+Warning--empty publisher in schwartz:reinforcement
+Warning--empty journal in tuyls:iteratedgames
+You've used 20 entries,
+            2439 wiz_defined-function locations,
+            655 strings with 7395 characters,
+and the built_in function-call counts, 6106 in all, are:
+= -- 594
+> -- 253
+< -- 0
++ -- 83
+- -- 80
+* -- 445
+:= -- 1058
+add.period$ -- 60
+call.type$ -- 20
+change.case$ -- 111
+chr.to.int$ -- 20
+cite$ -- 25
+duplicate$ -- 279
+empty$ -- 460
+format.name$ -- 108
+if$ -- 1215
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 29
+newline$ -- 103
+num.names$ -- 60
+pop$ -- 133
+preamble$ -- 1
+purify$ -- 140
+quote$ -- 0
+skip$ -- 219
+stack$ -- 0
+substring$ -- 134
+swap$ -- 38
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 124
+warning$ -- 5
+while$ -- 42
+width$ -- 22
+write$ -- 244
+(There were 5 warnings)
