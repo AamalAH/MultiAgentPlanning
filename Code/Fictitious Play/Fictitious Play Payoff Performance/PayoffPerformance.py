@@ -124,11 +124,11 @@ def simulation(gamma, dim, nSim, nInit, nIter):
 
     """
 
-    # pX, qY = np.zeros((dim, nInit, nSim)), np.zeros((dim, nInit, nSim))
-    # pX[np.random.randint(1, dim, size=(nInit)), range(nInit), :] = 1
-    # qY[np.random.randint(1, dim, size=(nInit)), range(nInit), :] = 1
+    pX, qY = np.zeros((dim, nInit, nSim)), np.zeros((dim, nInit, nSim))
+    pX[np.random.randint(0, dim, size=(nInit)), range(nInit), :] = 1
+    qY[np.random.randint(0, dim, size=(nInit)), range(nInit), :] = 1
 
-    pX, qY = initialiseRandomVectors(dim, nInit, nSim)
+    # pX, qY = initialiseRandomVectors(dim, nInit, nSim)
 
     rX, rY = np.einsum('ais,ajs,jis->is', pX, A, qY), np.einsum('ais,ajs,jis->is', pX, B, qY)
     erX, erY = np.einsum('ais,ajs,jis->is', pX, A, qY), np.einsum('ais,ajs,jis->is', pX, B, qY)
@@ -163,8 +163,6 @@ def simulation(gamma, dim, nSim, nInit, nIter):
     perfX, perfY = getPerformance(erX, erY, allNEPayoffs, nSim)
 
     return perfX, perfY
-
-    # return erX - NEX, erY - NEY
 
 
 def plotInterestingScenario(trajX, trajY):
