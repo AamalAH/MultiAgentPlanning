@@ -1,0 +1,203 @@
+\documentclass{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath, amsfonts, amsthm}
+\usepackage{xcolor}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{assumption}{Assumption}
+
+\newcommand{\ah}[1]{\textcolor{blue}{AH: \textit{#1}}}
+\newcommand{\svs}[1]{\textcolor{red}{FB: \textit{#1}}}
+
+\title{Fictitious Play in Network Aggregative Games}
+\author{AH, FB}
+
+\begin{document}
+	
+	\maketitle
+	
+	The idea is to require that each agent $i$ play a best response to the history of the aggregate strategy in their neighbourhood. We can think of this as the agent being able to `measure' the aggregate strategy of its neighbours or as some centralised observer giving this reference to the agent.
+	
+	To formalise this, we assume that we have a set of agents $V = \{1, ..., p \}$ which can be thought of as nodes on a graph $\{V, E, W\}$ where $E$ is the edge-set (i.e. the set of pairs $(i, j)$ such that i and j are connected) and $W$ is a weighted adjacency matrix $[W]_{ij} = w_{ij}$. Let $N_i := \{j \in V : (i, j) \in E\}$ be the set of player $i's$ neighbours. Note $w_{ij} = 0$ if $(i, j) \not\in E$, $w_{ij} \in (0, 1]$ if $(i, j) \in E$. We impose the normalisation condition that $\sum_{j \in N_i} w_{ij} = 1$. This requirement ensures that the aggregate strategy $\sum_{j \in N_i} w_{ij} x_j$ (where $x$ is a probability vector) remains a probability vector. For example, in the 3 player case:
+	
+	\begin{equation}
+	\sigma_1 := w_{12} y + w_{13} z = 
+	w_{12}
+	\begin{bmatrix}
+	y_1 \\ y_2 \\ 1 - y_1 - y_2
+	\end{bmatrix}		
+	+ 	w_{13}
+	\begin{bmatrix}
+	z_1 \\ z_2 \\ 1 - z_1 - z_2
+	\end{bmatrix}	= 
+	\begin{bmatrix}
+	w_{12} y_1 + w_{13} z_1 \\ w_{12} y_2 + w_{13} z_2 \\ 1 - (w_{12} y_1 + w_{13} z_1) - (w_{12} y_2 + w_{13} z_2)
+	\end{bmatrix}	
+	\end{equation}
+	
+	In the continuous time case, we're also going to assume that each agent $i$ chooses a mixed strategy $x_i(t) \in \Delta_i$ at time $t$ from its strategy space $\Delta_i$ (which is an $N-$simplex). We assume that $i$ has just the one strategy that it can play against all of its neighbours.
+	
+	Once the strategy is chosen, the agent plays the game and receives payoff $u_i (x_i, \sigma_i)$, where $\sigma_i$ is the aggregate strategy vector that $i$ perceives. The best response map $BR_i$ maps any $\sigma_i$ to the set $\arg\max_{x \in \Delta_i} u_i (x, \sigma_i)$. Then $x_i$ is a `best response' to $\sigma_i$ if $x_i \in BR_i(\sigma_i)$.
+	
+	\begin{definition}(NE)
+		The set of vectors $\{ x_i^*\}_{i = 1}^p$ is an NE if, for all $i$,
+		
+		\begin{equation*}
+		x_i^* \in BR_i( w_{ii} x_i^* + \sum_{j \in N_i} w_{ij} x_j^*).
+		\end{equation*}
+		
+	\end{definition}
+	
+	\subsection*{Case: Aggregation is dependent only on its neighbours}
+	
+	We start with the following assumption
+	
+	\begin{assumption}
+	$w_{ii} = 0$ for all $i \in \{ 1, ..., N \}$
+	\end{assumption}
+	
+	Under this assumption the $BR$ map becomes
+	
+	\begin{equation}
+		BR_i(\sum_{j \in N_i} w_{ij} x_j) = \arg\max_{x \in \Delta_i} u_i(x_i,\sum_{j \in N_i} w_{ij} x_j)
+	\end{equation}
+	
+	Let us now make the assumption that the payoff function is bilinear and can be written as $u_i(x_i, \sigma_i) = x_i \cdot A^i \sigma_i$. Then 
+	
+	\begin{equation*}
+		u_i(x_i, \sigma_i) = x_i \cdot A^i \sum_{j \in N_i} w_{ij} x_j = \sum_{j \in N_i} x_i \cdot A^{ij} x_j =: \sum_{j \in N_i} u_{ij}(x_i, x_j) 
+	\end{equation*}
+	
+	where $A^{ij} := w_{ij} A^i$ and $u_{ij}$ is a bilinear payoff between $i$ and $j$ as defined by Ewerhart. With this transformation, we can move from a network aggregative system to a network game formulation (as in Ewerhart) in which each agent $i$ plays a game $G_{ij}$ against $j$ with payoff $A^{ij}$ and with the added requirement that each agent plays the same strategy against each of its neighbours.
+	
+	The Network Aggregative Fictitious Play requires that the agent plays a best response to the time average of $\sigma_i$. So let us have the following definitions:
+	
+	\begin{align}
+		\alpha_{\sigma_i}(t) = \frac{1}{t} \int_{0}^{t} \sigma_i(t') \, dt'\nonumber \\
+		\alpha_i(t) = \frac{1}{t} \int_{0}^{t} x_i(t') \, dt', \nonumber
+	\end{align}
+	
+	where $x_i(t')$ denotes the action played by $i$ at time $t'$. Now we notice
+	
+	\begin{align}
+		\alpha_{\sigma_i}(t) = \frac{1}{t} \int_{0}^{t} \sigma_i(t') \, dt' = \frac{1}{t} \int_{0}^t \sum_{j \in N_i} w_{ij} x_j(t') \, dt' = \sum_{j \in N_i} w_{ij} \frac{1}{t} \int_{0}^t x_j(t') \, dt' = \sum_{j \in N_i} w_{ij} \alpha_j(t) \nonumber \\
+	\end{align}
+	
+	So, then, a Continuous Time Fictitious Play (CTFP) is a map $m$ such that each of its components $m_i: [0, \infty) \rightarrow \Delta_i$ satisfies $m_i(t) \in BR_i(\sum_{j \in N_i} w_{ij} \alpha_j(t))$ for all $t \geq 1$. Using the transformation from before, this is the requirement that, in the equivalent network game, $m_i(t) \in \arg \max_{x \in \Delta_i} \sum_{j \in N_i} u_{ij}(x_i, \alpha_j)$ for all $t \geq 1$. Now, Ewerhart showed that, in a zero-sum network (where the sum of all $u_i$ is zero), such an $m$ exists and any such $m$ converges to an NE.
+	
+	To clarify what the convergence property means in this context, each $m$ is associated with an $\alpha(t; m) = \frac{1}{t} \int_{0}^t m_i(t') \, dt'$. Let $A(m)$ denote the set of accumulation points of $\alpha(t; m)$ (i.e. the set of $\mu$ where there exists a sequence $\{t_q\}_{q = 0}^{\infty}$ such that $\lim_{q \rightarrow \infty} t_q = \infty$ and $\lim_{q \rightarrow \infty} \alpha(t_q; m) = \mu$). Convergence to an NE means that $A(m)$ is contained within the set of NE of the game. 
+	
+	In any case, the fact that $m$ converges to an NE for the equivalent network game means that it converges for the NAG also. \ah{To make this precise, I'll follow through the proof of Ewerhart}
+	
+	\begin{theorem}
+		For any zero-sum Network Aggregative Game which follows the above assumption, any CTFP $m$ has the property that $A(m)$ is contained within the set of NE of the game.
+	\end{theorem}
+	
+	\begin{proof}
+		Take the Lyapunov function
+		\begin{align}
+			L(\mu) & = \sum_i \max_{x \in \Delta_i} \{u_i(x, \sum_{j \in N_i} w_{ij} \mu_j) - u_i(\mu_i, \sum_{j \in N_i} w_{ij} \mu_j) \} \nonumber \\
+			& = \sum_i \max_{x \in \Delta_i} \{u_i(x, \sum_{j \in N_i} w_{ij} \mu_j)\} - \sum_i u_i(\mu_i, \sum_{j \in N_i} w_{ij} \mu_j) \nonumber \\
+			& = \sum_i \max_{x \in \Delta_i} \{u_i(x, \sum_{j \in N_i} w_{ij} \mu_j)\} \nonumber
+		\end{align}
+		
+		where the last equality holds because we made the assumption of a zero sum game. Making the usual transformation, we consider that $i$ is now involved in a network game in which it plays the same strategy against each of its neighbours $j$ giving
+		
+		\begin{align}
+			L(\mu) = \sum_i \max_{x \in \Delta_i} \sum_{j \in N_i}  u_{ij}(x, \mu_j) \nonumber \\
+		\end{align}
+		
+		Now we take any CTFP $m$ and recall that it is found by playing the best response to $\alpha(t; m)$, which of course means that it maximises $\sum_{j \in N_i} u_{ij}$. Therefore
+		
+		\begin{align}
+			L(\alpha(t)) & = \sum_i \sum_{j \in N_i} u_{ij}(m_i(t), \alpha_j(t)) \nonumber \\
+			& = \sum_i \sum_{j \in N_i} m_i(t) A^{ij} \alpha_j(t)
+		\end{align}
+		 
+		 Now if we were to follow on using Ewerhart's proof, we would find that any accumulation point of $\alpha(t; m)$ is an NE of the network game. I.e. if $\mu^*$ is this limit point, then it satisfies that, for any $x \in \Delta_i$
+		 
+		 \begin{align}
+		 	\sum_{j \in N_i} u_{ij}(x, \mu_j^*) \leq 	\sum_{j \in N_i} u_{ij}(\mu_i^*, \mu_j^*) \nonumber
+		 \end{align}
+		 
+		 Now if we reverse the transformation this means that, for the network aggregative game we have the condition that for any $x \in \Delta_i$
+		 
+		 \begin{align}
+		 	u_{i}(x, \sum_{j \in N_i} w_{ij} \mu_j^*) \leq u_{i}(\mu_i^*, \sum_{j \in N_i} w_{ij} \mu_j^*)
+		 \end{align}
+		 
+	\end{proof}
+	\newpage
+	
+	\subsection*{Second Case}
+	
+	\begin{align}
+		x_i^* &\in \arg\max_{x \in \Delta_i} u_i(x_i, w_{ii} x_i + \sum_{j \in N_i} w_{ij} x_j^*) \nonumber\\
+		&= \arg\max_{x \in \Delta_i} \bar{u}_i(x_i, \sum_{j \in N_i} w_{ij} x_j^*)
+	\end{align}
+	
+	Since $\sigma_i$ shares the same strategy space as $x_i$, and we assume that this space is finite, then a NE exists. $\ah{If we decide to lift the finite strategy space requirement, we'll have to show the existence of an NE.}$ 
+	
+	Now, for fictitious play, we require that the agent plays against the time average of this reference $\sigma_i$. We can write this as
+	
+	\begin{equation}
+		x_i(t) \in BR_i \left( \frac{1}{t} \int_{0}^{t} \sigma_i(t') dt' \right).
+	\end{equation}
+	
+	By the definition of Continuous Time Fictitious Play (CTFP) given by Ewerhart, we require that $m: [0, \infty] \rightarrow \times_i \Delta_i$ is a measurable mapping such that, for each $i$, $m_i(t) \in BR_i \left( \frac{1}{t} \int_{0}^{t} \sigma_i(t') dt' \right)$. Now notice,
+	
+	\begin{equation*}
+		x_i \in BR_i \left( \frac{1}{t} \int_{0}^{t} \sigma_i(t') dt' \right) \iff  \in x_i\in BR_i \left( \frac{1}{t} \int_{0}^{t} [w_{ii} m_i(t') + \sum_{j \in N_i} w_{ij} m_j(t')] \, dt' \right)
+	\end{equation*}
+	
+	Let us assume that $u_i$ takes the form $x \cdot A_i \sigma_i$ where $A_i$ is the payoff matrix associated with agent $i$. Then,
+	
+	\begin{align}
+		& x_i \in \arg\max_{x \in \Delta_i} u_i(x,\frac{1}{t} \int_{0}^{t} [w_{ii} m_i(t') + \sum_{j \in N_i} w_{ij} m_j(t')] \, dt') \nonumber \\
+		\iff & x_i \in \arg\max_{x \in \Delta_i} x \cdot A_i \left(\frac{1}{t} \int_{0}^{t} [w_{ii} m_i(t') + \sum_{j \in N_i} w_{ij} m_j(t')] \, dt' \right) \nonumber \\
+		\iff & x_i \in \arg \max_{x \in \Delta_i} x \cdot (w_{ii} A_i) \left( \frac{1}{t} \int_{0}^{t} m_i(t')\right) + \sum_{j \in N_i} x \cdot (w_{ij} A_i) \left( \frac{1}{t} \int_{0}^{t} m_j(t')\right) \nonumber \\
+		\iff & x_i \in \arg \max_{x \in \Delta_i} x \cdot A_{ii} \alpha_i(t; m) + \sum_{j \in N_i} x \cdot A_{ij} \alpha_j(t; m).
+	\end{align}
+	
+	where each $A_{ij} = w_{ij} A_i$ and $\alpha_i(t; m) =\frac{1}{t} \int_{0}^{t} m_i(t') dt'$ as defined by Ewerhart. We can, therefore, think of the network aggregative game as a network game in which each agent plays the same strategy against each of its neighbours, itself included. As such, any $m$ which satisfies the CTFP property for the equivalent network game also satisfies the CTFP requirement for the network aggregative game. 
+	
+	Continuing with this approach, let us look at the case where $\sum_i A_i = \textbf{0}_{n\times n}$ (i.e. a zero sum game). This means that $\sum_i u_i = 0$. Let $\mu_i^* = \lim_{t \rightarrow \infty} \alpha_i(t; m)$. More specifically, $\mu_i^*$ belongs to the set of accumulation points of $\alpha_i(\cdot; m)$ (which is set valued since the $BR_i$ map is set valued). To say that the game has `converged' we require that every $\mu^* = (\mu_1^*, ... \mu_p^*)$ is an NE. \ah{I'll follow through the proof of Ewerhart for the sake of completeness: }
+	
+	Let us take the Lyapunov function
+	
+	\begin{equation}
+		L(\mu) = \sum_i \max_{e_i \in \Delta_i} \{u_i(e_i, w_{ii} \mu_i + \sum_{j \in N_i} w_{ij} \mu_j) - u_i(\mu_i, w_{ii} \mu_i + \sum_{j \in N_i} w_{ij} \mu_j) \}
+	\end{equation}
+	
+	Using the same transformation as before:
+	
+	\begin{align}
+		 u_i(e_i, w_{ii} \mu_i + \sum_{j \in N_i} w_{ij} \mu_j) & =  e_i \cdot A_i (w_{ii} \mu_i + \sum_{j \in N_i} w_{ij} \mu_j) \nonumber \\
+		 & =  e_i \cdot (w_{ii} A_i) \mu_i + \sum_{j \in N_i} e_i \cdot (w_{ij} A_i) \mu_j \nonumber \\
+		  & =  \sum_{j \in N_i \cup \{i\}} e_i \cdot A_{ij} \mu_j \nonumber 
+	\end{align}
+	
+	Then
+	
+	\begin{align}
+	L(\mu) &= \sum_i \max_{e_i \in \Delta_i}\sum_{j \in N_i \cup \{i\}} e_i \cdot A_{ij} \mu_j  - u_i(\mu_i, w_{ii} \mu_i + \sum_{j \in N_i} w_{ij} \mu_j) \} \nonumber \\
+	&= \sum_i \max_{e_i \in \Delta_i} \{\sum_{j \in N_i \cup \{i\}} e_i \cdot A_{ij} \mu_j  \} - \sum_i  u_i(\mu_i, w_{ii} \mu_i + \sum_{j \in N_i} w_{ij} \mu_j) \nonumber \\
+	&= \sum_i \max_{e_i \in \Delta_i} \{\sum_{j \in N_i \cup \{i\}} e_i \cdot A_{ij} \mu_j  \} \nonumber 
+	\end{align}
+	
+	where the last equality holds because $\sum_i u_i = 0$. Again, if we were to relate this to a network game, in which each agent plays the same strategy against all its neighbours (itself included), then with the definition $ \tilde{u}_i (e_i, \mu_{-i}) := \sum_{j \in N_i \cup \{i\}} e_i \cdot A_{ij} \mu_j$, we still satisfy the zero sum condition for $\tilde{u}$. Now, we take a CTFP $m$ according to Ewerhart, with the condition that each agent plays the same strategy across all of its neighbours. This was shown by Ewerhart to converge. I.e. for any $\mu^*$ in the accumulation points of $\alpha(\cdot; m)$
+	
+	\begin{equation*}
+		\tilde{u}_i(e_i, \mu_{-i}^*) \leq \tilde{u}_i(\mu_i^*, \mu_{-i}^*)
+	\end{equation*}
+	
+	which, as we know, means that $\mu^*$ satisfies
+	
+	\begin{equation*}
+		u_i(e_i, w_{ii} \mu_i^* + \sum_{j \in N_i} w_{ij} \mu_j^*) \leq  u_i(\mu_i^*, w_{ii} \mu_i^* + \sum_{j \in N_i} w_{ij} \mu_j^*)
+	\end{equation*}
+	
+	
+\end{document}
