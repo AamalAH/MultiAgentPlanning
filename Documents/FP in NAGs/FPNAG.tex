@@ -2,11 +2,12 @@
 \usepackage[margin=2cm]{geometry}
 \usepackage{amsmath, amsfonts, amsthm}
 \usepackage{xcolor}
+\usepackage{enumerate}
 
 \theoremstyle{definition}
 \newtheorem*{definition}{Definition}
 \newtheorem{theorem}{Theorem}
-\newtheorem{assumption}{Assumption}
+\newtheorem*{assumption}{Assumption}
 
 \newcommand{\ah}[1]{\textcolor{blue}{AH: \textit{#1}}}
 \newcommand{\svs}[1]{\textcolor{red}{FB: \textit{#1}}}
@@ -18,9 +19,10 @@
 	
 	\maketitle
 	
-	The idea is to require that each agent $i$ play a best response to the history of the aggregate strategy in their neighbourhood. We can think of this as the agent being able to `measure' the aggregate strategy of its neighbours or as some centralised observer giving this reference to the agent.
 	
-	To formalise this, we assume that we have a set of agents $V = \{1, ..., p \}$ which can be thought of as nodes on a graph $\{V, E, W\}$ where $E$ is the edge-set (i.e. the set of pairs $(i, j)$ such that i and j are connected) and $W$ is a weighted adjacency matrix $[W]_{ij} = w_{ij}$. Let $N_i := \{j \in V : (i, j) \in E\}$ be the set of player $i's$ neighbours. Note $w_{ij} = 0$ if $(i, j) \not\in E$, $w_{ij} \in (0, 1]$ if $(i, j) \in E$. We impose the normalisation condition that $\sum_{j \in N_i} w_{ij} = 1$. This requirement ensures that the aggregate strategy $\sum_{j \in N_i} w_{ij} x_j$ (where $x$ is a probability vector) remains a probability vector. For example, in the 3 player case:
+	\subsection*{The Model}
+	
+	We have a set of agents $V = \{1, ..., N \}$ which can be thought of as nodes on a graph $\{V, E, W\}$ where $E$ is the edge-set (i.e. the set of pairs $(i, j)$ such that i and j are connected) and $W$ is a weighted adjacency matrix $[W]_{ij} = w_{ij}$. Let $N_i := \{j \in V : (i, j) \in E\}$ be the set of player $i's$ neighbours. Note $w_{ij} = 0$ if $(i, j) \not\in E$, $w_{ij} \in (0, 1]$ if $(i, j) \in E$. We impose the normalisation condition that $\sum_{j \in N_i} w_{ij} = 1$. This requirement ensures that the aggregate strategy $\sum_{j \in N_i} w_{ij} x_j$ (where $x$ is a probability vector) remains a probability vector. For example, in the 3 player case:
 	
 	\begin{equation}
 	\sigma_1 := w_{12} y + w_{13} z = 
@@ -42,37 +44,39 @@
 	Once the strategy is chosen, the agent plays the game and receives payoff $u_i (x_i, \sigma_i)$, where $\sigma_i$ is the aggregate strategy vector that $i$ perceives. The best response map $BR_i$ maps any $\sigma_i$ to the set $\arg\max_{x \in \Delta_i} u_i (x, \sigma_i)$. Then $x_i$ is a `best response' to $\sigma_i$ if $x_i \in BR_i(\sigma_i)$.
 	
 	\begin{definition}(NE)
-		The set of vectors $\{ x_i^*\}_{i = 1}^p$ is an NE if, for all $i$,
+		The set of vectors $\{ x_i^*\}_{i = 1}^N$ is an NE if, for all $i$,
 		
 		\begin{equation*}
 		x_i^* \in BR_i( w_{ii} x_i^* + \sum_{j \in N_i} w_{ij} x_j^*).
 		\end{equation*}
 		
 	\end{definition}
+
+	\subsection*{Starting Assumptions}
 	
-	\subsection*{Case: Aggregation is dependent only on its neighbours}
+	\begin{enumerate}[I]
+		\item The weights $w_{ij}$ are constant for all $i, j$.
+		\item The payoffs $u_i$ are in matrix form, and so are bilinear.
+		\item All agents update their strategies synchronously
+		\item All agents have the same sized strategy space 
+		\item The network is zero-sum in the sense that $\sum_i u_i(x_i, w_{ii} x_i + \sum_{j} w_{ij} x_j)$ for any set of strategies $(x_1, ..., x_N)$. 
+	\end{enumerate}
 	
-	We start with the following assumption
+	\subsection*{The Argument for Bilinear Payoffs}
 	
-	\begin{assumption}
-	$w_{ii} = 0$ for all $i \in \{ 1, ..., N \}$
-	\end{assumption}
+	\textit{Zero-sum polymatrix games can model common situations in which nodes in a network interact pairwise and make decisions (for example, adopt one of many technologies, or choose one or more of their neighbors for preferential interaction)} (Cai et al (2016)))
 	
-	Under this assumption the $BR$ map becomes
+	\ah{Need to find more references to put in here, most papers don't really give real world examples to justify this model.}
 	
-	\begin{equation}
-		BR_i(\sum_{j \in N_i} w_{ij} x_j) = \arg\max_{x \in \Delta_i} u_i(x_i,\sum_{j \in N_i} w_{ij} x_j)
-	\end{equation}
+	\subsection*{Fictitious Play in Network Aggregative Games}
 	
-	Let us now make the assumption that the payoff function is bilinear and can be written as $u_i(x_i, \sigma_i) = x_i \cdot A^i \sigma_i$. Then 
+	For Fictitious Play (FP), we require that the agent plays a best response to the time average to a \emph{reference signal} $\sigma_i$ which is some convex combination of the agent's own strategy and that of its neighbours on the network. Under the above assumptions, this reference is given as
 	
 	\begin{equation*}
-		u_i(x_i, \sigma_i) = x_i \cdot A^i \sum_{j \in N_i} w_{ij} x_j = \sum_{j \in N_i} x_i \cdot A^{ij} x_j =: \sum_{j \in N_i} u_{ij}(x_i, x_j) 
+		\sigma_i (t) = \sum_{j} w_{ij} x_j (t).
 	\end{equation*}
 	
-	where $A^{ij} := w_{ij} A^i$ and $u_{ij}$ is a bilinear payoff between $i$ and $j$ as defined by Ewerhart. With this transformation, we can move from a network aggregative system to a network game formulation (as in Ewerhart) in which each agent $i$ plays a game $G_{ij}$ against $j$ with payoff $A^{ij}$ and with the added requirement that each agent plays the same strategy against each of its neighbours.
-	
-	The Network Aggregative Fictitious Play requires that the agent plays a best response to the time average of $\sigma_i$. So let us have the following definitions:
+	Let us have the following definitions:
 	
 	\begin{align}
 		\alpha_{\sigma_i}(t) = \frac{1}{t} \int_{0}^{t} \sigma_i(t') \, dt'\nonumber \\
@@ -82,17 +86,63 @@
 	where $x_i(t')$ denotes the action played by $i$ at time $t'$. Now we notice
 	
 	\begin{align}
-		\alpha_{\sigma_i}(t) = \frac{1}{t} \int_{0}^{t} \sigma_i(t') \, dt' = \frac{1}{t} \int_{0}^t \sum_{j \in N_i} w_{ij} x_j(t') \, dt' = \sum_{j \in N_i} w_{ij} \frac{1}{t} \int_{0}^t x_j(t') \, dt' = \sum_{j \in N_i} w_{ij} \alpha_j(t) \nonumber \\
+		\alpha_{\sigma_i}(t) = \frac{1}{t} \int_{0}^{t} \sigma_i(t') \, dt' = \frac{1}{t} \int_{0}^t \sum_{j} w_{ij} x_j(t') \, dt' = \sum_{j} w_{ij} \frac{1}{t} \int_{0}^t x_j(t') \, dt' = \sum_{j} w_{ij} \alpha_j(t) \nonumber \\
 	\end{align}
 	
-	So, then, a Continuous Time Fictitious Play (CTFP) is a map $m$ such that each of its components $m_i: [0, \infty) \rightarrow \Delta_i$ satisfies $m_i(t) \in BR_i(\sum_{j \in N_i} w_{ij} \alpha_j(t))$ for all $t \geq 1$. Using the transformation from before, this is the requirement that, in the equivalent network game, $m_i(t) \in \arg \max_{x \in \Delta_i} \sum_{j \in N_i} u_{ij}(x_i, \alpha_j)$ for all $t \geq 1$. Now, Ewerhart showed that, in a zero-sum network (where the sum of all $u_i$ is zero), such an $m$ exists and any such $m$ converges to an NE.
+	\paragraph{Continuous Time Fictitious Play (CTFP)} A CTFP is defined as a measurable map $m$ with components $m_i$ such that for all $i$ and all $t \geq 1$, $m_i: [0, \infty) \rightarrow \Delta_i$ satisfies $m_i(t) \in BR_i(\alpha_{\sigma_i})$ for all $t \geq 1$.
 	
-	To clarify what the convergence property means in this context, each $m$ is associated with an $\alpha(t; m) = \frac{1}{t} \int_{0}^t m_i(t') \, dt'$. Let $A(m)$ denote the set of accumulation points of $\alpha(t; m)$ (i.e. the set of $\mu$ where there exists a sequence $\{t_q\}_{q = 0}^{\infty}$ such that $\lim_{q \rightarrow \infty} t_q = \infty$ and $\lim_{q \rightarrow \infty} \alpha(t_q; m) = \mu$). Convergence to an NE means that $A(m)$ is contained within the set of NE of the game. 
+	We can think of this definition as saying that the player plays some generic strategy before $t = 1$, but beyond this it must play a best response to the time average of its reference signal.
+	
+	\paragraph{Discrete Time Fictitious Play (DTFP)} A DTFP is defined a sequence $\{x_{k}\}_{k=1}^{\infty}$ with components $x_{k, i}$ such that, for all $i$ and, for all $k \geq 1$, $x_{k, i} \in BR_i\left( \frac{1}{k} \sum_{t = 0}^{k - 1} \sigma_{k, i} \right)$.
+	
+	We can see that the DTFP is just the equivalent definition as the CTFP, except that the time domain is $\mathbb{Z}_+$ rather than $\mathbb{R}_+$. Nevertheless, the change from continuous to discrete is not trivial and we'll get to that soon.
+	
+	\paragraph{Convergence} We write $\alpha$ as the concatenation of all $\alpha_i$. Let $\Omega(\alpha)$ be  the set of all limit points for $\alpha$. Then, CTFP is said to have converged if any $\mu^* \in \Omega(\alpha)$ is contained in the set of Nash Equilibria of the game.
+	
+	With these definitions out of the way, we'll try to figure out whether, first, CTFP converges to a Nash Equilibrium. The process for doing this is as follows:
+	
+	\begin{enumerate}
+		\item Show that a Nash equilibrium exists
+		\item Show that a path satisfying the CTFP property exists
+		\item Show that the associated $\Omega(\alpha)$ is contained in the set of NE.
+
+	\end{enumerate}
+	
+	\subsection*{First Case: Aggregation is dependent only on its neighbours}
+	
+	We start with the following assumption
+	
+	\begin{assumption}[V]
+	$w_{ii} = 0$ for all $i \in \{ 1, ..., N \}$
+	\end{assumption}
+	
+	Under this assumption the $BR_i$ map becomes
+	
+	\begin{equation}
+		BR_i(\sum_{j \in N_i} w_{ij} x_j) = \arg\max_{x \in \Delta_i} u_i(x_i,\sum_{j \in N_i} w_{ij} x_j)
+	\end{equation}
+	
+	Under the assumption that the payoff function is bilinear and can be written as $u_i(x_i, \sigma_i) = x_i \cdot A^i \sigma_i$. Then 
+	
+	\begin{equation*}
+		u_i(x_i, \sigma_i) = x_i \cdot A^i \sum_{j \in N_i} w_{ij} x_j = \sum_{j \in N_i} x_i \cdot A^{ij} x_j =: \sum_{j \in N_i} u_{ij}(x_i, x_j) 
+	\end{equation*}
+	
+	where $A^{ij} := w_{ij} A^i$ and $u_{ij}$ is a bilinear payoff between $i$ and $j$ as defined by Ewerhart. Furthermore, the NE condition is now
+	
+	\begin{align}
+			x_i^* & \in BR_i(\sum_{j \in N_i} w_{ij} x_j^*). \\
+			& = \arg \max_{x \in \Delta_i} \sum_{j \in N_i} u_{ij}(x_i, x_j) 
+	\end{align}
+	
+	 With this transformation, we can move from a network aggregative system to a network game formulation (as in Ewerhart) in which each agent $i$ plays a game $G_{ij}$ against $j$ with payoff $A^{ij}$ and with the added requirement that each agent plays the same strategy against each of its neighbours. With this change, we can apply Nash's Theorem to state that the Nash Equilibrium exists.
+	
+	Applying the same transformation, CTFP becomes the requirement that, in the equivalent network game, $m_i(t) \in \arg \max_{x \in \Delta_i} \sum_{j \in N_i} u_{ij}(x_i, \alpha_j)$ for all $t \geq 1$. Now, Ewerhart showed that, in a zero-sum network (where the sum of all $u_i$ is zero), such an $m$ exists and any such $m$ converges to an NE. This must therefore also be true of the network aggregative game.
 	
 	In any case, the fact that $m$ converges to an NE for the equivalent network game means that it converges for the NAG also. \ah{To make this precise, I'll follow through the proof of Ewerhart}
 	
 	\begin{theorem}
-		For any zero-sum Network Aggregative Game which follows the above assumption, any CTFP $m$ has the property that $A(m)$ is contained within the set of NE of the game.
+		For any zero-sum Network Aggregative Game which follows the above assumption, any CTFP $m$ has the property that $\Omega(\alpha)$ is contained within the set of NE of the game.
 	\end{theorem}
 	
 	\begin{proof}
@@ -133,20 +183,128 @@
 	
 	\subsection*{Second Case}
 	
+	This case is much more complex and requires that we take into account all of the steps properly.
+	
+	\subsubsection*{Existence of the Nash Equilibrium}
+	
+	The NE condition here is the same as the original definition that we had, but I'll repeat it here for the sake of convenience. The set of vectors $\{ x_i^*\}_{i = 1}^N$ is an NE if, for all $i$,
+	
+	\begin{equation*}
+		x_i^* \in BR_i( w_{ii} x_i^* + \sum_{j \in N_i} w_{ij} x_j^*).
+	\end{equation*}
+	
+	Note that this requires
+	
 	\begin{align}
 		x_i^* &\in \arg\max_{x \in \Delta_i} u_i(x_i, w_{ii} x_i + \sum_{j \in N_i} w_{ij} x_j^*) \nonumber\\
-		&= \arg\max_{x \in \Delta_i} \bar{u}_i(x_i, \sum_{j \in N_i} w_{ij} x_j^*)
+		&= \arg\max_{x \in \Delta_i} \bar{u}_i(x_i, \sum_{j \in N_i} w_{ij} x_j^*),
+	\end{align}
+
+	where we can find $\bar{u}_i$ through the following argument
+	
+	\begin{align}
+		u_i(x_i, w_{ii} x_i + \sum_{j \in N_i} w_{ij} x_j^*) & = x_i \cdot A_i (w_{ii} x_i + \sum_{j \in N_i} w_{ij} x_j) \\
+		 & = x_i \cdot (w_{ii} A_i)  x_i + \sum_{j \in N_i} u_{ij}(x_i, x_j) \\
+		 & =: \bar{u}_i(x_i, \sum_{j \in N_i} w_{ij} x_j^*), \nonumber
 	\end{align}
 	
-	Since $\sigma_i$ shares the same strategy space as $x_i$, and we assume that this space is finite, then a NE exists. $\ah{If we decide to lift the finite strategy space requirement, we'll have to show the existence of an NE.}$ 
+	where $u_{ij}$ is as previously defined. Note that, in order to get this formulation, we had to use the bilinear assumption (II) so that we could separate out the term involving $x_i$ easily. 
 	
-	Now, for fictitious play, we require that the agent plays against the time average of this reference $\sigma_i$. We can write this as
+	Writing the NE condition out as a vector gives
+	
+	\begin{equation}
+		\begin{bmatrix}
+			x_1^* \\ . \\ . \\ . \\ x_N^*
+		\end{bmatrix} \in
+		\begin{bmatrix}
+		\arg\max_{y \in \Delta_1} \bar{u}_1(y, \sum_{j \in N_i} w_{ij} x_j^*) \\ . \\ . \\ . \\ \arg\max_{y \in \Delta_N} \bar{u}_N(y, \sum_{j \in N_i} w_{ij} x_j^*)
+		\end{bmatrix}	.
+	\end{equation}
+
+	We can rewrite the weighted summation in the $i$'th component of the right hand side as 
+	
+	\begin{equation}
+		\sum_{j \in N_i} w_{ij} x_j^* = (w_{-i}^T \otimes I_n) \begin{bmatrix}
+			x_1^* \\ . \\ . \\ . \\ x_N^*
+		\end{bmatrix},
+	\end{equation}
+
+	in which $w_{-i}$ is a column vector containing $w_{ij}$ in the $j$'th element for all $j \in N(i)$ and 0 everywhere else (including in the $i$'th slot), $I_n$ is the $n \times n$ identity matrix and $\otimes$ is the kronecker product. So our condition becomes
+	
+	\begin{equation}
+		\begin{bmatrix}
+			x_1^* \\ . \\ . \\ . \\ x_N^*
+		\end{bmatrix} \in
+		\begin{bmatrix}
+			\arg\max_{y \in \Delta_1} \bar{u}_1(y, (w_{-1}^T \otimes I_n) \begin{bmatrix}
+				x_1^* \\ . \\ . \\ . \\ x_N^*
+			\end{bmatrix}) \\ . \\ . \\ . \\ \arg\max_{y \in \Delta_N} \bar{u}_N(y, (w_{-N}^T \otimes I_n) \begin{bmatrix}
+			x_1^* \\ . \\ . \\ . \\ x_N^*
+		\end{bmatrix}))
+		\end{bmatrix}	.
+	\end{equation}
+
+	This means that we achieve a Nash Equilibrium iff $\{ x_i^*\}_{i = 1}^N$ is a fixed point of the map
+	
+	
+	\begin{equation}
+		\begin{bmatrix}
+			\arg\max_{y \in \Delta_1} \bar{u}_1(y, (w_{-1}^T \otimes I_n) ( \cdot )) \\ . \\ . \\ . \\ \arg\max_{y \in \Delta_N} \bar{u}_N(y, (w_{-N}^T \otimes I_n)( \cdot )))
+		\end{bmatrix}	.
+	\end{equation}
+	
+
+	Now, since the modified payoff $\bar{u}$ shares the same bilinear property as $u$, we can assert that it is continuous is its second argument. Therefore, the above vector valued map can be asserted to be continuous and so is upper semi-continuous (\ah{I think this argument is sound so I'm not sure if it's worth making it rigorous}). Furthermore, the map takes a point in $\Delta = \times_i \Delta_i$ into itself. As such, the space is non-empty, compact and convex. 
+	
+	We can then apply Kakutani's Fixed Point Theorem
+	
+	\begin{theorem}[Kakutani]
+		If S is a nonempty, compact, convex set in $\mathbb{R}^n$ and $\Phi : S \rightarrow \textbf{P}(S)$ ($\textbf{P}(S)$ is the power set of S) is upper semi-continuous, then $\Phi$ has a fixed point.
+	\end{theorem}
+
+	Therefore, the existence of an NE follows from the above Theorem.
+
+	\subsubsection*{Existence of a CTFP}
+	
+	Let us return to the definition of $\alpha_i$, which I repeat here for convenience
+	
+	\begin{equation*}
+		\alpha_i(t) = \frac{1}{t} \int_{0}^{t} x_i(t') \, dt'
+	\end{equation*}
+	
+	Then
+	
+	\begin{align}
+		\frac{d}{dt} \alpha_i(t) & = \frac{d}{dt} \frac{1}{t} \int_{0}^t m_i(t') dt' \nonumber \\
+		& = \frac{1}{t} m_i(t) - \frac{1}{t} \alpha_i(t)
+	\end{align}
+
+	
+	Now, we since we can rewrite the best response function $BR_i$ as $\arg\max_{y \in \Delta_i} \bar{u}_i(y, (w_{-i}^T \otimes I_n) \begin{bmatrix}
+		x_1 \\ . \\ . \\ . \\ x_N
+	\end{bmatrix})$, we can rewrite the CTFP condition as, for all $i$ and all $t \geq 1$
+
+	\begin{equation}
+		m_i(t) \in BR_i((w_{-i}^T \otimes I_n) \begin{bmatrix}
+			x_1 \\ . \\ . \\ . \\ x_N
+		\end{bmatrix})
+	\end{equation}
+	
+	This gives 
+	
+	\begin{equation}
+		\Dot{\alpha}_i(t) \in \frac{1}{t} (BR_i((w_{-i}^T \otimes I_n) \begin{bmatrix}
+			x_1 \\ . \\ . \\ . \\ x_N
+		\end{bmatrix}) - \alpha_i(t))
+	\end{equation}
+	
+	\newpage
 	
 	\begin{equation}
 		x_i(t) \in BR_i \left( \frac{1}{t} \int_{0}^{t} \sigma_i(t') dt' \right).
 	\end{equation}
 	
-	By the definition of Continuous Time Fictitious Play (CTFP) given by Ewerhart, we require that $m: [0, \infty] \rightarrow \times_i \Delta_i$ is a measurable mapping such that, for each $i$, $m_i(t) \in BR_i \left( \frac{1}{t} \int_{0}^{t} \sigma_i(t') dt' \right)$. Now notice,
+	By the definition of Continuous Time Fictitious Play (CTFP) given by Ewerhart, we require that $m: [0, \infty) \rightarrow \times_i \Delta_i$ is a measurable mapping such that, for each $i$, $m_i(t) \in BR_i \left( \frac{1}{t} \int_{0}^{t} \sigma_i(t') dt' \right)$. Now notice,
 	
 	\begin{equation*}
 		x_i \in BR_i \left( \frac{1}{t} \int_{0}^{t} \sigma_i(t') dt' \right) \iff  \in x_i\in BR_i \left( \frac{1}{t} \int_{0}^{t} [w_{ii} m_i(t') + \sum_{j \in N_i} w_{ij} m_j(t')] \, dt' \right)
