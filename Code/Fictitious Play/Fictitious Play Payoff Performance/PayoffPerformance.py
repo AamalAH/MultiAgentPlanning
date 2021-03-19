@@ -84,23 +84,38 @@ def getAllNEPayoffs(allNEPayoffs, nSim):
 
     return np.array(NEX).T, np.array(NEY).T
 
+def sampleFromSimplex(dim, nSamples=1.5e4):
+    nSamples = int(nSamples)
+    return np.random.dirichlet(np.ones(dim), size=nSamples)
+
+def ABar(samples, A, q):
+    return np.max(np.einsum('ni,ijs,jcs->ncs', samples, A, q), axis=0)
+
+def BBar(samples, B, p):
+    return np.max(np.einsum('ics,ijs,nj->ncs', p, B, samples), axis=0)
+
 def simulation(gamma, dim, nSim, nInit, nIter):
-    A, B = generateGallaGames(gamma, nSim, dim)
 
-    allNE = [findNE(A[:, :, i], B[:, :, i]) for i in range(nSim)]
+    nIter = int(nIter)
 
-    simsToKeep = np.where(np.array([len(sim) for sim in allNE]) != 0)[0]
-    allNE = np.array(allNE)[simsToKeep].tolist()
-
-    A, B = A[:, :, simsToKeep], B[:, :, simsToKeep]
-
-    allNEPayoffs = [[(np.dot(sim[i][0], A[:, :, s] @ sim[i][1]), np.dot(sim[i][0], B[:, :, s] @ sim[i][1])) for i in
-                     range(len(sim))] for s, sim in enumerate(allNE)]
+    # samples = sampleFromSimplex(dim)
+    #
+    # A, B = generateGallaGames(gamma, nSim, dim)
+    #
+    # allNE = [findNE(A[:, :, i], B[:, :, i]) for i in range(nSim)]
+    #
+    # simsToKeep = np.where(np.array([len(sim) for sim in allNE]) != 0)[0]
+    # allNE = np.array(allNE)[simsToKeep].tolist()
+    #
+    # A, B = A[:, :, simsToKeep], B[:, :, simsToKeep]
+    #
+    # allNEPayoffs = [[(np.dot(sim[i][0], A[:, :, s] @ sim[i][1]), np.dot(sim[i][0], B[:, :, s] @ sim[i][1])) for i in
+    #                  range(len(sim))] for s, sim in enumerate(allNE)]
 
     # NEX = [max([NEPayoff[0] for NEPayoff in sim]) for sim in allNEPayoffs]
     # NEY = [max([NEPayoff[1] for NEPayoff in sim]) for sim in allNEPayoffs]
 
-    nSim = len(simsToKeep)
+    # nSim = len(simsToKeep)
 
     """ CODE FOR OSTROVSKI TRIALS
 
@@ -133,7 +148,9 @@ def simulation(gamma, dim, nSim, nInit, nIter):
     rX, rY = np.einsum('ais,ajs,jis->is', pX, A, qY), np.einsum('ais,ajs,jis->is', pX, B, qY)
     erX, erY = np.einsum('ais,ajs,jis->is', pX, A, qY), np.einsum('ais,ajs,jis->is', pX, B, qY)
 
+
     # allPX, allQY = np.zeros((dim, nInit, nSim, int(nIter))), np.zeros((dim, nInit, nSim, int(nIter)))
+    allerX, allerY = np.zeros((nInit, nSim, nIter)), np.zeros((nInit, nSim, nIter))
 
     m = 1
 
@@ -148,14 +165,17 @@ def simulation(gamma, dim, nSim, nInit, nIter):
         pX = (n * pX + eX) / (n + 1)
         qY = (n * qY + eY) / (n + 1)
 
-        if n > int(2 * nIter / 3):
-            rX = (m * rX + np.einsum('ais,ajs,jis->is', pX, A, qY)) / (m + 1)
-            rY = (m * rY + np.einsum('ais,ajs,jis->is', pX, B, qY)) / (m + 1)
 
-            erX = (m * erX + np.einsum('ais,ajs,jis->is', eX, A, eY)) / (m + 1)
-            erY = (m * erY + np.einsum('ais,ajs,jis->is', eX, B, eY)) / (m + 1)
+        rX = (m * rX + np.einsum('ais,ajs,jis->is', pX, A, qY)) / (m + 1)
+        rY = (m * rY + np.einsum('ais,ajs,jis->is', pX, B, qY)) / (m + 1)
 
-            m += 1
+        erX = (m * erX + np.einsum('ais,ajs,jis->is', eX, A, eY)) / (m + 1)
+        erY = (m * erY + np.einsum('ais,ajs,jis->is', eX, B, eY)) / (m + 1)
+
+        m += 1
+
+        allerX[:, :, n-1] = erX
+        allerY[:, :, n-1] = erY
 
         # allPX[:, :, :, n-1] = pX
         # allQY[:, :, :, n-1] = qY

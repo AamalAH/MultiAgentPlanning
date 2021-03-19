@@ -11,10 +11,10 @@ def generateMatchingPennies():
     :return:
     """
 
-    A = np.array([[1, -1], [-1, 1]])
-    B = np.array([[-1, 1], [1, -1]])
+    C = np.array([[5, -5], [-5, 5]])
+    Z = np.array([[1, -1], [-1, 1]])
 
-    return A, B
+    return C, Z
 
 def getActionProbs(Q, agentParams):
     """
@@ -69,7 +69,7 @@ def simulate(agentParams, nIter = 5e3):
 
 def TuylsODE(X, t, G, agentParams):
 
-    A, B = G
+    C, Z = G
 
     alpha, tau, gamma = agentParams
 
@@ -81,34 +81,53 @@ def TuylsODE(X, t, G, agentParams):
     ydot = np.zeros(2)
     zdot = np.zeros(2)
 
-    xdot[0] = alpha * x[0] * tau * ((A @ y)[0] + (z.T @ B)[0] - np.dot(x, (A @ y) + (z.T @ B))) + alpha * x[0] * (x[1] * np.log(x[1]/x[0]))
-    xdot[1] = alpha * x[1] * tau * ((A @ y)[1] + (z.T @ B)[1] - np.dot(x, (A @ y) + (z.T @ B))) + alpha * x[1] * (x[0] * np.log(x[0]/x[1]))
+    xdot[0] = alpha * x[0] * tau * ((Z @ y)[0] + (Z @ z)[0] - np.dot(x, (Z @ y) + (Z @ z))) + alpha * x[0] * (x[1] * np.log(x[1]/x[0]))
+    xdot[1] = alpha * x[1] * tau * ((Z @ y)[1] + (Z @ z)[1] - np.dot(x, (Z @ y) + (Z @ z))) + alpha * x[1] * (x[0] * np.log(x[0]/x[1]))
 
-    ydot[0] = alpha * y[0] * tau * ((A @ z)[0] + (x.T @ B)[0] - np.dot(y, (A @ z) + (x.T @ B))) + alpha * y[0] * (y[1] * np.log(y[1]/y[0]))
-    ydot[1] = alpha * y[1] * tau * ((A @ z)[1] + (x.T @ B)[1] - np.dot(y, (A @ z) + (x.T @ B))) + alpha * y[1] * (y[0] * np.log(y[0]/y[1]))
+    ydot[0] = alpha * y[0] * tau * ((C @ z)[0] + ((-Z).T @ x)[0] - np.dot(y, (C @ z) + ((-Z).T @ x))) + alpha * y[0] * (y[1] * np.log(y[1]/y[0]))
+    ydot[1] = alpha * y[1] * tau * ((C @ z)[1] + ((-Z).T @ x)[1] - np.dot(y, (C @ z) + ((-Z).T @ x))) + alpha * y[1] * (y[0] * np.log(y[0]/y[1]))
 
-    zdot[0] = alpha * z[0] * tau * ((A @ x)[0] + (y.T @ B)[0] - np.dot(z, (A @ x) + (y.T @ B))) + + alpha * z[0] * (z[1] * np.log(z[1]/z[0]))
-    zdot[1] = alpha * z[1] * tau * ((A @ x)[1] + (y.T @ B)[1] - np.dot(z, (A @ x) + (y.T @ B))) + alpha * z[1] * (z[0] * np.log(z[0]/z[1]))
+    zdot[0] = alpha * z[0] * tau * (((-Z) @ x)[0] + (C.T @ y)[0] - np.dot(z, ((-Z) @ x) + (C.T @ y))) + alpha * z[0] * (z[1] * np.log(z[1]/z[0]))
+    zdot[1] = alpha * z[1] * tau * (((-Z) @ x)[1] + (C.T @ y)[1] - np.dot(z, ((-Z) @ x) + (C.T @ y))) + alpha * z[1] * (z[0] * np.log(z[0]/z[1]))
 
     return np.hstack((xdot, ydot, zdot))
 
 
 if __name__ == '__main__':
 
-    Q = initialiseQ()
-    G = generateMatchingPennies()
+    nInit = 20
 
-    alpha, tau, gamma = 0.05, 0.1, 0.1
+    G = generateMatchingPennies()
+    alpha, tau, gamma = 0.1, 10, 0.1
     agentParams = alpha, tau, gamma
 
-    x0 = getActionProbs(Q, agentParams).reshape(6)
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    ax.set_xlabel('P1')
+    ax.set_ylabel('P2')
+    ax.set_zlabel('P3')
 
-    t = np.linspace(0, 10, 101)
+    ax.set_xlim([0, 1])
+    ax.set_ylim([0, 1])
+    ax.set_zlim([0, 1])
 
-    sol = odeint(TuylsODE, x0, t, args=(G, agentParams))
+    for cInit in range(nInit):
+        Q = initialiseQ()
 
-    # firstActionTracker = simulate(agentParams)
+        alpha, tau, gamma = 0.1, 20, 0.1
+        agentParams = alpha, tau, gamma
 
-    # fig = plt.figure()
-    # ax = fig.add_subplot(111, projection='3d')
-    # plt.plot(firstActionTracker[0, ::25], firstActionTracker[1, ::25], firstActionTracker[2, ::25]), plt.show()
+        x0 = getActionProbs(Q, agentParams).reshape(6)
+
+        alpha, tau, gamma = 1, 1, 0.1
+        agentParams = alpha, tau, gamma
+
+        t = np.linspace(0, int(1e4), int(1e5) + 1)
+
+        sol = odeint(TuylsODE, x0, t, args=(G, agentParams))
+        ax.plot(sol[:, 0], sol[:, 2], sol[:, 4])
+        ax.scatter(sol[0, 0], sol[0, 2], sol[0, 4], marker='o', color='r')
+
+    plt.title('alpha = {0}, tau = {1}'.format(np.round(alpha, 2), np.round(tau, 2)))
+
+    plt.show()
