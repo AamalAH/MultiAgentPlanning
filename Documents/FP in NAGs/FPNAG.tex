@@ -210,96 +210,198 @@
 	
 	where $u_{ij}$ is as previously defined. Note that, in order to get this formulation, we had to use the bilinear assumption (II) so that we could separate out the term involving $x_i$ easily. 
 	
-	Writing the NE condition out as a vector gives
-	
-	\begin{equation}
-		\begin{bmatrix}
-			x_1^* \\ . \\ . \\ . \\ x_N^*
-		\end{bmatrix} \in
-		\begin{bmatrix}
-		\arg\max_{y \in \Delta_1} \bar{u}_1(y, \sum_{j \in N_i} w_{ij} x_j^*) \\ . \\ . \\ . \\ \arg\max_{y \in \Delta_N} \bar{u}_N(y, \sum_{j \in N_i} w_{ij} x_j^*)
-		\end{bmatrix}	.
-	\end{equation}
+	To show existence of an NE we will need the following definition and Theorem.
 
-	We can rewrite the weighted summation in the $i$'th component of the right hand side as 
-	
-	\begin{equation}
-		\sum_{j \in N_i} w_{ij} x_j^* = (w_{-i}^T \otimes I_n) \begin{bmatrix}
-			x_1^* \\ . \\ . \\ . \\ x_N^*
-		\end{bmatrix},
-	\end{equation}
+	\begin{definition}[Upper Semi-Continuous]
+		A compact-valued correspondence $\Phi: A \rightarrow B$ is \emph{upper semi-continuous} at a point $a$ if $g(a)$ is non-empty and if, for every sequence $a_n \rightarrow a$ and every sequence $(b_n)$ such that $b_n \in g(a_n)$ for all $n$, there exists a convergent subsequence of $(b_n)$ whose limit point $b$ is in $g(a)$.  
+	\end{definition}
 
-	in which $w_{-i}$ is a column vector containing $w_{ij}$ in the $j$'th element for all $j \in N(i)$ and 0 everywhere else (including in the $i$'th slot), $I_n$ is the $n \times n$ identity matrix and $\otimes$ is the kronecker product. So our condition becomes
-	
-	\begin{equation}
-		\begin{bmatrix}
-			x_1^* \\ . \\ . \\ . \\ x_N^*
-		\end{bmatrix} \in
-		\begin{bmatrix}
-			\arg\max_{y \in \Delta_1} \bar{u}_1(y, (w_{-1}^T \otimes I_n) \begin{bmatrix}
-				x_1^* \\ . \\ . \\ . \\ x_N^*
-			\end{bmatrix}) \\ . \\ . \\ . \\ \arg\max_{y \in \Delta_N} \bar{u}_N(y, (w_{-N}^T \otimes I_n) \begin{bmatrix}
-			x_1^* \\ . \\ . \\ . \\ x_N^*
-		\end{bmatrix}))
-		\end{bmatrix}	.
-	\end{equation}
-
-	This means that we achieve a Nash Equilibrium iff $\{ x_i^*\}_{i = 1}^N$ is a fixed point of the map
-	
-	
-	\begin{equation}
-		\begin{bmatrix}
-			\arg\max_{y \in \Delta_1} \bar{u}_1(y, (w_{-1}^T \otimes I_n) ( \cdot )) \\ . \\ . \\ . \\ \arg\max_{y \in \Delta_N} \bar{u}_N(y, (w_{-N}^T \otimes I_n)( \cdot )))
-		\end{bmatrix}	.
-	\end{equation}
-	
-
-	Now, since the modified payoff $\bar{u}$ shares the same bilinear property as $u$, we can assert that it is continuous is its second argument. Therefore, the above vector valued map can be asserted to be continuous and so is upper semi-continuous (\ah{I think this argument is sound so I'm not sure if it's worth making it rigorous}). Furthermore, the map takes a point in $\Delta = \times_i \Delta_i$ into itself. As such, the space is non-empty, compact and convex. 
-	
-	We can then apply Kakutani's Fixed Point Theorem
-	
 	\begin{theorem}[Kakutani]
-		If S is a nonempty, compact, convex set in $\mathbb{R}^n$ and $\Phi : S \rightarrow \textbf{P}(S)$ ($\textbf{P}(S)$ is the power set of S) is upper semi-continuous, then $\Phi$ has a fixed point.
+		Let $K \subset \mathbb{R}^n$ be compact and convex and $\Phi: K \rightarrow K$ be closed or upper semi-continuous, with nonempty, convex and compact values. Then $\Phi$ has a fixed point.
 	\end{theorem}
 
-	Therefore, the existence of an NE follows from the above Theorem.
+	Note that, when active on a simplex, the function $\Phi: \Delta \rightarrow \textbf{P}(\Delta)$, where $\textbf{P}(\Delta)$ denotes the nonempty, closed and convex subsets of $\Delta$ only has to satisfy the upper-semi continuity condition to admit a fixed point.
+
+	\begin{theorem}[Existence of NE]
+		Under the assumption (II), namely that the payoff function achieves a bilinear property, a Nash Equilibrium $\{x_i^*\}_{i = 1}^N$ exists.
+	\end{theorem}
+
+	\begin{proof}
+		We begin by rewriting the NE condition by concatenating the set of NE vectors into one long colunn vector. This gives
+
+		\begin{equation}
+			\begin{bmatrix}
+				x_1^* \\ . \\ . \\ . \\ x_N^*
+			\end{bmatrix} \in
+			\begin{bmatrix}
+			\arg\max_{y \in \Delta_1} \bar{u}_1(y, \sum_{j \in N_i} w_{ij} x_j^*) \\ . \\ . \\ . \\ \arg\max_{y \in \Delta_N} \bar{u}_N(y, \sum_{j \in N_i} w_{ij} x_j^*)
+			\end{bmatrix}	.
+		\end{equation}
+
+		We can rewrite the weighted summation in the $i$'th component of the right hand side as 
+
+		\begin{equation}
+			\sum_{j \in N_i} w_{ij} x_j^* = (w_{-i}^T \otimes I_n) \begin{bmatrix}
+				x_1^* \\ . \\ . \\ . \\ x_N^*
+			\end{bmatrix},
+		\end{equation}
+	
+		in which $w_{-i}$ is a column vector containing $w_{ij}$ in the $j$'th element for all $j \in N(i)$ and 0 everywhere else (including in the $i$'th slot), $I_n$ is the $n \times n$ identity matrix and $\otimes$ is the kronecker product. For example, the form for agent 1, in the case of 2-action game is given by
+
+		\begin{equation}
+			(w_{-1}^T \otimes I_2) = [0, w_{12}, w_{13}, ..., w_{1n}] \otimes I_2 = 
+			\begin{bmatrix}
+				0 & 0 & w_{12} & 0 & ... & w_{1n} & 0 \\
+				0 & 0 & 0 & w_{12} & ... & 0 & w_{1n} \\
+			\end{bmatrix}
+		\end{equation}
+		
+		So our condition becomes
+		\begin{equation}
+			\begin{bmatrix}
+				x_1^* \\ . \\ . \\ . \\ x_N^*
+			\end{bmatrix} \in
+			\begin{bmatrix}
+				\arg\max_{y \in \Delta_1} \bar{u}_1(y, (w_{-1}^T \otimes I_n) \begin{bmatrix}
+					x_1^* \\ . \\ . \\ . \\ x_N^*
+				\end{bmatrix}) \\ . \\ . \\ . \\ \arg\max_{y \in \Delta_N} \bar{u}_N(y, (w_{-N}^T \otimes I_n) \begin{bmatrix}
+				x_1^* \\ . \\ . \\ . \\ x_N^*
+			\end{bmatrix}))
+			\end{bmatrix}	.
+		\end{equation}
+
+		This means that we achieve a Nash Equilibrium iff $\{ x_i^*\}_{i = 1}^N$ is a fixed point of the map
+	
+	
+		\begin{equation}
+			\begin{bmatrix}
+				\arg\max_{y \in \Delta_1} \bar{u}_1(y, (w_{-1}^T \otimes I_n) ( \cdot )) \\ . \\ . \\ . \\ \arg\max_{y \in \Delta_N} \bar{u}_N(y, (w_{-N}^T \otimes I_n)( \cdot )))
+			\end{bmatrix}	.
+		\end{equation}
+
+
+		Now, since the modified payoff $\bar{u}$ shares the same bilinear property as $u$, we can assert that it is continuous is its second argument. Therefore, the above vector valued map can be asserted to be continuous and so is upper semi-continuous. This continuity can be extended to the above concatenation of best responses. As such, we can apply Kakutani's Fixed Point Theorem to assert that the above map admits a fixed point.
+
+	\end{proof}
 
 	\subsubsection*{Existence of a CTFP}
-	
-	Let us return to the definition of $\alpha_i$, which I repeat here for convenience
-	
-	\begin{equation*}
-		\alpha_i(t) = \frac{1}{t} \int_{0}^{t} x_i(t') \, dt'
-	\end{equation*}
-	
-	Then
-	
-	\begin{align}
+
+	\begin{theorem}
+		There exists a path $m$ which satisfies the property that, for all $i$, $m_i \in BR_i
+		(\alpha_{\sigma_i})$ for almost all $t \geq 1$.
+	\end{theorem}
+
+	\begin{proof}
+		Recall the definition of $\alpha_i(t)$
+
+		\begin{equation*}
+		\alpha_i(t) = \frac{1}{t} \int_{0}^{t} m_i(t') \, dt'
+		\end{equation*}
+
+		Then 
+
+		\begin{align}
 		\frac{d}{dt} \alpha_i(t) & = \frac{d}{dt} \frac{1}{t} \int_{0}^t m_i(t') dt' \nonumber \\
 		& = \frac{1}{t} m_i(t) - \frac{1}{t} \alpha_i(t)
-	\end{align}
+		\end{align}
 
-	
-	Now, we since we can rewrite the best response function $BR_i$ as $\arg\max_{y \in \Delta_i} \bar{u}_i(y, (w_{-i}^T \otimes I_n) \begin{bmatrix}
-		x_1 \\ . \\ . \\ . \\ x_N
-	\end{bmatrix})$, we can rewrite the CTFP condition as, for all $i$ and all $t \geq 1$
+		Now we assert that $m_i(t) \in BR_i(\alpha_{\sigma_t}) = \arg\max_{y \in \Delta_i} u_i(y,
+		w_{ii} \alpha_i(t) + \sum_{j \in N(i)} w_{ij} \alpha_j(t))$. 
 
-	\begin{equation}
-		m_i(t) \in BR_i((w_{-i}^T \otimes I_n) \begin{bmatrix}
-			x_1 \\ . \\ . \\ . \\ x_N
-		\end{bmatrix})
-	\end{equation}
-	
-	This gives 
-	
-	\begin{equation}
-		\Dot{\alpha}_i(t) \in \frac{1}{t} (BR_i((w_{-i}^T \otimes I_n) \begin{bmatrix}
-			x_1 \\ . \\ . \\ . \\ x_N
-		\end{bmatrix}) - \alpha_i(t))
-	\end{equation}
+		Let us then define $\alpha(t)$ as the concatenation of all $\alpha_i(t)$
+
+		\begin{equation}
+			\alpha(t) = \begin{bmatrix}
+				\alpha_1(t)^T, \ldots, \alpha_N(t)^T
+			\end{bmatrix}^T \subset \mathbb{R}^{Nn}
+		\end{equation}
+
+
+		We can, therefore, write the aggregation as
+
+		\begin{equation}
+			(W \otimes I_n) \alpha(t) = \begin{bmatrix}
+				\sum_{j \in N(1)} w_{1j} \alpha_j(t) \\
+				.\\
+				.\\
+				.\\
+				\sum_{j \in N(N)} w_{Nj} \alpha_j(t)
+			\end{bmatrix} \subset \mathbb{R}^{Nn}
+		\end{equation}
+
+		I will write $(W \otimes I_n) \alpha(t)$ as $\alpha_W$ for convenience. Furthermore, using
+		the bimatrix property of the game, we can say that
+
+		\begin{equation}
+			\begin{bmatrix}
+				\arg\max_{y \in \Delta_1} y \cdot A_1 ( \alpha_W(t)_1) \\
+				.\\
+				.\\
+				.\\
+				\arg \max_{y \in \Delta_N} y \cdot A_n (\alpha_W(t)_N) 
+			\end{bmatrix} = 
+			\arg \max_{y \in \Delta} y \cdot \begin{bmatrix}
+				A_1 & 0 & . & . & . & 0 \\
+				0 & A_2 & . & . & . & 0 \\
+				& & . & & & \\
+				& & & . & & \\
+				& & & & . & \\
+				0 & 0 & . & . & . & A_N \\
+			\end{bmatrix} \alpha_W(t) = \arg\max_{y \in \Delta} y \cdot \Lambda (W \otimes I_n)
+			\alpha(t)
+		\end{equation}
+
+		in which $\Delta = \times_i \Delta_i$ and $\Lambda$ is the block diagonal matrix containing
+		each $A_i$. 
+
+		We can now write the differential inclusion as
+
+		\begin{equation}
+			\dot{\alpha(t)} \in \frac{1}{t} (\arg \max_{y \in \Delta}  \{y \cdot \Lambda (W \otimes
+			I_n)
+			\alpha(t) \}- \alpha(t))
+		\end{equation}
+
+		with the initial condition $\alpha(1) = \mu$. Then, the path $m$ is a CTFP if its
+		corresponding $\alpha(t; m)$ is a solution to the above differential inclusion. Following
+		the definition of (Harris 1998), a solution $\alpha(t)$ must satisfy
+
+		\begin{enumerate}
+			\item $\alpha(t)$ is locally Lipschitz
+			\item $\alpha(1) = \mu$
+			\item $\dot{\alpha}(t) \in \frac{1}{t} (\arg \max_{y \in \Delta}  \{y \cdot \Lambda (W \otimes
+			I_n)
+			\alpha(t) \}- \alpha(t))$ for almost all $t \in [1, \infty)$ 
+		\end{enumerate}
+
+		The question then remains, does the differential inclusion admit a solution? Using the
+		results of Aubin and Cellina (see Harris 1998, paragraph below Prop. 6), can use the fact
+		that the $\arg \max$ function is non-empty, compact and convex valued, bounded (all of
+		these follow since the function acts from $\Delta$ to $\Delta$) and upper semi-continuous.
+		With these facts in place, we can say that there is a CTFP for any initial value $\mu$.
+		\ah{I believe this holds for any choice of $W$ as long as it is row stochastic so that
+		the values remain inside $\Delta$ after aggregation}.
+	\end{proof}
 	
 	\newpage
 	
+	\section*{Convergence Properties}
+
+	I've spent some time trying to show convergence of the CTFP to a Nash Equilibrium, without the
+	requirement that $w_{ii} = 0$. Unfortunately, it doesn't look like that is the case in general,
+	at least with the other assumptions that we have made. Perhaps changing the requirement of the
+	payoff functions or the aggregation method (e.g. to a non-linear one) would influence this, but
+	for the bimatrix games that we've looked at so far, no luck.
+	We can, however, say that there is a fixed point since the solution $\alpha(t; m)$, for any CTFP
+	$m$ maps from a compact space to itself. Therefore, any sequence $\{\alpha(\tau_q; m)\}$ where
+	$\tau_q \rightarrow \infty$ as $q \rightarrow \infty$ has all of its elements inside a compact
+	set. Therefore, by the Bolzano-Wierstrass Theorem, this sequence has at least one limit point.
+	We can say that this limit point corresponds to an NE when $w_{ii} = 0$, but I am trying to
+	determine any other structure of the limit point for when this does not hold. For example, is it
+	part of the `no regret' set?
+
+	\newpage
+
 	\begin{equation}
 		x_i(t) \in BR_i \left( \frac{1}{t} \int_{0}^{t} \sigma_i(t') dt' \right).
 	\end{equation}
