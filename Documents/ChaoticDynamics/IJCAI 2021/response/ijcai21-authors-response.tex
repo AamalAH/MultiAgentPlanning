@@ -23,15 +23,21 @@
 \usepackage{lipsum}
 \urlstyle{same}
 
+\usepackage{color}
+\newcommand\fb[1]{\textcolor{red}{FB: #1}}
+
 \newtheorem{example}{Example}
 \newtheorem{theorem}{Theorem}
 
 
 \begin{document}
 
+
+
 \paragraph{Reviewer 4} % (fold)
 \label{par:reviewer_4}
 
+\fb{the first paragraph can be reduced if we need space.}
 The reviewer makes a pertinent point regarding the model chosen for the analysis. Indeed our
 analysis is of an iterated normal-form game, which has a strong history in the learning community.
 The state of the art regarding evolutionary game theoretic analysis of learning processes is not yet
@@ -40,6 +46,8 @@ indeed, we remark in the conclusion that, as EGT models are improved to capture 
 (such as with active environments or heterogeneous agents), we must analyse those models to
 understand their implications for the stability and behaviour of learning algorithms such as
 Q-Learning. This is a point for future work which we consider.
+
+\fb{what you write is fine, but I'd stress even further the difference and elements of novelty wrt SOTA.}
 
 Regarding the novelty of the work, it should be noted that the references (Tuyls et al,
 Bloembergen et al) focus on developing models for learning algorithms. We, on the other hand, focus
@@ -55,6 +63,8 @@ analysis and our experimentation.
 
 \paragraph{Reviewer 6} % (fold)
 \label{par:reviewer_6}
+
+\fb{we could stress even further that taking $\Gamma$ to average over a certain type of reward is completely standard in the literature.}
 
 We thank the reviewer for their analysis and comments. Specifically, we wish to address the
 reviewer's concerns regarding the averaging over payoff matrices. We should start by pointing out
@@ -118,9 +128,9 @@ generalising over all possible payoff matrices and averaging the effect of those
 payoff correlations.
 
 Regarding the analysis of other reinforcement learning algorithms, we definitely believe that this
-is an important and interesting line of inquiry. We mention in our conclusion that, as
+is an important and interesting line of inquiry, \fb{but far beyond the scope of the current contribution}. We mention in our conclusion that, as
 dynamical models are developed for the algorithms you mention, analyses such as the present work
-will help provide insight into what they predict regarding the stabilty and behaviour of those
+will help provide insight into what they predict regarding the stability and behaviour of those
 algorithms.
 % paragraph reviewer_65 (end)
 
