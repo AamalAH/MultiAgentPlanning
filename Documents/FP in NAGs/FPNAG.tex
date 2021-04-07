@@ -389,20 +389,127 @@
 	
 	\section*{Convergence Properties}
 
-	I've spent some time trying to show convergence of the CTFP to a Nash Equilibrium, without the
-	requirement that $w_{ii} = 0$. Unfortunately, it doesn't look like that is the case in general,
-	at least with the other assumptions that we have made. Perhaps changing the requirement of the
-	payoff functions or the aggregation method (e.g. to a non-linear one) would influence this, but
-	for the bimatrix games that we've looked at so far, no luck.
-	We can, however, say that there is at least one accumulation point since the solution $\alpha(t;
-	m)$, for any CTFP
-	$m$ maps from a compact space to itself. Therefore, any sequence $\{\alpha(\tau_q; m)\}$ where
-	$\tau_q \rightarrow \infty$ as $q \rightarrow \infty$ has all of its elements inside a compact
-	set. Therefore, by the Bolzano-Wierstrass Theorem, this sequence has at least one limit point.
-	We can say that such a limit point corresponds to an NE when $w_{ii} = 0$, but I am trying to
-	determine any other structure of the limit point for when this does not hold. For example, is
-	the limit set a singleton (i.e. a fixed point) or a set. What are the properties of this set?
-	Do they satisfy the no-regret criterion?	\newpage
+	In this section I will show that the NA-CTFP process converges to the set of coarse correlated
+	equilibria. So first I will define what this means. \ah{For Francesco: Please forgive me for
+	changing notation, I'll make everything consistent.}
+
+	The notion of the CCE set is best considered through \emph{regret} which, for agent $\mu$ is given as
+
+	\begin{equation}
+		R^{\mu} = \max_{x_{i'}^\mu \in S^\mu} \Big\{ \frac{1}{T} \int_{0}^{T} u^{\mu}(x_{i'}^\mu(t), \sigma(t)) - u^{\mu}(m^\mu(t), \sigma(t)) \, dt \Big\}
+	\end{equation}
+
+	To illustrate this, let us consider the case where each agent has only two actions. Then $u^{\mu}(x^\mu(t), \sigma(t))$ is given by
+	
+	\begin{equation}
+		u^{\mu}(x^\mu(t), \sigma(t)) = \sum_{ij} a_{ij} x_i^\mu \sigma_j^\mu = a_{11} x_1^\mu \sigma_1^\mu + a_{12} x_1^\mu \sigma_2^\mu + a_{21} x_2^\mu \sigma_1^\mu + a_{22} x_2^\mu \sigma_2^\mu
+	\end{equation}
+
+	On the other hand, let us consider that agent $\mu$'s first strategy maximises $u^{\mu}(x_{i'}^\mu(t), \sigma(t))$, then
+
+	\begin{equation}
+		\max_{x_{i'}^\mu \in S^\mu} u^{\mu}(x_{i'}^\mu(t), \sigma(t)) = \sum_{ij} a_{1j} x_i^\mu \sigma_j^\mu = a_{11} x_1^\mu \sigma_1^\mu + a_{12} x_1^\mu \sigma_2^\mu + a_{11} x_2^\mu \sigma_1^\mu + a_{12} x_2^\mu \sigma_2^\mu 
+	\end{equation}
+
+	By comparing the two expanded expressions, we can see that the latter gives the reward that agent $\mu$ would have received had they played action $1$ throughout the entire play, assuming that the behaviour of the other agents (encoded in $\sigma$) does not change. As such, this is a measure of agent $\mu$'s regret, in hindsight, for not playing action $1$ the entire time. An agent achives \emph{no regret} if $R^\mu$ is non-positive.
+	% \begin{definition}[Coarse Correlated Equilibrium]
+	% 	A distribution $D$ over action profiles $\times_{\mu} A^{\mu}$ is a \emph{coarse correlated
+	% 	equilibrium} if, for
+	% 	all players $\mu$ and
+	% 	all
+	% 	actions $i' \in A^{\mu}$
+
+	% 	\begin{equation}
+	% 		\mathbb{E}_{a \sim D}[u^{\mu}(a)] \geq \mathbb{E}_{a \sim D}[u^{\mu}(a^\mu_{i'}, a
+	% 		^{- \mu})]
+	% 	\end{equation}
+
+	% \end{definition}
+	\begin{theorem}
+		Assuming that $w_{ii} = 0$, then for any choice of payoff matrix, agents following the NA-FP process achieve zero regret in the limit, i.e.
+		\begin{equation}
+			\lim_{T \rightarrow \infty} \max_{x_{i'}^\mu \in S^\mu} \Big\{ \frac{1}{T} \int_{0}^{T} u^{\mu}(x_{i'}^\mu(t), \sigma(t)) - u^{\mu}(m^\mu(t), \sigma(t)) \, dt \Big\} = 0
+		\end{equation}
+
+	\end{theorem}
+	
+	\begin{proof}
+		We will adapt the techniques of Ostrovski and van Strein for this proof. Their result was found for a two player game, we will leverage the fact that the NA process means that we can reduce an $N$ player game down to a series of two player games. 
+		
+		For any agent $\mu$ define
+		\begin{equation}
+			\bar{u}^\mu (\alpha_\sigma^\mu) := max_{y \in \Delta_\mu} u^\mu(y, \alpha_\sigma^\mu)
+		\end{equation}
+
+		Now, if the agents are following the NA-FP process, then we know that $m^\mu (t) \in \Delta_\mu$ is the strategy which maximises $u^\mu( \cdot, \alpha_\sigma^\mu)$ so we can write 
+
+		\begin{equation}
+			\bar{u}^\mu (\alpha_\sigma^\mu) := max_{y \in \Delta_\mu} u^\mu(y, \alpha_\sigma^\mu) = m^\mu(t) \cdot A^\mu (\alpha_\sigma^\mu)
+		\end{equation}
+
+		Then, applying the \emph{envelope theorem} we have
+
+		\begin{equation}
+			\frac{d}{d \alpha_\sigma^\mu} \bar{u}^\mu (\alpha_\sigma^\mu) = \frac{d}{d \alpha_\sigma^\mu} x^\mu \cdot A^\mu (\alpha_\sigma^\mu) \Big |_{x^\mu = m^\mu} = m^\mu \cdot A^\mu
+		\end{equation}
+
+		Which gives that 
+
+		\begin{equation}
+			\frac{d}{dt} \bar{u}^\mu (\alpha_\sigma^\mu (t)) = m^\mu \cdot A^\mu \frac{d \alpha_\sigma^\mu (t)}{dt}
+		\end{equation}
+
+		Then, 
+
+		\begin{align}
+			\frac{d}{dt} (t \bar{u}^\mu (\alpha_\sigma^\mu (t))) & =  \bar{u}^\mu (\alpha_\sigma^\mu (t)) + t m^\mu \cdot A^\mu \frac{d \alpha_\sigma^\mu (t)}{dt} \\
+			& = m^\mu \cdot A^\mu (\sum_{\nu \in N(\mu)} w^{\mu \nu} \alpha^\nu (t) + t (m^\mu \cdot A^\mu \sum_{\nu \in N(\mu)} w^{\mu \nu} \frac{d}{dt} \alpha^\nu(t))
+		\end{align} 
+
+		Now, we know that the differential inclusion for the NA-FP process can be written as
+
+		\begin{equation}
+			\frac{d}{dt} \alpha^\mu (t) = \frac{1}{t} (m^\mu(t) - \alpha^\mu (t))
+		\end{equation}
+
+		We insert this into the previous equation to yield
+
+		\begin{align}
+			\frac{d}{dt} (t \bar{u}^\mu (\alpha_\sigma^\mu (t))) & = m^\mu \cdot A^\mu (\sum_{\nu \in N(\mu)} w^{\mu \nu} \alpha^\nu (t)) + t(m^\mu \cdot A^\mu \sum_{\nu \in N(\mu)} w^{\mu \nu} \frac{1}{t} (m^\nu(t) - \alpha^\nu (t))) \\
+			& = m^\mu \cdot A^\mu (\sum_{\nu \in N(\mu)} w^{\mu \nu} \alpha^\nu (t) + m^\mu \cdot A^\mu \sum_{\nu \in N(\mu)} w^{\mu \nu} (m^\nu(t) - \alpha^\nu (t)) \\
+			& = m^\mu \cdot A^\mu \sum_{\nu \in N(\mu)} w^{\mu \nu} m^\nu(t) = m^\mu \cdot A^\mu \sigma^\mu(t) 
+		\end{align}
+
+
+		Now if we integrate both sides with respect to $t$ in the bound $[1, T]$ (on which the NA-FP) process is defined, we get
+
+		\begin{align}
+			&  T \bar{u}^\mu (\alpha_\sigma^\mu (T)) - \bar{u}^\mu (\alpha_\sigma^\mu (1)) = \int_1^T u^\mu (m^\mu(t), \sigma^\mu(t)) \; dt \\
+			& \implies \bar{u}^\mu (\alpha_\sigma^\mu (T)) - \frac{1}{T} \bar{u}^\mu (\alpha_\sigma^\mu (1)) = \frac{1}{T} \int_1^T u^\mu (m^\mu(t), \sigma^\mu(t)) \; dt \\
+			& \implies \lim_{T \rightarrow \infty} \bar{u}^\mu (\alpha_\sigma^\mu (T)) - \frac{1}{T} \int_0^T u^\mu (m^\mu(t), \sigma^\mu(t)) \; dt = 0
+		\end{align}
+
+		Now notice
+
+		\begin{align}
+			\bar{u}^\mu (\alpha_\sigma^\mu (T)) = \max_{x^\mu_{i'} \in S^\mu} \sum_{j} a_{i'j} (\alpha_{\sigma}^\mu (T))_j & = \max_{x^\mu_{i'} \in S^\mu} \sum_{j} a_{i'j} (\frac{1}{T} \int_{0}^{T} \sigma^\mu(t) \; dt)_j \\
+			& = \max_{x^\mu_{i'} \in S^\mu} \sum_{j} a_{i'j} \frac{1}{T} \int_{0}^{T} \sum_i (m^\mu (t))_i (\sigma^\mu(t))_j \; dt\\
+			& = \max_{x^\mu_{i'} \in S^\mu} \frac{1}{T} \int_0^T \sum_{ij} a_{i'j} (m^\mu (t))_i (\sigma^\mu(t))_j \; dt\\
+			& = \max_{x^\mu_{i'} \in S^\mu} \frac{1}{T} \int_0^T u^\mu(x^\mu_{i'}, \sigma^\mu(t))
+		\end{align}
+
+		So we recover
+
+		\begin{equation}
+			\lim_{T \rightarrow \infty} \max_{x_{i'}^\mu \in S^\mu} \Big\{ \frac{1}{T} \int_{0}^{T} u^{\mu}(x_{i'}^\mu(t), \sigma(t)) - u^{\mu}(m^\mu(t), \sigma(t)) \, dt \Big\} = 0
+		\end{equation}
+
+		which was precisely the regret condition that we required.
+
+		\ah{Note: I think that this means that the NA-FP process converges to the coarse correlated equilibrium (CCE) set, but I'm a little hesitant to write it just because I'm not sure if the terminology lines up}
+	\end{proof}
+
+	\newpage
 
 	\begin{equation}
 		x_i(t) \in BR_i \left( \frac{1}{t} \int_{0}^{t} \sigma_i(t') dt' \right).
