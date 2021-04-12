@@ -7,10 +7,28 @@
 \theoremstyle{definition}
 \newtheorem*{definition}{Definition}
 \newtheorem{theorem}{Theorem}
-\newtheorem*{assumption}{Assumption}
+\newtheorem{assumption}{Assumption}
 
 \newcommand{\ah}[1]{\textcolor{blue}{AH: \textit{#1}}}
-\newcommand{\svs}[1]{\textcolor{red}{FB: \textit{#1}}}
+\newcommand{\fb}[1]{\textcolor{red}{FB: \textit{#1}}}
+
+\newcommand{\agentset}{\mathcal{N}}
+\newcommand{\edgeset}{\mathcal{E}}
+\newcommand{\weightset}{W}
+
+\newcommand{\actionset}[1]{S^{#1}}
+\newcommand{\utility}[1]{u^{#1}}
+
+\newcommand{\wmunu}{w^{\mu \nu}}
+\newcommand{\xmu}{x^{\mu}}
+\newcommand{\xnu}{x^{\nu}}
+\newcommand{\refmu}{\sigma^{\mu}}
+\newcommand{\avgref}[1]{\alpha_\sigma^{#1}}
+\newcommand{\NE}[1]{\bar{x}^{#1}}
+\newcommand{\weightedsum}{ \sum_{\nu \in N^\mu} \wmunu \xnu}
+\newcommand{\xnotmu}{x^{-\mu}}
+\newcommand{\xmuaction}[1]{x^{\mu}_{#1}}
+
 
 \title{Fictitious Play in Network Aggregative Games}
 \author{AH, FB}
@@ -18,11 +36,273 @@
 \begin{document}
 	
 	\maketitle
+
+	\section{Paper Structure}
+
+	\begin{enumerate}
+		\item Introduction: Explain the notion of a Network Aggregative Game, and Fictitious Play
+		with literature on the state of the art. Assumptions made as well as summary of results
+		\item Maybe? Relation with the model of Grammatico
+		\item Preliminaries \begin{itemize}
+			\item The Network Aggregative Game model
+			\item Fictitious Play, as well as the CTFP property
+		\end{itemize}
+		\item Convergence of Fictitious Play \begin{itemize}
+			\item Existence of the Nash Equilibrium
+			\item Existence of a CTFP
+			\item Convergence of CTFP to a fixed point
+			\item Corrolary: when $w_{ii} = 0$ (i.e. the interaction graph is simple) CTFP converges
+			to a NE
+			\item Convergence of CTFP to the NA-CCE set
+		\end{itemize}
+		\item Numerical Experiments \begin{itemize}
+			\item Convergence rates w.r.t. connectivity and size
+			\item Non-convergent examples
+			\item Agent based simulations
+		\end{itemize}
+		\item Discussion of Experiments
+		\item Concluding Remarks
+	\end{enumerate}
+	
+	\newpage
+	\section{Introduction}
+
+	\section{Preliminaries}
+	\subsection{Network Aggregative Games}
+	\label{sec::NAG}
+
+	The model we consider is that there is a set $\agentset = {1, ... ,
+	N}$ of agents who are connected through an underlying interaction graph. This graph is given by
+	the tuple $(\agentset, (\edgeset, \weightset))$ in which $\edgeset$ is the set of all pairs $(\mu,
+	\nu) \in \agentset \times \agentset$ such that agent $\mu$ and agent $\nu$ are connected. Then,
+	the set of neighbours of agent $\mu$ is denoted as $N^\mu = \{\nu \in \agentset \, : \, (\mu,
+	\nu) \in \edgeset\}$. $\weightset
+	\in M_N(\mathbb{R})$ is the weighted adjacency matrix whose elements $w^{\mu \nu}$ expresses the
+	importance that agent $\mu$ places on agent $\nu$. Note that if $(\mu, \nu) \not \in \edgeset$
+	then $w^{\mu \nu} = 0$ and $\wmunu \in (0, 1]$ otherwise.
+
+	As a network game, each agent $\mu$ has an associated set of pure strategies $\actionset{\mu}$
+	which has cardinality $|\actionset{\mu}| = n$. Then we can construct the unit-simplex on this
+	action set as $\Delta_\mu := \{x \in \mathbb{R}^n \, : \, \sum_i \xmuaction{i} = 1\}$ where
+	$\xmuaction{i}$ is the probability with which agent $\mu$ plays the pure strategy $i$. As such
+	we refer to $\xmu$ as the \emph{state} of agent $\mu$ (this is often referred to as $\mu$'s
+	mixed strategy). Also associated with each agent is a utility function $u^\mu(\xmu, \xnotmu)$ in
+	which we use the standard notation $-\mu$ to refer to all agents other than $\mu$. Notice that
+	this requires that each agent plays the same strategy against all of their neighbours. 
+
+	With all of the above definitions, we can formalise the network aggregative (NA) game as the tuple
+	$\Gamma = (\agentset, (\edgeset, \weightset), (\actionset{\mu}, \utility{\mu})_{\mu \in \mathcal{N}})$.
+
+	What is unique about the NA game is the structure of the payoffs themselves. In this format,
+	each agent is receives a reference $\sigma$ which is a weighted sum of each of their
+	neighbours state. Formally 
+
+	\begin{equation}
+		\sigma^\mu = \sum_{\nu \in N^\mu} \wmunu \xnu.
+	\end{equation}
+
+	Then, the agent's must optimise their payoff with respect to this reference vector. Thus,
+	instead of having to consider the actions of the entire population, or play individual games
+	against each of their neighbours, the agent only has to consider $\sigma^\mu$ as a `measurement'
+	of the local aggregate state and optimise with respect to this measurement. This allows us to
+	make the reduction $u^\mu(\xmu, \xnotmu) = u^\mu(\xmu, \refmu)$. In particular, we consider that
+	the agent is engaged in a matrix game against the reference vector so that
+
+	\begin{equation}
+		u^\mu(\xmu, \refmu) = \xmu \cdot A^\mu \refmu = \xmu \cdot A^\mu \weightedsum.
+	\end{equation}
+
+	where $A^\mu$ is the payoff matrix associated to agent $\mu$. Note that this means we could have
+	written the game $\Gamma$ with the payoff matrices $A^mu$ in place of the utility functions
+	$\utility{\mu}$. The NA game allows for the reduction of a
+	multiplayer game into a series of two-player games. The agent's goal is to maximise their payoff
+	with respect to the reference vector. As such, we define the best response correspondence
+	$BR^\mu$ which maps any $\refmu$ the set $\arg \max_{y \in \Delta_\mu} {u^\mu(y, \refmu)}$. This
+	leads naturally to the definition of a Nash Equilibrium in an NA Game as
+
+	\begin{definition}(NE)
+		The set of vectors $\{ \NE{\mu}\}_{\mu \in \agentset}$ is an NE if, for all $\mu$,
+		
+		\begin{equation*}
+		\NE{\mu} \in BR_i( \sum_{\nu \in N^\mu} \wmunu \NE{\nu}).
+		\end{equation*}
+		
+	\end{definition}
+
+	We will show that such an equilibrium exists in ...
+
+	\subsection{Continuous Time Fictitious Play}
+	\label{sec::CTFP}
+
+	\ah{For Francesco: is it worth giving a quick introduction to Fictitious Play by talking about two player games?}
+
+	Fictitious Play requires that, at the current time, each agent considers the average behaviour
+	of their opponent in the past and play a best response to that strategy. This is best
+	illustrated in the two-player setting. Consider the two player normal form game $\Gamma_2 = (\{
+	1, 2\}, ((S^1, A), (S^2, B)))$ so that $A$ and $B$ are the payoff matrices of agent $1$ and $2$
+	respectively. As a remark, note that we can write the two player normal form game as an NA game
+	simply by requiring that $\edgeset = \{(1, 2), (2, 1)\}$ and $\weightset$ is a 2x2 matrix with
+	zeros on its leading diagonal and ones on the off diagonal. We write the time-average of both
+	agents' strategies as 
+
+	\begin{align}
+		\alpha^1 = \frac{1}{t} \int_0^T x^1(t) \, dt \\
+		\alpha^2 = \frac{1}{t} \int_0^T x^2(t) \, dt \\
+	\end{align}
+
+	In this manner, the $\alpha^\mu(t)$ denotes the time average of the strategies played by agent
+	$\mu$ up to time $t$. Then, fictitious play requires that the agents update their strategy as
+	$x^1(t) \in BR^1(\alpha^2(t))$ and $x^2(t) \in
+	BR^2(\alpha^1(t))$. 
+
+	We extend this naturally to the NA game $\Gamma$ by requiring that each agent update their
+	strategy according to the time average of their reference vector $\refmu$. To formalise this, we
+	write
+
+	\begin{equation}
+		\avgref{\mu} = \frac{1}{t} \int_0^t \refmu(s) \; ds.
+	\end{equation}
+
+	Using this, we follow in the footsteps of Ewerhart \cite{} and Harris \cite{} to define
+	Fictitious Play in continuous time.
+
+	\begin{definition}[Continuous Time Fictitious Play (CTFP)]
+		A CTFP is defined as a measurable map $m$ with components $m_i$ such that for all $i$ and all $t \geq 1$, $m_i: [0, \infty) \rightarrow \Delta_i$ satisfies $m_i(t) \in BR_i(\alpha_{\sigma_i})$ for all $t \geq 1$.
+
+		We can think of this definition as saying that the player plays some arbitrary strategy before $t = 1$, but beyond this it must play a best response to the time average of its reference signal.
+	\end{definition}
+
+	\subsection{Assumption}
+
+	With the above preliminaries in place, we can state the assumptions that we make in this study.
+
+	\begin{assumption}
+		The weighted adjacency matrix $\weightset$ is constant and \emph{row stochastic} meaning
+		that the sum elements in each row of $\weightset$ is equal to one.
+	\end{assumption}
+
+	\begin{assumption}
+		The payoffs are given through matrix games and, therefore, are bilinear.
+	\end{assumption}
+
+	\begin{assumption}
+		The cardinality of each action set $|\actionset{\mu}|$ is equal for all agents.
+	\end{assumption}
+
+	\begin{assumption}
+		The NA game is zero-sum in the sense that $\sum_{\mu} u^\mu(\xmu, \weightedsum)$ for any set
+		of states $(x^\mu)_{\mu \in N^\mu}$
+	\end{assumption}
+
+	\section{Convergence of Fictitious Play}
+
+	\subsection{Existence of the Nash Equilibrium}
+	
+	Note that the NE Condition requires
+
+	\begin{align}
+		\NE{\mu} &\in \arg\max_{x \in \Delta_\mu} u^\mu(x, w^{\mu \mu}x + \sum_{\nu \in N^\mu} w^{\mu \nu} \NE{\nu}) \nonumber \\
+		& =: \arg\max_{x \in \Delta_i} \bar{u}^\mu(x, \sum_{\nu \in N^\mu} w^{\mu \nu} \NE{\nu})
+	\end{align}
+
+	where we can find $\bar{u}_i$ through the following argument
+	
+	\begin{align}
+		u^\mu(x, w^{\mu \mu} x + \sum_{\nu \in N^\nu} w_{\mu \nu} \NE{\nu}) & = x \cdot A^\mu (w^{\mu \mu} x + \sum_{\nu \in N^\mu} w_{\mu \nu} \NE{\nu}) \\
+		 & = x \cdot (w^{\mu \mu} A^\mu)  x + \sum_{\nu \in N^\mu} u^{\mu \nu}(x, \NE{\nu}) \\
+		 & =: \bar{u}^\mu(x, \sum_{\nu \in N^\mu} w^{\mu \nu} \NE{\nu}), \nonumber
+	\end{align}
+	
+	where $u^{\mu \nu}(\xmu, x^\nu) = \xmu \cdot A^\mu x^\nu$. Note that, in order to get this
+	formulation, we had to use the assumption of payoffs being bilinear so that we could separate
+	out the term in the weighted sum involving $x$ from $\bar{x}^\nu$. 
+	
+	To show existence of an NE we will need the following definition and theorem.
+
+	\begin{definition}[Upper Semi-Continuous]
+		A compact-valued correspondence $\Phi: A \rightarrow B$ is \emph{upper semi-continuous} at a point $a$ if $g(a)$ is non-empty and if, for every sequence $a_n \rightarrow a$ and every sequence $(b_n)$ such that $b_n \in g(a_n)$ for all $n$, there exists a convergent subsequence of $(b_n)$ whose limit point $b$ is in $g(a)$.  
+	\end{definition}
+
+	\begin{theorem}[Kakutani]
+		Let $K \subset \mathbb{R}^n$ be compact and convex and $\Phi: K \rightarrow K$ be closed or upper semi-continuous, with nonempty, convex and compact values. Then $\Phi$ has a fixed point.
+	\end{theorem}
+
+	Note that, when acting on a simplex, the function $\Phi: \Delta \rightarrow \textbf{P}(\Delta)$, where $\textbf{P}(\Delta)$ denotes the nonempty, closed and convex subsets of $\Delta$ only has to satisfy the upper-semi continuity condition to admit a fixed point.
+
+	\begin{theorem}[Existence of NE]
+		Under the assumption (II), namely that the payoff function achieves a bilinear property, a
+		Nash Equilibrium $\{\bar{x}^\mu\}_{\mu \in \agentset}$ exists.
+	\end{theorem}
+
+	\begin{proof}
+		We begin by rewriting the NE condition by concatenating the set of NE vectors into one long colunn vector. This gives
+
+		\begin{equation}
+			\begin{bmatrix}
+				\bar{x}^1 \\ . \\ . \\ . \\ \bar{x}^N
+			\end{bmatrix} \in
+			\begin{bmatrix}
+			\arg\max_{y \in \Delta_1} \bar{u}^1(y, \sum_{\nu \in N^1} w^{1 \nu} \bar{x}^\nu) \\ . \\ . \\ . \\ \arg\max_{y \in \Delta_N} \bar{u}^1(y, \sum_{\nu \in N^N} w^{N \nu} \bar{x}^\nu)
+			\end{bmatrix}	.
+		\end{equation}
+
+		We can rewrite the weighted summation for $\mu$ as
+
+		\begin{equation}
+			\sum_{\nu \in N^\mu} w^{\mu \nu} \bar{x}^\nu = (w_{-\mu}^T \otimes I_n) \begin{bmatrix}
+				\bar{x}^1 \\ . \\ . \\ . \\ \bar{x}^N
+			\end{bmatrix},
+		\end{equation}
+	
+		in which $w_{-\mu}$ is a column vector containing $w^{\mu \nu}$ in the $\nu$'th element for all $j \in N^\mu$ and 0 everywhere else (including in the $\mu$'th slot), $I_n$ is the $n \times n$ identity matrix and $\otimes$ is the kronecker product. For example, the form for agent 1, in the case of 2-action game is given by
+
+		\begin{equation}
+			(w_{-1}^T \otimes I_2) = [0, w_{12}, w_{13}, ..., w_{1n}] \otimes I_2 = 
+			\begin{bmatrix}
+				0 & 0 & w_{12} & 0 & ... & w_{1n} & 0 \\
+				0 & 0 & 0 & w_{12} & ... & 0 & w_{1n} \\
+			\end{bmatrix}
+		\end{equation}
+		
+		Returning to the $N$-player NA game our condition becomes
+		\begin{equation}
+			\begin{bmatrix}
+				\NE{1} \\ . \\ . \\ . \\ \bar{N}
+			\end{bmatrix} \in
+			\begin{bmatrix}
+				\arg\max_{y \in \Delta_1} \bar{u}^1(y, (w_{-1}^T \otimes I_n) \begin{bmatrix}
+					\NE{1} \\ . \\ . \\ . \\ \NE{N}
+				\end{bmatrix}) \\ . \\ . \\ . \\ \arg\max_{y \in \Delta_N} \bar{u}_N(y, (w_{-N}^T \otimes I_n) \begin{bmatrix}
+				\NE{1} \\ . \\ . \\ . \\ \NE{N}
+			\end{bmatrix}))
+			\end{bmatrix}	.
+		\end{equation}
+
+		This means that we achieve a Nash Equilibrium iff $(\NE{\mu})_{\mu \in \agentset}$ is a fixed point of the map
 	
 	
+		\begin{equation}
+			\begin{bmatrix}
+				\arg\max_{y \in \Delta_1} \bar{u}^1(y, (w_{-1}^T \otimes I_n) ( \cdot )) \\ . \\ . \\ . \\ \arg\max_{y \in \Delta_N} \bar{u}^N(y, (w_{-N}^T \otimes I_n)( \cdot ))
+			\end{bmatrix}	.
+		\end{equation}
+
+
+		Now, since the modified payoff $\bar{u}^\mu$ shares the same bilinear property as $u^\mu$, we can assert that it is continuous is its second argument. Therefore, the above vector valued map can be asserted to be continuous and so is upper semi-continuous. As such, we can apply Kakutani's Fixed Point Theorem to assert that the above map admits a fixed point.
+
+	\end{proof}
+
+	\newpage
 	\subsection*{The Model}
 	
-	We have a set of agents $V = \{1, ..., N \}$ which can be thought of as nodes on a graph $\{V, E, W\}$ where $E$ is the edge-set (i.e. the set of pairs $(i, j)$ such that i and j are connected) and $W$ is a weighted adjacency matrix $[W]_{ij} = w_{ij}$. Let $N_i := \{j \in V : (i, j) \in E\}$ be the set of player $i's$ neighbours. Note $w_{ij} = 0$ if $(i, j) \not\in E$, $w_{ij} \in (0, 1]$ if $(i, j) \in E$. We impose the normalisation condition that $\sum_{j \in N_i} w_{ij} = 1$. This requirement ensures that the aggregate strategy $\sum_{j \in N_i} w_{ij} x_j$ (where $x$ is a probability vector) remains a probability vector. For example, in the 3 player case:
+	We have a set of agents $V = \{1, ..., N \}$ which can be thought of as nodes on a graph $\{V,
+	E, W\}$ where $E$ is the edge-set (i.e. the set of pairs $(i, j)$ such that i and j are
+	connected) and $W$ is a weighted adjacency matrix $[W]_{ij} = w_{ij}$. Let $N_i := \{j \in V :
+	(i, j) \in E\}$ be the set of player $i's$ neighbours. Note $w_{ij} = 0$ if $(i, j) \not\in E$,
+	$w_{ij} \in (0, 1]$ if $(i, j) \in E$. We impose the normalisation condition that $\sum_{j \in
+	N_i} w_{ij} = 1$. This requirement ensures that the aggregate strategy $\sum_{j \in N_i} w_{ij}
+	x_j$ (where $x$ is a probability vector) remains a probability vector. For example, in the 3
+	player case:
 	
 	\begin{equation}
 	\sigma_1 := w_{12} y + w_{13} z = 
@@ -41,16 +321,10 @@
 	
 	In the continuous time case, we're also going to assume that each agent $i$ chooses a mixed strategy $x_i(t) \in \Delta_i$ at time $t$ from its strategy space $\Delta_i$ (which is an $N-$simplex). We assume that $i$ has just the one strategy that it can play against all of its neighbours.
 	
-	Once the strategy is chosen, the agent plays the game and receives payoff $u_i (x_i, \sigma_i)$, where $\sigma_i$ is the aggregate strategy vector that $i$ perceives. The best response map $BR_i$ maps any $\sigma_i$ to the set $\arg\max_{x \in \Delta_i} u_i (x, \sigma_i)$. Then $x_i$ is a `best response' to $\sigma_i$ if $x_i \in BR_i(\sigma_i)$.
 	
-	\begin{definition}(NE)
-		The set of vectors $\{ x_i^*\}_{i = 1}^N$ is an NE if, for all $i$,
-		
-		\begin{equation*}
-		x_i^* \in BR_i( w_{ii} x_i^* + \sum_{j \in N_i} w_{ij} x_j^*).
-		\end{equation*}
-		
-	\end{definition}
+	\subsection{Existence of a CTFP}
+	
+	We adapt the techniques of Ewerhart to show that any CTFP path converges 
 
 	\subsection*{Starting Assumptions}
 	
@@ -567,6 +841,5 @@
 	\begin{equation*}
 		u_i(e_i, w_{ii} \mu_i^* + \sum_{j \in N_i} w_{ij} \mu_j^*) \leq  u_i(\mu_i^*, w_{ii} \mu_i^* + \sum_{j \in N_i} w_{ij} \mu_j^*)
 	\end{equation*}
-	
-	
+
 \end{document}
