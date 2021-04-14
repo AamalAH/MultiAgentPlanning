@@ -7,6 +7,7 @@
 \theoremstyle{definition}
 \newtheorem*{definition}{Definition}
 \newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
 \newtheorem{assumption}{Assumption}
 
 \newcommand{\ah}[1]{\textcolor{blue}{AH: \textit{#1}}}
@@ -124,12 +125,16 @@
 		The set of vectors $\{ \NE{\mu}\}_{\mu \in \agentset}$ is an NE if, for all $\mu$,
 		
 		\begin{equation*}
-		\NE{\mu} \in BR_i( \sum_{\nu \in N^\mu} \wmunu \NE{\nu}).
+		\NE{\mu} \in \arg \max_{x \in \Delta_\mu} u^\mu(x, w^{\mu \mu} x + \sum_{\nu \in N^\mu \backslash \{\bar{\mu}\}} \wmunu \NE{\nu}).
 		\end{equation*}
 		
 	\end{definition}
 
-	We will show that such an equilibrium exists in ...
+	We will show that such an equilibrium exists in .... Finally we note that an NA game is \emph{zero-sum} if the utilities of each agent sum to zero for any strategy set $\{ \xmu \}_{\mu \in \agentset}$. Formally
+
+	\begin{equation}
+		\sum_\mu u^\mu(\xmu, \weightedsum) = 0.
+	\end{equation}
 
 	\subsection{Continuous Time Fictitious Play}
 	\label{sec::CTFP}
@@ -292,6 +297,335 @@
 
 	\end{proof}
 
+	\subsection{Existence of CTFP}
+
+	\begin{theorem}
+		There exists a path $m$ which satisfies the property that, for all $\mu$, $m^\mu \in
+		BR^\mu(\alpha_\sigma^\mu)$ for almost all $t \geq 1$.
+	\end{theorem}
+
+	\begin{proof}
+		Recall the definition of $\alpha^\mu(t)$
+
+		\begin{equation*}
+		\alpha^\mu(t) = \frac{1}{t} \int_{0}^{t} m^\mu(s) \, ds
+		\end{equation*}
+
+		Then 
+
+		\begin{align}
+		\frac{d}{dt} \alpha^\mu(t) & = \frac{d}{dt} \frac{1}{t} \int_{0}^t m^\mu(s) ds \nonumber \\
+		& = \frac{1}{t} m^\mu(t) - \frac{1}{t} \alpha^\mu(t)
+		\end{align}
+
+		Now we assert that $m^\mu(t) \in BR^\mu(\alpha_{\sigma}^\mu) = \arg\max_{y \in \Delta_\mu} u^\mu(y,
+		w^{\mu \mu} \alpha^\mu(t) + \sum_{\nu \in N^\mu} w_{ij} \alpha^\nu(t))$. 
+
+		Let us then define $\alpha(t)$ as the concatenation of all $\alpha_i(t)$
+
+		\begin{equation}
+			\alpha(t) = \begin{bmatrix}
+				\alpha^1(t)^T, \ldots, \alpha^N(t)^T
+			\end{bmatrix}^T \subset \mathbb{R}^{Nn}
+		\end{equation}
+
+
+		We can, therefore, write the aggregation as
+
+		\begin{equation}
+			(W \otimes I_n) \alpha(t) = \begin{bmatrix}
+				\sum_{\nu \in N^1} w^{1 \nu} \alpha^\nu(t) \\
+				.\\
+				.\\
+				.\\
+				\sum_{\nu \in N^N} w^{N \nu} \alpha^\nu(t)
+			\end{bmatrix} \subset \mathbb{R}^{Nn}
+		\end{equation}
+
+		I will write $(W \otimes I_n) \alpha(t)$ as $\alpha_W$ for convenience. Furthermore, using
+		the bilinear property of the game, we can say that
+
+		\begin{equation}
+			\begin{bmatrix}
+				\arg\max_{y_1 \in \Delta_1} y \cdot A^1 ( \alpha_W(t))_1 \\
+				.\\
+				.\\
+				.\\
+				\arg \max_{y_N \in \Delta_N} y \cdot A^N (\alpha_W(t))_N 
+			\end{bmatrix} = 
+			\arg \max_{y \in \Delta} y \cdot \begin{bmatrix}
+				A^1 & 0 & . & . & . & 0 \\
+				0 & A^2 & . & . & . & 0 \\
+				& & . & & & \\
+				& & & . & & \\
+				& & & & . & \\
+				0 & 0 & . & . & . & A^N \\
+			\end{bmatrix} \alpha_W(t) = \arg\max_{y \in \Delta} y \cdot \Lambda (W \otimes I_n)
+			\alpha(t)
+		\end{equation}
+
+		in which $\Delta = \times_i \Delta_i$ and $\Lambda$ is the block diagonal matrix containing
+		each $A^i$. 
+
+		We can now write the differential inclusion as
+
+		\begin{equation}
+			\dot{\alpha}(t) \in \frac{1}{t} (\arg \max_{y \in \Delta}  \{y \cdot \Lambda (W \otimes
+			I_n)
+			\alpha(t) \}- \alpha(t))
+		\end{equation}
+
+		with the initial condition $\alpha(1) = x_0$. Then, the path $m$ is a CTFP if its
+		corresponding $\alpha(t; m)$ is a solution to the above differential inclusion. Following
+		the definition of (Harris 1998), a solution $\alpha(t)$ must satisfy
+
+		\begin{enumerate}
+			\item $\alpha(t)$ is locally Lipschitz
+			\item $\alpha(1) = x_0$
+			\item $\dot{\alpha}(t) \in \frac{1}{t} (\arg \max_{y \in \Delta}  \{y \cdot \Lambda (W \otimes
+			I_n)
+			\alpha(t) \}- \alpha(t))$ for almost all $t \in [1, \infty)$ 
+		\end{enumerate}
+
+		The question then remains, does the differential inclusion admit a solution? Using the
+		results of Aubin and Cellina (see Harris 1998, paragraph below Prop. 6), can use the fact
+		that the $\arg \max$ function is non-empty, compact and convex valued, bounded (all of
+		these follow since the function acts from $\Delta$ to $\Delta$) and upper semi-continuous. 
+		With these facts in place, we can say that there is a CTFP $m$ for any initial value $x_0$. Further, the solution $m(t)$ is Lipschitz for almost all $t \geq 0$.
+
+	\end{proof}
+
+	With the existence of the CTFP in place, we can show that it converges to a fixed point. In particular, let $\Omega(\alpha)$ be the set of all limit points for $\alpha(t)$. Then, a CTFP path is said to have converged if $\Omega(\alpha)$ is contained within the set of Nash Equilibria of the game. If this is for any such CTFP path, then the game is said to have the \emph{CTFP property}. We adapt the techniques of (Ewerhart 2020) to prove that zero-sum NA games have the CTFP property. \ah{I also want to attempt this with the techniques of Harris (which is quite similar) to see if it yields any new results}.
+
+	\begin{theorem}
+		Any zero-sum NA game has the property that, for any CTFP path $m$, the corresponding $\alpha(t; m)$ converges to a set of fixed points.
+	\end{theorem}
+
+
+	\begin{proof}
+
+		\begin{equation}
+			m^\mu(t) \in BR^\mu \left( \frac{1}{t} \int_{0}^{t} \sigma^\mu(s) ds \right).
+		\end{equation}
+		
+		By the definition of Continuous Time Fictitious Play (CTFP) given by Ewerhart, we require that $m: [0, \infty) \rightarrow \times_\mu \Delta_\mu$ is a measurable mapping such that, for each $\mu$, $m^\mu(t) \in BR^\mu \left( \frac{1}{t} \int_{0}^{t} \sigma^\mu(t') dt' \right)$. Now notice,
+		
+		\begin{equation*}
+			m^\mu(t) \in BR^\mu \left( \frac{1}{t} \int_{0}^{t} \sigma^\mu(t') dt' \right) \iff  \in x^\mu\in BR^\mu \left( \frac{1}{t} \int_{0}^{t} [w^{\mu \mu} m^\mu(s) + \sum_{\nu \in N^\mu} w^{\mu \nu} m^\nu(s)] \, ds \right)
+		\end{equation*}
+		
+		Let us assume that $u^\mu$ takes the form $x \cdot A^\mu \sigma^\mu$ where $A^\mu$ is the payoff matrix associated with agent $\mu$. Then,
+		
+		\begin{align}
+			& m^\mu \in \arg\max_{x \in \Delta^\mu} u^\mu(x,\frac{1}{t} \int_{0}^{t} [w^{\mu \mu} m^\mu(t') + \sum_{\nu \in N^\mu} w^{\mu \nu} m^\nu(s)] \, ds) \nonumber \\
+			\iff & m^\mu \in \arg\max_{x \in \Delta_\mu} x \cdot A^\mu \left(\frac{1}{t} \int_{0}^{t} [w^{\mu \mu} m^\mu(t') + \sum_{\nu \in N^\mu} w^{\mu \nu} m^\nu(s)] \, ds \right) \nonumber \\
+			\iff & m^\mu \in \arg \max_{x \in \Delta_\mu} x \cdot (w^{\mu \mu} A^\mu) \left( \frac{1}{t} \int_{0}^{t} m^\mu(s) ds\right) + \sum_{\nu \in N^\mu} x \cdot (\wmunu A^\nu) \left( \frac{1}{t} \int_{0}^{t} m^\nu(s) ds \right) \nonumber \\
+			\iff & m^\mu \in \arg \max_{x \in \Delta_i} x \cdot A^{\mu \mu} \alpha^\mu(t; m) + \sum_{\nu \in N^\mu} x \cdot A^{\mu \nu} \alpha^\nu(t; m).
+		\end{align}
+		
+		where each $A^{\mu \nu} = \wmunu A^\mu$ and $\alpha^\mu(t; m) =\frac{1}{t} \int_{0}^{t} m^\mu(s) ds$ as defined by Ewerhart. We can, therefore, think of the NA game as a network game in which each agent plays the same strategy against each of its neighbours, itself included. As such, any $m$ which satisfies the CTFP property for the equivalent network game also satisfies the CTFP requirement for the network aggregative game. 
+		
+		Continuing with this approach, let us look at the case where $\sum_\mu A^\mu = \textbf{0}_{n\times n}$ (i.e. a zero sum game). This means that $\sum_i u_i = 0$. Let $\xmu_\infty = \lim_{t \rightarrow \infty} \alpha^\mu(t; m)$. More specifically, $\xmu_\infty$ belongs to the set of accumulation points of $\alpha^\mu(\cdot; m)$ (which is set valued since the $BR^\mu$ map is set valued). To say that the game has `converged' we require that every $\xmu_\infty = (x^1_\infty, ... x^N_\infty)$ is an NE. \ah{I'll follow through the proof of Ewerhart for the sake of completeness: }
+		
+		Let us take the Lyapunov function
+		
+		\begin{equation}
+			L(x) = \sum_\mu \max_{y \in \Delta_\mu} \{u^\mu(y, w^{\mu \mu} \xmu + \sum_{\nu \in N^\mu} \wmunu \xnu) - u^\mu(\xmu, w^{\mu \mu} \xmu + \sum_{\nu \in N^\mu} \wmunu \xnu) \}
+		\end{equation}
+		
+		Using the same transformation as before:
+		
+		\begin{align}
+			 u^mu(y, w^{\mu \mu} \xmu + \sum_{\nu \in N^\mu} w_{\mu \nu} \xnu) & =  y \cdot A^\mu (w^{\mu \mu} \xmu + \sum_{\nu \in N^\mu} \wmunu \xnu) \nonumber \\
+			 & =  y \cdot (w^{\mu \mu} A^\mu) \xmu + \sum_{\nu \in N^\mu} y \cdot (\wmunu A^\mu) \xnu \nonumber \\
+			  & =  \sum_{\nu \in N^\mu \cup \{\mu\}} y \cdot A^{\mu \nu} \xnu \nonumber 
+		\end{align}
+		
+		Then,
+		
+		\begin{align}
+		L(x) &= \sum_\mu \max_{y \in \Delta_\mu}\sum_{\nu \in N^\mu \cup \{\mu\}} y \cdot A^{\mu \nu} \xnu  - u^mu(\xmu, w^{\mu \mu} \xmu + \sum_{\nu \in N^\mu} w^{\mu \nu} \xnu) \} \nonumber \\
+		&= \sum_\mu \max_{y \in \Delta_\mu} \{\sum_{\nu \in N^\mu \cup \{\mu\}} y \cdot A^{\mu \nu} \xnu  \} - \sum_\mu  u^\mu(\xmu, w^{\mu \mu} \xmu + \sum_{\nu \in N^\mu} w^{\mu \nu} \xnu) \nonumber \\
+		&= \sum_\mu \max_{y \in \Delta_\mu} \{\sum_{\nu \in N^\mu \cup \{\mu\}} y \cdot A^{\mu \nu} \xnu  \} \nonumber 
+		\end{align}
+		
+		where the last equality holds because $\sum_\mu u^\mu = 0$. Now, in parallel with (Ewerhart 2020) we recall that we defined $m^\mu(t)$ as the best response to $\alpha(t)$. As such,
+
+		\begin{align}
+			L(\alpha(t)) & = \sum_\mu \sum_{\nu \in N^\mu \cup \{\mu\}} m^\mu(t) \cdot A^{\mu \nu} \alpha^\nu(t) \\
+			t L(\alpha(t)) & = \sum_\mu \sum_{\nu \in N^\mu \cup \{\mu\}} m^\mu(t) \cdot A^{\mu \nu} t \alpha^\nu(t) \\
+			t L(\alpha(t)) & = \sum_\mu \sum_{\nu \in N^\mu \cup \{\mu\}} m^\mu(t) \cdot A^{\mu \nu} \int_0^t m^\nu(s) ds
+		\end{align}
+
+		Similarly, since we know that $m^\mu(t')$ is a best response to $\alpha(t')$ at time $t'$ we have
+
+		\begin{align}
+			\sum_{\nu \in N^\mu \cup \{\mu\}} m^\mu(t') \cdot A^{\mu \nu} \alpha^\nu(t') & \geq \sum_{\nu \in N^\mu \cup \{\mu\}} m^\mu(t) \cdot A^{\mu \nu} \alpha^\nu(t') \\
+			t' \sum_\mu \sum_{\nu \in N^\mu \cup \{\mu\}} m^\mu(t') \cdot A^{\mu \nu} \alpha^\nu(t') & \geq \sum_\mu \sum_{\nu \in N^\mu \cup \{\mu\}} m^\mu(t) \cdot A^{\mu \nu} \int_0^{t'} m^\nu(s) ds \\
+			t' L(\alpha(t')) & \geq \sum_\mu \sum_{\nu \in N^\mu \cup \{\mu\}} m^\mu(t) \cdot A^{\mu \nu} \int_0^{t'} m^\nu(s) ds 
+		\end{align}
+
+		Combining the above equations in $t L(\alpha(t))$ and $t' L(\alpha(t'))$, we get
+
+		\begin{align}
+			t L(\alpha(t)) - t' L(\alpha(t')) \leq \sum_\mu \sum_{\nu \in N^\mu \cup \{\mu\}} m^\mu(t) \cdot A^{\mu \nu} \int_{t'}^{t} m^\nu(s) ds 
+		\end{align}
+
+		We can divide this expression by $t - t'$ and take the limit for $t' \rightarrow t$. This yields the derivative (in particular the upper right Dini derivative)
+
+		\begin{equation}
+			\limsup_{t' \rightarrow t, t' < t}\frac{t L(\alpha(t)) - t' L(\alpha(t'))}{t - t'} \leq 0
+		\end{equation}
+
+		As this derivative is (weakly) negative, and we know that $tL(\alpha(t))$ is continuous in $t$, we have the result that $t L(\alpha(t))$ is monotone decreasing. Therefore, it is bounded, i.e. there is some $C \geq 0$ such that $L(\alpha(t)) \leq C/t$. In addition, we know that each term in the summation in the original expression of the Lyapunov function is non-negative and so we can say that
+
+		\begin{align}
+			& \max_{y \in \Delta_\mu} \{u^\mu(y, w^{\mu \mu} \xmu + \sum_{\nu \in N^\mu} \wmunu \xnu) - u^\mu(\xmu, w^{\mu \mu} \xmu + \sum_{\nu \in N^\mu} \wmunu \xnu) \} \leq \frac{C}{t}\\
+			& \implies u^\mu(y, w^{\mu \mu} \xmu + \sum_{\nu \in N^\mu} \wmunu \xnu) - u^\mu(\xmu, w^{\mu \mu} \xmu + \sum_{\nu \in N^\mu} \wmunu \xnu) \leq \frac{C}{t} \; \forall y \in \Delta_n
+		\end{align}
+		
+		Now let us take some $\xmu_\infty \in \Omega(\alpha)$. Since this is a limit point, there exists a sequence $\{t_n\}_{n = 0}^\infty \rightarrow \infty$ such that $\{\alpha^\mu(t_n)\}_{n = 0}^{\infty} \rightarrow \xmu_\infty$. So if we take the limit as $t_n \rightarrow \infty$ we get
+
+		\begin{equation}
+			u^\mu(y, w^{\mu \mu} \xmu_\infty + \sum_{\nu \in N^\mu} \wmunu \xnu_\infty) - u^\mu(\xmu_\infty, w^{\mu \mu} \xmu_\infty + \sum_{\nu \in N^\mu} \wmunu \xnu_\infty) \leq 0
+		\end{equation}
+
+		This means that $(\xmu_\infty)_{\mu \in \agentset}$ is a best response to itself and so is a fixed point of the NA-CTFP dynamic. 
+	\end{proof}
+
+	We now point out that, if we choose $w^{\mu \mu}$ to be zero for all $\mu$, then the final inequality yields that, for all $\mu$
+
+	\begin{equation}
+		u^\mu(y, \sum_{\nu \in N^\mu} \wmunu \xnu_\infty) \leq u^\mu(\xmu_\infty, \sum_{\nu \in N^\mu} \wmunu \xnu_\infty)
+	\end{equation}
+
+	which is precisely the NA-Nash Equilibrium condition. This leads to the next result
+
+	\begin{corollary}
+		With the additional assumption that, for all agents $\mu$, all zero-sum NA games have the CTFP property
+	\end{corollary}
+
+	\section{Convergence to the CCE set}
+
+	In this section we aim to find some convergence structure for the case in which the NA game is not zero-sum. In particular, we  show that the NA-CTFP process converges to the set of coarse correlated equilibria. So first I will define what this means.
+
+	The notion of the CCE set is best considered through \emph{regret} which, for agent $\mu$ we define as
+
+	\begin{equation}
+		R^{\mu} = \max_{x_{i'}^\mu \in S^\mu} \Big\{ \frac{1}{T} \int_{0}^{T} u^{\mu}(x_{i'}^\mu(t), \sigma(t)) - u^{\mu}(m^\mu(t), \sigma(t)) \, dt \Big\}
+	\end{equation}
+
+	Note, this is the \emph{average regret} for the agent $\mu$ and, of course, can be related to the \emph{cumulative regret} which is used for analysis in, e.g. (Leonardos and Piliouras, Cesa-Bianchi). To illustrate the average regret, let us consider the case where each agent has only two actions. Then $u^{\mu}(x^\mu(t), \sigma(t))$ is given by
+	
+	\begin{equation}
+		u^{\mu}(x^\mu(t), \sigma(t)) = \sum_{ij} a_{ij} x_i^\mu \sigma_j^\mu = a_{11} x_1^\mu \sigma_1^\mu + a_{12} x_1^\mu \sigma_2^\mu + a_{21} x_2^\mu \sigma_1^\mu + a_{22} x_2^\mu \sigma_2^\mu
+	\end{equation}
+
+	On the other hand, let us consider that agent $\mu$'s first strategy maximises $u^{\mu}(x_{i'}^\mu(t), \sigma(t))$, then
+
+	\begin{equation}
+		\max_{x_{i'}^\mu \in S^\mu} u^{\mu}(x_{i'}^\mu(t), \sigma(t)) = \sum_{ij} a_{1j} x_i^\mu \sigma_j^\mu = a_{11} x_1^\mu \sigma_1^\mu + a_{12} x_1^\mu \sigma_2^\mu + a_{11} x_2^\mu \sigma_1^\mu + a_{12} x_2^\mu \sigma_2^\mu 
+	\end{equation}
+
+	By comparing the two expanded expressions, we can see that the latter gives the reward that agent $\mu$ would have received had they played action $1$ throughout the entire play, assuming that the behaviour of the other agents (encoded in $\sigma$) does not change. As such, this is a measure of agent $\mu$'s regret, in hindsight, for not playing action $1$ the entire time. An agent achives \emph{no regret} if $R^\mu$ is non-positive.
+	% \begin{definition}[Coarse Correlated Equilibrium]
+	% 	A distribution $D$ over action profiles $\times_{\mu} A^{\mu}$ is a \emph{coarse correlated
+	% 	equilibrium} if, for
+	% 	all players $\mu$ and
+	% 	all
+	% 	actions $i' \in A^{\mu}$
+
+	% 	\begin{equation}
+	% 		\mathbb{E}_{a \sim D}[u^{\mu}(a)] \geq \mathbb{E}_{a \sim D}[u^{\mu}(a^\mu_{i'}, a
+	% 		^{- \mu})]
+	% 	\end{equation}
+
+	% \end{definition}
+
+	\begin{theorem}
+		Assuming that $w^{\mu \mu} = 0$, then for any choice of payoff matrix, agents following the NA-FP process achieve zero regret in the limit, i.e.
+		\begin{equation}
+			\lim_{T \rightarrow \infty} \max_{x_{i'}^\mu \in S^\mu} \Big\{ \frac{1}{T} \int_{0}^{T} u^{\mu}(x_{i'}^\mu(t), \sigma(t)) - u^{\mu}(m^\mu(t), \sigma(t)) \, dt \Big\} = 0
+		\end{equation}
+
+	\end{theorem}
+	
+	\begin{proof}
+		We will adapt the techniques of Ostrovski and van Strein for this proof. Their result was found for a two player game, we will leverage the fact that the NA process means that we can reduce an $N$ player game down to a series of two player games. 
+		
+		For any agent $\mu$ define
+		\begin{equation}
+			\bar{u}^\mu (\alpha_\sigma^\mu) := max_{y \in \Delta_\mu} u^\mu(y, \alpha_\sigma^\mu)
+		\end{equation}
+
+		Now, if the agents are following the NA-FP process, then we know that $m^\mu (t) \in \Delta_\mu$ is the strategy which maximises $u^\mu( \cdot, \alpha_\sigma^\mu)$ so we can write 
+
+		\begin{equation}
+			\bar{u}^\mu (\alpha_\sigma^\mu) := max_{y \in \Delta_\mu} u^\mu(y, \alpha_\sigma^\mu) = m^\mu(t) \cdot A^\mu (\alpha_\sigma^\mu)
+		\end{equation}
+
+		Then, applying the \emph{envelope theorem} we have
+
+		\begin{equation}
+			\frac{d}{d \alpha_\sigma^\mu} \bar{u}^\mu (\alpha_\sigma^\mu) = \frac{d}{d \alpha_\sigma^\mu} x^\mu \cdot A^\mu (\alpha_\sigma^\mu) \Big |_{x^\mu = m^\mu} = m^\mu \cdot A^\mu
+		\end{equation}
+
+		Which gives that 
+
+		\begin{equation}
+			\frac{d}{dt} \bar{u}^\mu (\alpha_\sigma^\mu (t)) = m^\mu \cdot A^\mu \frac{d \alpha_\sigma^\mu (t)}{dt}
+		\end{equation}
+
+		Then, 
+
+		\begin{align}
+			\frac{d}{dt} (t \bar{u}^\mu (\alpha_\sigma^\mu (t))) & =  \bar{u}^\mu (\alpha_\sigma^\mu (t)) + t m^\mu \cdot A^\mu \frac{d \alpha_\sigma^\mu (t)}{dt} \\
+			& = m^\mu \cdot A^\mu (\sum_{\nu \in N(\mu)} w^{\mu \nu} \alpha^\nu (t) + t (m^\mu \cdot A^\mu \sum_{\nu \in N(\mu)} w^{\mu \nu} \frac{d}{dt} \alpha^\nu(t))
+		\end{align} 
+
+		Now, we know that the differential inclusion for the NA-FP process can be written as
+
+		\begin{equation}
+			\frac{d}{dt} \alpha^\mu (t) = \frac{1}{t} (m^\mu(t) - \alpha^\mu (t))
+		\end{equation}
+
+		We insert this into the previous equation to yield
+
+		\begin{align}
+			\frac{d}{dt} (t \bar{u}^\mu (\alpha_\sigma^\mu (t))) & = m^\mu \cdot A^\mu (\sum_{\nu \in N(\mu)} w^{\mu \nu} \alpha^\nu (t)) + t(m^\mu \cdot A^\mu \sum_{\nu \in N(\mu)} w^{\mu \nu} \frac{1}{t} (m^\nu(t) - \alpha^\nu (t))) \\
+			& = m^\mu \cdot A^\mu (\sum_{\nu \in N(\mu)} w^{\mu \nu} \alpha^\nu (t) + m^\mu \cdot A^\mu \sum_{\nu \in N(\mu)} w^{\mu \nu} (m^\nu(t) - \alpha^\nu (t)) \\
+			& = m^\mu \cdot A^\mu \sum_{\nu \in N(\mu)} w^{\mu \nu} m^\nu(t) = m^\mu \cdot A^\mu \sigma^\mu(t) 
+		\end{align}
+
+
+		Now if we integrate both sides with respect to $t$ in the bound $[1, T]$ (on which the NA-FP) process is defined, we get
+
+		\begin{align}
+			&  T \bar{u}^\mu (\alpha_\sigma^\mu (T)) - \bar{u}^\mu (\alpha_\sigma^\mu (1)) = \int_1^T u^\mu (m^\mu(t), \sigma^\mu(t)) \; dt \\
+			& \implies \bar{u}^\mu (\alpha_\sigma^\mu (T)) - \frac{1}{T} \bar{u}^\mu (\alpha_\sigma^\mu (1)) = \frac{1}{T} \int_1^T u^\mu (m^\mu(t), \sigma^\mu(t)) \; dt \\
+			& \implies \lim_{T \rightarrow \infty} \bar{u}^\mu (\alpha_\sigma^\mu (T)) - \frac{1}{T} \int_0^T u^\mu (m^\mu(t), \sigma^\mu(t)) \; dt = 0
+		\end{align}
+
+		Now notice
+
+		\begin{align}
+			\bar{u}^\mu (\alpha_\sigma^\mu (T)) = \max_{x^\mu_{i'} \in S^\mu} \sum_{j} a_{i'j} (\alpha_{\sigma}^\mu (T))_j & = \max_{x^\mu_{i'} \in S^\mu} \sum_{j} a_{i'j} (\frac{1}{T} \int_{0}^{T} \sigma^\mu(t) \; dt)_j \\
+			& = \max_{x^\mu_{i'} \in S^\mu} \sum_{j} a_{i'j} \frac{1}{T} \int_{0}^{T} \sum_i (m^\mu (t))_i (\sigma^\mu(t))_j \; dt\\
+			& = \max_{x^\mu_{i'} \in S^\mu} \frac{1}{T} \int_0^T \sum_{ij} a_{i'j} (m^\mu (t))_i (\sigma^\mu(t))_j \; dt\\
+			& = \max_{x^\mu_{i'} \in S^\mu} \frac{1}{T} \int_0^T u^\mu(x^\mu_{i'}, \sigma^\mu(t))
+		\end{align}
+
+		So we recover
+
+		\begin{equation}
+			\lim_{T \rightarrow \infty} \max_{x_{i'}^\mu \in S^\mu} \Big\{ \frac{1}{T} \int_{0}^{T} u^{\mu}(x_{i'}^\mu(t), \sigma(t)) - u^{\mu}(m^\mu(t), \sigma(t)) \, dt \Big\} = 0
+		\end{equation}
+
+		which was precisely the regret condition that we required.
+
+		\ah{Note: I'm just figuring out how best to formulate the notion of the NA-CCE set and then I can add it in as a definition to say that NA-CTFP converges to this set.}
+	\end{proof}
+
 	\newpage
 	\subsection*{The Model}
 	
@@ -322,10 +656,6 @@
 	In the continuous time case, we're also going to assume that each agent $i$ chooses a mixed strategy $x_i(t) \in \Delta_i$ at time $t$ from its strategy space $\Delta_i$ (which is an $N-$simplex). We assume that $i$ has just the one strategy that it can play against all of its neighbours.
 	
 	
-	\subsection{Existence of a CTFP}
-	
-	We adapt the techniques of Ewerhart to show that any CTFP path converges 
-
 	\subsection*{Starting Assumptions}
 	
 	\begin{enumerate}[I]
@@ -785,61 +1115,6 @@
 
 	\newpage
 
-	\begin{equation}
-		x_i(t) \in BR_i \left( \frac{1}{t} \int_{0}^{t} \sigma_i(t') dt' \right).
-	\end{equation}
-	
-	By the definition of Continuous Time Fictitious Play (CTFP) given by Ewerhart, we require that $m: [0, \infty) \rightarrow \times_i \Delta_i$ is a measurable mapping such that, for each $i$, $m_i(t) \in BR_i \left( \frac{1}{t} \int_{0}^{t} \sigma_i(t') dt' \right)$. Now notice,
-	
-	\begin{equation*}
-		x_i \in BR_i \left( \frac{1}{t} \int_{0}^{t} \sigma_i(t') dt' \right) \iff  \in x_i\in BR_i \left( \frac{1}{t} \int_{0}^{t} [w_{ii} m_i(t') + \sum_{j \in N_i} w_{ij} m_j(t')] \, dt' \right)
-	\end{equation*}
-	
-	Let us assume that $u_i$ takes the form $x \cdot A_i \sigma_i$ where $A_i$ is the payoff matrix associated with agent $i$. Then,
-	
-	\begin{align}
-		& x_i \in \arg\max_{x \in \Delta_i} u_i(x,\frac{1}{t} \int_{0}^{t} [w_{ii} m_i(t') + \sum_{j \in N_i} w_{ij} m_j(t')] \, dt') \nonumber \\
-		\iff & x_i \in \arg\max_{x \in \Delta_i} x \cdot A_i \left(\frac{1}{t} \int_{0}^{t} [w_{ii} m_i(t') + \sum_{j \in N_i} w_{ij} m_j(t')] \, dt' \right) \nonumber \\
-		\iff & x_i \in \arg \max_{x \in \Delta_i} x \cdot (w_{ii} A_i) \left( \frac{1}{t} \int_{0}^{t} m_i(t')\right) + \sum_{j \in N_i} x \cdot (w_{ij} A_i) \left( \frac{1}{t} \int_{0}^{t} m_j(t')\right) \nonumber \\
-		\iff & x_i \in \arg \max_{x \in \Delta_i} x \cdot A_{ii} \alpha_i(t; m) + \sum_{j \in N_i} x \cdot A_{ij} \alpha_j(t; m).
-	\end{align}
-	
-	where each $A_{ij} = w_{ij} A_i$ and $\alpha_i(t; m) =\frac{1}{t} \int_{0}^{t} m_i(t') dt'$ as defined by Ewerhart. We can, therefore, think of the network aggregative game as a network game in which each agent plays the same strategy against each of its neighbours, itself included. As such, any $m$ which satisfies the CTFP property for the equivalent network game also satisfies the CTFP requirement for the network aggregative game. 
-	
-	Continuing with this approach, let us look at the case where $\sum_i A_i = \textbf{0}_{n\times n}$ (i.e. a zero sum game). This means that $\sum_i u_i = 0$. Let $\mu_i^* = \lim_{t \rightarrow \infty} \alpha_i(t; m)$. More specifically, $\mu_i^*$ belongs to the set of accumulation points of $\alpha_i(\cdot; m)$ (which is set valued since the $BR_i$ map is set valued). To say that the game has `converged' we require that every $\mu^* = (\mu_1^*, ... \mu_p^*)$ is an NE. \ah{I'll follow through the proof of Ewerhart for the sake of completeness: }
-	
-	Let us take the Lyapunov function
-	
-	\begin{equation}
-		L(\mu) = \sum_i \max_{e_i \in \Delta_i} \{u_i(e_i, w_{ii} \mu_i + \sum_{j \in N_i} w_{ij} \mu_j) - u_i(\mu_i, w_{ii} \mu_i + \sum_{j \in N_i} w_{ij} \mu_j) \}
-	\end{equation}
-	
-	Using the same transformation as before:
-	
-	\begin{align}
-		 u_i(e_i, w_{ii} \mu_i + \sum_{j \in N_i} w_{ij} \mu_j) & =  e_i \cdot A_i (w_{ii} \mu_i + \sum_{j \in N_i} w_{ij} \mu_j) \nonumber \\
-		 & =  e_i \cdot (w_{ii} A_i) \mu_i + \sum_{j \in N_i} e_i \cdot (w_{ij} A_i) \mu_j \nonumber \\
-		  & =  \sum_{j \in N_i \cup \{i\}} e_i \cdot A_{ij} \mu_j \nonumber 
-	\end{align}
-	
-	Then
-	
-	\begin{align}
-	L(\mu) &= \sum_i \max_{e_i \in \Delta_i}\sum_{j \in N_i \cup \{i\}} e_i \cdot A_{ij} \mu_j  - u_i(\mu_i, w_{ii} \mu_i + \sum_{j \in N_i} w_{ij} \mu_j) \} \nonumber \\
-	&= \sum_i \max_{e_i \in \Delta_i} \{\sum_{j \in N_i \cup \{i\}} e_i \cdot A_{ij} \mu_j  \} - \sum_i  u_i(\mu_i, w_{ii} \mu_i + \sum_{j \in N_i} w_{ij} \mu_j) \nonumber \\
-	&= \sum_i \max_{e_i \in \Delta_i} \{\sum_{j \in N_i \cup \{i\}} e_i \cdot A_{ij} \mu_j  \} \nonumber 
-	\end{align}
-	
-	where the last equality holds because $\sum_i u_i = 0$. Again, if we were to relate this to a network game, in which each agent plays the same strategy against all its neighbours (itself included), then with the definition $ \tilde{u}_i (e_i, \mu_{-i}) := \sum_{j \in N_i \cup \{i\}} e_i \cdot A_{ij} \mu_j$, we still satisfy the zero sum condition for $\tilde{u}$. Now, we take a CTFP $m$ according to Ewerhart, with the condition that each agent plays the same strategy across all of its neighbours. This was shown by Ewerhart to converge. I.e. for any $\mu^*$ in the accumulation points of $\alpha(\cdot; m)$
-	
-	\begin{equation*}
-		\tilde{u}_i(e_i, \mu_{-i}^*) \leq \tilde{u}_i(\mu_i^*, \mu_{-i}^*)
-	\end{equation*}
-	
-	which, as we know, means that $\mu^*$ satisfies
-	
-	\begin{equation*}
-		u_i(e_i, w_{ii} \mu_i^* + \sum_{j \in N_i} w_{ij} \mu_j^*) \leq  u_i(\mu_i^*, w_{ii} \mu_i^* + \sum_{j \in N_i} w_{ij} \mu_j^*)
-	\end{equation*}
+
 
 \end{document}
