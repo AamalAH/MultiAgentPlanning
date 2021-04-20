@@ -3,6 +3,7 @@
 \usepackage{amsmath, amsfonts, amsthm}
 \usepackage{xcolor}
 \usepackage{enumerate}
+\usepackage{graphicx}
 
 \theoremstyle{definition}
 \newtheorem*{definition}{Definition}
@@ -57,9 +58,8 @@
 			\item Convergence of CTFP to the NA-CCE set
 		\end{itemize}
 		\item Numerical Experiments \begin{itemize}
-			\item Convergence rates w.r.t. connectivity and size
 			\item Non-convergent examples
-			\item Agent based simulations
+			\item Fictitious Play with Noise
 		\end{itemize}
 		\item Discussion of Experiments
 		\item Concluding Remarks
@@ -68,7 +68,14 @@
 	\newpage
 	\section{Introduction}
 		\subsection{Related Work}
-		Main articles: Ewerhart (FP in Networks), Grammatico (Nash Equilibrium seeking in NA games), Perrin (FP in mean field games), Harris (FP in 2 player games).
+		Main articles: 
+		\begin{enumerate}
+			\item Ewerhart (FP in Networks). Main difference is in the model we consider - i.e. agents only track the aggregate strategy rather than strategies of all neighbours. Further, our analysis shows that in non-simple networks, FP still converges to a fixed point, although not an NE.
+			\item Grammatico (NE seeking in NA games). Main difference is that we look at the case where the payoffs are bilinear (since in matrix form), so that we need to consider best response correspondences rather than assuming a unique minimiser.
+			\item Perrin (FP in Mean Field Games). Main difference is that we assume an underlying communication network rather than assuming that the players play against the entire population (which is a special case of our analysis, in which you assume that all players are connected to each other).
+			\item Sela (FP in one-against-all networks) Similarly, this paper doesn't assume an underlying communication network or any form of weighted communication between the agents.
+		\end{enumerate}
+
 		\subsection{Contributions}
 
 		The main contribution of this work is to study the behaviour of the Fictitious Play Learning Algorithm, in continuous time, when applied on a Network Aggregative Matrix Game. We first show that a Nash Equilibrium exists and that Fictitious Play admits solutions in this setting. In particular, we study zero-sum games and show that Fictitious Play converges to a fixed point, which for a simple network corresponds to a Nash Equilibrium. In addition, we find that, for games which are not zero-sum, agents following Continuous Time Fictitious Play are able to achieve no regret.
@@ -637,10 +644,88 @@
 
 	\section{Numerical Experiments}
 
-	\section{Convergence rates w.r.t connectivity and size}
 	\section{Non-convergent examples}
-	\section{Agent based simulations}
+	The purpose of this section is to show that, whilst wwe have shown that it converges in zero-sum games, NA-CTFP is not guaranteed to converge in general games, and can in fact give rise to a rich variety of dynamics.
+
+	
+	
+	As a example of nonconvergence we consider the Shapley family of games \cite{}. In a two player bimatrix game $(A_\beta, B_\beta)$ this is given by
+
+	\begin{equation}
+		A_\beta = \begin{bmatrix}
+			1 & 0 & \beta \\
+			\beta & 1 & 0 \\
+			0 & \beta & 1
+		\end{bmatrix}, \; B_\beta =  \begin{bmatrix}
+			- \beta & 1 & 0 \\
+			0 & -\beta & 1 \\
+			1 & 0 & -\beta
+		\end{bmatrix}
+	\end{equation}
+
+	where $\beta \in (0, 1)$. In \cite{} this was shown to produce both periodic and chaotic behaviour for different choices of $\beta$. 
+
+	\begin{figure}[t]
+		\centering
+		\includegraphics[width = 0.7\textwidth]{Figures/ThreePlayerNetwork.png}
+		\caption{\label{fig::ThreePlayerNetwork}}
+	\end{figure}
+
+	As an adaptation, we take the example of a three player chain, as depicted in Figure \ref{fig::ThreePlayerNetwork}. In this example, we first assume that the network is simple (i.e. there are no self-loops and $w^{\mu \mu} = 0$). The aggregation matrix can be given as
+
+	\begin{equation}
+		W = \begin{bmatrix}
+			0 & 1 & 0 \\
+			w & 0 & 1 - w \\
+			0 & 1 & 0
+		\end{bmatrix}, \; w \in (0, 1).
+	\end{equation}
+
+
+	We first consider the zero-sum case to show that it does indeed converge to an equilibrium as expected. Note that the zero-sum condition given for the three player chain is given as
+
+	\begin{equation}
+		x \cdot A y + y \cdot B (w x + (1-w)z) + z \cdot C y = 0. \hspace{0.5cm} \forall x, y, z \in \Delta_1 \times \Delta_2 \times \Delta_3
+	\end{equation}
+
+	in which we use the notation that $x, y, z$ (resp. $A, B, C$) denote the strategies (resp. payoffs) of agents 1, 2 and 3 respectively. This condition is satisfied if we fix $B$ and choose
+
+	\begin{align}
+		A & = - w B^T \\
+		C & = - (1 - w) B^T. 
+	\end{align}
+
+	As such in the following example, we will set $B = B_\beta$ with the choice $\beta \approx 0.576$ and set $A$ and $C$ according to the above with the choice $w \approx 0.288$. The orbits that these payoff matrices generate can be seen in Figure \ref{fig::convergentShapley}, in which, for each player, they converge to the Nash Equilibrium which, for each player, lies in the centre of the simplex.
+
+	Let us now make the slight modification in the definition of C so that
+
+	\begin{equation}
+		C  = - (1 - w) B, 
+	\end{equation}
+
+	with no alteration to $A$. The modification itself is small, however it results in the zero-sum assumption being violated. With the same choices of $\beta$ and $w$, this results in the periodic orbit seen in Figure \ref{fig::nonconvergentShapley}. Here, the orbits reach a stable limit cycle which to be centred around the interior NE.
+
+	\begin{figure}[t]
+		\centering
+		\includegraphics[width = 0.7\textwidth]{Figures/convergentShapley.png}
+		\caption{\label{fig::convergentShapley}}
+	\end{figure}
+
+	\begin{figure}[t]
+		\centering
+		\includegraphics[width = 0.7\textwidth]{Figures/nonconvergentShapley.png}
+		\caption{\label{fig::nonconvergentShapley}}
+	\end{figure}
+
+	As such, we can see that convergent behaviour is not necessarily the norm in the NA-CTFP dynamics. In fact, for the family of games discussed above, we were unable to find non-periodic behaviour for any choice of $\beta$ strictly between 0.5 and 1 for any $w$ between 0.2 and 0.8 (so that the influence of player 1 and player 3 on player 2 is not negligible). This suggests that, far from being rare, in fact NA-CTFP lends itself to an incredibly rich variety of dynamics which can be explored as future work.
+	
+
 	\section{Addition of Noise}
+
+	The fictitious play process in NA games requires that, at each time step, an agent takes a `measurement' of the aggregate strategy of its neighbours. It is on this measurement that they update their own strategy. It stands to reason that, in real environments, this measurement may be corrupted by noise. As such, we investigate the effect that introducing noise has on CTFP in a zero-sum NA game.
+
+	\ah{To discuss with F before including in the document}.
+	
 
 	\section{Discussion}
 
