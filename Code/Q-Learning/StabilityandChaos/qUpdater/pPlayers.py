@@ -18,22 +18,21 @@ def generateGames(gamma, nSim, nAct, nPlayers):
     nElements = nAct ** nPlayers  # number of payoff elements in a player's matrix
 
     cov = sps.lil_matrix(sps.eye(nPlayers * nElements))
-    idX = list(itertools.product(list(range(1, nAct + 1)), repeat=nPlayers)) * nPlayers
-    for idx in range(nElements):
-        for b in range(1, nPlayers):
-            rollPlayers = np.where([np.all(idX[i] == np.roll(idX[idx], -1 * b)) for i in range(len(idX))])[0][b]
-            cov[idx, rollPlayers], cov[rollPlayers, idx] = gamma/(nPlayers - 1), gamma/(nPlayers - 1)
 
-    cov = cov.toarray()
+    for i in range(nElements):
+        for p in range(1, nPlayers):
+            cov[i, i + nElements * p] = gamma / (nPlayers - 1)
+            cov[i + nElements * p, i] = gamma / (nPlayers - 1)
 
-    allPayoffs = np.zeros((nPlayers, nElements))
+    allPayoffs = np.zeros((nPlayers, nElements, nSim))
 
-    for i in range(nSim):
-        rewards = np.random.multivariate_normal(np.zeros(nPlayers * nElements), cov=cov)
+    for cSim in range(nSim):
+        rewards = np.zeros(nPlayers * nElements) + np.linalg.cholesky(cov.todense()) @ np.random.standard_normal(nPlayers * nElements)
+        # rewards = np.random.multivariate_normal(np.zeros(nPlayers * nElements), cov=cov.todense())
         each = np.array_split(rewards, nPlayers)
-        allPayoffs = np.dstack((allPayoffs, np.array(each)))
+        allPayoffs[:, :, cSim] = each
 
-    return allPayoffs[:, :, 1:]
+    return allPayoffs
 
 def getActionProbs(qValues, gameParams, agentParams):
     
