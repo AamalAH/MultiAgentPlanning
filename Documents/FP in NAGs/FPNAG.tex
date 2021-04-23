@@ -67,76 +67,141 @@
 	
 	\newpage
 	\section{Introduction}
-		\subsection{Related Work}
-		Main articles: Ewerhart (FP in Networks), Grammatico (Nash Equilibrium seeking in NA games), Perrin (FP in mean field games), Harris (FP in 2 player games).
 		\subsection{Contributions}
 
-		The main contribution of this work is to study the behaviour of the Fictitious Play Learning Algorithm, in continuous time, when applied on a Network Aggregative Matrix Game. We first show that a Nash Equilibrium exists and that Fictitious Play admits solutions in this setting. In particular, we study zero-sum games and show that Fictitious Play converges to a fixed point, which for a simple network corresponds to a Nash Equilibrium. In addition, we find that, for games which are not zero-sum, agents following Continuous Time Fictitious Play are able to achieve no regret.
+		The main contribution of this work is to study the
+                behaviour of the Fictitious Play Learning Algorithm,
+                in continuous time, when applied on a Network
+                Aggregative Matrix Game.
+\fb{why FP and NAG are important?}
 
-		Finally, we explore the Fictitious Play algorithm through numerical simulations to understand how convergence rates depend on the network size and connectivity. We also show that it does not necessarily converge for more complex games and can, in fact, lead to more complex dynamics. In addition, we experiment the Fictitious Play algorithm on an agent based model for (resource allocation? voting?). Finally, our experiments document how noise affects the convergence of fictitious play, whose theoretical analysis we point out as an interesting direction for future work.
 
-		\ah{Possible additions: 1) Show that the flow is unique almost everywhere in CTFP. 2) Show the same results (i.e. existence and convergence) for Discrete Time Fictitious Play.}
+                We first show that a Nash
+                Equilibrium exists and that Fictitious Play admits
+                solutions in this setting. In particular, we study
+                zero-sum games and show that Fictitious Play converges
+                to a fixed point, which for a simple \fb{define simple} network
+                corresponds to a Nash Equilibrium. In addition, we
+                find that, for games which are not zero-sum, agents
+                following Continuous Time Fictitious Play are able to
+                achieve no regret.
+
+		Finally, we explore the Fictitious Play algorithm
+                through numerical simulations to understand how
+                convergence rates depend on the network size and
+                connectivity. We also show that it does not
+                necessarily converge for more complex games and can,
+                in fact, lead to more complex dynamics. In addition,
+                we experiment the Fictitious Play algorithm on an
+                agent based model for (resource allocation?
+                voting?). Finally, our experiments document how noise
+                affects the convergence of fictitious play, whose
+                theoretical analysis we point out as an interesting
+                direction for future work.
+
+		\ah{Possible additions: 1) Show that the flow is
+                  unique almost everywhere in CTFP. 2) Show the same
+                  results (i.e. existence and convergence) for
+                  Discrete Time Fictitious Play.}
+
+
+		\subsection{Related Work}
+		Main articles: Ewerhart (FP in Networks), Grammatico
+                (Nash Equilibrium seeking in NA games), Perrin (FP in
+                mean field games), Harris (FP in 2 player games).
+                
 		\section{Preliminaries}
 	\subsection{Network Aggregative Games}
 	\label{sec::NAG}
 
-	The model we consider is that there is a set $\agentset = {1, ... ,
-	N}$ of agents who are connected through an underlying interaction graph. This graph is given by
-	the tuple $(\agentset, (\edgeset, \weightset))$ in which $\edgeset$ is the set of all pairs $(\mu,
-	\nu) \in \agentset \times \agentset$ such that agent $\mu$ and agent $\nu$ are connected. Then,
-	the set of neighbours of agent $\mu$ is denoted as $N^\mu = \{\nu \in \agentset \, : \, (\mu,
-	\nu) \in \edgeset\}$. $\weightset
-	\in M_N(\mathbb{R})$ is the weighted adjacency matrix whose elements $w^{\mu \nu}$ expresses the
-	importance that agent $\mu$ places on agent $\nu$. Note that if $(\mu, \nu) \not \in \edgeset$
-	then $w^{\mu \nu} = 0$ and $\wmunu \in (0, 1]$ otherwise.
+	The model we consider is that there is a set $\agentset = {1,
+         \ldots , N}$ of agents who are connected through an underlying
+        interaction graph. This graph is given by the tuple
+        $(\agentset, (\edgeset, \weightset))$ in which $\edgeset$ is
+        the set of all pairs $(\mu, \nu) \in \agentset \times
+        \agentset$ such that agent $\mu$ and agent $\nu$ are
+        connected.
+        \fb{
+          \begin{definition}[Interaction Graph]
+  Given a set $\agentset$ of agents, an {\em interaction graph} $I = (\agentset, (\edgeset, \weightset))$ such that
+  \begin{itemize}
+  \item $\edgeset \subseteq \agentset \times \agentset$.        Then, the set of neighbours of agent $\mu$ is
+        denoted as $N^\mu = \{\nu \in \agentset \, : \, (\mu, \nu) \in
+        \edgeset\}$.
+    \item $\weightset \in M_N(\mathbb{R})$ is the weighted
+        adjacency matrix whose elements $w^{\mu \nu}$ expresses the
+        importance that agent $\mu$ places on agent $\nu$. If $(\mu, \nu) \not \in \edgeset$ then $w^{\mu \nu} = 0$;        $\wmunu \in (0, 1]$ otherwise.
+  \end{itemize}
+\end{definition}
+}
 
-	As a network game, each agent $\mu$ has an associated set of pure strategies $\actionset{\mu}$
-	which has cardinality $|\actionset{\mu}| = n$. Then we can construct the unit-simplex on this
-	action set as $\Delta_\mu := \{x \in \mathbb{R}^n \, : \, \sum_i \xmuaction{i} = 1\}$ where
-	$\xmuaction{i}$ is the probability with which agent $\mu$ plays the pure strategy $i$. As such
-	we refer to $\xmu$ as the \emph{state} of agent $\mu$ (this is often referred to as $\mu$'s
-	mixed strategy). Also associated with each agent is a utility function $u^\mu(\xmu, \xnotmu)$ in
-	which we use the standard notation $-\mu$ to refer to all agents other than $\mu$. Notice that
-	this requires that each agent plays the same strategy against all of their neighbours. 
+	As a network game, each agent $\mu$ has an associated set of
+        pure strategies $\actionset{\mu}$ which has cardinality
+        $|\actionset{\mu}| = n$. \fb{what is a strategy then? how can
+          we define them if we didn't introduce actions?}
 
-	With all of the above definitions, we can formalise the network aggregative (NA) game as the tuple
-	$\Gamma = (\agentset, (\edgeset, \weightset), (\actionset{\mu}, \utility{\mu})_{\mu \in \mathcal{N}})$.
 
-	What is unique about the NA game is the structure of the payoffs themselves. In this format,
-	each agent is receives a reference $\sigma$ which is a weighted sum of each of their
-	neighbours state. Formally 
 
+        Then we can construct the \fb{unit-simplex ?} on this action
+        set as $\Delta_\mu := \{x \in \mathbb{R}^n \, : \, \sum_i
+        \xmuaction{i} = 1\}$ where $\xmuaction{i}$ is the probability
+        with which agent $\mu$ plays the pure strategy $i$. As such we
+        refer to $\xmu$ as the \emph{state} of agent $\mu$ (this is
+        often referred to as $\mu$'s mixed strategy). Also associated
+        with each agent is a utility function $u^\mu(\xmu, \xnotmu)$
+        in which we use the standard notation $-\mu$ to refer to all
+        agents other than $\mu$. Notice that this requires that each
+        agent plays the same strategy against all of their neighbours.
+
+	With all of the above definitions, we can formalise the
+        network aggregative (NA) game as the tuple $\Gamma =
+        (\agentset, (\edgeset, \weightset), (\actionset{\mu},
+        \utility{\mu})_{\mu \in \mathcal{N}})$. \fb{preferably use a
+          definition environment.}
+
+	What is unique about the NA game is the structure of the
+        payoffs themselves. In this format, each agent is receives a
+        reference $\sigma$ which is a weighted sum of each of their
+        neighbours state. Formally
+%
 	\begin{equation}
 		\sigma^\mu = \sum_{\nu \in N^\mu} \wmunu \xnu.
 	\end{equation}
 
-	Then, the agent's must optimise their payoff with respect to this reference vector. Thus,
-	instead of having to consider the actions of the entire population, or play individual games
-	against each of their neighbours, the agent only has to consider $\sigma^\mu$ as a `measurement'
-	of the local aggregate state and optimise with respect to this measurement. This allows us to
-	make the reduction $u^\mu(\xmu, \xnotmu) = u^\mu(\xmu, \refmu)$. In particular, we consider that
-	the agent is engaged in a matrix game against the reference vector so that
-
+	Then, the agent's must optimise their payoff with respect to
+        this reference vector. Thus, instead of having to consider the
+        actions of the entire population, or play individual games
+        against each of their neighbours, the agent only has to
+        consider $\sigma^\mu$ as a `measurement' of the local
+        aggregate state and optimise with respect to this
+        measurement. This allows us to make the reduction $u^\mu(\xmu,
+        \xnotmu) = u^\mu(\xmu, \refmu)$. In particular, we consider
+        that the agent is engaged in a matrix game against the
+        reference vector so that
+%
 	\begin{equation}
-		u^\mu(\xmu, \refmu) = \xmu \cdot A^\mu \refmu = \xmu \cdot A^\mu \weightedsum.
+		u^\mu(\xmu, \refmu) = \xmu \cdot A^\mu \refmu = \xmu
+                \cdot A^\mu \weightedsum.
 	\end{equation}
-
-	where $A^\mu$ is the payoff matrix associated to agent $\mu$. Note that this means we could have
-	written the game $\Gamma$ with the payoff matrices $A^mu$ in place of the utility functions
-	$\utility{\mu}$. The NA game allows for the reduction of a
-	multiplayer game into a series of two-player games. The agent's goal is to maximise their payoff
-	with respect to the reference vector. As such, we define the best response correspondence
-	$BR^\mu$ which maps any $\refmu$ the set $\arg \max_{y \in \Delta_\mu} {u^\mu(y, \refmu)}$. This
-	leads naturally to the definition of a Nash Equilibrium in an NA Game as
+	where $A^\mu$ is the payoff matrix associated to agent
+        $\mu$. Note that this means we can write the game
+        $\Gamma$ with the payoff matrices $A^mu$ in place of the
+        utility functions $\utility{\mu}$. The NA game allows for the
+        reduction of a multiplayer game into a series of two-player
+        games. The agent's goal is to maximise their payoff with
+        respect to the reference vector. As such, we define the best
+        response correspondence $BR^\mu$ which maps any $\refmu$ the
+        set $\arg \max_{y \in \Delta_\mu} {u^\mu(y, \refmu)}$. This
+        leads naturally to the definition of a Nash Equilibrium in an
+        NA Game as
 
 	\begin{definition}(NE)
-		The set of vectors $\{ \NE{\mu}\}_{\mu \in \agentset}$ is an NE if, for all $\mu$,
-		
+		The set of vectors $\{ \NE{\mu}\}_{\mu \in \agentset}$ is an NE if, for all $\mu$,	
 		\begin{equation*}
 		\NE{\mu} \in \arg \max_{x \in \Delta_\mu} u^\mu(x, w^{\mu \mu} x + \sum_{\nu \in N^\mu \backslash \{\bar{\mu}\}} \wmunu \NE{\nu}).
-		\end{equation*}
-		
+		\end{equation*}	
 	\end{definition}
+        \fb{It this a definition or rather a lemma?}
 
 	We will show that such an equilibrium exists in .... Finally we note that an NA game is \emph{zero-sum} if the utilities of each agent sum to zero for any strategy set $\{ \xmu \}_{\mu \in \agentset}$. Formally
 
@@ -148,20 +213,30 @@
 	\label{sec::CTFP}
 
 	\ah{For Francesco: is it worth giving a quick introduction to Fictitious Play by talking about two player games?}
+\fb{I'd rather give the definition first and then the example.}
+        
 
-	Fictitious Play requires that, at the current time, each agent considers the average behaviour
-	of their opponent in the past and play a best response to that strategy. This is best
-	illustrated in the two-player setting. Consider the two player normal form game $\Gamma_2 = (\{
-	1, 2\}, ((S^1, A), (S^2, B)))$ so that $A$ and $B$ are the payoff matrices of agent $1$ and $2$
-	respectively. As a remark, note that we can write the two player normal form game as an NA game
-	simply by requiring that $\edgeset = \{(1, 2), (2, 1)\}$ and $\weightset$ is a 2x2 matrix with
-	zeros on its leading diagonal and ones on the off diagonal. We write the time-average of both
-	agents' strategies as 
-
+	Fictitious Play requires that, at the current time, each agent
+        considers the average behaviour of their opponent in the past
+        and play a best response to that strategy. This is best
+        illustrated in the two-player setting. Consider the two player
+        normal form game $\Gamma_2 = (\{ 1, 2\}, ((S^1, A), (S^2,
+        B)))$ so that $A$ and $B$ are the payoff matrices of agent $1$
+        and $2$ respectively. As a remark, note that we can write the
+        two player normal form game as an NA game simply by requiring
+        that $\edgeset = \{(1, 2), (2, 1)\}$ and $\weightset$ is a 2x2
+        matrix with zeros on its leading diagonal and ones on the off
+        diagonal. We write the time-average of both agents' strategies
+        as
+%
 	\begin{align}
-		\alpha^1 = \frac{1}{t} \int_0^T x^1(t) \, dt \\
-		\alpha^2 = \frac{1}{t} \int_0^T x^2(t) \, dt \\
+		\alpha^i = \frac{1}{t} \int_0^T x^i(t) \, dt & \text{ for $i \in \{1, 2\}$}
+%		\alpha^2 = \frac{1}{t} \int_0^T x^2(t) \, dt \\
 	\end{align}
+        \fb{why using an integral rather than a simple summation?}
+
+        \fb{decide whether you start enumerations from 1 or 0.}
+
 
 	In this manner, the $\alpha^\mu(t)$ denotes the time average of the strategies played by agent
 	$\mu$ up to time $t$. Then, fictitious play requires that the agents update their strategy as
@@ -171,19 +246,18 @@
 	We extend this naturally to the NA game $\Gamma$ by requiring that each agent update their
 	strategy according to the time average of their reference vector $\refmu$. To formalise this, we
 	write
-
 	\begin{equation}
 		\avgref{\mu} = \frac{1}{t} \int_0^t \refmu(s) \; ds.
 	\end{equation}
 
 	Using this, we follow in the footsteps of Ewerhart \cite{} and Harris \cite{} to define
 	Fictitious Play in continuous time.
-
+%
 	\begin{definition}[Continuous Time Fictitious Play (CTFP)]
 		A CTFP is defined as a measurable map $m$ with components $m_i$ such that for all $i$ and all $t \geq 1$, $m_i: [0, \infty) \rightarrow \Delta_i$ satisfies $m_i(t) \in BR_i(\alpha_{\sigma_i})$ for all $t \geq 1$.
+	\end{definition}
 
 		We can think of this definition as saying that the player plays some arbitrary strategy before $t = 1$, but beyond this it must play a best response to the time average of its reference signal.
-	\end{definition}
 
 	\subsection{Assumption}
 
@@ -206,6 +280,9 @@
 		The NA game is zero-sum in the sense that $\sum_{\mu} u^\mu(\xmu, \weightedsum)$ for any set
 		of states $(x^\mu)_{\mu \in N^\mu}$
 	\end{assumption}
+
+\fb{discuss how restrictive each of these assumptions is.}
+        
 
 	\section{Convergence of Fictitious Play}
 
