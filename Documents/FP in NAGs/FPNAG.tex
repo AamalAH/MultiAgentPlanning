@@ -67,18 +67,8 @@
 	
 	\newpage
 	\section{Introduction}
-<<<<<<< HEAD
-=======
-		\subsection{Related Work}
-		Main articles: 
-		\begin{enumerate}
-			\item Ewerhart (FP in Networks). Main difference is in the model we consider - i.e. agents only track the aggregate strategy rather than strategies of all neighbours. Further, our analysis shows that in non-simple networks, FP still converges to a fixed point, although not an NE.
-			\item Grammatico (NE seeking in NA games). Main difference is that we look at the case where the payoffs are bilinear (since in matrix form), so that we need to consider best response correspondences rather than assuming a unique minimiser.
-			\item Perrin (FP in Mean Field Games). Main difference is that we assume an underlying communication network rather than assuming that the players play against the entire population (which is a special case of our analysis, in which you assume that all players are connected to each other).
-			\item Sela (FP in one-against-all networks) Similarly, this paper doesn't assume an underlying communication network or any form of weighted communication between the agents.
-		\end{enumerate}
+		
 
->>>>>>> 47b0997c6b48405e745e9f8a558f7313c93fedeb
 		\subsection{Contributions}
 
 		The main contribution of this work is to study the
@@ -92,7 +82,7 @@
                 Equilibrium exists and that Fictitious Play admits
                 solutions in this setting. In particular, we study
                 zero-sum games and show that Fictitious Play converges
-                to a fixed point, which for a simple \fb{define simple} network
+                to a fixed point, which for a network without any self-loops
                 corresponds to a Nash Equilibrium. In addition, we
                 find that, for games which are not zero-sum, agents
                 following Continuous Time Fictitious Play are able to
@@ -105,8 +95,8 @@
                 necessarily converge for more complex games and can,
                 in fact, lead to more complex dynamics. In addition,
                 we experiment the Fictitious Play algorithm on an
-                agent based model for (resource allocation?
-                voting?). Finally, our experiments document how noise
+                agent based model for \ah{resource allocation? 
+                voting?}. Finally, our experiments document how noise
                 affects the convergence of fictitious play, whose
                 theoretical analysis we point out as an interesting
                 direction for future work.
@@ -118,9 +108,13 @@
 
 
 		\subsection{Related Work}
-		Main articles: Ewerhart (FP in Networks), Grammatico
-                (Nash Equilibrium seeking in NA games), Perrin (FP in
-                mean field games), Harris (FP in 2 player games).
+					Main articles: 
+					\begin{enumerate}
+						\item Ewerhart (FP in Networks). Main difference is in the model we consider - i.e. agents only track the aggregate strategy rather than strategies of all neighbours. Further, our analysis shows that in non-simple networks, FP still converges to a fixed point, although not an NE.
+						\item Grammatico (NE seeking in NA games). Main difference is that we look at the case where the payoffs are bilinear (since in matrix form), so that we need to consider best response correspondences rather than assuming a unique minimiser.
+						\item Perrin (FP in Mean Field Games). Main difference is that we assume an underlying communication network rather than assuming that the players play against the entire population (which is a special case of our analysis, in which you assume that all players are connected to each other).
+						\item Sela (FP in one-against-all networks) Similarly, this paper doesn't assume an underlying communication network or any form of weighted communication between the agents.
+					\end{enumerate}
                 
 		\section{Preliminaries}
 	\subsection{Network Aggregative Games}
@@ -132,8 +126,8 @@
         $(\agentset, (\edgeset, \weightset))$ in which $\edgeset$ is
         the set of all pairs $(\mu, \nu) \in \agentset \times
         \agentset$ such that agent $\mu$ and agent $\nu$ are
-        connected.
-        \fb{
+        connected. Formally,
+        
           \begin{definition}[Interaction Graph]
   Given a set $\agentset$ of agents, an {\em interaction graph} $I = (\agentset, (\edgeset, \weightset))$ such that
   \begin{itemize}
@@ -145,19 +139,18 @@
         importance that agent $\mu$ places on agent $\nu$. If $(\mu, \nu) \not \in \edgeset$ then $w^{\mu \nu} = 0$;        $\wmunu \in (0, 1]$ otherwise.
   \end{itemize}
 \end{definition}
-}
+
 
 	As a network game, each agent $\mu$ has an associated set of
-        pure strategies $\actionset{\mu}$ which has cardinality
+        actions $\actionset{\mu}$ which has cardinality
         $|\actionset{\mu}| = n$. \fb{what is a strategy then? how can
           we define them if we didn't introduce actions?}
 
 
-
-        Then we can construct the \fb{unit-simplex ?} on this action
+        We can construct the \fb{unit-simplex ?} on the action
         set as $\Delta_\mu := \{x \in \mathbb{R}^n \, : \, \sum_i
         \xmuaction{i} = 1\}$ where $\xmuaction{i}$ is the probability
-        with which agent $\mu$ plays the pure strategy $i$. As such we
+        with which agent $\mu$ plays the action $i$. As such we
         refer to $\xmu$ as the \emph{state} of agent $\mu$ (this is
         often referred to as $\mu$'s mixed strategy). Also associated
         with each agent is a utility function $u^\mu(\xmu, \xnotmu)$
@@ -166,10 +159,16 @@
         agent plays the same strategy against all of their neighbours.
 
 	With all of the above definitions, we can formalise the
-        network aggregative (NA) game as the tuple $\Gamma =
+        network aggregative (NA) game:
+	
+	\begin{definition}[Network Aggregative Game]
+		A Network Aggregative game is defined as the tuple $\Gamma =
         (\agentset, (\edgeset, \weightset), (\actionset{\mu},
-        \utility{\mu})_{\mu \in \mathcal{N}})$. \fb{preferably use a
-          definition environment.}
+        \utility{\mu})_{\mu \in \mathcal{N}})$, where $\agentset$, $\edgeset$, $\weightset$ are as
+        defined in the Interaction graph. $\actionset{\mu}$ and $\utility{\mu}$ refer to the set of
+        actions and the utility function of agent $\mu$ respectively..
+	\end{definition}
+
 
 	What is unique about the NA game is the structure of the
         payoffs themselves. In this format, each agent is receives a
@@ -266,7 +265,9 @@
 	Fictitious Play in continuous time.
 %
 	\begin{definition}[Continuous Time Fictitious Play (CTFP)]
-		A CTFP is defined as a measurable map $m$ with components $m_i$ such that for all $i$ and all $t \geq 1$, $m_i: [0, \infty) \rightarrow \Delta_i$ satisfies $m_i(t) \in BR_i(\alpha_{\sigma_i})$ for all $t \geq 1$.
+		A CTFP is defined as a measurable map $m$ with components $m_i$ such that for all $i$ and
+		all $t \geq 1$, $m_i: [0, \infty) \rightarrow \Delta_i$ satisfies $m_i(t) \in
+		BR_i(\alpha_{\sigma_i})$ for almost all $t \geq 1$.
 	\end{definition}
 
 		We can think of this definition as saying that the player plays some arbitrary strategy before $t = 1$, but beyond this it must play a best response to the time average of its reference signal.
@@ -398,7 +399,7 @@
 
 	\begin{theorem}
 		There exists a path $m$ which satisfies the property that, for all $\mu$, $m^\mu \in
-		BR^\mu(\alpha_\sigma^\mu)$ for almost all $t \geq 1$.
+		BR^\mu(\alpha_\sigma^\mu)$ for almost aall $t \geq 1$.
 	\end{theorem}
 
 	\begin{proof}
@@ -726,7 +727,7 @@
 
 	\section{Numerical Experiments}
 
-	\section{Non-convergent examples}
+	\subsection{Non-convergent examples}
 	The purpose of this section is to show that, whilst wwe have shown that it converges in zero-sum games, NA-CTFP is not guaranteed to converge in general games, and can in fact give rise to a rich variety of dynamics.
 
 	
@@ -802,7 +803,7 @@
 	As such, we can see that convergent behaviour is not necessarily the norm in the NA-CTFP dynamics. In fact, for the family of games discussed above, we were unable to find non-periodic behaviour for any choice of $\beta$ strictly between 0.5 and 1 for any $w$ between 0.2 and 0.8 (so that the influence of player 1 and player 3 on player 2 is not negligible). This suggests that, far from being rare, in fact NA-CTFP lends itself to an incredibly rich variety of dynamics which can be explored as future work.
 	
 
-	\section{Addition of Noise}
+	\subsection{Addition of Noise}
 
 	The fictitious play process in NA games requires that, at each time step, an agent takes a `measurement' of the aggregate strategy of its neighbours. It is on this measurement that they update their own strategy. It stands to reason that, in real environments, this measurement may be corrupted by noise. As such, we investigate the effect that introducing noise has on CTFP in a zero-sum NA game.
 
