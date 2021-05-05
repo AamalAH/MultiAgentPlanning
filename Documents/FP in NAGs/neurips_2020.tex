@@ -335,8 +335,8 @@
   \subsection{Existence of the Nash Equilibrium}
   \label{sec::ExistenceofNE}
   
-  Note that the NE Condition requires
-
+  Note that the NE Condition requires \fb{why?}
+%
   \begin{align}
     \NE{\mu} &\in \arg\max_{x \in \Delta_\mu} u^\mu(x, w^{\mu \mu}x + \sum_{\nu \in N^\mu} w^{\mu \nu} \NE{\nu}) \nonumber \\
     & =: \arg\max_{x \in \Delta_i} \bar{u}^\mu(x, \sum_{\nu \in N^\mu} w^{\mu \nu} \NE{\nu})
@@ -350,15 +350,23 @@
      & =: \bar{u}^\mu(x, \sum_{\nu \in N^\mu} w^{\mu \nu} \NE{\nu}), \nonumber
   \end{align}
   
-  where $u^{\mu \nu}(\xmu, x^\nu) = \xmu \cdot A^\mu x^\nu$. Note that, in order to get this
-  formulation, we had to use the assumption of payoffs being bilinear so that we could separate
-  out the term in the weighted sum involving $x$ from $\bar{x}^\nu$. 
+  where $u^{\mu \nu}(\xmu, x^\nu) = \xmu \cdot A^\mu x^\nu$. Note
+  that, in order to get this formulation, we had to use the assumption
+  of payoffs being bilinear so that we could separate out the term in
+  the weighted sum involving $x$ from $\bar{x}^\nu$.
   
   To show existence of an NE we will need the following definition and theorem.
 
   \begin{definition}[Upper Semi-Continuous]
-    A compact-valued correspondence $\Phi: A \rightarrow B$ is \emph{upper semi-continuous} at a point $a$ if $g(a)$ is non-empty and if, for every sequence $a_n \rightarrow a$ and every sequence $(b_n)$ such that $b_n \in g(a_n)$ for all $n$, there exists a convergent subsequence of $(b_n)$ whose limit point $b$ is in $g(a)$.  
+    A compact-valued correspondence $\Phi: A \rightarrow B$ is
+    \emph{upper semi-continuous} at a point $a$ \fb{domain?} if $g(a)$ \fb{what is $g$?} is non-empty
+    and if, for every sequence $a_n \rightarrow a$ and every sequence
+    $(b_n)$ such that $b_n \in g(a_n)$ for all $n$, there exists a
+    convergent subsequence of $(b_n)$ whose limit point $b$ is in
+    $g(a)$.
   \end{definition}
+
+  \fb{perhaps we have to introduce some terminology from topology to keep the results self-contained?}
 
   \begin{theorem}[Kakutani]
     Let $K \subset \mathbb{R}^n$ be compact and convex and $\Phi: K \rightarrow K$ be closed or upper semi-continuous, with nonempty, convex and compact values. Then $\Phi$ has a fixed point.
@@ -415,7 +423,7 @@
       \end{bmatrix} .
     \end{equation}
 
-    This means that we achieve a Nash Equilibrium iff $(\NE{\mu})_{\mu \in \agentset}$ is a fixed point of the map
+    This means that we achieve a Nash Equilibrium iff $(\NE{\mu})_{\mu \in \agentset}$ is a fixed point of the map \fb{why?}
   
   
     \begin{equation}
@@ -432,7 +440,7 @@
 \subsection{Existence of CTFP}
 
   \begin{theorem}
-    There exists a path $m$ which satisfies the property that, for all $\mu$, $m^\mu \in
+    There exists a path $m$ which satisfies the property that, for all $\mu$ \fb{remind what this is.}, $m^\mu \in
     BR^\mu(\alpha_\sigma^\mu)$ for almost aall $t \geq 1$.
   \end{theorem}
 
@@ -529,7 +537,16 @@
 
 \subsection{Convergence of CTFP}
 
-With the existence of the CTFP in place, we can show that it converges to a fixed point. In particular, let $\Omega(\alpha)$ be the set of all limit points for $\alpha(t)$. Then, a CTFP path is said to have converged if $\Omega(\alpha)$ is contained within the set of Nash Equilibria of the game. If this is for any such CTFP path, then the game is said to have the \emph{CTFP property}. We adapt the techniques of (Ewerhart 2020) to prove that zero-sum NA games have the CTFP property. \ah{I also want to attempt this with the techniques of Harris (which is quite similar) to see if it yields any new results}.
+With the existence of the CTFP in place, we can show that it converges
+to a fixed point. In particular, let $\Omega(\alpha)$ be the set of
+all limit points for $\alpha(t)$. Then, a CTFP path is said to have
+converged if $\Omega(\alpha)$ is contained within the set of Nash
+Equilibria of the game. If this is for any such CTFP path, then the
+game is said to have the \emph{CTFP property}. We adapt the techniques
+of (Ewerhart 2020) to prove that zero-sum NA games have the CTFP
+property. \ah{I also want to attempt this with the techniques of
+  Harris (which is quite similar) to see if it yields any new
+  results}.
 
   \begin{theorem}
     Any zero-sum NA game has the property that, for any CTFP path $m$, the corresponding $\alpha(t; m)$ converges to a set of fixed points.
@@ -538,6 +555,8 @@ With the existence of the CTFP in place, we can show that it converges to a fixe
 
   \begin{proof}
 
+   \fb{what is the meaning of the following equation?}
+%
     \begin{equation}
       m^\mu(t) \in BR^\mu \left( \frac{1}{t} \int_{0}^{t} \sigma^\mu(s) ds \right).
     \end{equation}
@@ -557,7 +576,13 @@ With the existence of the CTFP in place, we can show that it converges to a fixe
       \iff & m^\mu \in \arg \max_{x \in \Delta_i} x \cdot A^{\mu \mu} \alpha^\mu(t; m) + \sum_{\nu \in N^\mu} x \cdot A^{\mu \nu} \alpha^\nu(t; m).
     \end{align}
     
-    where each $A^{\mu \nu} = \wmunu A^\mu$ and $\alpha^\mu(t; m) =\frac{1}{t} \int_{0}^{t} m^\mu(s) ds$ as defined by Ewerhart. We can, therefore, think of the NA game as a network game in which each agent plays the same strategy against each of its neighbours, itself included. As such, any $m$ which satisfies the CTFP property for the equivalent network game also satisfies the CTFP requirement for the network aggregative game. 
+    where each $A^{\mu \nu} = \wmunu A^\mu$ and $\alpha^\mu(t; m)
+    =\frac{1}{t} \int_{0}^{t} m^\mu(s) ds$ as defined by Ewerhart \fb{use the reference rather than the name of the author.}. We
+    can, therefore, think of the NA game as a network game in which
+    each agent plays the same strategy against each of its neighbours,
+    itself included. As such, any $m$ which satisfies the CTFP
+    property for the equivalent network game also satisfies the CTFP
+    requirement for the network aggregative game.
     
     Continuing with this approach, let us look at the case where $\sum_\mu A^\mu = \textbf{0}_{n\times n}$ (i.e. a zero sum game). This means that $\sum_i u_i = 0$. Let $\xmu_\infty = \lim_{t \rightarrow \infty} \alpha^\mu(t; m)$. More specifically, $\xmu_\infty$ belongs to the set of accumulation points of $\alpha^\mu(\cdot; m)$ (which is set valued since the $BR^\mu$ map is set valued). To say that the game has `converged' we require that every $\xmu_\infty = (x^1_\infty, ... x^N_\infty)$ is an NE. \ah{I'll follow through the proof of Ewerhart for the sake of completeness: }
     
