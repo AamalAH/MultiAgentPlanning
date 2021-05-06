@@ -2,34 +2,37 @@
 
 % if you need to pass options to natbib, use, e.g.:
 %     \PassOptionsToPackage{numbers, compress}{natbib}
-% before loading neurips_2020
+% before loading neurips_2021
 
 % ready for submission
-% \usepackage{neurips_2020}
+\usepackage{neurips_2021}
 
 % to compile a preprint version, e.g., for submission to arXiv, add add the
 % [preprint] option:
-%     \usepackage[preprint]{neurips_2020}
+%     \usepackage[preprint]{neurips_2021}
 
 % to compile a camera-ready version, add the [final] option, e.g.:
-    % \usepackage[final]{neurips_2020}
+%     \usepackage[final]{neurips_2021}
 
 % to avoid loading the natbib package, add option nonatbib:
-     \usepackage[nonatbib]{neurips_2020}
+%    \usepackage[nonatbib]{neurips_2021}
 
 \usepackage[utf8]{inputenc} % allow utf-8 input
 \usepackage[T1]{fontenc}    % use 8-bit T1 fonts
 \usepackage{hyperref}       % hyperlinks
 \usepackage{url}            % simple URL typesetting
 \usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
 \usepackage{nicefrac}       % compact symbols for 1/2, etc.
 \usepackage{microtype}      % microtypography
+\usepackage{xcolor}         % colors
+
 
 
 \usepackage{amsmath, amsfonts, amsthm}
-\usepackage{xcolor}
 \usepackage{enumerate}
 \usepackage{graphicx}
+\usepackage{subcaption}
 
 \theoremstyle{definition}
 \newtheorem*{definition}{Definition}
@@ -115,31 +118,116 @@
 
 \section{Introduction}
 
+Multi Agent Learning \cite{Schwartz} requires a number of agents to adapt in an environment where
+each agent must adapt in response to the behaviour of the other agents. This leads to a
+fundamentally non-stationary problem, which presents a challenge to designing effective learning
+policies. Even when there are a small number of agents in the game, learning has been shown to lead
+to non-stationary, and even chaotic behaviour \cite{SatoChaos}, and this problem becomes even more
+pronounced as the number of agents increase \cite{Sanders}. In this light, it would appear that
+learning when there is a large population of agents is an impossible task. 
+
+To deal with this problem, one must attempt to reduce the many player game to something which is
+tractable. A number of reductions have been proposed, most notably \emph{Mean Field} Games
+and \emph{Aggregative} Games. The former makes the assumption of an infinite
+number of agents, so that the population can be represented through a distribution over players'
+states \cite{CainesPaper} . Every agent then updates their action profiles depending on this
+distribution. In the latter each agent plays considers a real valued function which is a convex
+combination of the states of the other agents. In both formulations, a many player game is reduced
+to the set of two player games which each agent is involved in, allowing the problem to maintain
+tractability. 
+
+Whilst both formulations have shown success in multi-agent learning settings, allowing agents to
+reach equilibrium strategies (c.f. \cite{MFGLearningPapers} for Mean Field Games and
+\cite{Aggregative Papers} for Aggregative Games), they also present a fundamental limitation.
+Namely, they both require that agents have access to the action profiles of the entire population.
+This could be through communication with all other agents, or through the intervention of a central
+coordinator who is able to the entire population. Whilst recent work aims to relax this assumption
+through the introduction of noise \cite{MFG-FP} or partial observability \cite{AAMASPaper}, the
+requirement that each agent updates their actions based on the entire population is rather strong.
+
+In this study, we investigate a variant of the aggregative game known as the \emph{Network
+Aggregative} (NA) Game. This format assumes that there is an underlying communication network
+through which agents interact. Then each agent updates their actions according only to those agents
+with whom they communicate. This significantly relaxes the communication load on each agent and
+lifts the need for a central coordinator. Recent work on the NA game has shown that it is possible
+for agents to reach an equilibrium strategy in an entirely distributed manner \cite{Grammatico,
+LeaderFollower, MyopicAgents}. We contribute in this direction by showing that learning on an NA
+game can lead to an equilibrium strategy. In particular, we analyse the Fictitious Play Learning
+Algorithm \cite{Brown, Harris}, in which agents are assumed to be myopic, in that they react solely
+to the previous behaviour of the others.
 
 
 \subsection{Contributions}
 
-  The main contribution of this work is to study the behaviour of the Fictitious Play Learning
-  Algorithm, in continuous time, when applied on a Network Aggregative Matrix Game. \fb{why FP and NAG are important?}
+  The main contribution of this work is to study the behaviour of the Fictitious Play (FP) learning
+  algorithm, in continuous time, when applied on a Network Aggregative Matrix Game.
 
 
-  We first show that a Nash Equilibrium exists and that Fictitious Play admits
+  We first show that a Nash Equilibrium exists and that FP admits
   solutions in this setting. In particular, we study zero-sum games and show that
   Fictitious Play converges to a fixed point, which for a network without any
   self-loops corresponds to a Nash Equilibrium. In addition, we find that, for games
-  which are not zero-sum, agents following Continuous Time Fictitious Play are able to
+  which are not zero-sum, agents following Fictitious Play are able to
   achieve no regret.
 
-  Finally, we explore the Fictitious Play algorithm through numerical simulations to understand
-  how convergence rates depend on the network size and connectivity. We also show that it does not
-  necessarily converge for more complex games and can, in fact, lead to more complex dynamics. In
-  addition, we experiment the Fictitious Play algorithm on an agent based model for \ah{resource
-  allocation?  voting?}. Finally, our experiments document how noise affects the convergence of
-  fictitious play, whose theoretical analysis we point out as an interesting direction for future
-  work.
+  Finally, we explore FP through numerical simulations to consider the
+  question of whether it always converges. We answer this in the negative by finding a family of
+  games in which action profiles cycle around the Nash Equilibrium. Finally, our experiments
+  document how noise affects the convergence of Fictitious Play. Our experiments suggest that, under
+  the presence of noise, the algorithm still reaches a fixed point, but perhaps not the Nash
+  Equilibrium. This presents an interesting avenue for future research.
 
-  \ah{Possible additions: 1) Show that the flow is unique almost everywhere in CTFP. 2) Show the
-  same results (i.e. existence and convergence) for Discrete Time Fictitious Play.}
+\subsection{Related Work}
+
+\paragraph{Network Aggregative Games}
+
+The NA game is a recent introduction \cite{Parise2015} which presents a variant of aggregative games
+by adding an underlying structure to the population. Since its introduction, distributed algorithms
+have been built with the aim of finding NE. In particular, \cite{Parise2015, Parise2020} consider
+the case in which payoffs are given by Lipschitz functions with unique minimisers and apply standard
+topological fixed point towards designing algorithms which will converge to the NE. We note that the
+\emph{Mann Iteration}, one of the algorithms applied in \cite{Parise2020} shares a remarkably
+similar form with the discrete variant of FP. To the best of our knowledge, this link has not been
+explored in the literature and is an avenue for research which we are currently pursuing. Another
+common algorithm for distributed NE seeking is the projected gradient (resp. subgradient) dynamics
+which is explored in \cite{Zhang2020} (resp. \cite{Shokri2020, Shokri2021}). In all of these works,
+the cost function is assumed to be convex, and therefore have a unique minimiser. In fact this is a
+common assumption in works concerning NA Games \cite{Zhu2021, Lei2020}, which we believe is due to
+its ubiquity in control settings. We have not yet come across works which consider NA games from the
+point of view of payoff matrices, which are more common in multi agent learning settings.
+Furthermore, to the best of our knowledge, this is the first work which introduces the application
+of a strict learning algorithm in the NA setting.
+
+\paragraph{Fictitious Play}
+
+Fictitious Play was introduced by Brown in 1951 \cite{BrownPublished, BrownUnpublished} as a
+'natural' way in which to approximate the Nash Equilibrium in zero sum games. It was known at the
+time that a discrete variant of the algorithm would converge to the NE in two player zero-sum games
+\cite{Robinson}. Since then a number of proofs of convergence were determined in 2 player games
+\cite{Miyasawa, Polak, Berger, Monderer and Sela, Monderer and Shapley}, as well as corresponding
+convergence rates \cite{Harris, Shapiro}. Many results hold for both the discrete and continuous
+variants of FP. Their relation was finally solved by Hofbauer \cite{Hofbauer}, who showed that
+attractors of the discrete time process are also attractors for the continuous time variant. As
+such, most of the analysis on FP focuses on the continuous time variant \cite{Ostrovski}. It was
+later shown in \cite{Shapley} that there is a family of games (now called the \emph{Shapley family})
+for which FP does not converge at all but rather shows periodic behaviour. This led to research
+which looks at this non convergent behaviour, specifically showing the existence of more periodic
+orbits as well as chaotic behaviour \cite{Sparrow}. However, the work looking at fictitious play
+where there are more than two agents is sparse. \cite{Sela} considers a game in which a multi-player
+game is decomposed by requiring that each agent engage in a two person game against each of the
+opponent. Their payoff is given by the sum of payoffs in all of these subgames. It was found that,
+if this game is zero sum, then FP will converge. Similar results for more than two players were
+found for games with identical interests in \cite{MondererShapley1994}. In \cite{FPMFG}, the action
+of FP was considered in a Mean Field Game, and it was found again that the algorithm converges for
+zero sum games. The most general result, and the one most similar to our own, was found by Ewerhart
+and Valkanova in 2020 \cite{Ewerhart} in which they showed that fictitious play converges in network
+games, where each agent is engaged in a two-player game with each of their neighbours. The rate of
+convergence was found to be independent of the network size.  Our work extends the analysis of FP in
+multiplayer games by considering its action in NA Games, so that the agents do not play individual
+games against each of their neighbours but rather a single game against the aggregate of their
+neighbours. In particular we also extend a result for two player games found by Ostrovski and van
+Strein \cite{Payoff Performance} which showed that FP achieves no-regret to the multi-player
+setting.
 
 \section{Preliminaries}
 \subsection{Network Aggregative Games}
@@ -314,9 +402,7 @@
   \end{assumption}
 
   \begin{assumption}
-    \ah{I've been thinking about this a little, and I think it could be the case that
-    we don't need to make this assumption at all. I will investigate this further, since I don't
-    think this assumption has appeared in any of our results.} The cardinality of each action set $|\actionset{\mu}|$ is equal for all agents. This is
+    The cardinality of each action set $|\actionset{\mu}|$ is equal for all agents. This is
     a classical assumption which is made in most game theoretic settings and includes, as a
     special case, the analysis of homogeneous agents \cite{}. However, it should be noted that,
     in \cite{Ewerhart}, CTFP was analysed without this requirement.  
@@ -559,7 +645,14 @@ With the existence of the CTFP in place, we can show that it converges to a fixe
     
     where each $A^{\mu \nu} = \wmunu A^\mu$ and $\alpha^\mu(t; m) =\frac{1}{t} \int_{0}^{t} m^\mu(s) ds$ as defined by Ewerhart. We can, therefore, think of the NA game as a network game in which each agent plays the same strategy against each of its neighbours, itself included. As such, any $m$ which satisfies the CTFP property for the equivalent network game also satisfies the CTFP requirement for the network aggregative game. 
     
-    Continuing with this approach, let us look at the case where $\sum_\mu A^\mu = \textbf{0}_{n\times n}$ (i.e. a zero sum game). This means that $\sum_i u_i = 0$. Let $\xmu_\infty = \lim_{t \rightarrow \infty} \alpha^\mu(t; m)$. More specifically, $\xmu_\infty$ belongs to the set of accumulation points of $\alpha^\mu(\cdot; m)$ (which is set valued since the $BR^\mu$ map is set valued). To say that the game has `converged' we require that every $\xmu_\infty = (x^1_\infty, ... x^N_\infty)$ is an NE. \ah{I'll follow through the proof of Ewerhart for the sake of completeness: }
+    Continuing with this approach, let us look at the case where $\sum_\mu A^\mu =
+    \textbf{0}_{n\times n}$ (i.e. a zero sum game). This means that $\sum_i u_i = 0$. Let
+    $\xmu_\infty = \lim_{t \rightarrow \infty} \alpha^\mu(t; m)$. More specifically, $\xmu_\infty$
+    belongs to the set of accumulation points of $\alpha^\mu(\cdot; m)$ (which is set valued since
+    the $BR^\mu$ map is set valued). To say that the game has `converged' we require that every
+    $\xmu_\infty = (x^1_\infty, ... x^N_\infty)$ is an NE. Under these conditions, we may adapt the
+    techniques of (\cite{Ewerhart} Prop. 1) to show convergence.
+    
     
     Let us take the Lyapunov function
     
@@ -813,7 +906,7 @@ With the existence of the CTFP in place, we can show that it converges to a fixe
 
 \section{Numerical Experiments}
 
-  \subsection{Non-convergent examples}
+  \subsection{Non-convergent examples} \label{sec::NonConv}
   The purpose of this section is to show that, whilst wwe have shown that it converges in zero-sum games, NA-CTFP is not guaranteed to converge in general games, and can in fact give rise to a rich variety of dynamics.
 
   
@@ -876,14 +969,22 @@ With the existence of the CTFP in place, we can show that it converges to a fixe
 
   \begin{figure}[t]
     \centering
-    \includegraphics[width = 0.7\textwidth]{Figures/convergentShapley.png}
+    \begin{subfigure}[b]{0.4 \textwidth}
+      \includegraphics[width = \textwidth]{Figures/convergentShapley.png}
     \caption{\label{fig::convergentShapley}}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.4 \textwidth}
+      \includegraphics[width = \textwidth]{Figures/nonConvergentShapley.png}
+      \caption{\label{fig::nonconvergentShapley}}
+    \end{subfigure}
+    \caption{\label{fig::Shapley}}
   \end{figure}
+
 
   \begin{figure}[t]
     \centering
-    \includegraphics[width = 0.7\textwidth]{Figures/nonConvergentShapley.png}
-    \caption{\label{fig::nonconvergentShapley}}
+    \includegraphics[width = 0.7 \textwidth]{Figures/3PlayerChainNoNoise.png}
+    \caption{\label{fig::3PlayerChainNoNoise}}
   \end{figure}
 
   As such, we can see that convergent behaviour is not necessarily the norm in the NA-CTFP dynamics. In fact, for the family of games discussed above, we were unable to find non-periodic behaviour for any choice of $\beta$ strictly between 0.5 and 1 for any $w$ between 0.2 and 0.8 (so that the influence of player 1 and player 3 on player 2 is not negligible). This suggests that, far from being rare, in fact NA-CTFP lends itself to an incredibly rich variety of dynamics which can be explored as future work.
@@ -900,43 +1001,48 @@ With the existence of the CTFP in place, we can show that it converges to a fixe
   \begin{figure}[t]
     \centering
     \includegraphics[width = \columnwidth]{Figures/Noise20Player.png}
-    \caption{\label{fig::Noise10Player}}
-  \end{figure}
-
-  \begin{figure}[t]
-    \centering
-    \includegraphics[width = \columnwidth]{Figures/3PlayerChainNoNoise.png}
-    \caption{\label{fig::Noise10Player}}
+    \caption{\label{fig::Noise20Player}}
   \end{figure}
 
   \begin{figure}[t]
     \centering
     \includegraphics[width = \columnwidth]{Figures/3PlayerChainNoise.png}
-    \caption{\label{fig::Noise10Player}}
+    \caption{\label{fig::3PlayerChainNoise}}
   \end{figure}
 
   The fictitious play process in NA games requires that, at each time step, an agent takes a
   `measurement' of the aggregate strategy of its neighbours. It is on this measurement that they
   update their own strategy. It stands to reason then, that in real environments this measurement
-  may be corrupted by noise. As such, we investigate the effect that introducing noise has on CTFP
-  in a zero-sum NA game.
+  may be corrupted by noise. 
+  
+  As such, we investigate the effect that introducing additive noise has
+  on CTFP in a zero-sum NA game. We do this in the following manner: at each time step, the
+  reference signal $\refmu(t)$ is adjusted to $\refmu + \gamma \xi$ where $\xi$ is drawn from the
+  standard normal distribution (zero mean and unit variance). By varying $\gamma$, we vary the
+  strength of the noise. We vary $\gamma$ up to $0.5$ since, above this value, noisy measurements
+  are likely to lie outside of the simplex. Since $\refmu$ is constrained to lie within $\Delta$, we
+  can consider the range $\gamma \in [0, 0.5]$ to be the \emph{physical region}, in which noise is meaningful.
 
-  Noisy Experiments
-  \begin{enumerate}
-    \item Large (p = 20) game with noise, vary the amount of noise to see at what point we break
-    convergence. Main questions: \begin{itemize}
-      \item At what point do we stop reaching the NE?
-      \item Does it start converging to something else, or just go haywire?
-      \item Would increasing the number of iterations make it converge again?
-    \end{itemize}
-      
-    \item 3 Player chain. Vary the amount of noise to see the qualitative change in behaviour.
-    Main questions \begin{itemize}
-      \item At what point does periodic behaviour break?
-      \item Do we actually always converge towards the NE?
-      \item Does this happen for all periodic behaviour?
-    \end{itemize}
-  \end{enumerate}
+  In Figure \ref{fig::Noise10Player}, we consider a zero-sum NA game with 10 players. When there is
+  no noise, it can be seen that FP reaches a fixed point which, since we set $w^{\mu \mu} = 0$,
+  corresponds to an NE. After increasing $\gamma$, however, we find that the agents no longer
+  converge to this NE, but rather shift away from it. What is interesting, however, is that the
+  orbits do still reach a stationary state in the long run which suggests that FP is still able to
+  converge with the introduction of noise. Figure \ref{fig::Noise20Player} shows similar behaviour
+  for $N = 20$, and in our experiments we found this to be ubiquitous regardless of the choice of
+  $N$ or $n$. 
+
+  In Figure \ref{fig::3PlayerChainNoise} we revisit the Three Player Chain of Section
+  \ref{sec::NonConv}, now under the influence of additive noise. For the sake of brevity, we only
+  display the distance to the Nash Equilibrium of the first player's action, since the other agents
+  behave in the same way. It can be seen that a small amount of noise has the effect of decreasing
+  the size of the periodic orbit (c.f. Figure \ref{fig::3PlayerChainNoNoise}). However, as $\gamma$
+  is increased to $0.5$, the algorithm seems to exhibit convergence to the NE. The implication is
+  that the addition of noise may cause periodic behaviour to break and lead to the Nash Equilibrium.
+  An interesting point to note is that this behaviour is in stark contrast to the replicator
+  dynamic (RD) \cite{Maynard-Smith}, another adaptive algorithm linked to multi agent learning
+  \cite{CyclesAdversarialLearning}. In \cite{Imhof} and \cite{Galla}, it was found that the
+  introduction of random mutations can remove convergent behaviour and instead lead to periodicity. 
   
 \section{Concluding remarks}
 
