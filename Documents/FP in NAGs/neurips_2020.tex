@@ -421,8 +421,8 @@ setting.
   \subsection{Existence of the Nash Equilibrium}
   \label{sec::ExistenceofNE}
   
-  Note that the NE Condition requires
-
+  Note that the NE Condition requires \fb{why?}
+%
   \begin{align}
     \NE{\mu} &\in \arg\max_{x \in \Delta_\mu} u^\mu(x, w^{\mu \mu}x + \sum_{\nu \in N^\mu} w^{\mu \nu} \NE{\nu}) \nonumber \\
     & =: \arg\max_{x \in \Delta_i} \bar{u}^\mu(x, \sum_{\nu \in N^\mu} w^{\mu \nu} \NE{\nu})
@@ -436,15 +436,23 @@ setting.
      & =: \bar{u}^\mu(x, \sum_{\nu \in N^\mu} w^{\mu \nu} \NE{\nu}), \nonumber
   \end{align}
   
-  where $u^{\mu \nu}(\xmu, x^\nu) = \xmu \cdot A^\mu x^\nu$. Note that, in order to get this
-  formulation, we had to use the assumption of payoffs being bilinear so that we could separate
-  out the term in the weighted sum involving $x$ from $\bar{x}^\nu$. 
+  where $u^{\mu \nu}(\xmu, x^\nu) = \xmu \cdot A^\mu x^\nu$. Note
+  that, in order to get this formulation, we had to use the assumption
+  of payoffs being bilinear so that we could separate out the term in
+  the weighted sum involving $x$ from $\bar{x}^\nu$.
   
   To show existence of an NE we will need the following definition and theorem.
 
   \begin{definition}[Upper Semi-Continuous]
-    A compact-valued correspondence $\Phi: A \rightarrow B$ is \emph{upper semi-continuous} at a point $a$ if $g(a)$ is non-empty and if, for every sequence $a_n \rightarrow a$ and every sequence $(b_n)$ such that $b_n \in g(a_n)$ for all $n$, there exists a convergent subsequence of $(b_n)$ whose limit point $b$ is in $g(a)$.  
+    A compact-valued correspondence $\Phi: A \rightarrow B$ is
+    \emph{upper semi-continuous} at a point $a$ \fb{domain?} if $g(a)$ \fb{what is $g$?} is non-empty
+    and if, for every sequence $a_n \rightarrow a$ and every sequence
+    $(b_n)$ such that $b_n \in g(a_n)$ for all $n$, there exists a
+    convergent subsequence of $(b_n)$ whose limit point $b$ is in
+    $g(a)$.
   \end{definition}
+
+  \fb{perhaps we have to introduce some terminology from topology to keep the results self-contained?}
 
   \begin{theorem}[Kakutani]
     Let $K \subset \mathbb{R}^n$ be compact and convex and $\Phi: K \rightarrow K$ be closed or upper semi-continuous, with nonempty, convex and compact values. Then $\Phi$ has a fixed point.
@@ -501,7 +509,7 @@ setting.
       \end{bmatrix} .
     \end{equation}
 
-    This means that we achieve a Nash Equilibrium iff $(\NE{\mu})_{\mu \in \agentset}$ is a fixed point of the map
+    This means that we achieve a Nash Equilibrium iff $(\NE{\mu})_{\mu \in \agentset}$ is a fixed point of the map \fb{why?}
   
   
     \begin{equation}
@@ -518,7 +526,7 @@ setting.
 \subsection{Existence of CTFP}
 
   \begin{theorem}
-    There exists a path $m$ which satisfies the property that, for all $\mu$, $m^\mu \in
+    There exists a path $m$ which satisfies the property that, for all $\mu$ \fb{remind what this is.}, $m^\mu \in
     BR^\mu(\alpha_\sigma^\mu)$ for almost aall $t \geq 1$.
   \end{theorem}
 
@@ -615,7 +623,16 @@ setting.
 
 \subsection{Convergence of CTFP}
 
-With the existence of the CTFP in place, we can show that it converges to a fixed point. In particular, let $\Omega(\alpha)$ be the set of all limit points for $\alpha(t)$. Then, a CTFP path is said to have converged if $\Omega(\alpha)$ is contained within the set of Nash Equilibria of the game. If this is for any such CTFP path, then the game is said to have the \emph{CTFP property}. We adapt the techniques of (Ewerhart 2020) to prove that zero-sum NA games have the CTFP property. \ah{I also want to attempt this with the techniques of Harris (which is quite similar) to see if it yields any new results}.
+With the existence of the CTFP in place, we can show that it converges
+to a fixed point. In particular, let $\Omega(\alpha)$ be the set of
+all limit points for $\alpha(t)$. Then, a CTFP path is said to have
+converged if $\Omega(\alpha)$ is contained within the set of Nash
+Equilibria of the game. If this is for any such CTFP path, then the
+game is said to have the \emph{CTFP property}. We adapt the techniques
+of (Ewerhart 2020) to prove that zero-sum NA games have the CTFP
+property. \ah{I also want to attempt this with the techniques of
+  Harris (which is quite similar) to see if it yields any new
+  results}.
 
   \begin{theorem}
     Any zero-sum NA game has the property that, for any CTFP path $m$, the corresponding $\alpha(t; m)$ converges to a set of fixed points.
@@ -624,6 +641,8 @@ With the existence of the CTFP in place, we can show that it converges to a fixe
 
   \begin{proof}
 
+   \fb{what is the meaning of the following equation?}
+%
     \begin{equation}
       m^\mu(t) \in BR^\mu \left( \frac{1}{t} \int_{0}^{t} \sigma^\mu(s) ds \right).
     \end{equation}
@@ -643,7 +662,13 @@ With the existence of the CTFP in place, we can show that it converges to a fixe
       \iff & m^\mu \in \arg \max_{x \in \Delta_i} x \cdot A^{\mu \mu} \alpha^\mu(t; m) + \sum_{\nu \in N^\mu} x \cdot A^{\mu \nu} \alpha^\nu(t; m).
     \end{align}
     
-    where each $A^{\mu \nu} = \wmunu A^\mu$ and $\alpha^\mu(t; m) =\frac{1}{t} \int_{0}^{t} m^\mu(s) ds$ as defined by Ewerhart. We can, therefore, think of the NA game as a network game in which each agent plays the same strategy against each of its neighbours, itself included. As such, any $m$ which satisfies the CTFP property for the equivalent network game also satisfies the CTFP requirement for the network aggregative game. 
+    where each $A^{\mu \nu} = \wmunu A^\mu$ and $\alpha^\mu(t; m)
+    =\frac{1}{t} \int_{0}^{t} m^\mu(s) ds$ as defined by Ewerhart \fb{use the reference rather than the name of the author.}. We
+    can, therefore, think of the NA game as a network game in which
+    each agent plays the same strategy against each of its neighbours,
+    itself included. As such, any $m$ which satisfies the CTFP
+    property for the equivalent network game also satisfies the CTFP
+    requirement for the network aggregative game.
     
     Continuing with this approach, let us look at the case where $\sum_\mu A^\mu =
     \textbf{0}_{n\times n}$ (i.e. a zero sum game). This means that $\sum_i u_i = 0$. Let
@@ -735,33 +760,43 @@ With the existence of the CTFP in place, we can show that it converges to a fixe
 \section{CTFP achieves no regret}
   \label{sec::CCEConvergence}
 
-  In this section we aim to find some convergence structure for the case in which the NA game is
-  not necessarily zero-sum. In particular, we  show that the NA-CTFP process converges to the set
-  of coarse correlated equilibria \cite{}.
-  
+  In this section we aim to find some convergence structure for the
+  case in which the NA game is not necessarily zero-sum. In
+  particular, we show that the NA-CTFP process converges to the set of
+  coarse correlated equilibria \cite{}.
+  %
   \begin{definition}
-    A distribution $\mathcal{D}$ over the joint action set $S = \times_\mu S^\mu$ is
-    called a \emph{coarse correlated equilibrium} (CCE) if, for all $\mu$
-
+    A distribution $\mathcal{D}$ over the joint action set $S =
+    \times_\mu S^\mu$ is called a \emph{coarse correlated equilibrium}
+    (CCE) if, for all $\mu$
     \begin{equation}
-      \mathbb{E}_{s \sim \mathcal{D}}[u^\mu (s^\mu, s^{- \mu})] \geq \mathbb{E}_{x \sim \mathcal{D}}[u^\mu (j, s^{- \mu})] \hspace{1cm} \forall j \in S^\mu.
+      \mathbb{E}_{s \sim \mathcal{D}}[u^\mu (s^\mu, s^{- \mu})] \geq
+      \mathbb{E}_{x \sim \mathcal{D}}[u^\mu (j, s^{-
+          \mu})] \hspace{1cm} \forall j \in S^\mu.
     \end{equation}
   \end{definition}
 
-  In words, the above definition says that, if the agents are given a probability distribution
-  with which the can play their actions, then the expected payoff, for all agents is greater than
-  or equal to the payoff that they would get by playing any of their other available actions,
-  assuming that the other agents keep to the distribution. 
+  In words, the above definition says that, if the agents are given a
+  probability distribution with which they can play their actions, then
+  the expected payoff, for all agents is greater than or equal to the
+  payoff that they would get by playing any of their other available
+  actions, assuming that the other agents keep to the distribution.
+
+  \fb{perhaps what is below could go into a theorem/lemma.}
   
-  For an NA game, if a set of actions $s = (s^1, \ldots, s^N)$ is drawn from a joint probability
-  distribution $\mathcal{D}$, then there is a corresponding set of reference vectors $\sigma =
-  (\sigma^1, \ldots, \sigma^N)$, where $\sigma^\mu = \sum_{\nu \in N^\mu} \wmunu s^\nu$.
-  Therefore, $\mathcal{D}$ is a probability distribution over all actions and all references.
-  Consider, then, a vector of joint distributions over actions and references which is generated
-  by CTFP. In particular, if by playing with CTFP, the agents reach the state $(\xmu)_{i = 1}^N$
-  with references $(\refmu)_{i = 1}^N$, this is the vector $\mathcal{D} = (\mathcal{D}^1, ...,
-  \mathcal{D}^N)$ such that $(\mathcal{D}^\mu)_{ij} = \xmu_i \refmu_j$. Then, the expected payoff
-  that the agent would receive for playing this strategy is 
+  For an NA game, if a set of actions $s = (s^1, \ldots, s^N)$ \fb{$s$ is normally used for actions} is
+  drawn from a joint probability distribution $\mathcal{D}$, then
+  there is a corresponding set of reference vectors $\sigma =
+  (\sigma^1, \ldots, \sigma^N)$, where $\sigma^\mu = \sum_{\nu \in
+    N^\mu} \wmunu s^\nu$.  Therefore, $\mathcal{D}$ is a probability
+  distribution over all actions and all references.  Consider, then, a
+  vector of joint distributions over actions and references which is
+  generated by CTFP. In particular, if by playing with CTFP, the
+  agents reach the state $(\xmu)_{i = 1}^N$ with references
+  $(\refmu)_{i = 1}^N$, this is the vector $\mathcal{D} =
+  (\mathcal{D}^1, ..., \mathcal{D}^N)$ such that
+  $(\mathcal{D}^\mu)_{ij} = \xmu_i \refmu_j$. Then, the expected
+  payoff that the agent would receive for playing this strategy is
 
   \begin{align}
     u^\mu(\xmu, \refmu) & = \xmu \cdot A^\mu \refmu \nonumber \\
@@ -813,7 +848,7 @@ With the existence of the CTFP in place, we can show that it converges to a fixe
       u^{\mu}(\pure{\mu}{1}, \sigma(t)) = \sum_{ij} a_{1j} x_i^\mu \sigma_j^\mu = a_{11} x_1^\mu \sigma_1^\mu + a_{12} x_1^\mu \sigma_2^\mu + a_{11} x_2^\mu \sigma_1^\mu + a_{12} x_2^\mu \sigma_2^\mu 
     \end{equation}
   
-    By comparing the two expanded expressions, we can see that the latter gives the reward that agent $\mu$ would have received had they played action $1$ throughout the entire play, assuming that the behaviour of the other agents (encoded in $\sigma$) does not change. As such, this is a measure of agent $\mu$'s regret, in hindsight, for not playing action $1$ the entire time. An agent achives \emph{no regret} if $R^\mu$ is non-positive.
+    By comparing the two expanded expressions, we can see that the latter gives the reward that agent $\mu$ would have received had they played action $1$ throughout the entire play, assuming that the behaviour of the other agents (encoded in $\sigma$) does not change. As such, this is a measure of agent $\mu$'s regret, in hindsight, for not playing action $1$ the entire time. An agent achieves \emph{no regret} if $R^\mu$ is non-positive.
   \end{remark}
 
 
@@ -831,8 +866,8 @@ With the existence of the CTFP in place, we can show that it converges to a fixe
   
   \begin{proof}
     We will adapt the techniques of Ostrovski and van Strein for this proof. Their result was found for a two player game, we will leverage the fact that the NA process means that we can reduce an $N$ player game down to a series of two player games. 
-    
-    For any agent $\mu$ define
+     
+    For any agent $\mu$ define \fb{what are we defining here?}
     \begin{equation}
       \bar{u}^\mu (\alpha_\sigma^\mu) := max_{y \in \Delta_\mu} u^\mu(y, \alpha_\sigma^\mu)
     \end{equation}
@@ -868,7 +903,7 @@ With the existence of the CTFP in place, we can show that it converges to a fixe
       \frac{d}{dt} \alpha^\mu (t) = \frac{1}{t} (m^\mu(t) - \alpha^\mu (t))
     \end{equation}
 
-    We insert this into the previous equation to yield
+    We insert this \fb{use enumeration} into the previous equation to yield
 
     \begin{align}
       \frac{d}{dt} (t \bar{u}^\mu (\alpha_\sigma^\mu (t))) & = m^\mu \cdot A^\mu (\sum_{\nu \in N(\mu)} w^{\mu \nu} \alpha^\nu (t)) + t(m^\mu \cdot A^\mu \sum_{\nu \in N(\mu)} w^{\mu \nu} \frac{1}{t} (m^\nu(t) - \alpha^\nu (t))) \\
