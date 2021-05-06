@@ -964,8 +964,9 @@ property. \ah{I also want to attempt this with the techniques of
 
   \begin{figure}[t]
     \centering
-    \includegraphics[width = 0.7\textwidth]{Figures/ThreePlayerNetwork.png}
-    \caption{\label{fig::ThreePlayerNetwork}}
+    \includegraphics[width = 0.6\textwidth]{Figures/ThreePlayerNetwork.png}
+    \caption{\label{fig::ThreePlayerNetwork} A NA game where the network is defined by a chain of
+    three players, as described in Section \ref{sec::NonConv}.}
   \end{figure}
 
   As an adaptation, we take the example of a three player chain, as depicted in Figure \ref{fig::ThreePlayerNetwork}. In this example, we first assume that the network is simple (i.e. there are no self-loops and $w^{\mu \mu} = 0$). The aggregation matrix can be given as
@@ -987,8 +988,8 @@ property. \ah{I also want to attempt this with the techniques of
 
   in which we use the notation that $x, y, z$ (resp. $A, B, C$) denote the strategies (resp. payoffs) of agents 1, 2 and 3 respectively. This condition is satisfied if we fix $B$ and choose
 
-  \begin{align}
-    A & = - w B^T \\
+  \begin{align} \label{eq::zeroSumShapley}
+    A & = - w B^T \nonumber \\
     C & = - (1 - w) B^T. 
   \end{align}
 
@@ -996,30 +997,39 @@ property. \ah{I also want to attempt this with the techniques of
 
   Let us now make the slight modification in the definition of C so that
 
-  \begin{equation}
+  \begin{equation} \label{eq::nonzeroSumShapley}
     C  = - (1 - w) B, 
   \end{equation}
 
-  with no alteration to $A$. The modification itself is small, however it results in the zero-sum assumption being violated. With the same choices of $\beta$ and $w$, this results in the periodic orbit seen in Figure \ref{fig::nonconvergentShapley}. Here, the orbits reach a stable limit cycle which to be centred around the interior NE.
+  with no alteration to $A$. The modification itself is small, however it results in the zero-sum
+  assumption being violated. With the same choices of $\beta$ and $w$, this results in the periodic
+  orbit seen in Figures \ref{fig::nonconvergentShapley} and \ref{fig::3PlayerChainNoNoise}. Here,
+  the orbits reach a stable limit cycle which to be centred around the interior NE.
 
   \begin{figure}[t]
     \centering
-    \begin{subfigure}[b]{0.4 \textwidth}
+    \begin{subfigure}[b]{0.45 \textwidth}
       \includegraphics[width = \textwidth]{Figures/convergentShapley.png}
     \caption{\label{fig::convergentShapley}}
     \end{subfigure}
-    \begin{subfigure}[b]{0.4 \textwidth}
+    \begin{subfigure}[b]{0.45 \textwidth}
       \includegraphics[width = \textwidth]{Figures/nonConvergentShapley.png}
       \caption{\label{fig::nonconvergentShapley}}
     \end{subfigure}
-    \caption{\label{fig::Shapley}}
+    \caption{\label{fig::Shapley} Orbits of the Fictitious Play in the Three Player Chain (c.f.
+    Figure \ref{fig::ThreePlayerNetwork}) with payoff matrices given by (a)
+    (\ref{eq::zeroSumShapley}) showing convergence to the interior NE (b)
+    (\ref{eq::nonzeroSumShapley}) showing cycles around the interior NE.}
   \end{figure}
 
 
   \begin{figure}[t]
     \centering
     \includegraphics[width = 0.7 \textwidth]{Figures/3PlayerChainNoNoise.png}
-    \caption{\label{fig::3PlayerChainNoNoise}}
+    \caption{\label{fig::3PlayerChainNoNoise} Distance to the Nash Equilibrium strategy along orbits
+    of FP showing oscillations which are bounded away from the NE (i.e. they do not cross the NE).
+    The x-axis shows logarithmic time since FP includes a factor of $1/t$, which has the effect of
+    slowing down the orbit over time.}
   \end{figure}
 
   As such, we can see that convergent behaviour is not necessarily the norm in the NA-CTFP dynamics. In fact, for the family of games discussed above, we were unable to find non-periodic behaviour for any choice of $\beta$ strictly between 0.5 and 1 for any $w$ between 0.2 and 0.8 (so that the influence of player 1 and player 3 on player 2 is not negligible). This suggests that, far from being rare, in fact NA-CTFP lends itself to an incredibly rich variety of dynamics which can be explored as future work.
