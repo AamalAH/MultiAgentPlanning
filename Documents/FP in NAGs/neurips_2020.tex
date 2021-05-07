@@ -35,7 +35,7 @@
 \usepackage{subcaption}
 
 \theoremstyle{definition}
-\newtheorem*{definition}{Definition}
+\newtheorem{definition}{Definition}
 \newtheorem{theorem}{Theorem}
 \newtheorem{corollary}{Corollary}
 \newtheorem{assumption}{Assumption}
@@ -123,8 +123,7 @@ each agent must adapt in response to the behaviour of the other agents. This lea
 fundamentally non-stationary problem, which presents a challenge to designing effective learning
 policies. Even when there are a small number of agents in the game, learning has been shown to lead
 to non-stationary, and even chaotic behaviour \cite{SatoChaos}, and this problem becomes even more
-pronounced as the number of agents increase \cite{Sanders}. In this light, it would appear that
-learning when there is a large population of agents is an impossible task. 
+pronounced as the number of agents increase \cite{Sanders}. In this light, it would seem that, when there is a large population of agents, it is almost impossible to understand the long term behaviour of multi agent learning \cite{PiliourasChaoticMaps}. This, of course, poses a problem for AI safety, for which it is necessary that learning systems are designed so that their ultimate behaviour is guaranteed to satisfy some predetermined goals.
 
 To deal with this problem, one must attempt to reduce the many player game to something which is
 tractable. A number of reductions have been proposed, most notably \emph{Mean Field} Games
@@ -133,12 +132,10 @@ number of agents, so that the population can be represented through a distributi
 states \cite{CainesPaper} . Every agent then updates their action profiles depending on this
 distribution. In the latter each agent plays considers a real valued function which is a convex
 combination of the states of the other agents. In both formulations, a many player game is reduced
-to the set of two player games which each agent is involved in, allowing the problem to maintain
-tractability. 
+to the set of two player games which each agent is involved in.
 
-Whilst both formulations have shown success in multi-agent learning settings, allowing agents to
-reach equilibrium strategies (c.f. \cite{MFGLearningPapers} for Mean Field Games and
-\cite{Aggregative Papers} for Aggregative Games), they also present a fundamental limitation.
+Both formulations have been the object of rigorous study and it has been shown that agents reach an equilibrium when learning on such games (c.f. \cite{MFGLearningPapers} for Mean Field Games and
+\cite{Aggregative Papers} for Aggregative Games). However, both also present a fundamental limitation.
 Namely, they both require that agents have access to the action profiles of the entire population.
 This could be through communication with all other agents, or through the intervention of a central
 coordinator who is able to the entire population. Whilst recent work aims to relax this assumption
@@ -151,8 +148,7 @@ through which agents interact. Then each agent updates their actions according o
 with whom they communicate. This significantly relaxes the communication load on each agent and
 lifts the need for a central coordinator. Recent work on the NA game has shown that it is possible
 for agents to reach an equilibrium strategy in an entirely distributed manner \cite{Grammatico,
-LeaderFollower, MyopicAgents}. We contribute in this direction by showing that learning on an NA
-game can lead to an equilibrium strategy. In particular, we analyse the Fictitious Play Learning
+LeaderFollower, MyopicAgents}. We contribute in this direction by analysing the long term behaviour of learning on an NA game. In particular, we analyse the Fictitious Play Learning
 Algorithm \cite{Brown, Harris}, in which agents are assumed to be myopic, in that they react solely
 to the previous behaviour of the others.
 
@@ -305,7 +301,7 @@ setting.
 
   This leads naturally to the definition of a Nash Equilibrium in an NA Game as
 
-  \begin{definition}(NE)
+  \begin{definition}(NE) \label{def::NE}
     The set of vectors $\{ \NE{\mu}\}_{\mu \in \agentset}$ is an NE if, for all $\mu$,  
     \begin{equation*}
     \NE{\mu} \in BR^\mu (\refmu) = \arg \max_{x \in \Delta_\mu} u^\mu(x, w^{\mu \mu} x + \sum_{\nu \in N^\mu \backslash \{\bar{\mu}\}} \wmunu \NE{\nu}).
@@ -345,10 +341,10 @@ setting.
   \end{equation}
 
   Using this, we follow in the footsteps of Ewerhart \cite{} and Harris \cite{} to define
-  Fictitious Play in continuous time.
+  Fictitious Play in continuous time, but with a slight adaptation for the NA game.
 %
-  \begin{definition}[Continuous Time Fictitious Play (CTFP)]
-    A CTFP is defined as a measurable map $m$ with components $m^\mu$ such that for all $\mu$
+  \begin{definition}[Network Aggregative - Continuous Time Fictitious Play (NA-CTFP)]
+    An NA-CTFP is defined as a measurable map $m$ with components $m^\mu$ such that for all $\mu$
     and all $t \geq 1$, $m^\mu: [0, \infty) \rightarrow \Delta_\mu$ satisfies $m^\mu(t) \in
     BR^\mu(\alpha_{\sigma}^\mu)$ for almost all $t \geq 1$.
   \end{definition}
@@ -363,14 +359,14 @@ setting.
     the off diagonal. We write the time-average of both agents' state as
   
     \begin{align}
-      \alpha^\mu = \frac{1}{t} \int_0^T \xmu(t) \, dt & \text{ for $\mu \in \{1, 2\}$}
+      \alpha^\mu(t; x) = \frac{1}{t} \int_0^T \xmu(t) \, dt & \text{ for $\mu \in \{1, 2\}$}
   %   \alpha^2 = \frac{1}{t} \int_0^T x^2(t) \, dt \\
     \end{align}
 
-    In this manner, the $\alpha^\mu(t)$ denotes the time average of the strategies played by
-    agent $\mu$ up to time $t$. Then, fictitious play requires that the agents update their
+    In this manner, the $\alpha^\mu(t; m)$ denotes the time average of the strategies played by
+    agent $\mu$ up to time $t$ when the strategies are given by $\xmu(t)$. Note that we often reduce the notation to $\alpha^\mu(t)$. Then, fictitious play requires that the agents update their
     strategy as $x^1(t) \in BR^1(\alpha^2(t))$ and $x^2(t) \in BR^2(\alpha^1(t))$. It can be
-    seen, therefore, that the CTFP in an NA game is a natural extension of CTFP in the classical
+    seen, therefore, that the NA-CTFP is a natural extension of CTFP in the classical
     two-player setting \cite{}.
   \end{remark}
 
@@ -378,7 +374,7 @@ setting.
 
   With the above preliminaries in place, we can state the assumptions that we make in this study.
 
-  \begin{assumption}
+  \begin{assumption}\label{ass::rowstochastic}
     The weighted adjacency matrix $\weightset$ is constant and \emph{row stochastic} meaning
     that the sum elements in each row of $\weightset$ is equal to one. This assumption is
     made to ensure that the analysis of NA games can be derived as a natural extension to the
@@ -388,7 +384,7 @@ setting.
     \cite{one of the network game papers} and can is straightforward to implement \cite{Eyad}.
   \end{assumption}
 
-  \begin{assumption}
+  \begin{assumption}\label{ass::matrixgame}
     The payoffs are given through matrix games and, therefore, are bilinear. Payoff matrices
     have a rich history in game theory and has generated a number of prototypical examples for
     economic study including the Prisoner's Dilemma game (see \cite{Axelrod} for an interesting
@@ -401,19 +397,19 @@ setting.
     of future work.
   \end{assumption}
 
-  \begin{assumption}
+  \begin{assumption}\label{ass::sameactions}
     The cardinality of each action set $|\actionset{\mu}|$ is equal for all agents. This is
     a classical assumption which is made in most game theoretic settings and includes, as a
     special case, the analysis of homogeneous agents \cite{}. However, it should be noted that,
     in \cite{Ewerhart}, CTFP was analysed without this requirement.  
   \end{assumption}
 
-  \begin{assumption}
+  \begin{assumption}\label{ass::zerosum}
     The NA game is zero-sum in the sense that $\sum_{\mu} u^\mu(\xmu, \weightedsum)$ for any set
     of states $(x^\mu)_{\mu \in N^\mu}$. This is, perhaps, one of the stronger assumptions in
     our analysis, and is required for the fixed point analysis. However, in Section
     \ref{sec::CCEConvergence}, we perform a regret analysis that considers the long term
-    behaviour of CTFP without this assumption.
+    behaviour of NA-CTFP without this assumption.
   \end{assumption}
 
 \section{Convergence of Fictitious Play}
@@ -421,7 +417,7 @@ setting.
   \subsection{Existence of the Nash Equilibrium}
   \label{sec::ExistenceofNE}
   
-  Note that the NE Condition requires \fb{why?}
+  As a reminder, the NE condition (Def. \ref{def::NE}) states
 %
   \begin{align}
     \NE{\mu} &\in \arg\max_{x \in \Delta_\mu} u^\mu(x, w^{\mu \mu}x + \sum_{\nu \in N^\mu} w^{\mu \nu} \NE{\nu}) \nonumber \\
@@ -441,11 +437,29 @@ setting.
   of payoffs being bilinear so that we could separate out the term in
   the weighted sum involving $x$ from $\bar{x}^\nu$.
   
-  To show existence of an NE we will need the following definition and theorem.
+  To show existence of an NE we will need the following definitions which can be found in most texts on topology \cite{Munkres}.
+  
+  \begin{definition}[Convexity]
+  	A set $\mathcal{X}$ is \emph{convex} if, for every $x, y \in \mathcal{X}$ and every $\lambda \in [0, 1]$ we have that $\lambda x + (1 - \lambda)y \in \mathcal{X}$.
+  \end{definition}
 
-  \begin{definition}[Upper Semi-Continuous]
-    A compact-valued correspondence $\Phi: A \rightarrow B$ is
-    \emph{upper semi-continuous} at a point $a$ \fb{domain?} if $g(a)$ \fb{what is $g$?} is non-empty
+	\begin{definition}[Convex Combinations]
+		The point $\sum_{i = 1}^{n} \lambda_i x_i$ is a \emph{convex combination} of the points $x_1, \ldots, x_n$ if $\lambda_i \geq 0$ for all $i$ and $\sum_i \lambda_i = 1$.
+	\end{definition}
+
+	\begin{definition}[Unit Simplex]
+		The $n$-dimensional \emph{unit simplex} is defined as the convex combination of the $n$ standard basis vectors $(e_i)_{i = 1}^n$ in $\mathbb{R}^n$ in which $e_i$ has $1$ in the $i$'th component and $0$ in all others. In particular this is given by
+		
+		\begin{equation}
+			\Delta = \{x \in \mathbb{R}^n : x = \sum_{i = 1}^n \lambda_i e_i \text{ for some } \lambda_1, \ldots, \lambda_n \geq 0, \sum_i \lambda_i = 1\}
+		\end{equation}
+	\end{definition}
+	
+	It follows from the definitions, then, that the unit simplex is a convex set. In addition we have that the simplex is \emph{closed} and \emph{bounded} in $\mathbb{R}^n$. By the Heine-Borel Theorem \cite{Royden} it is therefore also \emph{compact}. The definitions of each of these terms can be found in any standard topology reference and we point the reader to \cite{Royden} for further details.
+
+  \begin{definition}[Upper Semi-Continuous] 
+    A compact-valued correspondence $g: A \rightarrow B$ is
+    \emph{upper semi-continuous} \cite{Findforthis} at a point $a \in A$ if $g(a)$ is non-empty
     and if, for every sequence $a_n \rightarrow a$ and every sequence
     $(b_n)$ such that $b_n \in g(a_n)$ for all $n$, there exists a
     convergent subsequence of $(b_n)$ whose limit point $b$ is in
@@ -454,11 +468,13 @@ setting.
 
   \fb{perhaps we have to introduce some terminology from topology to keep the results self-contained?}
 
-  \begin{theorem}[Kakutani]
-    Let $K \subset \mathbb{R}^n$ be compact and convex and $\Phi: K \rightarrow K$ be closed or upper semi-continuous, with nonempty, convex and compact values. Then $\Phi$ has a fixed point.
+  \begin{theorem}[Kakutani] 
+    Let $A \subset \mathbb{R}^n$ be compact and convex and $g: A \rightarrow A$ be closed or upper semi-continuous, with nonempty, convex and compact values. Then $g$ has a fixed point, that is a point $\bar{a}$ such that $\bar{a} \in g(\bar{a})$. \cite{Kakutani}
   \end{theorem}
 
-  Note that, when acting on a simplex, the function $\Phi: \Delta \rightarrow \textbf{P}(\Delta)$, where $\textbf{P}(\Delta)$ denotes the nonempty, closed and convex subsets of $\Delta$ only has to satisfy the upper-semi continuity condition to admit a fixed point.
+  Note that, when acting on a simplex, the function $g: \Delta \rightarrow \textbf{P}(\Delta)$, where $\textbf{P}(\Delta)$ denotes all nonempty, closed and convex subsets of $\Delta$ only has to satisfy the upper-semi continuity condition to admit a fixed point.
+
+	\ah{Probably need a quick intro into why the argmax is closed, convex and nonempty.}
 
   \begin{theorem}[Existence of NE]
     Under the assumption (II), namely that the payoff function achieves a bilinear property, a
@@ -485,7 +501,7 @@ setting.
       \end{bmatrix},
     \end{equation}
   
-    in which $w_{-\mu}$ is a column vector containing $w^{\mu \nu}$ in the $\nu$'th element for all $j \in N^\mu$ and 0 everywhere else (including in the $\mu$'th slot), $I_n$ is the $n \times n$ identity matrix and $\otimes$ is the kronecker product. For example, the form for agent 1, in the case of 2-action game is given by
+    in which $w_{-\mu}$ is a column vector containing $w^{\mu \nu}$ in the $\nu$'th element for all $j \in N^\mu$ and 0 everywhere else (including in the $\mu$'th slot), $I_n$ is the $n \times n$ identity matrix and $\otimes$ is the Kronecker product \cite{Findforthis}. It is important to note at this point that we use Assumption \ref{ass::sameactions} here, so that all $w_{-\mu}^T$ is acted upon by the same $I_n$ in the Kronecker product. For example, the form for agent 1, in the case of 2-action game is given by
 
     \begin{equation}
       (w_{-1}^T \otimes I_2) = [0, w_{12}, w_{13}, ..., w_{1n}] \otimes I_2 = 
@@ -496,9 +512,9 @@ setting.
     \end{equation}
     
     Returning to the $N$-player NA game our condition becomes
-    \begin{equation}
+    \begin{equation} \label{eq::fixedpointNE}
       \begin{bmatrix}
-        \NE{1} \\ . \\ . \\ . \\ \bar{N}
+        \NE{1} \\ . \\ . \\ . \\ \NE{N}
       \end{bmatrix} \in
       \begin{bmatrix}
         \arg\max_{y \in \Delta_1} \bar{u}^1(y, (w_{-1}^T \otimes I_n) \begin{bmatrix}
@@ -509,32 +525,33 @@ setting.
       \end{bmatrix} .
     \end{equation}
 
-    This means that we achieve a Nash Equilibrium iff $(\NE{\mu})_{\mu \in \agentset}$ is a fixed point of the map \fb{why?}
+    The condition (\ref{eq::fixedpointNE}) takes on the form of a fixed point condition. In particular, it states that we achieve a Nash Equilibrium if and only if $(\NE{\mu})_{\mu \in \agentset}$ is a fixed point of the vector function defined by
   
   
     \begin{equation}
+    	\mathbf{f}(\mathbf{x}) = 
       \begin{bmatrix}
-        \arg\max_{y \in \Delta_1} \bar{u}^1(y, (w_{-1}^T \otimes I_n) ( \cdot )) \\ . \\ . \\ . \\ \arg\max_{y \in \Delta_N} \bar{u}^N(y, (w_{-N}^T \otimes I_n)( \cdot ))
+        \arg\max_{y \in \Delta_1} \bar{u}^1(y, (w_{-1}^T \otimes I_n) ( \mathbf{x} )) \\ . \\ . \\ . \\ \arg\max_{y \in \Delta_N} \bar{u}^N(y, (w_{-N}^T \otimes I_n)( \mathbf{x} ))
       \end{bmatrix} .
     \end{equation}
 
 
-    Now, since the modified payoff $\bar{u}^\mu$ shares the same bilinear property as $u^\mu$, we can assert that it is continuous is its second argument. Therefore, the above vector valued map can be asserted to be continuous and so is upper semi-continuous. As such, we can apply Kakutani's Fixed Point Theorem to assert that the above map admits a fixed point.
+    Now, since the modified payoff $\bar{u}^\mu$ shares the same bilinear property as $u^\mu$, we can assert that it is continuous in its second argument. Therefore, the above vector valued map can be asserted to be continuous and so is upper semi-continuous. As such, we can apply Kakutani's Fixed Point Theorem to assert that the above map admits a fixed point.
 
   \end{proof}
 
-\subsection{Existence of CTFP}
+\subsection{Existence of NA-CTFP}
 
   \begin{theorem}
-    There exists a path $m$ which satisfies the property that, for all $\mu$ \fb{remind what this is.}, $m^\mu \in
-    BR^\mu(\alpha_\sigma^\mu)$ for almost aall $t \geq 1$.
+    There exists a path $m$ which satisfies the property that, for all agents $\mu$, $m^\mu \in
+    BR^\mu(\alpha_\sigma^\mu)$ for almost all $t \geq 1$.
   \end{theorem}
 
   \begin{proof}
     Recall the definition of $\alpha^\mu(t)$
 
     \begin{equation*}
-    \alpha^\mu(t) = \frac{1}{t} \int_{0}^{t} m^\mu(s) \, ds
+    \alpha^\mu(t; m) = \frac{1}{t} \int_{0}^{t} m^\mu(s) \, ds
     \end{equation*}
 
     Then 
@@ -601,7 +618,7 @@ setting.
       \alpha(t) \}- \alpha(t))
     \end{equation}
 
-    with the initial condition $\alpha(1) = x_0$. Then, the path $m$ is a CTFP if its
+    with the initial condition $\alpha(1) = x_0$. Then, the path $m$ is a NA-CTFP if its
     corresponding $\alpha(t; m)$ is a solution to the above differential inclusion. Following
     the definition of (Harris 1998), a solution $\alpha(t)$ must satisfy
 
@@ -613,41 +630,38 @@ setting.
       \alpha(t) \}- \alpha(t))$ for almost all $t \in [1, \infty)$ 
     \end{enumerate}
 
-    The question then remains, does the differential inclusion admit a solution? Using the
-    results of Aubin and Cellina (see Harris 1998, paragraph below Prop. 6), can use the fact
-    that the $\arg \max$ function is non-empty, compact and convex valued, bounded (all of
-    these follow since the function acts from $\Delta$ to $\Delta$) and upper semi-continuous. 
-    With these facts in place, we can say that there is a CTFP $m$ for any initial value $x_0$. Further, the solution $m(t)$ is Lipschitz for almost all $t \geq 0$.
+    The question then remains, does the differential inclusion admit a solution? To do this we use the
+    results of Aubin and Cellina (see \cite{Harris1998}, paragraph below Prop. 6), alongside the fact
+    that the $\arg \max$ function is non-empty, compact and convex valued, bounded (\ah{Will need to discuss as part of intro to topology}) and upper semi-continuous. 
+    With these facts in place, we can say that there is a NA-CTFP $m$ for any initial value $x_0$. Further, the solution $m(t)$ is Lipschitz for almost all $t \geq 0$.
 
   \end{proof}
 
-\subsection{Convergence of CTFP}
+\subsection{Convergence of NA-CTFP}
 
-With the existence of the CTFP in place, we can show that it converges
+With the existence of the NA-CTFP in place, we can show that it converges
 to a fixed point. In particular, let $\Omega(\alpha)$ be the set of
-all limit points for $\alpha(t)$. Then, a CTFP path is said to have
+all limit points for $\alpha(t)$. Then, a NA-CTFP path is said to have
 converged if $\Omega(\alpha)$ is contained within the set of Nash
-Equilibria of the game. If this is for any such CTFP path, then the
+Equilibria of the game. If this is for any such NA-CTFP path, then the
 game is said to have the \emph{CTFP property}. We adapt the techniques
 of (Ewerhart 2020) to prove that zero-sum NA games have the CTFP
-property. \ah{I also want to attempt this with the techniques of
-  Harris (which is quite similar) to see if it yields any new
-  results}.
+property.
 
   \begin{theorem}
-    Any zero-sum NA game has the property that, for any CTFP path $m$, the corresponding $\alpha(t; m)$ converges to a set of fixed points.
+    Any zero-sum NA game has the property that, for any NA-CTFP path $m$, the corresponding $\alpha(t; m)$ converges to a set of fixed points.
   \end{theorem}
 
 
   \begin{proof}
 
-   \fb{what is the meaning of the following equation?}
+   As a reminder, the definition of the NA-CTFP path $m$ requires that, for all agents $\mu$ and for almost all $t \geq 0$
 %
     \begin{equation}
       m^\mu(t) \in BR^\mu \left( \frac{1}{t} \int_{0}^{t} \sigma^\mu(s) ds \right).
     \end{equation}
     
-    By the definition of Continuous Time Fictitious Play (CTFP) given by Ewerhart, we require that $m: [0, \infty) \rightarrow \times_\mu \Delta_\mu$ is a measurable mapping such that, for each $\mu$, $m^\mu(t) \in BR^\mu \left( \frac{1}{t} \int_{0}^{t} \sigma^\mu(t') dt' \right)$. Now notice,
+    By the definition of Continuous Time Fictitious Play (CTFP) given in \cite{Ewerhart}, we require that $m: [0, \infty) \rightarrow \times_\mu \Delta_\mu$ is a measurable mapping such that, for each $\mu$, $m^\mu(t) \in BR^\mu \left( \frac{1}{t} \int_{0}^{t} \sigma^\mu(t') dt' \right)$. Now notice,
     
     \begin{equation*}
       m^\mu(t) \in BR^\mu \left( \frac{1}{t} \int_{0}^{t} \sigma^\mu(t') dt' \right) \iff  \in x^\mu\in BR^\mu \left( \frac{1}{t} \int_{0}^{t} [w^{\mu \mu} m^\mu(s) + \sum_{\nu \in N^\mu} w^{\mu \nu} m^\nu(s)] \, ds \right)
@@ -663,17 +677,17 @@ property. \ah{I also want to attempt this with the techniques of
     \end{align}
     
     where each $A^{\mu \nu} = \wmunu A^\mu$ and $\alpha^\mu(t; m)
-    =\frac{1}{t} \int_{0}^{t} m^\mu(s) ds$ as defined by Ewerhart \fb{use the reference rather than the name of the author.}. We
+    =\frac{1}{t} \int_{0}^{t} m^\mu(s) ds$ as defined in \cite{Ewerhart2020}. We
     can, therefore, think of the NA game as a network game in which
     each agent plays the same strategy against each of its neighbours,
     itself included. As such, any $m$ which satisfies the CTFP
-    property for the equivalent network game also satisfies the CTFP
+    property for the equivalent network game also satisfies the NA-CTFP
     requirement for the network aggregative game.
     
     Continuing with this approach, let us look at the case where $\sum_\mu A^\mu =
     \textbf{0}_{n\times n}$ (i.e. a zero sum game). This means that $\sum_i u_i = 0$. Let
     $\xmu_\infty = \lim_{t \rightarrow \infty} \alpha^\mu(t; m)$. More specifically, $\xmu_\infty$
-    belongs to the set of accumulation points of $\alpha^\mu(\cdot; m)$ (which is set valued since
+    belongs to the set of accumulation points of $\alpha^\mu$ (which is set valued since
     the $BR^\mu$ map is set valued). To say that the game has `converged' we require that every
     $\xmu_\infty = (x^1_\infty, ... x^N_\infty)$ is an NE. Under these conditions, we may adapt the
     techniques of (\cite{Ewerhart} Prop. 1) to show convergence.
@@ -723,7 +737,7 @@ property. \ah{I also want to attempt this with the techniques of
       t L(\alpha(t)) - t' L(\alpha(t')) \leq \sum_\mu \sum_{\nu \in N^\mu \cup \{\mu\}} m^\mu(t) \cdot A^{\mu \nu} \int_{t'}^{t} m^\nu(s) ds 
     \end{align}
 
-    We can divide this expression by $t - t'$ and take the limit for $t' \rightarrow t$. This yields the derivative (in particular the upper right Dini derivative)
+    We can divide this expression by $t - t'$ and take the limit for $t' \rightarrow t$. This yields the derivative (in particular the upper right Dini derivative \cite{Royden})
 
     \begin{equation}
       \limsup_{t' \rightarrow t, t' < t}\frac{t L(\alpha(t)) - t' L(\alpha(t'))}{t - t'} \leq 0
@@ -757,7 +771,7 @@ property. \ah{I also want to attempt this with the techniques of
     With the additional assumption that, for all agents $\mu$, all zero-sum NA games have the CTFP property
   \end{corollary}
 
-\section{CTFP achieves no regret}
+\section{NA-CTFP achieves no regret}
   \label{sec::CCEConvergence}
 
   In this section we aim to find some convergence structure for the
@@ -791,7 +805,7 @@ property. \ah{I also want to attempt this with the techniques of
     N^\mu} \wmunu s^\nu$.  Therefore, $\mathcal{D}$ is a probability
   distribution over all actions and all references.  Consider, then, a
   vector of joint distributions over actions and references which is
-  generated by CTFP. In particular, if by playing with CTFP, the
+  generated by NA-CTFP. In particular, if by playing with NA-CTFP, the
   agents reach the state $(\xmu)_{i = 1}^N$ with references
   $(\refmu)_{i = 1}^N$, this is the vector $\mathcal{D} =
   (\mathcal{D}^1, ..., \mathcal{D}^N)$ such that
@@ -803,7 +817,7 @@ property. \ah{I also want to attempt this with the techniques of
     & = \sum_{i, j} (A^\mu)_{ij} \xmu_i \refmu_j \nonumber 
   \end{align}
 
-  As such, we would say that CTFP has converged to the set of CCE if, in the limit of $t
+  As such, we would say that NA-CTFP has converged to the set of CCE if, in the limit of $t
   \rightarrow \infty$, we have that for all $\mu$
 
   \begin{equation}
@@ -855,30 +869,30 @@ property. \ah{I also want to attempt this with the techniques of
 
   \begin{theorem}
     Assuming that $w^{\mu \mu} = 0$, then for any choice of payoff matrix, agents following the
-    CTFP process achieve \emph{no regret} in the limit $t \rightarrow \infty$, i.e.
+    NA-CTFP process achieve \emph{no regret} in the limit $t \rightarrow \infty$, i.e.
     \begin{equation}
       \lim_{T \rightarrow \infty} \max_{x_{i'}^\mu \in S^\mu} \Big\{ \frac{1}{T} \int_{0}^{T} u^{\mu}(x_{i'}^\mu(t), \sigma(t)) - u^{\mu}(m^\mu(t), \sigma(t)) \, dt \Big\} = 0
     \end{equation}
 
-    In particular, CTFP in an NA game converges to the set of CCE.
+    In particular, NA-CTFP converges to the set of CCE.
 
   \end{theorem}
   
   \begin{proof}
     We will adapt the techniques of Ostrovski and van Strein for this proof. Their result was found for a two player game, we will leverage the fact that the NA process means that we can reduce an $N$ player game down to a series of two player games. 
      
-    For any agent $\mu$ define \fb{what are we defining here?}
+    For any agent $\mu$ define the \emph{maximal payoff} as 
     \begin{equation}
       \bar{u}^\mu (\alpha_\sigma^\mu) := max_{y \in \Delta_\mu} u^\mu(y, \alpha_\sigma^\mu)
     \end{equation}
 
-    Now, if the agents are following the NA-FP process, then we know that $m^\mu (t) \in \Delta_\mu$ is the strategy which maximises $u^\mu( \cdot, \alpha_\sigma^\mu)$ so we can write 
+    This is the maximum payoff that agent $\mu$ can receive when playing against the average reference $\alpha_{\sigma}^\mu$. Now, if the agents are following the NA-CTFP process, then we know that $m^\mu (t) \in \Delta_\mu$ is the strategy which maximises $u^\mu( \cdot, \alpha_\sigma^\mu)$ so we can write 
 
     \begin{equation}
       \bar{u}^\mu (\alpha_\sigma^\mu) := max_{y \in \Delta_\mu} u^\mu(y, \alpha_\sigma^\mu) = m^\mu(t) \cdot A^\mu (\alpha_\sigma^\mu)
     \end{equation}
 
-    Then, applying the \emph{envelope theorem} \cite{} we have
+    Then, applying the \emph{envelope theorem} \cite{MathematicalEconomics} we have
 
     \begin{equation}
       \frac{d}{d \alpha_\sigma^\mu} \bar{u}^\mu (\alpha_\sigma^\mu) = \frac{d}{d \alpha_\sigma^\mu} x^\mu \cdot A^\mu (\alpha_\sigma^\mu) \Big |_{x^\mu = m^\mu} = m^\mu \cdot A^\mu
@@ -892,42 +906,42 @@ property. \ah{I also want to attempt this with the techniques of
 
     Then, 
 
-    \begin{align}
-      \frac{d}{dt} (t \bar{u}^\mu (\alpha_\sigma^\mu (t))) & =  \bar{u}^\mu (\alpha_\sigma^\mu (t)) + t m^\mu \cdot A^\mu \frac{d \alpha_\sigma^\mu (t)}{dt} \\
+    \begin{align} \label{eq::dtA}
+      \frac{d}{dt} (t \bar{u}^\mu (\alpha_\sigma^\mu (t))) & =  \bar{u}^\mu (\alpha_\sigma^\mu (t)) + t m^\mu \cdot A^\mu \frac{d \alpha_\sigma^\mu (t)}{dt} \nonumber \\
       & = m^\mu \cdot A^\mu (\sum_{\nu \in N(\mu)} w^{\mu \nu} \alpha^\nu (t) + t (m^\mu \cdot A^\mu \sum_{\nu \in N(\mu)} w^{\mu \nu} \frac{d}{dt} \alpha^\nu(t))
     \end{align} 
 
-    Now, we know that the differential inclusion for the NA-FP process can be written as
+    Now, we know that the differential inclusion for the NA-CTFP process can be written as
 
-    \begin{equation}
+    \begin{equation} \label{eq::NAFP}
       \frac{d}{dt} \alpha^\mu (t) = \frac{1}{t} (m^\mu(t) - \alpha^\mu (t))
     \end{equation}
 
-    We insert this \fb{use enumeration} into the previous equation to yield
+    We insert \ref{eq::NAFP} into (\ref{eq::dtA}) to yield
 
     \begin{align}
-      \frac{d}{dt} (t \bar{u}^\mu (\alpha_\sigma^\mu (t))) & = m^\mu \cdot A^\mu (\sum_{\nu \in N(\mu)} w^{\mu \nu} \alpha^\nu (t)) + t(m^\mu \cdot A^\mu \sum_{\nu \in N(\mu)} w^{\mu \nu} \frac{1}{t} (m^\nu(t) - \alpha^\nu (t))) \\
-      & = m^\mu \cdot A^\mu (\sum_{\nu \in N(\mu)} w^{\mu \nu} \alpha^\nu (t) + m^\mu \cdot A^\mu \sum_{\nu \in N(\mu)} w^{\mu \nu} (m^\nu(t) - \alpha^\nu (t)) \\
+      \frac{d}{dt} (t \bar{u}^\mu (\alpha_\sigma^\mu (t))) & = m^\mu \cdot A^\mu (\sum_{\nu \in N(\mu)} w^{\mu \nu} \alpha^\nu (t)) + t(m^\mu \cdot A^\mu \sum_{\nu \in N(\mu)} w^{\mu \nu} \frac{1}{t} (m^\nu(t) - \alpha^\nu (t))) \nonumber \\
+      & = m^\mu \cdot A^\mu (\sum_{\nu \in N(\mu)} w^{\mu \nu} \alpha^\nu (t) + m^\mu \cdot A^\mu \sum_{\nu \in N(\mu)} w^{\mu \nu} (m^\nu(t) - \alpha^\nu (t)) \nonumber \\
       & = m^\mu \cdot A^\mu \sum_{\nu \in N(\mu)} w^{\mu \nu} m^\nu(t) = m^\mu \cdot A^\mu \sigma^\mu(t) 
     \end{align}
 
 
-    Now if we integrate both sides with respect to $t$ in the bound $[1, T]$ (on which the NA-FP) process is defined, we get
+    Now if we integrate both sides with respect to $t$ in the bound $[1, T]$, on which the NA-CTFP process is defined, we get
 
-    \begin{align}
+    \begin{align*}
       &  T \bar{u}^\mu (\alpha_\sigma^\mu (T)) - \bar{u}^\mu (\alpha_\sigma^\mu (1)) = \int_1^T u^\mu (m^\mu(t), \sigma^\mu(t)) \; dt \\
       & \implies \bar{u}^\mu (\alpha_\sigma^\mu (T)) - \frac{1}{T} \bar{u}^\mu (\alpha_\sigma^\mu (1)) = \frac{1}{T} \int_1^T u^\mu (m^\mu(t), \sigma^\mu(t)) \; dt \\
       & \implies \lim_{T \rightarrow \infty} \bar{u}^\mu (\alpha_\sigma^\mu (T)) - \frac{1}{T} \int_0^T u^\mu (m^\mu(t), \sigma^\mu(t)) \; dt = 0
-    \end{align}
+    \end{align*}
 
     Now notice
 
-    \begin{align}
+    \begin{align*}
       \bar{u}^\mu (\alpha_\sigma^\mu (T)) = \max_{x^\mu_{i'} \in S^\mu} \sum_{j} a_{i'j} (\alpha_{\sigma}^\mu (T))_j & = \max_{x^\mu_{i'} \in S^\mu} \sum_{j} a_{i'j} (\frac{1}{T} \int_{0}^{T} \sigma^\mu(t) \; dt)_j \\
       & = \max_{x^\mu_{i'} \in S^\mu} \sum_{j} a_{i'j} \frac{1}{T} \int_{0}^{T} \sum_i (m^\mu (t))_i (\sigma^\mu(t))_j \; dt\\
       & = \max_{x^\mu_{i'} \in S^\mu} \frac{1}{T} \int_0^T \sum_{ij} a_{i'j} (m^\mu (t))_i (\sigma^\mu(t))_j \; dt\\
       & = \max_{x^\mu_{i'} \in S^\mu} \frac{1}{T} \int_0^T u^\mu(x^\mu_{i'}, \sigma^\mu(t))
-    \end{align}
+    \end{align*}
 
     So we recover
 
@@ -1040,19 +1054,19 @@ property. \ah{I also want to attempt this with the techniques of
   \begin{figure}[t]
     \centering
     \includegraphics[width = \columnwidth]{Figures/Noise10Player.png}
-    \caption{\label{fig::Noise10Player}}
+    \caption{\label{fig::Noise10Player} Trajectories of NA-CTFP in a 10 player game with additive noise (Left) No noise is introduced and learning converges directly to an NE. (Middle) $\gamma = 0.1$, the trajectories converge to a fixed point but removed from the NE. (Right) $\gamma = 0.5$, the trajectories converge to a fixed point which is even further away from the NE.}
   \end{figure}
 
   \begin{figure}[t]
     \centering
     \includegraphics[width = \columnwidth]{Figures/Noise20Player.png}
-    \caption{\label{fig::Noise20Player}}
+    \caption{\label{fig::Noise20Player} Trajectories of NA-CTFP in a 20 player game with additive noise (Left) No noise is introduced and learning converges directly to an NE. (Middle) $\gamma = 0.05$, the trajectories converge to a fixed point but removed from the NE. (Right) $\gamma = 0.1$, the trajectories converge to a fixed point which is even further away from the NE.}
   \end{figure}
 
   \begin{figure}[t]
     \centering
     \includegraphics[width = \columnwidth]{Figures/3PlayerChainNoise.png}
-    \caption{\label{fig::3PlayerChainNoise}}
+    \caption{\label{fig::3PlayerChainNoise} Trajectories of NA-CTFP on the Three Player Chain of Section \ref{sec::NonConv} with additive noise. (Left) $\gamma = 0.1$ leads to a decrease in the size of the cyclic orbit (Middle) $\gamma = 0.5$, no periodicity is seen but the trajectory converges to the NE (Right) $\gamma = 0.75$, NA-CTFP still converges, though after a greater amount of time has elapsed.}
   \end{figure}
 
   The fictitious play process in NA games requires that, at each time step, an agent takes a
@@ -1061,7 +1075,7 @@ property. \ah{I also want to attempt this with the techniques of
   may be corrupted by noise. 
   
   As such, we investigate the effect that introducing additive noise has
-  on CTFP in a zero-sum NA game. We do this in the following manner: at each time step, the
+  on NA-CTFP in a zero-sum NA game. We do this in the following manner: at each time step, the
   reference signal $\refmu(t)$ is adjusted to $\refmu + \gamma \xi$ where $\xi$ is drawn from the
   standard normal distribution (zero mean and unit variance). By varying $\gamma$, we vary the
   strength of the noise. We vary $\gamma$ up to $0.5$ since, above this value, noisy measurements
@@ -1090,7 +1104,15 @@ property. \ah{I also want to attempt this with the techniques of
   introduction of random mutations can remove convergent behaviour and instead lead to periodicity. 
   
 \section{Concluding remarks}
-
+	In this work, we have considered the action of the Fictitious Play learning algorithm in Network Aggregative Games and investigated its long term behaviour through a continuous time analysis. We find that, under a zero-sum condition, the algorithm converges to a fixed point. However, we find experimentally that this is not always the case. In fact, we find a family of NA games, based on the Shapley family, for which FP cycles about the NE. For these cases, we also perform a regret analysis which shows that, regardless of the type of game, the FP algorithm achieves no regret. 
+	
+	We also investigate the influence of noise on the algorithm and find that even with the introduction of additive noise, FP converges to a fixed point, though not necessarily the NE. In fact, for our cyclic family of games, we find that the introduction of noise can actually remove the periodicity, resulting in FP converging to a fixed point.
+	
+	Our work opens a number of lines for future work. Most notable is the effect of noise. It would be prudent to analyse this theoretically, as was done in \cite{MFGFP}, and consider the conditions under which FP will still converge to a fixed point. Furthermore, it would be interesting to investigate the phenomenon we report experimentally in a theoretical framework. Namely, the question of why noise breaks periodicity in FP and results in convergence to an NE should be investigated and, indeed, this is a line which we are currently pursuing.
+	
+	In addition, we note that the \emph{Mann Iteration}, a method of approximating fixed points which is investigated in \cite{Parise2020}, shares a remarkably similar structure to the discrete variant of FP. This may present an avenue by which NA-CTFP may be analysed in the case of convex cost functions. 
+	
+	Finally, we note that in recent years FP in two player games has shown a remarkable variety of dynamical behaviours, including periodicity and chaos. In our work we have shown convergence to a fixed point and, through experiments, periodicity. It stands to reason, therefore, that a greater variety of dynamical behaviours exist for NA-CTFP for certain classes of games. It would be important to determine what these classes are. Short from being merely a curiosity, this would allow for the identification of games in which NA-CTFP leads to inherently unpredictable behaviour, an important question from the point of view of building Safe and Trusted AI.
 
 \section*{Broader Impact}
 
