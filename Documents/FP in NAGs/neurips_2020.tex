@@ -155,21 +155,20 @@ to the previous behaviour of the others.
 
 \subsection{Contributions}
 
-  The main contribution of this work is to study the behaviour of the Fictitious Play (FP) learning
-  algorithm, in continuous time, when applied on a Network Aggregative Matrix Game.
-
+  The main contribution of this work is to introduce learning on the Network Aggregative Game
+  through the action of Fictitious Play (FP).
 
   We first show that a Nash Equilibrium exists and that FP admits
   solutions in this setting. In particular, we study zero-sum games and show that
-  Fictitious Play converges to a fixed point, which for a network without any
+  FP converges to a fixed point, which for a network without any
   self-loops corresponds to a Nash Equilibrium. In addition, we find that, for games
-  which are not zero-sum, agents following Fictitious Play are able to
+  which are not zero-sum, agents following FP are able to
   achieve no regret.
 
   Finally, we explore FP through numerical simulations to consider the
   question of whether it always converges. We answer this in the negative by finding a family of
   games in which action profiles cycle around the Nash Equilibrium. Finally, our experiments
-  document how noise affects the convergence of Fictitious Play. Our experiments suggest that, under
+  document how noise affects the convergence of FP. Our experiments suggest that, under
   the presence of noise, the algorithm still reaches a fixed point, but perhaps not the Nash
   Equilibrium. This presents an interesting avenue for future research.
 
@@ -469,7 +468,10 @@ setting.
   \fb{perhaps we have to introduce some terminology from topology to keep the results self-contained?}
 
   \begin{theorem}[Kakutani] 
-    Let $A \subset \mathbb{R}^n$ be compact and convex and $g: A \rightarrow A$ be closed or upper semi-continuous, with nonempty, convex and compact values. Then $g$ has a fixed point, that is a point $\bar{a}$ such that $\bar{a} \in g(\bar{a})$. \cite{Kakutani}
+    Let $A$ be a compact and convex in a Euclidean space and $g: A \rightarrow \mathbf{P}(A)$ (where
+    $\mathbf{P}(A)$ denotes the power set of A) be upper semi-continuous, with nonempty, convex and compact values.
+    Then $g$ has a fixed point, that is a point $\bar{a}$ such that $\bar{a} \in g(\bar{a})$.
+    \cite{Kakutani}
   \end{theorem}
 
   Note that, when acting on a simplex, the function $g: \Delta \rightarrow \textbf{P}(\Delta)$, where $\textbf{P}(\Delta)$ denotes all nonempty, closed and convex subsets of $\Delta$ only has to satisfy the upper-semi continuity condition to admit a fixed point.
@@ -1116,12 +1118,24 @@ property.
 
 \section*{Broader Impact}
 
-Authors are required to include a statement of the broader impact of their work, including its ethical aspects and future societal consequences. 
-Authors should discuss both positive and negative outcomes, if any. For instance, authors should discuss a) 
-who may benefit from this research, b) who may be put at disadvantage from this research, c) what are the consequences of failure of the system, and d) whether the task/method leverages
-biases in the data. If authors believe this is not applicable to them, authors can simply state this.
+The dynamics of learning is an important consideration for all practitioners. In particular, it has
+been shown a number of times \cite{noneqmbehaviour} that convergence of learning cannot always be
+assumed. Rather, learning generally presents much more complex dynamics \cite{gallaandfarmer}, which
+only increases as the number of players increases \cite{sanders}. Our work presents practitioners
+who applies Fictitious Play with a case in which rigorous stability properties may be guaranteed.
+We also elucidate the behaviour of the algorithm under more general assumptions, both by
+understanding its regret properties as well as through an experimental study of the impact of noise.
 
-Use unnumbered first level headings for this section, which should go at the end of the paper. {\bf Note that this section does not count towards the eight pages of content that are allowed.}
+As regards FP  itself, the learning strategy has strong applications in robotic control
+\cite{Smyrnakis, Hernandez, Sharma} as well as economic modelling \cite{vonNeumann}. As such we
+Furthermore, the algorithm has links to other learning protocols including the replicator dynamic
+\cite{Benaim} and reinforcement learning \cite{LeslieandCollins}. Therefore, we believe that an
+understanding of FP has subsequent impacts on a number of fields.
+
+Finally, our work has a strong impact on the study of the Network Aggregative Game, which has strong
+applications in multi agent control \cite{GrammaticoAggregativeControl}. We 
+believe that our work makes a strong step towards ensuring that systems which learn and adapt on
+NA games maintain stability and, therefore, can be considered safe.
 
 \begin{ack}
 Use unnumbered first level headings for the acknowledgments. All acknowledgments
