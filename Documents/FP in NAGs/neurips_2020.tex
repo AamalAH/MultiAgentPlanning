@@ -118,79 +118,123 @@
 
 \section{Introduction}
 
-Multi Agent Learning \cite{Schwartz} requires a number of agents to adapt in an environment where
-each agent must adapt in response to the behaviour of the other agents. This leads to a
-fundamentally non-stationary problem, which presents a challenge to designing effective learning
-policies. Even when there are a small number of agents in the game, learning has been shown to lead
-to non-stationary, and even chaotic behaviour \cite{SatoChaos}, and this problem becomes even more
-pronounced as the number of agents increase \cite{Sanders}. In this light, it would seem that, when there is a large population of agents, it is almost impossible to understand the long term behaviour of multi agent learning \cite{PiliourasChaoticMaps}. This, of course, poses a problem for AI safety, for which it is necessary that learning systems are designed so that their ultimate behaviour is guaranteed to satisfy some predetermined goals.
+Multi-Agent Learning requires a number of agents to adapt in response
+to the behaviour of the other agents as well as the environment
+\cite{Schwartz}. This feature leads to a fundamentally non-stationary
+problem, which presents a challenge to designing effective learning
+policies. Even for a small number of agents in the game,
+learning has been shown to lead to non-stationary, even chaotic
+behaviour \cite{SatoChaos}, and this problem becomes even more
+pronounced as the number of agents increase \cite{Sanders}. In this
+light, it would seem that, when there is a large population of agents,
+it is almost impossible to understand the long term behaviour of multi-agent learning \cite{PiliourasChaoticMaps}. This, of course, poses a
+problem for AI safety, for which it is \fb{desirable} that learning systems
+are designed so that their ultimate behaviour is guaranteed to satisfy
+some predetermined goals.
 
-To deal with this problem, one must attempt to reduce the many player game to something which is
-tractable. A number of reductions have been proposed, most notably \emph{Mean Field} Games
-and \emph{Aggregative} Games. The former makes the assumption of an infinite
-number of agents, so that the population can be represented through a distribution over players'
-states \cite{CainesPaper} . Every agent then updates their action profiles depending on this
-distribution. In the latter each agent plays considers a real valued function which is a convex
-combination of the states of the other agents. In both formulations, a many player game is reduced
-to the set of two player games which each agent is involved in.
+\fb{if space allows, you might consider to contrast the situation with
+  single-agent learning.}
 
-Both formulations have been the object of rigorous study and it has been shown that agents reach an equilibrium when learning on such games (c.f. \cite{MFGLearningPapers} for Mean Field Games and
-\cite{Aggregative Papers} for Aggregative Games). However, both also present a fundamental limitation.
-Namely, they both require that agents have access to the action profiles of the entire population.
-This could be through communication with all other agents, or through the intervention of a central
-coordinator who is able to the entire population. Whilst recent work aims to relax this assumption
-through the introduction of noise \cite{MFG-FP} or partial observability \cite{AAMASPaper}, the
-requirement that each agent updates their actions based on the entire population is rather strong.
+A promising approach to solve multi-agent learning
+%To deal with this problem, one must attempt
+consists in reducing the many player game to something which is more
+tractable. A number of reduction methods have been proposed in recent
+years, most notably \emph{mean field} games \cite{} and \emph{aggregative}
+games \cite{}. The former make the assumption of an infinite number of
+agents, so that the population can be represented through a
+distribution over players' states \cite{CainesPaper} . Every agent
+then updates their action profiles depending on this distribution. In
+the latter each agent plays \fb{?} considers a real valued function which is
+a convex combination of the states of the other agents. In both
+formulations, a many-player game is reduced to the set of two-player
+games which each agent is involved in \fb{?}.
 
-In this study, we investigate a variant of the aggregative game known as the \emph{Network
-Aggregative} (NA) Game. This format assumes that there is an underlying communication network
-through which agents interact. Then each agent updates their actions according only to those agents
-with whom they communicate. This significantly relaxes the communication load on each agent and
-lifts the need for a central coordinator. Recent work on the NA game has shown that it is possible
-for agents to reach an equilibrium strategy in an entirely distributed manner \cite{Grammatico,
-LeaderFollower, MyopicAgents}. We contribute in this direction by analysing the long term behaviour of learning on an NA game. In particular, we analyse the Fictitious Play Learning
-Algorithm \cite{Brown, Harris}, in which agents are assumed to be myopic, in that they react solely
-to the previous behaviour of the others.
+Both approaches have been the object of rigorous study and it has been
+shown that agents reach an equilibrium when learning on such games
+(cf.~\cite{MFGLearningPapers} for mean field games and
+\cite{Aggregative Papers} for aggregative games). However, both also
+present a fundamental limitation.  Namely, they both require that
+agents have access to the action profiles of the entire population.
+This could be through communication with all other agents, or through
+the intervention of a central coordinator who is able to \fb{?} the
+entire population. Whilst recent work aims to relax this assumption
+through the introduction of noise \cite{MFG-FP} or partial
+observability \cite{AAMASPaper}, the requirement that each agent
+updates their actions based on the entire population is rather strong
+\fb{and not always supported by empirical evidence}.
+
+In this study, we investigate a variant of aggregative games:
+%known as the
+\emph{network aggregative} (NA) games. This format assumes that
+there is an underlying communication network through which agents
+interact. Then each agent updates their actions according only to
+those agents with whom they communicate. This assumption significantly relaxes
+the communication load on each agent and lifts the need for a central
+coordinator. Recent work on NA games has shown that it is possible
+for agents to reach an equilibrium strategy in an entirely distributed
+manner \cite{Grammatico, LeaderFollower, MyopicAgents}. We contribute
+in this direction by analysing the long term behaviour of multi-agent learning on
+ NA games. In particular, we analyse the fictitious play learning
+algorithm \cite{Brown, Harris}, in which agents are assumed to be
+myopic, in that they react solely to the previous behaviour of the
+others.
+
+\fb{maybe above we can reduce a bit the discussion of NA and motivate
+  a bit more FP.}
 
 
 \subsection{Contributions}
 
-  The main contribution of this work is to introduce learning on the Network Aggregative Game
-  through the action of Fictitious Play (FP).
+  The main contribution of this work is to introduce learning in
+  network aggregative game through the action of fictitious play (FP).
 
-  We first show that a Nash Equilibrium exists and that FP admits
-  solutions in this setting. In particular, we study zero-sum games and show that
-  FP converges to a fixed point, which for a network without any
-  self-loops corresponds to a Nash Equilibrium. In addition, we find that, for games
-  which are not zero-sum, agents following FP are able to
-  achieve no regret.
+  We first show that \fb{in aggregative games played with FP} a Nash Equilibrium exists and that FP admits
+  solutions in this setting. Specifically, we consider zero-sum games
+  and show that FP converges to a fixed point, which for networks
+  without self-loops corresponds to a Nash equilibrium. In
+  addition, we find that, for games which are not zero-sum, agents
+  following FP are able to achieve no regret.
 
-  Finally, we explore FP through numerical simulations to consider the
-  question of whether it always converges. We answer this in the negative by finding a family of
-  games in which action profiles cycle around the Nash Equilibrium. Finally, our experiments
-  document how noise affects the convergence of FP. Our experiments suggest that, under
-  the presence of noise, the algorithm still reaches a fixed point, but perhaps not the Nash
-  Equilibrium. This presents an interesting avenue for future research.
+  Further, we explore FP through numerical simulations to check
+%onsider the question of
+whether it converges in non-zero sum games. We answer this in the
+negative by finding a family of games in which action profiles cycle
+around the Nash equilibrium. Finally, our experiments document how
+noise affects the convergence of FP, suggesting
+%Our experiments suggest
+that,
+under the presence of noise, the algorithm still reaches a fixed
+point, but perhaps not the Nash equilibrium. This presents an
+interesting avenue for future research.
 
 \subsection{Related Work}
 
 \paragraph{Network Aggregative Games}
 
-The NA game is a recent introduction \cite{Parise2015} which presents a variant of aggregative games
-by adding an underlying structure to the population. Since its introduction, distributed algorithms
-have been built with the aim of finding NE. In particular, \cite{Parise2015, Parise2020} consider
-the case in which payoffs are given by Lipschitz functions with unique minimisers and apply standard
-topological fixed point towards designing algorithms which will converge to the NE. We note that the
-\emph{Mann Iteration}, one of the algorithms applied in \cite{Parise2020} shares a remarkably
-similar form with the discrete variant of FP. To the best of our knowledge, this link has not been
-explored in the literature and is an avenue for research which we are currently pursuing. Another
-common algorithm for distributed NE seeking is the projected gradient (resp. subgradient) dynamics
-which is explored in \cite{Zhang2020} (resp. \cite{Shokri2020, Shokri2021}). In all of these works,
-the cost function is assumed to be convex, and therefore have a unique minimiser. In fact this is a
-common assumption in works concerning NA Games \cite{Zhu2021, Lei2020}, which we believe is due to
-its ubiquity in control settings. We have not yet come across works which consider NA games from the
-point of view of payoff matrices, which are more common in multi agent learning settings.
-Furthermore, to the best of our knowledge, this is the first work which introduces the application
+NA games are a recent \cite{Parise2015} extension of
+%introduction  which presents
+%a variant of
+aggregative games by adding an underlying structure to
+the agent population. Since its introduction, distributed algorithms have
+been built with the aim of finding NE in NA games. In particular,
+\cite{Parise2015,Parise2020} consider the case in which payoffs are
+given by Lipschitz functions with unique minimisers and apply standard
+topological fixed-point towards designing algorithms that
+converge to NE. We note that the \emph{Mann Iteration}, one of the
+algorithms applied in \cite{Parise2020} shares a remarkably similar
+form with the discrete variant of FP. To the best of our knowledge,
+this link has not been explored in the literature and is an avenue for
+research which we are currently pursuing. Another common algorithm for
+distributed NE seeking is the projected gradient (resp. subgradient)
+dynamics which is explored in \cite{Zhang2020}
+(resp. \cite{Shokri2020, Shokri2021}). In all of these works, the cost
+function is assumed to be convex, and therefore have a unique
+minimiser. In fact this is a common assumption in works concerning NA
+Games \cite{Zhu2021, Lei2020}, which we believe is due to its ubiquity
+in control settings. We have not yet come across works which consider
+NA games from the point of view of payoff matrices, which are more
+common in multi agent learning settings.  Furthermore, to the best of
+our knowledge, this is the first work which introduces the application
 of a strict learning algorithm in the NA setting.
 
 \paragraph{Fictitious Play}
