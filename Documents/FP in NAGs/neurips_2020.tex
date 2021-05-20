@@ -118,6 +118,8 @@
 
 \section{Introduction}
 
+\fb{multi agent $\to$ multi-agent}
+
 Multi-Agent Learning requires a number of agents to adapt in response
 to the behaviour of the other agents as well as the environment
 \cite{Schwartz}. This feature leads to a fundamentally non-stationary
@@ -221,155 +223,225 @@ been built with the aim of finding NE in NA games. In particular,
 given by Lipschitz functions with unique minimisers and apply standard
 topological fixed-point towards designing algorithms that
 converge to NE. We note that the \emph{Mann Iteration}, one of the
-algorithms applied in \cite{Parise2020} shares a remarkably similar
+algorithms applied in \cite{Parise2020}, shares a remarkably similar
 form with the discrete variant of FP. To the best of our knowledge,
-this link has not been explored in the literature and is an avenue for
-research which we are currently pursuing. Another common algorithm for
+this link has not been explored in the literature and is a venue for
+research that we are currently pursuing. Another common algorithm for
 distributed NE seeking is the projected gradient (resp. subgradient)
-dynamics which is explored in \cite{Zhang2020}
-(resp. \cite{Shokri2020, Shokri2021}). In all of these works, the cost
+dynamics, which is explored in \cite{Zhang2020}
+(resp.~\cite{Shokri2020, Shokri2021}). In all of these works, the cost
 function is assumed to be convex, and therefore have a unique
 minimiser. In fact this is a common assumption in works concerning NA
 Games \cite{Zhu2021, Lei2020}, which we believe is due to its ubiquity
 in control settings. We have not yet come across works which consider
 NA games from the point of view of payoff matrices, which are more
-common in multi agent learning settings.  Furthermore, to the best of
+common in multi-agent learning settings.  Furthermore, to the best of
 our knowledge, this is the first work which introduces the application
-of a strict learning algorithm in the NA setting.
+of a strict \fb{?} learning algorithm in the NA setting.
+
+
+\fb{the section on FP is very well-read, but maybe not everything is
+  relevant for the following. I'd rather try to focus on what is
+  relevant for our paper and contrast approaches.  Also, it is not
+  clear what is the interest of FP for multi-agent learning.  }
 
 \paragraph{Fictitious Play}
-
-Fictitious Play was introduced by Brown in 1951 \cite{BrownPublished, BrownUnpublished} as a
-'natural' way in which to approximate the Nash Equilibrium in zero sum games. It was known at the
-time that a discrete variant of the algorithm would converge to the NE in two player zero-sum games
-\cite{Robinson}. Since then a number of proofs of convergence were determined in 2 player games
-\cite{Miyasawa, Polak, Berger, Monderer and Sela, Monderer and Shapley}, as well as corresponding
-convergence rates \cite{Harris, Shapiro}. Many results hold for both the discrete and continuous
-variants of FP. Their relation was finally solved by Hofbauer \cite{Hofbauer}, who showed that
-attractors of the discrete time process are also attractors for the continuous time variant. As
-such, most of the analysis on FP focuses on the continuous time variant \cite{Ostrovski}. It was
-later shown in \cite{Shapley} that there is a family of games (now called the \emph{Shapley family})
-for which FP does not converge at all but rather shows periodic behaviour. This led to research
-which looks at this non convergent behaviour, specifically showing the existence of more periodic
-orbits as well as chaotic behaviour \cite{Sparrow}. However, the work looking at fictitious play
-where there are more than two agents is sparse. \cite{Sela} considers a game in which a multi-player
-game is decomposed by requiring that each agent engage in a two person game against each of the
-opponent. Their payoff is given by the sum of payoffs in all of these subgames. It was found that,
-if this game is zero sum, then FP will converge. Similar results for more than two players were
-found for games with identical interests in \cite{MondererShapley1994}. In \cite{FPMFG}, the action
-of FP was considered in a Mean Field Game, and it was found again that the algorithm converges for
-zero sum games. The most general result, and the one most similar to our own, was found by Ewerhart
-and Valkanova in 2020 \cite{Ewerhart} in which they showed that fictitious play converges in network
-games, where each agent is engaged in a two-player game with each of their neighbours. The rate of
-convergence was found to be independent of the network size.  Our work extends the analysis of FP in
-multiplayer games by considering its action in NA Games, so that the agents do not play individual
-games against each of their neighbours but rather a single game against the aggregate of their
-neighbours. In particular we also extend a result for two player games found by Ostrovski and van
-Strein \cite{Payoff Performance} which showed that FP achieves no-regret to the multi-player
-setting.
+%
+Fictitious Play \cite{BrownPublished,
+  BrownUnpublished}
+was introduced
+%by Brown in 1951
+as a 'natural' way
+%in which
+to approximate Nash Equilibris in zero-sum games. At the time, it was
+shown that a discrete variant of FP
+%the algorithm would
+converge to 
+NE in two-player zero-sum games \cite{Robinson}. Since then, a number
+of results on convergence were proved in two-player games
+\cite{Miyasawa, Polak, Berger, Monderer and Sela, Monderer and
+  Shapley}, including
+%as well as
+corresponding convergence rates \cite{Harris,
+  Shapiro}.
+%Many results hold for both the discrete and continuous
+%variants of FP.
+The relation between the discrete and continuous variants of FP was
+finally solved by Hofbauer \cite{Hofbauer}, who showed that attractors
+of the discrete time process are also attractors for the continuous
+time variant. As such, most of the analysis on FP focuses on the
+continuous time variant \cite{Ostrovski}. It was later shown in
+\cite{Shapley} that there is a family of games (now called the
+\emph{Shapley family}) for which FP does not converge, but
+rather shows periodic behaviour. \fb{we might remove the following: This led to research which looks at
+this non convergent behaviour, specifically showing the existence of
+more periodic orbits as well as chaotic behaviour
+\cite{Sparrow}.} However, the work looking at fictitious play
+%where there are
+with more than two agents is sparse. In \cite{Sela}
+%considers a game in which a
+multi-player games are decomposed
+%by requiring that each agent engage in a
+in two-player games between each pair of players in the game.
+%against each of the opponent.
+Each agent's payoff is given by the sum of payoffs in all of these
+subgames. It was found that, if this game is zero-sum, then FP will
+converge. Similar results for more than two players were found for
+games with identical interests \fb{?} in \cite{MondererShapley1994}. In
+\cite{FPMFG}, the action of FP was considered in a mean field game,
+and it was found again that the algorithm converges for zero-sum
+games. The most general result, and the one most similar to our own,
+appears in
+%was found by Ewerhart and Valkanova in 2020
+\cite{Ewerhart}, in which
+the authors show that fictitious play converges in network games, where
+each agent is engaged in a two-player game with each of their
+neighbours. The rate of convergence was found to be independent of the
+network size.  Our work extends the analysis of FP in multi-player
+games by considering its action in NA Games, so that the agents do not
+play individual games against each of their neighbours but rather a
+single game against the aggregate of their neighbours. In particular
+we also extend a result for two player games found by Ostrovski and
+van Strein \cite{Payoff Performance} which showed that FP achieves
+no-regret in the multi-player setting.
 
 \section{Preliminaries}
+
+\fb{I'd rather not leave an empty space between section and
+  subsection.}
+
 \subsection{Network Aggregative Games}
 \label{sec::NAG}
 
-  The model we consider is that there is a set $\agentset = {1,
-           \ldots , N}$ of agents who are connected through an underlying
-          interaction graph. This graph is given by the tuple
-          $(\agentset, (\edgeset, \weightset))$ in which $\edgeset$ is
-          the set of all pairs $(\mu, \nu) \in \agentset \times \agentset$
-          connected. Formally,
-        
-  \begin{definition}[Interaction Graph]
+The model we consider consists of
+%is that there is
+a set $\agentset = \{1,
+           \ldots , N \}$ of agents, who are connected through an underlying
+           interaction graph.
+           %This graph is given by the tuple
+          %$(\agentset, (\edgeset, \weightset))$ in which $\edgeset$ is
+          %the set of all pairs $(\mu, \nu) \in \agentset \times \agentset$
+           %connected.
+           More formally:
+%        
+  \begin{definition}[Interaction Graph] \label{interactiongraph}
     Given a set $\agentset$ of agents, an {\em interaction graph} $I = (\agentset, (\edgeset,
-    \weightset))$ such that
+    \weightset))$ is such that
     \begin{itemize}
-    \item $\edgeset \subseteq \agentset \times \agentset$.        Then, the set of neighbours of agent
-        $\mu$ is denoted as $N^\mu = \{\nu \in \agentset \, : \, (\mu, \nu) \in \edgeset\}$.
-      \item $\weightset \in M_N(\mathbb{R})$ is the weighted adjacency matrix whose elements $w^{\mu
-        \nu}$ expresses the importance that agent $\mu$ places on agent $\nu$. If $(\mu, \nu) \not
+
+    \item $\edgeset \subseteq \agentset^2$.  Then, the set of
+      neighbours of agent $\mu$ is denoted as $N^\mu = \{\nu \in
+      \agentset \mid (\mu, \nu) \in \edgeset\}$.
+
+    \item $\weightset \in M_N(\mathbb{R})$ is the weighted \fb{or weight?} adjacency matrix, whose elements $w^{\mu
+        \nu} \in [0, 1]$ expresses the importance that agent $\mu$ places on agent $\nu$. If $(\mu, \nu) \not
         \in \edgeset$ then $w^{\mu \nu} = 0$;        $\wmunu \in (0, 1]$ otherwise.
     \end{itemize}
   \end{definition}
 
-  With the above definition, we can formalise the network aggregative (NA) game:
-
-  \begin{definition}[Network Aggregative Game]
-    A Network Aggregative game is defined as the tuple $\Gamma = (I, (\actionset{\mu},
-        \utility{\mu})_{\mu \in \mathcal{N}})$, where $I$ is the interaction graph,
-        $\actionset{\mu}$ and $\utility{\mu}$ refer to $\mu$'s set of actions (with cardinality
-        $|\actionset{\mu}| = n$) and utility function respectively.
+  Given Def.~\ref{interactiongraph} of interaction graph,
+  %With the above definition,
+  we introduce network aggregative (NA) games:
+%
+  \begin{definition}[NA Game]
+    A {\em network aggregative game} is
+    %defined as the
+a tuple $\Gamma = (I, (\actionset{\mu},
+    \utility{\mu})_{\mu \in \mathcal{N}})$, where $I$ is an
+    interaction graph, and for every agent $\mu \in \mathcal{N}$, $\actionset{\mu}$ and $\utility{\mu}$
+    %refer to
+    are $\mu$'s set of actions (with cardinality $|\actionset{\mu}| = n$)
+    and utility function respectively.
   \end{definition}
 
-  We consider the \emph{state} of agent $\mu$ to be the probability vector $\xmu \in
-  \mathbb{R}^n$ where $\xmu_i$ is the probability with which the agent plays action $i$. It
-  should be noted that this probability vector is often referred to as $\mu$'s \emph{mixed
-  strategy}. With this in mind, we can construct, as their state space, the unit simplex on
-  agent $\mu$'s action set. This is given as $\Delta_\mu := \{\xmu \in \mathbb{R}^n \, : \,
-  \sum_i \xmuaction{i} = 1\}$. Also associated with each agent is a utility function
+  We define the \emph{state} of agent $\mu$ to be the probability
+  vector $\xmu \in \mathbb{R}^n$, where $\xmu_i$ is the probability
+  with which agent $\mu$ plays action $i$.
+  %It should be noted that
+  This
+  probability vector is often referred to as $\mu$'s \emph{mixed
+    strategy}. With this in mind, we can construct, as their state
+  space, the {\em unit simplex} $\Delta_\mu$ on agent $\mu$'s action set, which
+  is defined
+  as $\Delta_\mu := \{\xmu \in \mathbb{R}^n \, : \, \sum_i
+  \xmuaction{i} = 1\}$. Also associated with each agent is a utility
+  function
 
-  The utility function, for each agent $\mu$, is given as $u^\mu(\xmu, \xnotmu)$ in which we use
-  the standard notation $-\mu$ to refer to all agents other than $\mu$. Notice that this requires
-  that each agent play the same strategy against all of their neighbours. What is unique about the
-  NA game is the structure of the payoffs themselves. In this format, each agent is receives a
-  reference $\sigma$ which is a weighted sum of each of their neighbours
-  state. Formally
+  The utility, for each agent $\mu$ and action profile
+  $(\xmu, \xnotmu)$, is given as $u^\mu(\xmu, \xnotmu)$ in which we
+  use the standard notation $-\mu$ to refer to all agents other than
+  $\mu$. Notice that this requires that each agent plays the same
+  strategy against all of their neighbours. What is unique about 
+  NA games is the structure of the payoffs themselves. In this format,
+  each agent $\mu$ receives a reference $\sigma^{\mu} = \sum_{\nu \in N^\mu} \wmunu \xnu$, which is a weighted sum
+  of each of their neighbours state.
+  %Formally
   %
-  \begin{equation}
-    \sigma^\mu = \sum_{\nu \in N^\mu} \wmunu \xnu.
-  \end{equation}
+%  \begin{equation}
+%    \sigma^\mu = \sum_{\nu \in N^\mu} \wmunu \xnu.
+%  \end{equation}
 
-  Then, the agent's must optimise their payoff with respect to this reference vector. Thus,
-  instead of having to consider the actions of the entire population, or play individual games
-  against each of their neighbours, the agent only has to consider $\sigma^\mu$ as a
-  `measurement' of the local aggregate state and optimise with respect to this measurement.
-  This allows us to make the reduction $u^\mu(\xmu, \xnotmu) = u^\mu(\xmu, \refmu)$. In
-  particular, we consider that the agent is engaged in a matrix game against the
-  reference vector so that
+  Then, the agent must optimise their payoff with respect to the
+  reference vector $\sigma^{\mu}$. Thus, instead of considering
+  the actions of the entire population, or play individual games
+  against each of their neighbours, the agent only considers
+  $\sigma^\mu$ as a `measurement' of the local aggregate state and
+  optimises with respect to this measurement.  This allows us to make
+  the reduction $u^\mu(\xmu, \xnotmu) = u^\mu(\xmu, \refmu)$. In
+  particular, we consider that the agent is engaged in a matrix game
+  against the reference vector so that
   %
   \begin{equation}
     u^\mu(\xmu, \refmu) = \xmu \cdot A^\mu \refmu = \xmu
                 \cdot A^\mu \weightedsum.
   \end{equation}
+%
+  where $A^\mu$ is the payoff matrix associated with agent $\mu$. In particular,  this means we can write the game $\Gamma$ with the payoff
+  matrices $A^\mu$ in place of the utility functions
+  $\utility{\mu}$. Hence, the NA game allows for the reduction of a
+  multi-player game into a series of two-player games. The agent's goal
+  is to maximise their payoff with respect to the reference vector. As
+  such, we define the best response correspondence $BR^\mu$, which maps
+  every $\refmu$ to the set $\arg \max_{y \in \Delta_\mu} {u^\mu(y,
+    \refmu)}$.
 
-  where $A^\mu$ is the payoff matrix associated to agent $\mu$. Note that this means we can write
-  the game $\Gamma$ with the payoff matrices $A^mu$ in place of the utility functions
-  $\utility{\mu}$. The NA game allows for the reduction of a multiplayer game into a series of
-  two-player games. The agent's goal is to maximise their payoff with respect to the reference
-  vector. As such, we define the best response correspondence $BR^\mu$ which maps any $\refmu$
-  the set $\arg \max_{y \in \Delta_\mu} {u^\mu(y, \refmu)}$. 
-
-  Finally, a central concept of game theory is that of the Nash Equilibrium, in which no rational
-  agent has the incentive to deviate from their current state. This can be formalised by saying
-  that all agents are playing the best response to each other.
-
-  This leads naturally to the definition of a Nash Equilibrium in an NA Game as
-
+  Finally, a central concept of game theory is that of the Nash
+  Equilibrium, in which no rational agent has the incentive to deviate
+  from their current state. This can be formalised by saying that all
+  agents are playing their best response to each other.
+%
+  This leads naturally to the definition of a Nash Equilibrium in an NA game as
+%
   \begin{definition}(NE) \label{def::NE}
-    The set of vectors $\{ \NE{\mu}\}_{\mu \in \agentset}$ is an NE if, for all $\mu$,  
+    The set of vectors $\{ \NE{\mu}\}_{\mu \in \agentset}$ is a {\em
+      Nash equilibrium} if, for all $\mu$,
     \begin{equation*}
     \NE{\mu} \in BR^\mu (\refmu) = \arg \max_{x \in \Delta_\mu} u^\mu(x, w^{\mu \mu} x + \sum_{\nu \in N^\mu \backslash \{\bar{\mu}\}} \wmunu \NE{\nu}).
     \end{equation*} 
   \end{definition}
     
   \begin{remark}
-    It can be seen that the concept of the Nash Equilibrium in the NA game is a natural
-    extension of the NE in a bimatrix game $(A, B)$. In particular, if we consider an NA game
-    with only two players and no self-loops then the above definition yields
-
-    \begin{equation*}
-      \NE{1} \in BR^1 (\sigma^1) = \arg \max_{x in \Delta_1} u^1 (x, \NE{2}), 
-    \end{equation*}
-
+    %It can be seen that
+The notion of Nash equilibrium in the NA game is a natural
+extension of the NE in a bimatrix game.
+%$(A, B)$.
+In particular, if we consider an NA game with only two players and no
+self-loops then the above definition yields that $ \NE{1}$ is an NE iff
+%
+%    \begin{equation*}
+ $     \NE{1} \in BR^1 (\sigma^1) = \arg \max_{x in \Delta_1} u^1 (x, \NE{2})$,
+%    \end{equation*}
+%
     and similarly for $\NE{2}$. This is precisely the definition of an NE in a two player game \cite{}.
   \end{remark}
 
   We will show that the NE exists for an NA game in Section \ref{sec::ExistenceofNE}. 
 
-  Finally we note that an NA game is \emph{zero-sum} if the utilities of each agent sum to zero for any strategy set $\{ \xmu \}_{\mu \in \agentset}$. Formally
-
-  \begin{equation}
-    \sum_\mu u^\mu(\xmu, \weightedsum) = 0.
-  \end{equation}
+  Finally, we note that an NA game is \emph{zero-sum} if the utilities of each agent sum to zero for any strategy set $\{ \xmu \}_{\mu \in \agentset}$. Formally,
+%
+%  \begin{equation}
+    $\sum_\mu u^\mu(\xmu, \weightedsum) = 0$.
+%  \end{equation}
 
 \subsection{Continuous Time Fictitious Play}
 \label{sec::CTFP}
