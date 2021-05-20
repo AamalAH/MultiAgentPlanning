@@ -446,22 +446,34 @@ self-loops then the above definition yields that $ \NE{1}$ is an NE iff
 \subsection{Continuous Time Fictitious Play}
 \label{sec::CTFP}
 
-  Fictitious Play requires that, at the current time, each agent considers the average state
-  of their opponent in the past, and respond optimally (i.e. play a best response) to this state. In the case of an NA game, each agent considers their reference vector to be their
-  opponent. As such, each agent $\mu$ must update their state according to the time-average of
-  $\refmu$. To formalise this we write
+  Fictitious Play requires that, at the current time, each agent
+  considers the average state of their opponent in the past, and
+  respond optimally (i.e., play a best response) to this state. In the
+  case of an NA game, each agent considers their reference vector to
+  be their opponent. As such, each agent $\mu$ must update their state
+  according to the time-average of $\refmu$. To formalise this we
+  write
+  
+  \fb{What is $\avgref{\mu}$?}
 
   \begin{equation}
     \avgref{\mu} = \frac{1}{t} \int_0^t \refmu(s) \; ds.
   \end{equation}
 
-  Using this, we follow in the footsteps of Ewerhart \cite{} and Harris \cite{} to define
-  Fictitious Play in continuous time, but with a slight adaptation for the NA game.
-%
-  \begin{definition}[Network Aggregative - Continuous Time Fictitious Play (NA-CTFP)]
-    An NA-CTFP is defined as a measurable map $m$ with components $m^\mu$ such that for all $\mu$
-    and all $t \geq 1$, $m^\mu: [0, \infty) \rightarrow \Delta_\mu$ satisfies $m^\mu(t) \in
-    BR^\mu(\alpha_{\sigma}^\mu)$ for almost all $t \geq 1$.
+  Using this, we follow \cite{Ewerhart,Harris}
+  %in the footsteps of Ewerhart \cite{} and Harris \cite{}
+  to define
+  Fictitious Play in continuous time, but adapted
+  %with a slight adaptation for the
+  to NA games.
+  %
+  \fb{is there any way we can make the following definition more intuitive?}
+  \begin{definition}[NA-CTFP]
+    A {\em network aggregative - continuous time fictitious play} is
+    defined as a measurable map $m$ with components $m^\mu$ such that
+    for all $\mu$ and all $t \geq 1$, $m^\mu: [0, \infty) \rightarrow
+      \Delta_\mu$ satisfies $m^\mu(t) \in BR^\mu(\alpha_{\sigma}^\mu)$
+      for almost all $t \geq 1$.
   \end{definition}
 
   We can think of this definition as saying that the player plays some arbitrary strategy before
@@ -472,59 +484,74 @@ self-loops then the above definition yields that $ \NE{1}$ is an NE iff
     As an illustration, consider the NA game with two players, in which $\edgeset = \{(1, 2),
     (2, 1)\}$ and $\weightset$ is a 2x2 matrix with zeros on its leading diagonal and ones on
     the off diagonal. We write the time-average of both agents' state as
-  
-    \begin{align}
-      \alpha^\mu(t; x) = \frac{1}{t} \int_0^T \xmu(t) \, dt & \text{ for $\mu \in \{1, 2\}$}
+%  
+%    \begin{align}
+ $     \alpha^\mu(t; x) = \frac{1}{t} \int_0^{\fb{t}} \xmu(t) \, dt$, for $\mu \in \{1, 2\}$.
   %   \alpha^2 = \frac{1}{t} \int_0^T x^2(t) \, dt \\
-    \end{align}
-
-    In this manner, the $\alpha^\mu(t; m)$ denotes the time average of the strategies played by
-    agent $\mu$ up to time $t$ when the strategies are given by $\xmu(t)$. Note that we often reduce the notation to $\alpha^\mu(t)$. Then, fictitious play requires that the agents update their
-    strategy as $x^1(t) \in BR^1(\alpha^2(t))$ and $x^2(t) \in BR^2(\alpha^1(t))$. It can be
-    seen, therefore, that the NA-CTFP is a natural extension of CTFP in the classical
-    two-player setting \cite{}.
+    %    \end{align}
+    
+   Hence, $\alpha^\mu(t; m)$ denotes the time average of the
+   strategies played by agent $\mu$ up to time $t$ when the strategies
+   are given by $\xmu(t)$. Note that we often reduce the notation to
+   $\alpha^\mu(t)$. Then, fictitious play requires that the agents
+   update their strategy as $x^1(t) \in BR^1(\alpha^2(t))$ and $x^2(t)
+   \in BR^2(\alpha^1(t))$. It can be seen, therefore, that the NA-CTFP
+   is a natural extension of CTFP in the classical two-player setting
+   \cite{}.
   \end{remark}
+
+  \fb{these remarks are very helpful.}
 
 \subsection{Assumptions}
 
   With the above preliminaries in place, we can state the assumptions that we make in this study.
 
   \begin{assumption}\label{ass::rowstochastic}
-    The weighted adjacency matrix $\weightset$ is constant and \emph{row stochastic} meaning
-    that the sum elements in each row of $\weightset$ is equal to one. This assumption is
-    made to ensure that the analysis of NA games can be derived as a natural extension to the
-    classical setting of two-player games. We can think of the row stochastic condition as the
-    ability of each agent to prioritise the state information it receives from each of its
-    neighbours. It is also a classical assumption made in the analysis of network games
-    \cite{one of the network game papers} and can is straightforward to implement \cite{Eyad}.
+    The weighted adjacency matrix $\weightset$ is constant and
+    \emph{row stochastic}, meaning that the sum elements in each row
+    of $\weightset$ is equal to one. This assumption is made to ensure
+    that the analysis of NA games can be derived as a natural
+    extension to the classical setting of two-player games. We can
+    think of the row stochastic condition as the ability of each agent
+    to prioritise the state information it receives from each of its
+    neighbours. It is also a classical assumption made in the analysis
+    of network games \cite{one of the network game papers} and is
+    straightforward to implement \cite{Eyad}.
   \end{assumption}
 
   \begin{assumption}\label{ass::matrixgame}
-    The payoffs are given through matrix games and, therefore, are bilinear. Payoff matrices
-    have a rich history in game theory and has generated a number of prototypical examples for
-    economic study including the Prisoner's Dilemma game (see \cite{Axelrod} for an interesting
-    implementation of this). They also allow for the design of multi-agent systems in
-    computational settings, particularly in the case of task and resource allocation \cite{AGT
-    and some of the Applied Game Theory Papers}. It should be noted, however, that game
-    theoretic analysis is starting to consider various other forms of utility functions,
-    including monotone \cite{Maryam} and convex \cite{Parise}. We believe that the analysis of
-    Fictitious Play should follow in these developments and we consider it as an important area
-    of future work.
+    The payoffs are given through matrix games and, therefore, are
+    bilinear. Payoff matrices have a rich history in game theory and
+    has generated a number of prototypical examples for economic study
+    including the Prisoner's Dilemma game (see \cite{Axelrod} for an
+    interesting implementation of this). They also allow for the
+    design of multi-agent systems in computational settings,
+    particularly in the case of task and resource allocation \cite{AGT
+      and some of the Applied Game Theory Papers}. It should be noted,
+    however, that game theoretic analysis is starting to consider
+    various other forms of utility functions, including monotone
+    \cite{Maryam} and convex \cite{Parise}. We believe that the
+    analysis of Fictitious Play should follow in these developments
+    and we consider it as an important area of future work.
   \end{assumption}
 
   \begin{assumption}\label{ass::sameactions}
-    The cardinality of each action set $|\actionset{\mu}|$ is equal for all agents. This is
-    a classical assumption which is made in most game theoretic settings and includes, as a
-    special case, the analysis of homogeneous agents \cite{}. However, it should be noted that,
-    in \cite{Ewerhart}, CTFP was analysed without this requirement.  
+    The cardinality of each action set $|\actionset{\mu}|$ is equal
+    for all agents. This is a classical assumption which is made in
+    most game-theoretic settings and includes, as a special case, the
+    analysis of homogeneous agents \cite{}. However, it should be
+    noted that, in \cite{Ewerhart}, CTFP was analysed without this
+    requirement.
   \end{assumption}
 
   \begin{assumption}\label{ass::zerosum}
-    The NA game is zero-sum in the sense that $\sum_{\mu} u^\mu(\xmu, \weightedsum)$ for any set
-    of states $(x^\mu)_{\mu \in N^\mu}$. This is, perhaps, one of the stronger assumptions in
-    our analysis, and is required for the fixed point analysis. However, in Section
-    \ref{sec::CCEConvergence}, we perform a regret analysis that considers the long term
-    behaviour of NA-CTFP without this assumption.
+    The NA game is zero-sum in the sense that $\sum_{\mu} u^\mu(\xmu,
+    \weightedsum)$ for any set of states $(x^\mu)_{\mu \in
+      N^\mu}$. This is, perhaps, one of the strongest assumptions in
+    our analysis, and is required for the fixed point
+    analysis \fb{repetition}. Nonetheless, in Section \ref{sec::CCEConvergence}, we
+    perform a regret analysis that considers the long term behaviour
+    of NA-CTFP without this assumption.
   \end{assumption}
 
 \section{Convergence of Fictitious Play}
