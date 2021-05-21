@@ -116,29 +116,28 @@
 
 \section{Introduction}
 
-Multi Agent Learning \cite{Schwartz} requires a number of agents to adapt in an environment where
+Multi-Agent Learning \cite{Schwartz} requires a number of agents to adapt in an environment where
 each agent must adapt in response to the behaviour of the other agents. This leads to a
 fundamentally non-stationary problem, which presents a challenge to designing effective learning
 policies. Even when there are a small number of agents in the game, learning has been shown to lead
 to non-stationary, and even chaotic behaviour \cite{SatoChaos}, and this problem becomes even more
-pronounced as the number of agents increase \cite{Sanders}. In this light, it would seem that, when there is a large population of agents, it is almost impossible to understand the long term behaviour of multi agent learning \cite{PiliourasChaoticMaps}. This, of course, poses a problem for AI safety, for which it is necessary that learning systems are designed so that their ultimate behaviour is guaranteed to satisfy some predetermined goals.
+pronounced as the number of agents increase \cite{Sanders}. In this light, it would seem that, when there is a large population of agents, it is almost impossible to understand the long term behaviour of multi-agent learning \cite{PiliourasChaoticMaps}. This, of course, poses a problem for AI safety, for which it is desirable that learning systems are designed so that their ultimate behaviour is guaranteed to satisfy some predetermined goals.
 
 To deal with this problem, one must attempt to reduce the many player game to something which is
 tractable. A number of reductions have been proposed, most notably \emph{Mean Field} Games
 and \emph{Aggregative} Games. The former makes the assumption of an infinite
 number of agents, so that the population can be represented through a distribution over players'
 states \cite{CainesPaper} . Every agent then updates their action profiles depending on this
-distribution. In the latter each agent plays considers a real valued function which is a convex
-combination of the states of the other agents. In both formulations, a many player game is reduced
-to the set of two player games which each agent is involved in.
+distribution. In the latter each agent considers a real valued function which is a convex
+combination of the states of the other agents. Both formulation allows for a many player game to be reduced to a set of two-player games.
 
 Both formulations have been the object of rigorous study and it has been shown that agents reach an equilibrium when learning on such games (c.f. \cite{MFGLearningPapers} for Mean Field Games and
 \cite{Aggregative Papers} for Aggregative Games). However, both also present a fundamental limitation.
 Namely, they both require that agents have access to the action profiles of the entire population.
 This could be through communication with all other agents, or through the intervention of a central
-coordinator who is able to the entire population. Whilst recent work aims to relax this assumption
+coordinator who is able view the entire population. Whilst recent work aims to relax this assumption
 through the introduction of noise \cite{MFG-FP} or partial observability \cite{AAMASPaper}, the
-requirement that each agent updates their actions based on the entire population is rather strong.
+requirement that each agent updates their actions based on the entire population is rather strong and not always supported by empirical evidence.
 
 In this study, we investigate a variant of the aggregative game known as the \emph{Network
 Aggregative} (NA) Game. This format assumes that there is an underlying communication network
@@ -156,7 +155,7 @@ to the previous behaviour of the others.
   The main contribution of this work is to introduce learning on the Network Aggregative Game
   through the action of Fictitious Play (FP).
 
-  We first show that a Nash Equilibrium exists and that FP admits
+  We first show that, in aggregative games played with FP, a Nash Equilibrium exists and that FP admits
   solutions in this setting. In particular, we study zero-sum games and show that
   FP converges to a fixed point, which for a network without any
   self-loops corresponds to a Nash Equilibrium. In addition, we find that, for games
@@ -187,9 +186,9 @@ which is explored in \cite{Zhang2020} (resp. \cite{Shokri2020, Shokri2021}). In 
 the cost function is assumed to be convex, and therefore have a unique minimiser. In fact this is a
 common assumption in works concerning NA Games \cite{Zhu2021, Lei2020}, which we believe is due to
 its ubiquity in control settings. We have not yet come across works which consider NA games from the
-point of view of payoff matrices, which are more common in multi agent learning settings.
+point of view of payoff matrices, which are more common in multi-agent learning settings.
 Furthermore, to the best of our knowledge, this is the first work which introduces the application
-of a strict learning algorithm in the NA setting.
+of a learning algorithm in the NA setting.
 
 \paragraph{Fictitious Play}
 
@@ -203,14 +202,12 @@ variants of FP. Their relation was finally solved by Hofbauer \cite{Hofbauer}, w
 attractors of the discrete time process are also attractors for the continuous time variant. As
 such, most of the analysis on FP focuses on the continuous time variant \cite{Ostrovski}. It was
 later shown in \cite{Shapley} that there is a family of games (now called the \emph{Shapley family})
-for which FP does not converge at all but rather shows periodic behaviour. This led to research
-which looks at this non convergent behaviour, specifically showing the existence of more periodic
-orbits as well as chaotic behaviour \cite{Sparrow}. However, the work looking at fictitious play
+for which FP does not converge at all but rather shows periodic behaviour. However, the work looking at fictitious play
 where there are more than two agents is sparse. \cite{Sela} considers a game in which a multi-player
 game is decomposed by requiring that each agent engage in a two person game against each of the
 opponent. Their payoff is given by the sum of payoffs in all of these subgames. It was found that,
 if this game is zero sum, then FP will converge. Similar results for more than two players were
-found for games with identical interests in \cite{MondererShapley1994}. In \cite{FPMFG}, the action
+found for games where all agents share the same payoff in \cite{MondererShapley1994}. In \cite{FPMFG}, the action
 of FP was considered in a Mean Field Game, and it was found again that the algorithm converges for
 zero sum games. The most general result, and the one most similar to our own, was found by Ewerhart
 and Valkanova in 2020 \cite{Ewerhart} in which they showed that fictitious play converges in network
@@ -223,6 +220,8 @@ Strein \cite{Payoff Performance} which showed that FP achieves no-regret to the 
 setting.
 
 \section{Preliminaries}
+In this section we introduce the network aggregative game framework, as well as defining FP on such a game.
+
 \subsection{Network Aggregative Games}
 \label{sec::NAG}
 
@@ -709,7 +708,7 @@ property.
   is increased to $0.5$, the algorithm seems to exhibit convergence to the NE. The implication is
   that the addition of noise may cause periodic behaviour to break and lead to the Nash Equilibrium.
   An interesting point to note is that this behaviour is in stark contrast to the replicator
-  dynamic (RD) \cite{Maynard-Smith}, another adaptive algorithm linked to multi agent learning
+  dynamic (RD) \cite{Maynard-Smith}, another adaptive algorithm linked to multi-agent learning
   \cite{CyclesAdversarialLearning}. In \cite{Imhof} and \cite{Galla}, it was found that the
   introduction of random mutations can remove convergent behaviour and instead lead to periodicity. 
   
@@ -741,7 +740,7 @@ Furthermore, the algorithm has links to other learning protocols including the r
 understanding of FP has subsequent impacts on a number of fields.
 
 Finally, our work has a strong impact on the study of the Network Aggregative Game, which has strong
-applications in multi agent control \cite{GrammaticoAggregativeControl}. We 
+applications in multi-agent control \cite{GrammaticoAggregativeControl}. We 
 believe that our work makes a strong step towards ensuring that systems which learn and adapt on
 NA games maintain stability and, therefore, can be considered safe.
 
