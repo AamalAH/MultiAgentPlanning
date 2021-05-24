@@ -1,0 +1,120 @@
+This is BibTeX, Version 0.99d (TeX Live 2020/W32TeX)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: neurips_2021.aux
+White space in argument---line 25 of file neurips_2021.aux
+ : \citation{Aggregative
+ :                       Papers}
+I'm skipping whatever remains of this command
+White space in argument---line 38 of file neurips_2021.aux
+ : \citation{Miyasawa,Polak,Berger,Monderer
+ :                                          and Sela,Monderer and Shapley}
+I'm skipping whatever remains of this command
+White space in argument---line 43 of file neurips_2021.aux
+ : \citation{Payoff
+ :                  Performance}
+I'm skipping whatever remains of this command
+White space in argument---line 56 of file neurips_2021.aux
+ : \citation{one
+ :               of the network game papers}
+I'm skipping whatever remains of this command
+White space in argument---line 63 of file neurips_2021.aux
+ : \citation{AGT
+ :               and some of the Applied Game Theory Papers}
+I'm skipping whatever remains of this command
+White space in argument---line 80 of file neurips_2021.aux
+ : \citation{Leonardos
+ :                     and Piliouras,Cesa-Bianchi}
+I'm skipping whatever remains of this command
+The style file: acm.bst
+Database file #1: references.bib
+Warning--I didn't find a database entry for "MFG-FP"
+Warning--I didn't find a database entry for "AAMASPaper"
+Warning--I didn't find a database entry for "Grammatico"
+Warning--I didn't find a database entry for "LeaderFollower"
+Warning--I didn't find a database entry for "MyopicAgents"
+Warning--I didn't find a database entry for "Brown"
+Warning--I didn't find a database entry for "Harris"
+Warning--I didn't find a database entry for "Parise2015"
+Warning--I didn't find a database entry for "Parise2020"
+Warning--I didn't find a database entry for "Zhang2020"
+Warning--I didn't find a database entry for "Shokri2020"
+Warning--I didn't find a database entry for "Shokri2021"
+Warning--I didn't find a database entry for "Zhu2021"
+Warning--I didn't find a database entry for "Lei2020"
+Warning--I didn't find a database entry for "BrownPublished"
+Warning--I didn't find a database entry for "BrownUnpublished"
+Warning--I didn't find a database entry for "Robinson"
+Warning--I didn't find a database entry for "Miyasawa"
+Warning--I didn't find a database entry for "Polak"
+Warning--I didn't find a database entry for "Berger"
+Warning--I didn't find a database entry for "Sela"
+Warning--I didn't find a database entry for "MondererShapley1994"
+Warning--I didn't find a database entry for "FPMFG"
+Warning--I didn't find a database entry for "Ewerhart"
+Warning--I didn't find a database entry for ""
+Warning--I didn't find a database entry for "Eyad"
+Warning--I didn't find a database entry for "Axelrod"
+Warning--I didn't find a database entry for "Maryam"
+Warning--I didn't find a database entry for "Parise"
+Warning--I didn't find a database entry for "PayoffPerformance"
+Warning--I didn't find a database entry for "AGT"
+Warning--I didn't find a database entry for "Maynard-Smith"
+Warning--I didn't find a database entry for "CyclesAdversarialLearning"
+Warning--I didn't find a database entry for "Imhof"
+Warning--I didn't find a database entry for "Galla"
+Warning--I didn't find a database entry for "MFGFP"
+Warning--I didn't find a database entry for "noneqmbehaviour"
+Warning--I didn't find a database entry for "gallaandfarmer"
+Warning--I didn't find a database entry for "sanders"
+Warning--I didn't find a database entry for "Smyrnakis"
+Warning--I didn't find a database entry for "Hernandez"
+Warning--I didn't find a database entry for "Sharma"
+Warning--I didn't find a database entry for "vonNeumann"
+Warning--I didn't find a database entry for "Benaim"
+Warning--I didn't find a database entry for "LeslieandCollins"
+Warning--I didn't find a database entry for "GrammaticoAggregativeControl"
+Warning--empty journal in Huang2006
+Warning--empty journal in Perrin2020
+Warning--empty publisher in Schwartz2014
+You've used 6 entries,
+            2253 wiz_defined-function locations,
+            660 strings with 5983 characters,
+and the built_in function-call counts, 1999 in all, are:
+= -- 186
+> -- 117
+< -- 0
++ -- 48
+- -- 42
+* -- 173
+:= -- 349
+add.period$ -- 17
+call.type$ -- 6
+change.case$ -- 38
+chr.to.int$ -- 0
+cite$ -- 9
+duplicate$ -- 56
+empty$ -- 136
+format.name$ -- 42
+if$ -- 386
+int.to.chr$ -- 0
+int.to.str$ -- 6
+missing$ -- 7
+newline$ -- 32
+num.names$ -- 12
+pop$ -- 37
+preamble$ -- 1
+purify$ -- 33
+quote$ -- 0
+skip$ -- 31
+stack$ -- 0
+substring$ -- 117
+swap$ -- 10
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 22
+warning$ -- 3
+while$ -- 19
+width$ -- 7
+write$ -- 57
+(There were 6 error messages)
