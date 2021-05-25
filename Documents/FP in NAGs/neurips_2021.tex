@@ -192,13 +192,7 @@ the application of a learning algorithm in the NA setting.
 \paragraph{Fictitious Play}
 
 Fictitious Play was introduced in 1951 \cite{Brown1949} as a 'natural'
-way in which to approximate the Nash Equilibrium in zero sum games. It
-was known at the time that a discrete variant of the algorithm would
-converge to the NE in two player zero-sum games
-\cite{Robinson1951}. Since then a number of proofs of convergence were
-determined in 2 player games \cite{Miyasawa1961, Metrick1994,
-  Berger2007, Monderer1997, Monderer1996}. Many results hold for both
-the discrete and continuous variants of FP. However, the work looking
+way in which to approximate the Nash Equilibrium in zero sum games. Since then, a number of proofs of convergence have been determined for 2 player games \cite{Robinson1951, Miyasawa1961, Metrick1994,Berger2007, Monderer1997, Monderer1996}. However, the work looking
 at FP where there are more than two agents is sparse. \cite{Sela1999}
 considers a game in which a multi-player game is decomposed by
 requiring that each agent engage in a two person game against each of
@@ -209,13 +203,11 @@ for games where all agents share the same payoff in
 \cite{Monderer1996}. In \cite{Perrin2020}, the action of FP was
 considered in a Mean Field Game, with convergence in zero sum
 games. The most general result, and the one most similar to our own,
-was found by Ewerhart and Valkanova in 2020 \cite{Ewerhart2020} in
-which it was found that FP converges in network games, where each
+was found by Ewerhart and Valkanova in 2020 \cite{Ewerhart2020}. It was found that FP converges in network games, where each
 agent is engaged in a two-player game with each of their neighbours
-Our work extends the analysis of FP in multiplayer games by
-considering its action in NA Games, so that the agents do not play
+Our work adapts this model to consider NA Games, so that the agents do not play
 individual games against each of their neighbours but rather a single
-game against the aggregate of their neighbours. In particular we also
+game against the aggregate of their neighbours. We also
 extend a result for two player games found by Ostrovski and van Strien
 \cite{Ostrovski2014} which showed that FP achieves no-regret to the
 multi-player setting.
@@ -243,7 +235,7 @@ More formally:
 	\weightset))$ is such that
 	\begin{itemize}
 		
-		\item $\edgeset \subseteq \agentset^2$.  Then, the set of
+		\item $\edgeset \subseteq \agentset \times \agentset$.  Then, the set of
 		neighbours of agent $\mu$ is denoted as $N^\mu = \{\nu \in
 		\agentset \mid (\mu, \nu) \in \edgeset\}$.
 		
@@ -376,7 +368,7 @@ $\sum_\mu u^\mu(\xmu, \weightedsum) = 0$.
   Using this, we follow in the footsteps of Ewerhart \cite{Ostrovski2014} and Harris \cite{Harris1998} to define
   Fictitious Play in continuous time, but with a slight adaptation for the NA game.
 %
-  \begin{definition}[Network Aggregative - Continuous Time Fictitious Play (NA-CTFP)]
+  \begin{definition}[Network Aggregative - Continuous Time Fictitious Play (NA-CTFP)] \label{def::NACTFP}
     An NA-CTFP is defined as a measurable map $m$ with components $m^\mu$ such that for all $\mu$
     and all $t \geq 1$, $m^\mu: [0, \infty) \rightarrow \Delta_\mu$ satisfies $m^\mu(t) \in
     BR^\mu(\alpha_{\sigma}^\mu)$ for almost all $t \geq 1$.
@@ -452,26 +444,25 @@ $\sum_\mu u^\mu(\xmu, \weightedsum) = 0$.
   
   In this section we present our main results. First, we establish the
   existence of a Nash equilibrium in NA games, as in
-  Def.~\refname{def::NE}. Then we show that the Fictitious Play
-  dynamic on the NA game admits solutions (i.e., the NA-CTFP
-  exists \fb{?}). Finally, we show that NA-CTFP reaches a fixed point when
+  Def.~\ref{def::NE}. Then we show that the Fictitious Play
+  dynamic on the NA game admits solutions. Finally, we show that NA-CTFP reaches a fixed point when
   the NA game is zero-sum and that, when the network has no self-loops
   (i.e., is simple), NA-CTFP reaches a Nash Equilibrium. For the sake
   of brevity, we defer the proofs of our statements, as well as the
   standard topological arguments used to derive them to the
   supplementary material (Sections (S4 - S6)).
 
-  As a reminder, the NE condition (Def. \ref{def::NE}) states that \fb{$\NE{\mu}$ is an NE iff}
+  As a reminder, the NE condition (Def. \ref{def::NE}) states that $\NE{\mu}$ is an NE iff
 %
   \begin{align*}
     \NE{\mu} &\in \arg\max_{x \in \Delta_\mu} u^\mu(x, w^{\mu \mu}x + \sum_{\nu \in N^\mu} w^{\mu \nu} \NE{\nu}) \nonumber  = \arg\max_{x \in \Delta_i} \bar{u}^\mu(x, \sum_{\nu \in N^\mu} w^{\mu \nu} \NE{\nu})
   \end{align*}
 %
-  where we can find \fb{what is?} $\bar{u}_i$ through the following argument
+  where we have introduced the surrogate function $\bar{u}$ which keeps $x$ in the first argument and all other $\xnu$ in the second argument. We can find $\bar{u}_i$ through the following argument
 %  
   \begin{align}
-    u^\mu(x, w^{\mu \mu} x + \sum_{\nu \in N^\nu} w_{\mu \nu} \NE{\nu}) & = x \cdot A^\mu (w^{\mu \mu} x + \sum_{\nu \in N^\mu} w_{\mu \nu} \NE{\nu}) \\
-     & = x \cdot (w^{\mu \mu} A^\mu)  x + \sum_{\nu \in N^\mu} u^{\mu \nu}(x, \NE{\nu}) \\
+    u^\mu(x, w^{\mu \mu} x + \sum_{\nu \in N^\nu} w_{\mu \nu} \NE{\nu}) & = x \cdot A^\mu (w^{\mu \mu} x + \sum_{\nu \in N^\mu} w_{\mu \nu} \NE{\nu}) \label{eq::bilinear1}\\
+     & = x \cdot (w^{\mu \mu} A^\mu)  x + \sum_{\nu \in N^\mu} u^{\mu \nu}(x, \NE{\nu}) \label{eq::bilinear2} \\
      & =: \bar{u}^\mu(x, \sum_{\nu \in N^\mu} w^{\mu \nu} \NE{\nu}), \nonumber
   \end{align}
 %  
@@ -479,54 +470,50 @@ $\sum_\mu u^\mu(\xmu, \weightedsum) = 0$.
 
   Note
   that, in order to get this formulation, we had to use the assumption
-  of payoffs being bilinear \fb{can we point to the exact step?} so that we could separate out the term in
-  the weighted sum involving $x$ from $\bar{x}^\nu$.
+  of payoffs being bilinear so that we could separate out the term in
+  the weighted sum involving $x$ from $\bar{x}^\nu$. In particular, we used this assumption to move from (\ref{eq::bilinear1}) to (\ref{eq::bilinear2}).
 
-  With these in place, we can state our main results.
+  With these in place, we can build towards our main result, namely that of convergence of NA-CTFP to an NE. In order to do this, we first need to establish that the NE, and an NA-CTFP (i.e. a path which satisfies Def.~\ref{def::NACTFP}) exists.
   
   \begin{theorem}[Existence of NE]
     Under assumption (II), namely that the payoff function achieves a bilinear property, a
     Nash equilibrium $\{\bar{x}^\mu\}_{\mu \in \agentset}$ exists.
   \end{theorem}
 
-  \fb{can we say something about the relation between these two results? Is it the second one a corollary of the first one?}
-
-
   \begin{theorem}
     There exists a path $m$ which satisfies the property that, for all agents $\mu$, $m^\mu \in
     BR^\mu(\alpha_\sigma^\mu)$ for almost all $t \geq 1$.
   \end{theorem}
 
-With the existence of the NA-CTFP in place \fb{?}, we can show that it converges
+With these results in place, we can show that NA-CTFP converges
 to a fixed point. In particular, let $\Omega(\alpha)$ be the set of
 all limit points for $\alpha(t)$. Then, a NA-CTFP path is said to have
 converged if $\Omega(\alpha)$ is contained within the set of Nash
-Equilibria of the game. If this is for any such NA-CTFP path, then the
-game is said to have the \emph{CTFP property} \fb{we do not really need to introduce this definition}. We adapt the techniques
-of \ref{Ewerhart} to prove that zero-sum NA games have the CTFP
+Equilibria of the game. We adapt the techniques
+of \cite{Ewerhart2020} to prove that zero-sum NA games have the CTFP
 property.
 %
-  \begin{theorem}
-    Any zero-sum NA game has the property that, for any NA-CTFP path $m$, the corresponding \fb{what?} $\alpha(t; m)$ converges to a set of fixed points.
+  \begin{theorem} \label{thm::NACTFPtoFixed}
+    Any zero-sum NA game has the property that, for any NA-CTFP path $m$, $\alpha(t; m)$ (i.e. the time-averaged state) converges to a set of fixed points.
   \end{theorem}
 
 
   We now point out that, if we choose $w^{\mu \mu}$ to be zero for all $\mu$, then the final inequality yields that, for all $\mu$
 %
-  \begin{equation}
+  \begin{equation} 
     u^\mu(y, \sum_{\nu \in N^\mu} \wmunu \xnu_\infty) \leq u^\mu(\xmu_\infty, \sum_{\nu \in N^\mu} \wmunu \xnu_\infty)
   \end{equation}
 
-  which is precisely the Nash equilibrium condition \fb{number?} in the NA game. This leads to the next result
+  which is precisely the Nash equilibrium condition (Def.~\ref{def::NE}) in the NA game. This leads to the next result
 %
-  \begin{corollary}
-    With the additional assumption that, for all agents $\mu$, all zero-sum NA games have the CTFP property. \fb{this statement is not well-formed.}
+  \begin{corollary} \label{thm::NACTFPtoNE}
+    With the additional assumption that $w^{\mu \mu} = 0$ for all agents $\mu$, all zero-sum NA games have the property that any NA-CTFP path converges to the set of Nash Equilibria.
   \end{corollary}
 
 \section{NA-CTFP achieves no regret}
   \label{sec::CCEConvergence}
 
-  In this section we aim to find some convergence structure \fb{?} for the
+  In this section we aim to understand the long term behaviour of NA-CTFP for the
   case in which the NA game is not necessarily zero-sum. In
   particular, we show that the NA-CTFP process converges to the set of
   coarse correlated equilibria \cite{Nisan2007}.
@@ -547,10 +534,8 @@ property.
   the expected payoff, for all agents is greater than or equal to the
   payoff that they would get by playing any of their other available
   actions, assuming that the other agents keep to the distribution.
-
-  \fb{perhaps what is below could go into a theorem/lemma.}
   
-  For an NA game, if a set of actions $s = (s^1, \ldots, s^N)$ \fb{$s$ is normally used for actions} is
+  For an NA game, if a set of actions $s = (s^1, \ldots, s^N)$ is
   drawn from a joint probability distribution $\mathcal{D}$, then
   there is a corresponding set of reference vectors $\sigma =
   (\sigma^1, \ldots, \sigma^N)$, where $\sigma^\mu = \sum_{\nu \in
@@ -582,7 +567,7 @@ property.
     we recover exactly the definition of the CCE set in two player games \cite{Ostrovski2014}.
   \end{remark}
 
-  \begin{remark}
+  \begin{remark} \label{rem::regretvsCCE}
     The notion of the CCE set is related to the idea of \emph{average external regret} (for the
     sake of brevity we drop the term `external' and refer the reader to \cite{Nisan2007}). Here, we
     will present what is meant by average regret and state that if at some time $T$ all agents'
@@ -619,16 +604,14 @@ property.
 
 
 
-  \begin{theorem}
+  \begin{theorem} \label{thm::NACTFPtoCCE}
     Assuming that $w^{\mu \mu} = 0$, then for any choice of payoff matrix, agents following the
     NA-CTFP process achieve \emph{no regret} in the limit $t \rightarrow \infty$, i.e.
     \begin{equation}
       \lim_{T \rightarrow \infty} \max_{x_{i'}^\mu \in S^\mu} \Big\{ \frac{1}{T} \int_{0}^{T} u^{\mu}(x_{i'}^\mu(t), \sigma(t)) - u^{\mu}(m^\mu(t), \sigma(t)) \, dt \Big\} = 0
     \end{equation}
 
-    \fb{It is not clear to me the relation between CCE and no regret. In particular, why is the following the case?}
-
-    In particular, NA-CTFP converges to the set of CCE.
+    In particular, due to the relation between regret and CCE (Remark \ref{rem::regretvsCCE}), NA-CTFP converges to the set of CCE.
 
   \end{theorem}
   
@@ -637,42 +620,14 @@ property.
 
   \subsection{Non-convergent examples} \label{sec::NonConv}
 
-  The purpose of this section is to show that, whilst we proved in \fb{?}
-  %have shown
+  The purpose of this section is to show that, whilst we proved in Sec.~\ref{sec::CTFPAnalysis}
   that it converges in zero-sum games, NA-CTFP is not guaranteed to
   converge in general games, and can in fact give rise to a rich
   variety of dynamics.
 
-  
-  
-  As a example of nonconvergence we consider the Shapley family of games \cite{Shapley2016}. In a two player bimatrix game $(A_\beta, B_\beta)$ this is given by
-%
-  \begin{equation}
-    A_\beta = \begin{bmatrix}
-      1 & 0 & \beta \\
-      \beta & 1 & 0 \\
-      0 & \beta & 1
-    \end{bmatrix}, \; B_\beta =  \begin{bmatrix}
-      - \beta & 1 & 0 \\
-      0 & -\beta & 1 \\
-      1 & 0 & -\beta
-    \end{bmatrix}
-  \end{equation}
+  As a example of non-convergence we consider the Shapley family of games \cite{Shapley2016}. In \cite{VanStrien2011} this family was shown to contain games for which FP gives periodic and even chaotic behaviour.
 
-  where $\beta \in (0, 1)$. In \cite{VanStrien2011} this was shown to produce both periodic and chaotic behaviour for different choices of $\beta$. \fb{do we need to provide this example?} 
-
-  \begin{figure}[t]
-    \centering
-    \includegraphics[width = 0.6\textwidth]{Figures/ThreePlayerNetwork.png}
-    \caption{\label{fig::ThreePlayerNetwork} A NA game where the network is defined by a chain of
-    three players, as described in Section \ref{sec::NonConv}.}
-  \end{figure}
-
-  As an adaptation, we take the example of a three player chain, as
-  depicted in Figure \ref{fig::ThreePlayerNetwork} \fb{do we need this
-    figure? it is rather simple}. In this example, we first assume
-  that the network is simple (i.e. there are no self-loops and $w^{\mu
-    \mu} = 0$). The aggregation matrix can be given as
+  As an adaptation, we take the example of a three player chain, in which player $2$ is connected to $1$ and $3$. The aggregation matrix can be given as
 %
   \begin{equation}
     W = \begin{bmatrix}
@@ -696,16 +651,25 @@ property.
     C & = - (1 - w) B^T. 
   \end{align}
 
-  As such in the following example, we will set $B = B_\beta$ with the choice $\beta \approx 0.576$ and set $A$ and $C$ according to the above with the choice $w \approx 0.288$. The orbits that these payoff matrices generate can be seen in Figure \ref{fig::convergentShapley}, in which, for each player, they converge to the Nash Equilibrium which, for each player, lies in the centre of the simplex.
+  As such in the following example, we will set
+  \begin{equation}
+    B =  \begin{bmatrix}
+      - \beta & 1 & 0 \\
+      0 & -\beta & 1 \\
+      1 & 0 & -\beta
+    \end{bmatrix}
+  \end{equation}
+  
+  with the choice $\beta \approx 0.576$ and set $A$ and $C$ according to the above with the choice $w \approx 0.288$. The orbits that these payoff matrices generate can be seen in Figure \ref{fig::convergentShapley}, in which, for each player, they converge to the Nash Equilibrium which, for each player, lies in the centre of the simplex.
 
   Let us now make the slight modification in the definition of $C$ so that
-%
+%m
 %  \begin{equation} \label{eq::nonzeroSumShapley}
     $C  = - (1 - w) B$, 
 %  \end{equation}
   with no alteration to $A$. The modification itself is small, however it results in the zero-sum
   assumption being violated. With the same choices of $\beta$ and $w$, this results in the periodic
-  orbit seen in Figures \ref{fig::nonconvergentShapley}. Here,
+  orbit seen in Figure \ref{fig::nonconvergentShapley}. Here,
   the orbits reach a stable limit cycle which to be centred around the interior NE.
 
   \begin{figure}[t]
@@ -774,7 +738,7 @@ property.
   introduction of random mutations can remove convergent behaviour and instead lead to periodicity. 
   
 \section{Concluding remarks}
-	In this work, we have considered the action of the Fictitious Play learning algorithm in Network Aggregative Games and investigated its long term behaviour through a continuous time analysis. We find that, under a zero-sum condition, the algorithm converges to a fixed point \fb{what kind of FP? we might want to mention individual theorems}. However, we find experimentally that this is not always the case. In fact, we find a family of NA games, based on the Shapley family, for which FP cycles about the NE. For these cases, we also perform a regret analysis which shows that, regardless of the type of game, the FP algorithm achieves no regret. 
+	In this work, we have considered the action of the Fictitious Play learning algorithm in Network Aggregative Games and investigated its long term behaviour through a continuous time analysis. We find that, under a zero-sum condition, NA-CTFP converges to a fixed point (Theorem \ref{thm::NACTFPtoFixed}). However, we find experimentally that this is not always the case. In fact, we find a family of NA games, based on the Shapley family, for which FP cycles about the NE. For these cases, we also perform a regret analysis which shows that, regardless of the type of game, the FP algorithm achieves no regret. 
 %	
 	We also investigate the influence of noise on the algorithm and find that even with the introduction of additive noise, FP converges to a fixed point, though not necessarily the NE. In fact, for our cyclic family of games, we find that the introduction of noise can actually remove the periodicity, resulting in FP converging to a fixed point.
 	
