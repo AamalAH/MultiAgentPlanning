@@ -438,16 +438,18 @@ $\sum_\mu u^\mu(\xmu, \weightedsum) = 0$.
 
   
   In this section we present our main results. First, we establish the
-  existence of a Nash equilibrium in NA games, as in
+  existence of a Nash equilibrium in NA games, as defined in
   Def.~\ref{def::NE}. Then we show that the Fictitious Play
-  dynamic on the NA game admits solutions. Finally, we show that NA-CTFP reaches a fixed point when
+  dynamic on NA games admits solutions \fb{doesn't this follows from the existence of NE?}. Finally, we show that NA-CTFP reaches a fixed point when
   the NA game is zero-sum and that, when the network has no self-loops
   (i.e., is simple), NA-CTFP reaches a Nash Equilibrium. For the sake
   of brevity, we defer the proofs of our statements, as well as the
-  standard topological arguments used to derive them to the
+  standard topological arguments used to derive them, to the
   supplementary material (Sections (S4 - S6)).
 
-  As a reminder, the NE condition (Def. \ref{def::NE}) states that $\NE{\mu}$ is an NE iff
+  As a reminder,
+  %the NE condition (
+  Def. \ref{def::NE} states that $\NE{\mu}$ is an NE iff
 %
   \begin{align*}
     \NE{\mu} &\in \arg\max_{x \in \Delta_\mu} u^\mu(x, w^{\mu \mu}x + \sum_{\nu \in N^\mu} w^{\mu \nu} \NE{\nu}) \nonumber  = \arg\max_{x \in \Delta_i} \bar{u}^\mu(x, \sum_{\nu \in N^\mu} w^{\mu \nu} \NE{\nu})
@@ -463,10 +465,15 @@ $\sum_\mu u^\mu(\xmu, \weightedsum) = 0$.
 %  
   where $u^{\mu \nu}(\xmu, x^\nu) = \xmu \cdot A^\mu x^\nu$.
 
+  \fb{why symbol $=:$? is it a definition?}
+
   Note that, in order to get this formulation, we had to use Assumption \ref{ass::matrixgame}
  to move from (\ref{eq::bilinear1}) to (\ref{eq::bilinear2}).
 
-  With these in place, we can build towards our main result, namely that of convergence of NA-CTFP to an NE. In order to do this, we first need to establish that the NE, and an NA-CTFP (i.e. a path which satisfies Def.~\ref{def::NACTFP}) exists.
+  With these in place, we can build towards our main result, namely
+  the convergence of NA-CTFP to an NE. In order to do this, we first
+  need to establish that the NE, and an NA-CTFP (i.e. a path which
+  satisfies Def.~\ref{def::NACTFP}) exists.
   
   \begin{theorem}[Existence of NE]
     Under assumption (II), namely that the payoff function achieves a bilinear property, a
@@ -476,12 +483,13 @@ $\sum_\mu u^\mu(\xmu, \weightedsum) = 0$.
   \begin{theorem}
     There exists a path $m$ which satisfies the property that, for all agents $\mu$, $m^\mu \in
     BR^\mu(\alpha_\sigma^\mu)$ for almost all $t \geq 1$.
+    \fb{why parameter $t$ if it does not appear anywhere in the statement?}
   \end{theorem}
 
 With these results in place, we can show that NA-CTFP converges
 to a fixed point. In particular, let $\Omega(\alpha)$ be the set of
-all limit points for $\alpha(t)$. Then, a NA-CTFP path is said to have
-converged if $\Omega(\alpha)$ is contained within the set of Nash
+all limit points for $\alpha(t)$. Then, a NA-CTFP path is said to {\em 
+converge} if $\Omega(\alpha)$ is contained within the set of Nash
 Equilibria of the game. We adapt the techniques
 of \cite{Ewerhart2020} to prove that this is the case.
 %
@@ -490,7 +498,7 @@ of \cite{Ewerhart2020} to prove that this is the case.
   \end{theorem}
 
 
-  We now point out that, if we choose $w^{\mu \mu}$ to be zero for all $\mu$, then the final inequality yields that, for all $\mu$
+  We now point out that, if we choose $w^{\mu \mu}$ to be zero for all $\mu$, then the final inequality \fb{which inequality?} yields that, for all agents $\mu$,
 %
   \begin{equation} 
     u^\mu(y, \sum_{\nu \in N^\mu} \wmunu \xnu_\infty) \leq u^\mu(\xmu_\infty, \sum_{\nu \in N^\mu} \wmunu \xnu_\infty)
