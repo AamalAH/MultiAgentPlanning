@@ -138,13 +138,10 @@ through the introduction of noise \cite{Perrin2020} or partial observability \ci
 requirement that each agent updates their actions based on the entire population is rather strong and not always supported by empirical evidence.
 
 In this study, we investigate a variant of the aggregative game known as the \emph{Network
-Aggregative} (NA) Game. This format assumes that there is an underlying communication network
-through which agents interact. Then each agent updates their actions according only to those agents
-with whom they communicate. This significantly relaxes the communication load on each agent and
+Aggregative} (NA) Game. This format assumes that each agent updates their actions according only to those agents with whom they are connected on an underlying network. This significantly relaxes the communication load on each agent and
 lifts the need for a central coordinator. Recent work on the NA game has shown that it is possible
 for agents to reach an equilibrium strategy in an entirely distributed manner \cite{Koshal2016, Shokri2020, Shokri2021, Parise2015}. We contribute in this direction by analysing the long term behaviour of learning on an NA game. In particular, we analyse the Fictitious Play Learning
-Algorithm \cite{Brown1949, Harris1998}, in which agents are assumed to be myopic, in that they react solely
-to the previous behaviour of the others.
+Algorithm \cite{Brown1949, Harris1998}, in which agents are assumed to be myopic, in that they react solely to the previous behaviour of the others.
 
 
 \subsection{Contributions}
@@ -365,7 +362,7 @@ $\sum_\mu u^\mu(\xmu, \weightedsum) = 0$.
     \avgref{\mu} = \frac{1}{t} \int_0^t \refmu(s) \; ds.
   \end{equation}
 
-  Using this, we follow in the footsteps of Ewerhart \cite{Ostrovski2014} and Harris \cite{Harris1998} to define
+  Using this, we follow in the footsteps of  \cite{Ewerhart2020} and \cite{Harris1998} to define
   Fictitious Play in continuous time, but with a slight adaptation for the NA game.
 %
   \begin{definition}[Network Aggregative - Continuous Time Fictitious Play (NA-CTFP)] \label{def::NACTFP}
@@ -413,9 +410,7 @@ $\sum_\mu u^\mu(\xmu, \weightedsum) = 0$.
 
   \begin{assumption}\label{ass::matrixgame}
     The payoffs are given through matrix games and, therefore, are bilinear. Payoff matrices
-    have a rich history in game theory and has generated a number of prototypical examples for
-    economic study including the Prisoner's Dilemma game (see \cite{Axelrod1980} for an interesting
-    implementation of this). They also allow for the design of multi-agent systems in
+    have a rich history in game theory and allow for the design of multi-agent systems in
     computational settings, particularly in the case of task and resource allocation \cite{Nisan2007}. It should be noted, however, that game
     theoretic analysis is starting to consider various other forms of utility functions,
     including monotone \cite{Tatarenko2020} and convex \cite{Parise2020}. We believe that the analysis of
@@ -431,7 +426,7 @@ $\sum_\mu u^\mu(\xmu, \weightedsum) = 0$.
   \end{assumption}
 
   \begin{assumption}\label{ass::zerosum}
-    The NA game is zero-sum in the sense that $\sum_{\mu} u^\mu(\xmu, \weightedsum)$ for any set
+    The NA game is zero-sum in the sense that $\sum_{\mu} u^\mu(\xmu, \weightedsum) = 0$ for any set
     of states $(x^\mu)_{\mu \in N^\mu}$. This is, perhaps, one of the stronger assumptions in
     our analysis, and is required for the fixed point analysis. However, in Section
     \ref{sec::CCEConvergence}, we perform a regret analysis that considers the long term
@@ -468,10 +463,8 @@ $\sum_\mu u^\mu(\xmu, \weightedsum) = 0$.
 %  
   where $u^{\mu \nu}(\xmu, x^\nu) = \xmu \cdot A^\mu x^\nu$.
 
-  Note
-  that, in order to get this formulation, we had to use the assumption
-  of payoffs being bilinear so that we could separate out the term in
-  the weighted sum involving $x$ from $\bar{x}^\nu$. In particular, we used this assumption to move from (\ref{eq::bilinear1}) to (\ref{eq::bilinear2}).
+  Note that, in order to get this formulation, we had to use Assumption \ref{ass::matrixgame}
+ to move from (\ref{eq::bilinear1}) to (\ref{eq::bilinear2}).
 
   With these in place, we can build towards our main result, namely that of convergence of NA-CTFP to an NE. In order to do this, we first need to establish that the NE, and an NA-CTFP (i.e. a path which satisfies Def.~\ref{def::NACTFP}) exists.
   
@@ -490,8 +483,7 @@ to a fixed point. In particular, let $\Omega(\alpha)$ be the set of
 all limit points for $\alpha(t)$. Then, a NA-CTFP path is said to have
 converged if $\Omega(\alpha)$ is contained within the set of Nash
 Equilibria of the game. We adapt the techniques
-of \cite{Ewerhart2020} to prove that zero-sum NA games have the CTFP
-property.
+of \cite{Ewerhart2020} to prove that this is the case.
 %
   \begin{theorem} \label{thm::NACTFPtoFixed}
     Any zero-sum NA game has the property that, for any NA-CTFP path $m$, $\alpha(t; m)$ (i.e. the time-averaged state) converges to a set of fixed points.
@@ -540,12 +532,12 @@ property.
   there is a corresponding set of reference vectors $\sigma =
   (\sigma^1, \ldots, \sigma^N)$, where $\sigma^\mu = \sum_{\nu \in
     N^\mu} \wmunu s^\nu$.  Therefore, $\mathcal{D}$ is a probability
-  distribution over all actions and all references.  Consider, then, a
+  distribution over both the actions and the references.  Consider, then, a
   vector of joint distributions over actions and references which is
   generated by NA-CTFP. In particular, if by playing with NA-CTFP, the
-  agents reach the state $(\xmu)_{i = 1}^N$ with references
-  $(\refmu)_{i = 1}^N$, this is the vector $\mathcal{D} =
-  (\mathcal{D}^1, ..., \mathcal{D}^N)$ such that
+  agents reach state $(\xmu)_{i = 1}^N$ with references
+  $(\refmu)_{i = 1}^N$, $\mathcal{D} =
+  (\mathcal{D}^1, ..., \mathcal{D}^N)$ is such that
   $(\mathcal{D}^\mu)_{ij} = \xmu_i \refmu_j$. Then, the expected
   payoff that the agent would receive for playing this strategy is
 %
@@ -568,8 +560,7 @@ property.
   \end{remark}
 
   \begin{remark} \label{rem::regretvsCCE}
-    The notion of the CCE set is related to the idea of \emph{average external regret} (for the
-    sake of brevity we drop the term `external' and refer the reader to \cite{Nisan2007}). Here, we
+    The notion of the CCE set is related to the idea of \emph{average regret}  \cite{Nisan2007}. Here, we
     will present what is meant by average regret and state that if at some time $T$ all agents'
     average regret is non-positive, then the game is said to have reached the CCE set. The
     reader should consult \cite{Ostrovski2014} for an excellent exposition regarding the
@@ -675,11 +666,11 @@ property.
   \begin{figure}[t]
     \centering
     \begin{subfigure}[b]{0.45 \textwidth}
-      \includegraphics[width = \textwidth]{Figures/convergentShapley.png}
+      \includegraphics[width = 0.8\textwidth]{Figures/convergentShapley.png}
     \caption{\label{fig::convergentShapley}}
     \end{subfigure}
     \begin{subfigure}[b]{0.45 \textwidth}
-      \includegraphics[width = \textwidth]{Figures/nonConvergentShapley.png}
+      \includegraphics[width = 0.8 \textwidth]{Figures/nonConvergentShapley.png}
       \caption{\label{fig::nonconvergentShapley}}
     \end{subfigure}
     \caption{\label{fig::Shapley} Orbits of the Fictitious Play in the Three Player Chain (c.f.
