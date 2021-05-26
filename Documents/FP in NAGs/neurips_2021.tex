@@ -527,7 +527,7 @@ of \cite{Ewerhart2020} to prove that this is the case.
   (\sigma^1, \ldots, \sigma^N)$, where $\sigma^\mu = \sum_{\nu \in
     N^\mu} \wmunu s^\nu$. In other words, if we draw $s$ from $\mathcal{D}$, then we have also drawn $\sigma$, which means our CCE condition, Def.~\ref{def::CCE}, can be written as $
 \mathbb{E}_{s \sim \mathcal{D}}[u^\mu (s^\mu, \refmu)] \geq
-\mathbb{E}_{s \sim \mathcal{D}}[u^\mu (j, \refmu)]$ for all actions $j \in S^\mu$ and all agents $\mu$. 
+\mathbb{E}_{s \sim \mathcal{D}}[u^\mu (j, \refmu)]$ $ \forall j \in S^\mu$ and all agents $\mu$. 
 
 
   Now, if by playing with NA-CTFP, the
@@ -599,18 +599,18 @@ of \cite{Ewerhart2020} to prove that this is the case.
     \end{equation}
 
     In particular, due to the relation between regret and CCE (Remark \ref{rem::regretvsCCE}), NA-CTFP converges to the set of CCE.
-    
 
   \end{theorem}
   
-
+	We note at this point that a related result was found in \cite{Ewerhart2020}. In particular, the authors showed that, when playing on a zero-sum network game, agents learning through Fictitious Play achieve non-positive regret, regardless of the behaviour of the other agents. This is a slightly stronger condition than the CCE, in which agents achieve non-positive regret if all other agents do not deviate from the distribution $\mathcal{D}$. However, the result in \cite{Ewerhart2020} applies only under the zero-sum condition, whereas Theorem \ref{thm::NACTFPtoCCE} applies in all NA games.
+	
 \section{Numerical Experiments}
 
   \subsection{Non-convergent examples} \label{sec::NonConv}
 
   The purpose of this section is to show that, whilst we proved in Sec.~\ref{sec::CTFPAnalysis}
   that it converges in zero-sum games, NA-CTFP is not guaranteed to
-  converge in general games, and can in fact give rise to a rich
+  converge in general games, and can in fact give rise to a rich 
   variety of dynamics.
 
   As a example of non-convergence we consider the Shapley family of games \cite{Shapley2016}. In \cite{VanStrien2011} this family was shown to contain games for which FP gives periodic and even chaotic behaviour.
