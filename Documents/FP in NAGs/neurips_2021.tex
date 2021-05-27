@@ -145,8 +145,8 @@ for agents to reach an equilibrium strategy in an entirely distributed manner \c
 Algorithm \cite{Brown1949, Harris1998}, in which agents are assumed to be myopic, in that they react solely to the previous behaviour of the others.
 
 
-\subsection{Contributions}
-
+\paragraph{Contributions.}
+%
   The main contribution of this work is to introduce learning on the Network Aggregative Game
   through the action of Fictitious Play (FP).
 
@@ -164,11 +164,11 @@ Algorithm \cite{Brown1949, Harris1998}, in which agents are assumed to be myopic
   the presence of noise, the algorithm still reaches a fixed point, but perhaps not the Nash
   Equilibrium. This presents an interesting avenue for future research.
 
-\subsection{Related Work}
+\paragraph{Related Work.}
 
-\paragraph{Network Aggregative Games}
-
-NA games are a recent introduction \cite{Parise2015} which presents
+\textbf{Network Aggregative Games}
+%NA games
+are a recent introduction \cite{Parise2015} which presents
 a variant of aggregative games by adding an underlying structure to
 the population. Since its introduction, distributed algorithms have
 been built with the aim of finding NE. In particular,
@@ -187,9 +187,9 @@ which are more common in multi-agent learning settings.  Furthermore,
 to the best of our knowledge, this is the first work which introduces
 the application of a learning algorithm in the NA setting.
 
-\paragraph{Fictitious Play}
-
-Fictitious Play was introduced in 1951 \cite{Brown1949} as a 'natural'
+\textbf{Fictitious Play}
+%Fictitious Play
+was introduced in 1951 \cite{Brown1949} as a 'natural'
 way in which to approximate the Nash Equilibrium in zero sum games. Since then, a number of proofs of convergence have been determined for 2 player games \cite{Robinson1951, Miyasawa1961, Metrick1994,Berger2007, Monderer1997, Monderer1996}. However, the work looking
 at FP where there are more than two agents is sparse. \cite{Sela1999}
 considers a game in which a multi-player game is decomposed by
@@ -433,7 +433,7 @@ $\sum_\mu u^\mu(\xmu, \weightedsum) = 0$.
     behaviour of NA-CTFP without this assumption.
   \end{assumption}
 
-\section{Convergence of Fictitious Play}
+\section{Convergence of Fictitious Play  in Network Aggregative Games}
 \label{sec::CTFPAnalysis}
 
   
@@ -499,20 +499,22 @@ of \cite{Ewerhart2020} to prove that this is the case.
     With the additional assumption that $w^{\mu \mu} = 0$ for all agents $\mu$, all zero-sum NA games have the property that any NA-CTFP path converges to the set of Nash Equilibria.
   \end{corollary}
 
-\section{NA-CTFP achieves no regret}
+\section{Fictitious Play  in Network Aggregative Games Achieves No Regret}
   \label{sec::CCEConvergence}
 
-  In this section we aim to understand the long term behaviour of NA-CTFP for the
-  case in which NA games are not necessarily zero-sum. To do this, we first introduce the coarse correlated equilibria (CCE) \cite{Nisan2007} in the context of NA games as a natural extension to the two-player case. Then, we show that the NA-CTFP process converges to the set of
-  CCE
+  In this section we aim to understand the long term behaviour of
+  NA-CTFP for the case in which NA games are not necessarily
+  zero-sum. To do this, we first introduce the coarse correlated
+  equilibria (CCE) \cite{Nisan2007} in the context of NA games as a
+  natural extension to \fb{of} the two-player case. Then, we show that
+  the NA-CTFP process converges to the set of CCE.
   %
   \begin{definition}[CCE] \label{def::CCE}
-    A distribution $\mathcal{D}$ over the joint action set $S =
-    \times_\mu S^\mu$ is called a \emph{coarse correlated equilibrium}
-     if, for all agents $\mu$, $
-      \mathbb{E}_{s \sim \mathcal{D}}[u^\mu (s^\mu, s^{- \mu})] \geq
-      \mathbb{E}_{s \sim \mathcal{D}}[u^\mu (j, s^{-
-          \mu})]$ $ \forall j \in S^\mu.$
+    A distribution $\mathcal{D}$ over the set $S = \times_\mu S^\mu$
+    of joint actions is called a \emph{coarse correlated equilibrium}
+    if, for all agents $\mu$ and actions $j \in S^\mu$, we have
+    $\mathbb{E}_{s \sim \mathcal{D}}[u^\mu (s^\mu, s^{- \mu})] \geq
+    \mathbb{E}_{s \sim \mathcal{D}}[u^\mu (j, s^{- \mu})]$.
   \end{definition}
 
   In words, the above definition says that, if the agents are given a
@@ -522,12 +524,14 @@ of \cite{Ewerhart2020} to prove that this is the case.
   actions, assuming that the other agents keep to the distribution.
   
   For an NA game, a set of actions $s = (s^1, \ldots, s^N)$ which is
-  drawn from a joint probability distribution $\mathcal{D}$, also generates
-  a corresponding set of reference vectors $\sigma =
+  drawn from a joint probability distribution $\mathcal{D}$, also
+  generates a corresponding set of reference vectors $\sigma =
   (\sigma^1, \ldots, \sigma^N)$, where $\sigma^\mu = \sum_{\nu \in
-    N^\mu} \wmunu s^\nu$. In other words, if we draw $s$ from $\mathcal{D}$, then we have also drawn $\sigma$, which means our CCE condition, Def.~\ref{def::CCE}, can be written as $
-\mathbb{E}_{s \sim \mathcal{D}}[u^\mu (s^\mu, \refmu)] \geq
-\mathbb{E}_{s \sim \mathcal{D}}[u^\mu (j, \refmu)]$ $ \forall j \in S^\mu$ and all agents $\mu$. 
+    N^\mu} \wmunu s^\nu$. That is, if we draw action $s$ from
+  $\mathcal{D}$, then we have also drawn $\sigma$, which means our CCE
+  condition, Def.~\ref{def::CCE}, can be written as $ \mathbb{E}_{s
+    \sim \mathcal{D}}[u^\mu (s^\mu, \refmu)] \geq \mathbb{E}_{s \sim
+    \mathcal{D}}[u^\mu (j, \refmu)]$, for all agents $\mu$ and actions $j \in S^\mu$.
 
 
   Now, if by playing with NA-CTFP, the
@@ -576,17 +580,19 @@ of \cite{Ewerhart2020} to prove that this is the case.
     consider the case where each agent has only two actions. Then $u^{\mu}(x^\mu(t), \sigma(t))$
     is given by
 %    
-    \begin{equation*}
+    \begin{equation} \label{eq1}
       u^{\mu}(x^\mu(t), \sigma(t)) = \sum_{ij} a_{ij} x_i^\mu \sigma_j^\mu = a_{11} x_1^\mu \sigma_1^\mu + a_{12} x_1^\mu \sigma_2^\mu + a_{21} x_2^\mu \sigma_1^\mu + a_{22} x_2^\mu \sigma_2^\mu
-    \end{equation*}
+    \end{equation}
   
     On the other hand, let us consider that agent $\mu$'s first strategy maximises $u^{\mu}(\pure{\mu}{1}, \sigma(t))$, then
   
-    \begin{equation*}
+    \begin{equation}  \label{eq2}
       u^{\mu}(\pure{\mu}{1}, \sigma(t)) = \sum_{ij} a_{1j} x_i^\mu \sigma_j^\mu = a_{11} x_1^\mu \sigma_1^\mu + a_{12} x_1^\mu \sigma_2^\mu + a_{11} x_2^\mu \sigma_1^\mu + a_{12} x_2^\mu \sigma_2^\mu 
-    \end{equation*}
+    \end{equation}
   
-    By comparing the two expanded expressions, we can see that the latter gives the reward that agent $\mu$ would have received had they played action $1$ throughout the entire play, assuming that the behaviour of the other agents (encoded in $\sigma$) does not change. As such, this is a measure of agent $\mu$'s regret, in hindsight, for not playing action $1$ the entire time. An agent achieves \emph{no regret} if $R^\mu$ is non-positive.
+    By comparing equations~(\ref{eq1}) and (\ref{eq2}),
+    %the two expanded expressions,
+    we can see that the latter gives the reward that agent $\mu$ would have received had they played action $1$ throughout the entire play, assuming that the behaviour of the other agents (encoded in $\sigma$) does not change. As such, this is a measure of agent $\mu$'s regret, in hindsight, for not playing action $1$ the entire time. An agent achieves \emph{no regret} if $R^\mu$ is non-positive.
   \end{remark}
 
 
@@ -602,11 +608,21 @@ of \cite{Ewerhart2020} to prove that this is the case.
 
   \end{theorem}
   
-	We note at this point that a related result was found in \cite{Ewerhart2020}. In particular, the authors showed that, when playing on a zero-sum network game, agents learning through Fictitious Play achieve non-positive regret, regardless of the behaviour of the other agents. This is a slightly stronger condition than the CCE, in which agents achieve non-positive regret if all other agents do not deviate from the distribution $\mathcal{D}$. However, the result in \cite{Ewerhart2020} applies only under the zero-sum condition, whereas Theorem \ref{thm::NACTFPtoCCE} applies in all NA games.
+	We note at this point that a related result was found in
+        \cite{Ewerhart2020}. In particular, the authors showed that,
+        when playing on a zero-sum network game, agents learning
+        through Fictitious Play achieve non-positive regret,
+        regardless of the behaviour of the other agents. This is a
+        slightly stronger condition than the CCE, in which agents
+        achieve non-positive regret if all other agents do not deviate
+        from the distribution $\mathcal{D}$. However, the result in
+        \cite{Ewerhart2020} applies only under the zero-sum condition,
+        whereas Theorem \ref{thm::NACTFPtoCCE} applies in all NA
+        games.
 	
-\section{Numerical Experiments}
+\section{Experimental Evaluation}
 
-  \subsection{Non-convergent examples} \label{sec::NonConv}
+  \subsection{Non-convergence of General Two-player Games under NA-CTFP} \label{sec::NonConv}
 
   The purpose of this section is to show that, whilst we proved in Sec.~\ref{sec::CTFPAnalysis}
   that it converges in zero-sum games, NA-CTFP is not guaranteed to
