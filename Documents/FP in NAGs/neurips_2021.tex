@@ -613,7 +613,7 @@ of \cite{Ewerhart2020} to prove that this is the case.
 	
 \section{Experimental Evaluation}
 
-	In this section, we investigate NA-CTFP through numerical experiments. In particular, we look beyond zero-sum NA games and show that learning on an NA game can lead to periodic behaviour, rather than convergence to a fixed point. In addition, we aim to understand the behaviour of agents learning through NA-CTFP, when the measurements on their reference signal $\refmu$ is corrupted with noise.  
+	In this section, we investigate NA-CTFP through numerical experiments. In particular, we look beyond zero-sum NA games and show that learning on an NA game can lead to periodic behaviour, rather than convergence to a fixed point. In addition, we aim to understand the behaviour of agents learning through NA-CTFP, when the measurements on their reference signal $\refmu$ is corrupted with noise. The code required to reproduce these simulations is provided in the Supplementary Material.	
 
   \subsection{Non-convergence of General Two-player Games under NA-CTFP} \label{sec::NonConv}
 
@@ -657,7 +657,7 @@ of \cite{Ewerhart2020} to prove that this is the case.
     \end{bmatrix}
   \end{equation}
   
-  with the choice $\beta \approx 0.576$ and set $A$ and $C$ according to the above with the choice $w \approx 0.288$. The orbits that these payoff matrices generate can be seen in Figure \ref{fig::convergentShapley}, in which, for each player, they converge to the Nash Equilibrium which, for each player, lies in the centre of the simplex.
+  with the choice $\beta \approx 0.576$ and set $A$ and $C$ according to the above with the choice $w \approx 0.288$. These choices are arbitrary and, as we discuss below, the results of this Section were found to hold for a range of choices of $\beta$ and $w$. The orbits that these payoff matrices generate can be seen in Figure \ref{fig::convergentShapley}, in which, for each player, they converge to the Nash Equilibrium which, for each player, lies in the centre of the simplex.
 
   Let us now make the slight modification in the definition of $C$ so that
 %m
@@ -691,13 +691,13 @@ of \cite{Ewerhart2020} to prove that this is the case.
 
   \begin{figure}[t]
     \centering
-    \includegraphics[width = \columnwidth]{Figures/Noise20Player.png}
+    \includegraphics[width = 0.9 \columnwidth]{Figures/Noise20Player.png}
     \caption{\label{fig::Noise20Player} Trajectories of NA-CTFP in a 20 player game with additive noise (Left) No noise is introduced and learning converges directly to an NE. (Middle) $\gamma = 0.05$, the trajectories converge to a fixed point but removed from the NE. (Right) $\gamma = 0.1$, the trajectories converge to a fixed point which is even further away from the NE.}
   \end{figure}
 
   \begin{figure}[t]
     \centering
-    \includegraphics[width = \columnwidth]{Figures/3PlayerChainNoise.png}
+    \includegraphics[width = 0.9 \columnwidth]{Figures/3PlayerChainNoise.png}
     \caption{\label{fig::3PlayerChainNoise} Trajectories of NA-CTFP on the Three Player Chain of Section \ref{sec::NonConv} with additive noise. (Left) $\gamma = 0.1$ leads to a decrease in the size of the cyclic orbit (Middle) $\gamma = 0.5$, no periodicity is seen but the trajectory converges to the NE (Right) $\gamma = 0.75$, NA-CTFP still converges, though after a greater amount of time has elapsed.}
   \end{figure}
 
@@ -736,7 +736,7 @@ of \cite{Ewerhart2020} to prove that this is the case.
 \section{Concluding Remarks}
 	In this work, we have considered the action of the Fictitious Play learning algorithm in Network Aggregative Games and investigated its long term behaviour through a continuous time analysis. We find that, under a zero-sum condition, NA-CTFP converges to a fixed point (Theorem \ref{thm::NACTFPtoFixed}). However, we find experimentally that this is not always the case. In fact, we find a family of NA games, based on the Shapley family, for which FP cycles about the NE. For these cases, we also perform a regret analysis which shows that, regardless of the type of game, the FP algorithm achieves no regret. 
 %	
-	We also investigate the influence of noise on the algorithm and find that even with the introduction of additive noise, FP converges to a fixed point, though not necessarily the NE. In fact, for our cyclic family of games, we find that the introduction of noise can actually remove the periodicity, resulting in FP converging to a fixed point.
+	We also investigate the influence of noise on the algorithm and find that even with the introduction of additive noise, FP converges to a fixed point. In fact, for our cyclic family of games, we find that the introduction of noise can actually remove the periodicity, resulting in FP converging to a fixed point.
 	
 	Our work opens a number of lines for future work. Most notable is the effect of noise. It would be prudent to analyse this theoretically, as was done in \cite{Perrin2020}, and consider the conditions under which FP will still converge to a fixed point. Furthermore, it would be interesting to investigate the phenomenon we report experimentally in a theoretical framework. Namely, the question of why noise breaks periodicity in FP and results in convergence to an NE should be investigated and, indeed, this is a line which we are currently pursuing.
 %	
@@ -765,17 +765,71 @@ applications in multi-agent control \cite{Bianchi2019, DePersis2020}. We
 believe that our work makes a strong step towards ensuring that systems which learn and adapt on
 NA games maintain stability and, therefore, can be considered safe.
 
-\begin{ack}
-Use unnumbered first level headings for the acknowledgments. All acknowledgments
-go at the end of the paper before the list of references. Moreover, you are required to declare 
-funding (financial activities supporting the submitted work) and competing interests (related financial activities outside the submitted work). 
-More information about this disclosure can be found at: \url{https://neurips.cc/Conferences/2020/PaperInformation/FundingDisclosure}.
-
-
-Do {\bf not} include this section in the anonymized submission, only in the final paper. You can use the \texttt{ack} environment provided in the style file to autmoatically hide this section in the anonymized submission.
-\end{ack} 
 
 \bibliographystyle{named}
 \bibliography{referencesT}
+
+\section*{Checklist}
+
+\begin{enumerate}
+	
+	\item For all authors...
+	\begin{enumerate}
+		\item Do the main claims made in the abstract and introduction accurately reflect the paper's contributions and scope?
+		\answerYes{All contributions stated in the abstract are included in Sections 3-5 of the paper.}
+		\item Did you describe the limitations of your work?
+		\answerYes{Sec. 2.3 discusses the assumptions placed on the theoretical results, as well as their implications. We provide numerical simulations to provide insight into the behaviour when some of these assumptions are lifted}
+		\item Did you discuss any potential negative societal impacts of your work?
+		\answerYes{In Sec. 5, we caution against the over-reliance of convergence in learning algorithms and provide experiments to show that this will not always be the case.}
+		\item Have you read the ethics review guidelines and ensured that your paper conforms to them?
+		\answerYes{}
+	\end{enumerate}
+	
+	\item If you are including theoretical results...
+	\begin{enumerate}
+		\item Did you state the full set of assumptions of all theoretical results?
+		\answerYes{}
+		\item Did you include complete proofs of all theoretical results?
+		\answerYes{Full Proofs, as well as the arguments used to derive them, are provided in the Supplementary Material}
+	\end{enumerate}
+	
+	\item If you ran experiments...
+	\begin{enumerate}
+		\item Did you include the code, data, and instructions needed to reproduce the main experimental results (either in the supplemental material or as a URL)?
+		\answerYes{Code is provided in the supplementary material}
+		\item Did you specify all the training details (e.g., data splits, hyperparameters, how they were chosen)?
+		\answerYes{We provide explanations as to the choice for our range of strength of noise in Sec 5.2.}
+		\item Did you report error bars (e.g., with respect to the random seed after running experiments multiple times)?
+		\answerNA{Our experiments do not concern statistical results but are rather illustrative of the behaviour of a deterministic algorithm}
+		\item Did you include the total amount of compute and the type of resources used (e.g., type of GPUs, internal cluster, or cloud provider)?
+		\answerNA{}
+	\end{enumerate}
+	
+	\item If you are using existing assets (e.g., code, data, models) or curating/releasing new assets...
+	\begin{enumerate}
+		\item If your work uses existing assets, did you cite the creators?
+		\answerNA{}
+		\item Did you mention the license of the assets?
+		\answerNA{}
+		\item Did you include any new assets either in the supplemental material or as a URL?
+		\answerNA{}
+		\item Did you discuss whether and how consent was obtained from people whose data you're using/curating?
+		\answerNA{}
+		\item Did you discuss whether the data you are using/curating contains personally identifiable information or offensive content?
+		\answerNA{}
+	\end{enumerate}
+	
+	\item If you used crowdsourcing or conducted research with human subjects...
+	\begin{enumerate}
+		\item Did you include the full text of instructions given to participants and screenshots, if applicable?
+		\answerNA{}
+		\item Did you describe any potential participant risks, with links to Institutional Review Board (IRB) approvals, if applicable?
+		\answerNA{}
+		\item Did you include the estimated hourly wage paid to participants and the total amount spent on participant compensation?
+		\answerNA{}
+	\end{enumerate}
+	
+\end{enumerate}
+
 
 \end{document}
