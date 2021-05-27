@@ -621,7 +621,7 @@ of \cite{Ewerhart2020} to prove that this is the case.
 	
 \section{Experimental Evaluation}
 
-	In this section, we investigate NA-CTFP through numerical experiments. In particular, we look beyond zero-sum NA games and show that learning on an NA game can lead to periodic behaviour, rather than convergence to a fixed point. In addition, we aim to understand the behaviour of agents learning through NA-CTFP, when the measurements on their reference signal $\refmu$ is corrupted with noise. 
+	In this section, we investigate NA-CTFP through numerical experiments. In particular, we look beyond zero-sum NA games and show that learning on an NA game can lead to periodic behaviour, rather than convergence to a fixed point. In addition, we aim to understand the behaviour of agents learning through NA-CTFP, when the measurements on their reference signal $\refmu$ is corrupted with noise.  
 
   \subsection{Non-convergence of General Two-player Games under NA-CTFP} \label{sec::NonConv}
 
@@ -687,10 +687,9 @@ of \cite{Ewerhart2020} to prove that this is the case.
       \includegraphics[width = 0.8 \textwidth]{Figures/nonConvergentShapley.png}
       \caption{\label{fig::nonconvergentShapley}}
     \end{subfigure}
-    \caption{\label{fig::Shapley} Orbits of the Fictitious Play in the Three Player Chain (c.f.
-    Figure \ref{fig::ThreePlayerNetwork}) with payoff matrices given by (a)
-    (\ref{eq::zeroSumShapley}) showing convergence to the interior NE (b)
-    (\ref{eq::nonzeroSumShapley}) showing cycles around the interior NE.}
+    \caption{\label{fig::Shapley} Orbits of the Fictitious Play in the Three Player Chain for which the NE lies at the centre of the simplex. (a) Payoffs are given by
+    (\ref{eq::zeroSumShapley}). The plot shows NA-CTFP yields convergence to the NE (b)
+	NA-CTFP showing cycles around the NE when payoffs are modified slightly (c.f. Sec.~\ref{sec::NonConv}).}
   \end{figure}
 
   As such, we can see that convergent behaviour is not necessarily the norm in the NA-CTFP dynamics. In fact, for the family of games discussed above, we were unable to find non-periodic behaviour for any choice of $\beta$ strictly between 0.5 and 1 for any $w$ between 0.2 and 0.8 (so that the influence of player 1 and player 3 on player 2 is not negligible). This suggests that, far from being rare, in fact NA-CTFP lends itself to an incredibly rich variety of dynamics which can be explored as future work.
