@@ -12,7 +12,7 @@
 %     \usepackage[preprint]{neurips_2021}
 
 % to compile a camera-ready version, add the [final] option, e.g.:
-%     \usepackage[final]{neurips_2021}
+%     \usepackage[final]{ne urips_2021}
 
 % to avoid loading the natbib package, add option nonatbib:
 %    \usepackage[nonatbib]{neurips_2021}
@@ -31,6 +31,7 @@
 
 \usepackage{amsmath, amsfonts, amsthm}
 \usepackage{enumerate}
+\usepackage{enumitem}
 \usepackage{graphicx}
 \usepackage{subcaption}
 
@@ -147,8 +148,8 @@ Algorithm \cite{Brown1949, Harris1998}, in which agents are assumed to be myopic
 
 \paragraph{Contributions.}
 %
-  The main contribution of this work is to introduce learning on the Network Aggregative Game
-  through the action of Fictitious Play (FP).
+  The main contribution of this work is to introduce and study learning on the Network Aggregative Game
+  through the action of Fictitious Play (FP). In particular, we aim to establish guarantees of convergence for learning under certain classes of games. This allows for games to be designed so that the long term behaviour of learning is predictable, regardless of how many agents are engaged in the game. As such, we are able to avoid the pitfalls of chaotic dynamics in games with many players as in \cite{Sanders2018}.
 
   We first show that, in aggregative games played with FP, a Nash Equilibrium exists and that FP admits
   solutions in this setting. In particular, we study zero-sum games and show that
@@ -163,6 +164,8 @@ Algorithm \cite{Brown1949, Harris1998}, in which agents are assumed to be myopic
   document how noise affects the convergence of FP. Our experiments suggest that, under
   the presence of noise, the algorithm still reaches a fixed point, but perhaps not the Nash
   Equilibrium. This presents an interesting avenue for future research.
+  
+  To the best of our knowledge, this paper is the first time that a learning algorithm, which stems from game theoretic literature, has been studied on the network aggregative game, typically considered in the context of control and optimisation. 
 
 \paragraph{Related Work.}
 
@@ -231,7 +234,7 @@ More formally:
 \begin{definition}[Interaction Graph] \label{interactiongraph}
 	Given a set $\agentset$ of agents, an {\em interaction graph} $I = (\agentset, (\edgeset,
 	\weightset))$ is such that
-	\begin{itemize}
+	\begin{itemize}[leftmargin=0.5cm]
 		
 		\item $\edgeset \subseteq \agentset \times \agentset$.  Then, the set of
 		neighbours of agent $\mu$ is denoted as $N^\mu = \{\nu \in
@@ -243,9 +246,9 @@ More formally:
 	\end{itemize}
 \end{definition}
 
-Given Def.~\ref{interactiongraph} of interaction graph,
+%Given Def.~\ref{interactiongraph} of interaction graph,
 %With the above definition,
-we introduce network aggregative (NA) games:
+%we introduce network aggregative (NA) games:
 %
 \begin{definition}[NA Game]
 	A {\em network aggregative game} is
@@ -287,31 +290,30 @@ of each of their neighbours state.
 
 Then, the agent must optimise their payoff with respect to the
 reference vector $\sigma^{\mu}$. Thus, instead of considering
-the actions of the entire population, or play individual games
+the actions of the entire population, or playing individual games
 against each of their neighbours, the agent only considers
 $\sigma^\mu$ as a `measurement' of the local aggregate state and
 optimises with respect to this measurement.  This allows us to make
 the reduction $u^\mu(\xmu, \xnotmu) = u^\mu(\xmu, \refmu)$. In
 particular, we consider that the agent is engaged in a matrix game
 against the reference vector so that
-%
-\begin{equation}
+$
 	u^\mu(\xmu, \refmu) = \xmu \cdot A^\mu \refmu = \xmu
-	\cdot A^\mu \weightedsum.
-\end{equation}
+	\cdot A^\mu \weightedsum,
+$
 %
 where $A^\mu$ is the payoff matrix associated with agent $\mu$. In particular,  this means we can write the game $\Gamma$ with the payoff
 matrices $A^\mu$ in place of the utility functions
-$\utility{\mu}$. Hence, NA Games allow for the reduction of a
-multi-player game into a series of two-player games. The agent's goal
-is to maximise their payoff with respect to the reference vector. As
+$\utility{\mu}$. 
+
+The agent's goal
+is to maximise their payoff $u^\mu$ with respect to their reference vector $\refmu$. As
 such, we define the best response correspondence $BR^\mu$, which maps
 every $\refmu$ to the set $\arg \max_{y \in \Delta_\mu} {u^\mu(y,
 	\refmu)}$.
 
-Finally, a central concept of game theory is that of the Nash
-Equilibrium, in which no rational agent has the incentive to deviate
-from their current state. This can be formalised by saying that all
+Through the best response function, we can define the Nash Equilibrium (NE), a central concept of game theory. The NE condition requires that no rational agent has the incentive to deviate
+from their current state, as long as the other agents continue to play the NE strategy. This can be formalised by saying that all
 agents are playing their best response to each other.
 %
 This leads naturally to the definition of a Nash Equilibrium in an NA game as
@@ -341,10 +343,10 @@ This leads naturally to the definition of a Nash Equilibrium in an NA game as
 
 We will show that the NE exists for an NA game in Section \ref{sec::CTFPAnalysis}. 
 
-Finally, we note that an NA game is \emph{zero-sum} if the utilities of each agent sum to zero for any strategy set $\{ \xmu \}_{\mu \in \agentset}$. Formally,
+%Finally, we note that an NA game is \emph{zero-sum} if the utilities of each agent sum to zero for any strategy set $\{ \xmu \}_{\mu \in \agentset}$. Formally,
 %
 %  \begin{equation}
-$\sum_\mu u^\mu(\xmu, \weightedsum) = 0$.
+% $\sum_\mu u^\mu(\xmu, \weightedsum) = 0$.
 %  \end{equation}
 
 \subsection{Continuous Time Fictitious Play}
@@ -355,10 +357,9 @@ $\sum_\mu u^\mu(\xmu, \weightedsum) = 0$.
   respond optimally (i.e. play a best response) to this state. In the
   case of an NA game, each agent considers their reference vector to
   be their opponent. As such, each agent $\mu$ must update their state
-  according to the time-average of $\refmu$. To formalise this we
+  according to the time-average of the reference vector $\refmu$. To formalise this we
   define $\avgref{\mu}$ as the time average of agent $\mu$'s reference
   $\refmu$ up until time $t$.
-
   \begin{equation}
     \avgref{\mu} = \frac{1}{t} \int_0^t \refmu(s) \; ds.
   \end{equation}
@@ -367,7 +368,7 @@ $\sum_\mu u^\mu(\xmu, \weightedsum) = 0$.
   Fictitious Play in continuous time, but with a slight adaptation for NA Games.
 %
   \begin{definition}[Fictitious Play on Network Aggregative Games] \label{def::NACTFP}
-    We define Continuous Time Fictitious Play on Network Aggregative Games as a measurable map $m$ with components $m^\mu$ such that for all agents $\mu$, $m^\mu: [0, \infty) \rightarrow \Delta_\mu$ satisfies $m^\mu(t) \in
+    We define Continuous Time Fictitious Play (CTFP) on NA Games as a measurable map $m$ with components $m^\mu$ such that for all agents $\mu$, $m^\mu: [0, \infty) \rightarrow \Delta_\mu$ satisfies $m^\mu(t) \in
     BR^\mu(\alpha_{\sigma}^\mu)$ for almost all time $t \geq 1$. Henceforth, $m$ will be called an \emph{NA-CTFP}.
   \end{definition}
 
@@ -379,12 +380,10 @@ $\sum_\mu u^\mu(\xmu, \weightedsum) = 0$.
     As an illustration, consider NA Games with two players, in which $\edgeset = \{(1, 2),
     (2, 1)\}$ and $\weightset$ is a 2x2 matrix with zeros on its leading diagonal and ones on
     the off diagonal. We write the time-average of both agents' state as
-  
     \begin{align*}
       \alpha^\mu(t; x) = \frac{1}{t} \int_0^t \xmu(s) \, ds & \text{ for $\mu \in \{1, 2\}$}
   %   \alpha^2 = \frac{1}{t} \int_0^T x^2(t) \, dt \\
     \end{align*}
-
     In this manner, the $\alpha^\mu(t; m)$ denotes the time average of the strategies played by
     agent $\mu$ up to time $t$ when the strategies are given by $\xmu(t)$. Note that we often reduce the notation to $\alpha^\mu(t)$. Then, fictitious play requires that the agents update their
     strategy as $x^1(t) \in BR^1(\alpha^2(t))$ and $x^2(t) \in BR^2(\alpha^1(t))$. It can be
@@ -433,7 +432,7 @@ $\sum_\mu u^\mu(\xmu, \weightedsum) = 0$.
     behaviour of NA-CTFP without this assumption.
   \end{assumption}
 
-\section{Convergence of Fictitious Play  in Network Aggregative Games}
+\section{Convergence of Fictitious Play in Network Aggregative Games}
 \label{sec::CTFPAnalysis}
 
   
@@ -490,7 +489,7 @@ Equilibria of the game. We adapt the techniques
 of \cite{Ewerhart2020} to prove that this is the case.
 %
   \begin{theorem} \label{thm::NACTFPtoFixed}
-    Any zero-sum NA game has the property that, for any NA-CTFP path $m$, $\alpha(t; m)$ (i.e. the time-averaged state) converges to a set of fixed points.
+    Any zero-sum NA game (Assumption \ref{ass::zerosum}) has the property that, for any NA-CTFP path $m$, $\alpha(t; m)$ (i.e. the time-averaged state) converges to a set of fixed points.
   \end{theorem}
 
   In the proof of Theorem \ref{thm::NACTFPtoFixed} it can be seen that, if we choose $w^{\mu \mu}$ to be zero for all agents $\mu$, then the fixed point corresponds to an NE. In particular Eqn. (26) in the supplementary materal corresponds to the NE condition when $w^{\mu \mu} = 0$. This leads to the next result.
@@ -506,7 +505,7 @@ of \cite{Ewerhart2020} to prove that this is the case.
   NA-CTFP for the case in which NA games are not necessarily
   zero-sum. To do this, we first introduce the coarse correlated
   equilibria (CCE) \cite{Nisan2007} in the context of NA games as a
-  natural extension to \fb{of} the two-player case. Then, we show that
+  natural extension to of the two-player case. Then, we show that
   the NA-CTFP process converges to the set of CCE.
   %
   \begin{definition}[CCE] \label{def::CCE}
@@ -642,7 +641,7 @@ of \cite{Ewerhart2020} to prove that this is the case.
   \end{equation*}
 
 
-  We first consider the zero-sum case to show that it does indeed converge to an equilibrium as expected. Note that the zero-sum condition given for the three player chain is given as
+  We first consider the zero-sum case to show that it does indeed converge to an equilibrium as expected. Note that the zero-sum condition (Assumption \ref{ass::zerosum}) given for the three player chain is given as
 %
   \begin{equation}
     x \cdot A y + y \cdot B (w x + (1-w)z) + z \cdot C y = 0. \hspace{0.5cm} \forall x, y, z \in \Delta_1 \times \Delta_2 \times \Delta_3
@@ -695,7 +694,7 @@ of \cite{Ewerhart2020} to prove that this is the case.
   As such, we can see that convergent behaviour is not necessarily the norm in the NA-CTFP dynamics. In fact, for the family of games discussed above, we were unable to find non-periodic behaviour for any choice of $\beta$ strictly between 0.5 and 1 for any $w$ between 0.2 and 0.8 (so that the influence of player 1 and player 3 on player 2 is not negligible). This suggests that, far from being rare, in fact NA-CTFP lends itself to an incredibly rich variety of dynamics which can be explored as future work.
   
 
-  \subsection{Addition of Noise}
+  \subsection{Convergence under the Addition of Noise}
 
   \begin{figure}[t]
     \centering
@@ -741,7 +740,7 @@ of \cite{Ewerhart2020} to prove that this is the case.
   \cite{Mertikopoulos2018}. In \cite{Imhof2005} and \cite{Galla2011}, it was found that the
   introduction of random mutations can remove convergent behaviour and instead lead to periodicity. 
   
-\section{Concluding remarks}
+\section{Concluding Remarks}
 	In this work, we have considered the action of the Fictitious Play learning algorithm in Network Aggregative Games and investigated its long term behaviour through a continuous time analysis. We find that, under a zero-sum condition, NA-CTFP converges to a fixed point (Theorem \ref{thm::NACTFPtoFixed}). However, we find experimentally that this is not always the case. In fact, we find a family of NA games, based on the Shapley family, for which FP cycles about the NE. For these cases, we also perform a regret analysis which shows that, regardless of the type of game, the FP algorithm achieves no regret. 
 %	
 	We also investigate the influence of noise on the algorithm and find that even with the introduction of additive noise, FP converges to a fixed point, though not necessarily the NE. In fact, for our cyclic family of games, we find that the introduction of noise can actually remove the periodicity, resulting in FP converging to a fixed point.
