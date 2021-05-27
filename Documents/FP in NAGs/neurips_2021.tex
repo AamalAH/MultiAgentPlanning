@@ -438,9 +438,9 @@ We will show that the NE exists for an NA game in Section \ref{sec::CTFPAnalysis
   
   In this section we present our main results. First, we establish the
   existence of a Nash equilibrium in NA games, as defined in
-  Def.~\ref{def::NE}. Then we show that an NA-CTFP (i.e. a path $m$ which satisfies Def.~\ref{def::NACTFP}) exists. Finally, we show that NA-CTFP reaches a fixed point when
+  Def.~\ref{def::NE}. Then we show that an NA-CTFP (i.e. a path $m$ which satisfies Def.~\ref{def::NACTFP}) exists. Finally, we show that any NA-CTFP reaches a fixed point when
   NA Games are zero-sum and that, when the network has no self-loops
-  (i.e., is simple), NA-CTFP reaches a Nash Equilibrium. For the sake
+  (i.e., $w^{\mu \mu} = 0$ for all agents $\mu$), NA-CTFP reaches a Nash Equilibrium. For the sake
   of brevity, we defer the proofs of our statements, as well as the
   standard topological arguments used to derive them, to the
   supplementary material (Sections (S4 - S6)).
@@ -620,6 +620,8 @@ of \cite{Ewerhart2020} to prove that this is the case.
         games.
 	
 \section{Experimental Evaluation}
+
+	In this section, we investigate NA-CTFP through numerical experiments. In particular, we look beyond zero-sum NA games and show that learning on an NA game can lead to periodic behaviour, rather than convergence to a fixed point. In addition, we aim to understand the behaviour of agents learning through NA-CTFP, when the measurements on their reference signal $\refmu$ is corrupted with noise. 
 
   \subsection{Non-convergence of General Two-player Games under NA-CTFP} \label{sec::NonConv}
 
