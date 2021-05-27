@@ -111,23 +111,23 @@
 \maketitle
 
 \begin{abstract}
-Understanding the long term behaviour of learning algorithms is an important object of study if we are to design systems which can be considered safe.In this study, we contribute towards the study of learning with multiple agents. We do this through the introduction of learning on network aggregative games, in which each player's reward depends only on its own strategy and a convex combination of its neighbours. In particular, we present a continuous time analysis of the Fictitious Play learning dynamic on such a game. We show that Fictitious Play reaches a fixed point when the game is zero-sum and provide conditions under which this fixed point corresponds to a Nash Equilibrium. In addition, we show that agents learning through Fictitious Play achieve no-regret, regardless of the choice of game. Finally, we present experimental evidence of a family of games for which Fictitious Play reaches a limit cycle and evidence that the introduction of noise has the potential to break this cyclic behaviour and allow agents to reach the Nash Equilibrium.
+Understanding the long term behaviour of learning algorithms is an important object of study if we are to design systems which can be considered safe.In this study, we contribute towards the study of learning with multiple agents. We do this through the introduction of learning on Network Aggregative games, in which each player's reward depends only on its own strategy and a convex combination of its neighbours. In particular, we present a continuous time analysis of the Fictitious Play learning dynamic on such a game. We show that Fictitious Play reaches a fixed point when the game is zero-sum and provide conditions under which this fixed point corresponds to a Nash Equilibrium. In addition, we show that agents learning through Fictitious Play achieve no-regret, regardless of the choice of game. Finally, we present experimental evidence of a family of games for which Fictitious Play reaches a limit cycle and evidence that the introduction of noise has the potential to break this cyclic behaviour and allow agents to reach the Nash Equilibrium.
 \end{abstract}
 
 \section{Introduction}
 
 Multi-Agent Learning \cite{Schwartz2014} requires a number of agents to adapt in an environment where
-each agent must adapt in response to the behaviour of the other agents. This leads to a
+each agent responds to the behaviour of the other agents. This leads to a
 fundamentally non-stationary problem, which presents a challenge to designing effective learning
 policies. Even when there are a small number of agents in the game, learning has been shown to lead
-to non-stationary, and even chaotic behaviour \cite{Sato2002}, and this problem becomes even more
-pronounced as the number of agents increase \cite{Sanders2018}. In this light, it would seem that, when there is a large population of agents, it is almost impossible to understand the long term behaviour of multi-agent learning \cite{Chotibut2021}. This, of course, poses a problem for AI safety, for which it is desirable that learning systems are designed so that their ultimate behaviour is guaranteed to satisfy some predetermined goals.
+to non-stationary, and even chaotic behaviour \cite{Sato2002}, a problem which becomes even more
+pronounced as the number of agents increase \cite{Sanders2018}. In this light, it would seem that, when there is a large population of agents, it is almost difficult to understand the long term behaviour of multi-agent learning \cite{Chotibut2021}. This, of course, poses a problem for AI safety, for which it is desirable that learning systems are designed so that their ultimate behaviour is guaranteed to satisfy some predetermined goals.
 
 To deal with this problem, one must attempt to reduce the many player game to something which is
 tractable. A number of reductions have been proposed, most notably \emph{Mean Field} Games
 and \emph{Aggregative} Games. The former makes the assumption of an infinite
 number of agents, so that the population can be represented through a distribution over players'
-states \cite{Huang2006} . Every agent then updates their action profiles depending on this
+states \cite{Huang2006}. Every agent then updates their action profiles depending on this
 distribution. In the latter each agent considers a real valued function which is a convex
 combination of the states of the other agents. Both formulation allows for a many player game to be reduced to a set of two-player games.
 
@@ -143,7 +143,7 @@ In this study, we investigate a variant of the aggregative game known as the \em
 Aggregative} (NA) Game. This format assumes that each agent updates their actions according only to those agents with whom they are connected on an underlying network. This significantly relaxes the communication load on each agent and
 lifts the need for a central coordinator. Recent work on NA games has shown that it is possible
 for agents to reach an equilibrium strategy in an entirely distributed manner \cite{Koshal2016, Shokri2020, Shokri2021, Parise2015}. We contribute in this direction by analysing the long term behaviour of learning on an NA game. In particular, we analyse the Fictitious Play Learning
-Algorithm \cite{Brown1949, Harris1998}, in which agents are assumed to be myopic, in that they react solely to the previous behaviour of the others.
+Algorithm \cite{Brown1949, Harris1998}, in which agents are assumed to be myopic, in that they react solely to the past behaviour of the others.
 
 
 \paragraph{Contributions.}
@@ -153,8 +153,8 @@ Algorithm \cite{Brown1949, Harris1998}, in which agents are assumed to be myopic
 
   We first show that, in aggregative games played with FP, a Nash Equilibrium exists and that FP admits
   solutions in this setting. In particular, we study zero-sum games and show that
-  FP converges to a fixed point, which for a network without any
-  self-loops corresponds to a Nash Equilibrium. In addition, we find that, for games
+  FP converges to a fixed point which, for a network without any
+  self-loops (i.e. agents are not `connected' to themselves), corresponds to a Nash Equilibrium. In addition, we find that, for games
   which are not zero-sum, agents following FP are able to
   achieve no regret.
 
@@ -165,7 +165,7 @@ Algorithm \cite{Brown1949, Harris1998}, in which agents are assumed to be myopic
   the presence of noise, the algorithm still reaches a fixed point, but perhaps not the Nash
   Equilibrium. This presents an interesting avenue for future research.
   
-  To the best of our knowledge, this paper is the first time that a learning algorithm, which stems from game theoretic literature, has been studied on the network aggregative game, typically considered in the context of control and optimisation. 
+  To the best of our knowledge, this paper is the first time that a learning algorithm, which stems from game theoretic literature, has been studied on the Network Aggregative game, typically considered in the context of control and optimisation. 
 
 \paragraph{Related Work.}
 
@@ -177,13 +177,13 @@ the population. Since its introduction, distributed algorithms have
 been built with the aim of finding NE. In particular,
 \cite{Parise2015, Parise2020} consider the case in which payoffs are
 given by Lipschitz functions with unique minimisers and apply standard
-topological fixed point towards designing algorithms which will
+topological fixed point arguments towards designing algorithms which will
 converge to the NE. Another approach for distributed NE seeking is the
 projected gradient (resp. subgradient) dynamics which is explored in
 \cite{Zhu2021} (resp. \cite{Shokri2020, Shokri2021}). In all of these
 works, the cost function is assumed to be convex, and therefore have a
 unique minimiser. In fact this is a common assumption in works
-concerning NA Games \cite{Zhu2021, Lei2020}, which we believe is due
+concerning NA Games \cite{Zhu2021, Lei2020} which, we believe, is due
 to its ubiquity in control settings. We have not yet come across works
 which consider NA games from the point of view of payoff matrices,
 which are more common in multi-agent learning settings.  Furthermore,
@@ -191,30 +191,30 @@ to the best of our knowledge, this is the first work which introduces
 the application of a learning algorithm in the NA setting.
 
 \textbf{Fictitious Play}
-%Fictitious Play
-was introduced in 1951 \cite{Brown1949} as a 'natural'
-way in which to approximate the Nash Equilibrium in zero sum games. Since then, a number of proofs of convergence have been determined for 2 player games \cite{Robinson1951, Miyasawa1961, Metrick1994,Berger2007, Monderer1997, Monderer1996}. However, the work looking
+
+was introduced in 1951 \cite{Brown1949} as a `natural'
+way in which to approximate the Nash Equilibrium in zero-sum games. Since then, a number of proofs of convergence have been determined for 2 player games \cite{Robinson1951, Miyasawa1961, Metrick1994,Berger2007, Monderer1997, Monderer1996}. However, the work looking
 at FP where there are more than two agents is sparse. \cite{Sela1999}
 considers a game in which a multi-player game is decomposed by
 requiring that each agent engage in a two person game against each of
 the opponent. Their payoff is given by the sum of payoffs in all of
-these subgames. It was found that, if this game is zero sum, then FP
+these subgames. It was found that, if this game is zero-sum, then FP
 will converge. Similar results for more than two players were found
 for games where all agents share the same payoff in
 \cite{Monderer1996}. In \cite{Perrin2020}, the action of FP was
-considered in a Mean Field Game, with convergence in zero sum
+considered in a Mean Field Game, with convergence in zero-sum
 games. The most general result, and the one most similar to our own,
 was found by Ewerhart and Valkanova in 2020 \cite{Ewerhart2020}. It was found that FP converges in network games, where each
 agent is engaged in a two-player game with each of their neighbours
 Our work adapts this model to consider NA Games, so that the agents do not play
 individual games against each of their neighbours but rather a single
 game against the aggregate of their neighbours. We also
-extend a result for two player games found by Ostrovski and van Strien
+go beyond the zero-sum requirement by exteding a result for two player games found in
 \cite{Ostrovski2014} which showed that FP achieves no-regret to the
 multi-player setting.
 
 \section{Preliminaries}
-In this section we introduce the network aggregative game framework,
+In this section we introduce the Network Aggregative game framework,
 as well as defining FP on such a game.
 
 \subsection{Network Aggregative Games}
@@ -232,7 +232,7 @@ interaction graph.
 More formally:
 %        
 \begin{definition}[Interaction Graph] \label{interactiongraph}
-	Given a set $\agentset$ of agents, an {\em interaction graph} $I = (\agentset, (\edgeset,
+	Given a set of agents $\agentset$, an {\em interaction graph} $I = (\agentset, (\edgeset,
 	\weightset))$ is such that
 	\begin{itemize}[leftmargin=0.5cm]
 		
@@ -240,7 +240,7 @@ More formally:
 		neighbours of agent $\mu$ is denoted as $N^\mu = \{\nu \in
 		\agentset \mid (\mu, \nu) \in \edgeset\}$.
 		
-		\item $\weightset \in M_N(\mathbb{R})$ is the weight adjacency matrix, whose elements $w^{\mu
+		\item $\weightset \in M_N([0, 1])$ is the weight adjacency matrix, whose elements $w^{\mu
 			\nu} \in [0, 1]$ expresses the importance that agent $\mu$ places on agent $\nu$. If $(\mu, \nu) \not
 		\in \edgeset$ then $w^{\mu \nu} = 0$;        $\wmunu \in (0, 1]$ otherwise.
 	\end{itemize}
@@ -251,7 +251,7 @@ More formally:
 %we introduce network aggregative (NA) games:
 %
 \begin{definition}[NA Game]
-	A {\em network aggregative game} is
+	A {\em Network Aggregative game} is
 	%defined as the
 	a tuple $\Gamma = (I, (\actionset{\mu},
 	\utility{\mu})_{\mu \in \mathcal{N}})$, where $I$ is an
@@ -271,29 +271,24 @@ probability vector is often referred to as $\mu$'s \emph{mixed
 space, the {\em unit simplex} $\Delta_\mu$ on agent $\mu$'s action set, which
 is defined
 as $\Delta_\mu := \{\xmu \in \mathbb{R}^n \, : \, \sum_i
-\xmuaction{i} = 1\}$. Also associated with each agent is a utility
-function
+\xmuaction{i} = 1\}$. 
 
-The utility, for each agent $\mu$ and action profile
-$(\xmu, \xnotmu)$, is given as $u^\mu(\xmu, \xnotmu)$ in which we
+Also associated with each agent is a utility
+function. For each agent $\mu$ and action profile
+$(\xmu, \xnotmu)$, this is given as $u^\mu(\xmu, \xnotmu)$ in which we
 use the standard notation $-\mu$ to refer to all agents other than
 $\mu$. Notice that this requires that each agent plays the same
-strategy against all of their neighbours. What is unique about 
-NA games is the structure of the payoffs themselves. In this format,
-each agent $\mu$ receives a reference $\sigma^{\mu} = \sum_{\nu \in N^\mu} \wmunu \xnu$, which is a weighted sum
-of each of their neighbours state.
-%Formally
-%
-%  \begin{equation}
-%    \sigma^\mu = \sum_{\nu \in N^\mu} \wmunu \xnu.
-%  \end{equation}
+strategy against all of their neighbours. 
 
-Then, the agent must optimise their payoff with respect to the
-reference vector $\sigma^{\mu}$. Thus, instead of considering
+What is unique about 
+NA games is the structure of the payoffs themselves. In this format,
+each agent $\mu$ receives a reference $\sigma^{\mu} = \sum_{\nu \in N^\mu} \wmunu \xnu$, which is a convex combination
+of each of their neighbours' state. Agents must optimise their payoff with respect to this
+reference vector. Thus, instead of considering
 the actions of the entire population, or playing individual games
 against each of their neighbours, the agent only considers
 $\sigma^\mu$ as a `measurement' of the local aggregate state and
-optimises with respect to this measurement.  This allows us to make
+optimises with respect to this measurement. This allows us to make
 the reduction $u^\mu(\xmu, \xnotmu) = u^\mu(\xmu, \refmu)$. In
 particular, we consider that the agent is engaged in a matrix game
 against the reference vector so that
@@ -310,9 +305,7 @@ The agent's goal
 is to maximise their payoff $u^\mu$ with respect to their reference vector $\refmu$. As
 such, we define the best response correspondence $BR^\mu$, which maps
 every $\refmu$ to the set $\arg \max_{y \in \Delta_\mu} {u^\mu(y,
-	\refmu)}$.
-
-Through the best response function, we can define the Nash Equilibrium (NE), a central concept of game theory. The NE condition requires that no rational agent has the incentive to deviate
+	\refmu)}$ \cite{Ostrovski2014}. Through the best response function, we can define the Nash Equilibrium (NE), a central concept of game theory. The NE condition requires that no rational agent has the incentive to deviate
 from their current state, as long as the other agents continue to play the NE strategy. This can be formalised by saying that all
 agents are playing their best response to each other.
 %
@@ -355,9 +348,9 @@ We will show that the NE exists for an NA game in Section \ref{sec::CTFPAnalysis
   Fictitious Play requires that, at the current time, each agent
   considers the average state of their opponent in the past, and
   respond optimally (i.e. play a best response) to this state. In the
-  case of an NA game, each agent considers their reference vector to
-  be their opponent. As such, each agent $\mu$ must update their state
-  according to the time-average of the reference vector $\refmu$. To formalise this we
+  case of an NA game, each agent considers their reference vector $\refmu$ to
+  be their `opponent'. As such, each agent $\mu$ must update their state
+  according to the time-average of $\refmu$. To formalise this we
   define $\avgref{\mu}$ as the time average of agent $\mu$'s reference
   $\refmu$ up until time $t$.
   \begin{equation}
@@ -412,7 +405,7 @@ We will show that the NE exists for an NA game in Section \ref{sec::CTFPAnalysis
     have a rich history in game theory and allow for the design of multi-agent systems in
     computational settings, particularly in the case of task and resource allocation \cite{Nisan2007}. It should be noted, however, that game
     theoretic analysis is starting to consider various other forms of utility functions,
-    including monotone \cite{Tatarenko2020} and convex \cite{Parise2020}. We believe that the analysis of
+    including monotone and convex \cite{Parise2020}. We believe that the analysis of
     Fictitious Play should follow in these developments and we consider it as an important area
     of future work.
   \end{assumption}
@@ -511,7 +504,7 @@ of \cite{Ewerhart2020} to prove that this is the case.
   \begin{definition}[CCE] \label{def::CCE}
     A distribution $\mathcal{D}$ over the set $S = \times_\mu S^\mu$
     of joint actions is called a \emph{coarse correlated equilibrium}
-    if, for all agents $\mu$ and actions $j \in S^\mu$, we have
+    if, for all agents $\mu$ and all actions $j \in S^\mu$, we have
     $\mathbb{E}_{s \sim \mathcal{D}}[u^\mu (s^\mu, s^{- \mu})] \geq
     \mathbb{E}_{s \sim \mathcal{D}}[u^\mu (j, s^{- \mu})]$.
   \end{definition}
@@ -545,11 +538,10 @@ of \cite{Ewerhart2020} to prove that this is the case.
   \end{align*}
 
   As such, we would say that NA-CTFP has converged to the set of CCE if, in the limit of $t
-  \rightarrow \infty$, we have that for all agents $\mu$,
+  \rightarrow \infty$, we have that, for all agents $\mu$ and all actions $j \in S^\mu$,
 %  \begin{equation}
   $u^\mu (\xmu, \refmu) \geq u^\mu(j, \refmu)$
   %\hspace{1cm} \
-  for all actions $j \in S^\mu$.
 %  \end{equation}
 
   \begin{remark}
