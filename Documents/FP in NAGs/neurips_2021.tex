@@ -198,7 +198,7 @@ myopic, in that they react solely to the past behaviour of the others.
   allow for games to be designed so that the long-term behaviour of
   learning is predictable, regardless of how many agents are engaged
   in the game. As such, we are able to avoid the pitfalls of chaotic
-  dynamics in games with many players, as shownin \cite{Sanders2018}.
+  dynamics in games with many players (also called `agents'), as shownin \cite{Sanders2018}.
 
   We first show that, in NA games played with FP, a Nash equilibrium
   exists and that FP admits solutions in this setting. Specifically,
@@ -410,7 +410,11 @@ This leads naturally to the definition of a Nash equilibrium in an NA game as
 	$     \NE{1} \in BR^1 (\sigma^1) = \arg \max_{x \in \Delta_1} u^1 (x, \NE{2})$,
 	%    \end{equation*}
 	%
+<<<<<<< HEAD
 	and similarly for $\NE{2}$. This is precisely the definition of NE in a two-player game \cite{}.
+=======
+	and similarly for $\NE{2}$. This is precisely the definition of an NE in a two-player game \cite{}.
+>>>>>>> 460d84b1395caed72035e5877470d4f26f7e9f4d
 \end{remark}
 
 In Section \ref{sec::CTFPAnalysis} we show that NE exist for NA games. 
@@ -456,8 +460,13 @@ In Section \ref{sec::CTFPAnalysis} we show that NE exist for NA games.
       \alpha^\mu(t; x) = \frac{1}{t} \int_0^t \xmu(s) \, ds & \text{ for $\mu \in \{1, 2\}$}
   %   \alpha^2 = \frac{1}{t} \int_0^T x^2(t) \, dt \\
     \end{align*}
+<<<<<<< HEAD
     In this manner, $\alpha^\mu(t; m)$ denotes the time average of the strategies played by
     agent $\mu$ up to time $t$ when the strategies are given by $\xmu(t)$. Note that we often reduce the notation to $\alpha^\mu(t)$. Then, fictitious play requires that the agents update their
+=======
+    In this manner, the $\alpha^\mu(t; m)$ denotes the time average of the strategies played by
+    agent $\mu$ up to time $t$ when the strategies are given by $\xmu(t)$. Note that we often reduce the notation to $\alpha^\mu(t)$. Then, Fictitious Play requires that the agents update their
+>>>>>>> 460d84b1395caed72035e5877470d4f26f7e9f4d
     strategy as $x^1(t) \in BR^1(\alpha^2(t))$ and $x^2(t) \in BR^2(\alpha^1(t))$. It can be
     seen, therefore, that NA-CTFP is a natural extension of CTFP in the classic
     two-player setting \cite{Hofbauer2006}.
@@ -630,9 +639,9 @@ of \cite{Ewerhart2020} to prove that this is the case.
 %  \end{equation}
 
   \begin{remark}
-    As usual, the notion of CCE in an NA game is a natural extension of the CCE for two player
-    games. In fact, if we consider the NA game to be a two player game with no self-loops, then
-    we recover exactly the definition of the CCE set in two player games \cite{Ostrovski2014}.
+    As usual, the notion of CCE in an NA game is a natural extension of the CCE for two-player
+    games. In fact, if we consider the NA game to be a two-player game with no self-loops, then
+    we recover exactly the definition of the CCE set in two-player games \cite{Ostrovski2014}.
   \end{remark}
 
   \begin{remark} \label{rem::regretvsCCE}
@@ -640,7 +649,7 @@ of \cite{Ewerhart2020} to prove that this is the case.
     will present what is meant by average regret and state that if at some time $t$ all agents'
     average regret is non-positive, then the game is said to have reached the CCE set. The
     reader should consult \cite{Ostrovski2014} for an excellent exposition regarding the
-    link between the CCE set and average regret in two player games which, of course, extends
+    link between the CCE set and average regret in two-player games which, of course, extends
     naturally to NA Games.
     
     Average regret, for agent $\mu$ is defined as
@@ -652,7 +661,7 @@ of \cite{Ewerhart2020} to prove that this is the case.
     in which $\pure{\mu}{i}$ denotes the probability vector in $\Delta_\mu$ with $1$ in the slot
     $i'$ and $0$ everywhere else. Note, this is the \emph{average regret} for the agent $\mu$
     and, of course, can be related to the \emph{cumulative regret} which is used for analysis
-    in \cite{Leonardos2020, Cesa-Bianchi2021}.  To illustrate the average regret, let us
+    in \cite{Cesa-Bianchi2021}.  To illustrate the average regret, let us
     consider the case where each agent has only two actions. Then $u^{\mu}(x^\mu(t), \sigma(t))$
     is given by
 %    
@@ -709,7 +718,7 @@ of \cite{Ewerhart2020} to prove that this is the case.
 
   As a example of non-convergence we consider the Shapley family of games \cite{Shapley2016}. In \cite{VanStrien2011} this family was shown to contain games for which FP gives periodic and even chaotic behaviour.
 
-  As an adaptation, we take the example of a three player chain, in which player $2$ is connected to $1$ and $3$. The aggregation matrix can be given as
+  As an adaptation, we take the example of a three-player chain, in which player $2$ is connected to $1$ and $3$. The aggregation matrix can be given as
 %
   \begin{equation*}
     W = \begin{bmatrix}
@@ -720,7 +729,7 @@ of \cite{Ewerhart2020} to prove that this is the case.
   \end{equation*}
 
 
-  We first consider the zero-sum case to show that it does indeed converge to an equilibrium as expected. Note that the zero-sum condition (Assumption \ref{ass::zerosum}) given for the three player chain is given as
+  We first consider the zero-sum case to show that it does indeed converge to an equilibrium as expected. Note that the zero-sum condition (Assumption \ref{ass::zerosum}) given for the three-player chain is given as
 %
   \begin{equation}
     x \cdot A y + y \cdot B (w x + (1-w)z) + z \cdot C y = 0. \hspace{0.5cm} \forall x, y, z \in \Delta_1 \times \Delta_2 \times \Delta_3
@@ -764,7 +773,7 @@ of \cite{Ewerhart2020} to prove that this is the case.
       \includegraphics[width = 0.8 \textwidth]{Figures/nonConvergentShapley.png}
       \caption{\label{fig::nonconvergentShapley}}
     \end{subfigure}
-    \caption{\label{fig::Shapley} Orbits of the Fictitious Play in the Three Player Chain for which the NE lies at the centre of the simplex. (a) Payoffs are given by
+    \caption{\label{fig::Shapley} Orbits of the Fictitious Play in the Three-Player Chain for which the NE lies at the centre of the simplex. (a) Payoffs are given by
     (\ref{eq::zeroSumShapley}). The plot shows NA-CTFP yields convergence to the NE (b)
 	NA-CTFP showing cycles around the NE when payoffs are modified slightly (c.f. Sec.~\ref{sec::NonConv}).}
   \end{figure}
@@ -777,7 +786,7 @@ of \cite{Ewerhart2020} to prove that this is the case.
   \begin{figure}[t]
     \centering
     \includegraphics[width = 0.9 \columnwidth]{Figures/Noise20Player.png}
-    \caption{\label{fig::Noise20Player} Trajectories of NA-CTFP in a 20 player game with additive noise (Left) No noise is introduced and learning converges directly to an NE. (Middle) $\gamma = 0.05$, the trajectories converge to a fixed point but removed from the NE. (Right) $\gamma = 0.1$, the trajectories converge to a fixed point which is even further away from the NE.}
+    \caption{\label{fig::Noise20Player} Trajectories of NA-CTFP in a 20-player game with additive noise (Left) No noise is introduced and learning converges directly to an NE. (Middle) $\gamma = 0.05$, the trajectories converge to a fixed point but removed from the NE. (Right) $\gamma = 0.1$, the trajectories converge to a fixed point which is even further away from the NE.}
   \end{figure}
 
   \begin{figure}[t]
@@ -786,7 +795,7 @@ of \cite{Ewerhart2020} to prove that this is the case.
     \caption{\label{fig::3PlayerChainNoise} Trajectories of NA-CTFP on the Three Player Chain of Section \ref{sec::NonConv} with additive noise. (Left) $\gamma = 0.1$ leads to a decrease in the size of the cyclic orbit (Middle) $\gamma = 0.5$, no periodicity is seen but the trajectory converges to the NE (Right) $\gamma = 0.75$, NA-CTFP still converges, though after a greater amount of time has elapsed.}
   \end{figure}
 
-  The fictitious play process in NA games requires that, at each time step, an agent takes a
+  The Fictitious Play process in NA games requires that, at each time step, an agent takes a
   `measurement' of the aggregate strategy of its neighbours. It is on this measurement that they
   update their own strategy. It stands to reason then, that in real environments this measurement
   may be corrupted by noise. 
@@ -806,7 +815,7 @@ of \cite{Ewerhart2020} to prove that this is the case.
   orbits do still reach a stationary state in the long run which suggests that FP is still able to
   converge with the introduction of noise.
 
-  In Figure \ref{fig::3PlayerChainNoise} we revisit the Three Player Chain of Section
+  In Figure \ref{fig::3PlayerChainNoise} we revisit the Three-Player Chain of Section
   \ref{sec::NonConv}, now under the influence of additive noise. For the sake of brevity, we only
   display the distance to the Nash Equilibrium of the first player's action, since the other agents
   behave in the same way. It can be seen that a small amount of noise has the effect of decreasing
@@ -827,7 +836,7 @@ of \cite{Ewerhart2020} to prove that this is the case.
 %	
 	In addition, we note that the \emph{Mann Iteration}, a method of approximating fixed points which is investigated in \cite{Parise2020}, shares a remarkably similar structure to the discrete variant of FP. This may present an avenue by which NA-CTFP may be analysed in the case of convex cost functions. 
 %	
-	Finally, we note that in recent years FP in two player games has shown a remarkable variety of dynamical behaviours, including periodicity and chaos. In our work we have shown convergence to a fixed point and, through experiments, periodicity. It stands to reason, therefore, that a greater variety of dynamical behaviours exist for NA-CTFP for certain classes of games. It would be important to determine what these classes are. Short from being merely a curiosity, this would allow for the identification of games in which NA-CTFP leads to inherently unpredictable behaviour, an important question from the point of view of building Safe and Trusted AI.
+	Finally, we note that in recent years FP in two-player games has shown a remarkable variety of dynamical behaviours, including periodicity and chaos. In our work we have shown convergence to a fixed point and, through experiments, periodicity. It stands to reason, therefore, that a greater variety of dynamical behaviours exist for NA-CTFP for certain classes of games. It would be important to determine what these classes are. Short from being merely a curiosity, this would allow for the identification of games in which NA-CTFP leads to inherently unpredictable behaviour, an important question from the point of view of building Safe and Trusted AI.
 
 \section*{Broader Impact}
 
