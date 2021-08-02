@@ -1,0 +1,237 @@
+\documentclass[preprint,12pt]{article}
+
+\usepackage{amsmath, amsfonts, amsthm}
+\usepackage{xcolor}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{csquotes}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{assumption}{Assumption}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\theoremstyle{example}
+\newtheorem{example}{Example}
+
+
+\newcommand{\agentset}{\mathcal{N}}
+\newcommand{\actionset}[1]{S^{#1}}
+\newcommand{\utility}[1]{u^{#1}}
+\newcommand{\NEX}{\mathbf{\bar{p}}}
+\newcommand{\NEY}{\mathbf{\bar{q}}}
+\newcommand{\NE}{\mathbf{\bar{x}}}
+
+\newcommand{\A}{\mathbf{A}}
+\newcommand{\B}{\mathbf{B}}
+\newcommand{\p}{\mathbf{p}}
+\newcommand{\q}{\mathbf{q}}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\y}{\mathbf{y}}
+\newcommand{\pure}[1]{\mathbf{e}_{#1}}
+
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\X}{\mathcal{X}}
+
+\newcommand{\xmu}{x^\mu}
+
+\usepackage{changepage}
+\usepackage{bbm}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\usepackage[toc,page]{appendix}
+\usepackage[font={small,it}]{caption}
+\usepackage{verbatim}
+\usepackage{subfiles}
+\usepackage{hyperref}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[margin=1in,letterpaper]{geometry}
+\usepackage{xcolor}
+\usepackage{listings}
+\def\changemargin#1{\list{}{\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist
+\renewcommand{\labelenumi}{\Roman{enumi}}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{multirow}
+
+\newcommand{\ah}[1]{\textcolor{blue}{\textit{#1}}}
+
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\thepage}
+\lhead{\leftmark}
+
+\title{Convex NA-FP}
+
+\begin{document}
+	\maketitle
+	
+	\section{Setup}
+	
+	The setup for this problem is the same as it was for the original previous paper. The major difference comes in the definition of the cost function. Let us define, for each agent, a convex $\mathcal{C}^1$ function
+	
+	\begin{equation}
+			u^\mu: \times_{\mu} \Delta_\mu \rightarrow \Delta_\mu
+	\end{equation}
+
+	The goal of the agent is to choose its action $x^\mu$ so as to minimise its cost function with respect to the time average of its reference vector $\sigma^\mu (t)$. More formally, we define the best response function $BR^\mu$ as 
+	
+	\begin{equation}
+		BR^\mu(\alpha_\sigma^\mu(t) )= \arg \min_{y \in \Delta_\mu} u^\mu(y, \alpha_\sigma^\mu (t)), 
+	\end{equation}
+	
+	in which
+	
+	\begin{equation}
+		\alpha_\sigma^\mu(t) = \frac{1}{t} \int_0^t \sigma^\mu(s) ds.
+	\end{equation}
+	
+	\begin{remark}
+		Just as a quick note, we defined the function $u^\mu$ to be convex so that its argmin (i.e. the best response function) would be singular valued. This may not be entirely required, as we have dealt with set-valued functions in the previous paper, but it is a useful start. Secondly, we enforced that the function is $\mathcal{C}^1$ so that we can ensure it is differentiable and that the differential is continuous in both of its arguments. 
+	\end{remark}
+	
+	Other than the above, the setup is exactly the same as was the case for the previous paper.
+	
+	\section{Existence of the Convex CTFP}
+	
+	This proof follows a similar structure to the one that we did for the original NA-CTFP paper. The major difference comes in the definition of the utility (or in this case the cost) function.
+	
+	\begin{theorem}
+		The convex NA-CTFP exists
+	\end{theorem}
+
+	\begin{proof}[Proof Sketch]
+		Start with the definition of $\alpha^\mu(t)$
+		
+		\begin{equation}
+			\alpha^\mu(t) = \frac{1}{t} \int_0^t x^\mu(s) ds 
+		\end{equation}
+	
+		Then,
+		
+		\begin{equation}
+			\dot{\alpha}^\mu(t) = \frac{1}{t} \left( BR^\mu(\alpha_\sigma^\mu(t) ) - \alpha^\mu(t)  \right)
+		\end{equation}
+	
+		In the same way as last time, we can concatenate into 
+	
+		\begin{equation}
+			\alpha(t) = \begin{bmatrix}
+				\alpha^1(t)^T, \ldots, \alpha^N(t)^T
+			\end{bmatrix}^T \subset \mathbb{R}^{Nn}
+		\end{equation}
+	
+	Next, we rewrite the aggregation as 
+	
+ 	\begin{equation}
+		\sum_{\nu \in N^\mu} w^{\mu \nu} \alpha^\nu = (w_{-\mu}^T \otimes I_n) \begin{bmatrix}
+			\alpha^1 \\ . \\ . \\ . \\ \alpha^N
+		\end{bmatrix} = (w_{-\mu}^T \otimes I_n) \alpha(t)
+	\end{equation}
+	
+	So now our dynamic is
+	
+	\begin{equation}
+		\dot{\alpha}(t) = \frac{1}{t} \left( \begin{bmatrix}
+			\arg\min_{y \in \Delta_1} u^1(y, (w_{-1}^T \otimes I_n) ( \alpha (t) ) ) \\ . \\ . \\ . \\ \arg\min_{y \in \Delta_N} u^N(y, (w_{-N}^T \otimes I_n)( \alpha (t) ))
+		\end{bmatrix}  - \alpha(t)  \right)
+	\end{equation}
+	
+	Now, since we enforced that the function $u^\mu$ is to be $\mathcal{C}^1$ for all agents $\mu$, we can (\ah{I'm quite sure?}) assert that the function 
+	
+	\begin{equation}
+		f(x) = \begin{bmatrix}
+			\arg\min_{y \in \Delta_1} u^1(y, (w_{-1}^T \otimes I_n) ( x ) ) \\ . \\ . \\ . \\ \arg\min_{y \in \Delta_N} u^N(y, (w_{-N}^T \otimes I_n)( x ))
+		\end{bmatrix} 
+	\end{equation}
+	
+	is continuous. Furthermore, due to the continuity of the cost function and compactness of $\Delta$, we know that the argmin is non-empty. Since it is also convex, the argmin is singular valued and so is compact and convex-valued. It is clearly bounded, since $\Delta$ is bounded. All of these conditions together ensure that there exist solutions to the convex NA-CTFP dynamic.
+	\end{proof}
+
+
+	\section{Stability of convex NA-CTFP}
+	
+	Firstly, it should be said that, thanks to the work of Grammatico, we know that a Nash Equilibrium exists for the NA-Game when the cost is given by a convex function. Since the NE correspond exactly to the fixed points of Fictitious Play, we know that our dynamic admits fixed points.
+	
+	
+	This is where the analysis becomes a bit more tricky. To make it a little easier, we should first introduce the NA-CTFP with convex costs on two-player games. We will also focus on a particular sub-family of convex functions, namely quadratic costs. \ah{I chose this mostly because it satisfies our assumptions and they are the ones most often used in control problems}.
+	
+	Consider the costs given by
+	
+	\begin{align}
+		u^A(x, q) = || x - x_d ||^2_{A_1} + || x - q ||^2_{A_2} \nonumber \\
+		u^B(y, p) = || y - y_d ||^2_{B_1} + || y - p ||^2_{B_2}
+	\end{align}
+	
+	in which 
+	
+	\begin{equation}
+		p(t) = \frac{1}{t} \int_0^t x(s) ds, \hspace{0.5cm} 	q(t) = \frac{1}{t} \int_0^t y(s) ds.
+	\end{equation}
+	
+	Then we have 
+	
+	\begin{align}
+		BR^A(q(t)) = (A_1^T + A_2^T)^{-1} (A_1^T x_d + A_2^T q(t)) =: \bar{A}_1 x_d + \bar{A}_2 q(t) \nonumber \\
+		BR^B(p(t)) = (B_1^T + B_2^T)^{-1} (B_1^T y_d + B_2^T p(t)) =: \bar{B}_1 x_d + \bar{B}_2 p(t)
+	\end{align}
+	
+	The important thing to notice is that the best response function is linear in $q(t)$ and $p(t)$. This means, we can define our convex NA-CTFP dynamic as
+	
+	\begin{align}
+		\dot{p}(t) = \bar{A}_1 x_d + \bar{A}_2 q(t) - p(t) \nonumber \\
+		\dot{q}(t) = \bar{B}_1 y_d + \bar{B}_2 p(t) - q(t).
+	\end{align}
+	
+	Which itself is a linear dynamical system. This means that we can apply the techniques of linear dynamical systems to determine its stability. First we transform our variables $p \rightarrow p - \bar{A}_1 x_d$ (and same for $q(t)$). I will also call $\bar{A}_2$ as $\bar{A}$, and same for $\bar{B}$ to make the notation a little easier
+	
+	\begin{equation}
+		\frac{d}{dt} \begin{pmatrix}
+			p(t) \\ q(t)
+		\end{pmatrix} = \begin{pmatrix}
+		-I_n & \bar{A} \\ - I_n & \bar{B}
+		\end{pmatrix} \begin{pmatrix}
+		p(t) \\ q(t)
+	\end{pmatrix}
+	\end{equation}
+	
+	Now, the stability of our fictitious play dynamic is determined entirely by the eigenvalues of  
+	
+		\begin{equation}
+		\begin{pmatrix}
+			-I_n & \bar{A} \\ - I_n & \bar{B}
+		\end{pmatrix} 
+	\end{equation}
+	
+	If they are all negative, then the system is stable. If any eigenvalue is positive, then the system is unstable. The eigenvalues are determined from the characteristic function
+	
+	\begin{equation}
+		det \left\{ (-1 - \lambda)(\bar{B} - \lambda I_n) + \bar{A} \right\} = 0
+	\end{equation}
+
+	Our job now is to determine conditions on $\bar{A}$ and $\bar{B}$ so that $\lambda$ comes out negative. To begin with we have that, if $\bar{A}$ and $\bar{B}$ commute (i.e. $\bar{A}\bar{B} = \bar{B}\bar{A}$), then our eigenvalues satisfy (\ah{Need to find the reference for this, but I am using the following result: As a direct consequence of simultaneous triangulizability, the eigenvalues of two commuting complex matrices A, B with their algebraic multiplicities (the multisets of roots of their characteristic polynomials) can be matched up})
+		
+	\begin{equation}
+		\prod_{i = 1}^{n} (-1 - \lambda_i) (\beta_i - \lambda_i) + \alpha_i = 0, 
+	\end{equation}
+
+	in which $(\beta_i,  )$. Now, our goal is to ensure that the resulting 
+
+\end{document}
+
+
+

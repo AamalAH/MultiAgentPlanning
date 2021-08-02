@@ -1,0 +1,181 @@
+\documentclass[preprint,12pt]{article}
+
+\usepackage{amsmath, amsfonts, amsthm}
+\usepackage{xcolor}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{csquotes}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{assumption}{Assumption}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\theoremstyle{example}
+\newtheorem{example}{Example}
+
+
+\newcommand{\agentset}{\mathcal{N}}
+\newcommand{\actionset}[1]{S^{#1}}
+\newcommand{\utility}[1]{u^{#1}}
+\newcommand{\NEX}{\mathbf{\bar{p}}}
+\newcommand{\NEY}{\mathbf{\bar{q}}}
+\newcommand{\NE}{\mathbf{\bar{x}}}
+
+\newcommand{\A}{\mathbf{A}}
+\newcommand{\B}{\mathbf{B}}
+\newcommand{\p}{\mathbf{p}}
+\newcommand{\q}{\mathbf{q}}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\y}{\mathbf{y}}
+\newcommand{\pure}[1]{\mathbf{e}_{#1}}
+
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\X}{\mathcal{X}}
+
+\newcommand{\xmu}{x^\mu}
+\newcommand{\xnu}{x^\nu}
+
+\usepackage{changepage}
+\usepackage{bbm}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\usepackage[toc,page]{appendix}
+\usepackage[font={small,it}]{caption}
+\usepackage{verbatim}
+\usepackage{subfiles}
+\usepackage{hyperref}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[margin=1in,letterpaper]{geometry}
+\usepackage{xcolor}
+\usepackage{listings}
+\def\changemargin#1{\list{}{\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist
+\renewcommand{\labelenumi}{\Roman{enumi}}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{multirow}
+
+\newcommand{\ah}[1]{\textcolor{blue}{\textit{#1}}}
+
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\thepage}
+\lhead{\leftmark}
+
+\title{Stability and Chaos in Q-Learning}
+
+\begin{document}
+	
+	\maketitle
+	
+	The dynamics we're dealing with are
+	
+	\begin{equation}
+		\frac{\dot{x}^\mu_i}{x^\mu_i} = \left( \sum_{\nu \in N_\mu} (A \xmu)_i - \xmu A \xnu \right) - T (ln \xmu_i - \langle \xmu, ln \xmu \rangle)
+	\end{equation}
+	
+	Now we take the specific case of a two-player game. We can define this in two ways. Either, we choose
+	
+	\begin{equation}
+		A = \begin{pmatrix}
+			0 & r \\ s & 0
+		\end{pmatrix}
+	\end{equation}
+
+	or
+	
+	\begin{equation}
+		A = \begin{pmatrix}
+			1 & S \\ T & 0
+		\end{pmatrix}
+	\end{equation}
+	
+	Both work, but I will start analysing the first case. In this format, if we abuse notation and write $\x^\mu = (\xmu, 1 - \xmu)$, the dynamics can be written as
+	
+	\begin{equation}
+		\dot{x}^\mu = x^\mu_i (1 - x^\mu) \left( \sum_{\nu \in N_\mu} r - (r + s) \xnu(t)  - T ln \frac{x^\mu}{1 - x^\mu} \right)
+	\end{equation}
+	
+	This tells us that a fixed point can only occur where, for each $\mu$, either $\xmu = 0$, $\xmu = 1$ or
+	
+	\begin{align} \label{eq::fixedpointcondition}
+		& \left( \sum_{\nu \in N_\mu} r - (r + s) \xnu(t)  - T ln \frac{x^\mu}{1 - x^\mu} \right) = 0 \nonumber \\
+		& \implies \frac{1}{|N_\mu|} \sum_{\nu \in N_\mu} x^\nu(t) = \frac{r}{r + s} - \frac{T}{r + s} ln \frac{x^\mu}{1 - x^\mu} 
+	\end{align}
+	
+	\subsection*{Interpretation: Allowable Fixed Points at Extreme Temperatures}
+	
+	This immediately tells us something about what fixed points occur at the extremes $T \rightarrow 0$ and $T \rightarrow \infty$. For (\ref{eq::fixedpointcondition}) to make sense, the right hand side must lie in the range $[0, 1]$. The reason for this is that the left hand side must be an average over values in $[0, 1]$. For this to make sense, then we must have
+	
+	\begin{equation}
+		0 \leq \frac{r}{r + s} - \frac{T}{r + s} ln \frac{x^\mu}{1 - x^\mu} \leq 1
+	\end{equation}
+
+	which translates to
+	
+	\begin{equation}
+	\frac{exp(r/T)}{1 + exp(r/T)} \geq \xmu \geq \frac{exp(-s/T)}{1 + exp(-s/T)}
+	\end{equation}	
+	
+	We will start by trying to understand the behaviour of Q-Learning close to the fixed point. This can be done by finding the eigenvalues of the Jacobian of the dynamics. Specifically, the Jacobian $J$ is given by 
+	
+	\subsection*{Linear Stability of Network QL dynamics}
+	
+	\begin{align}
+		\left( J \right)_{\mu \mu} = \frac{\partial f_\mu}{\partial x^\mu} =  &(1 - 2 \xmu)\left[ \sum_{\nu \in N_\mu} r - (r + s) \xnu \right] -  T \left( (1 - 2\xmu) \, ln \frac{\xmu}{1 - \xmu} + 1 \right)
+	\end{align}
+	
+	\begin{align}
+		\left( J \right)_{\mu \nu} = \frac{\partial f_\mu}{\partial x^\nu}  = \begin{cases}
+			-(r + s)\xmu(1 - \xmu) \hspace*{1cm} & \nu \in N_\mu \\ 
+			0 & \text{otherwise}
+		\end{cases}
+	\end{align}
+
+	Our job now is to determine the eigenvalues of this Jacobian so that we can assess, on a local scale, the nature of these fixed points. This was done for the case $T = 0$ in the original reference. We now try to understand the effect that T plays on our dynamics. In particular, our goal is to determine whether it is correct to say that chaotic dynamics do not occur in two player games, for any choice of $T$. This was shown to be true for the $T = 0$ case, so we will focus our attention on the $T > 0$ problem. Along the way, we may wish to understand the stability of the fixed points themselves.
+	
+	\subsubsection*{Boundary Fixed Points}
+	
+	For the case $\xmu = 0$ or $\xmu = 1$ we have that
+	
+	\begin{equation}
+		\left( J \right)_{\mu \nu} = -(r + s)\xmu(1 - \xmu) = 0 \hspace{1cm}  \forall \nu,
+	\end{equation}
+
+	which means that all of the off-diagonal elements are zero. The eigenvalues are then determined by
+	
+	\begin{equation}
+		\lambda_\mu = (1 - 2 \xmu)\left[ \sum_{\nu \in N_\mu} r - (r + s) \xnu \right] -  T \left( (1 - 2\xmu) \, ln \frac{\xmu}{1 - \xmu} + 1 \right)
+	\end{equation}
+
+	which is entirely real-valued. 
+	
+	\subsection{Interior Fixed Points}
+
+	As we increase $T$, the fixed points move off the boundary and towards the centre of the simplex. In this case, $(J)_{\mu \nu} \neq$. However, as we remain close to the boundary, its contribution is small. Rather, the eigenvalues are dominated by the diagonal term, which is still negative. Therefore, we would expect that fixed points close to the boundary are similarly 
+
+	\subsection*{Dissipative Dynamics}
+	
+	\begin{theorem}
+		Network Q-Learning is a dissipative system for any choice of $T > 0$. 
+	\end{theorem}
+
+	\begin{proof}
+		WRITE PROOF
+	\end{proof}
+	
+\end{document}

@@ -202,6 +202,15 @@ def TuylsCCZ(X, t, G, agentParams):
 
     return np.hstack((xdot, ydot, zdot))
 
+def averageDynamics(traj):
+    averageTraj = np.zeros(traj.shape)
+    nIter = traj.shape[0]
+    curr = np.zeros(shape=traj.shape[1])
+    for cIter, n in enumerate(range(1, nIter + 1)):
+        curr = (n * curr + traj[cIter]) / (n + 1)
+        averageTraj[cIter] = curr
+    return averageTraj
+
 if __name__ == '__main__':
 
 
@@ -215,7 +224,7 @@ if __name__ == '__main__':
     
 
     initConds = [np.array([0.41030259, 0.58969741, 0.56361327, 0.43638673, 0.53308779,
-       0.46691221]), np.array([8.00418146e-01, 1.99581854e-01, 2.93321817e-04, 9.99706678e-01,
+       0.46691221]) , np.array([8.00418146e-01, 1.99581854e-01, 2.93321817e-04, 9.99706678e-01,
        1.12708184e-01, 8.87291816e-01]), np.array([0.50203898, 0.49796102, 0.88428137, 0.11571863, 0.03295509,
        0.96704491]), np.array([0.44888546, 0.55111454, 0.34212499, 0.65787501, 0.33387894,
        0.66612106]), np.array([0.92317559, 0.07682441, 0.89499898, 0.10500102, 0.04261427,
@@ -236,26 +245,39 @@ if __name__ == '__main__':
     ax.set_xlim([0, 1])
     ax.set_ylim([0, 1])
     ax.set_zlim([0, 1])                       
-                           
-    for x0 in initConds:
 
-      # x0 = np.random.rand(3)
-      # x0 = (np.vstack((x0, 1 - x0)).T).reshape(6)
-      # alpha, tau, gamma = np.random.rand(), np.random.randint(1, 11), 0.1
-      alpha, tau, gamma = 0.1, 0.001, 0.1
-      agentParams = alpha, tau, gamma
 
-      t = np.linspace(0, int(1e6), int(1e8) + 1)
+    allFinal = np.zeros((3, 15))
 
-      sol = odeint(TuylsCCZ, x0, t, args=(G, agentParams))
-      # sol = odeint(TuylsZZC, x0, t, args=(G, agentParams))
+    for cI, tau in enumerate(np.linspace(1, 50, num=15)):
+        final = np.zeros(3)
+        for x0 in initConds:
 
-      # sol = odeint(TuylsMismatching, x0, t, args=(M, agentParams))
+            # x0 = np.random.rand(3)
+            # x0 = (np.vstack((x0, 1 - x0)).T).reshape(6)
+            # alpha, tau, gamma = np.random.rand(), np.random.randint(1, 11), 0.1
+            alpha, gamma = 0.01, 0.1
+            agentParams = alpha, tau, gamma
+
+            t = np.linspace(0, int(1e4), int(1e5) + 1)
+
+            # sol = odeint(TuylsCCZ, x0, t, args=(G, agentParams))
+            # sol = odeint(TuylsZZC, x0, t, args=(G, agentParams))
+
+            sol = odeint(TuylsMismatching, x0, t, args=(M, agentParams))
+            sol = averageDynamics(sol)
+
+            final += np.array([sol[-1, 0], sol[-1, 2], sol[-1, 4]])
+
+        allFinal[:, cI] = final/len(initConds)
+
       # sol = odeint(TuylsChakraborty, x0, t, args=(chakrabortyCase, agentParams))
-      ax.plot(sol[:, 0], sol[:, 2], sol[:, 4])
-      ax.scatter(sol[0, 0], sol[0, 2], sol[0, 4], marker='o', color='r')
-      ax.scatter(sol[-1, 0], sol[-1, 2], sol[-1, 4], marker='+', color='k')
+      # ax.plot(sol[:, 0], sol[:, 2], sol[:, 4])
+      # ax.scatter(sol[0, 0], sol[0, 2], sol[0, 4], marker='o', color='r')
+      # ax.scatter(sol[-1, 0], sol[-1, 2], sol[-1, 4], marker='+', color='k')
 
           # ax.title.set_text('alpha = {0}, tau = {1}'.format(np.round(alpha, 2), np.round(tau, 2)))
   
-    plt.show()
+
+    # plt.show()
+    # print('hi')

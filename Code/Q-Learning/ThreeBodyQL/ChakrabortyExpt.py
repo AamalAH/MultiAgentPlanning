@@ -8,7 +8,7 @@ from tqdm import tqdm
 
 def TuylsChakraborty(X, t, C, agentParams):
 
-    alpha, tau, gamma = agentParams
+    T = agentParams
 
     x = X[0:2]
     y = X[2:4]
@@ -18,14 +18,14 @@ def TuylsChakraborty(X, t, C, agentParams):
     ydot = np.zeros(2)
     zdot = np.zeros(2)
 
-    xdot[0] = alpha * x[0] * tau * ((C @ z)[0] - np.dot(x, (C @ z))) + alpha * x[0] * (x[1] * np.log(x[1]/x[0]))
-    xdot[1] = alpha * x[1] * tau * ((C @ z)[1] - np.dot(x, (C @ z))) + alpha * x[1] * (x[0] * np.log(x[0]/x[1]))
+    xdot[0] = x[0] * ((C @ z)[0] - np.dot(x, (C @ z))) + T * x[0] * (x[1] * np.log(x[1]/x[0]))
+    xdot[1] = x[1] * ((C @ z)[1] - np.dot(x, (C @ z))) + T * x[1] * (x[0] * np.log(x[0]/x[1]))
 
-    ydot[0] = alpha * y[0] * tau * ((C @ x)[0] - np.dot(y, (C @ x))) + alpha * y[0] * (y[1] * np.log(y[1]/y[0]))
-    ydot[1] = alpha * y[1] * tau * ((C @ x)[1] - np.dot(y, (C @ x))) + alpha * y[1] * (y[0] * np.log(y[0]/y[1]))
+    ydot[0] = y[0] * ((C @ x)[0] - np.dot(y, (C @ x))) + T * y[0] * (y[1] * np.log(y[1]/y[0]))
+    ydot[1] = y[1] * ((C @ x)[1] - np.dot(y, (C @ x))) + T * y[1] * (y[0] * np.log(y[0]/y[1]))
 
-    zdot[0] = alpha * z[0] * tau * ((C @ y)[0] - np.dot(z, (C @ y))) + alpha * z[0] * (z[1] * np.log(z[1]/z[0]))
-    zdot[1] = alpha * z[1] * tau * ((C @ y)[1] - np.dot(z, (C @ y))) + alpha * z[1] * (z[0] * np.log(z[0]/z[1]))
+    zdot[0] = z[0] * ((C @ y)[0] - np.dot(z, (C @ y))) + T * z[0] * (z[1] * np.log(z[1]/z[0]))
+    zdot[1] = z[1] * ((C @ y)[1] - np.dot(z, (C @ y))) + T * z[1] * (z[0] * np.log(z[0]/z[1]))
 
     return np.hstack((xdot, ydot, zdot))
 
@@ -75,8 +75,6 @@ if __name__ == '__main__':
         stopCond = (case == 4)
 
     # print('S = {0}, T = {1}'.format(S, T))
-    S = 7.68
-    T = 4.17
 
     initConds = [np.array([0.41030259, 0.58969741, 0.56361327, 0.43638673, 0.53308779,
        0.46691221]), np.array([8.00418146e-01, 1.99581854e-01, 2.93321817e-04, 9.99706678e-01,
@@ -104,8 +102,8 @@ if __name__ == '__main__':
                                
     for x0 in initConds:
 
-        alpha, tau, gamma = 0.5, 7.75, 0.1
-        agentParams = alpha, tau, gamma
+        tau = 0.75
+        agentParams = tau
 
         t = np.linspace(0, int(1e4), int(1e5) + 1)
         sol = odeint(TuylsChakraborty, x0, t, args=(C, agentParams))
