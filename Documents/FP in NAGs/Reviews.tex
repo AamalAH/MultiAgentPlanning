@@ -1,0 +1,146 @@
+\documentclass{article}
+
+\usepackage[margin=2cm]{geometry}
+
+\title{Responses to Reviews}
+
+\begin{document}
+	\maketitle
+	
+	\section{Reviewer 8S4j}
+	
+
+	Main Review:
+	Overall comments: The paper investigates the convergence of fictitious play to the Nash equilibrium of a network aggregative game. This framework rests on many simplifying assumptions that are not justified properly. The paper presentation could be greatly improved: there are many typos and sentences that are not clear or misleading. Also, the reviewer thinks that the work will greatly benefit by the identification of practical applications of such a framework.
+	
+	Detailed comments:
+	
+	The first sentence in the abstract is too vague and misleading. The link between future AI systems safety and the current work is not obvious and should either be expanded upon or removed entirely. The same goes for the last sentence in the first paragraph of the introduction.
+	Also in the abstract, what does the dependence of the utility of one player on "a convex combination of its neighbours" mean? Maybe this should be rephrased.
+	
+	The following statement
+	"Such guarantees allow for games to be designed so that long-term behaviour of learning is predictable regardless of how many agents are in the game."
+	
+	gives rise to the following question:
+	
+	What does this mean in real world applications in which interactions between agents occur that, more often than not, fall beyond the specific games pre-designed such that learning algorithms converge nicely to the Nash solutions?
+	
+	The authors claim an impossible task "we explore FP through numerical simulations to check whether it always converges." Such a task can only be achieved by rigurous and theoretical proof that is valid irrespective from the system parameters. Given the infinite possibilities for system parameters such a task is not possible via numerical experiments.
+	Moreover, the authors provide a counter example. So the above phrasing definitely needs to be reformulated.
+	
+	In the beginning of section 2, the network aggregative game is introduced. It is not clear at this point whether this framework is original or whether it is an existing framework. If it is an original framework, the difference with the aggregative games mentioned in Sec. 1 should be made explicit.
+	Also, some examples of applications which could highlight the relevance of this framework should be provided here.
+	
+	5.The set of graph nodes N and set of edges $\epsilon$ should be named when defined in Definition 1.
+	
+	Regarding the users reference $\sigma^{\mu}$, some discussion on how this information can be acquired should be provided. Some examples should be provided. This aggregation is possible only assuming that all players have the exact number of possible actions. How restrictive is this assumption? Also, some discussions should be provided about this.
+	The sentence "each agent plays the same strategy against all of their neighbours" requires some explanation. Is the game performed sequencially, in pairs of players, or simultaneously?
+	The sentence "In Section 3 we show that NE exist for NA games." can be a bit misleading and should be rephrased. Indeed, only under specific assumption 2 the NE exists.
+	Minor comments
+	
+	Typos : "works looking at ... is sparse", "two-plpayer", "a natural extension to of"
+	
+	The reference to an assumption (II) in Lemma 1 has not been defined.
+	
+	Limitations And Societal Impact:
+	Some discussions are made at the end of the paper (before the reference section). This paper is theoretical and no immediate applications are identified aside from learning in multi-agent systems.
+	
+	
+	\subsection{Response}
+	
+	We thank the reviewer for their detailed review and their insightful comments. Regarding the link between the present work and the safety of AI systems concerns the fact that multi agent learning has been shown to lead to chaotic dynamics, a problem which becomes more prevalent as the number of agents increase. As such, it is important to find models which allow us to place guarantees (stability or regret) on the long term behaviour of learning regardless of the number of players. Our work presents a contribution towards this direction in the form of learning on the NA Game model. Under this assumption, it is possible to place theoretical guarantees which is independent of the number of players. We will be sure to make this motivation clear in our revision.
+	
+	Regarding the point of numerical simulations, our aim was indeed to provide an example for which Fictitious Play does not converge to an NE. We will be sure to state this explicitly in the revision.
+	
+	The network aggregative game is a model which was introduced in 2015 for control problems of load balancing and robotic swarms. We will clarify this point as well as the applications of such a model which have in the literature (e.g. Parise et al 2015).
+	
+	Regarding the reviewer's question on the behaviour of FP in games for which the learning algorithm does not necessarily converge to an NE, this is an important point for ongoing research. One of the empirical results which we present in our study suggests that the inclusion of noise in the reference measurement may allow for the learning dynamics to become stable. This is a point that we are currently exploring.
+	
+	We thank the reviewer for pointing out that further clarification is required in how the reference $\sigma^\mu$ is obtained. Ineed we aimed for this to generalise as much as possible, so that $\sigma^\mu$ can be calculated by each individual agent, or can be supplied from a central coordinator. We will expand on this, as well as noting some examples in our revision.
+	
+	
+	\section{Reviewer CBzS}
+	
+	
+	Main Review:
+	This work studies convergence properties of continuous time Fictitious Play dynamics for Network Aggregative (NA) games. NA games are games where there is an underlying weighted directed network and every player plays a bimatrix game with a convex combination (according to the network’s weights) of her neighbors.
+	
+	The authors start their study by focusing on zero sum NA games. After proving existence of Nash equilibria (NE) and that indeed fictitious play creates dynamics, they observe that a technique that works for the setting where for every edge there is a different bimatrix game [Ewerhart and Valkanova 2020] works also for NA games, as long as the game is zero sum. Going along its lines, they prove that the dynamics converge to fixed points, which if we forbid self-loops coincide with NE. Next they talk about general (possibly non zero sum) NA games and prove that if we forbid self loops then the players achieve no regret. To conclude their work, the authors give an example of a non zero sum game for which the fictitious play dynamics do not converge to equilibria. Going a bit off course, they also show that the presence of noise may result in non convergence to equilibria.
+	
+	Pros: First and rich enough study of continuous time fictitious play dynamics on NA games.
+	
+	Cons: Unclear how big/important the set of NA games is, Assumption 4 is a bit peculiar. Simulates previous techniques without many new ideas.
+	
+	How does the set of zero sum NA games compares to the set of zero sum network games of [Ewerhart and Valkanova 2020] or the set of zero-sum network coordination games. Any strict inclusions? (I am trying to understand implications of Assumption 4).
+	
+	Line 87: “player” 123: you talk about a convex combination (without assuming Assumption 1), so you may want to skip it or write it in Definition 1 (or deal with this somehow).
+	
+	\subsection{Response}
+	
+	We thank the reviewer for their detailed analysis of our work. We particularly appreciate the point regarding the significance of the NA game. We will be sure to include examples and applications in our revision. To respond to your query, any NA game can be shown to be equivalent to a network game (as defined by Ewerhart and Valkanova). Such a transformation is required so that self-loops can be allowed, and it can be shown that Fictitious Play still converges to an equilibrium (though not always Nash). This point was not considered in Ewerhart and Valkanova's analysis. In addition, we aimed to extend beyond the zero-sum case (Assumption 4) with our regret analysis in Sec. 4. The regret result allows for an understanding of Fictitious Play even if the zero-sum requirement is violated.
+	
+	
+	\section{Reviewer xcy8}
+	
+	The methods are based off a [Ewerhart/Walkanova 2020] in fictitious play in networks a natural extension of the continuous-time fictitious play [Haofbauer 2006], and the standard results on CCE regret. It is not clear how much novelty there is in relation to these works, besides from extending it to network aggressive maybe the author could elaborate? The contributions are to show that NA games have Nash and they are stable for networks without self-loops. Since the games are zero-sum, is it not already known that the Nash equilibria of zero-sum games are stable? What properties of NA are being employed to ensure any stronger set of results?
+	
+	The methods used are appropriate and the submission is clearly written. However, the significance of the results may be limited as similar results have been shown for zero sum network games in general, which NA games are a subset of, if I am understanding correctly. The authors can provide more unique data or conclusions about existing theoretical approach and why theirs are significant contribution.
+	
+	\subsection{Response}
+	
+	We thank the reviewer for their review and their insightful comments. Regarding the contributions, our work begins by showing that  Fictitious Play converges to an equilibrium in zero-sum NA games regardless of whether or not the network has self-loops. Convergence to a Nash Equilibrium thus becomes a special case for when there are no self-loops. To show convergence, we explicitly show how the NA game can be transformed into an equivalent network game, and how the analysis extends regardless of the existence of such self-loops. Each agent can, therefore, account for their own state as well as that of their neighbours when playing the game.
+	
+	In addition, we aimed for our analysis to extend beyond the zero-sum case. It was with this in mind that we analyse the regret properties of Fictitious Play in arbitrary NA games. Specifically, Theorem 2 shows that, regardless of the number of players in the game, or the nature of the game itself, Fictitious Play will still achieve no regret. This generalises the result of van Strien and Ostrovski, which only looked at games of two players.
+	
+	\section{Reviewer geyC}
+	
+	Originality: The work uncovers promising results about learning dynamics in a natural class of games. Although not a major concern of mine, I do think that connections between this work and prior work on learning in network games could have been more clearly highlighted.
+	
+	Quality: I did not have a chance to carefully read the full proofs in the appendix, but the results seemed reasonable and sound. The only issue I had with the paper is that the results should have been presented more formally. Throughout the paper it is a bit unclear which of the assumptions (from section 2.3) are being used for which result. From context it often became clear, but the formal results would have more impact if this was clarified in the statements. Similarly, in several places the phrase "for almost all time" is used but never explained (e.g., definition 4). Clarifying what these sorts of details are refering to in formal statements would be very helpful (even if just intuitively in the main paper).
+	
+	Clarity: Overall the paper is well written and clear. There are a few formatting issues that should be fixed. Most notably:
+	
+	The citation style should be fixed throughout paper (e.g. Line 15 Schwartz [2015] should be a citep command) since it can greatly disrupt the flow of the writing.
+	On line 263 there is a reference to Remark 4, but remarks are not numbered throughout the paper.
+	The plots in Figure 1 are a bit squished and it is hard to see details in them. For the cyclic dynamics it is easy to see the point that is being made, but for the convergent dynamics it is pretty difficult to distinguish from more complex dynamics.
+	In addition, there are some technical details that seem to have small errors in them:
+	
+	Mixed strategies are defined as being on the unit simplex, but should they not be on the unit simplex? Either adding a non-negative constraint to the set or restricting to the non-negative reals would fix this.
+	For the example given in the remark at the end of section 2.2, according to the definition given earlier in that section shouldn't alpha be the average of the other player's strategy to keep consistent with the definition given earlier in that section?
+	The definition of zero-sum NA games given in assumption 4 is confusing due to the set of states given at the start of line 188.
+	On line 201, is the utility defined there missing a weighted sum over neighbors' states?
+	The labels in the supplementary materials do not match the labels in the main paper. For example, the proof of Lemma 1 in the main paper (existence of Nash) appears in the supplementary materials under the label "Proof of Theorem 2".
+	Finally, although the presentation of assumptions is not a problem, I wanted to suggest introducing assumptions alongside their related concept. I believe this would help clarify things throughout the paper. For example, having assumption 1 (row stochastic weights) given along with the definition of NA games might help readers familiar with game theory gain intuition about NA games early on. Also, doing this might help clarify which sections/results use certain assumption or not.
+	
+	-- Small Typos: --- Line 55 "shownin" -> "show in" --- Line 87 "in two-plpayer games" -> "into two-player games" --- Line 365 "As such we Furthermore" -> "Furthermore"
+	
+	Significance: I believe the results would be of interest to many researchers studying learning in games. This work gives positive results for a classic learning dynamic while also highlighting a well-motivated class of games where studying learning dynamics could be (relatively) "easier" than other common multi-agent settings.
+	
+	\subsection{Response}
+	
+	We thank the reviewer for the detail and rigour in their review. Particularly the point regarding stating assumptions within the formal statements of the results is a good one and we will be sure to make this adjustment within our review. We will also be sure to make the suggested minor adjustments and we thank the reviewer for listing these. 
+	
+	To respond to your query, any NA game can be shown to be equivalent to a network game (as defined by Ewerhart and Valkanova). Such a transformation is required so that self-loops can be allowed, and it can be shown that Fictitious Play still converges to an equilibrium (though not always Nash). This point was not considered in Ewerhart and Valkanova's analysis. In addition, we aimed to extend beyond the zero-sum case (Assumption 4) with our regret analysis in Sec. 4. The regret result allows for an understanding of Fictitious Play even if the zero-sum requirement is violated.
+	
+	In addition, the reviewer raises a fascinating question regarding the relationship between the strength of the self-loop component and the distance from the NE. This is certainly an interesting direction for future research and one that we will consider.
+	
+	
+	\section{Reviewer k5tG}
+	
+	Firstly, it was unpleasant to read this paper because it is very badly written. There are typos and imprecisions in almost every sentence, many references are just cosmetic and has nothing to do here while several papers that must be cited are not (for example the best response dynamics was introduced by Gilboa and Matsui (not cited), Coarse Equilibria was introduced by Moulin and Vial (not cited), etc), some researchers are cited in the main text with their name and surname (Joseph Hofbauer), others not...
+	
+	A the scientific level, the model is not precisely and formally defined, it looks me a while to understand what's going on and how network aggregative games are to be defined... It's only after reading another paper: "Fictitious Play in Networks" by Ewerhart and Valkanova (GEB, 2020) that I understood the model of this paper and that there is nothing new in the paper compared to Ewerhart and Valkanova.
+	
+	The unique innovation is the addition of weights instead of summing the payoffs of the neighbours, but I am sure that with some imagination we can show that the models are equivalent. In any case, the proof is exactly the same, no additional idea of difficulty. The fact that the best response dynamics has no regret (in continuous time) has nothing surprising as, in a standard game, this holds by construction at every moment in time with a zero regret even. The problem is in the discretisation (and we know that FP does not have the no-regret property in discrete time).
+	
+	The biblio contains many many typos and is not in alphabetical order with respect to the names (in the same reference), many references are cited in a very incomplete way for example without the journal name, or a book with a volume number, etc (see lines 442, 426, 452, 472, etc).
+	
+	Regarding the appendix, half of it are trivialities: that an equilibrium exists in a game where the payoff function is continuous and linear wrt to each player's strategy is well known.
+	
+	\subsection{Response}
+	
+	We thank the reviewer for their insightful comments and detailed review. We are also grateful for pointing out some of the original references for concepts of Coarse Equilibria and Best Response Dynamics. Our references were chosen with the aim to keep the notation and ideas as similar to our own work, but we will be sure to include the references you have suggested in our revision.
+	
+	It is indeed true that the NA game can be shown to be equivalent to the network game, and the proof of Theorem 1 is in showing the nature of this transformation. However, in making this transformation, an additional result can be found - namely that networks even with self loops can be considered and that, in this case, the techniques of Ewerhart and Valkanova can be applied to show convergence to a fixed point. This component was not realised in Ewerhart and Valkanova's work. In addition, existing results on the no regret property of Continuous Time Fictitious Play exist only in the two-player case or in specific classes of games (e.g. zero sum). The most recent contribution in this direction was that of van Strien and Ostrovski (2014) who showed the no-regret property holds in all two-player games. Our contribution generalises this result towards all NA games, regardless of the number of players or the type of game being played. The reviewer also makes an interesting suggestion to look at the discrete variant of Fictitious Play. This is indeed an interesting avenue for future research and one which we are currently exploring. 
+	
+\end{document}
