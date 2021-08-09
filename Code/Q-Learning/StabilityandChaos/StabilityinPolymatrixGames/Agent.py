@@ -56,12 +56,12 @@ class Agent:
 if __name__ == "__main__":
     nAct = 35
     nAgents = 2
-    nInit = 5
-    nSim = 10
+    nInit = 10
+    nSim = 25
 
     beta = 5e-2
     nIter = int(5e4)
-    numTests = 10
+    numTests = 20
     allConv = np.zeros((numTests, numTests))
 
     windowSize = int(1e4)
@@ -99,3 +99,5 @@ if __name__ == "__main__":
             allConv[numTests - 1 - i, j] = allConverged/(nInit * nSim)
 
     sns.heatmap(allConv), plt.show()
+
+    np.savetxt('Convergencep2N35.csv', allConv)
