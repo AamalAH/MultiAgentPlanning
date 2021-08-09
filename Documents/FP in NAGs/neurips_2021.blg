@@ -1,0 +1,56 @@
+This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: neurips_2021.aux
+The style file: named.bst
+Database file #1: referencesT.bib
+Warning--I didn't find a database entry for ""
+Warning--empty institution in Brown1949
+Warning--can't use both volume and number fields in Imhof2005
+Warning--empty publisher in Imhof2005
+Warning--empty journal in Mertikopoulos2018
+Warning--empty booktitle in Miyasawa1961
+Warning--empty publisher in Schwartz2014
+Warning--empty institution in Sela1999
+Warning--empty journal in Zhu2021
+You've used 45 entries,
+            2439 wiz_defined-function locations,
+            865 strings with 12320 characters,
+and the built_in function-call counts, 18311 in all, are:
+= -- 1923
+> -- 675
+< -- 13
++ -- 220
+- -- 219
+* -- 1538
+:= -- 2887
+add.period$ -- 140
+call.type$ -- 45
+change.case$ -- 285
+chr.to.int$ -- 45
+cite$ -- 53
+duplicate$ -- 737
+empty$ -- 1390
+format.name$ -- 279
+if$ -- 3792
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 47
+newline$ -- 228
+num.names$ -- 137
+pop$ -- 231
+preamble$ -- 1
+purify$ -- 332
+quote$ -- 0
+skip$ -- 620
+stack$ -- 0
+substring$ -- 1136
+swap$ -- 182
+text.length$ -- 13
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 344
+warning$ -- 8
+while$ -- 159
+width$ -- 49
+write$ -- 582
+(There were 9 warnings)

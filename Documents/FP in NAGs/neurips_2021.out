@@ -1,0 +1,11 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Preliminaries}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Network Aggregative Games}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Continuous Time Fictitious Play}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Assumptions}{section.2}% 5
+\BOOKMARK [1][-]{section.3}{Convergence of Fictitious Play in Network Aggregative Games}{}% 6
+\BOOKMARK [1][-]{section.4}{Fictitious Play in Network Aggregative Games Achieves No Regret}{}% 7
+\BOOKMARK [1][-]{section.5}{Experimental Evaluation}{}% 8
+\BOOKMARK [2][-]{subsection.5.1}{Non-convergence of General Two-player Games under NA-CTFP}{section.5}% 9
+\BOOKMARK [2][-]{subsection.5.2}{Convergence under the Addition of Noise}{section.5}% 10
+\BOOKMARK [1][-]{section.6}{Concluding Remarks}{}% 11

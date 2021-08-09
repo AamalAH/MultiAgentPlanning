@@ -1,0 +1,287 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\citeauthoryear{Bena{\"{i}}m \bgroup \em et al.\egroup
+  }{2006}]{Benaim2006}
+Michel Bena{\"{i}}m, Josef Hofbauer, and Sylvain Sorin.
+\newblock {Stochastic approximations and differential inclusions, Part II:
+  Applications}.
+\newblock {\em Mathematics of Operations Research}, 31(4):673--695, 11 2006.
+
+\bibitem[\protect\citeauthoryear{Berger}{2007}]{Berger2007}
+Ulrich Berger.
+\newblock {Brown's original fictitious play}.
+\newblock {\em Journal of Economic Theory}, 135(1):572--578, 7 2007.
+
+\bibitem[\protect\citeauthoryear{Bianchi and Grammatico}{2020}]{Bianchi2019}
+Mattia Bianchi and Sergio Grammatico.
+\newblock A continuous-time distributed generalized nash equilibrium seeking
+  algorithm over networks for double-integrator agents.
+\newblock In {\em 2020 European Control Conference (ECC)}, pages 1474--1479,
+  2020.
+
+\bibitem[\protect\citeauthoryear{Brown~P}{1949}]{Brown1949}
+George~W Brown~P.
+\newblock {Some Notes on the Computation of Games Solutions}.
+\newblock Technical report, 4 1949.
+
+\bibitem[\protect\citeauthoryear{Caines \bgroup \em et al.\egroup
+  }{2006}]{Huang2006}
+Peter~E. Caines, Minyi Huang, and Roland~P. Malhamé.
+\newblock Large population stochastic dynamic games: closed-loop mckean-vlasov
+  systems and the nash certainty equivalence principle.
+\newblock {\em Communications in Information and Systems}, 6:221--252, 2006.
+
+\bibitem[\protect\citeauthoryear{Cesa-Bianchi and
+  Orabona}{2021}]{Cesa-Bianchi2021}
+Nicolò Cesa-Bianchi and Francesco Orabona.
+\newblock Online learning algorithms.
+\newblock {\em Annual Review of Statistics and Its Application}, 8(1):165--190,
+  2021.
+
+\bibitem[\protect\citeauthoryear{Chotibut \bgroup \em et al.\egroup
+  }{2021}]{Chotibut2021}
+Thiparat Chotibut, Fryderyk Falniowski, Michał Misiurewicz, and Georgios
+  Piliouras.
+\newblock {Family of chaotic maps from game theory}.
+\newblock {\em Dynamical Systems}, 36(1):48--63, 1 2021.
+
+\bibitem[\protect\citeauthoryear{De~Persis and Grammatico}{2020}]{DePersis2020}
+Claudio De~Persis and Sergio Grammatico.
+\newblock {Continuous-Time Integral Dynamics for a Class of Aggregative Games
+  with Coupling Constraints}.
+\newblock {\em IEEE Transactions on Automatic Control}, 65(5):2171--2176, 5
+  2020.
+
+\bibitem[\protect\citeauthoryear{Elie \bgroup \em et al.\egroup
+  }{2020}]{Elie2020}
+Romuald Elie, Julien P{\'{e}}rolat, Mathieu Lauri{\`{e}}re, Matthieu Geist, and
+  Olivier Pietquin.
+\newblock {On the Convergence of Model Free Learning in Mean Field Games}.
+\newblock {\em Proceedings of the AAAI Conference on Artificial Intelligence},
+  34(05):7143--7150, 4 2020.
+
+\bibitem[\protect\citeauthoryear{Ewerhart and Valkanova}{2020}]{Ewerhart2020}
+Christian Ewerhart and Kremena Valkanova.
+\newblock {Fictitious play in networks}.
+\newblock {\em Games and Economic Behavior}, 123:182--206, 9 2020.
+
+\bibitem[\protect\citeauthoryear{Galla and Farmer}{2013}]{Galla2013}
+Tobias Galla and J.~Doyne Farmer.
+\newblock {Complex dynamics in learning complicated games}.
+\newblock {\em Proceedings of the National Academy of Sciences of the United
+  States of America}, 110(4):1232--1236, 2013.
+
+\bibitem[\protect\citeauthoryear{Galla}{2011}]{Galla2011}
+Tobias Galla.
+\newblock {Cycles of cooperation and defection in imperfect learning}.
+\newblock {\em Journal of Statistical Mechanics: Theory and Experiment},
+  2011(8), 8 2011.
+
+\bibitem[\protect\citeauthoryear{Harris}{1998}]{Harris1998}
+Christopher Harris.
+\newblock {On the Rate of Convergence of Continuous-Time Fictitious Play}.
+\newblock {\em Games and Economic Behavior}, 22(2):238--259, 2 1998.
+
+\bibitem[\protect\citeauthoryear{Hern{\'{a}}ndez \bgroup \em et al.\egroup
+  }{2013}]{Hernandez2013}
+Erik Hern{\'{a}}ndez, Antonio Barrientos, Jaime Del~Cerro, and Claudio Rossi.
+\newblock {A multi-robot system for patrolling task via Stochastic Fictitious
+  Play}.
+\newblock In {\em ICAART 2013 - Proceedings of the 5th International Conference
+  on Agents and Artificial Intelligence}, volume~1, pages 407--410, 2013.
+
+\bibitem[\protect\citeauthoryear{Imhof \bgroup \em et al.\egroup
+  }{2005}]{Imhof2005}
+Lorens~A. Imhof, Drew Fudenberg, and Martin~A. Nowak.
+\newblock {Evolutionary cycles of cooperation and defection}.
+\newblock In {\em Proceedings of the National Academy of Sciences of the United
+  States of America}, volume 102, pages 10797--10800. 8 2005.
+
+\bibitem[\protect\citeauthoryear{Jensen}{2010}]{Jensen2010}
+Martin~Kaae Jensen.
+\newblock {Aggregative games and best-reply potentials}.
+\newblock {\em Econ Theory}, 43:45--66, 2010.
+
+\bibitem[\protect\citeauthoryear{Josef~Hofbauer}{2006}]{Hofbauer2006}
+Sylvain~Sorin Josef~Hofbauer.
+\newblock Best response dynamics for continuous zero--sum games.
+\newblock {\em Discrete and Continuous Dynamical Systems - B}, 6(1):215--224,
+  2006.
+
+\bibitem[\protect\citeauthoryear{Koshal \bgroup \em et al.\egroup
+  }{2016}]{Koshal2016}
+Jayash Koshal, Angelia Nedi{\ae}, and Uday~V Shanbhag.
+\newblock {Distributed algorithms for aggregative games on graphs}.
+\newblock {\em Operations Research}, 64(3):680--704, 2016.
+
+\bibitem[\protect\citeauthoryear{Lei \bgroup \em et al.\egroup
+  }{2020}]{Lei2020}
+Jinlong Lei, Uday~V. Shanbhag, and Jie Chen.
+\newblock {Distributed Computation of Nash Equilibria for Monotone Aggregative
+  Games via Iterative Regularization}.
+\newblock In {\em Proceedings of the IEEE Conference on Decision and Control},
+  volume 2020-December, pages 2285--2290. Institute of Electrical and
+  Electronics Engineers Inc., 12 2020.
+
+\bibitem[\protect\citeauthoryear{Leslie and Collins}{2006}]{Leslie2006}
+David~S Leslie and E~J Collins.
+\newblock {Individual Q-learning in normal form games}.
+\newblock {\em SIAM Journal on Control and Optimization}, 44(2):495--514, 2006.
+
+\bibitem[\protect\citeauthoryear{Mai and Abed}{2019}]{Mai2019}
+Van~Sy Mai and Eyad~H. Abed.
+\newblock {Distributed optimization over directed graphs with row stochasticity
+  and constraint regularity}.
+\newblock {\em Automatica}, 102:94--104, 4 2019.
+
+\bibitem[\protect\citeauthoryear{Mertikopoulos \bgroup \em et al.\egroup
+  }{2018}]{Mertikopoulos2018}
+Panayotis Mertikopoulos, Christos Papadimitriou, and Georgios Piliouras.
+\newblock {Cycles in adversarial regularized learning}.
+\newblock pages 2703--2717, 2018.
+
+\bibitem[\protect\citeauthoryear{Metrick and Polak}{1994}]{Metrick1994}
+Andrew Metrick and Ben Polak.
+\newblock {Fictitious play in 2x2 games: A geometric proof of convergence}.
+\newblock {\em Economic Theory}, 4(6):923--933, 11 1994.
+
+\bibitem[\protect\citeauthoryear{Miyasawa}{1961}]{Miyasawa1961}
+K.~Miyasawa.
+\newblock On the convergence of the learning process in a 2x2 non-zero-sum two
+  person game.
+\newblock 1961.
+
+\bibitem[\protect\citeauthoryear{Monderer and Shapley}{1996}]{Monderer1996}
+Dov Monderer and Lloyd~S. Shapley.
+\newblock {Potential games}.
+\newblock {\em Games and Economic Behavior}, 14(1):124--143, 5 1996.
+
+\bibitem[\protect\citeauthoryear{Monderer \bgroup \em et al.\egroup
+  }{1997}]{Monderer1997}
+Dov Monderer, Dov Samet, and Aner Sela.
+\newblock {Belief affirming in learning processes}.
+\newblock {\em Journal of Economic Theory}, 73(2):438--452, 4 1997.
+
+\bibitem[\protect\citeauthoryear{Nisan \bgroup \em et al.\egroup
+  }{2007}]{Nisan2007}
+Noam Nisan, Tim Roughgarden, Éva Tardos, and Vijay~V. Vazirani.
+\newblock {\em {Algorithmic game theory}}, volume 9780521872829.
+\newblock Cambridge University Press, 1 2007.
+
+\bibitem[\protect\citeauthoryear{Ostrovski and van
+  Strien}{2014}]{Ostrovski2014}
+Georg Ostrovski and Sebastian van Strien.
+\newblock {Payoff performance of fictitious play}.
+\newblock {\em Journal of Dynamics and Games}, 1(4):621--638, 8 2014.
+
+\bibitem[\protect\citeauthoryear{Parise \bgroup \em et al.\egroup
+  }{2015}]{Parise2015}
+Francesca Parise, Basilio Gentile, Sergio Grammatico, and John Lygeros.
+\newblock Network aggregative games: Distributed convergence to nash
+  equilibria.
+\newblock In {\em 2015 54th IEEE Conference on Decision and Control (CDC)},
+  pages 2295--2300, 2015.
+
+\bibitem[\protect\citeauthoryear{Parise \bgroup \em et al.\egroup
+  }{2020}]{Parise2020}
+Francesca Parise, Sergio Grammatico, Basilio Gentile, and John Lygeros.
+\newblock {Distributed convergence to Nash equilibria in network and average
+  aggregative games}.
+\newblock {\em Automatica}, 117:108959, 2020.
+
+\bibitem[\protect\citeauthoryear{Perrin \bgroup \em et al.\egroup
+  }{2020}]{Perrin2020}
+Sarah Perrin, Julien Perolat, Mathieu Lauriere, Matthieu Geist, Romuald Elie,
+  and Olivier Pietquin.
+\newblock Fictitious play for mean field games: Continuous time analysis and
+  applications.
+\newblock In H.~Larochelle, M.~Ranzato, R.~Hadsell, M.~F. Balcan, and H.~Lin,
+  editors, {\em Advances in Neural Information Processing Systems}, volume~33,
+  pages 13199--13213. Curran Associates, Inc., 2020.
+
+\bibitem[\protect\citeauthoryear{Robinson}{1951}]{Robinson1951}
+Julia Robinson.
+\newblock {An Iterative Method of Solving a Game}.
+\newblock {\em The Annals of Mathematics}, 54(2):296, 9 1951.
+
+\bibitem[\protect\citeauthoryear{Sanders \bgroup \em et al.\egroup
+  }{2018}]{Sanders2018}
+James B~T Sanders, J~Doyne Farmer, and Tobias Galla.
+\newblock {The prevalence of chaotic dynamics in games with many players}.
+\newblock {\em Scientific Reports}, 8(1):4902, 2018.
+
+\bibitem[\protect\citeauthoryear{Sato \bgroup \em et al.\egroup
+  }{2002}]{Sato2002}
+Yuzuru Sato, Eizo Akiyama, and J.~Doyne Farmer.
+\newblock {Chaos in learning a simple two-person game}.
+\newblock {\em Proceedings of the National Academy of Sciences of the United
+  States of America}, 99(7):4748--4751, 4 2002.
+
+\bibitem[\protect\citeauthoryear{Schwartz}{2014}]{Schwartz2014}
+Howard~M. Schwartz.
+\newblock {\em {Multi-Agent Machine Learning: A Reinforcement Approach}}.
+\newblock 2014.
+
+\bibitem[\protect\citeauthoryear{Sela}{1999}]{Sela1999}
+Aner Sela.
+\newblock {Fictitious play in 'one-against-all' multi-player games}.
+\newblock Technical report, 1999.
+
+\bibitem[\protect\citeauthoryear{Shapley}{2016}]{Shapley2016}
+L.~S. Shapley.
+\newblock {Some Topics in Two-Person Games}.
+\newblock In {\em Advances in Game Theory. (AM-52)}, pages 1--28. Princeton
+  University Press, 5 2016.
+
+\bibitem[\protect\citeauthoryear{Sharma and Gopal}{2015}]{Sharma2015}
+Rajneesh Sharma and M.~Gopal.
+\newblock {Fictitious play based Markov game control for robotic arm
+  manipulator}.
+\newblock In {\em Proceedings - 2014 3rd International Conference on
+  Reliability, Infocom Technologies and Optimization: Trends and Future
+  Directions, ICRITO 2014}. Institute of Electrical and Electronics Engineers
+  Inc., 1 2015.
+
+\bibitem[\protect\citeauthoryear{Shokri and Kebriaei}{2020}]{Shokri2020}
+Mohammad Shokri and Hamed Kebriaei.
+\newblock {Leader-Follower Network Aggregative Game with Stochastic Agents'
+  Communication and Activeness}.
+\newblock {\em IEEE Transactions on Automatic Control}, 65(12):5496--5502, 12
+  2020.
+
+\bibitem[\protect\citeauthoryear{Shokri and Kebriaei}{2021}]{Shokri2021}
+Mohammad Shokri and Hamed Kebriaei.
+\newblock {Network Aggregative Game in Unknown Dynamic Environment with Myopic
+  Agents and Delay}.
+\newblock {\em IEEE Transactions on Automatic Control}, 2021.
+
+\bibitem[\protect\citeauthoryear{Smith}{1982}]{Smith1982}
+John~Maynard Smith.
+\newblock {\em {Evolution and the Theory of Games}}.
+\newblock Cambridge University Press, 10 1982.
+
+\bibitem[\protect\citeauthoryear{Smyrnakis and Veres}{2016}]{Smyrnakis2016}
+M.~Smyrnakis and S.~M. Veres.
+\newblock {Fictitious play for cooperative action selection in robot teams}.
+\newblock {\em Engineering Applications of Artificial Intelligence}, 56:14--29,
+  11 2016.
+
+\bibitem[\protect\citeauthoryear{van Strien and Sparrow}{2011}]{VanStrien2011}
+Sebastian van Strien and Colin Sparrow.
+\newblock {Fictitious play in 3x3 games: Chaos and dithering behaviour}.
+\newblock {\em Games and Economic Behavior}, 73(1):262--286, 2011.
+
+\bibitem[\protect\citeauthoryear{von Neumann \bgroup \em et al.\egroup
+  }{1944}]{vonNeumann1944}
+John von Neumann, Oskar Morgenstern, and Ariel Rubinstein.
+\newblock {\em {Theory of Games and Economic Behavior (60th Anniversary
+  Commemorative Edition)}}.
+\newblock Princeton University Press, 1 1944.
+
+\bibitem[\protect\citeauthoryear{Zhu \bgroup \em et al.\egroup
+  }{2021}]{Zhu2021}
+Rongping Zhu, Jiaqi Zhang, Keyou You, and Tamer Başar.
+\newblock Asynchronous networked aggregative games.
+\newblock 2021.
+
+\end{thebibliography}

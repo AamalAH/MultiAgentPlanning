@@ -63,18 +63,13 @@ class Agent:
 if __name__ == "__main__":
     nAct = 35
     nAgents = 2
-    nInit = 25
-    nSim = 10
-    nNbr = nInit - 1
+    nInit = 10
+    nSim = 25
 
     beta = 5e-2
-    nIter = int(5e3)
-    numTests = 10
-    # nNbr = 4
-
-    # allConv = np.zeros((numTests, numTests))
-
-    # windowSize = int(1e2)
+    nIter = int(5e4)
+    numTests = 20
+    allConv = np.zeros((numTests, numTests))
 
 
     L = np.zeros((nAgents, nAgents), dtype=int)
@@ -94,31 +89,26 @@ if __name__ == "__main__":
         C, D = generateGames(gamma, nSim, nAct)
         for j, alpha in enumerate(np.linspace(0.01, 0.03, num=1)):
             allConverged = 0
-            allActions = np.zeros((nAgents, nInit, nSim, nAct, nIter))
+            for cSim in range(nSim):
+                A, B = C[:, :, cSim], D[:, :, cSim]
+                G = (A, B.T)
+                agents = [Agent(i, nAct, nAgents, G, L) for i in range(nAgents)]
+                checkWindow = np.zeros((nAgents, nInit, nAct, windowSize))
+                n = 0
+                for cIter in range(nIter):
+                    P = np.stack([agents[i].getP(x, nInit) for i in range(nAgents)])
+                    x = ((x ** (1 - alpha)) * np.exp(beta * P)) / np.sum((x ** (1 - alpha)) * np.exp(beta * P),
+                                                                                 axis=2)[:, :, None]
+                    if cIter > (nIter - windowSize - 1):
+                        checkWindow[:, :, :, n] = x
+                        n += 1
 
-            G = (C, np.transpose(D, (1, 0, 2)))
-            agents = [Agent(i, nAct, nAgents, G, L) for i in range(nAgents)]
-            # checkWindow = np.zeros((nAgents, nInit, nSim, nAct, windowSize))
-            n = 0
-            for cIter in range(nIter):
-                P = np.stack([agents[i].getP(x, nInit) for i in range(nAgents)])
-                x = ((x ** (1 - alpha)) * np.exp(beta * P)) / np.sum((x ** (1 - alpha)) * np.exp(beta * P),
-                                                                             axis=3)[:, :, :, None]
-                allActions[:, :, :, :, cIter] = x
+                converged = checkMinMax(checkWindow, windowSize, 1e-2)
 
-            allActions = allActions.transpose(1, 0, 2, 3, 4)
+                allConverged += np.sum(converged)
 
-            dS = np.array([pLCE(np.vstack((np.expand_dims(allActions[i, :, :, :, :], axis=0), np.delete(allActions, i, axis=0)))) for i in range(nInit)])
-            dS = np.mean(np.log(dS), axis=0)
+            allConv[numTests - 1 - i, j] = allConverged/(nInit * nSim)
 
-            plt.plot(np.mean(dS, axis=1)), plt.show()
+    sns.heatmap(allConv), plt.show()
 
-            #     if cIter > (nIter - windowSize - 1):
-            #         checkWindow[:, :, :, :, n] = x
-            #         n += 1
-            #
-            # converged = checkMinMax(checkWindow, windowSize, 1e-2)
-
-            # allConv[numTests - 1 - i, j] = np.sum(converged)/(nInit * nSim)
-
-    # sns.heatmap(allConv), plt.show()
+    np.savetxt('Convergencep2N35.csv', allConv)
