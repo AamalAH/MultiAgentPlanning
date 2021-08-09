@@ -36,8 +36,13 @@ def checkVar(checkWindow, windowSize, tol):
     return np.mean(np.var(C, axis=2), axis=0) < tol
 
 def checkMinMax(checkWindow, windowSize, tol):
-    C = checkWindow.reshape((nAct * nAgents, nInit, windowSize))
-    return np.all(((np.max(C, axis=2) - np.min(C, axis=2))/np.min(C, axis=2)) < tol, axis=0)
+    C = np.transpose(checkWindow, (0, 3, 1, 2, 4))
+    C = C.reshape((nAct * nAgents, nInit, nSim, windowSize))
+    return np.all(((np.max(C, axis=3) - np.min(C, axis=3))/np.min(C, axis=3)) < tol, axis=0)
+
+def pLCE(data):
+    data = np.reshape(data.transpose(1, 3, 0, 2, 4), (nAgents * nAct, nInit, nSim, nIter))
+    return np.array([np.mean(np.linalg.norm(data[:, 1:, :, i] - np.expand_dims(data[:, 0, :, i], axis=1), axis=0), axis=0) for i in range(nIter)])
 
 class Agent:
     def __init__(self, number, nAct, nAgents, G, L):
@@ -46,12 +51,14 @@ class Agent:
         self.nAgents = nAgents
         self.opponents = list(range(nAgents))
         self.opponents.remove(self.number)
-        self.payoffs = block_diag(*[G[L[1, o]] for o in self.opponents])
+        B = np.array([G[L[self.number, o]] for o in self.opponents])
+        self.payoffs = np.dstack([block_diag(*[B[i, :, :, s] for i in range(nAgents - 1)]) for s in range(nSim)])
         self.P = np.zeros(nAct)
 
     def getP(self, x, nInit):
-        k = self.payoffs @ x[self.opponents].transpose(0, 2, 1).reshape((self.nAct * (self.nAgents - 1), nInit))
-        return np.sum(k.reshape(nAgents - 1, nAct, nInit), axis=0).T
+        opState = x[self.opponents].transpose(0, 3, 1, 2).reshape((self.nAct * len(self.opponents), nInit, nSim))
+        k = np.einsum('kjs,jsi->ksi', self.payoffs, opState.transpose(0, 2, 1))
+        return np.sum(k.reshape(nAgents - 1, nAct, nInit, nSim), axis=0).transpose(1, 2, 0)
 
 if __name__ == "__main__":
     nAct = 35
@@ -64,7 +71,6 @@ if __name__ == "__main__":
     numTests = 20
     allConv = np.zeros((numTests, numTests))
 
-    windowSize = int(1e4)
 
     L = np.zeros((nAgents, nAgents), dtype=int)
     for i in range(nAgents):
@@ -73,10 +79,15 @@ if __name__ == "__main__":
 
     allConv = np.zeros((numTests, numTests))
 
-    x = np.random.dirichlet(np.ones(nAct), size=(nAgents, nInit))
-    for i, gamma in tqdm(enumerate(np.linspace(-1, 0, num=numTests))):
+    x0 = np.random.dirichlet(np.ones(nAct), size=(nAgents, nSim))
+    x = x0.reshape((nAgents * nAct * nSim))
+    x = x[None, :] + 0.01 * np.random.multivariate_normal(np.zeros(nAgents * nSim * nAct), np.eye(nAgents * nSim * nAct), size=nNbr)
+    x = abs(x).reshape((nNbr, nAgents, nSim, nAct)) / np.sum(abs(x).reshape((nNbr, nAgents, nSim, nAct)), axis=3)[:, :, :, None]
+    x = np.vstack((np.expand_dims(x0, axis=0), x)).transpose(1, 0, 2, 3)
+
+    for i, gamma in tqdm(enumerate(np.linspace(-1, 0, num=10))):
         C, D = generateGames(gamma, nSim, nAct)
-        for j, alpha in enumerate(np.linspace(0.0, 0.03, num=numTests)):
+        for j, alpha in enumerate(np.linspace(0.01, 0.03, num=1)):
             allConverged = 0
             for cSim in range(nSim):
                 A, B = C[:, :, cSim], D[:, :, cSim]
