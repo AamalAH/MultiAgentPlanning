@@ -345,7 +345,7 @@ probability vector is often referred to as $\mu$'s \emph{mixed
 	strategy}. With this in mind, we can construct, as their state
 space, the {\em unit simplex} $\Delta_\mu$ on agent $\mu$'s action set, which
 is defined
-as $\Delta_\mu := \{\xmu \in \mathbb{R}^n \mid \sum_i
+as $\Delta_\mu := \{\xmu \in \mathbb{R}^n_+ \mid \sum_i
 \xmuaction{i} = 1\}$. 
 
 Also associated with each agent is a utility
@@ -501,7 +501,7 @@ In Section \ref{sec::CTFPAnalysis} we show that NE exist for NA games.
 
   \begin{assumption}\label{ass::zerosum}
     The NA game is zero-sum in the sense that $\sum_{\mu} u^\mu(\xmu,
-    \weightedsum) = 0$ for any set $(x^\mu)_{\mu \in N^\mu}$ of
+    \weightedsum) = 0$ for any set $(x^\mu)_{\mu \in \agentset}$ of
     states. This is, perhaps, one of the strongest assumptions in our
     analysis, which is required for the fixed-point analysis. However,
     in Sec.~\ref{sec::CCEConvergence}, we perform a regret analysis
@@ -533,12 +533,12 @@ In Section \ref{sec::CTFPAnalysis} we show that NE exist for NA games.
   where we have introduced the surrogate function $\bar{u}$ which keeps $x$ in the first argument and all other agent states $\xnu$ in the second argument. We can find $\bar{u}_i$ through the following argument
 %  
   \begin{align}
-    u^\mu(x, w^{\mu \mu} x + \sum_{\nu \in N^\nu} w_{\mu \nu} \NE{\nu}) & = x \cdot A^\mu (w^{\mu \mu} x + \sum_{\nu \in N^\mu} w_{\mu \nu} \NE{\nu}) \label{eq::bilinear1}\\
+    u^\mu(x, w^{\mu \mu} x + \sum_{\nu \in N^\nu} w^{\mu \nu} \NE{\nu}) & = x \cdot A^\mu (w^{\mu \mu} x + \sum_{\nu \in N^\mu} w_{\mu \nu} \NE{\nu}) \label{eq::bilinear1}\\
      & = x \cdot (w^{\mu \mu} A^\mu)  x + \sum_{\nu \in N^\mu} u^{\mu \nu}(x, \NE{\nu}) \label{eq::bilinear2} \\
      & \stackrel{\text{def}}{=} \bar{u}^\mu(x, \sum_{\nu \in N^\mu} w^{\mu \nu} \NE{\nu}), \nonumber
   \end{align}
 %  
-  where $u^{\mu \nu}(\xmu, x^\nu) = \xmu \cdot A^\mu x^\nu$.
+  where $u^{\mu \nu}(\xmu, x^\nu) = \xmu \cdot (w^{\mu \nu}A^\mu) x^\nu$.
 
   Note that, in order to get this formulation, we had to use Assumption \ref{ass::matrixgame}
  to move from (\ref{eq::bilinear1}) to (\ref{eq::bilinear2}).
