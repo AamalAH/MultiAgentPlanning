@@ -3,6 +3,7 @@ from scipy.linalg import block_diag
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
 
 def generateGames(gamma, nSim, nAct):
     """
@@ -76,7 +77,8 @@ if __name__ == "__main__":
 
     # windowSize = int(1e2)
 
-
+    os.mkdir('p_{0}_N_{1}'.format(nAgents, nAct))
+    
     L = np.zeros((nAgents, nAgents), dtype=int)
     for i in range(nAgents):
         for j in range(i):
@@ -110,6 +112,8 @@ if __name__ == "__main__":
 
             dS = np.array([pLCE(np.vstack((np.expand_dims(allActions[i, :, :, :, :], axis=0), np.delete(allActions, i, axis=0)))) for i in range(nInit)])
             dS = np.mean(np.log(dS), axis=0)
+
+            np.savetxt('p_{0}_N_{1}/gamma_{2}_alpha_{3}'.format(nAgents, nAct, gamma, alpha), np.mean(dS, axis=1))
 
             plt.plot(np.mean(dS, axis=1)), plt.show()
 
