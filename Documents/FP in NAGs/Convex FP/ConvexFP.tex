@@ -203,7 +203,7 @@
 		\frac{d}{dt} \begin{pmatrix}
 			p(t) \\ q(t)
 		\end{pmatrix} = \begin{pmatrix}
-		-I_n & \bar{A} \\ - I_n & \bar{B}
+		-I_n & \bar{A} \\ \bar{B} & -I_n
 		\end{pmatrix} \begin{pmatrix}
 		p(t) \\ q(t)
 	\end{pmatrix}
@@ -213,24 +213,89 @@
 	
 		\begin{equation}
 		\begin{pmatrix}
-			-I_n & \bar{A} \\ - I_n & \bar{B}
-		\end{pmatrix} 
+			-I_n & \bar{A} \\ \bar{B} & -I_n
+		\end{pmatrix} = \begin{pmatrix}
+		0 & \bar{A} \\ \bar{B} & 0
+	\end{pmatrix} - I_{2n}
 	\end{equation}
 	
-	If they are all negative, then the system is stable. If any eigenvalue is positive, then the system is unstable. The eigenvalues are determined from the characteristic function
+	If they are all negative, then the system is stable. If any eigenvalue is positive, then the system is unstable. To begin with we have that since every matrix commutes with the identity (\ah{Need to find the reference for this, but I am using the following result: As a direct consequence of simultaneous triangulizability, the eigenvalues of two commuting complex matrices A, B with their algebraic multiplicities (the multisets of roots of their characteristic polynomials) can be matched up}), our eigenvalues take the form
 	
 	\begin{equation}
-		det \left\{ (-1 - \lambda)(\bar{B} - \lambda I_n) + \bar{A} \right\} = 0
+		\lambda_i = \xi_i - 1		
 	\end{equation}
-
-	Our job now is to determine conditions on $\bar{A}$ and $\bar{B}$ so that $\lambda$ comes out negative. To begin with we have that, if $\bar{A}$ and $\bar{B}$ commute (i.e. $\bar{A}\bar{B} = \bar{B}\bar{A}$), then our eigenvalues satisfy (\ah{Need to find the reference for this, but I am using the following result: As a direct consequence of simultaneous triangulizability, the eigenvalues of two commuting complex matrices A, B with their algebraic multiplicities (the multisets of roots of their characteristic polynomials) can be matched up})
 		
+	in which $\xi_i$ is an eigenvalue of the matrix 
+	
+	 \begin{equation}
+	 	\Lambda := \begin{pmatrix}
+	 		0 & \bar{A} \\ \bar{B} & 0
+	 	\end{pmatrix}
+	 \end{equation}
+	
+	Now, we need that $\lambda_i \leq 0$, so that $\xi_i \leq 1$. From Gershgorin's disk theorem, we have that any $\xi_i$ must lie in one of the disks
+	
 	\begin{equation}
-		\prod_{i = 1}^{n} (-1 - \lambda_i) (\beta_i - \lambda_i) + \alpha_i = 0, 
+		\{ z \in \mathbb{C} : |z| \leq \sum_{j \neq i} |\Lambda_{ij}| \}
+	\end{equation}
+	
+	We can, of course, separate these disks out into the individual components given by $\bar{A}$ and $\bar{B}$
+	
+	\begin{equation}
+		\{ z \in \mathbb{C} : |z| \leq \sum_{j = 1}^{n} |\bar{A}_{ij}| \} \hspace*{1cm} \{ z \in \mathbb{C} : |z| \leq \sum_{j = 1}^{n} |\bar{B}_{ij}| \}
+	\end{equation}
+	
+	A sufficient condition for stability, therefore, is that
+	
+	\begin{equation}
+		\sum_{j = 1}^{n} |\bar{A}_{ij}| \leq 1 \hspace*{1cm} \sum_{j = 1}^{n} |\bar{B}_{ij}| \leq 1
+	\end{equation}
+	
+	for all $i$. In words, this condition means that all of the rows of both $|\bar{A}|$ and $|\bar{B}|$ sum to at most one.
+	
+	 \section{Extension to $p$-player games}
+	
+	In this case, we have a cost function given by
+	
+	\begin{equation}
+		u^\mu(x^\mu, \alpha_\sigma^\mu) = ||\xmu - \xmu_d||_{A^\mu_1} + ||\xmu - \alpha_\sigma^\mu||_{A^\mu_2}
 	\end{equation}
 
-	in which $(\beta_i,  )$. Now, our goal is to ensure that the resulting 
+	So that
+	
+	\begin{equation}
+		BR^\mu(\alpha_\sigma^\mu) = \bar{A}^\mu_1 x_d + \bar{A}^\mu_2 \alpha_\sigma^\mu(t)
+	\end{equation}
+	
+	In this case the Fictitious Play Dynamic (after making the appropriate transformation) is given by 
+	
+	\begin{align*}
+		& \dot{\alpha}^\mu(t) = \frac{1}{t} \left( \bar{A}^\mu \alpha_\sigma^\mu(t) - \alpha^\mu(t) \right) \\
+		\implies & \alpha(t) = \frac{1}{t} \left( \begin{pmatrix}
+			A^1 & & \\
+			& \ddots & \\
+			 & & A^N \\
+		\end{pmatrix} (W \otimes I_n ) - I_{Nn} \right) \alpha(t)
+	\end{align*}
 
+	Again, our eigenvalues are given by
+	
+	\begin{align*}
+		\lambda_i = \xi_i - 1
+	\end{align*}
+	
+	where now $\xi_i$ are the eigenvalues of 
+	
+	\begin{equation}
+		 \begin{pmatrix}
+			A^1 & & \\
+			& \ddots & \\
+			& & A^N \\
+		\end{pmatrix} (W \otimes I_n )
+	\end{equation}
+	
+	We require that $\xi_i \leq 1$ for stability.
+ 	
 \end{document}
 
 
