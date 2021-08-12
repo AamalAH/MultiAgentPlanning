@@ -73,11 +73,8 @@ if __name__ == "__main__":
     numTests = 10
     # nNbr = 4
 
-    # allConv = np.zeros((numTests, numTests))
+    windowSize = int(1e2)
 
-    # windowSize = int(1e2)
-
-    # os.mkdir('p_{0}_N_{1}'.format(nAgents, nAct))
     
     L = np.zeros((nAgents, nAgents), dtype=int)
     for i in range(nAgents):
@@ -86,11 +83,7 @@ if __name__ == "__main__":
 
     allConv = np.zeros((numTests, numTests))
 
-    x0 = np.random.dirichlet(np.ones(nAct), size=(nAgents, nSim))
-    x = x0.reshape((nAgents * nAct * nSim))
-    x = x[None, :] + 0.01 * np.random.multivariate_normal(np.zeros(nAgents * nSim * nAct), np.eye(nAgents * nSim * nAct), size=nNbr)
-    x = abs(x).reshape((nNbr, nAgents, nSim, nAct)) / np.sum(abs(x).reshape((nNbr, nAgents, nSim, nAct)), axis=3)[:, :, :, None]
-    x = np.vstack((np.expand_dims(x0, axis=0), x)).transpose(1, 0, 2, 3)
+    x0 = np.random.dirichlet(np.ones(nAct), size=(nAgents, nInit, nSim))
 
     for i, gamma in tqdm(enumerate(np.linspace(-1, 0, num=10))):
         C, D = generateGames(gamma, nSim, nAct)
@@ -100,7 +93,7 @@ if __name__ == "__main__":
 
             G = (C, np.transpose(D, (1, 0, 2)))
             agents = [Agent(i, nAct, nAgents, G, L) for i in range(nAgents)]
-            # checkWindow = np.zeros((nAgents, nInit, nSim, nAct, windowSize))
+            checkWindow = np.zeros((nAgents, nInit, nSim, nAct, windowSize))
             n = 0
             for cIter in range(nIter):
                 P = np.stack([agents[i].getP(x, nInit) for i in range(nAgents)])
@@ -108,21 +101,17 @@ if __name__ == "__main__":
                                                                              axis=3)[:, :, :, None]
                 allActions[:, :, :, :, cIter] = x
 
-            allActions = allActions.transpose(1, 0, 2, 3, 4)
+                allActions = allActions.transpose(1, 0, 2, 3, 4)
+            
+            
+                if cIter > (nIter - windowSize - 1):
+                    checkWindow[:, :, :, :, n] = x
+                    n += 1
+        
+            converged = checkMinMax(checkWindow, windowSize, 1e-2)
 
-            dS = np.array([pLCE(np.vstack((np.expand_dims(allActions[i, :, :, :, :], axis=0), np.delete(allActions, i, axis=0)))) for i in range(nInit)])
-            dS = np.mean(np.log(dS), axis=0)
+            allConv[numTests - 1 - i, j] = np.sum(converged)/(nInit * nSim)
 
-            np.savetxt('p_{0}_N_{1}/gamma_{2}_alpha_{3}'.format(nAgents, nAct, gamma, alpha), dS)
+    np.savetxt('data.csv', allConv)
 
-            # plt.plot(np.mean(dS, axis=1)), plt.show()
-
-            #     if cIter > (nIter - windowSize - 1):
-            #         checkWindow[:, :, :, :, n] = x
-            #         n += 1
-            #
-            # converged = checkMinMax(checkWindow, windowSize, 1e-2)
-
-            # allConv[numTests - 1 - i, j] = np.sum(converged)/(nInit * nSim)
-
-    # sns.heatmap(allConv), plt.show()
+    sns.heatmap(allConv), plt.show()

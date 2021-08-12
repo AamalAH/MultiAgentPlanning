@@ -77,7 +77,7 @@ if __name__ == "__main__":
 
     # windowSize = int(1e2)
 
-    # os.mkdir('p_{0}_N_{1}'.format(nAgents, nAct))
+    os.mkdir('p_{0}_N_{1}'.format(nAgents, nAct))
     
     L = np.zeros((nAgents, nAgents), dtype=int)
     for i in range(nAgents):
@@ -94,7 +94,7 @@ if __name__ == "__main__":
 
     for i, gamma in tqdm(enumerate(np.linspace(-1, 0, num=10))):
         C, D = generateGames(gamma, nSim, nAct)
-        for j, alpha in enumerate(np.linspace(0.1, 0.03, num=1)):
+        for j, alpha in enumerate(np.linspace(0.01, 0.03, num=1)):
             allConverged = 0
             allActions = np.zeros((nAgents, nInit, nSim, nAct, nIter))
 
