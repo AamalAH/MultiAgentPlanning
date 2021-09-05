@@ -37,48 +37,50 @@ def getF(Xs, rho, b, a):
 
 
 def getFi(xi, z, Xs, rho, b, a, q, chi):
-    return (b**2)*G * chi * Xs[xi] - a * np.log(Xs[xi]) + b * np.sqrt(q) * z - rho
+    return (b**2)*G * nNbr * chi * Xs[xi] - a * np.log(Xs[xi]) + b * np.sqrt(nNbr) * np.sqrt(q) * z - rho
 
 
 def findrho(Xs, zs, b, a):
     q, chi = getOrderParams(Xs, dz, Dz)
     allrho = np.zeros(len(Xs))
     for xi in range(len(Xs)):
-        allrho[xi] = (b ** 2) * G * chi * Xs[xi] - a * np.log(Xs[xi]) + b * np.sqrt(q) * zs[xi]
+        allrho[xi] = (b ** 2) * nNbr * G * chi * Xs[xi] - a * np.log(Xs[xi]) + b * np.sqrt(nNbr) * np.sqrt(q) * zs[xi]
 
     return np.mean(allrho)
 
 if __name__ == "__main__":
 
     nAct = 10
-
+    nNbr = 4
     G = -1
     a = 0.1
-    b = 0.1 / np.sqrt(nAct)
+    b = 0.05 / np.sqrt(nAct)
 
-    allA = np.zeros(10)
+    allA = np.zeros((10, 10))
 
-    for cI, a in tqdm(enumerate(np.linspace(0, 0.05, num=10))):
+    for cI, G in enumerate(np.linspace(0, 1, num = 10)):
 
-        Xs = abs(np.random.rand(100))
-        zs = np.linspace(-1.5, 1.5, 100)
-        Zz = 1 / (np.sqrt(2 * np.pi)) * np.exp((zs ** 2) / 2)
-        dz = zs[1] - zs[0]
-        Dz = dz / (np.sqrt(2 * np.pi)) * np.exp((zs ** 2) / 2)
-        Xs /= np.sum(Dz * Xs)
-        rho = findrho(Xs, zs, b, a)
-        allFZero = np.zeros(1000)
-        variation = 1e-5
+        for cJ, a in tqdm(enumerate(np.linspace(0, 0.03, num=10))):
 
-        for cIter in range(1000):
-            XSampled = np.vstack((Xs + (1e-4 / (cIter + 0.1)) * np.random.multivariate_normal(np.zeros(100), np.eye(100), size=(99)), Xs))
-            allFSampled = np.array([getF(X, rho, b, a) for X in XSampled])
-            Xs = abs(XSampled[np.argmin(allFSampled[:, 0])])
-            Xs /= np.sum(Xs * Dz)
+            Xs = abs(np.random.rand(100))
+            zs = np.linspace(-1.5, 1.5, 100)
+            Zz = 1 / (np.sqrt(2 * np.pi)) * np.exp((zs ** 2) / 2)
+            dz = zs[1] - zs[0]
+            Dz = dz / (np.sqrt(2 * np.pi)) * np.exp((zs ** 2) / 2)
+            Xs /= np.sum(Dz * Xs)
             rho = findrho(Xs, zs, b, a)
-            allFZero[cIter] = getF(Xs, rho, b, a)[50]
+            allFZero = np.zeros(1000)
+            variation = 1e-5
 
-        _, chi = getOrderParams(Xs, dz, Dz)
+            for cIter in range(1000):
+                XSampled = np.vstack((Xs + (1e-4 / (cIter + 0.1)) * np.random.multivariate_normal(np.zeros(100), np.eye(100), size=(99)), Xs))
+                allFSampled = np.array([getF(X, rho, b, a) for X in XSampled])
+                Xs = abs(XSampled[np.argmin(allFSampled[:, 0])])
+                Xs /= np.sum(Xs * Dz)
+                rho = findrho(Xs, zs, b, a)
+                allFZero[cIter] = getF(Xs, rho, b, a)[50]
 
-        allA[cI] = np.sum(Dz * 1 / (abs((a / Xs) - b**2 * G * chi) ** 2))
+            _, chi = getOrderParams(Xs, dz, Dz)
+
+            allA[10 - 1 - cI, cJ] = np.sum(Dz * 1 / (abs((a / Xs) - b**2 * G * nNbr * chi) ** 2))
 

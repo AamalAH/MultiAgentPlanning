@@ -33,8 +33,9 @@ def generateGames(gamma, nSim, nAct):
     return [rewardAs[:, :, 1:], rewardBs[:, :, 1:]]
 
 def checkVar(checkWindow, windowSize, tol):
-    C = checkWindow.reshape((nAct * nAgents, nInit, windowSize))
-    return np.mean(np.var(C, axis=2), axis=0) < tol
+    C = np.transpose(checkWindow, (0, 3, 1, 2, 4))
+    C = C.reshape((nAct * nAgents, nInit, nSim, windowSize))
+    return np.mean(np.var(C, axis=3), axis=0) < tol
 
 def checkMinMax(checkWindow, windowSize, tol):
     C = np.transpose(checkWindow, (0, 3, 1, 2, 4))
@@ -62,18 +63,18 @@ class Agent:
         return np.sum(k.reshape(nAgents - 1, nAct, nInit, nSim), axis=0).transpose(1, 2, 0)
 
 if __name__ == "__main__":
-    nAct = 35
-    nAgents = 2
-    nInit = 10
-    nSim = 25
+    nAct = 3
+    nAgents = 4
+    nInit = 5
+    nSim = 10
     nNbr = nInit - 1
-    tryno = 2
+    tryno = 3   
 
     beta = 5e-2
-    nIter = int(7.5e4)
+    nIter = int(1.5e5)
     numTests = 20
 
-    windowSize = int(1e4)
+    windowSize = int(1500)
     
     L = np.zeros((nAgents, nAgents), dtype=int)
     for i in range(nAgents):
@@ -82,16 +83,18 @@ if __name__ == "__main__":
 
     allConv = np.zeros((numTests, numTests))
 
-    x = np.random.dirichlet(np.ones(nAct), size=(nAgents, nInit, nSim))
 
-    for i, gamma in tqdm(enumerate(np.linspace(-1, 0, num=numTests))):
+
+    for i, gamma in tqdm(enumerate(np.linspace(-1, 0, num=1))):
         C, D = generateGames(gamma, nSim, nAct)
+        G = (C, np.transpose(D, (1, 0, 2)))
+        agents = [Agent(i, nAct, nAgents, G, L) for i in range(nAgents)]
         for j, alpha in enumerate(np.linspace(0.00, 0.03, num=numTests)):
             allConverged = 0
             # allActions = np.zeros((nAgents, nInit, nSim, nAct, nIter))
 
-            G = (C, np.transpose(D, (1, 0, 2)))
-            agents = [Agent(i, nAct, nAgents, G, L) for i in range(nAgents)]
+            x = np.random.dirichlet(np.ones(nAct), size=(nAgents, nInit, nSim))
+
             checkWindow = np.zeros((nAgents, nInit, nSim, nAct, windowSize))
             n = 0
             for cIter in range(nIter):
@@ -107,10 +110,10 @@ if __name__ == "__main__":
                     checkWindow[:, :, :, :, n] = x
                     n += 1
         
-            converged = checkMinMax(checkWindow, windowSize, 1e-2)
+            converged = checkMinMax(checkWindow, windowSize, 1e-5)
 
             allConv[numTests - 1 - i, j] = np.sum(converged)/(nInit * nSim)
 
-    np.savetxt('p{0}n{1}trial{2}.csv'.format(nAgents, nAct, tryno), allConv)
+    # np.savetxt('p{0}n{1}trial{2}.csv'.format(nAgents, nAct, tryno), allConv)
 
     sns.heatmap(allConv), plt.show()
